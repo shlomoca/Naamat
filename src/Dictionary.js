@@ -1,21 +1,19 @@
 import LocalizedStrings from 'react-localization';
- export var currentLang = "en";
+
  
  
-export const langs= [ "en" ,"he","ar"];
+export const langs= [ "EN" ,"HE","AR"];
 export const Dictionary = new LocalizedStrings({
-    en: {
+    EN: {
         enterMail: "please enter email",
         enterPass:  "password",
         login:"log in"
       },
-      he: {
+      HE: {
         enterMail: "אנא הכנס מייל",
         enterPass:  "סיסמא",
         login:"התחבר"
       },
 });
 
-export function changeLang(lang){
-    currentLang=lang;
-}
+

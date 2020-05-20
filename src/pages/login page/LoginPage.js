@@ -1,13 +1,19 @@
 import React, { Component } from 'react';
-import {Dictionary, currentLang, changeLang,langs} from '../../Dictionary'
+import {Dictionary,langs} from '../../Dictionary'
 import './LoginPage.css';
+import { Link } from 'react-router-dom';
 
 
 
 const Buttons = (props) => {
+   
 
-    return <button className = "btn"
-    id = { props.id } > { props.text } </button>
+    return (
+        <Link to="/mainUserPage"><button className = "btn"
+    id = { props.id } 
+     
+    > { props.text } 
+         </button></Link>)
 
 }
 const TextBox = (props) => {
@@ -24,8 +30,8 @@ const TextBox = (props) => {
 
         class LoginPage extends Component {
             render() {
-                changeLang(langs[0]);
-                Dictionary.setLanguage(currentLang);
+               
+                Dictionary.setLanguage(langs[1]);
                 return ( <div id = "wrapper" >
                    <a href="http://www.google.com"> <img  src="https://i.imgur.com/Mxz9uP5.png" alt="logo" id="logo" /></a>
                     <TextBox 
@@ -36,6 +42,7 @@ const TextBox = (props) => {
                     id = "password"
                     placehold = {Dictionary.enterPass} />
                     <Buttons id = "login"
+                    type="button"
                     text = {Dictionary.login}/>
 
                     </div>
