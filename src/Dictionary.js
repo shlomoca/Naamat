@@ -2,7 +2,7 @@ import React from 'react';
 import LocalizedStrings from 'react-localization';
 import Dropdown,{DropdownContent,DropdownTrigger} from 'react-simple-dropdown';
 import "./Dictionary.css"
-import globe from './globe.png'
+import globe from './images/globe.png'
 
 
 export const langs = ["EN", "HE", "AR"];

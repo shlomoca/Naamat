@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {Dictionary,langs} from '../../Dictionary'
 import './LoginPage.css';
 import { Link } from 'react-router-dom';
+import logo from '../../images/logo.png';
 
 
 
@@ -30,7 +31,7 @@ const TextBox = (props) => {
                
                 
                 return ( <div id = "wrapper" >
-                   <a href="http://www.google.com"> <img  src="https://i.imgur.com/Mxz9uP5.png" alt="logo" id="logo" /></a>
+                   <a href="http://www.google.com"> <img  src={logo} alt="logo" id="logo" /></a>
                     <TextBox 
                     input = "email"
                     id = "userName"
