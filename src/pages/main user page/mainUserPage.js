@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import  {LangBtn}  from '../../Dictionary';
+import  {LangBtn, Dictionary}  from '../../Dictionary';
 
 
 
@@ -7,8 +7,8 @@ class mainUserPage extends Component {
     render() {
        return(
            <div id="wrapper">
-           this is the main user page
            <LangBtn />
+           {Dictionary.enterMail}
            </div>
         );
 

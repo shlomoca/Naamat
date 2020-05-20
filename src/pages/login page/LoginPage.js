@@ -28,7 +28,7 @@ const TextBox = (props) => {
         class LoginPage extends Component {
             render() {
                
-                Dictionary.setLanguage(langs[1]);
+                
                 return ( <div id = "wrapper" >
                    <a href="http://www.google.com"> <img  src="https://i.imgur.com/Mxz9uP5.png" alt="logo" id="logo" /></a>
                     <TextBox 

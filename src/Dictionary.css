@@ -1,0 +1,20 @@
+.dropdown {
+    display: inline-block;
+    cursor: pointer;
+}
+
+.dropdown__content {
+    display: none;
+    position: absolute;
+    cursor: pointer;
+}
+
+.dropdown--active .dropdown__content {
+    display: block;
+    cursor: pointer;
+}
+#globus{
+height: 4vh;
+width: 4vh;
+cursor: pointer;
+}
