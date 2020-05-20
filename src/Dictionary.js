@@ -33,10 +33,10 @@ if(language === null)
 Dictionary.setLanguage(language);
 
 
-function changeLanguage(index)
+function changeLanguage(lang)
 {
     return function(){
-        sessionStorage.setItem("current_language",langs[index]);
+        sessionStorage.setItem("current_language",lang);
         alert("pop up window are you sure?");
         window.location.reload();
     }
@@ -48,18 +48,18 @@ export const LangBtn = () => {
   return (
     <div id ="languages">
     <Dropdown >
-      <DropdownTrigger><img src={globe} id="globus" alt="lang" /></DropdownTrigger>
+      <DropdownTrigger><img src={globe} id="globus" alt="lang"  /></DropdownTrigger>
       <DropdownContent>
 
         <ul>
           <li>
-            <button onClick=  {changeLanguage(0)} >English</button>
+            <button onClick=  {changeLanguage("EN")} >English</button>
           </li>
            <li>
-             <button onClick ={changeLanguage(1)}>עברית</button>
+             <button onClick ={changeLanguage("HE")}>עברית</button>
            </li>
            <li>
-             <button onClick={changeLanguage(2)}>ARABIC</button>
+             <button onClick={changeLanguage("AR")}>ARABIC</button>
            </li>
         </ul>
       </DropdownContent>
