@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
+import {Dictionary, currentLang, changeLang,langs} from '../../Dictionary'
 import './LoginPage.css';
-// import '.../Dictionery.js';
-const HEB="heb",ENG = "eng",ARAB="arab";
-var lang =HEB;
+
+
 
 const Buttons = (props) => {
 
@@ -21,33 +21,22 @@ const TextBox = (props) => {
  
 
 
-// var placehold;
-// switch (lang) {
-    //     case ARAB:
-//         placehold="arabic enter email"
-//         break;
-//     case ENG:
-//         placehold="enter email here"
-//         break;
-//     case ENG:
-//         placehold="הכנס כתובת מייל"
-//         break;
 
-    
-// }
         class LoginPage extends Component {
             render() {
+                changeLang(langs[0]);
+                Dictionary.setLanguage(currentLang);
                 return ( <div id = "wrapper" >
                    <a href="http://www.google.com"> <img  src="https://i.imgur.com/Mxz9uP5.png" alt="logo" id="logo" /></a>
                     <TextBox 
                     input = "email"
                     id = "userName"
-                    placehold = "enter email here" />
+                    placehold = {Dictionary.enterMail} />
                     <TextBox input = "password"
                     id = "password"
-                    placehold = "password" />
+                    placehold = {Dictionary.enterPass} />
                     <Buttons id = "login"
-                    text = "log in"/>
+                    text = {Dictionary.login}/>
 
                     </div>
 

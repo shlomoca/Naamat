@@ -5,19 +5,15 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* #wrapper { */
-   /* display: inline-block;
-    position: absolute;
-    height: 100%;
-    width: 100%;  */
-    background-color: purple;
-    /* For browsers that do not support gradients */
-    background-image: linear-gradient( pink, purple);
-    background-position: center;
+  
+  /* For browsers that do not support gradients */
+  background-color: purple;
+  background-image: linear-gradient( pink, purple);
+  background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
     
-/* } */
+
 }
 
 code {
