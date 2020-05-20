@@ -7,13 +7,13 @@ import { Link } from 'react-router-dom';
 
 const Buttons = (props) => {
    
-
     return (
-        <Link to="/mainUserPage"><button className = "btn"
-    id = { props.id } 
-     
-    > { props.text } 
-         </button></Link>)
+        <Link to={props.link}>
+    <button className = "btn"
+    id = { props.id }> 
+    { props.text } 
+         </button>
+         </Link>)
 
 }
 const TextBox = (props) => {
@@ -25,9 +25,6 @@ const TextBox = (props) => {
             </input>);
         }
  
-
-
-
         class LoginPage extends Component {
             render() {
                
@@ -43,8 +40,8 @@ const TextBox = (props) => {
                     placehold = {Dictionary.enterPass} />
                     <Buttons id = "login"
                     type="button"
-                    text = {Dictionary.login}/>
-
+                    text = {Dictionary.login}
+                    link = "/mainUserPage"/>
                     </div>
 
                 )

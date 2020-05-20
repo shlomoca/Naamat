@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
+import  {LangBtn}  from '../../Dictionary';
+
 
 
 class mainUserPage extends Component {
@@ -7,6 +8,7 @@ class mainUserPage extends Component {
        return(
            <div id="wrapper">
            this is the main user page
+           <LangBtn />
            </div>
         );
 
