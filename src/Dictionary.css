@@ -18,3 +18,15 @@ height: 4vh;
 width: 4vh;
 cursor: pointer;
 }
+
+#languages
+{
+     display: block;
+     margin-top: 3%;
+     margin-left: 0;
+}
+
+ul
+{
+    list-style-type: none;
+}
