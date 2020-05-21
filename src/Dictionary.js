@@ -59,13 +59,13 @@ export const LangBtn = () => {
 
         <ul>
           <li>
-            <button onClick=  {changeLanguage("EN")} >English</button>
+            <button class= "langbut" onClick=  {changeLanguage("EN")} >English</button>
           </li>
            <li>
-             <button onClick ={changeLanguage("HE")}>עברית</button>
+             <button class= "langbut" onClick ={changeLanguage("HE")}>עברית</button>
            </li>
            <li>
-             <button onClick={changeLanguage("AR")}>ARABIC</button>
+             <button class= "langbut" onClick={changeLanguage("AR")}>Arabic</button>
            </li>
         </ul>
       </DropdownContent>
