@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Dictionary, langs, LangBtn } from '../../Dictionary'
+import { Dictionary, LangBtn } from '../../Dictionary'
 import './LoginPage.css';
 import { Link } from 'react-router-dom';
 import logo from '../../images/logo.png';
