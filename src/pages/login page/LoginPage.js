@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import { Dictionary, LangBtn } from '../../Dictionary'
 import './LoginPage.css';
 import { Link } from 'react-router-dom';
+import React, { Component } from 'react';
 import logo from '../../images/logo.png';
+import { Dictionary, LangBtn } from '../../Dictionary'
 
 
 
@@ -30,7 +30,7 @@ class LoginPage extends Component {
     render() {
 
 
-        return (<div id="wrapper" >
+        return (<div id="loginWrapper" >
             <LangBtn />
             <a href="http://www.google.com"> <img src={logo} alt="logo" id="bigLogo" /></a>
             <TextBox

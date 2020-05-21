@@ -7,9 +7,12 @@ import './mainUserPage.css'
 class mainUserPage extends Component {
     render() {
        return(
-           <div id="wrapper">
+           <div id="mainUPWrapper">
+               <div id= "navBar">
+
             <img id= "smallLogo" src = {logo} alt = "logo"></img>
            <LangBtn />
+               </div>
            <div id = "about">
        <h1>{Dictionary.aboutTitle}</h1>
            {Dictionary.about}
