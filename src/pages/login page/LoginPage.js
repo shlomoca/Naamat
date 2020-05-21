@@ -32,7 +32,7 @@ class LoginPage extends Component {
 
         return (<div id="wrapper" >
             <LangBtn />
-            <a href="http://www.google.com"> <img src={logo} alt="logo" id="logo" /></a>
+            <a href="http://www.google.com"> <img src={logo} alt="logo" id="bigLogo" /></a>
             <TextBox
                 input="email"
                 id="userName"
