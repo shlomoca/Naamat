@@ -1,0 +1,12 @@
+#languages{
+    display: inline;
+}
+#navbar{
+    float: left;
+    
+
+}
+ #smallLogo{
+    display: inline;
+   
+}
