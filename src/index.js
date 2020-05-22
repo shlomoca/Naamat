@@ -5,6 +5,7 @@ import LoginPage from './pages/login page/LoginPage';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import mainUserPage from './pages/main user page/mainUserPage';
 
+
 ReactDOM.render(
 <Router>
 <Route exact path="/" component={LoginPage} />

@@ -1,3 +1,9 @@
+
+
+
+
+
+
 export const firebaseConfig = {
     apiKey: "AIzaSyCWPELpGB-6l7o1GS0OkM4KNPONvgQsvus",
     authDomain: "naamat-vc.firebaseapp.com",
@@ -10,3 +16,7 @@ export const firebaseConfig = {
   };
   firebase.initializeApp(firebaseConfig);
   firebase.analytics();
+
+     
+    
+   
