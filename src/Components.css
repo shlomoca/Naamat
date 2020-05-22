@@ -1,12 +1,20 @@
 #languages{
     display: inline;
 }
-#navbar{
-    float: left;
-    
+    #smallLogo{
 
+        /* box-sizing: content-box;   */
+        /* height: fit-content; */
+        display: inline;
+    
 }
- #smallLogo{
-    display: inline;
-   
+#navbar{
+    position: absolute;
+    height:7%;
+    width: 100%;
+    border-color: black;
+    border-style: groove;
+    
 }
+    
+    

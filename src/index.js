@@ -1,6 +1,6 @@
+import './index.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import LoginPage from './pages/login page/LoginPage';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import mainUserPage from './pages/main user page/mainUserPage';

@@ -1,6 +1,7 @@
 import React from 'react';
 import  {LangBtn}  from './Dictionary';
 import logo from './images/logo.png';
+import './Components.css';
 
 export const NavBar = () => {
 
