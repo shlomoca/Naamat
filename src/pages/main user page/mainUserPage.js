@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import  {Dictionary}  from '../../Dictionary';
-import NavBar from '../../Components.js';
+import NavBar from '../../components.js';
 import './mainUserPage.css';
 
 
