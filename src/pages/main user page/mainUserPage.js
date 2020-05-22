@@ -8,12 +8,14 @@ class mainUserPage extends Component {
     render() {
        return(
            <div id="mainUPWrapper"class= "wrapper">
-               <NavBar />         
+               <NavBar />        
+            <div id="main">
            <div id = "about">
        <h1>{Dictionary.aboutTitle}</h1>
            {Dictionary.about}
            </div>
            </div>
+               </div>
         );
 
     }

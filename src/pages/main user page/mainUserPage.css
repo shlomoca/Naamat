@@ -1,4 +1,13 @@
-#mainUPWrapper{
+
+
+
+#main{
+    position: absolute;
+    top:11%;
+    height: 24%;
+    /* opacity: 100%; */
+    /* background: clear; */
+    border: black;
+    border-style: groove;
     text-align: center;
 }
-

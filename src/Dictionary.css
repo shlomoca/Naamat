@@ -1,5 +1,5 @@
 .dropdown {
-    display: inline-block;
+    /* display: inline-block; */
     cursor: pointer;
 }
 
@@ -9,29 +9,37 @@
     cursor: pointer;
 }
 
-.dropdown--active .dropdown__content {
+.dropdown--active  .dropdown__content {
     display: block;
+    margin-top: 7%;
     cursor: pointer;
+    z-index: 5;
+  overflow: auto;
 }
-#globus{
-height: 4vh;
-width: 4vh;
-cursor: pointer;
+#globus{  
+    position: absolute;   
+    top: 0%;
+    max-width:100%;
+    max-height:100%; 
 }
 
 #languages
 {
-     display: block;
-     margin-top: 3%;
+    align-items: right;
+    /* margin-right: 9%; */
+    cursor: pointer;
+    float: right;
 }
-    
-    
+
+
 
 ul
 {
     list-style-type: none;
 }
 .langButtons{
-    width: 15vh;
+    width: 12vh;
+    text-align: center;
+    padding: 0px;
 
 }
