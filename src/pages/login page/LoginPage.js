@@ -30,7 +30,7 @@ class LoginPage extends Component {
     render() {
 
 
-        return (<div id="loginWrapper" >
+        return (<div id="loginWrapper" class= "wrapper">
             <LangBtn />
             <a href="http://www.google.com"> <img src={logo} alt="logo" id="bigLogo" /></a>
             <TextBox

@@ -7,7 +7,7 @@ import './mainUserPage.css';
 class mainUserPage extends Component {
     render() {
        return(
-           <div id="mainUPWrapper">
+           <div id="mainUPWrapper"class= "wrapper">
                <NavBar />
 
          
