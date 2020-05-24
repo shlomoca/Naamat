@@ -13,7 +13,7 @@ class mainUserPage extends Component {
 
                 <div id="main">
                     <div id = "about">
-                        <h1>{Dictionary.aboutTitle}</h1>
+                        <h1>{Dictionary.aboutTitle}</h1>bb the king
                         {Dictionary.about}
                     </div>
                 </div>
