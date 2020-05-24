@@ -32,7 +32,7 @@ class LoginPage extends Component {
 
         return (<div id="loginWrapper" class= "wrapper">
             <LangBtn />
-            <a href="http://www.google.com"> <img src={logo} alt="logo" id="bigLogo" /></a>
+            <a href="https://naamat.org.il/"> <img src={logo} alt="logo" id="bigLogo" /></a>
             <TextBox
                 input="email"
                 id="userName"
@@ -44,6 +44,12 @@ class LoginPage extends Component {
                 type="button"
                 text={Dictionary.login}
                 link="/mainUserPage" />
+            <Buttons id="womanPage"
+            //button for danny and seeharhoor
+                type="button"
+                text="womanpage"
+                link="/WomanPage" />
+               
         </div>
 
         )

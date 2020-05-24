@@ -5,7 +5,7 @@ import "./Dictionary.css"
 import globe from './images/globe.png'
 
 
-export const langs = ["EN", "HE", "AR"];
+export const langs = ["HE","EN" , "AR"];
 export const Dictionary = new LocalizedStrings({
   EN: {
     enterMail: `please enter email`,
@@ -62,13 +62,13 @@ export const LangBtn = () => {
 
         <ul>
           <li>
-            <button class= "langButtons" onClick=  {changeLanguage("EN")} >English</button>
+             <button class= "langButtons" onClick ={changeLanguage("HE")}>עברית</button>
           </li>
            <li>
-             <button class= "langButtons" onClick ={changeLanguage("HE")}>עברית</button>
+            <button class= "langButtons" onClick=  {changeLanguage("EN")} >English</button>
            </li>
            <li>
-             <button class= "langButtons" onClick={changeLanguage("AR")}>Arabic</button>
+             <button class= "langButtons" onClick={changeLanguage("AR")}>عربيه</button>
            </li>
         </ul>
       </DropdownContent>

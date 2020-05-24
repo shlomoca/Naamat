@@ -9,14 +9,14 @@ class mainUserPage extends Component {
        return(
            <div id="mainUPWrapper"class= "wrapper">
                 <WindowComp />
-                <NavBar />   
-
                 <div id="main">
                     <div id = "about">
                         <h1>{Dictionary.aboutTitle}</h1>
                         {Dictionary.about}
                     </div>
                 </div>
+                <NavBar />   
+
                 <footer id = "foot">
                     <button id="btn" onClick={changeVisability("feedbackWin")}>{Dictionary.feedback}</button>
                 </footer>
