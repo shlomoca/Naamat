@@ -7,6 +7,7 @@ import mainUserPage from './pages/main user page/mainUserPage';
 
 
 ReactDOM.render(
+    
 <Router>
 <Route exact path="/" component={LoginPage} />
 <Route path="/mainUserPage" component={mainUserPage} />    

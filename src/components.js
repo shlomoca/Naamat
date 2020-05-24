@@ -7,6 +7,7 @@ export const NavBar = () => {
 
     return (
       <div id ="navbar">
+        
         <img id= "smallLogo" src = {logo} alt = "logo"></img>
            <LangBtn />
 </div>
