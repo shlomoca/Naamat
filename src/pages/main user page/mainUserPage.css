@@ -2,13 +2,18 @@
 
 
 #main{
-    position: absolute;
-    top:11%;
+    position: fixed;
+    top:10%;
     height: 24%;
-    /* opacity: 100%; */
-    /* background: clear; */
     border: black;
-    /* overflow: scroll; */
+    /* z-index: 20; */
+    overflow: auto;
     border-style: groove;
     text-align: center;
+}
+#foot{
+    position: fixed;
+    bottom:0%;
+    height: 10%;
+
 }

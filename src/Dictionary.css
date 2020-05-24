@@ -1,6 +1,7 @@
 .dropdown {
     /* display: inline-block; */
     cursor: pointer;
+    z-index: 999;
 }
 
 .dropdown__content {
@@ -13,7 +14,7 @@
     display: block;
     margin-top: 7%;
     cursor: pointer;
-    z-index: 5;
+    z-index: 999;
   /* overflow: auto; */
 }
 #globus{  

@@ -12,4 +12,24 @@ export const NavBar = () => {
            <LangBtn />
 </div>
 )}  
-export default NavBar;
+ export function changeVisability (propId) {
+   return function(){
+     var x = document.getElementById(propId);
+     if (x.style.display === "block") {
+       x.style.display = "none";
+    } else {
+      x.style.display = "block";
+      }
+    };
+  };
+export const WindowComp = () => {
+
+  return (
+    <div id="feedbackWin" class = "dark-overlay" onClick={changeVisability("feedbackWin")}>
+
+    <div id ="windowComp">
+      
+     this is a window component
+</div>
+    </div>
+)}  
