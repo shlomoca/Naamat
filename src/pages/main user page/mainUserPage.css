@@ -5,10 +5,10 @@
     position: fixed;
     top:10%;
     height: 24%;
-    border: black;
+    
     /* z-index: 20; */
     overflow: auto;
-    border-style: groove;
+    /* border-style: groove; */
     text-align: center;
 }
 #foot{

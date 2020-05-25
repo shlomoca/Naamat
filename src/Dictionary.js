@@ -5,6 +5,7 @@ import "./Dictionary.css"
 import globe from './images/globe.png'
 
 
+
 export const langs = ["HE","EN" , "AR"];
 export const Dictionary = new LocalizedStrings({
   EN: {
@@ -38,18 +39,18 @@ var language = sessionStorage.getItem("current_language");
 if(language === null)
 {
   language = langs[0];
-}
+}  
 Dictionary.setLanguage(language);
 
 
 function changeLanguage(lang)
 {
     return function(){
-        sessionStorage.setItem("current_language",lang);
+      sessionStorage.setItem("current_language",lang);
         //alert("pop up window are you sure?");
         window.location.reload();
-    }
-}
+      }  
+}      
 
 
 export const LangBtn = () => {
@@ -73,9 +74,8 @@ export const LangBtn = () => {
         </ul>
       </DropdownContent>
     </Dropdown>
-    </div>
+    </div>  
   );
-}
-
+}  
 
 

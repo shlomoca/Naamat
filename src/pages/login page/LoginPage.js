@@ -31,8 +31,10 @@ class LoginPage extends Component {
 
 
         return (<div id="loginWrapper" class= "wrapper">
-            <LangBtn />
-            <a href="https://naamat.org.il/"> <img src={logo} alt="logo" id="bigLogo" /></a>
+            <div id = "main">
+            <a href="https://naamat.org.il/" id="bigLogo"> <img src={logo} alt="logo"  /></a>
+            <div id = "buttonWrapper">
+
             <TextBox
                 input="email"
                 id="userName"
@@ -46,10 +48,15 @@ class LoginPage extends Component {
                 link="/mainUserPage" />
             <Buttons id="womanPage"
             //button for danny and seeharhoor
-                type="button"
-                text="womanpage"
-                link="/WomanPage" />
+            type="button"
+            text="womanpage"
+            link="/WomanPage" />
                
+            </div>
+            </div>
+            <div id="header">
+            <LangBtn />
+            </div>
         </div>
 
         )

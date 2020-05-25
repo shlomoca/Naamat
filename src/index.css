@@ -25,4 +25,9 @@ code {
   background-repeat: no-repeat;
   background-size: cover;
 }
+#wrapper{
+  position: fixed;
+  height: 100%;
+  width: 100%;
+}
 
