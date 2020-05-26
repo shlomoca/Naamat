@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import  {Dictionary}  from '../../Dictionary';
-import {NavBar, WindowComp, changeVisability} from '../../Components.js';
+import {NavBar, WindowComp, changeVisability, OpenWindow} from '../../Components.js';
 import './mainUserPage.css';
 
 
@@ -10,7 +10,6 @@ class mainUserPage extends Component {
            <div id="mainUPWrapper"class= "wrapper">
                 <WindowComp />
                 <NavBar />   
-
                 <div id="main">
                     <div id = "about">
                         <h1>{Dictionary.aboutTitle}</h1>
@@ -18,7 +17,7 @@ class mainUserPage extends Component {
                     </div>
                 </div>
                 <footer id = "foot">
-                    <button id="btn" onClick={changeVisability("feedbackWin")}>{Dictionary.feedback}</button>
+                    <button id="btn" onClick={OpenWindow("feedbackWin", 'https://www.google.com/')}>{Dictionary.feedback}</button>
                 </footer>
             </div>
         );
