@@ -15,7 +15,6 @@ input {
     outline:none;    
 }
 #buttonWrapper{
-    /* border: 1px solid black; */
     justify-content: space-around;
 }
 
