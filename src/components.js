@@ -1,6 +1,6 @@
 import React from 'react';
 import  {LangBtn}  from './Dictionary';
-import logo from './images/logo.png';
+import logo from './images/naamatlogo.png';
 import './Components.css';
 
 export const NavBar = () => {
@@ -11,6 +11,18 @@ export const NavBar = () => {
         <img id= "smallLogo" src = {logo} alt = "logo"></img>
            <LangBtn />
 </div>
+)}  
+export const BottomBar = () => {
+
+    return (
+      <div id ="bottom">
+        
+     
+        
+        <img id= "smallLogo" src = {logo} alt = "logo"></img>
+           <LangBtn />
+
+ </div>
 )}  
  export function changeVisability (propId) {
    return function(){
