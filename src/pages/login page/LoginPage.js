@@ -1,7 +1,7 @@
 import './LoginPage.css';
 import { Link } from 'react-router-dom';
 import React, { Component } from 'react';
-import logo from '../../images/logo.png';
+import logo from '../../images/naamatlogo.png';
 import { Dictionary, LangBtn } from '../../Dictionary'
 
 
@@ -31,8 +31,10 @@ class LoginPage extends Component {
 
 
         return (<div id="loginWrapper" class= "wrapper">
-            <LangBtn />
-            <a href="http://www.google.com"> <img src={logo} alt="logo" id="bigLogo" /></a>
+            <div id = "main">
+            <a href="https://naamat.org.il/" id="bigLogo"> <img src={logo} alt="logo"  /></a>
+            <div id = "buttonWrapper">
+
             <TextBox
                 input="email"
                 id="userName"
@@ -44,6 +46,17 @@ class LoginPage extends Component {
                 type="button"
                 text={Dictionary.login}
                 link="/mainUserPage" />
+            {/* <Buttons id="womanPage"
+            //button for danny and seeharhoor
+            type="button"
+            text="womanpage"
+            link="/WomanPage" />
+                */}
+            </div>
+            </div>
+            <div id="header">
+            <LangBtn />
+            </div>
         </div>
 
         )

@@ -1,44 +1,39 @@
 .dropdown {
-    /* display: inline-block; */
     cursor: pointer;
-    z-index: 999;
+   
 }
 
 .dropdown__content {
     display: none;
-    position: absolute;
     cursor: pointer;
 }
 
 .dropdown--active  .dropdown__content {
     display: block;
-    margin-top: 7%;
+    float: left;
+    margin-top: 20%;
     cursor: pointer;
-    z-index: 999;
-  /* overflow: auto; */
+
 }
 #globus{  
-
     height: 6vh;
     width: 6vh;
 }
 
 #languages
 {
-    
     cursor: pointer;
     float: right;
+    margin-top: 0%;
 }
-
-
 
 ul
 {
     list-style-type: none;
 }
 .langButtons{
+    cursor: pointer;
     width: 12vh;
     text-align: center;
     padding: 0px;
-
 }
