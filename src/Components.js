@@ -1,6 +1,8 @@
 import React from 'react';
 import  {LangBtn}  from './Dictionary';
 import logo from './images/naamatlogo.png';
+import fblogo from './images/fblogo.png';
+import ytlogo from './images/ytlogo.png';
 import './Components.css';
 
 export const NavBar = () => {
@@ -19,8 +21,9 @@ export const BottomBar = () => {
         
      
         
-        <img id= "smallLogo" src = {logo} alt = "logo"></img>
-           <LangBtn />
+        <img id= "fblogo" src = {fblogo} alt = "facebook"></img>
+        <img id= "ytlogo" src = {ytlogo} alt = "youtube"></img>
+           
 
  </div>
 )}  
@@ -41,7 +44,7 @@ export const WindowComp = () => {
 
     <div id ="windowComp">
       
-     this is a window component
+     כאן יהיה אפשר להכניס משוב
 </div>
     </div>
 )}  

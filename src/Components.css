@@ -33,3 +33,13 @@
     height: 100%;
     z-index: 200;
   }
+  #fblogo{
+      height: 10vh;
+      width: 10vh;
+      float: right;
+    }
+    #ytlogo{
+        height: 10vh;
+        width: 10vh;
+        float: right;
+  }
