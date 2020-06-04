@@ -1,7 +1,7 @@
 import './WomanPage.css';
 import React, { Component } from 'react';
 import { Dictionary, LangBtn } from '../../Dictionary'
-import { NavBar } from '../../Components';
+import { NavBar, EditWoman } from '../../Components';
 
 
 
@@ -18,10 +18,14 @@ const TextBox = (props) => {
 
 class WomanPage extends Component {
     render() {
-        return(
-        <div id="WomanPageWrapper" class= "wrapper">
-            <NavBar/>
-        </div>
+        return (
+            <div id="WomanPageWrapper" class="wrapper">
+                {/* <NavBar /> */}
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">
+                    Launch static backdrop modal
+                </button>
+                <EditWoman />
+            </div>
 
         )
 
