@@ -1,6 +1,8 @@
 import './WomanPage.css';
 import React, { Component } from 'react';
 import { Dictionary, LangBtn } from '../../Dictionary'
+import { NavBar } from '../../Components';
+
 
 
 
@@ -16,10 +18,9 @@ const TextBox = (props) => {
 
 class WomanPage extends Component {
     render() {
-
-
-        return (<div id="WomanPageWrapper" class= "wrapper">
-           
+        return(
+        <div id="WomanPageWrapper" class= "wrapper">
+            <NavBar/>
         </div>
 
         )
