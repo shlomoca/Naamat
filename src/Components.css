@@ -21,25 +21,8 @@ max-width: 100%;
     max-width: 100%;
     float: right;
 }
-#windowComp{
-    position: fixed;
-    height: 70vh;
-    width: 85vh;
-    top: 20%;
-    left: 30%;
-    background-color: lawngreen;
 
-}   
-.dark-overlay {
-    display: none;
-    background-color: rgba(0, 0, 0, 0.35);
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 200;
-  }
+
   #fblogo{
       height: 10vh;
       width: 10vh;
@@ -50,3 +33,10 @@ max-width: 100%;
         width: 10vh;
         float: right;
   }
+
+ #navList{
+/* justify-items: right; */
+/* width: 100%; */
+float:right
+     /* float: right; */
+ }

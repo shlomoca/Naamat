@@ -1,31 +1,33 @@
 import $ from 'jquery';
 import React, { Component } from 'react';
-import  {Dictionary}  from '../../Dictionary';
-import {NavBar, WindowComp,  BottomBar} from '../../Components.js';
+import { Dictionary } from '../../Dictionary';
+import { NavBar, WindowComp, BottomBar } from '../../Components.js';
 import './mainUserPage.css';
-export function addFeedbackForm(){
-    let feedbackForm = `<div id ="windowComp">  
-    dhgfhgfh
-   </div>`;
+export function addFeedbackForm(feedbackKind) {
+    
 
 
-    $("#catchScreen").append();
-}
+
+    
+    $("#root").append(<WindowComp />);
+
+    // }
+
+};
 
 class mainUserPage extends Component {
     render() {
-       return(
-           <div id="mainUPWrapper"class= "wrapper">
-                <WindowComp />
+        return (
+            <div id="mainUPWrapper" className="wrapper">
                 <div id="main">
-                    <div id = "about">
+                    <div id="about">
                         <h1>{Dictionary.aboutTitle}</h1>
                         {Dictionary.about}
                     </div>
                 </div>
-                <NavBar />   
+                <NavBar />
 
-                <footer id = "foot">
+                <footer id="foot">
                     {/* <BottomBar/> */}
                     <button id="btn" onClick={addFeedbackForm("experience")}>{Dictionary.feedback}</button>
                 </footer>

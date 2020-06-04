@@ -30,32 +30,32 @@ class LoginPage extends Component {
     render() {
 
 
-        return (<div id="loginWrapper" class= "wrapper">
-            <div id = "main">
-            <a href="https://naamat.org.il/" id="bigLogo"> <img src={logo} alt="logo"  /></a>
-            <div id = "buttonWrapper">
+        return (<div id="loginWrapper" class="wrapper">
+            <div id="main">
+                <a href="https://naamat.org.il/" id="bigLogo"> <img src={logo} alt="logo" /></a>
+                <div id="buttonWrapper">
 
-            <TextBox
-                input="email"
-                id="userName"
-                placehold={Dictionary.enterMail} />
-            <TextBox input="password"
-                id="password"
-                placehold={Dictionary.enterPass} />
-            <Buttons id="login"
-                type="button"
-                text={Dictionary.login}
-                link="/mainUserPage" />
-            {/* <Buttons id="womanPage"
+                    <TextBox
+                        input="email"
+                        id="userName"
+                        placehold={Dictionary.enterMail} />
+                    <TextBox input="password"
+                        id="password"
+                        placehold={Dictionary.enterPass} />
+                    <Buttons id="login"
+                        type="button"
+                        text={Dictionary.login}
+                        link="/mainUserPage" />
+                    {/* <Buttons id="womanPage"
             //button for danny and seeharhoor
             type="button"
             text="womanpage"
             link="/WomanPage" />
                 */}
-            </div>
+                </div>
             </div>
             <div id="header">
-            <LangBtn />
+                <LangBtn />
             </div>
         </div>
 
