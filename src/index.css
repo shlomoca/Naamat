@@ -7,28 +7,10 @@ code {
  body {
   margin: 0;
 }
+.modal-header{
+  background-color: rgb(165, 4, 165);
+  color: white;
 
-/* #root {
-   */
-  /* For browsers that do not support gradients */
-  /* background-color: purple; */
-  /* The image used */
-  /* background-image: linear-gradient( pink, purple); */
-  /* background-image: white; */
-  /* position: fixed; */
-  /* Full height */
-  /* height: 100%; 
-  width: 100%; */
+}
 
-
-  /* Center and scale the image nicely */
-  /* background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-} */
-/* #wrapper{
-  /* position: fixed; */
-  /* height: 100%;
-  width: 100%;
-}  */
 

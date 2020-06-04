@@ -23,14 +23,14 @@ export const NavBar = () => {
             <a className="nav-link" href="#">Home <span className="sr-only">(current)</span></a>
           </li>
           <li className="nav-item">
-            <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo">{Dictionary.feedback}</button>
+            <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo">{Dictionary.aboutTitle}</button>
             <div id="demo" class="collapse">
               {Dictionary.about}
             </div>
             {/* </div> */            /* <a className="nav-link" href="#">{Dictionary.feedback}</a> */}
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="#">אודות</a>
+            <a className="nav-link" href="#">{Dictionary.feedback}</a>
           </li>
           <li className="nav-item">
             <a className="nav-link disabled" href="#">Disabled</a>
