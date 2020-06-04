@@ -9,9 +9,16 @@
     border-style: solid;
     
 }
+#colordButton{
+max-width: 100%;
+}
+#serchform{
+max-width: 100%;
+}
 #smallLogo{
     position: relative;
-    width: 22vh;
+    width: 18vh;
+    max-width: 100%;
     float: right;
 }
 #windowComp{
