@@ -28,7 +28,7 @@ input {
     
     
 }
-button {
+#colordButton {
     box-shadow: inset 0px 1px 0px 0px #efdcfb;
     background: linear-gradient(to bottom, #dfbdfa 5%, #bc80ea 100%);
     background-color: #dfbdfa;
@@ -49,7 +49,7 @@ button {
     outline:none;
 }
 
-button:hover {
+#colordButton:hover {
     background: linear-gradient(to bottom, #bc80ea 5%, #dfbdfa 100%);
     background-color: #bc80ea;
 }

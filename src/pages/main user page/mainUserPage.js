@@ -1,8 +1,16 @@
+import $ from 'jquery';
 import React, { Component } from 'react';
 import  {Dictionary}  from '../../Dictionary';
-import {NavBar, WindowComp, changeVisability, BottomBar} from '../../Components.js';
+import {NavBar, WindowComp,  BottomBar} from '../../Components.js';
 import './mainUserPage.css';
+export function addFeedbackForm(){
+    let feedbackForm = `<div id ="windowComp">  
+    dhgfhgfh
+   </div>`;
 
+
+    $("#catchScreen").append();
+}
 
 class mainUserPage extends Component {
     render() {
@@ -19,7 +27,7 @@ class mainUserPage extends Component {
 
                 <footer id = "foot">
                     {/* <BottomBar/> */}
-                    <button id="btn" onClick={changeVisability("feedbackWin")}>{Dictionary.feedback}</button>
+                    <button id="btn" onClick={addFeedbackForm("experience")}>{Dictionary.feedback}</button>
                 </footer>
             </div>
         );
