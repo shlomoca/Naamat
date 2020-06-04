@@ -1,0 +1,14 @@
+{
+    "LoginPage": {
+    "enterMail": "please enter email",
+    "enterPass": "password",
+    "login": "log in"
+    },
+    
+    
+    "mainUserPage": {
+    "about": "Na'amat is a Movement for the advancement of the Status of Women and the Social Force for women in Israel. Na'amat’s top priority is to advance and strengthen the status of women in the family and in the work force. Na'amat is striving to achieve equality between the sexes and full participation of women in social, economic and political spheres. Na'amat, previously called Moetzet Hapoalot (Council of Working Women), was established in 1921 by young working women, pioneers who came to Palestine in the early 1920’s. Moetzet Hapoalot was organized as an autonomous movement with affiliation to the Histadrut (The General Federation of Labor). Today Na'amat is a non-profit organization, a socio-political, multi-party women’s movement comprised of women from diverse sectors of the population, communities, countries of origin and religious streams.",
+    "aboutTitle":"about Na'amat",
+    "feedback":"feedback"
+    }
+}
