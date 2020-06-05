@@ -1,19 +1,10 @@
+import './mainUserPage.css';
 import $ from 'jquery';
 import React, { Component } from 'react';
 import { Dictionary } from '../../Dictionary';
 import { NavBar, WindowComp, BottomBar } from '../../Components.js';
-import './mainUserPage.css';
-export function addFeedbackForm(feedbackKind) {
-    
+import { FeedbackButton } from '../../forms/Forms';
 
-
-
-    
-    $("#root").append(<WindowComp />);
-
-    // }
-
-};
 
 class mainUserPage extends Component {
     render() {
@@ -26,10 +17,10 @@ class mainUserPage extends Component {
                     </div>
                 </div>
                 <NavBar />
-
+                <FeedbackButton />
                 <footer id="foot">
                     {/* <BottomBar/> */}
-                    <button id="btn" onClick={addFeedbackForm("experience")}>{Dictionary.feedback}</button>
+                    {/* <button id="btn" onClick={addFeedbackForm("experience")}>{Dictionary.feedback}</button> */}
                 </footer>
             </div>
         );

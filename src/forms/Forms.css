@@ -1,0 +1,68 @@
+
+
+
+label {
+    vertical-align: top;
+}
+            #modal-header{
+                background-color: purple;
+              
+              }
+
+.modal-body
+{
+    overflow-x: none;
+}
+
+#woman_form
+{
+    display: flex;
+    /* display: inline-block; */
+    flex-wrap: wrap;
+    border-collapse:collapse;
+    width:100%;
+    justify-items: center;
+    text-align: center;
+    overflow-x: none;
+    max-height: 100%;
+    overflow-y: auto;
+}
+
+.form-group
+{
+    padding: 3vh;
+    /* flex-grow: 1; */
+    display: table-cell;
+    white-space: nowrap;
+}
+
+
+  
+/* stars */
+@import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+.starrating > input {display: none;}  /* Remove radio buttons */
+
+.starrating > label:before { 
+  content: "\f005"; /* Star */
+  margin: 2px;
+  font-size: 8em;
+  font-family: FontAwesome;
+  display: inline-block; 
+
+}
+
+.starrating > label
+{
+  color: #222222; /* Start color when not clicked */
+}
+
+.starrating > input:checked ~ label
+{ color: #ffca08 ; } /* Set yellow color when star checked */
+
+.starrating > input:hover ~ label
+{ color: #ffca08 ;  } /* Set yellow color when star hover */
+.starrating{
+    /* overflow: auto; */
+    max-width: 100%;
+}
+/* --------------------------- */

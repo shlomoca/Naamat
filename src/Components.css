@@ -42,40 +42,4 @@ max-width: 100%;
      /* float: right; */
  }
 
-  label {
-    vertical-align: top;
-}
-
-.modal-body
-{
-    overflow-x: none;
-}
-
-#woman_form
-{
-    display: flex;
-    /* display: inline-block; */
-    flex-wrap: wrap;
-    border-collapse:collapse;
-    width:100%;
-    justify-items: center;
-    text-align: center;
-    overflow-x: none;
-    max-height: 100%;
-    overflow-y: auto;
-}
-
-.form-group
-{
-    padding: 3vh;
-    /* flex-grow: 1; */
-    display: table-cell;
-    white-space: nowrap;
-}
-
-#modal-header{
-    background-color: purple;
-  
-  }
-
-  
+ 

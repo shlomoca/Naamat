@@ -1,19 +1,25 @@
 
 
 
-#main{
+/* #main{
     position: fixed;
     top:10%;
     height: 24%;
-    
+    */
     /* z-index: 20; */
-    overflow: auto;
+    /* overflow: auto; */
     /* border-style: groove; */
-    text-align: center;
-}
-#foot{
+    /* text-align: center; */
+/* }  */
+/* #foot{
     position: fixed;
     bottom:0%;
     height: 10%;
 
-}
+} */
+
+/* .star{
+    display: block;
+    position: absolute;
+    height: 2500%;
+} */
