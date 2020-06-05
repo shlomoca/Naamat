@@ -28,3 +28,8 @@ class mainUserPage extends Component {
     }
 }
 export default mainUserPage
+$("document").ready(function () {
+
+  
+      });
+      

@@ -119,17 +119,6 @@ export const WindowComp = (url) => {
 }
 
 
-$("document").ready(function () {
-
-  $('select[name=type]').change(function () {
-    if ($('select[name=type]').val() == 'link') {
-      $('#link').show();
-    } else {
-      $('#link').hide();
-    }
-  });
-
-});
 
 
 
