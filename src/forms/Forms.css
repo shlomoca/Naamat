@@ -40,7 +40,7 @@ label {
   
 /* stars */
 @import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
-.starrating > input {display: none;}  /* Remove radio buttons */
+.starrating > input {display: none;}  /*Remove radio buttons*/
 
 .starrating > label:before { 
   content: "\f005"; /* Star */

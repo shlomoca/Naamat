@@ -5,47 +5,64 @@ import logo from './images/naamatlogo.png';
 import fblogo from './images/fblogo.png';
 import ytlogo from './images/ytlogo.png';
 import './Components.css';
+import { Link } from 'react-router-dom';
 
 export const NavBar = () => {
 
   return (
     // <div id ="navbar">
-    <nav className="navbar navbar-expand-lg navbar-light bg-light" id="navList">
+    <nav className="navbar navbar-expand-lg navbar-light bg-light"  id="navList">
       <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
         <span className="navbar-toggler-icon"></span>
       </button>
-      <img id="smallLogo" src={logo} alt="logo"></img>
-      <LangBtn />
 
-      <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
-        <ul className="navbar-nav mr-auto mt-2 mt-lg-0" >
-          <li className="nav-item active">
-            <a className="nav-link" href="#">Home <span className="sr-only">(current)</span></a>
-          </li>
+
+        <ul className="navbar-nav mr-auto mt-2 mt-lg-0" dir="rtl">
           <li className="nav-item">
-            <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo">{Dictionary.aboutTitle}</button>
-            <div id="demo" class="collapse">
-              {Dictionary.about}
-            </div>
-            {/* </div> */            /* <a className="nav-link" href="#">{Dictionary.feedback}</a> */}
+      <a id="smallLogo" href="#" dir="rtl"><img id="logo" src={logo} alt="logo"></img></a>
           </li>
+
+          <li id="langItam" className="nav-item" >
+      <LangBtn />
+     
+          </li>
+      {/* <div className="collapse navbar-collapse" id="navbarTogglerDemo02"> */}
+
+         
           <li className="nav-item">
              <button type="button" className="btn btn-primary nav-link" data-toggle="modal" data-target="#feedbackForm">
                 {Dictionary.feedback}</button>
           </li>
           <li className="nav-item">
-            <a className="nav-link disabled" href="#">Disabled</a>
+          <Link to="/serchPage?catagorys">
+              <button type="button" className="btn btn-primary nav-link" >
+                catagorys</button>
+            </Link>
           </li>
-          <li className="nav-item">
+         
 
+          {/* <li className="nav-item">
+            <a className="nav-link disabled" href="#">Disabled</a>
+          </li> */}
+
+          <li className="nav-item">
+            <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo">{Dictionary.aboutTitle}</button>
+            <div id="demo" class="collapse">
+              {Dictionary.about}
+            </div>
+          </li>
+
+          <li className="nav-item" id="stretcher">
             <form id="serchform" className="form-inline my-2 my-lg-0">
-              {/* btn  */}
-              <button className="tn-outline-success my-2 my-sm-0" type="submit">Search</button>
+              <button className="btn btntn-outline-success my-2 my-sm-0" type="submit"></button>
               <input id="serchBar" className="form-control mr-sm-2" type="search" placeholder="Search" />
             </form>
           </li>
+
+          
+
+      {/* </div> */}
         </ul>
-      </div>
       <div id="logoContainer">
 
       </div>

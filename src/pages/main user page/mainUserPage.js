@@ -10,12 +10,12 @@ class mainUserPage extends Component {
     render() {
         return (
             <div id="mainUPWrapper" className="wrapper">
-                <div id="main">
+                {/* <div id="main">
                     <div id="about">
                         <h1>{Dictionary.aboutTitle}</h1>
                         {Dictionary.about}
                     </div>
-                </div>
+                </div> */}
                 <NavBar />
                 <FeedbackButton />
                 <footer id="foot">

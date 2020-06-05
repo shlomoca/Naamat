@@ -9,31 +9,38 @@
 }
 
 .dropdown--active  .dropdown__content {
+    direction: rtl;
     display: block;
     float: left;
-    margin-top: 20%;
+    margin-top: 0;
     cursor: pointer;
-
+    /* width: 100%; */
+    
 }
 #globus{  
-    height: 6vh;
-    width: 6vh;
+    float: right;
+    height:8vh;
+    width: 8vh;
 }
-
+/* #langlist{
+    width: 50vh;
+} */
 #languages
 {
+    
     cursor: pointer;
-    float: right;
     margin-top: 0%;
 }
 
 ul
 {
+    margin-top:0px ;
+    padding: 0px;
     list-style-type: none;
 }
 .langButtons{
     cursor: pointer;
     width: 12vh;
-    text-align: center;
+    /* text-align: center; */
     padding: 0px;
 }

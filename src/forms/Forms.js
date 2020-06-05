@@ -4,9 +4,6 @@ import React from 'react';
 
 
 export const FeedbackButton = () => {
-
-
-
     return (
         <div class="modal fade" id="feedbackForm" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
@@ -38,11 +35,11 @@ export const FeedbackButton = () => {
                             <div id="name-group" classname="form-group starContainer">
                                 how were the guides?
                                     <div className="starrating risingstar d-flex justify-content-center flex-row-reverse">
-                                    <input type="radio" className="star" id="star5" name="rating" value="5" /><label for="star5" title="5 star"></label>
-                                    <input type="radio" className="star" id="star4" name="rating" value="4" /><label for="star4" title="4 star"></label>
-                                    <input type="radio" className="star" id="star3" name="rating" value="3" /><label for="star3" title="3 star"></label>
-                                    <input type="radio" className="star" id="star2" name="rating" value="2" /><label for="star2" title="2 star"></label>
-                                    <input type="radio" className="star" id="star1" name="rating" value="1" /><label for="star1" title="1 star"></label>
+                                    <input type="radio" className="star" id="guidesStar5" name="ratinguide" value="5" /><label for="guidesStar5" title="5 star"></label>
+                                    <input type="radio" className="star" id="guidesStar4" name="ratinguide" value="4" /><label for="guidesStar4" title="4 star"></label>
+                                    <input type="radio" className="star" id="guidesStar3" name="ratinguide" value="3" /><label for="guidesStar3" title="3 star"></label>
+                                    <input type="radio" className="star" id="guidesStar2" name="ratinguide" value="2" /><label for="guidesStar2" title="2 star"></label>
+                                    <input type="radio" className="star" id="guidesStar1" name="ratinguide" value="1" /><label for="guidesStar1" title="1 star"></label>
                                 </div>
                             </div>
 

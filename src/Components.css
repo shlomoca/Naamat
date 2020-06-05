@@ -1,45 +1,74 @@
-#navbar{
+/* #navbar{
     
     position: fixed;
     height:10%;
     width: 100%;
     border: yellow;
     border-style: solid; 
+} */
+
+#ytlogo,#fblogo
+{
+    height: 10vh;
+    width: 10vh;
+    float: right;
+}
+
+.navbar-nav>li {
+    float: right;
+}
+
+.navbar-nav{
+    display: inline-block;
+    padding: 0;
+    align-items: baseline;
+    /* justify-content:space-between ; */
+}
+
+.navbar, .navbar-nav {
+    border:3px solid yellowgreen ;
+    width: 100%;
+}
+
+#langItam{
+overflow:hidden
+}
+
+#navList{  
+    float:right
 }
 
 #colordButton{
 max-width: 100%;
 }
 
-#serchform{
-max-width: 100%;
+
+
+#logo{
+    /* position: relative; */
+    height: 15vh; 
+    /* max-width: 100%;  */
+    /* float: right; */
 }
 
 #smallLogo{
-    position: relative;
-    width: 18vh;
-    max-width: 100%;
     float: right;
 }
 
-  #fblogo{
-      height: 10vh;
-      width: 10vh;
-      float: right;
-    }
-    
-#ytlogo
-{
-        height: 10vh;
-        width: 10vh;
-        float: right;
-  }
 
- #navList{
-    /* justify-items: right; */
-    /* width: 100%; */
-    float:right
-     /* float: right; */
- }
 
- 
+#stretcher{
+    /* display: flex; */
+    position: inherit;
+    width: 100%;
+}
+#searchform{
+    display: inline-block;
+    width: 100%;
+    overflow: hidden;
+}
+
+#serchBar{
+    margin: 0;
+    width:100%
+}
