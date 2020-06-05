@@ -14,3 +14,10 @@ code {
 }
 
 
+.btn{
+  background-color: lightblue;
+  color: black;
+  padding: 2px;
+  margin: 2px;
+  margin-left: 3px;
+}

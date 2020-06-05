@@ -10,36 +10,36 @@ import { Link } from 'react-router-dom';
 export const NavBar = () => {
 
   return (
-    // <div id ="navbar">
-    <nav className="navbar navbar-expand-lg navbar-light bg-light"  id="navList">
-      <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-        <span className="navbar-toggler-icon"></span>
-      </button>
+    <div id="navbar">
+      <nav className="navbar navbar-expand-lg navbar-light bg-light" id="navList">
+        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+          <span className="navbar-toggler-icon"></span>
+        </button>
 
 
         <ul className="navbar-nav mr-auto mt-2 mt-lg-0" dir="rtl">
           <li className="nav-item">
-      <a id="smallLogo" href="#" dir="rtl"><img id="logo" src={logo} alt="logo"></img></a>
+            <a id="smallLogo" href="#" dir="rtl"><img id="logo" src={logo} alt="logo"></img></a>
           </li>
 
           <li id="langItam" className="nav-item" >
-      <LangBtn />
-     
-          </li>
-      {/* <div className="collapse navbar-collapse" id="navbarTogglerDemo02"> */}
+            <LangBtn />
 
-         
+          </li>
+          {/* <div className="collapse navbar-collapse" id="navbarTogglerDemo02"> */}
+
+
           <li className="nav-item">
-             <button type="button" className="btn btn-primary nav-link" data-toggle="modal" data-target="#feedbackForm">
-                {Dictionary.feedback}</button>
+            <button type="button" className="btn btn-primary nav-link" data-toggle="modal" data-target="#feedbackForm">
+              {Dictionary.feedback}</button>
           </li>
           <li className="nav-item">
-          <Link to="/serchPage?catagorys">
+            <Link to="/serchPage?catagorys">
               <button type="button" className="btn btn-primary nav-link" >
                 catagorys</button>
             </Link>
           </li>
-         
+
 
           {/* <li className="nav-item">
             <a className="nav-link disabled" href="#">Disabled</a>
@@ -47,29 +47,54 @@ export const NavBar = () => {
 
           <li className="nav-item">
             <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo">{Dictionary.aboutTitle}</button>
-            <div id="demo" class="collapse">
-              {Dictionary.about}
-            </div>
           </li>
 
+
           <li className="nav-item" id="stretcher">
-            <form id="serchform" className="form-inline my-2 my-lg-0">
-              <button className="btn btntn-outline-success my-2 my-sm-0" type="submit"></button>
-              <input id="serchBar" className="form-control mr-sm-2" type="search" placeholder="Search" />
+            <form id="serchform" className="form-inline my-2 my-lg-0 input-group mb-3">
+              {/* <div class=""> */}
+              <div class="row no-gutters">
+        <div class="col">
+            <input class="form-control border-secondary border-right-0 rounded-0" type="text" value="search" id="example-search-input4"/>
+        </div>
+        <div class="col-auto">
+            <button class="btn btn-outline-secondary border-left-0 rounded-0 rounded-right" type="button">
+                <i class="fa fa-close"></i>
+            </button>
+        </div>
+        <div class="col-auto">
+            <button class="btn btn-outline-secondary border-left-0 rounded-0 rounded-right" type="button">
+                <i class="fa fa-search"></i>
+            </button>
+        </div>
+    </div>
+
+
+                {/* <input type="text" class="form-control" placeholder="search for a woman" aria-label="Recipient's username" aria-describedby="button-addon2"/>
+                  <div class="input-group-append">
+                    <button class="btn-outline-secondary" type="button" id="button-addon2">Button</button>
+                  {/* </div> */}
+              {/* </div> */} 
+              {/* <button className="btn btntn-outline-success my-2 my-sm-0" type="submit"></button> */}
+              {/* <input id="serchBar" className="form-control mr-sm-2" type="search" placeholder="Search" > */}
+              {/* </input> */}
             </form>
           </li>
 
-          
 
-      {/* </div> */}
+
+          {/* </div> */}
         </ul>
-      <div id="logoContainer">
 
+      </nav>
+
+
+      <div id="demo" class="collapse">
+        {Dictionary.about}
       </div>
-    </nav>
 
 
-    // </div>
+    </div>
   )
 }
 
