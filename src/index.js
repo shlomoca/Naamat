@@ -28,7 +28,5 @@ ReactDOM.render(
 );
 
 $("document").ready(function () {
-    hideForm("windowComp");//turn on mouse up events for any middle display object
-    // $("catchScreen").append(<WindowComp />);
-
+    
 });
