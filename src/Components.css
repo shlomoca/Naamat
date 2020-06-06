@@ -73,7 +73,18 @@ max-width: 100%;
     width:100%
 }
 .col-auto{
-    
-    width: fit-content;
+    /* position: absolute;
+    width: 20vh; */
+    /* width: max-content; */
+    column-width: 20vh;
 
+}
+.barbtn{
+width: 100%;
+height: 100%;
+}
+.form-control:focus {
+    outline: 0 !important;
+    border-color: initial;
+    box-shadow: none;
 }
