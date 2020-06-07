@@ -4,10 +4,10 @@
 label {
     vertical-align: top;
 }
-            #modal-header{
-                background-color: purple;
-              
-              }
+#modal-header
+{
+background-color: purple;            
+}
 
 .modal-body
 {
@@ -66,3 +66,8 @@ label {
     max-width: 100%;
 }
 /* --------------------------- */
+
+.input-group
+{
+    padding: 1px;
+}

@@ -43,14 +43,14 @@ export const FeedbackButton = () => {
                                 </div>
                             </div>
 
-                       
 
-                           
+
+
 
                             <div id="name-group" class="form-group">
                                 <label for="profession">Any seggestions for improvament?</label>
                                 <textarea rows="4" class="details" cols="50" name="comment" form="woman_form" placeholder="Any seggestions for improvament?" required></textarea>
-                               
+
                             </div>
 
 
@@ -88,64 +88,74 @@ export const EditWomanForm = () => {
                             </div>
 
                             <div id="name-group" class="form-group">
-                                <input type="text" rows="1" class="details" cols="35" name="comment" form="woman_form" placeholder="display name" />
+                                <input type="text" rows="1" class="details" cols="35" name="display" form="woman_form" placeholder="display name" />
                             </div>
 
                             <div id="name-group" class="form-group">
-                                <input type="text" rows="1" class="details" cols="35" name="Year in timelineme" form="woman_form" placeholder="Year in timeline" required />
+                                <input type="text" rows="1" class="details" cols="35" name="Year in timelineme" form="woman_form" placeholder="Year in timeline" />
                             </div>
 
                             <div id="name-group" class="form-group">
                                 <label for="born_date">Date of birth</label>
-                                <input type="date" required />
+                                <input type="date" name="date" />
                             </div>
 
                             <div id="name-group" class="form-group">
                                 <label for="profession">Date of death</label>
-                                <input type="date" />
+                                <input type="date" name="death_date" />
                             </div>
 
-                            <div id="name-group" class="form-group">
-                                <label for="img">Select image:</label>
-                                <input type="file" id="img" name="img" accept="image/*|audio/*|video/*" />
-                                <button id="add">add</button>
+                            <div id="name-group"  class="form-group">
+                                {/* <label for="img">Select image:</label>
+                                <input type="file" id="img" name="image" name="img" accept="image/*|audio/*|video/*" />
+                                <button id="add">add</button> */}
+                                    <lable id="lb"  for="inputGroupFile04">upload</lable>
+                                <div class="input-group">
+                                    <div class="custom-file">
+                                        <input type="file" name="file" class="custom-file-input" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" />
+                                        <label class="custom-file-label" for="inputGroupFile04">Choose file</label>
+                                    </div>
+                                    <div class="input-group-append">
+                                        <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">Upload</button>
+                                    </div>
+                                </div>
                             </div>
 
                             <div id="highlights" class="form-group">
-                                <textarea rows="4" class="details" cols="50" name="comment" form="woman_form" placeholder="Highlights" required></textarea>
+                                <textarea rows="4" class="details" cols="50" name="highlights" form="woman_form" placeholder="Highlights" ></textarea>
                             </div>
 
 
                             <div id="biography" class="form-group">
-                                <textarea rows="4" class="details" cols="50" name="quotes" form="woman_form" placeholder="Biography" required></textarea>
+                                <textarea rows="4" class="details" cols="50" name="biography" form="woman_form" placeholder="Biography" ></textarea>
                             </div>
 
                             <div id="historical" class="form-group">
-                                <textarea rows="4" class="details" cols="50" name="quotes" form="woman_form" placeholder="Historical events related" required></textarea>
+                                <textarea rows="4" class="details" cols="50" name="history" form="woman_form" placeholder="Historical events related" ></textarea>
                             </div>
 
                             <div id="contribution" class="form-group">
-                                <textarea rows="4" class="details" cols="50" name="quotes" form="woman_form" placeholder="Contribution to Feminism" required></textarea>
+                                <textarea rows="4" class="details" cols="50" name="feminism" form="woman_form" placeholder="Contribution to Feminism" ></textarea>
                             </div>
 
                             <div id="interesting" class="form-group">
-                                <textarea rows="4" class="details" cols="50" name="quotes" form="woman_form" placeholder="Interesting fact / story" required></textarea>
+                                <textarea rows="4" class="details" cols="50" name="facts" form="woman_form" placeholder="Interesting fact / story" ></textarea>
                             </div>
 
                             <div id="quotes" class="form-group">
                                 <select name="type" id="type">
-                                    <option value="bibliography">Bibliography</option>
-                                    <option value="link">Link</option>
+                                    <option value="bibliography" name="bibliography">Bibliography</option>
+                                    <option value="link" name="link">Link</option>
                                 </select>
                                 <input type="text" rows="4" class="details" cols="50" name="quotes" form="woman_form" placeholder="Quotes and notable works" />
-                                <input id="link" type="text" rows="4" class="details" cols="50" name="quotes" form="woman_form" placeholder="link" />
+                                <input id="link" type="text" rows="4" class="details" cols="50" name="link" form="woman_form" placeholder="link" />
                             </div>
 
                         </form>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-success">Submit <span class="fa fa-arrow-right"></span></button>
+                        <button type="submit" class="btn btn-success" id="submit_form" >Submit <span class="fa fa-arrow-right"></span></button>
                     </div>
                 </div>
             </div>
@@ -155,13 +165,26 @@ export const EditWomanForm = () => {
 
 $("document").ready(function () {
 
+    $("#link").hide();
     $('select[name=type]').change(function () {
-      if ($('select[name=type]').val() == 'link') {
-        $('#link').show();
-      } else {
-        $('#link').hide();
-      }
+        if ($('select[name=type]').val() == 'link') {
+            $('#link').show();
+        } else {
+            $("#link").hide();
+        }
     });
-  
-  });
-  
+
+    $("#submit_form").click(function () {
+        $("#woman_form").submit();
+    });
+
+    // $("#woman_form").submit(function (event) {
+    //     if (!$("#woman_form").valid()) return;
+
+    //     alert("hii");
+
+    //     // stop the form from submitting the normal way and refreshing the page
+    //     event.preventDefault();
+    // });
+
+});
