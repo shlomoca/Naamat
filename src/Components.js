@@ -41,27 +41,24 @@ export const NavBar = () => {
           </li>
 
 
-          {/* <li className="nav-item">
-            <a className="nav-link disabled" href="#">Disabled</a>
-          </li> */}
-
+          
           <li className="nav-item">
-            <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo">{Dictionary.aboutTitle}</button>
+            <button type="button" class="btn btn-primary nav-link" data-toggle="collapse" data-target="#demo">{Dictionary.aboutTitle}</button>
           </li>
 
 
           <li className="nav-item" id="stretcher">
-            <form id="search-form" className="form-inline my-2 my-lg-0 input-group mb-3">
+            <form  className="form-inline my-2 my-lg-0 input-group mb-3" id="search-form">
             
-            <button class="btn btn-outline-secondary border-left-0 rounded-0 rounded-right" id="search-btn" type="button">
+            <button class="btn " id="search-btn" type="button">
               <div id="search-bar-outline">
                 
-            <input class="form-control border-secondary border-right-0 rounded-0" type="text" placeholder="חיפוש" id="example-search-input4"/>
-            <button id="clear-btn" class="btn btn-outline-secondary border-left-0 rounded-0 rounded-right" type="button">
+            <input class="form-control " type="text" placeholder="חיפוש" id="example-search-input4"/>
+            <button id="clear-btn" class="btn" type="button">
                 <i class="fa fa-close"></i>
             </button>
               </div>
-                <i class="fa fa-search"></i>
+                <i class="fa fa-search" id = "search-icon"></i>
             </button>
      
             </form>
@@ -71,7 +68,7 @@ export const NavBar = () => {
 
          
         </ul>
-
+  
       </nav>
 
 

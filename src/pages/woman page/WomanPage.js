@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 // import { Dictionary, LangBtn } from '../../Dictionary'
 import { NavBar } from '../../Components';
 import { EditWomanForm } from '../../forms/Forms';
-import firebase from "../../../config/Firebase"
+// import firebase from "../../config/Firebase"
 
 
 
@@ -22,23 +22,23 @@ const MainDetails = (props) => {
 
 
 class WomanPage extends Component {
-    constructor() {
-        super();
-        this.womanRef = firebase.firestore().collaction('women');
-        this.state = {
-            Quotes: "",
-            biography: "",
-            contribution: "",
-            birth: "",
-            death: "",
-            display: "",
-            highlights: "",
-            historicalEvents: "",
-            interestingFacts: "",
-            media: []
-        }
+    // constructor() {
+    //     super();
+    //     this.womanRef = firebase.firestore().collaction('women');
+    //     this.state = {
+    //         Quotes: "",
+    //         biography: "",
+    //         contribution: "",
+    //         birth: "",
+    //         death: "",
+    //         display: "",
+    //         highlights: "",
+    //         historicalEvents: "",
+    //         interestingFacts: "",
+    //         media: []
+    //     }
 
-    }
+    // }
     render() {
         return (
             <div id="WomanPageWrapper" class="wrapper" >

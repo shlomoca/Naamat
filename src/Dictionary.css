@@ -41,7 +41,9 @@ ul
 }
 .langButtons{
     cursor: pointer;
-    width: 12vh;
-    /* text-align: center; */
-    padding: 0px;
+    width: 100px;
+    padding: 5px;
+    background-color: blueviolet;
+    color: white;
+
 }
