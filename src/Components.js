@@ -33,9 +33,9 @@ export const NavBar = () => {
             <button type="button" className="btn btn-primary nav-link" data-toggle="modal" data-target="#feedbackForm">
               {Dictionary.feedback}</button>
           </li>
-          <li className="nav-item">
+          <li className="nav-item"id= "catcat">
             <Link to="/serchPage?catagorys">
-              <button type="button" className="btn btn-primary nav-link" >
+              <button type="button"  className="btn btn-primary nav-link" >
                 catagorys</button>
             </Link>
           </li>
@@ -51,39 +51,25 @@ export const NavBar = () => {
 
 
           <li className="nav-item" id="stretcher">
-            <form id="serchform" className="form-inline my-2 my-lg-0 input-group mb-3">
-              {/* <div class=""> */}
-              <div class="row no-gutters">
-        <div class="col">
-            <input class="form-control border-secondary border-right-0 rounded-0" type="text" value="search" id="example-search-input4"/>
-        </div>
-        <div class="col-auto">
-            <button class="btn btn-outline-secondary border-left-0 rounded-0 rounded-right" type="button">
+            <form id="search-form" className="form-inline my-2 my-lg-0 input-group mb-3">
+            
+            <button class="btn btn-outline-secondary border-left-0 rounded-0 rounded-right" id="search-btn" type="button">
+              <div id="search-bar-outline">
+                
+            <input class="form-control border-secondary border-right-0 rounded-0" type="text" placeholder="חיפוש" id="example-search-input4"/>
+            <button id="clear-btn" class="btn btn-outline-secondary border-left-0 rounded-0 rounded-right" type="button">
                 <i class="fa fa-close"></i>
             </button>
-        </div>
-        <div class="col-auto">
-            <button class="btn btn-outline-secondary border-left-0 rounded-0 rounded-right" type="button">
+              </div>
                 <i class="fa fa-search"></i>
             </button>
-        </div>
-    </div>
-
-
-                {/* <input type="text" class="form-control" placeholder="search for a woman" aria-label="Recipient's username" aria-describedby="button-addon2"/>
-                  <div class="input-group-append">
-                    <button class="btn-outline-secondary" type="button" id="button-addon2">Button</button>
-                  {/* </div> */}
-              {/* </div> */} 
-              {/* <button className="btn btntn-outline-success my-2 my-sm-0" type="submit"></button> */}
-              {/* <input id="serchBar" className="form-control mr-sm-2" type="search" placeholder="Search" > */}
-              {/* </input> */}
+     
             </form>
           </li>
 
 
 
-          {/* </div> */}
+         
         </ul>
 
       </nav>
@@ -92,6 +78,9 @@ export const NavBar = () => {
       <div id="demo" class="collapse">
         {Dictionary.about}
       </div>
+
+    
+
 
 
     </div>

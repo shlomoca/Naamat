@@ -13,7 +13,9 @@ code {
 
 }
 
-
+#root{
+  direction: rtl;
+}
 .btn{
   background-color: lightblue;
   color: black;

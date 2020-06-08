@@ -6,8 +6,7 @@ import LoginPage from './pages/login page/LoginPage';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import mainUserPage from './pages/main user page/mainUserPage';
 import WomanPage from './pages/woman page/WomanPage';
-import { WindowComp } from './Components';
-
+import firebase from "../config/Firebase.js"
 function hideForm(id) { //set a listner for id so if pressed out of id it will clear the catch Screen div 
     $(document).mouseup(function (e) {
         if ($(e.target).closest("#" + id).length === 0) {

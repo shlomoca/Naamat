@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 // import { Dictionary, LangBtn } from '../../Dictionary'
 import { NavBar } from '../../Components';
 import { EditWomanForm } from '../../forms/Forms';
-
+import firebase from "../../../config/Firebase"
 
 
 
@@ -22,6 +22,23 @@ const MainDetails = (props) => {
 
 
 class WomanPage extends Component {
+    constructor() {
+        super();
+        this.womanRef = firebase.firestore().collaction('women');
+        this.state = {
+            Quotes: "",
+            biography: "",
+            contribution: "",
+            birth: "",
+            death: "",
+            display: "",
+            highlights: "",
+            historicalEvents: "",
+            interestingFacts: "",
+            media: []
+        }
+
+    }
     render() {
         return (
             <div id="WomanPageWrapper" class="wrapper" >
@@ -31,7 +48,7 @@ class WomanPage extends Component {
                 </button>
                 <EditWomanForm />
                 <div id="details" dir="RTL" >
-                    <MainDetails womanName="hagit peer"  womanAge="40"  />
+                    <MainDetails womanName="hagit peer" womanAge="40" />
                     <img id="pic" src="https://naamat.org.il/wp-content/themes/Naamat-Child-Theme/images/footer-img.jpg" />
                 </div>
             </div>

@@ -1,90 +1,56 @@
-/* #navbar{
+#navbar {
+    direction: rtl;
+}
+
+
+
+.navbar-nav {
+    width: 100%;
+}
+
+
+
+
+
+#example-search-input4{
+    margin: 0;
+    /* border-radius: 20px; */
+}
+#clear-btn,.fa-close{
+    margin: 0;
+    object-fit: cover;
+    height: 100%;
+}
+#search-bar-outline{
+    border: 2vh;
+    border: black;
     
-    position: fixed;
-    height:10%;
+}
+#search-btn{
+    display: flex;
+    align-items: center;
     width: 100%;
-    border: yellow;
-    border-style: solid; 
-} */
-
-#ytlogo,#fblogo
-{
-    height: 10vh;
-    width: 10vh;
-    float: right;
+    
+    /* border-radius: 50%; */
+}
+#clear-btn{
+    background-color: white;
+    height: 100%;
 }
 
-.navbar-nav>li {
-    float: right;
+#search-bar-outline{
+    align-items:stretch ;
 }
-
-.navbar-nav{
-    display: inline-block;
-    padding: 0;
-    align-items: baseline;
-    /* justify-content:space-between ; */
-}
-
-.navbar, .navbar-nav {
-    border:3px solid yellowgreen ;
+.strecher{
     width: 100%;
+   
 }
-
-#langItam{
-overflow:hidden
-}
-
-#navList{  
-    float:right
-}
-
-#colordButton{
-max-width: 100%;
-}
-
-
 
 #logo{
-    /* position: relative; */
-    height: 15vh; 
-    /* max-width: 100%;  */
-    /* float: right; */
+    height: 70px;
 }
 
-#smallLogo{
-    float: right;
-}
-
-
-
-#stretcher{
-    /* display: flex; */
-    position: inherit;
+#search-form{
     width: 100%;
 }
-#searchform{
-    display: inline-block;
-    width: 100%;
-    overflow: hidden;
-}
 
-#serchBar{
-    margin: 0;
-    width:100%
-}
-.col-auto{
-    /* position: absolute;
-    width: 20vh; */
-    /* width: max-content; */
-    column-width: 20vh;
-
-}
-.barbtn{
-width: 100%;
-height: 100%;
-}
-.form-control:focus {
-    outline: 0 !important;
-    border-color: initial;
-    box-shadow: none;
-}
