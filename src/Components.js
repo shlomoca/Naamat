@@ -7,6 +7,7 @@ import ytlogo from './images/ytlogo.png';
 import './Components.css';
 import { Link } from 'react-router-dom';
 
+
 export const NavBar = () => {
 
   return (
@@ -26,7 +27,7 @@ export const NavBar = () => {
             <LangBtn />
 
           </li>
-          {/* <div className="collapse navbar-collapse" id="navbarTogglerDemo02"> */}
+         
 
 
           <li className="nav-item">
@@ -36,7 +37,7 @@ export const NavBar = () => {
           <li className="nav-item"id= "catcat">
             <Link to="/serchPage?catagorys">
               <button type="button"  className="btn btn-primary nav-link" >
-                catagorys</button>
+                {Dictionary.categories}</button>
             </Link>
           </li>
 
@@ -46,16 +47,14 @@ export const NavBar = () => {
             <button type="button" class="btn btn-primary nav-link" data-toggle="collapse" data-target="#demo">{Dictionary.aboutTitle}</button>
           </li>
 
-
           <li className="nav-item" id="stretcher">
             <form  className="form-inline my-2 my-lg-0 input-group mb-3" id="search-form">
             
-            <button class="btn " id="search-btn" type="button">
+            <button  id="search-btn" type="button">
               <div id="search-bar-outline">
-                
-            <input class="form-control " type="text" placeholder="חיפוש" id="example-search-input4"/>
-            <button id="clear-btn" class="btn" type="button">
-                <i class="fa fa-close"></i>
+            <input class="form-control " type="text" placeholder={Dictionary.search} id="example-search-input4"/>
+            <button id="clear-btn"   type="button">
+                <i class="fa fa-close" onClick={() =>document.getElementById('example-search-input4').value = ''}></i>
             </button>
               </div>
                 <i class="fa fa-search" id = "search-icon"></i>
@@ -63,6 +62,7 @@ export const NavBar = () => {
      
             </form>
           </li>
+
 
 
 
@@ -83,7 +83,6 @@ export const NavBar = () => {
     </div>
   )
 }
-
 
 
 export const clickableImage = () => {
@@ -123,31 +122,18 @@ function previewUrl(url, target) {
 //check
 
 
-export const OpenWindow = (id, url) => { //when click on something, will pop a window with the relevant url
-  return function () {
-    $("#catchScreen").empty();
-    $("#catchScreen").append(
-      window.open(url, "", "toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=580, height=600, top=30")
-    );
-  }
 
+
+
+
+
+function clearThis(target){
+  // return ()  =>    
+  // $("#"+target).attr("value")="";
+  // document.getElementById(target).getAttribute("value")="";
+  // alert(target);
+  
 }
-
-export const WindowComp = (url) => {
-
-
-  return (
-    <div class="dark-overlay" >
-
-      <div id="windowComp">
-        dhgfhgfh
-    </div>
-    </div>
-  )
-}
-
-
-
 
 
 
