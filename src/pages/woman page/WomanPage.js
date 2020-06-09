@@ -1,9 +1,10 @@
 import './WomanPage.css';
 import React, { Component } from 'react';
 // import { Dictionary, LangBtn } from '../../Dictionary'
-import { NavBar } from '../../Components';
+import { NavBar, BottomBar } from '../../Components';
 import { EditWomanForm } from '../../forms/Forms';
 import { db } from '../../config/Firebase'
+import { Dictionary } from '../../Dictionary';
 
 
 
@@ -11,11 +12,12 @@ import { db } from '../../config/Firebase'
 const MainDetails = (props) => {
 
     return (
-        <div id="woman_details">
-            <h3 >{props.womanName} </h3>
-            <p>{props.womanName}</p>
-            <p>{props.womanAge}</p>
-            <p>{props.highlights}</p>
+        <div id="main_details">
+            <img/>
+            <h1 >{props.display} </h1>
+    <p>{Dictionary.name}:{props.womanName}</p>
+            <p>{Dictionary.bday}:{props.bday}</p>
+            
         </div>
     );
 }
@@ -36,7 +38,7 @@ class WomanPage extends Component {
                 women.push(data);
             })
             this.setState({ women: women })
-            
+
         }).catch(error => console.log(error))
     }
 
@@ -45,27 +47,26 @@ class WomanPage extends Component {
             <div id="WomanPageWrapper" class="wrapper" >
 
                 <NavBar />
-                
-                <EditWomanForm />
-                <div id="details" dir="RTL" >
-                    <MainDetails womanAge="40" highlights="מהמייסדות ומהמובילות של מפלגת הפועל הצעיר ותנועת הפועלות, חברת הכנסת הראשונה" />
+
+
+                <div id="details"  >
+
                     <img id="pic" src="https://naamat.org.il/wp-content/themes/Naamat-Child-Theme/images/footer-img.jpg" />
                 </div>
                 {this.state.women &&
-                this.state.women.map(woman =>{
-                    return(
-                    <div>
-                        <p>Name: {woman.name}</p>
-                        <p>{woman.display}</p>
-                        <p>Date of birth: {woman.birth}</p>
-                        <p>Date of death: {woman.death}</p>
-                        <p>Highlight: {woman.highlights}</p>
-                        <p>Biography: {woman.biography}</p>
-                        <p>Quotes and noable: {woman.quotes}</p>
-                        
-                    </div>)
-                })}
+                    this.state.women.map(woman => {
+                        return (
+                            <div id=  "womanContainer">
+                            <MainDetails display={woman.display} womanName={woman.name} bday={woman.birth}  />
+                                
+                                <p>Date of death: {woman.death}</p>
+                                <p>Highlight: {woman.highlights}</p>
+                                <p>Biography: {woman.biography}</p>
+                                <p>Quotes and noable: {woman.quotes}</p>
 
+                            </div>)
+                    })}
+                <BottomBar />
             </div>
 
         )
