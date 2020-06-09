@@ -17,7 +17,10 @@ export const Dictionary = new LocalizedStrings({
     feedback:`feedback`,
     categories: `categories`,
     search: `search`,
-    addWoman: `add woman`
+    addWoman: `add woman`,
+    builders: `This site was built by: Shlomo Carmi, Daniel Raz, Sahar Cohen, Adiel Tsayag, Matan Yemin`,
+    name:`name`,
+    bday: `Birth day`
     
   },
   HE: {
@@ -29,7 +32,10 @@ export const Dictionary = new LocalizedStrings({
     feedback:`משוב`,
     categories: `קטגוריות`,
     search: `חיפוש`,
-    addWoman: `הוסיפי אישה`
+    addWoman: `הוסיפי אישה`,
+    builders: 'אתר זה נבנה על ידי: שלמה כרמי, דניאל רז, סהר כהן, עדיאל צייג, מתן ימין',
+    name:`שם`,
+    bday: `יום הולדת`
   },
   AR: {
     enterMail: "يرجى إدخال بريد إلكتروني",
@@ -40,7 +46,10 @@ export const Dictionary = new LocalizedStrings({
     feedback:`ردود الفعل`,
     categories: `categories ar`,
     search: `search ar`,
-    addWoman: `add woman ar`
+    addWoman: `add woman ar`,
+    builders: 'אתר זה נבנה על ידי: שלמה כרמי, דניאל רז, סהר כהן, עדיאל צייג, מתן ימין ar',
+    name:`name ar`,
+    bday: `Birth day ar`
   },
 });
 
