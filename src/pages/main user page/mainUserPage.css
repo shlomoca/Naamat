@@ -6,6 +6,10 @@
     margin-top: 3%;
 }
 
+img {
+    border-radius: 3%;
+}
+
 /* #main{
     position: fixed;
     top:10%;
