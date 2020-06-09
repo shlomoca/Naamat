@@ -36,7 +36,7 @@ class WomanPage extends Component {
                 women.push(data);
             })
             this.setState({ women: women })
-            // console.log(snapshot);
+            
         }).catch(error => console.log(error))
     }
 
@@ -45,9 +45,7 @@ class WomanPage extends Component {
             <div id="WomanPageWrapper" class="wrapper" >
 
                 <NavBar />
-                <button id="addBtn" type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">
-                    Add Woman
-                </button>
+                
                 <EditWomanForm />
                 <div id="details" dir="RTL" >
                     <MainDetails womanAge="40" highlights="מהמייסדות ומהמובילות של מפלגת הפועל הצעיר ותנועת הפועלות, חברת הכנסת הראשונה" />

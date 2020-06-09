@@ -46,6 +46,11 @@ export const NavBar = () => {
           <li className="nav-item">
             <button type="button" class="btn btn-primary nav-link" data-toggle="collapse" data-target="#demo">{Dictionary.aboutTitle}</button>
           </li>
+          <li className="nav-item">
+          <button id="addBtn" type="button" class="btn btn-primary nav-link" data-toggle="modal" data-target="#staticBackdrop">
+                    Add Woman
+                </button>
+          </li>
 
           <li className="nav-item" id="stretcher">
             <form  className="form-inline my-2 my-lg-0 input-group mb-3" id="search-form">
