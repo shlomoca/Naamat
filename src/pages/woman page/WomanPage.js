@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 // import { Dictionary, LangBtn } from '../../Dictionary'
 import { NavBar } from '../../Components';
 import { EditWomanForm } from '../../forms/Forms';
-// import firebase from "../../config/Firebase"
+import { db } from '../../config/Firebase'
 
 
 
@@ -12,9 +12,10 @@ const MainDetails = (props) => {
 
     return (
         <div id="woman_details">
+            <h3 >{props.womanName} </h3>
             <p>{props.womanName}</p>
             <p>{props.womanAge}</p>
-            <h3 >{props.womanName} </h3>
+            <p>{props.highlights}</p>
         </div>
     );
 }
@@ -22,7 +23,57 @@ const MainDetails = (props) => {
 
 
 class WomanPage extends Component {
-    // constructor() {
+
+    state = {
+        women: null
+    }
+
+    componentDidMount() {
+        db.collection('data').get().then(snapshot => {
+            const women = [];
+            snapshot.forEach(doc => {
+                const data = doc.data();
+                women.push(data);
+            })
+            this.setState({ women: women })
+            // console.log(snapshot);
+        }).catch(error => console.log(error))
+    }
+
+    render() {
+        return (
+            <div id="WomanPageWrapper" class="wrapper" >
+
+                <NavBar />
+                <button id="addBtn" type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">
+                    Add Woman
+                </button>
+                <EditWomanForm />
+                <div id="details" dir="RTL" >
+                    <MainDetails womanAge="40" highlights="מהמייסדות ומהמובילות של מפלגת הפועל הצעיר ותנועת הפועלות, חברת הכנסת הראשונה" />
+                    <img id="pic" src="https://naamat.org.il/wp-content/themes/Naamat-Child-Theme/images/footer-img.jpg" />
+                </div>
+                {
+                    this.state.women &&
+                    this.state.women.map(woman =>{
+                        return(
+                            <div>
+                                <p>{woman.name}</p>
+                                <p>{woman.highlights}</p>
+                            </div>
+                        )
+                    })
+                }
+
+            </div>
+
+        )
+
+    }
+}
+export default WomanPage;
+
+// constructor() {
     //     super();
     //     this.womanRef = firebase.firestore().collaction('women');
     //     this.state = {
@@ -39,22 +90,3 @@ class WomanPage extends Component {
     //     }
 
     // }
-    render() {
-        return (
-            <div id="WomanPageWrapper" class="wrapper" >
-                <NavBar />
-                <button id="addBtn" type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">
-                    Add Woman
-                </button>
-                <EditWomanForm />
-                <div id="details" dir="RTL" >
-                    <MainDetails womanName="hagit peer" womanAge="40" />
-                    <img id="pic" src="https://naamat.org.il/wp-content/themes/Naamat-Child-Theme/images/footer-img.jpg" />
-                </div>
-            </div>
-
-        )
-
-    }
-}
-export default WomanPage;
