@@ -1,6 +1,8 @@
 import './Forms.css';
 import $ from 'jquery';
+import 'jquery-validation'
 import React from 'react';
+import { db } from '../config/Firebase'
 
 
 export const FeedbackButton = () => {
@@ -18,7 +20,7 @@ export const FeedbackButton = () => {
                         <form dir="RTL" id="woman_form" name="woman_form" method="POST" >
 
                             <div id="name-group" class="form-group">
-                                <input type="text" rows="1" class="details" cols="35" name="name" form="woman_form" placeholder="name" required />
+                                <input type="text" rows="1" class="details" cols="35" name="name"  placeholder="name" required />
                             </div>
 
 
@@ -49,7 +51,7 @@ export const FeedbackButton = () => {
 
                             <div id="name-group" class="form-group">
                                 <label for="profession">Any seggestions for improvament?</label>
-                                <textarea rows="4" class="details" cols="50" name="comment" form="woman_form" placeholder="Any seggestions for improvament?" required></textarea>
+                                <textarea rows="4" class="details" cols="50" name="comment"  placeholder="Any seggestions for improvament?" required></textarea>
 
                             </div>
 
@@ -84,20 +86,22 @@ export const EditWomanForm = () => {
                         <form dir="RTL" id="woman_form" name="woman_form" method="POST" >
 
                             <div id="name-group" class="form-group">
-                                <input type="text" rows="1" class="details" cols="35" name="name" form="woman_form" placeholder="name" required />
+                                {/* <label for="name"></label> */}
+                                <input type="text" rows="1" class="details" cols="35" id="name" name="name"  placeholder="name" required />
                             </div>
 
                             <div id="name-group" class="form-group">
-                                <input type="text" rows="1" class="details" cols="35" name="display" form="woman_form" placeholder="display name" />
+                                {/* <label for="display"></label> */}
+                                <input type="text" rows="1" class="details" cols="35" id="display" name="display"  placeholder="display name" />
                             </div>
 
                             <div id="name-group" class="form-group">
-                                <input type="text" rows="1" class="details" cols="35" name="Year in timelineme" form="woman_form" placeholder="Year in timeline" />
+                                <input type="text" rows="1" class="details" cols="35" id="timeline" name="Year in timelineme"  placeholder="Year in timeline" />
                             </div>
 
                             <div id="name-group" class="form-group">
                                 <label for="born_date">Date of birth</label>
-                                <input type="date" name="date" />
+                                <input type="date" name="date" id="date" />
                             </div>
 
                             <div id="name-group" class="form-group">
@@ -105,11 +109,11 @@ export const EditWomanForm = () => {
                                 <input type="date" name="death_date" />
                             </div>
 
-                            <div id="name-group"  class="form-group">
+                            <div id="name-group" class="form-group">
                                 {/* <label for="img">Select image:</label>
                                 <input type="file" id="img" name="image" name="img" accept="image/*|audio/*|video/*" />
                                 <button id="add">add</button> */}
-                                    <lable id="lb"  for="inputGroupFile04">upload</lable>
+                                <lable id="lb" for="inputGroupFile04">upload</lable>
                                 <div class="input-group">
                                     <div class="custom-file">
                                         <input type="file" name="file" class="custom-file-input" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" />
@@ -121,25 +125,25 @@ export const EditWomanForm = () => {
                                 </div>
                             </div>
 
-                            <div id="highlights" class="form-group">
-                                <textarea rows="4" class="details" cols="50" name="highlights" form="woman_form" placeholder="Highlights" ></textarea>
+                            <div  class="form-group">
+                                <textarea rows="4" class="details" cols="50" name="highlights" id="highlights"  placeholder="Highlights" ></textarea>
                             </div>
 
 
-                            <div id="biography" class="form-group">
-                                <textarea rows="4" class="details" cols="50" name="biography" form="woman_form" placeholder="Biography" ></textarea>
+                            <div  class="form-group">
+                                <textarea rows="4" class="details" cols="50" name="biography" id="biography"  placeholder="Biography" ></textarea>
                             </div>
 
-                            <div id="historical" class="form-group">
-                                <textarea rows="4" class="details" cols="50" name="history" form="woman_form" placeholder="Historical events related" ></textarea>
+                            <div  class="form-group">
+                                <textarea rows="4" class="details" cols="50" name="history" id="historical"  placeholder="Historical events related" ></textarea>
                             </div>
 
                             <div id="contribution" class="form-group">
-                                <textarea rows="4" class="details" cols="50" name="feminism" form="woman_form" placeholder="Contribution to Feminism" ></textarea>
+                                <textarea rows="4" class="details" cols="50" name="feminism"  placeholder="Contribution to Feminism" ></textarea>
                             </div>
 
                             <div id="interesting" class="form-group">
-                                <textarea rows="4" class="details" cols="50" name="facts" form="woman_form" placeholder="Interesting fact / story" ></textarea>
+                                <textarea rows="4" class="details" cols="50" name="facts"  placeholder="Interesting fact / story" ></textarea>
                             </div>
 
                             <div id="quotes" class="form-group">
@@ -147,15 +151,14 @@ export const EditWomanForm = () => {
                                     <option value="bibliography" name="bibliography">Bibliography</option>
                                     <option value="link" name="link">Link</option>
                                 </select>
-                                <input type="text" rows="4" class="details" cols="50" name="quotes" form="woman_form" placeholder="Quotes and notable works" />
-                                <input id="link" type="text" rows="4" class="details" cols="50" name="link" form="woman_form" placeholder="link" />
+                                <input type="text" rows="4" class="details" cols="50" name="quotes"  placeholder="Quotes and notable works" />
+                                <input id="link" type="text" rows="4" class="details" cols="50" name="link"  placeholder="link" />
                             </div>
-
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-success" id="submit_form" >Submit <span class="fa fa-arrow-right"></span></button>
+                            </div>
                         </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-success" id="submit_form" >Submit <span class="fa fa-arrow-right"></span></button>
                     </div>
                 </div>
             </div>
@@ -165,6 +168,7 @@ export const EditWomanForm = () => {
 
 $("document").ready(function () {
 
+    // show  and hide link input from add woman form.
     $("#link").hide();
     $('select[name=type]').change(function () {
         if ($('select[name=type]').val() == 'link') {
@@ -174,9 +178,26 @@ $("document").ready(function () {
         }
     });
 
-    $("#submit_form").click(function () {
-        $("#woman_form").submit();
+    
+        $("#woman_form").submit(function (event) {
+            if (!$("#woman_form").valid()) return;
+
+
+            db.collection('women').add({
+                name: $("#name").val(),
+                birth: $("#date").val(),
+                biography:$("#biography").val(),
+                highlights:$("#highlights").val(),
+                historical:$("#historical").val()
+            })
+
+            $("#staticBackdrop").modal('hide');
+            event.preventDefault();
+        });
+
     });
+
+
 
     // $("#woman_form").submit(function (event) {
     //     if (!$("#woman_form").valid()) return;
@@ -187,4 +208,4 @@ $("document").ready(function () {
     //     event.preventDefault();
     // });
 
-});
+

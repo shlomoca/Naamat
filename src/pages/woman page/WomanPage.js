@@ -8,6 +8,7 @@ import { db } from '../../config/Firebase'
 
 
 
+
 const MainDetails = (props) => {
 
     return (
@@ -28,6 +29,8 @@ class WomanPage extends Component {
         women: null
     }
 
+
+    
     componentDidMount() {
         db.collection('women').get().then(snapshot => {
             const women = [];
@@ -36,7 +39,7 @@ class WomanPage extends Component {
                 women.push(data);
             })
             this.setState({ women: women })
-            
+
         }).catch(error => console.log(error))
     }
 
@@ -45,26 +48,26 @@ class WomanPage extends Component {
             <div id="WomanPageWrapper" class="wrapper" >
 
                 <NavBar />
-                
+
                 <EditWomanForm />
                 <div id="details" dir="RTL" >
                     <MainDetails womanAge="40" highlights="מהמייסדות ומהמובילות של מפלגת הפועל הצעיר ותנועת הפועלות, חברת הכנסת הראשונה" />
                     <img id="pic" src="https://naamat.org.il/wp-content/themes/Naamat-Child-Theme/images/footer-img.jpg" />
                 </div>
                 {this.state.women &&
-                this.state.women.map(woman =>{
-                    return(
-                    <div>
-                        <p>Name: {woman.name}</p>
-                        <p>{woman.display}</p>
-                        <p>Date of birth: {woman.birth}</p>
-                        <p>Date of death: {woman.death}</p>
-                        <p>Highlight: {woman.highlights}</p>
-                        <p>Biography: {woman.biography}</p>
-                        <p>Quotes and noable: {woman.quotes}</p>
-                        
-                    </div>)
-                })}
+                    this.state.women.map(woman => {
+                        return (
+                            <div>
+                                <p>Name: {woman.name}</p>
+                                <p>{woman.display}</p>
+                                <p>Date of birth: {woman.birth}</p>
+                                <p>Date of death: {woman.death}</p>
+                                <p>Highlight: {woman.highlights}</p>
+                                <p>Biography: {woman.biography}</p>
+                                <p>Quotes and noable: {woman.quotes}</p>
+
+                            </div>)
+                    })}
 
             </div>
 
@@ -73,6 +76,9 @@ class WomanPage extends Component {
     }
 }
 export default WomanPage;
+
+
+
 
 // constructor() {
     //     super();
