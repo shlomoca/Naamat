@@ -29,7 +29,7 @@ class WomanPage extends Component {
     }
 
     componentDidMount() {
-        db.collection('data').get().then(snapshot => {
+        db.collection('women').get().then(snapshot => {
             const women = [];
             snapshot.forEach(doc => {
                 const data = doc.data();
@@ -53,17 +53,20 @@ class WomanPage extends Component {
                     <MainDetails womanAge="40" highlights="מהמייסדות ומהמובילות של מפלגת הפועל הצעיר ותנועת הפועלות, חברת הכנסת הראשונה" />
                     <img id="pic" src="https://naamat.org.il/wp-content/themes/Naamat-Child-Theme/images/footer-img.jpg" />
                 </div>
-                {
-                    this.state.women &&
-                    this.state.women.map(woman =>{
-                        return(
-                            <div>
-                                <p>{woman.name}</p>
-                                <p>{woman.highlights}</p>
-                            </div>
-                        )
-                    })
-                }
+                {this.state.women &&
+                this.state.women.map(woman =>{
+                    return(
+                    <div>
+                        <p>Name: {woman.name}</p>
+                        <p>{woman.display}</p>
+                        <p>Date of birth: {woman.birth}</p>
+                        <p>Date of death: {woman.death}</p>
+                        <p>Highlight: {woman.highlights}</p>
+                        <p>Biography: {woman.biography}</p>
+                        <p>Quotes and noable: {woman.quotes}</p>
+                        
+                    </div>)
+                })}
 
             </div>
 
