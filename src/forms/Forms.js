@@ -83,7 +83,7 @@ export const EditWomanForm = () => {
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form dir="RTL" id="woman_form" name="woman_form" method="POST" >
+                        <form dir="RTL" id="woman_form" name="woman_form"  >
 
                             <div id="name-group" class="form-group">
                                 {/* <label for="name"></label> */}
@@ -106,7 +106,7 @@ export const EditWomanForm = () => {
 
                             <div id="name-group" class="form-group">
                                 <label for="profession">Date of death</label>
-                                <input type="date" name="death_date" />
+                                <input type="date" name="death_date" id="death" />
                             </div>
 
                             <div id="name-group" class="form-group">
@@ -116,7 +116,7 @@ export const EditWomanForm = () => {
                                 <lable id="lb" for="inputGroupFile04">upload</lable>
                                 <div class="input-group">
                                     <div class="custom-file">
-                                        <input type="file" name="file" class="custom-file-input" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" />
+                                        <input type="file" name="file" class="custom-file-input" id="inputGroupFile04" id="media" aria-describedby="inputGroupFileAddon04" />
                                         <label class="custom-file-label" for="inputGroupFile04">Choose file</label>
                                     </div>
                                     <div class="input-group-append">
@@ -138,20 +138,20 @@ export const EditWomanForm = () => {
                                 <textarea rows="4" class="details" cols="50" name="history" id="historical"  placeholder="Historical events related" ></textarea>
                             </div>
 
-                            <div id="contribution" class="form-group">
-                                <textarea rows="4" class="details" cols="50" name="feminism"  placeholder="Contribution to Feminism" ></textarea>
+                            <div  class="form-group">
+                                <textarea rows="4" class="details" cols="50" name="feminism" id="contribution"  placeholder="Contribution to Feminism" ></textarea>
                             </div>
 
-                            <div id="interesting" class="form-group">
-                                <textarea rows="4" class="details" cols="50" name="facts"  placeholder="Interesting fact / story" ></textarea>
+                            <div  class="form-group">
+                                <textarea rows="4" class="details" cols="50" name="facts" id="facts"  placeholder="Interesting fact / story" ></textarea>
                             </div>
 
-                            <div id="quotes" class="form-group">
+                            <div  class="form-group">
                                 <select name="type" id="type">
                                     <option value="bibliography" name="bibliography">Bibliography</option>
                                     <option value="link" name="link">Link</option>
                                 </select>
-                                <input type="text" rows="4" class="details" cols="50" name="quotes"  placeholder="Quotes and notable works" />
+                                <input type="text" rows="4" class="details" cols="50" name="quotes" id="quotes"  placeholder="Quotes and notable works" />
                                 <input id="link" type="text" rows="4" class="details" cols="50" name="link"  placeholder="link" />
                             </div>
                             <div class="modal-footer">
@@ -178,17 +178,23 @@ $("document").ready(function () {
         }
     });
 
-    
+        //add woman from the form 
         $("#woman_form").submit(function (event) {
             if (!$("#woman_form").valid()) return;
 
 
             db.collection('women').add({
                 name: $("#name").val(),
+                display:$("#display").val(),
                 birth: $("#date").val(),
+                death: $("#death").val(),
+                timeline: $("#timeline").val(),
                 biography:$("#biography").val(),
                 highlights:$("#highlights").val(),
-                historical:$("#historical").val()
+                contribution:$("#contribution").val(),
+                historical:$("#historical").val(),
+                facts:$("#facts").val(),
+                media:$("#media").val()
             })
 
             $("#staticBackdrop").modal('hide');

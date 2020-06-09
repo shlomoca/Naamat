@@ -66,6 +66,10 @@ class WomanPage extends Component {
                                 <p>Highlight: {woman.highlights}</p>
                                 <p>Biography: {woman.biography}</p>
                                 <p>Quotes and noable: {woman.quotes}</p>
+                                <p>History: {woman.historical}</p>
+                                <p>Contribution {woman.contribution}</p>
+                                <p>Facts: {woman.facts}</p>
+                                <p>media: {woman.media}</p>
 
                             </div>)
                     })}
