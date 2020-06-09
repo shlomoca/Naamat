@@ -1,5 +1,6 @@
 import  firebase from 'firebase'
 import 'firebase/firestore'
+import 'firebase/storage';
 
 
  const firebaseConfig = {
@@ -13,8 +14,8 @@ import 'firebase/firestore'
     measurementId: "G-5KW5LHL765"
   };
   firebase.initializeApp(firebaseConfig);
-  
+  const storage = firebase.storage();
   export const db = firebase.firestore();
 
   
-export default firebase;
+export default{storage, firebase}
