@@ -17,9 +17,13 @@ code {
   direction: rtl;
 }
 .btn{
-  background-color: lightblue;
-  color: black;
-  padding: 2px;
-  margin: 2px;
+  background-color: rgb(165, 4, 165);
+  color: white;
+  /* padding: 2px; */
+  /* margin: 2px; */
+  font-weight: bold;
   margin-left: 3px;
+  width: 100px;
+  height: 60px;
+  border-radius: 7%;
 }

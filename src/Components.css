@@ -15,13 +15,10 @@
 
 #example-search-input4{
     margin: 0;
+    width: 100%;
     /* border-radius: 20px; */
 }
-#clear-btn,.fa-close{
-    margin: 0;
-    object-fit: cover;
-    height: 100%;
-}
+
 #search-bar-outline{
     border: 2vh;
     border: black;
@@ -30,11 +27,12 @@
 }
 
 #search-bar-outline{
-    align-items:stretch ;
+    display: flex;
+    width: 100%;
 }
 #stretcher{
     width: 70%;
-   
+
 }
 
 #logo{
@@ -42,9 +40,7 @@
 }
 
 #search-form{
-    width: 70%;
-   
-    /* align-content: space-between; */
+    max-width: 70%;
 }
 
 
@@ -52,27 +48,33 @@
     display: flex;
     align-items: center;
     width: 100%;
-     float: left;
-    /* border-radius: 50%; */
+    float: left;
+    background-color: rgba(165, 4, 165, 0);
+    border: none;
+
 }
 #clear-btn{
-    background-color: white;
-    height: 100%;
+    background-color: rgba(255, 255, 255, 0);
     border: none;
-   /* margin: -20%;  */
-    /* z-index: 3;  */
+    margin: auto;
+    margin-right:-8%;
+   
 }
 
-#nav-link{
-    box-sizing: content-box;
-    height: 200px;
-    /* display:block;
-    width: 20px;
-    height: 20px;
-    padding: 15px 32px; */
+.nav-item{
+/* justify-content:space-evenly ; */
+    margin-left: 5px;
+}
+.nav-link{
+    /* box-sizing: content-box; */
+    /* height: 200px; */
+    color: white;
 }
 
 #search-icon{
-    float: left;
-    /* align-self: flex-end; */
+    position: absolute;
+    left:12px;
+}
+.navbar-light .navbar-nav .nav-link{
+    color: white;
 }
