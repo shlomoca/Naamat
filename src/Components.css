@@ -78,3 +78,8 @@
 .navbar-light .navbar-nav .nav-link{
     color: white;
 }
+
+#fblogo,#ytlogo{
+    height: 50px;
+    width: 50px;
+}

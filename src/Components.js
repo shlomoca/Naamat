@@ -5,6 +5,7 @@ import logo from './images/naamatlogo.png';
 import fblogo from './images/fblogo.png';
 import ytlogo from './images/ytlogo.png';
 import './Components.css';
+import { EditWomanForm } from './forms/Forms';
 import { Link } from 'react-router-dom';
 
 
@@ -12,6 +13,7 @@ export const NavBar = () => {
 
   return (
     <div id="navbar">
+      <EditWomanForm />
       <nav className="navbar navbar-expand-lg navbar-light bg-light" id="navList">
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
@@ -27,48 +29,47 @@ export const NavBar = () => {
             <LangBtn />
 
           </li>
-         
+
 
 
           <li className="nav-item">
             <button type="button" className="btn btn-primary nav-link" data-toggle="modal" data-target="#feedbackForm">
               {Dictionary.feedback}</button>
           </li>
-          <li className="nav-item"id= "catcat">
+          <li className="nav-item" id="catcat">
             <Link to="/serchPage?catagorys">
-              <button type="button"  className="btn btn-primary nav-link" >
+              <button type="button" className="btn btn-primary nav-link" >
                 {Dictionary.categories}</button>
             </Link>
           </li>
 
 
-          
+          <li className="nav-item">
+            <button type="button" class="btn btn-primary nav-link" data-toggle="modal" data-target="#staticBackdrop">
+              {Dictionary.addWoman}
+            </button>
+          </li>
+
           <li className="nav-item">
             <button type="button" class="btn btn-primary nav-link" data-toggle="collapse" data-target="#demo">{Dictionary.aboutTitle}</button>
           </li>
 
           <li className="nav-item" id="stretcher">
-            <form  className="form-inline my-2 my-lg-0 input-group mb-3" id="search-form">
-            
-            <button  id="search-btn" type="button">
-              <div id="search-bar-outline">
-            <input class="form-control " type="text" placeholder={Dictionary.search} id="example-search-input4"/>
-            <button id="clear-btn"   type="button">
-                <i class="fa fa-close" onClick={() =>document.getElementById('example-search-input4').value = ''}></i>
-            </button>
-              </div>
-                <i class="fa fa-search" id = "search-icon"></i>
-            </button>
-     
+            <form className="form-inline my-2 my-lg-0 input-group mb-3" id="search-form">
+              <button id="search-btn" type="button">
+                <div id="search-bar-outline">
+                  <input class="form-control " type="text" placeholder={Dictionary.search} id="example-search-input4" />
+                  <button id="clear-btn" type="button">
+                    <i class="fa fa-close" onClick={() => document.getElementById('example-search-input4').value = ''}></i>
+                  </button>
+                </div>
+                <i class="fa fa-search" id="search-icon"></i>
+              </button>
             </form>
           </li>
 
-
-
-
-         
         </ul>
-  
+
       </nav>
 
 
@@ -76,7 +77,7 @@ export const NavBar = () => {
         {Dictionary.about}
       </div>
 
-    
+
 
 
 
@@ -85,25 +86,16 @@ export const NavBar = () => {
 }
 
 
-export const clickableImage = () => {
 
-  return (
-    <div id="navbar">
-
-      <img id="smallLogo" src="https://naamat.org.il/wp-content/uploads/2016/01/logoNEW.png" alt="logo"></img>
-      <LangBtn />
-    </div>
-  )
-}
 export const BottomBar = () => {
 
   return (
     <div id="bottom">
 
 
-
-      <img id="fblogo" src={fblogo} alt="facebook"></img>
-      <img id="ytlogo" src={ytlogo} alt="youtube"></img>
+<a>{Dictionary.builders} </a>
+      <a href="#"><img id="fblogo" src={fblogo} alt="facebook"/> נעמת בפייסבוק</a>
+      <a href="#"> <img id="ytlogo" src={ytlogo} alt="youtube"/> נעמת ביוטיוב</a>
 
 
     </div>
@@ -127,12 +119,12 @@ function previewUrl(url, target) {
 
 
 
-function clearThis(target){
+function clearThis(target) {
   // return ()  =>    
   // $("#"+target).attr("value")="";
   // document.getElementById(target).getAttribute("value")="";
   // alert(target);
-  
+
 }
 
 

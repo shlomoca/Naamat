@@ -1,16 +1,27 @@
-
-
+#pictureCarousel {
+    position: absolute;
+    width: 50%;
+    height: 30%;
+    left: 25%;
+    margin-top: 3%;
+}
 
 /* #main{
     position: fixed;
     top:10%;
     height: 24%;
     */
-    /* z-index: 20; */
-    /* overflow: auto; */
-    /* border-style: groove; */
-    /* text-align: center; */
+
+/* z-index: 20; */
+
+/* overflow: auto; */
+
+/* border-style: groove; */
+
+/* text-align: center; */
+
 /* }  */
+
 /* #foot{
     position: fixed;
     bottom:0%;
