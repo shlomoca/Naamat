@@ -2,7 +2,7 @@ import './mainUserPage.css';
 import $ from 'jquery';
 import React, { Component } from 'react';
 import { Dictionary } from '../../Dictionary';
-import { NavBar, PictursCarousel, BottomBar } from '../../Components.js';
+import { NavBar, PictursCarousel, DisplayModal, BottomBar } from '../../Components.js';
 import { FeedbackButton } from '../../forms/Forms';
 
 
@@ -25,6 +25,7 @@ class mainUserPage extends Component {
                     {/* <BottomBar/> */}
                    
                 {/* </footer> */}
+                <DisplayModal link='https://he.wikipedia.org/wiki/%D7%A0%D7%A2%D7%9E%D7%AA' details='Wikipedia'/>
             </div>
         );
 
