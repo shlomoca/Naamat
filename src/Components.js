@@ -153,8 +153,7 @@ export const DisplayModal = (props) => {
 
   return (
     <div> 
-      <button type="button" className="btn btn-primary nav-link" data-toggle="modal" data-target="#displayModal">
-      {props.details} </button>
+      <button class="clearBtn" data-toggle="modal" data-target="#displayModal"> <a href="#">{props.details}</a></button>
     <div class="modal fade" id="displayModal" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">

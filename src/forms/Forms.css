@@ -72,3 +72,9 @@ background-color: purple;
     padding: 1px;
 }
 
+.details2{
+    width: 180%;
+}
+.modal-footer{
+    height: 100%;
+}

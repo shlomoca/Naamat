@@ -38,15 +38,10 @@ export const FeedbackButton = () => {
                                     <input type="radio" className="star" id="star1" name="rating" value="1" /><label for="star1" title="1 star"></label>
                                 </div>
                             </div>
-                            
-
-
-
-
 
                             <div id="name-group" class="form-group">
                                 <label for="profession"></label>
-                                <textarea rows="4" class="details" cols="50" name="comment" placeholder="?Any seggestions for improvament" required></textarea>
+                                <textarea rows="4" class="details2" cols="50" name="comment" placeholder="?Any seggestions for improvament" required></textarea>
 
                             </div>
 
@@ -160,6 +155,7 @@ export const EditWomanForm = () => {
         </div>
     );
 }
+
 
 $("document").ready(function () {
 
