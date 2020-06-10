@@ -14,11 +14,11 @@ export const NavBar = () => {
   return (
     <div id="navbar">
       <EditWomanForm />
+      {/* <a href="#">ויקיפדה</a> */}
       <nav className="navbar navbar-expand-lg navbar-light bg-light" id="navList">
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
-
 
         <ul className="navbar-nav mr-auto mt-2 mt-lg-0" dir="rtl">
           <li className="nav-item">
@@ -27,12 +27,13 @@ export const NavBar = () => {
 
           <li id="langItam" className="nav-item" >
             <LangBtn />
+            {/* <LinkModel   /> */}
 
           </li>
 
 
 
-          
+
           <li className="nav-item" >
             <Link to="/serchPage?catagorys">
               <button type="button" className="btn btn-primary nav-link" >
@@ -48,7 +49,7 @@ export const NavBar = () => {
           </li>
 
           <li className="nav-item">
-            <button type="button" class="btn btn-primary nav-link" data-toggle="collapse" data-target="#demo">{Dictionary.aboutTitle}</button>
+            <button type="button" class="btn btn-primary nav-link" data-toggle="collapse" data-target="#about-drop">{Dictionary.aboutTitle}</button>
           </li>
 
           <li className="nav-item" id="stretcher">
@@ -73,7 +74,7 @@ export const NavBar = () => {
       </nav>
 
 
-      <div id="demo" class="collapse">
+      <div id="about-drop" class="collapse">
         {Dictionary.about}
       </div>
 
@@ -93,9 +94,9 @@ export const BottomBar = () => {
     <div id="bottom">
 
 
-{/* <a>{Dictionary.builders} </a> */}
-      <a href="#"><img id="fblogo" src={fblogo} alt="facebook"/> נעמת בפייסבוק</a>
-      <a href="#"> <img id="ytlogo" src={ytlogo} alt="youtube"/> נעמת ביוטיוב</a>
+      {/* <a>{Dictionary.builders} </a> */}
+      <a href="#"><img id="fblogo" src={fblogo} alt="facebook" /> נעמת בפייסבוק</a>
+      <a href="#"> <img id="ytlogo" src={ytlogo} alt="youtube" /> נעמת ביוטיוב</a>
 
 
     </div>
@@ -106,34 +107,34 @@ export const BottomBar = () => {
 
 export const PictursCarousel = () => {
   return (
-      <div id="pictureCarousel">
-          <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-              <ol class="carousel-indicators">
-                  <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                  <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                  <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-              </ol>
-              <div class="carousel-inner">
-                  <div class="carousel-item active">
-                      <img src="https://q-cf.bstatic.com/images/hotel/max1024x768/214/21412988.jpg" class="d-block w-100" alt="example 1" />
-                  </div>
-                  <div class="carousel-item">
-                      <img src="https://q-cf.bstatic.com/images/hotel/max1280x900/148/148914590.jpg" class="d-block w-100" alt="example 2" />
-                  </div>
-                  <div class="carousel-item">
-                      <img src="https://q-cf.bstatic.com/images/hotel/max1280x900/169/169438098.jpg" class="d-block w-100" alt="example 3" />
-                  </div>
-              </div>
-              <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                  <span class="sr-only">Previous</span>
-              </a>
-              <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                  <span class="sr-only">Next</span>
-              </a>
+    <div id="pictureCarousel">
+      <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+          <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="https://q-cf.bstatic.com/images/hotel/max1024x768/214/21412988.jpg" class="d-block w-100" alt="example 1" />
           </div>
+          <div class="carousel-item">
+            <img src="https://q-cf.bstatic.com/images/hotel/max1280x900/148/148914590.jpg" class="d-block w-100" alt="example 2" />
+          </div>
+          <div class="carousel-item">
+            <img src="https://q-cf.bstatic.com/images/hotel/max1280x900/169/169438098.jpg" class="d-block w-100" alt="example 3" />
+          </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
       </div>
+    </div>
   )
 }
 

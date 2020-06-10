@@ -7,10 +7,11 @@
 }
 
 #womanContainer{
-    text-align: right;
+  
     width: 80%;
     margin: auto;
-    /* direction: rtl; */
+    text-align: justify;
+  text-justify: inter-word;
 }
 h1{
     text-align: center;

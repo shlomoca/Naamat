@@ -14,11 +14,11 @@ const MainDetails = (props) => {
 
     return (
         <div id="main_details">
-            <img/>
+            <img />
             <h1 >{props.display} </h1>
-    <p><b>{Dictionary.name}:</b>{props.womanName}</p>
+            <p><b>{Dictionary.name}:</b>{props.womanName}</p>
             <p><b>{Dictionary.bday}</b>:{props.bday}</p>
-            
+
         </div>
     );
 }
@@ -32,7 +32,7 @@ class WomanPage extends Component {
     }
 
 
-    
+
     componentDidMount() {
         db.collection('women').get().then(snapshot => {
             const women = [];
@@ -60,10 +60,10 @@ class WomanPage extends Component {
                 {this.state.women &&
                     this.state.women.map(woman => {
                         return (
-                            <div id=  "womanContainer">
+                            <div id="womanContainer">
                                 <img id="profilePic" src="https://naamat.org.il/wp-content/themes/Naamat-Child-Theme/images/footer-img.jpg" />
-                            <MainDetails display={woman.display} womanName={woman.name} bday={woman.birth}  />
-                                
+                                <MainDetails display={woman.display} womanName={woman.name} bday={woman.birth} />
+
                                 <p><b>Date of death:</b> {woman.death}</p>
                                 <p><b>Highlight:</b> {woman.highlights}</p>
                                 <p><b>Biography:</b> {woman.biography}</p>

@@ -22,8 +22,8 @@ class mainUserPage extends Component {
                 <FeedbackButton />
                 <PictursCarousel />
                 {/* <footer id="foot"> */}
-                    {/* <BottomBar/> */}
-                   
+                {/* <BottomBar/> */}
+
                 {/* </footer> */}
                 <DisplayModal link='https://he.wikipedia.org/wiki/%D7%A0%D7%A2%D7%9E%D7%AA' details='Wikipedia'/>
             </div>
