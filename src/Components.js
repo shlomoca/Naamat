@@ -149,6 +149,37 @@ function previewUrl(url, target) {
 //check
 
 
+export const DisplayModal = (props) => {
+
+  return (
+    <div> 
+      <button type="button" className="btn btn-primary nav-link" data-toggle="modal" data-target="#displayModal">
+      {props.details} </button>
+    <div class="modal fade" id="displayModal" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header ">
+                <h5 class="modal-title" id="staticBackdropLabel">{props.details}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+            <iframe src= {props.link}
+            width="100%"
+            height="100%"
+            frameBorder='0'
+            allow='autoplay; encrypted-media'
+            allowFullScreen
+            title='url'/>     
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+  )
+}
+
 
 
 

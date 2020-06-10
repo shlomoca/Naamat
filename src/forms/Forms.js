@@ -38,24 +38,15 @@ export const FeedbackButton = () => {
                                     <input type="radio" className="star" id="star1" name="rating" value="1" /><label for="star1" title="1 star"></label>
                                 </div>
                             </div>
-                            <div id="name-group" classname="form-group starContainer">
-                                how were the guides?
-                                    <div className="starrating risingstar d-flex justify-content-center flex-row-reverse">
-                                    <input type="radio" className="star" id="guidesStar5" name="ratinguide" value="5" /><label for="guidesStar5" title="5 star"></label>
-                                    <input type="radio" className="star" id="guidesStar4" name="ratinguide" value="4" /><label for="guidesStar4" title="4 star"></label>
-                                    <input type="radio" className="star" id="guidesStar3" name="ratinguide" value="3" /><label for="guidesStar3" title="3 star"></label>
-                                    <input type="radio" className="star" id="guidesStar2" name="ratinguide" value="2" /><label for="guidesStar2" title="2 star"></label>
-                                    <input type="radio" className="star" id="guidesStar1" name="ratinguide" value="1" /><label for="guidesStar1" title="1 star"></label>
-                                </div>
-                            </div>
+                            
 
 
 
 
 
                             <div id="name-group" class="form-group">
-                                <label for="profession">Any seggestions for improvament?</label>
-                                <textarea rows="4" class="details" cols="50" name="comment" placeholder="Any seggestions for improvament?" required></textarea>
+                                <label for="profession"></label>
+                                <textarea rows="4" class="details" cols="50" name="comment" placeholder="?Any seggestions for improvament" required></textarea>
 
                             </div>
 

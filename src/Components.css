@@ -95,6 +95,21 @@ img {
     border-radius: 3%;
 }
 
+  .modal-content{
+    height: 100%;    
+  }  
+  .modal-dialog {
+    height: 100%;
+    padding-top: 3%;
+  } 
+    .modal-title{
+        text-align: center;
+        width: 100%;
+    }
+    .modal-body{
+        height: 93%;
+    }
+   
 #about-drop{
     text-align: justify;
     text-justify: inter-word;
