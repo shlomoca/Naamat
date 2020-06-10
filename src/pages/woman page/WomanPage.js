@@ -2,7 +2,7 @@ import './WomanPage.css';
 import React, { Component } from 'react';
 // import { Dictionary, LangBtn } from '../../Dictionary'
 import { NavBar, BottomBar } from '../../Components';
-import { EditWomanForm } from '../../forms/Forms';
+import { EditWomanForm, FeedbackButton } from '../../forms/Forms';
 import { db } from '../../config/Firebase'
 import { Dictionary } from '../../Dictionary';
 
@@ -16,8 +16,8 @@ const MainDetails = (props) => {
         <div id="main_details">
             <img/>
             <h1 >{props.display} </h1>
-    <p>{Dictionary.name}:{props.womanName}</p>
-            <p>{Dictionary.bday}:{props.bday}</p>
+    <p><b>{Dictionary.name}:</b>{props.womanName}</p>
+            <p><b>{Dictionary.bday}</b>:{props.bday}</p>
             
         </div>
     );
@@ -50,26 +50,28 @@ class WomanPage extends Component {
             <div id="WomanPageWrapper" class="wrapper" >
 
                 <NavBar />
+                <FeedbackButton />
 
 
-                <div id="details"  >
+                {/* <div id="details"  >
 
-                    <img id="pic" src="https://naamat.org.il/wp-content/themes/Naamat-Child-Theme/images/footer-img.jpg" />
-                </div>
+                    
+                </div> */}
                 {this.state.women &&
                     this.state.women.map(woman => {
                         return (
                             <div id=  "womanContainer">
+                                <img id="profilePic" src="https://naamat.org.il/wp-content/themes/Naamat-Child-Theme/images/footer-img.jpg" />
                             <MainDetails display={woman.display} womanName={woman.name} bday={woman.birth}  />
                                 
-                                <p>Date of death: {woman.death}</p>
-                                <p>Highlight: {woman.highlights}</p>
-                                <p>Biography: {woman.biography}</p>
-                                <p>Quotes and noable: {woman.quotes}</p>
-                                <p>History: {woman.historical}</p>
-                                <p>Contribution {woman.contribution}</p>
-                                <p>Facts: {woman.facts}</p>
-                                <p>media: {woman.media}</p>
+                                <p><b>Date of death:</b> {woman.death}</p>
+                                <p><b>Highlight:</b> {woman.highlights}</p>
+                                <p><b>Biography:</b> {woman.biography}</p>
+                                <p><b>Quotes and noable:</b> {woman.quotes}</p>
+                                <p><b>History:</b> {woman.historical}</p>
+                                <p><b>Contribution:</b> {woman.contribution}</p>
+                                <p><b>Facts:</b> {woman.facts}</p>
+                                <p><b>media:</b> {woman.media}</p>
 
                             </div>)
                     })}

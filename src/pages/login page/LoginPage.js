@@ -16,9 +16,9 @@ class LoginPage extends Component {
         return (<div id="loginWrapper" class="wrapper">
                 
                     <LangBtn />
+                <a href="https://naamat.org.il/" id="bigLogo"> <img src={logo} alt="logo" /></a>
                 
             
-                <a href="https://naamat.org.il/" id="bigLogo"> <img src={logo} alt="logo" /></a>
                 <div id="buttonWrapper123">
                     <form dir="RTL" id="buttonWrapper" name="login_form" >
                         < input type="email"

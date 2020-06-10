@@ -1,11 +1,17 @@
 
 
-#pic
+#profilePic
 {
     border-radius: 50%;
+    float: left;
 }
 
 #womanContainer{
+    text-align: right;
     width: 80%;
+    margin: auto;
     /* direction: rtl; */
+}
+h1{
+    text-align: center;
 }

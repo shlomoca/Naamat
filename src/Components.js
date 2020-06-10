@@ -32,11 +32,8 @@ export const NavBar = () => {
 
 
 
-          <li className="nav-item">
-            <button type="button" className="btn btn-primary nav-link" data-toggle="modal" data-target="#feedbackForm">
-              {Dictionary.feedback}</button>
-          </li>
-          <li className="nav-item" id="catcat">
+          
+          <li className="nav-item" >
             <Link to="/serchPage?catagorys">
               <button type="button" className="btn btn-primary nav-link" >
                 {Dictionary.categories}</button>
@@ -67,7 +64,10 @@ export const NavBar = () => {
               </button>
             </form>
           </li>
-
+          <li className="nav-item">
+            <button type="button" className="btn btn-primary nav-link" data-toggle="modal" data-target="#feedbackForm">
+              {Dictionary.feedback}</button>
+          </li>
         </ul>
 
       </nav>
@@ -93,7 +93,7 @@ export const BottomBar = () => {
     <div id="bottom">
 
 
-<a>{Dictionary.builders} </a>
+{/* <a>{Dictionary.builders} </a> */}
       <a href="#"><img id="fblogo" src={fblogo} alt="facebook"/> נעמת בפייסבוק</a>
       <a href="#"> <img id="ytlogo" src={ytlogo} alt="youtube"/> נעמת ביוטיוב</a>
 
@@ -102,6 +102,40 @@ export const BottomBar = () => {
   )
 }
 
+
+
+export const PictursCarousel = () => {
+  return (
+      <div id="pictureCarousel">
+          <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+              <ol class="carousel-indicators">
+                  <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                  <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                  <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+              </ol>
+              <div class="carousel-inner">
+                  <div class="carousel-item active">
+                      <img src="https://q-cf.bstatic.com/images/hotel/max1024x768/214/21412988.jpg" class="d-block w-100" alt="example 1" />
+                  </div>
+                  <div class="carousel-item">
+                      <img src="https://q-cf.bstatic.com/images/hotel/max1280x900/148/148914590.jpg" class="d-block w-100" alt="example 2" />
+                  </div>
+                  <div class="carousel-item">
+                      <img src="https://q-cf.bstatic.com/images/hotel/max1280x900/169/169438098.jpg" class="d-block w-100" alt="example 3" />
+                  </div>
+              </div>
+              <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="sr-only">Previous</span>
+              </a>
+              <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="sr-only">Next</span>
+              </a>
+          </div>
+      </div>
+  )
+}
 
 function previewUrl(url, target) {
   //use timeout coz mousehover fires several times
@@ -118,14 +152,6 @@ function previewUrl(url, target) {
 
 
 
-
-function clearThis(target) {
-  // return ()  =>    
-  // $("#"+target).attr("value")="";
-  // document.getElementById(target).getAttribute("value")="";
-  // alert(target);
-
-}
 
 
 

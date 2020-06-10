@@ -22,6 +22,9 @@ export const FeedbackButton = () => {
                             <div id="name-group" class="form-group">
                                 <input type="text" rows="1" class="details" cols="35" name="name"  placeholder="name" required />
                             </div>
+                            <div id="email-group" class="form-group">
+                                <input type="email" rows="1" class="details" cols="35" name="name"  placeholder="email" required />
+                            </div>
 
 
                             <div id="name-group" classname="form-group starContainer">
