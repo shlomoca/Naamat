@@ -14,39 +14,41 @@ class LoginPage extends Component {
 
 
         return (<div id="loginWrapper" class="wrapper">
-                
-                    <LangBtn />
-                <a href="https://naamat.org.il/" id="bigLogo"> <img src={logo} alt="logo" /></a>
-                
-            
-                <div id="buttonWrapper123">
-                    <form dir="RTL" id="buttonWrapper" name="login_form" >
-                        < input type="email"
-                            id="userName"
-                            placeholder={Dictionary.enterMail}
-                            defaultValue="" required>
-                        </input>
-                        < input type="password"
-                            id="password"
-                            placeholder={Dictionary.enterPass}
-                            defaultValue="" required>
-                        </input>
+            <div id="langBtnWeapper">
 
-                        
-                        <Link to="/mainUserPage">
-                            <button id="loginbtn"
-                                type="submit"
-                                text={Dictionary.login}
-                                className="btn btn-success" >
-                                Submit
-                                </button>
-                        </Link>
-
-
-                    </form>
-                </div>
+                <LangBtn />
             </div>
-      
+            <a id="bigLogo"> <img src={logo} alt="logo" /></a>
+
+
+            <div id="buttonWrapper123">
+                <form dir="RTL" id="buttonWrapper" name="login_form" >
+                    < input type="email"
+                        id="userName"
+                        placeholder={Dictionary.enterMail}
+                        defaultValue="" required>
+                    </input>
+                    < input type="password"
+                        id="password"
+                        placeholder={Dictionary.enterPass}
+                        defaultValue="" required>
+                    </input>
+
+
+                    <Link to="/mainUserPage">
+                        <button id="loginbtn"
+                            type="submit"
+                            text={Dictionary.login}
+                            className="btn btn-success" >
+                            Submit
+                                </button>
+                    </Link>
+
+
+                </form>
+            </div>
+        </div>
+
 
         )
 

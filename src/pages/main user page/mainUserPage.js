@@ -22,8 +22,8 @@ class mainUserPage extends Component {
                 <FeedbackButton />
                 <PictursCarousel />
                 {/* <footer id="foot"> */}
-                    {/* <BottomBar/> */}
-                   
+                {/* <BottomBar/> */}
+
                 {/* </footer> */}
             </div>
         );

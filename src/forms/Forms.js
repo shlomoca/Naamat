@@ -3,6 +3,7 @@ import $ from 'jquery';
 import 'jquery-validation'
 import React from 'react';
 import { db } from '../config/Firebase'
+import { Dictionary } from '../Dictionary';
 
 
 export const FeedbackButton = () => {
@@ -11,19 +12,19 @@ export const FeedbackButton = () => {
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="staticBackdropLabel">visit feedback</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
+                        <h5 class="modal-title" id="staticBackdropLabel">visit feedback</h5>
                     </div>
                     <div class="modal-body">
                         <form dir="RTL" id="woman_form" name="woman_form" method="POST" >
 
                             <div id="name-group" class="form-group">
-                                <input type="text" rows="1" class="details" cols="35" name="name"  placeholder="name" required />
+                                <input type="text" rows="1" class="details" cols="35" name="name" placeholder="name" required />
                             </div>
                             <div id="email-group" class="form-group">
-                                <input type="email" rows="1" class="details" cols="35" name="name"  placeholder="email" required />
+                                <input type="email" rows="1" class="details" cols="35" name="name" placeholder="email" required />
                             </div>
 
 
@@ -54,7 +55,7 @@ export const FeedbackButton = () => {
 
                             <div id="name-group" class="form-group">
                                 <label for="profession">Any seggestions for improvament?</label>
-                                <textarea rows="4" class="details" cols="50" name="comment"  placeholder="Any seggestions for improvament?" required></textarea>
+                                <textarea rows="4" class="details" cols="50" name="comment" placeholder="Any seggestions for improvament?" required></textarea>
 
                             </div>
 
@@ -80,26 +81,26 @@ export const EditWomanForm = () => {
             <div class="modal-dialog modal-xl">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="staticBackdropLabel">Add Woman</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
+                        <h5 class="modal-title" id="staticBackdropLabel">Add Woman</h5>
                     </div>
                     <div class="modal-body">
                         <form dir="RTL" id="woman_form" name="woman_form"  >
 
                             <div id="name-group" class="form-group">
                                 {/* <label for="name"></label> */}
-                                <input type="text" rows="1" class="details" cols="35" id="name" name="name"  placeholder="name" required />
+                                <input type="text" rows="1" class="details" cols="35" id="name" name="name" placeholder={Dictionary.name} required />
                             </div>
 
                             <div id="name-group" class="form-group">
                                 {/* <label for="display"></label> */}
-                                <input type="text" rows="1" class="details" cols="35" id="display" name="display"  placeholder="display name" />
+                                <input type="text" rows="1" class="details" cols="35" id="display" name="display" placeholder="display name" />
                             </div>
 
                             <div id="name-group" class="form-group">
-                                <input type="text" rows="1" class="details" cols="35" id="timeline" name="Year in timelineme"  placeholder="Year in timeline" />
+                                <input type="text" rows="1" class="details" cols="35" id="timeline" name="Year in timelineme" placeholder="Year in timeline" />
                             </div>
 
                             <div id="name-group" class="form-group">
@@ -128,34 +129,34 @@ export const EditWomanForm = () => {
                                 </div>
                             </div>
 
-                            <div  class="form-group">
-                                <textarea rows="4" class="details" cols="50" name="highlights" id="highlights"  placeholder="Highlights" ></textarea>
+                            <div class="form-group">
+                                <textarea rows="4" class="details" cols="50" name="highlights" id="highlights" placeholder="Highlights" ></textarea>
                             </div>
 
 
-                            <div  class="form-group">
-                                <textarea rows="4" class="details" cols="50" name="biography" id="biography"  placeholder="Biography" ></textarea>
+                            <div class="form-group">
+                                <textarea rows="4" class="details" cols="50" name="biography" id="biography" placeholder="Biography" ></textarea>
                             </div>
 
-                            <div  class="form-group">
-                                <textarea rows="4" class="details" cols="50" name="history" id="historical"  placeholder="Historical events related" ></textarea>
+                            <div class="form-group">
+                                <textarea rows="4" class="details" cols="50" name="history" id="historical" placeholder="Historical events related" ></textarea>
                             </div>
 
-                            <div  class="form-group">
-                                <textarea rows="4" class="details" cols="50" name="feminism" id="contribution"  placeholder="Contribution to Feminism" ></textarea>
+                            <div class="form-group">
+                                <textarea rows="4" class="details" cols="50" name="feminism" id="contribution" placeholder="Contribution to Feminism" ></textarea>
                             </div>
 
-                            <div  class="form-group">
-                                <textarea rows="4" class="details" cols="50" name="facts" id="facts"  placeholder="Interesting fact / story" ></textarea>
+                            <div class="form-group">
+                                <textarea rows="4" class="details" cols="50" name="facts" id="facts" placeholder="Interesting fact / story" ></textarea>
                             </div>
 
-                            <div  class="form-group">
+                            <div class="form-group">
                                 <select name="type" id="type">
                                     <option value="bibliography" name="bibliography">Bibliography</option>
                                     <option value="link" name="link">Link</option>
                                 </select>
-                                <input type="text" rows="4" class="details" cols="50" name="quotes" id="quotes"  placeholder="Quotes and notable works" />
-                                <input id="link" type="text" rows="4" class="details" cols="50" name="link"  placeholder="link" />
+                                <input type="text" rows="4" class="details" cols="50" name="quotes" id="quotes" placeholder="Quotes and notable works" />
+                                <input id="link" type="text" rows="4" class="details" cols="50" name="link" placeholder="link" />
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -181,30 +182,30 @@ $("document").ready(function () {
         }
     });
 
-        //add woman from the form 
-        $("#woman_form").submit(function (event) {
-            if (!$("#woman_form").valid()) return;
+    //add woman from the form 
+    $("#woman_form").submit(function (event) {
+        if (!$("#woman_form").valid()) return;
 
 
-            db.collection('women').add({
-                name: $("#name").val(),
-                display:$("#display").val(),
-                birth: $("#date").val(),
-                death: $("#death").val(),
-                timeline: $("#timeline").val(),
-                biography:$("#biography").val(),
-                highlights:$("#highlights").val(),
-                contribution:$("#contribution").val(),
-                historical:$("#historical").val(),
-                facts:$("#facts").val(),
-                media:$("#media").val()
-            })
+        db.collection('women').add({
+            name: $("#name").val(),
+            display: $("#display").val(),
+            birth: $("#date").val(),
+            death: $("#death").val(),
+            timeline: $("#timeline").val(),
+            biography: $("#biography").val(),
+            highlights: $("#highlights").val(),
+            contribution: $("#contribution").val(),
+            historical: $("#historical").val(),
+            facts: $("#facts").val(),
+            media: $("#media").val()
+        })
 
-            $("#staticBackdrop").modal('hide');
-            event.preventDefault();
-        });
-
+        $("#staticBackdrop").modal('hide');
+        event.preventDefault();
     });
+
+});
 
 
 

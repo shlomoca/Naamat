@@ -94,3 +94,10 @@
 img {
     border-radius: 3%;
 }
+
+#about-drop{
+    text-align: justify;
+    text-justify: inter-word;
+    width: 80%;
+    margin: auto;
+}
