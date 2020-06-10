@@ -15,7 +15,7 @@ export const FeedbackButton = () => {
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
-                        <h5 class="modal-title" id="staticBackdropLabel">visit feedback</h5>
+                        <h5 class="modal-title" id="staticBackdropLabel">{Dictionary.feedback}</h5>
                     </div>
                     <div class="modal-body">
                         <form dir="RTL" id="woman_form" name="woman_form" method="POST" >
@@ -50,7 +50,7 @@ export const FeedbackButton = () => {
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-success">Submit <span class="fa fa-arrow-right"></span></button>
+                        <button type="submit" class="btn btn-success">{Dictionary.submit} <span class="fa fa-arrow-right"></span></button>
                     </div>
                 </div>
             </div>

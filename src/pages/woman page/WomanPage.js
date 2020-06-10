@@ -64,14 +64,14 @@ class WomanPage extends Component {
                                 <img id="profilePic" src="https://naamat.org.il/wp-content/themes/Naamat-Child-Theme/images/footer-img.jpg" />
                                 <MainDetails display={woman.display} womanName={woman.name} bday={woman.birth} />
 
-                                <p><b>Date of death:</b> {woman.death}</p>
-                                <p><b>Highlight:</b> {woman.highlights}</p>
-                                <p><b>Biography:</b> {woman.biography}</p>
-                                <p><b>Quotes and noable:</b> {woman.quotes}</p>
-                                <p><b>History:</b> {woman.historical}</p>
-                                <p><b>Contribution:</b> {woman.contribution}</p>
-                                <p><b>Facts:</b> {woman.facts}</p>
-                                <p><b>media:</b> {woman.media}</p>
+                                <p><b>{Dictionary.dethDay}:</b> {woman.death}</p>
+                                <p><b>{Dictionary.highlights}:</b> {woman.highlights}</p>
+                                <p><b>{Dictionary.biography}:</b> {woman.biography}</p>
+                                <p><b>{Dictionary.QuotesAnd}:</b> {woman.quotes}</p>
+                                <p><b>{Dictionary.History}:</b> {woman.historical}</p>
+                                <p><b>{Dictionary.Contribution}:</b> {woman.contribution}</p>
+                                <p><b>{Dictionary.facts}:</b> {woman.facts}</p>
+                                <p><b>{Dictionary.media}:</b> {woman.media}</p>
 
                             </div>)
                     })}
