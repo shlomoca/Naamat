@@ -6,7 +6,10 @@ import globe from './images/globe.png'
 
 
 
-
+/* LocalizedStrings is holding our Dictionary so that all of the pages wiil be able to be translated.
+to set a language you can call 'Dictionart.setLanguage([the language])'
+all pages can reference the text with 'Dictionery.[reference]
+the references were devided to the main pages that is using them*/
 export const Dictionary = new LocalizedStrings({
   EN: {
     //login page
@@ -26,15 +29,15 @@ export const Dictionary = new LocalizedStrings({
     
     //forms
     name: `name`,
-    bday: `Birth day`,
+    bday: `date of birth`,
     submit:`submit`, 
     dethDay: `Date of death`,
-    Highlight:`Highlights`,
-    Biography:`Biography`,
+    highlights:`Highlights`,
+    biography:`Biography`,
     QuotesAnd: `Quotes and notable works`,
     History:`History`,
     Contribution: `Contribution to feminism`,
-    Facts: `Interesting facts / stories`,
+    facts: `Interesting facts / stories`,
     media: `media`,
 
 
@@ -53,7 +56,7 @@ export const Dictionary = new LocalizedStrings({
     
   //main user page
     about: `נעמת היא תנועה לקידום מעמד האישה והכוח החברתי לנשים. העדיפות העליונה של נעמת היא קידום וחיזוק מעמד האישה במשפחה ובכוח העבודה. נעמת שואפת להשיג שוויון בין המינים והשתתפות מלאה של נשים בתחומים חברתיים, כלכליים ופוליטיים. נעמת, שכונתה בעבר "מועצת הנשים העובדות", הוקמה בשנת 1921 על ידי נשים עובדות, חלוצות שהגיעו לארץ ישראל בראשית שנות העשרים. מוצת הפועלות הייתה מאורגנת כתנועה אוטונומית עם שיוך להסתדרות (הסתדרות העובדים הכללית). כיום נעמת היא ארגון ללא מטרות רווח, תנועת נשים סוציו-פוליטית ורב-מפלגתית המורכבת מנשים ממגזרים שונים באוכלוסייה, קהילות, ארצות מוצא וזרמים דתיים.`,
-    aboutTitle: "אודות נעמת",
+    aboutTitle: `אודות נעמת`,
     feedback: ` משוב ביקור`,
     categories: `קטגוריות`,
     search: `חיפוש`,
@@ -61,15 +64,15 @@ export const Dictionary = new LocalizedStrings({
     
     //forms
     name: `שם`,
-    bday: `יום הולדת`,
+    bday: `תאריך לידה`,
     submit:`שלח`,
     dethDay: `יום פטירה`,
-    Highlight:`תקציר`,
-    Biography:`ביוגרפיה`,
+    highlights:`תקציר`,
+    biography:`ביוגרפיה`,
     QuotesAnd: `ציטוטים ויצירות בולטות`,
     History:`היסטוריה`,
     Contribution: `תרומה לפמיניזם`,
-    Facts: `עובדות / סיפורים מעניינים`,
+    facts: `עובדות / סיפורים מעניינים`,
     media: `מדיה`,
     
 
@@ -97,15 +100,15 @@ export const Dictionary = new LocalizedStrings({
     
     //forms
     name: `اسم`,
-    bday: `عيد الميلاد`,
+    bday: `تاريخ الولاده`,
     submit:`إرسال`, 
     dethDay:`تاريخ الوفاة`,
-    Highlight:`تسليط الضوء`,
-    Biography:`سيرة شخصية`,
+    highlights:`تسليط الضوء`,
+    biography:`سيرة شخصية`,
     QuotesAnd: `اقتباسات وأعمال بارزة`,
     History:`التاريخ`,
     Contribution: `المساهمة في الحركة النسائية`,
-    Facts: `حقائق / قصص مثيرة للاهتمام`,
+    facts: `حقائق / قصص مثيرة للاهتمام`,
     media: `وسائل الإعلام`,
 
 
@@ -118,15 +121,17 @@ export const Dictionary = new LocalizedStrings({
 
   },
 });
-
+//language array
 export const langs = ["HE", "EN", "AR"];
+
+//set language that is in the session Storage
 var language = sessionStorage.getItem("current_language");
 if (language === null) {
   language = langs[0];
 }
 Dictionary.setLanguage(language);
 
-
+//save new language in session storage and reload page
 function changeLanguage(lang) {
   return function () {
     sessionStorage.setItem("current_language", lang);
@@ -134,7 +139,7 @@ function changeLanguage(lang) {
   }
 }
 
-
+//sets a globe image with three language buttons 
 export const LangBtn = () => {
 
   return (

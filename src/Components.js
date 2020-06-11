@@ -8,13 +8,13 @@ import './Components.css';
 import { EditWomanForm } from './forms/Forms';
 import { Link } from 'react-router-dom';
 
-
+//set a navigation bar to the top of the site
+//under the navigation bar there is a 
 export const NavBar = () => {
 
   return (
     <div id="navbar">
       <EditWomanForm />
-      {/* <a href="#">ויקיפדה</a> */}
       <nav className="navbar navbar-expand-lg navbar-light bg-light" id="navList">
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
@@ -24,13 +24,10 @@ export const NavBar = () => {
           <li className="nav-item">
             <a id="smallLogo" href="#" dir="rtl"><img id="logo" src={logo} alt="logo"></img></a>
           </li>
-
           <li id="langItam" className="nav-item" >
             <LangBtn />
-            {/* <LinkModel   /> */}
-
           </li>
-
+         
 
 
 
@@ -65,10 +62,15 @@ export const NavBar = () => {
               </button>
             </form>
           </li>
+
+         
           <li className="nav-item">
             <button type="button" className="btn btn-primary nav-link" data-toggle="modal" data-target="#feedbackForm">
               {Dictionary.feedback}</button>
           </li>
+
+          
+
         </ul>
 
       </nav>
@@ -87,14 +89,14 @@ export const NavBar = () => {
 }
 
 
-
+//show bottom bar 
 export const BottomBar = () => {
 
   return (
     <div id="bottom">
 
 
-      {/* <a>{Dictionary.builders} </a> */}
+      <a>{Dictionary.builders} </a>
       <a href="#"><img id="fblogo" src={fblogo} alt="facebook" /> נעמת בפייסבוק</a>
       <a href="#"> <img id="ytlogo" src={ytlogo} alt="youtube" /> נעמת ביוטיוב</a>
 
