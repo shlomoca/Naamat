@@ -118,22 +118,22 @@ export const PictursCarousel = () => {
           <div class="carousel-item active">
             <img src="https://q-cf.bstatic.com/images/hotel/max1024x768/214/21412988.jpg" class="d-block w-100" alt="example 1" />
             <div class="carousel-caption d-none d-md-block pictureDiscription">
-              <h5>First slide label</h5>
-              <p>Nulla vitae elit libero, a pharetra augue mollis interdum. aaaaaaa aaaaaaaaa aaaaaaaa aaa aaaa aaaaaaaaaaaaaaa aaaaa aaaaaaa aaaaaaa aaaaaaa aaa aaaaaaaaaa aa aaaaaa aaaaaaa aaaaaa aaaaaa</p>
+              <h5>Test 1</h5>
+              <p>Summary 1</p>
             </div>
           </div>
           <div class="carousel-item">
             <img src="https://q-cf.bstatic.com/images/hotel/max1280x900/148/148914590.jpg" class="d-block w-100" alt="example 2" />
             <div class="carousel-caption d-none d-md-block pictureDiscription">
-              <h5>Second slide label</h5>
-              <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+              <h5>Test 2</h5>
+              <p>Summary 2</p>
             </div>
           </div>
           <div class="carousel-item">
             <img src="https://q-cf.bstatic.com/images/hotel/max1280x900/169/169438098.jpg" class="d-block w-100" alt="example 3" />
             <div class="carousel-caption d-none d-md-block pictureDiscription">
-              <h5>Third slide label</h5>
-              <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+              <h5>Test 3</h5>
+              <p>Summary 3 aaaaaaa aaaaaaaaa aaaaaaaa aaa aaaa aaaaaaaaaaaaaaa aaaaa aaaaaaa aaaaaaa aaaaaaa aaa aaaaaaaaaa aa aaaaaa aaaaaaa aaaaaa aaaaaa</p>
             </div>
           </div>
         </div>
