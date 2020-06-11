@@ -2,127 +2,129 @@
     direction: rtl;
 }
 
-
-
 .navbar-nav {
     width: 100%;
     /* align-content: space-around; */
 }
 
-
-
-
-
-#example-search-input4{
+#example-search-input4 {
     margin: 0;
     width: 100%;
     /* border-radius: 20px; */
 }
 
-#search-bar-outline{
+#search-bar-outline {
     border: 2vh;
     border: black;
     border-left: none;
-    
 }
 
-#search-bar-outline{
+#search-bar-outline {
     display: flex;
     width: 100%;
 }
-#stretcher{
-    width: 70%;
 
+#stretcher {
+    width: 70%;
 }
 
-#logo{
+#logo {
     height: 70px;
 }
 
-#search-form{
+#search-form {
     max-width: 70%;
 }
 
-
-#search-btn{
+#search-btn {
     display: flex;
     align-items: center;
     width: 100%;
     float: left;
     background-color: rgba(165, 4, 165, 0);
     border: none;
-
 }
-#clear-btn{
+
+#clear-btn {
     background-color: rgba(255, 255, 255, 0);
     border: none;
     margin: auto;
-    margin-right:-8%;
-   
+    margin-right: -8%;
 }
 
-.nav-item{
-/* justify-content:space-evenly ; */
+.nav-item {
+    /* justify-content:space-evenly ; */
     margin-left: 5px;
 }
-.nav-link{
+
+.nav-link {
     /* box-sizing: content-box; */
     /* height: 200px; */
     color: white;
 }
 
-#search-icon{
+#search-icon {
     position: absolute;
-    left:12px;
+    left: 12px;
 }
-.navbar-light .navbar-nav .nav-link{
+
+.navbar-light .navbar-nav .nav-link {
     color: white;
 }
 
-#fblogo,#ytlogo{
+#fblogo, #ytlogo {
     height: 50px;
     width: 50px;
 }
+
 #pictureCarousel {
     position: absolute;
     width: 50%;
     height: 30%;
     left: 25%;
-    margin-top: 3%;
+    margin-top: 1%;
+    margin-bottom: 3%;
+
 }
 
 img {
-    border-radius: 3%;
+    border-radius: 25px;
 }
 
-  .modal-content{
-    height: 100%;    
-  }  
-  .modal-dialog {
+.modal-content {
+    height: 100%;
+}
+
+.modal-dialog {
     height: 100%;
     padding-top: 3%;
-  } 
-    .modal-title{
-        text-align: center;
-        width: 100%;
-    }
-    
-    .modal-body{
-        height: 93%;
-    }
-   
-#about-drop{
+}
+
+.modal-title {
+    text-align: center;
+    width: 100%;
+}
+
+.modal-body {
+    height: 93%;
+}
+
+#about-drop {
     text-align: justify;
     text-justify: inter-word;
     width: 80%;
     margin: auto;
 }
 
-.clearBtn{
-
+.clearBtn {
     background-color: Transparent;
-    background-repeat:no-repeat;
+    background-repeat: no-repeat;
     border: none;
-    cursor:pointer;
-    overflow: hidden; 
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.pictureDiscription {
+    background-color: rgba(0, 0, 0, 0.329);
+    border-radius: 25px;
 }
