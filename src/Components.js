@@ -116,21 +116,21 @@ export const PictursCarousel = () => {
         </ol>
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <img src="https://q-cf.bstatic.com/images/hotel/max1024x768/214/21412988.jpg" class="d-block w-100" alt="example 1" />
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Maimon_ada.jpeg/375px-Maimon_ada.jpeg" class="d-block w-100" alt="example 1" height = "600px" width = "115"/>
             <div class="carousel-caption d-none d-md-block pictureDiscription">
-              <h5>Test 1</h5>
-              <p>Summary 1</p>
+              <h5>עדה פישמן מיימון</h5>
+              <p>מהמייסדות ומהמובילות של מפלגת הפועל הצעיר ותנועת הפועלות, חברת הכנסת הראשונה והשנייה מטעם מפא"י ומהיוזמות של חוק שיווי זכויות האשה (תשי"א). כל חייה פעלה למען שיפור מעמד הנשים ולהבטחת שוויון זכויות מלא .</p>
             </div>
           </div>
           <div class="carousel-item">
-            <img src="https://q-cf.bstatic.com/images/hotel/max1280x900/148/148914590.jpg" class="d-block w-100" alt="example 2" />
+            <img src="https://q-cf.bstatic.com/images/hotel/max1280x900/148/148914590.jpg" class="d-block w-100" alt="example 2" height = "600px" width = "115"/>
             <div class="carousel-caption d-none d-md-block pictureDiscription">
               <h5>Test 2</h5>
               <p>Summary 2</p>
             </div>
           </div>
           <div class="carousel-item">
-            <img src="https://q-cf.bstatic.com/images/hotel/max1280x900/169/169438098.jpg" class="d-block w-100" alt="example 3" />
+            <img src="https://q-cf.bstatic.com/images/hotel/max1280x900/169/169438098.jpg" class="d-block w-100" alt="example 3" height = "600px" width = "115"/>
             <div class="carousel-caption d-none d-md-block pictureDiscription">
               <h5>Test 3</h5>
               <p>Summary 3 aaaaaaa aaaaaaaaa aaaaaaaa aaa aaaa aaaaaaaaaaaaaaa aaaaa aaaaaaa aaaaaaa aaaaaaa aaa aaaaaaaaaa aa aaaaaa aaaaaaa aaaaaa aaaaaa</p>
