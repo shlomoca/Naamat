@@ -117,12 +117,24 @@ export const PictursCarousel = () => {
         <div class="carousel-inner">
           <div class="carousel-item active">
             <img src="https://q-cf.bstatic.com/images/hotel/max1024x768/214/21412988.jpg" class="d-block w-100" alt="example 1" />
+            <div class="carousel-caption d-none d-md-block pictureDiscription">
+              <h5>First slide label</h5>
+              <p>Nulla vitae elit libero, a pharetra augue mollis interdum. aaaaaaa aaaaaaaaa aaaaaaaa aaa aaaa aaaaaaaaaaaaaaa aaaaa aaaaaaa aaaaaaa aaaaaaa aaa aaaaaaaaaa aa aaaaaa aaaaaaa aaaaaa aaaaaa</p>
+            </div>
           </div>
           <div class="carousel-item">
             <img src="https://q-cf.bstatic.com/images/hotel/max1280x900/148/148914590.jpg" class="d-block w-100" alt="example 2" />
+            <div class="carousel-caption d-none d-md-block pictureDiscription">
+              <h5>Second slide label</h5>
+              <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+            </div>
           </div>
           <div class="carousel-item">
             <img src="https://q-cf.bstatic.com/images/hotel/max1280x900/169/169438098.jpg" class="d-block w-100" alt="example 3" />
+            <div class="carousel-caption d-none d-md-block pictureDiscription">
+              <h5>Third slide label</h5>
+              <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+            </div>
           </div>
         </div>
         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -152,30 +164,30 @@ function previewUrl(url, target) {
 export const DisplayModal = (props) => {
 
   return (
-    <div> 
+    <div>
       <button class="clearBtn" data-toggle="modal" data-target="#displayModal"> <a href="#">{props.details}</a></button>
-    <div class="modal fade" id="displayModal" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-xl">
-        <div class="modal-content">
+      <div class="modal fade" id="displayModal" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+          <div class="modal-content">
             <div class="modal-header ">
-                <h5 class="modal-title" id="staticBackdropLabel">{props.details}</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+              <h5 class="modal-title" id="staticBackdropLabel">{props.details}</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
             </div>
             <div class="modal-body">
-            <iframe src= {props.link}
-            width="100%"
-            height="100%"
-            frameBorder='0'
-            allow='autoplay; encrypted-media'
-            allowFullScreen
-            title='url'/>     
+              <iframe src={props.link}
+                width="100%"
+                height="100%"
+                frameBorder='0'
+                allow='autoplay; encrypted-media'
+                allowFullScreen
+                title='url' />
             </div>
+          </div>
         </div>
+      </div>
     </div>
-</div>
-</div>
   )
 }
 

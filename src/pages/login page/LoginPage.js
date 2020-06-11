@@ -18,34 +18,35 @@ class LoginPage extends Component {
 
                 <LangBtn />
             </div>
-            <a id="bigLogo"> <img src={logo} alt="logo" /></a>
+            <div class = "loginContainer">
+                <a id="bigLogo"> <img src={logo} alt="logo" /></a>
+
+                <div id="buttonWrapper123">
+                    <form dir="RTL" id="buttonWrapper" name="login_form" >
+                        < input type="email"
+                            id="userName"
+                            placeholder={Dictionary.enterMail}
+                            defaultValue="" required>
+                        </input>
+                        < input type="password"
+                            id="password"
+                            placeholder={Dictionary.enterPass}
+                            defaultValue="" required>
+                        </input>
 
 
-            <div id="buttonWrapper123">
-                <form dir="RTL" id="buttonWrapper" name="login_form" >
-                    < input type="email"
-                        id="userName"
-                        placeholder={Dictionary.enterMail}
-                        defaultValue="" required>
-                    </input>
-                    < input type="password"
-                        id="password"
-                        placeholder={Dictionary.enterPass}
-                        defaultValue="" required>
-                    </input>
-
-
-                    <Link to="/mainUserPage">
-                        <button id="loginbtn"
-                            type="submit"
-                            text={Dictionary.login}
-                            className="btn btn-success" >
-                            Submit
+                        <Link to="/mainUserPage">
+                            <button id="loginbtn"
+                                type="submit"
+                                text={Dictionary.login}
+                                className="btn btn-success" >
+                                Submit
                                 </button>
-                    </Link>
+                        </Link>
 
 
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
 
