@@ -6,6 +6,7 @@ code {
  
  body {
   margin: 0;
+    font-family: 'Open-Sans-Hebrew'!important;
 }
 .modal-header{
   background-color: rgb(165, 4, 165);
