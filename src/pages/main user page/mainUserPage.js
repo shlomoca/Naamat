@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import { Dictionary } from '../../Dictionary';
 import { NavBar, PictursCarousel, DisplayModal, BottomBar } from '../../Components.js';
 import { FeedbackButton } from '../../forms/Forms';
+import { getWoman, WomenCard } from '../woman page/WomanPage';
 
 
 
@@ -19,6 +20,7 @@ class mainUserPage extends Component {
                     </div>
                 </div> */}
                 <NavBar />
+                {/* <WomenCard /> */}
                 <FeedbackButton />
                 <PictursCarousel />
                 {/* <footer id="foot"> */}
@@ -33,6 +35,6 @@ class mainUserPage extends Component {
 }
 export default mainUserPage
 $("document").ready(function () {
-
-
+// console.log("i am working");
+// getWoman("שלמה כרמי");
 });

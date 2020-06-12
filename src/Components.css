@@ -87,6 +87,12 @@
 
 }
 
+
+.d-block{
+/* crop image to fit dimensions   */
+    object-fit: cover;
+} 
+
 img {
     border-radius: 25px;
 }

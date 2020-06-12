@@ -18,5 +18,9 @@ h1{
     text-align: center;
 }
 
-
+#womanCardsContainer{
+height: 70px;
+width: 50px;
+border: 1px orange ;
+}
 

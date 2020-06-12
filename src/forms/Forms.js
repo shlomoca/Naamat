@@ -21,15 +21,15 @@ export const FeedbackButton = () => {
                         <form dir="RTL" id="woman_form" name="woman_form" method="POST" >
 
                             <div id="name-group" class="form-group">
-                                <input type="text" rows="1" class="details" cols="35" name="name" placeholder="name" required />
+                                <input type="text" rows="1" class="details" cols="35" name="name" placeholder="name"/>
                             </div>
                             <div id="email-group" class="form-group">
-                                <input type="email" rows="1" class="details" cols="35" name="name" placeholder="email" required />
+                                <input type="email" rows="1" class="details" cols="35" name="name" placeholder="email"/>
                             </div>
 
 
                             <div id="name-group" classname="form-group starContainer">
-                                How was your visit?
+                                {Dictionary.HowWasVisit}
                                     <div className="starrating risingstar d-flex justify-content-center flex-row-reverse">
                                     <input type="radio" className="star" id="star5" name="rating" value="5" /><label for="star5" title="5 star"></label>
                                     <input type="radio" className="star" id="star4" name="rating" value="4" /><label for="star4" title="4 star"></label>
@@ -41,7 +41,7 @@ export const FeedbackButton = () => {
 
                             <div id="name-group" class="form-group">
                                 <label for="profession"></label>
-                                <textarea rows="4" class="details2" cols="50" name="comment" placeholder="?Any seggestions for improvament" required></textarea>
+                                <textarea rows="4" class="details2" cols="35" name="comment" placeholder={Dictionary.seggestions} ></textarea>
 
                             </div>
 
@@ -70,7 +70,7 @@ export const EditWomanForm = () => {
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
-                        <h5 class="modal-title" id="staticBackdropLabel">Add Woman</h5>
+                        <h5 class="modal-title" id="staticBackdropLabel">{Dictionary.addWoman}</h5>
                     </div>
                     <div class="modal-body">
                         <form dir="RTL" id="woman_form" name="woman_form"  >
@@ -90,12 +90,12 @@ export const EditWomanForm = () => {
                             </div>
 
                             <div id="name-group" class="form-group">
-                                <label for="born_date">Date of birth</label>
-                                <input type="date" name="date" id="date" />
+                                <label for="born_date">{Dictionary.bday}</label>
+                                <input type="date" name="date" id="date" required/>
                             </div>
 
                             <div id="name-group" class="form-group">
-                                <label for="profession">Date of death</label>
+                                <label for="profession">{Dictionary.dethDay}</label>
                                 <input type="date" name="death_date" id="death" />
                             </div>
 
@@ -103,20 +103,20 @@ export const EditWomanForm = () => {
                                 {/* <label for="img">Select image:</label>
                                 <input type="file" id="img" name="image" name="img" accept="image/*|audio/*|video/*" />
                                 <button id="add">add</button> */}
-                                <lable id="lb" for="inputGroupFile04">upload</lable>
+                                <lable id="lb" for="inputGroupFile04">{Dictionary.upload}</lable>
                                 <div class="input-group">
                                     <div class="custom-file">
                                         <input type="file" name="file" class="custom-file-input" id="inputGroupFile04" id="media" aria-describedby="inputGroupFileAddon04" />
                                         <label class="custom-file-label" for="inputGroupFile04">Choose file</label>
                                     </div>
                                     <div class="input-group-append">
-                                        <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">Upload</button>
+                                        <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">{Dictionary.upload}</button>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <textarea rows="4" class="details" cols="50" name="highlights" id="highlights" placeholder="Highlights" ></textarea>
+                                <textarea rows="4" class="details" cols="50" name="highlights" id="highlights" placeholder="Highlights" required></textarea>
                             </div>
 
 
@@ -145,8 +145,8 @@ export const EditWomanForm = () => {
                                 <input id="link" type="text" rows="4" class="details" cols="50" name="link" placeholder="link" />
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-success" id="submit_form" >Submit <span class="fa fa-arrow-right"></span></button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">{Dictionary.close}</button>
+                                <button type="submit" class="btn btn-success" id="submit_form" >{Dictionary.submit} <span class="fa fa-arrow-right"></span></button>
                             </div>
                         </form>
                     </div>
@@ -159,7 +159,7 @@ export const EditWomanForm = () => {
 
 $("document").ready(function () {
 
-    // show  and hide link input from add woman form.
+    // show and hide link input from add woman form.
     $("#link").hide();
     $('select[name=type]').change(function () {
         if ($('select[name=type]').val() == 'link') {
@@ -168,31 +168,35 @@ $("document").ready(function () {
             $("#link").hide();
         }
     });
+   
 
-    //add woman from the form 
+    
+    //add woman from the form to database
+   
     $("#woman_form").submit(function (event) {
         if (!$("#woman_form").valid()) return;
+//confirm id not exeisting??
+var obj={}
+        var id=$("#name").val()+ $("#date").val();
+            obj["name"]= $("#name").val();
+            obj["display"]= $("#display").val();
+            obj["birth"]= $("#date").val();
+            obj["death"]= $("#death").val();
+            obj["timeline"]= $("#timeline").val();
+            obj["biography"]= $("#biography").val();
+            obj["highlights"]= $("#highlights").val();
+            obj["contribution"]= $("#contribution").val();
+            obj["historical"]= $("#historical").val();
+            obj["facts"]= $("#facts").val();
+            obj["media"]= $("#media").val();
+            db.collection('women').doc(id).set(obj);
+            $("#staticBackdrop").modal('hide');
+            // stop the form from submitting the normal way and refreshing the page
+            event.preventDefault();
+        });
+    
 
 
-        db.collection('women').add({
-            name: $("#name").val(),
-            display: $("#display").val(),
-            birth: $("#date").val(),
-            death: $("#death").val(),
-            timeline: $("#timeline").val(),
-            biography: $("#biography").val(),
-            highlights: $("#highlights").val(),
-            contribution: $("#contribution").val(),
-            historical: $("#historical").val(),
-            facts: $("#facts").val(),
-            media: $("#media").val()
-        })
-
-        $("#staticBackdrop").modal('hide');
-        event.preventDefault();
-    });
-
-});
 
 
 
@@ -201,8 +205,9 @@ $("document").ready(function () {
 
     //     alert("hii");
 
-    //     // stop the form from submitting the normal way and refreshing the page
+    //     
     //     event.preventDefault();
     // });
 
 
+});

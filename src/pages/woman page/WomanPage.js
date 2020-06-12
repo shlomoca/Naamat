@@ -52,7 +52,6 @@ class WomanPage extends Component {
                 <NavBar />
                 <FeedbackButton />
 
-
                 {/* <div id="details"  >
 
                     
@@ -76,6 +75,13 @@ class WomanPage extends Component {
                             </div>)
                     })}
                 <BottomBar />
+
+
+
+
+
+
+
             </div>
 
         )
@@ -83,6 +89,72 @@ class WomanPage extends Component {
     }
 }
 export default WomanPage;
+
+
+//get women gets all women with the womenName atribute
+export function getWoman(womanName) {
+    if (womanName) {
+
+        db.collection('women').where("name", "==", womanName).get().then(snapshot => {
+            const women = [];
+            //get a women arry with all women results for this search
+            snapshot.forEach(doc => {
+                const data = doc.data();
+                if (data) {
+                    women.push(data);
+                }
+                else
+                    console.log("no data");
+
+            });
+            var sortedWomen = {};
+            if (women.length === 0)
+                console.log("no women");
+            else {
+
+                women.forEach(element => {
+                    var arr = {};
+                    var keys = Object.keys(element);
+                    //filter only the 
+                    keys.forEach(i => {
+                        if (element[i]) {
+                            arr[i] = element[i];
+                        }
+
+                    });
+                    sortedWomen[arr["id"]] = arr;
+
+                });
+                // console.log(sortedWomen);
+
+            }
+
+
+        }).catch(error => console.log(error))
+    }
+    else
+        console.log("women not found");
+}
+
+
+export const WomenCard = (props) => {
+    return (
+        <div id="womanCardsContainer">
+            
+            <h1 >akds </h1>
+            <p><b>{Dictionary.name}:</b>sadsa</p>
+            <p><b>{Dictionary.bday}</b>:dfsdf</p>
+            <h1 >{props.display} </h1>
+            <p><b>{Dictionary.name}:</b>dsfdsfsdf</p>
+            <p><b>{Dictionary.bday}</b>:sdfsdfs</p>
+
+        </div>
+    );
+}
+
+
+
+
 
 
 

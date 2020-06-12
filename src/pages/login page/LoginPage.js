@@ -40,7 +40,7 @@ class LoginPage extends Component {
                                 type="submit"
                                 text={Dictionary.login}
                                 className="btn btn-success" >
-                                Submit
+                                {Dictionary.login}
                                 </button>
                         </Link>
 

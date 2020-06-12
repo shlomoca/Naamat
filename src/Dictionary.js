@@ -39,9 +39,11 @@ export const Dictionary = new LocalizedStrings({
     Contribution: `Contribution to feminism`,
     facts: `Interesting facts / stories`,
     media: `media`,
-
-
-
+    upload: `upload`,
+    chooseFile:`Choose file`,
+    HowWasVisit:`How was your visit?`,
+    seggestions: `seggestions for improvament`,
+    close:`close`,
     //components
     
     builders: `This site was built by: Shlomo Carmi, Daniel Raz, Sahar Cohen, Adiel Tsayag, Matan Yemin`,
@@ -74,8 +76,11 @@ export const Dictionary = new LocalizedStrings({
     Contribution: `תרומה לפמיניזם`,
     facts: `עובדות / סיפורים מעניינים`,
     media: `מדיה`,
-    
-
+    upload: `העלי`,
+    chooseFile:`בחרי קובץ`,
+    HowWasVisit:`איך היה הביקור שלך?`,
+    seggestions: `הצעות לשיפור`,
+    close:`סגרי`,
     //components
     builders: 'אתר זה נבנה על ידי: שלמה כרמי, דניאל רז, סהר כהן, עדיאל צייג, מתן ימין',
     
@@ -110,9 +115,11 @@ export const Dictionary = new LocalizedStrings({
     Contribution: `المساهمة في الحركة النسائية`,
     facts: `حقائق / قصص مثيرة للاهتمام`,
     media: `وسائل الإعلام`,
-
-
-
+    upload: `رفع`,
+    chooseFile:`اختر ملف`,
+    HowWasVisit:`كيف كانت زيارتك؟`,
+    seggestions: `عمليات الإرتجال`,
+    close:`أغلق`,
     //components
     
     builders: `تم بناء هذا الموقع من قبل: شلومو كرمي ، دانيال راز ، سحر كوهين ، أديل تساياج ، ماتان يمين `,
