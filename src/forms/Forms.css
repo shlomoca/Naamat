@@ -3,6 +3,7 @@
 
 label {
     vertical-align: top;
+  
 }
 #modal-header
 {
@@ -48,8 +49,11 @@ background-color: purple;
   font-size: 8em;
   font-family: FontAwesome;
   display: inline-block; 
+  cursor: pointer;
 
 }
+
+
 
 .starrating > label
 {

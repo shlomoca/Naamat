@@ -11,7 +11,7 @@ ReactDOM.render(
 
     <Router>
         <Route exact path="/" component={LoginPage} />
-        <Route path="/mainUserPage" component={MainUserPage} />
+        <Route path="/MainUserPage" component={MainUserPage} />
         <Route path="/WomanPage" component={WomanPage} />
     </Router>, document.getElementById('root')
 );
