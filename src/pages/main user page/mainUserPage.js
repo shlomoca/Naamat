@@ -13,6 +13,7 @@ class mainUserPage extends Component {
     render() {
         return (
             <div id="mainUPWrapper" className="wrapper">
+                
                 {/* <div id="main">
                     <div id="about">
                         <h1>{Dictionary.aboutTitle}</h1>
@@ -20,8 +21,11 @@ class mainUserPage extends Component {
                     </div>
                 </div> */}
                 <NavBar />
+
+                <div id= "womenHolder"></div>
                 {/* <WomenCard /> */}
                 <FeedbackButton />
+                <WomenCard display="one women" summary="someone importent" link ="https://stack.com.au/wp-content/uploads/2019/05/Rick_Morty_S4.jpg"  />
                 <PictursCarousel />
                 {/* <footer id="foot"> */}
                 {/* <BottomBar/> */}
@@ -36,5 +40,5 @@ class mainUserPage extends Component {
 export default mainUserPage
 $("document").ready(function () {
 // console.log("i am working");
-// getWoman("שלמה כרמי");
+ getWoman("שלמה כרמי");
 });

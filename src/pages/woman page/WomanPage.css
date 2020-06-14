@@ -24,3 +24,8 @@ width: 50px;
 border: 1px orange ;
 }
 
+#roundImage{
+    border-radius: 50%;
+    height: 40px;
+    width: 20px;
+}

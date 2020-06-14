@@ -5,7 +5,7 @@ import { NavBar, BottomBar } from '../../Components';
 import { EditWomanForm, FeedbackButton } from '../../forms/Forms';
 import { db } from '../../config/Firebase'
 import { Dictionary } from '../../Dictionary';
-
+import $ from 'jquery';
 
 
 
@@ -23,7 +23,15 @@ const MainDetails = (props) => {
     );
 }
 
-
+export const WomenCard = (props) => {
+    return (
+        <div id="womanCardsContainer">
+            <img  id="roundImage" src={props.link} alt={props.display}/>
+            <h1 >{props.display} </h1>
+            <p>{props.summary}</p>
+        </div>
+    )
+}
 
 class WomanPage extends Component {
 
@@ -91,7 +99,7 @@ class WomanPage extends Component {
 export default WomanPage;
 
 
-//get women gets all women with the womenName atribute
+//get women gets all women that their name is identical to the womenName atribute
 export function getWoman(womanName) {
     if (womanName) {
 
@@ -113,20 +121,30 @@ export function getWoman(womanName) {
             else {
 
                 women.forEach(element => {
-                    var arr = {};
+                    var obj = {};
                     var keys = Object.keys(element);
-                    //filter only the 
-                    keys.forEach(i => {
-                        if (element[i]) {
-                            arr[i] = element[i];
+                    //filter only the full attributes
+                    keys.forEach(key => {
+                        if (element[key]) {
+                            obj[key] = element[key];
                         }
 
                     });
-                    sortedWomen[arr["id"]] = arr;
+                    sortedWomen[obj["id"]] = obj;
 
                 });
-                // console.log(sortedWomen);
-
+                
+                console.log(sortedWomen);
+                
+                var card =<WomenCard display="one women" summary="someone importent" link ="https://stack.com.au/wp-content/uploads/2019/05/Rick_Morty_S4.jpg"  />;
+                console.log(card);
+                Object.keys(sortedWomen).forEach(element=>{
+                    // console.log(sortedWomen[`display`]);
+                    $("#womenHolder").append(card);
+                    
+                    // $("#womenHolder").append(<WomenCard display="one women" summary="someone importent" link ="https://stack.com.au/wp-content/uploads/2019/05/Rick_Morty_S4.jpg"  />);
+                    // $("#womenHolder").append(<WomenCard display={sortedWomen["display"]} summary={sortedWomen["summary"]} link ="https://stack.com.au/wp-content/uploads/2019/05/Rick_Morty_S4.jpg"  />);
+                })
             }
 
 
@@ -137,20 +155,7 @@ export function getWoman(womanName) {
 }
 
 
-export const WomenCard = (props) => {
-    return (
-        <div id="womanCardsContainer">
-            
-            <h1 >akds </h1>
-            <p><b>{Dictionary.name}:</b>sadsa</p>
-            <p><b>{Dictionary.bday}</b>:dfsdf</p>
-            <h1 >{props.display} </h1>
-            <p><b>{Dictionary.name}:</b>dsfdsfsdf</p>
-            <p><b>{Dictionary.bday}</b>:sdfsdfs</p>
 
-        </div>
-    );
-}
 
 
 
