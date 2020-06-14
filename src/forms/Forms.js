@@ -4,6 +4,7 @@ import 'jquery-validation'
 import React from 'react';
 import { db } from '../config/Firebase'
 import { Dictionary } from '../Dictionary';
+import ImageUpload from './ImageUpload';
 
 
 export const FeedbackButton = () => {
@@ -98,11 +99,11 @@ export const EditWomanForm = () => {
                                 <input type="date" name="death_date" id="death" />
                             </div>
 
-                            <div id="name-group" class="form-group">
                                 {/* <label for="img">Select image:</label>
                                 <input type="file" id="img" name="image" name="img" accept="image/*|audio/*|video/*" />
                                 <button id="add">add</button> */}
-                                <lable id="lb" for="inputGroupFile04">{Dictionary.upload}</lable>
+                            {/* <div id="name-group" class="form-group">
+                                <label id="lb" for="inputGroupFile04">{Dictionary.upload}</label>
                                 <div class="input-group">
                                     <div class="custom-file">
                                         <input type="file" name="file" class="custom-file-input" id="inputGroupFile04" id="media" aria-describedby="inputGroupFileAddon04" />
@@ -112,7 +113,9 @@ export const EditWomanForm = () => {
                                         <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">{Dictionary.upload}</button>
                                     </div>
                                 </div>
-                            </div>
+                            </div> */}
+
+                            <ImageUpload/>
 
                             <div class="form-group">
                                 <textarea rows="4" class="details" cols="50" name="highlights" id="highlights" placeholder="Highlights" required></textarea>
@@ -241,3 +244,5 @@ function resetForm(id) {
         $("#" + id).trigger("reset");
     }
 };
+
+

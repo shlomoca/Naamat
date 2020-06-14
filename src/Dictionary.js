@@ -44,6 +44,7 @@ export const Dictionary = new LocalizedStrings({
     HowWasVisit:`How was your visit?`,
     seggestions: `seggestions for improvament`,
     close:`close`,
+    profilepic:'Profile Picture',
     //components
     
     builders: `This site was built by: Shlomo Carmi, Daniel Raz, Sahar Cohen, Adiel Tsayag, Matan Yemin`,
@@ -53,6 +54,7 @@ export const Dictionary = new LocalizedStrings({
     enterMail: `אנא הכניסי מייל`,
     enterPass: `סיסמא`,
     login: `התחברי`,
+    
     
     
     
@@ -81,6 +83,7 @@ export const Dictionary = new LocalizedStrings({
     HowWasVisit:`איך היה הביקור שלך?`,
     seggestions: `הצעות לשיפור`,
     close:`סגרי`,
+    profilepic:'תמונת פרופיל',
     //components
     builders: 'אתר זה נבנה על ידי: שלמה כרמי, דניאל רז, סהר כהן, עדיאל צייג, מתן ימין',
     
@@ -120,6 +123,7 @@ export const Dictionary = new LocalizedStrings({
     HowWasVisit:`كيف كانت زيارتك؟`,
     seggestions: `عمليات الإرتجال`,
     close:`أغلق`,
+    profilepic:'الصوره الشخصيه',
     //components
     
     builders: `تم بناء هذا الموقع من قبل: شلومو كرمي ، دانيال راز ، سحر كوهين ، أديل تساياج ، ماتان يمين `,
