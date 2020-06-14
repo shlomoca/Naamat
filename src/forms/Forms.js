@@ -8,29 +8,29 @@ import { Dictionary } from '../Dictionary';
 
 export const FeedbackButton = () => {
     return (
-        <div class="modal fade" id="feedbackForm" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal fade" id="feedbackForm" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <button type="button" onClick={resetForm("feedback_form")} class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                         <h5 class="modal-title" id="staticBackdropLabel">{Dictionary.feedback}</h5>
                     </div>
                     <div class="modal-body">
-                        <form dir="RTL" id="woman_form" name="woman_form" method="POST" >
+                        <form dir="RTL" id="feedback_form" name="feedback_form"  >
 
                             <div id="name-group" class="form-group">
-                                <input type="text" rows="1" class="details" cols="35" name="name" placeholder="name"/>
+                                <input type="text" rows="1" class="details" id="feed_name" cols="35" name="feed_name" placeholder="name" required />
                             </div>
                             <div id="email-group" class="form-group">
-                                <input type="email" rows="1" class="details" cols="35" name="name" placeholder="email"/>
+                                <input type="email" rows="1" class="details" id="feed_email" cols="35" name="feed_email" placeholder="email" required />
                             </div>
 
 
                             <div id="name-group" classname="form-group starContainer">
                                 {Dictionary.HowWasVisit}
-                                    <div className="starrating risingstar d-flex justify-content-center flex-row-reverse">
+                                <div className="starrating risingstar d-flex justify-content-center flex-row-reverse">
                                     <input type="radio" className="star" id="star5" name="rating" value="5" /><label for="star5" title="5 star"></label>
                                     <input type="radio" className="star" id="star4" name="rating" value="4" /><label for="star4" title="4 star"></label>
                                     <input type="radio" className="star" id="star3" name="rating" value="3" /><label for="star3" title="3 star"></label>
@@ -40,17 +40,16 @@ export const FeedbackButton = () => {
                             </div>
 
                             <div id="name-group" class="form-group">
-                                <label for="profession"></label>
-                                <textarea rows="4" class="details2" cols="35" name="comment" placeholder={Dictionary.seggestions} ></textarea>
+                                {/* <label for="profession"></label> */}
+                                <textarea rows="4" class="details2" id="improvement" cols="35" name="improvement" placeholder={Dictionary.seggestions} ></textarea>
 
                             </div>
 
-
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-success">{Dictionary.submit} <span class="fa fa-arrow-right"></span></button>
+                                <button type="button" onClick={resetForm("feedback_form")} class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
                         </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-success">{Dictionary.submit} <span class="fa fa-arrow-right"></span></button>
                     </div>
                 </div>
             </div>
@@ -67,7 +66,7 @@ export const EditWomanForm = () => {
             <div class="modal-dialog modal-xl">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <button type="button" id="xClose" class="close" data-dismiss="modal" aria-label="Close" onClick={resetForm("woman_form")}>
                             <span aria-hidden="true">&times;</span>
                         </button>
                         <h5 class="modal-title" id="staticBackdropLabel">{Dictionary.addWoman}</h5>
@@ -91,7 +90,7 @@ export const EditWomanForm = () => {
 
                             <div id="name-group" class="form-group">
                                 <label for="born_date">{Dictionary.bday}</label>
-                                <input type="date" name="date" id="date" required/>
+                                <input type="date" name="date" id="date" required />
                             </div>
 
                             <div id="name-group" class="form-group">
@@ -145,7 +144,7 @@ export const EditWomanForm = () => {
                                 <input id="link" type="text" rows="4" class="details" cols="50" name="link" placeholder="link" />
                             </div>
                             <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">{Dictionary.close}</button>
+                                <button type="button" class="close" class="btn btn-secondary" onClick={resetForm("woman_form")} data-dismiss="modal">{Dictionary.close}</button>
                                 <button type="submit" class="btn btn-success" id="submit_form" >{Dictionary.submit} <span class="fa fa-arrow-right"></span></button>
                             </div>
                         </form>
@@ -168,35 +167,56 @@ $("document").ready(function () {
             $("#link").hide();
         }
     });
-   
 
-    
+    //fill name and display name at same time.
+    $("#name").on('keyup', function () {
+        $("#display").val($(this).val());
+    });
+
     //add woman from the form to database
-   
     $("#woman_form").submit(function (event) {
         if (!$("#woman_form").valid()) return;
-//confirm id not exeisting??
-var obj={}
-        var id=$("#name").val()+ $("#date").val();
-            obj["name"]= $("#name").val();
-            obj["display"]= $("#display").val();
-            obj["birth"]= $("#date").val();
-            obj["death"]= $("#death").val();
+        //confirm id not exeisting??
+        var obj = {}
+        var id = $("#name").val() + $("#date").val();
+        obj["name"] = $("#name").val();
+        obj["display"] = $("#display").val();
+        obj["birth"] = $("#date").val();
+        obj["death"] = $("#death").val();
+        obj["timeline"] = $("#timeline").val();
+        obj["biography"] = $("#biography").val();
+        obj["highlights"] = $("#highlights").val();
+        obj["contribution"] = $("#contribution").val();
+        obj["historical"] = $("#historical").val();
+        obj["facts"] = $("#facts").val();
+        obj["media"] = $("#media").val();
+        db.collection('women').doc(id).set(obj);
+        $("#staticBackdrop").modal('hide');
+        // stop the form from submitting the normal way and refreshing the page
+        event.preventDefault();
+    });
 
-            obj["timeline"]= $("#timeline").val();
-            obj["biography"]= $("#biography").val();
-            obj["highlights"]= $("#highlights").val();
-            obj["contribution"]= $("#contribution").val();
-            obj["historical"]= $("#historical").val();
-            obj["facts"]= $("#facts").val();
-            obj["media"]= $("#media").val();
-            obj["id"]=id;
-            db.collection('women').doc(id).set(obj);
-            $("#staticBackdrop").modal('hide');
-            // stop the form from submitting the normal way and refreshing the page
-            event.preventDefault();
-        });
-    
+    //add feedback to database
+    $("#feedback_form").submit(function (event) {
+        if (!$("#feedback_form").valid()) return;
+        //confirm id not exeisting??
+        var obj = {}
+        var id = $("#feed_name").val();
+        obj["name"] = $("#feed_name").val();
+        obj["email"] = $("#feed_email").val();
+        obj["improvement"] = $("#improvement").val();
+        db.collection('feedbacks').doc(id).set(obj);
+        // console.log(obj);
+        // db.collection('feedbacks').add({
+        //     name: $("#feed_name").val(),
+        //     email: $("#feed_email").val(),
+        //     improvement: $("#improvement").val()
+        // });
+        
+        $("#feedbackForm").modal('hide');
+        // stop the form from submitting the normal way and refreshing the page
+        event.preventDefault();
+    });
 
 
 
@@ -213,3 +233,11 @@ var obj={}
 
 
 });
+
+//reset the add woman form when close
+function resetForm(id) {
+    return () => {
+        console.log(id);
+        $("#" + id).trigger("reset");
+    }
+};
