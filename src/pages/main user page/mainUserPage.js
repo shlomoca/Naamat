@@ -1,4 +1,4 @@
-import './mainUserPage.css';
+import './MainUserPage.css';
 import $ from 'jquery';
 import React, { Component } from 'react';
 import { Dictionary } from '../../Dictionary';
@@ -9,7 +9,7 @@ import { getWoman, WomenCard } from '../woman page/WomanPage';
 
 
 
-class mainUserPage extends Component {
+class MainUserPage extends Component {
     render() {
         return (
             <div id="mainUPWrapper" className="wrapper">
@@ -33,7 +33,8 @@ class mainUserPage extends Component {
 
     }
 }
-export default mainUserPage
+export default MainUserPage;
+
 $("document").ready(function () {
 // console.log("i am working");
 // getWoman("שלמה כרמי");

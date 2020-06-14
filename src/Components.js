@@ -1,5 +1,5 @@
+import React, { Component } from 'react';
 import $ from 'jquery';
-import React from 'react';
 import { LangBtn, Dictionary } from './Dictionary';
 import logo from './images/naamatlogo.png';
 import fblogo from './images/fblogo.png';
@@ -7,6 +7,9 @@ import ytlogo from './images/ytlogo.png';
 import './Components.css';
 import { EditWomanForm } from './forms/Forms';
 import { Link } from 'react-router-dom';
+import LoginPage from './pages/login page/LoginPage';
+import { auth } from 'firebase';
+
 
 //set a navigation bar to the top of the site
 //under the navigation bar there is a 
@@ -27,7 +30,7 @@ export const NavBar = () => {
           <li id="langItam" className="nav-item" >
             <LangBtn />
           </li>
-         
+
 
 
 
@@ -63,13 +66,13 @@ export const NavBar = () => {
             </form>
           </li>
 
-         
+
           <li className="nav-item">
             <button type="button" className="btn btn-primary nav-link" data-toggle="modal" data-target="#feedbackForm">
               {Dictionary.feedback}</button>
           </li>
 
-          
+
 
         </ul>
 
@@ -118,21 +121,21 @@ export const PictursCarousel = () => {
         </ol>
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Maimon_ada.jpeg/375px-Maimon_ada.jpeg" class="d-block w-100" alt="example 1" height = "600px" width = "115"/>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Maimon_ada.jpeg/375px-Maimon_ada.jpeg" class="d-block w-100" alt="example 1" height="600px" width="115" />
             <div class="carousel-caption d-none d-md-block pictureDiscription">
               <h5>עדה פישמן מיימון</h5>
               <p>מהמייסדות ומהמובילות של מפלגת הפועל הצעיר ותנועת הפועלות, חברת הכנסת הראשונה והשנייה מטעם מפא"י ומהיוזמות של חוק שיווי זכויות האשה (תשי"א). כל חייה פעלה למען שיפור מעמד הנשים ולהבטחת שוויון זכויות מלא .</p>
             </div>
           </div>
           <div class="carousel-item">
-            <img src="https://q-cf.bstatic.com/images/hotel/max1280x900/148/148914590.jpg" class="d-block w-100" alt="example 2" height = "600px" width = "115"/>
+            <img src="https://q-cf.bstatic.com/images/hotel/max1280x900/148/148914590.jpg" class="d-block w-100" alt="example 2" height="600px" width="115" />
             <div class="carousel-caption d-none d-md-block pictureDiscription">
               <h5>Test 2</h5>
               <p>Summary 2</p>
             </div>
           </div>
           <div class="carousel-item">
-            <img src="https://q-cf.bstatic.com/images/hotel/max1280x900/169/169438098.jpg" class="d-block w-100" alt="example 3" height = "600px" width = "115"/>
+            <img src="https://q-cf.bstatic.com/images/hotel/max1280x900/169/169438098.jpg" class="d-block w-100" alt="example 3" height="600px" width="115" />
             <div class="carousel-caption d-none d-md-block pictureDiscription">
               <h5>Test 3</h5>
               <p>Summary 3 aaaaaaa aaaaaaaaa aaaaaaaa aaa aaaa aaaaaaaaaaaaaaa aaaaa aaaaaaa aaaaaaa aaaaaaa aaa aaaaaaaaaa aa aaaaaa aaaaaaa aaaaaa aaaaaa</p>
@@ -193,13 +196,89 @@ export const DisplayModal = (props) => {
   )
 }
 
+class LoginComponent extends Component {
+  constructor(props) {
+    super(props);
+    this.login = this.login.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.state = {
+      email: {},
+      password: {},
+    }
+  }
+
+  login(e) {
+    e.preventDefault();
+    $("#login_form").validate({
+      // Specify validation rules
+      rules: {
+        email: {
+          required: true,
+          minlength: 1,
+        },
+        password: {
+          required: true,
+          minlength: 1,
+        },
+      },
+      messages: {}
+    });
+
+    if (!$("#login_form").valid()) return;
+
+    auth().signInWithEmailAndPassword(this.state.email, this.state.password).then((u) => {
+    }).catch((error) => {
+      alert(error);
+    })
+  }
+
+  handleChange(e) {
+    this.setState({ [e.target.name]: e.target.value });
+  }
+
+  render() {
+    return (
+      <div id="loginWrapper" class="wrapper">
+        <div id="langBtnWeapper">
+
+          <LangBtn />
+        </div>
+        <div class="loginContainer">
+          <a id="bigLogo"> <img src={logo} alt="logo" /></a>
+
+          <div id="buttonWrapper123">
+            <form dir="RTL" id="login_form" name="login_form_name" role="form">
+              < input type="email"
+                id="email"
+                name="email"
+                placeholder={Dictionary.enterMail}
+                defaultValue="" required
+                onChange={this.handleChange}>
+              </input>
+              < input type="password"
+                id="password"
+                name="password"
+                placeholder={Dictionary.enterPass}
+                defaultValue="" required
+                onChange={this.handleChange}>
+              </input>
 
 
-
-
-
-
-
-
-
+              {/* <Link to="/mainUserPage"> */}
+              <button id="loginbtn"
+                type="submit"
+                text={Dictionary.login}
+                className="btn btn-success"
+                onClick={this.login} >
+                {Dictionary.login}
+              </button>
+              {/* </Link> */}
+            </form>
+          </div>
+        </div>
+      </div>
+    )
+  }
+}
+export default LoginComponent;
 
