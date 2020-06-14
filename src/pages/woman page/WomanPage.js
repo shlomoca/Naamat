@@ -5,6 +5,7 @@ import { NavBar, BottomBar } from '../../Components';
 import { EditWomanForm, FeedbackButton } from '../../forms/Forms';
 import { db } from '../../config/Firebase'
 import { Dictionary } from '../../Dictionary';
+import  ScrollUpButton from "react-scroll-up-button";
 
 
 
@@ -51,6 +52,7 @@ class WomanPage extends Component {
 
                 <NavBar />
                 <FeedbackButton />
+                <ScrollUpButton />
 
                 {/* <div id="details"  >
 
