@@ -8,7 +8,7 @@ import { Dictionary } from '../Dictionary';
 
 export const FeedbackButton = () => {
     return (
-        <div class="modal fade" id="feedbackForm" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal fade" id="feedbackForm" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -21,10 +21,10 @@ export const FeedbackButton = () => {
                         <form dir="RTL" id="feedback_form" name="feedback_form"  >
 
                             <div id="name-group" class="form-group">
-                                <input type="text" rows="1" class="details" cols="35" name="name" placeholder="name" />
+                                <input type="text" rows="1" class="details" id="feed_name" cols="35" name="feed_name" placeholder="name" required />
                             </div>
                             <div id="email-group" class="form-group">
-                                <input type="email" rows="1" class="details" cols="35" name="name" placeholder="email" />
+                                <input type="email" rows="1" class="details" id="feed_email" cols="35" name="feed_email" placeholder="email" required />
                             </div>
 
 
@@ -40,17 +40,16 @@ export const FeedbackButton = () => {
                             </div>
 
                             <div id="name-group" class="form-group">
-                                <label for="profession"></label>
-                                <textarea rows="4" class="details2" cols="35" name="comment" placeholder={Dictionary.seggestions} ></textarea>
+                                {/* <label for="profession"></label> */}
+                                <textarea rows="4" class="details2" id="improvement" cols="35" name="improvement" placeholder={Dictionary.seggestions} ></textarea>
 
                             </div>
 
-
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-success">{Dictionary.submit} <span class="fa fa-arrow-right"></span></button>
+                                <button type="button" onClick={resetForm("feedback_form")} class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
                         </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" onClick={resetForm("feedback_form")} class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-success">{Dictionary.submit} <span class="fa fa-arrow-right"></span></button>
                     </div>
                 </div>
             </div>
@@ -169,7 +168,10 @@ $("document").ready(function () {
         }
     });
 
-
+    //fill name and display name at same time.
+    $("#name").on('keyup', function () {
+        $("#display").val($(this).val());
+    });
 
     //add woman from the form to database
     $("#woman_form").submit(function (event) {
@@ -193,6 +195,30 @@ $("document").ready(function () {
         // stop the form from submitting the normal way and refreshing the page
         event.preventDefault();
     });
+
+    //add feedback to database
+    $("#feedback_form").submit(function (event) {
+        if (!$("#feedback_form").valid()) return;
+        //confirm id not exeisting??
+        var obj = {}
+        var id = $("#feed_name").val();
+        obj["name"] = $("#feed_name").val();
+        obj["email"] = $("#feed_email").val();
+        obj["improvement"] = $("#improvement").val();
+        db.collection('feedbacks').doc(id).set(obj);
+        // console.log(obj);
+        // db.collection('feedbacks').add({
+        //     name: $("#feed_name").val(),
+        //     email: $("#feed_email").val(),
+        //     improvement: $("#improvement").val()
+        // });
+        
+        $("#feedbackForm").modal('hide');
+        // stop the form from submitting the normal way and refreshing the page
+        event.preventDefault();
+    });
+
+
 
 
 
