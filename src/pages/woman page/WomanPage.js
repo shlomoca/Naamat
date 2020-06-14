@@ -30,7 +30,7 @@ export const WomenCard = (props) => {
         <div id="womanCardsContainer">
             <img  id="roundImage" src={props.link} alt={props.display}/>
             <h1 >{props.display} </h1>
-            <p>{props.summary}</p>
+            <p>{props.summary}  </p>
         </div>
     )
 }

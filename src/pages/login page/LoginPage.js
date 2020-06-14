@@ -44,7 +44,7 @@ class LoginPage extends Component {
 
             if (auth.signInWithEmailAndPassword($("#email").val(), $("#password").val())) {
                 alert("33333");
-                window.location.href = "localhost:3000/mainUserPage";
+                window.location.href = "localhost:3000/MainUserPage";
             }
         })
 
@@ -76,7 +76,7 @@ class LoginPage extends Component {
                         </input>
 
 
-                        {/* <Link to="/mainUserPage"> */}
+                        {/* <Link to="/MainUserPage"> */}
                         <button id="loginbtn"
                             type="submit"
                             text={Dictionary.login}
