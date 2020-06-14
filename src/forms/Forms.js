@@ -95,7 +95,7 @@ export const EditWomanForm = () => {
                             </div>
 
                             <div id="name-group" class="form-group">
-                                <label for="profession">{Dictionary.dethDay}</label>
+                                <label for="death_date">{Dictionary.dethDay}</label>
                                 <input type="date" name="death_date" id="death" />
                             </div>
 
