@@ -207,6 +207,7 @@ $("document").ready(function () {
         //confirm id not exeisting??
         var obj = {}
         var id = $("#name").val() + $("#date").val();
+        obj["id"]=id;
         obj["name"] = $("#name").val();
         obj["display"] = $("#display").val();
         obj["birth"] = $("#date").val();
