@@ -86,7 +86,7 @@ var classAttr="tab-pane fade form_content";
 
             <div id="name-group" class="form-group">
                 <label for="born_date">{Dictionary.bday}</label>
-                <input type="date" lang={props.lang} name="date" id={"date"+ props.lang}  required/>
+                <input type="date" lang={props.lang} name="date" id={"date"+ props.lang} required  />
             </div>
 
             <div id="name-group" class="form-group">
@@ -113,7 +113,7 @@ var classAttr="tab-pane fade form_content";
             <ImageUpload />
 
             <div class="form-group">
-                <textarea rows="4" class="details" cols="50" name="highlights" id={"highlights"+ props.lang} placeholder="Highlights" ></textarea>
+                <textarea rows="4" class="details" cols="50" name="highlights" id={"highlights"+ props.lang} placeholder="Highlights" required ></textarea>
             </div>
 
 
@@ -212,19 +212,28 @@ $("document").ready(function () {
     $("#woman_form").submit(function (event) {
         if (!$("#woman_form").valid()) return;
         //confirm id not exeisting??
-        var elements = document.getElementById("woman_form").elements;
+        // var elements = document.getElementById("woman_form").elements;
         var obj = {}
         var id = $("#nameHE").val() + $("#dateHE").val();
-        alert("formSubmited");
         
-        for (var i = 0, element; element = elements[i++];) {
-            alert(element.name);
-    if (!(element.value === "")){
+        $($('#woman_form').prop('elements')).each(function(){
+            if(this.value){
+                alert(this.value);
+                obj[this.id]=this.value;
+            }
+        });
+        console.log(obj);
+        alert(obj);
+        alert(id);
+    //     for (var i = 0, element; element = elements[i++];) {
+    //         alert(element.name);
+    // if (!(element.value === "")){
 
-    //    obj[element.id]=element.value();
-       alert(element.id +"is going in"+element.value());
-    }
-}       
+    // //    obj[element.id]=element.value();
+    //    alert(element.id 
+    //     +"is going in"+element.value()
+    //     );
+    
         // obj["id"]=id;
         // obj["name"] = $("#name").val();
         // obj["display"] = $("#display").val();
@@ -237,8 +246,9 @@ $("document").ready(function () {
         // obj["historical"] = $("#historical").val();
         // obj["facts"] = $("#facts").val();
         // obj["media"] = $("#media").val();
+        
         db.collection('women').doc(id).set(obj);
-        alert("it was submitted");
+        // alert("it was submitted");
         $("#staticBackdrop").modal('hide');
         // $("#afterMessage").modal('show');
         // stop the form from submitting the normal way and refreshing the page
