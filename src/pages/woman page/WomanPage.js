@@ -1,12 +1,13 @@
 import './WomanPage.css';
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 // import { Dictionary, LangBtn } from '../../Dictionary'
-import { NavBar, BottomBar } from '../../Components';
+import { NavBar, BottomBar  } from '../../Components';
 import { EditWomanForm, FeedbackButton } from '../../forms/Forms';
 import { db } from '../../config/Firebase'
 import { Dictionary } from '../../Dictionary';
 import $ from 'jquery';
-import  ScrollUpButton from "react-scroll-up-button";
+import ScrollUpButton from "react-scroll-up-button";
 
 
 
@@ -28,11 +29,28 @@ const MainDetails = (props) => {
 export const WomenCard = (props) => {
     return (
         <div id="womanCardsContainer">
-            <img  id="roundImage" src={props.link} alt={props.display}/>
+            <img id="roundImage" src={props.link} alt={props.display} />
             <h1 >{props.display} </h1>
             <p>{props.summary}  </p>
         </div>
     )
+}
+
+
+//delete woman by id.
+export function deleteWoman(id) {
+    
+    return () => {
+        console.log(id);
+        if (id) {
+            db.collection('women').doc(id).delete();
+            // alert("woman "+id+" was deleted");
+            //  window.location.reload();
+        }
+        else 
+            alert("wrong id");
+    }
+
 }
 
 class WomanPage extends Component {
@@ -40,8 +58,6 @@ class WomanPage extends Component {
     state = {
         women: null
     }
-
-
 
     componentDidMount() {
         db.collection('women').get().then(snapshot => {
@@ -63,10 +79,7 @@ class WomanPage extends Component {
                 <FeedbackButton />
                 <ScrollUpButton />
 
-                {/* <div id="details"  >
-
-                    
-                </div> */}
+               
                 {this.state.women &&
                     this.state.women.map(woman => {
                         return (
@@ -82,16 +95,12 @@ class WomanPage extends Component {
                                 <p><b>{Dictionary.Contribution}:</b> {woman.contribution}</p>
                                 <p><b>{Dictionary.facts}:</b> {woman.facts}</p>
                                 <p><b>{Dictionary.media}:</b> {woman.media}</p>
+                                <button onClick={deleteWoman(woman.id)} >Delete</button>
+
 
                             </div>)
                     })}
                 <BottomBar />
-
-
-
-
-
-
 
             </div>
 
@@ -136,15 +145,15 @@ export function getWoman(womanName) {
                     sortedWomen[obj["id"]] = obj;
 
                 });
-                
+
                 console.log(sortedWomen);
-                
-                var card =<WomenCard display="one women" summary="someone importent" link ="https://stack.com.au/wp-content/uploads/2019/05/Rick_Morty_S4.jpg"  />;
+
+                var card = <WomenCard display="one women" summary="someone importent" link="https://stack.com.au/wp-content/uploads/2019/05/Rick_Morty_S4.jpg" />;
                 console.log(card);
-                Object.keys(sortedWomen).forEach(element=>{
+                Object.keys(sortedWomen).forEach(element => {
                     // console.log(sortedWomen[`display`]);
                     $("#womenHolder").append(card);
-                    
+
                     // $("#womenHolder").append(<WomenCard display="one women" summary="someone importent" link ="https://stack.com.au/wp-content/uploads/2019/05/Rick_Morty_S4.jpg"  />);
                     // $("#womenHolder").append(<WomenCard display={sortedWomen["display"]} summary={sortedWomen["summary"]} link ="https://stack.com.au/wp-content/uploads/2019/05/Rick_Morty_S4.jpg"  />);
                 })
@@ -156,31 +165,3 @@ export function getWoman(womanName) {
     else
         console.log("women not found");
 }
-
-
-
-
-
-
-
-
-
-
-
-// constructor() {
-    //     super();
-    //     this.womanRef = firebase.firestore().collaction('women');
-    //     this.state = {
-    //         Quotes: "",
-    //         biography: "",
-    //         contribution: "",
-    //         birth: "",
-    //         death: "",
-    //         display: "",
-    //         highlights: "",
-    //         historicalEvents: "",
-    //         interestingFacts: "",
-    //         media: []
-    //     }
-
-    // }
