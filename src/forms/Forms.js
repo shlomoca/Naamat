@@ -33,8 +33,9 @@ export const FeedbackButton = () => {
                             </div>
 
 
-                            <div id="name-group" classname="form-group starContainer">
-                                {Dictionary.HowWasVisit}
+                            <div id="name-groups" classname="form-group starContainer">
+                                {/* centerd info */}
+                            <div align="center"> {Dictionary.HowWasVisit} </div>
                                 <div className="starrating risingstar d-flex justify-content-center flex-row-reverse">
                                     <input type="radio" className="star" id="star5" name="rating" value="5" /><label for="star5" title="5 star"></label>
                                     <input type="radio" className="star" id="star4" name="rating" value="4" /><label for="star4" title="4 star"></label>

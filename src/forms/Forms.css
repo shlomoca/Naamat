@@ -43,10 +43,11 @@ padding-bottom: 3%;
 
 .form-group
 {
-    padding: 3vh;
+    padding: 0vh;
     /* flex-grow: 1; */
     display: inline-flex;
     white-space: nowrap;
+    width: 90%;
 }
 .langTabs{
  margin: 20px; 
@@ -61,7 +62,7 @@ padding-bottom: 3%;
 .starrating > label:before { 
   content: "\f005"; /* Star */
   margin: 2px;
-  font-size: 2em;
+  font-size: 4em;
   font-family: FontAwesome;
   display: inline-block; 
   cursor: pointer;
@@ -82,7 +83,7 @@ padding-bottom: 3%;
 { color: #ffca08 ;  } /* Set yellow color when star hover */
 .starrating{
     /* overflow: auto; */
-    max-width: 30%;
+    max-width: 100%;
 }
 /* --------------------------- */
 
@@ -93,6 +94,5 @@ padding-bottom: 3%;
 
 .details2{
     width: 180%;
+    padding-top: 0%;
 }
-    
-    
