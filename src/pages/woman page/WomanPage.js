@@ -113,6 +113,7 @@ export default WomanPage;
 
 //get women gets all women that their name is identical to the womenName atribute
 export function getWoman(womanName) {
+    console.log(womanName);
     if (womanName) {
 
         db.collection('women').where("name", "==", womanName).get().then(snapshot => {
@@ -148,15 +149,6 @@ export function getWoman(womanName) {
 
                 console.log(sortedWomen);
 
-                var card = <WomenCard display="one women" summary="someone importent" link="https://stack.com.au/wp-content/uploads/2019/05/Rick_Morty_S4.jpg" />;
-                console.log(card);
-                Object.keys(sortedWomen).forEach(element => {
-                    // console.log(sortedWomen[`display`]);
-                    $("#womenHolder").append(card);
-
-                    // $("#womenHolder").append(<WomenCard display="one women" summary="someone importent" link ="https://stack.com.au/wp-content/uploads/2019/05/Rick_Morty_S4.jpg"  />);
-                    // $("#womenHolder").append(<WomenCard display={sortedWomen["display"]} summary={sortedWomen["summary"]} link ="https://stack.com.au/wp-content/uploads/2019/05/Rick_Morty_S4.jpg"  />);
-                })
             }
 
 

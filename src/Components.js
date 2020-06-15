@@ -34,7 +34,7 @@ export const NavBar = () => {
 
 
           <li className="nav-item" >
-            <Link to="/serchPage?catagorys">
+            <Link to="/Category">
               <button type="button" className="btn btn-primary nav-link" >
                 {Dictionary.categories}</button>
             </Link>
