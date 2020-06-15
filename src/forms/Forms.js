@@ -5,11 +5,15 @@ import React from 'react';
 import { db } from '../config/Firebase'
 import { Dictionary,langs } from '../Dictionary';
 import ImageUpload from './ImageUpload';
+import { AfterMessage } from '../Components';
+
 
 
 export const FeedbackButton = () => {
+    
     return (
         <div class="modal fade" id="feedbackForm" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+           <AfterMessage  info='thank you' />
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -236,6 +240,7 @@ $("document").ready(function () {
         db.collection('women').doc(id).set(obj);
         alert("it was submitted");
         $("#staticBackdrop").modal('hide');
+        // $("#afterMessage").modal('show');
         // stop the form from submitting the normal way and refreshing the page
         event.preventDefault();
     });
@@ -258,6 +263,7 @@ $("document").ready(function () {
         // });
 
         $("#feedbackForm").modal('hide');
+        $("#afterMessage").modal('show');
         // stop the form from submitting the normal way and refreshing the page
         event.preventDefault();
     });
