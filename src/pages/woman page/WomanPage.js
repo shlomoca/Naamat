@@ -1,7 +1,8 @@
 import './WomanPage.css';
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 // import { Dictionary, LangBtn } from '../../Dictionary'
-import { NavBar, BottomBar } from '../../Components';
+import { NavBar, BottomBar  } from '../../Components';
 import { EditWomanForm, FeedbackButton } from '../../forms/Forms';
 import { db } from '../../config/Firebase'
 import { Dictionary } from '../../Dictionary';
@@ -57,8 +58,6 @@ class WomanPage extends Component {
         women: null
     }
 
-
-
     componentDidMount() {
         db.collection('women').get().then(snapshot => {
             const women = [];
@@ -79,10 +78,7 @@ class WomanPage extends Component {
                 <FeedbackButton />
                 <ScrollUpButton />
 
-                {/* <div id="details"  >
-
-                    
-                </div> */}
+               
                 {this.state.women &&
                     this.state.women.map(woman => {
                         return (
@@ -174,31 +170,3 @@ export function getWoman(womanName) {
     else
         console.log("women not found");
 }
-
-
-
-
-
-
-
-
-
-
-
-// constructor() {
-    //     super();
-    //     this.womanRef = firebase.firestore().collaction('women');
-    //     this.state = {
-    //         Quotes: "",
-    //         biography: "",
-    //         contribution: "",
-    //         birth: "",
-    //         death: "",
-    //         display: "",
-    //         highlights: "",
-    //         historicalEvents: "",
-    //         interestingFacts: "",
-    //         media: []
-    //     }
-
-    // }

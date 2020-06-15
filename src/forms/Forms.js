@@ -60,6 +60,7 @@ export const FeedbackButton = () => {
 
 
 export const GenralForm = (props) => {
+
     return (
        
         <div id={props.id}  class="tab-pane fade  form_content">
@@ -122,6 +123,7 @@ export const GenralForm = (props) => {
                 <textarea rows="4" class="details" cols="50" name="feminism" id="contribution" placeholder="Contribution to Feminism" ></textarea>
             </div>
 
+
             <div class="form-group">
                 <textarea rows="4" class="details" cols="50" name="facts" id="facts" placeholder="Interesting fact / story" ></textarea>
             </div>
@@ -167,6 +169,7 @@ export const EditWomanForm = () => {
                             <GenralForm id="english" />
                             <GenralForm id="arabic" />
                         </div>
+
                         </form>
                     </div>
                     <div class="modal-footer">
