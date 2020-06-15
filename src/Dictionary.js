@@ -13,24 +13,24 @@ the references were devided to the main pages that is using them*/
 export const Dictionary = new LocalizedStrings({
   EN: {
     //login page
-    enterMail: `please enter email`,
-    enterPass: `password`,
-    login: `log in`,
+    enterMail: `Please enter email`,
+    enterPass: `Password`,
+    login: `Log in`,
     
     
   //main user page
     about: `Na'amat is a Movement for the advancement of the Status of Women and the Social Force for women in Israel. Na'amat’s top priority is to advance and strengthen the status of women in the family and in the work force. Na'amat is striving to achieve equality between the sexes and full participation of women in social, economic and political spheres. Na'amat, previously called Moetzet Hapoalot (Council of Working Women), was established in 1921 by young working women, pioneers who came to Palestine in the early 1920’s. Moetzet Hapoalot was organized as an autonomous movement with affiliation to the Histadrut (The General Federation of Labor). Today Na'amat is a non-profit organization, a socio-political, multi-party women’s movement comprised of women from diverse sectors of the population, communities, countries of origin and religious streams.`,
-    aboutTitle: "about Na'amat",
-    feedback: `visit feedback`,
-    categories: `categories`,
-    search: `search`,
-    addWoman: `add woman`,
+    aboutTitle: "About Na'amat",
+    feedback: `Visit feedback`,
+    categories: `Categories`,
+    search: `Search`,
+    addWoman: `Add woman`,
     
     
     //forms
-    name: `name`,
-    bday: `date of birth`,
-    submit:`submit`, 
+    name: `Name`,
+    bday: `Date of birth`,
+    submit:`Submit`, 
     dethDay: `Date of death`,
     highlights:`Highlights`,
     biography:`Biography`,
@@ -38,13 +38,15 @@ export const Dictionary = new LocalizedStrings({
     History:`History`,
     Contribution: `Contribution to feminism`,
     facts: `Interesting facts / stories`,
-    media: `media`,
-    upload: `upload`,
+    media: `Media`,
+    upload: `Upload`,
     chooseFile:`Choose file`,
     HowWasVisit:`How was your visit?`,
-    seggestions: `seggestions for improvament`,
-    close:`close`,
+    seggestions: `Seggestions for improvament`,
+    close:`Close`,
     profilepic:'Profile Picture',
+    anotherpictures:'Another Pictures',
+    mustfilled:' Must filled *',
     //components
     
     builders: `This site was built by: Shlomo Carmi, Daniel Raz, Sahar Cohen, Adiel Tsayag, Matan Yemin`,
@@ -84,6 +86,8 @@ export const Dictionary = new LocalizedStrings({
     seggestions: `הצעות לשיפור`,
     close:`סגרי`,
     profilepic:'תמונת פרופיל',
+    anotherpictures:'תמונות נוספות',
+    mustfilled:'* חייב למלא',
     //components
     builders: 'אתר זה נבנה על ידי: שלמה כרמי, דניאל רז, סהר כהן, עדיאל צייג, מתן ימין',
     
@@ -124,6 +128,8 @@ export const Dictionary = new LocalizedStrings({
     seggestions: `عمليات الإرتجال`,
     close:`أغلق`,
     profilepic:'الصوره الشخصيه',
+    anotherpictures:'صور أخرى',
+    mustfilled:'يجب ملؤها *',
     //components
     
     builders: `تم بناء هذا الموقع من قبل: شلومو كرمي ، دانيال راز ، سحر كوهين ، أديل تساياج ، ماتان يمين `,

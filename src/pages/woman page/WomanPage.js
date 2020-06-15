@@ -37,16 +37,17 @@ export const WomenCard = (props) => {
 }
 
 
-
+//delete woman by id.
 export function deleteWoman(id) {
-
+    
     return () => {
+        console.log(id);
         if (id) {
             db.collection('women').doc(id).delete();
-            alert("woman "+id+" was deleted");
-            // location.reload();
+            // alert("woman "+id+" was deleted");
+            //  window.location.reload();
         }
-        else
+        else 
             alert("wrong id");
     }
 
@@ -94,18 +95,12 @@ class WomanPage extends Component {
                                 <p><b>{Dictionary.Contribution}:</b> {woman.contribution}</p>
                                 <p><b>{Dictionary.facts}:</b> {woman.facts}</p>
                                 <p><b>{Dictionary.media}:</b> {woman.media}</p>
-                                <button onClick={deleteWoman(woman.name + woman.birth)} >Delete</button>
+                                <button onClick={deleteWoman(woman.id)} >Delete</button>
 
 
                             </div>)
                     })}
                 <BottomBar />
-
-
-
-
-
-
 
             </div>
 
