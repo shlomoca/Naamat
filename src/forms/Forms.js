@@ -3,7 +3,7 @@ import $ from 'jquery';
 import 'jquery-validation'
 import React from 'react';
 import { db } from '../config/Firebase'
-import { Dictionary } from '../Dictionary';
+import { Dictionary,langs } from '../Dictionary';
 import ImageUpload from './ImageUpload';
 
 
@@ -63,29 +63,29 @@ export const GenralForm = (props) => {
 
     return (
        
-        <div id={props.id}  class="tab-pane fade  form_content">
+        <div id={props.lang}  class="tab-pane fade form_content">
             <div id="name-group" class="form-group">
                 {/* <label for="name"></label> */}
-                <input type="text" rows="1" class="details" cols="35" id="name" name="name" placeholder={Dictionary.name} required />
+                <input type="text" lang={props.lang} rows="1" class="details" cols="35" id="name" name="name" placeholder={Dictionary.name} required />
             </div>
 
             <div id="name-group" class="form-group">
                 {/* <label for="display"></label> */}
-                <input type="text" rows="1" class="details" cols="35" id="display" name="display" placeholder="display name arabic" />
+                <input type="text" lang={props.lang} rows="1" class="details" cols="35" id="display" name="display" placeholder="display name arabic" />
             </div>
 
             <div id="name-group" class="form-group">
-                <input type="text" rows="1" class="details" cols="35" id="timeline" name="Year in timelineme" placeholder="Year in timeline" />
+                <input type="text" lang={props.lang} rows="1" class="details" cols="35" id="timeline" name="Year in timelineme" placeholder="Year in timeline" />
             </div>
 
             <div id="name-group" class="form-group">
                 <label for="born_date">{Dictionary.bday}</label>
-                <input type="date" name="date" id="date" required />
+                <input type="date" lang={props.lang} name="date" id="date" required />
             </div>
 
             <div id="name-group" class="form-group">
                 <label for="death_date">{Dictionary.dethDay}</label>
-                <input type="date" name="death_date" id="death" />
+                <input type="date" lang={props.lang} name="death_date" id="death" />
             </div>
 
             {/* <label for="img">Select image:</label>
@@ -159,15 +159,16 @@ export const EditWomanForm = () => {
                     <div class="modal-body">
                     <form dir="RTL" id="woman_form" name="woman_form"  >
                         <ul class="nav nav-tabs">
-                            <li class="active"><a data-toggle="tab" href="#hebrew">עברית</a></li>
-                            <li><a data-toggle="tab" href="#english">English</a></li>
-                            <li><a data-toggle="tab" href="#arabic">Arabic</a></li>
+                            <li class="active langTabs"><a data-toggle="tab" href="#HE">עברית</a></li>
+                            <li className="langTabs"><a data-toggle="tab" href="#EN">English</a></li>
+                            <li className="langTabs"><a data-toggle="tab" href="#AR">Arabic</a></li>
                         </ul>
 
                         <div class="tab-content">
-                            <GenralForm id="hebrew" />
-                            <GenralForm id="english" />
-                            <GenralForm id="arabic" />
+                            <GenralForm lang={langs[0]} active={true} />
+                            <GenralForm lang={langs[1]} active={false} />
+                            <GenralForm lang={langs[2]} active={false} />
+                            
                         </div>
 
                         </form>

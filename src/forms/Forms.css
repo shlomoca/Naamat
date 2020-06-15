@@ -48,6 +48,9 @@ padding-bottom: 3%;
     display: inline-flex;
     white-space: nowrap;
 }
+.langTabs{
+ margin: 20px; 
+}
 
 
   
