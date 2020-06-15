@@ -1,12 +1,13 @@
 import './WomanPage.css';
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 // import { Dictionary, LangBtn } from '../../Dictionary'
 import { NavBar, BottomBar } from '../../Components';
 import { EditWomanForm, FeedbackButton } from '../../forms/Forms';
 import { db } from '../../config/Firebase'
 import { Dictionary } from '../../Dictionary';
 import $ from 'jquery';
-import  ScrollUpButton from "react-scroll-up-button";
+import ScrollUpButton from "react-scroll-up-button";
 
 
 
@@ -28,7 +29,7 @@ const MainDetails = (props) => {
 export const WomenCard = (props) => {
     return (
         <div id="womanCardsContainer">
-            <img  id="roundImage" src={props.link} alt={props.display}/>
+            <img id="roundImage" src={props.link} alt={props.display} />
             <h1 >{props.display} </h1>
             <p>{props.summary}  </p>
         </div>
@@ -63,10 +64,7 @@ class WomanPage extends Component {
                 <FeedbackButton />
                 <ScrollUpButton />
 
-                {/* <div id="details"  >
-
-                    
-                </div> */}
+               
                 {this.state.women &&
                     this.state.women.map(woman => {
                         return (
@@ -136,17 +134,13 @@ export function getWoman(womanName) {
                     sortedWomen[obj["id"]] = obj;
 
                 });
+
+                // ReactDOM.render(<WomenCard display="one women" summary="someone importent" link="https://stack.com.au/wp-content/uploads/2019/05/Rick_Morty_S4.jpg" />,document.getElementById('womenHolder'));
                 
-                console.log(sortedWomen);
-                
-                var card =<WomenCard display="one women" summary="someone importent" link ="https://stack.com.au/wp-content/uploads/2019/05/Rick_Morty_S4.jpg"  />;
-                console.log(card);
-                Object.keys(sortedWomen).forEach(element=>{
-                    // console.log(sortedWomen[`display`]);
-                    $("#womenHolder").append(card);
-                    
-                    // $("#womenHolder").append(<WomenCard display="one women" summary="someone importent" link ="https://stack.com.au/wp-content/uploads/2019/05/Rick_Morty_S4.jpg"  />);
-                    // $("#womenHolder").append(<WomenCard display={sortedWomen["display"]} summary={sortedWomen["summary"]} link ="https://stack.com.au/wp-content/uploads/2019/05/Rick_Morty_S4.jpg"  />);
+                Object.keys(sortedWomen).forEach(element => {
+                   
+                   
+
                 })
             }
 
@@ -156,31 +150,3 @@ export function getWoman(womanName) {
     else
         console.log("women not found");
 }
-
-
-
-
-
-
-
-
-
-
-
-// constructor() {
-    //     super();
-    //     this.womanRef = firebase.firestore().collaction('women');
-    //     this.state = {
-    //         Quotes: "",
-    //         biography: "",
-    //         contribution: "",
-    //         birth: "",
-    //         death: "",
-    //         display: "",
-    //         highlights: "",
-    //         historicalEvents: "",
-    //         interestingFacts: "",
-    //         media: []
-    //     }
-
-    // }
