@@ -33,7 +33,6 @@ export const NavBar = () => {
 
 
 
-
           <li className="nav-item" >
             <Link to="/serchPage?catagorys">
               <button type="button" className="btn btn-primary nav-link" >
@@ -198,32 +197,31 @@ export const DisplayModal = (props) => {
   )
 }
 
-
 export const AfterMessage = (props) => {
 
   return (
     <div>
-     <button class="clearBtn" data-toggle="modal" data-target="#afterMessage"> <a href="#">something</a></button> 
-    <div class="modal fade" id="afterMessage" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-      <div class="modal-dialog modal-xl">
-        <div class="modal-content">
-          <div class="modal-header ">
-             {/* <h5 class="modal-title" id="staticBackdropLabel"></h5>  */}
-          </div>
-          <div class="modal-body">
-            <h1>{props.info}</h1>
-          </div>
-            <div align="center"> 
-            <button type="button" class="close" class="btn btn-secondary" data-dismiss="modal">{Dictionary.close}</button>
-
-            </div>
-          
-        </div>
-      </div>
-    </div>
-  </div>
+    {/* <button class="clearBtn" data-toggle="modal" data-target="#afterMessage"> <a href="#">something</a></button>  */}
+   <div class="modal fade" id="afterMessage" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+     <div class="modal-dialog modal-xl">
+       <div class="modal-content">
+         <div class="modal-header ">
+            {/* <h5 class="modal-title" id="staticBackdropLabel"></h5>  */}
+         </div>
+         <div class="modal-body">
+           <h1>{props.info}</h1>
+         </div>
+           <div align="center"> 
+           <button type="button" class="close" class="btn btn-secondary" data-dismiss="modal">{Dictionary.close}</button>
+           </div>
+       </div>
+     </div>
+   </div>
+ </div>
   )
 }
+
+
 class LoginComponent extends Component {
   constructor(props) {
     super(props);

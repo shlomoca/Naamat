@@ -52,11 +52,11 @@ background-color: purple;
 .starrating > label:before { 
   content: "\f005"; /* Star */
   margin: 2px;
-  font-size: 8em;
+  font-size: 2em;
   font-family: FontAwesome;
   display: inline-block; 
   cursor: pointer;
-
+  
 }
 
 
@@ -73,7 +73,7 @@ background-color: purple;
 { color: #ffca08 ;  } /* Set yellow color when star hover */
 .starrating{
     /* overflow: auto; */
-    max-width: 100%;
+    max-width: 30%;
 }
 /* --------------------------- */
 
