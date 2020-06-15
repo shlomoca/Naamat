@@ -60,32 +60,34 @@ export const FeedbackButton = () => {
 
 
 export const GenralForm = (props) => {
-
+var classAttr="tab-pane fade form_content";
+    if(props.active)
+    classAttr="tab-pane fade form_content show active";
     return (
        
-        <div id={props.lang}  class="tab-pane fade form_content">
+        <div id={props.lang}  class={classAttr}>
             <div id="name-group" class="form-group">
                 {/* <label for="name"></label> */}
-                <input type="text" lang={props.lang} rows="1" class="details" cols="35" id="name" name="name" placeholder={Dictionary.name} required />
+                <input type="text" lang={props.lang} rows="1" class="details" cols="35" id={"name"+ props.lang} name="name" placeholder={Dictionary.name} required />
             </div>
 
             <div id="name-group" class="form-group">
                 {/* <label for="display"></label> */}
-                <input type="text" lang={props.lang} rows="1" class="details" cols="35" id="display" name="display" placeholder="display name arabic" />
+                <input type="text" lang={props.lang} rows="1" class="details" cols="35" id={"display"+ props.lang} name="display" placeholder="display name arabic" />
             </div>
 
             <div id="name-group" class="form-group">
-                <input type="text" lang={props.lang} rows="1" class="details" cols="35" id="timeline" name="Year in timelineme" placeholder="Year in timeline" />
+                <input type="text" lang={props.lang} rows="1" class="details" cols="35" id={"timeline"+ props.lang} name="timelineme" placeholder="Year in timeline" />
             </div>
 
             <div id="name-group" class="form-group">
                 <label for="born_date">{Dictionary.bday}</label>
-                <input type="date" lang={props.lang} name="date" id="date" required />
+                <input type="date" lang={props.lang} name="date" id={"date"+ props.lang}  required/>
             </div>
 
             <div id="name-group" class="form-group">
                 <label for="death_date">{Dictionary.dethDay}</label>
-                <input type="date" lang={props.lang} name="death_date" id="death" />
+                <input type="date" lang={props.lang} name="death" id={"death"+ props.lang} />
             </div>
 
             {/* <label for="img">Select image:</label>
@@ -107,25 +109,25 @@ export const GenralForm = (props) => {
             <ImageUpload />
 
             <div class="form-group">
-                <textarea rows="4" class="details" cols="50" name="highlights" id="highlights" placeholder="Highlights" required></textarea>
+                <textarea rows="4" class="details" cols="50" name="highlights" id={"highlights"+ props.lang} placeholder="Highlights" ></textarea>
             </div>
 
 
             <div class="form-group">
-                <textarea rows="4" class="details" cols="50" name="biography" id="biography" placeholder="Biography" ></textarea>
+                <textarea rows="4" class="details" cols="50" name="biography" id={"biography"+ props.lang} placeholder="Biography" ></textarea>
             </div>
 
             <div class="form-group">
-                <textarea rows="4" class="details" cols="50" name="history" id="historical" placeholder="Historical events related" ></textarea>
+                <textarea rows="4" class="details" cols="50" name="history" id={"historical"+ props.lang} placeholder="Historical events related" ></textarea>
             </div>
 
             <div class="form-group">
-                <textarea rows="4" class="details" cols="50" name="feminism" id="contribution" placeholder="Contribution to Feminism" ></textarea>
+                <textarea rows="4" class="details" cols="50" name="feminism" id={"contribution"+ props.lang} placeholder="Contribution to Feminism" ></textarea>
             </div>
 
 
             <div class="form-group">
-                <textarea rows="4" class="details" cols="50" name="facts" id="facts" placeholder="Interesting fact / story" ></textarea>
+                <textarea rows="4" class="details" cols="50" name="facts" id={"facts"+ props.lang} placeholder="Interesting fact / story" ></textarea>
             </div>
 
             <div class="form-group">
@@ -133,8 +135,8 @@ export const GenralForm = (props) => {
                     <option value="bibliography" name="bibliography">Bibliography</option>
                     <option value="link" name="link">Link</option>
                 </select>
-                <input type="text" rows="4" class="details" cols="50" name="quotes" id="quotes" placeholder="Quotes and notable works" />
-                <input id="link" type="text" rows="4" class="details" cols="50" name="link" placeholder="link" />
+                <input type="text" rows="4" class="details" cols="50" name="quotes" id={"quotes"+ props.lang} placeholder="Quotes and notable works" />
+                <input id={"link"+ props.lang} type="text" rows="4" class="details" cols="50" name="link" placeholder="link" />
             </div>
             </div>
         
@@ -149,6 +151,7 @@ export const EditWomanForm = () => {
         <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-xl">
                 <div class="modal-content">
+                    <form dir="RTL" id="woman_form" name="woman_form"  >
                     <div class="modal-header">
                         <button type="button" id="xClose" class="close" data-dismiss="modal" aria-label="Close" onClick={resetForm("woman_form")}>
                             <span aria-hidden="true">&times;</span>
@@ -157,7 +160,6 @@ export const EditWomanForm = () => {
                     </div>
 
                     <div class="modal-body">
-                    <form dir="RTL" id="woman_form" name="woman_form"  >
                         <ul class="nav nav-tabs">
                             <li class="active langTabs"><a data-toggle="tab" href="#HE">עברית</a></li>
                             <li className="langTabs"><a data-toggle="tab" href="#EN">English</a></li>
@@ -166,17 +168,17 @@ export const EditWomanForm = () => {
 
                         <div class="tab-content">
                             <GenralForm lang={langs[0]} active={true} />
-                            <GenralForm lang={langs[1]} active={false} />
-                            <GenralForm lang={langs[2]} active={false} />
+                            <GenralForm lang={langs[1]}  />
+                            <GenralForm lang={langs[2]} />
                             
                         </div>
 
-                        </form>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="close" class="btn btn-secondary" onClick={resetForm("woman_form")} data-dismiss="modal">{Dictionary.close}</button>
-                        <button type="submit" class="btn btn-success" id="submit_form" >{Dictionary.submit} <span class="fa fa-arrow-right"></span></button>
+                        <button type="submit" for="woman_form" class="btn btn-success" id="submit_form" >{Dictionary.submit} <span class="fa fa-arrow-right"></span></button>
                     </div>
+                        </form>
                     
                 </div>
             </div>
@@ -206,21 +208,33 @@ $("document").ready(function () {
     $("#woman_form").submit(function (event) {
         if (!$("#woman_form").valid()) return;
         //confirm id not exeisting??
+        var elements = document.getElementById("woman_form").elements;
         var obj = {}
-        var id = $("#name").val() + $("#date").val();
-        obj["id"]=id;
-        obj["name"] = $("#name").val();
-        obj["display"] = $("#display").val();
-        obj["birth"] = $("#date").val();
-        obj["death"] = $("#death").val();
-        obj["timeline"] = $("#timeline").val();
-        obj["biography"] = $("#biography").val();
-        obj["highlights"] = $("#highlights").val();
-        obj["contribution"] = $("#contribution").val();
-        obj["historical"] = $("#historical").val();
-        obj["facts"] = $("#facts").val();
-        obj["media"] = $("#media").val();
+        var id = $("#nameHE").val() + $("#dateHE").val();
+        alert("formSubmited");
+        
+        for (var i = 0, element; element = elements[i++];) {
+            alert(element.name);
+    if (!(element.value === "")){
+
+    //    obj[element.id]=element.value();
+       alert(element.id +"is going in"+element.value());
+    }
+}       
+        // obj["id"]=id;
+        // obj["name"] = $("#name").val();
+        // obj["display"] = $("#display").val();
+        // obj["birth"] = $("#date").val();
+        // obj["death"] = $("#death").val();
+        // obj["timeline"] = $("#timeline").val();
+        // obj["biography"] = $("#biography").val();
+        // obj["highlights"] = $("#highlights").val();
+        // obj["contribution"] = $("#contribution").val();
+        // obj["historical"] = $("#historical").val();
+        // obj["facts"] = $("#facts").val();
+        // obj["media"] = $("#media").val();
         db.collection('women').doc(id).set(obj);
+        alert("it was submitted");
         $("#staticBackdrop").modal('hide');
         // stop the form from submitting the normal way and refreshing the page
         event.preventDefault();
@@ -229,7 +243,7 @@ $("document").ready(function () {
     //add feedback to database
     $("#feedback_form").submit(function (event) {
         if (!$("#feedback_form").valid()) return;
-        //confirm id not exeisting??
+        //confirm id not exeisting?
         var obj = {}
         var id = $("#feed_name").val();
         obj["name"] = $("#feed_name").val();
