@@ -1,15 +1,11 @@
 import './WomanPage.css';
 import React, { Component } from 'react';
 // import { Dictionary, LangBtn } from '../../Dictionary'
-import { NavBar, BottomBar } from '../../Components';
+import { NavBar, BottomBar  } from '../../Components';
 import { EditWomanForm, FeedbackButton } from '../../forms/Forms';
 import { db } from '../../config/Firebase'
 import { Dictionary } from '../../Dictionary';
-import  ScrollUpButton from "react-scroll-up-button";
-
-
-
-
+ import  ScrollUpButton from "react-scroll-up-button";
 
 const MainDetails = (props) => {
 
@@ -31,8 +27,6 @@ class WomanPage extends Component {
     state = {
         women: null
     }
-
-
 
     componentDidMount() {
         db.collection('women').get().then(snapshot => {

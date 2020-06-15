@@ -2,7 +2,7 @@ import './mainUserPage.css';
 import $ from 'jquery';
 import React, { Component } from 'react';
 import { Dictionary } from '../../Dictionary';
-import { NavBar, PictursCarousel, DisplayModal, BottomBar } from '../../Components.js';
+import { NavBar, PictursCarousel, DisplayModal, AfterMessage, BottomBar } from '../../Components.js';
 import { FeedbackButton } from '../../forms/Forms';
 import { getWoman, WomenCard } from '../woman page/WomanPage';
 
@@ -28,6 +28,7 @@ class mainUserPage extends Component {
 
                 {/* </footer> */}
                 <DisplayModal link='https://he.wikipedia.org/wiki/%D7%A0%D7%A2%D7%9E%D7%AA' details='Wikipedia'/>
+                <AfterMessage info='this is check!!!' />
             </div>
         );
 

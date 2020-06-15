@@ -59,7 +59,6 @@ export const FeedbackButton = () => {
 };
 
 
-
 export const EditWomanForm = () => {
     return (
 
@@ -146,7 +145,7 @@ export const EditWomanForm = () => {
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="close" class="btn btn-secondary" onClick={resetForm("woman_form")} data-dismiss="modal">{Dictionary.close}</button>
-                                <button type="submit" class="btn btn-success" id="submit_form" >{Dictionary.submit} <span class="fa fa-arrow-right"></span></button>
+                                <button type="submit" class="btn btn-success" id="submit_form" /*data-target="#afterMessage"*/ >{Dictionary.submit} <span class="fa fa-arrow-right"></span></button>
                             </div>
                         </form>
                     </div>
