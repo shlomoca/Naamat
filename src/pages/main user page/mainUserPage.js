@@ -1,12 +1,7 @@
 import './MainUserPage.css';
 import $ from 'jquery';
 import React, { Component } from 'react';
-<<<<<<< HEAD
-import { Dictionary } from '../../Dictionary';
-import { NavBar, PictursCarousel, DisplayModal, AfterMessage, BottomBar } from '../../Components.js';
-=======
-import { NavBar, PictursCarousel, DisplayModal, BottomBar } from '../../Components.js';
->>>>>>> d206c965817c478e40e173dc028be1a4936b44c6
+import { NavBar, PictursCarousel, DisplayModal, BottomBar, AfterMessage } from '../../Components.js';
 import { FeedbackButton } from '../../forms/Forms';
 import { getWoman, WomenCard } from '../woman page/WomanPage';
 
