@@ -59,6 +59,87 @@ export const FeedbackButton = () => {
 };
 
 
+export const GenralForm = (props) => {
+    return (
+       
+        <div id={props.id}  class="tab-pane fade  form_content">
+            <div id="name-group" class="form-group">
+                {/* <label for="name"></label> */}
+                <input type="text" rows="1" class="details" cols="35" id="name" name="name" placeholder={Dictionary.name} required />
+            </div>
+
+            <div id="name-group" class="form-group">
+                {/* <label for="display"></label> */}
+                <input type="text" rows="1" class="details" cols="35" id="display" name="display" placeholder="display name arabic" />
+            </div>
+
+            <div id="name-group" class="form-group">
+                <input type="text" rows="1" class="details" cols="35" id="timeline" name="Year in timelineme" placeholder="Year in timeline" />
+            </div>
+
+            <div id="name-group" class="form-group">
+                <label for="born_date">{Dictionary.bday}</label>
+                <input type="date" name="date" id="date" required />
+            </div>
+
+            <div id="name-group" class="form-group">
+                <label for="death_date">{Dictionary.dethDay}</label>
+                <input type="date" name="death_date" id="death" />
+            </div>
+
+            {/* <label for="img">Select image:</label>
+                                <input type="file" id="img" name="image" name="img" accept="image/*|audio/*|video/*" />
+                                <button id="add">add</button> */}
+            {/* <div id="name-group" class="form-group">
+                                <label id="lb" for="inputGroupFile04">{Dictionary.upload}</label>
+                                <div class="input-group">
+                                    <div class="custom-file">
+                                        <input type="file" name="file" class="custom-file-input" id="inputGroupFile04" id="media" aria-describedby="inputGroupFileAddon04" />
+                                        <label class="custom-file-label" for="inputGroupFile04">Choose file</label>
+                                    </div>
+                                    <div class="input-group-append">
+                                        <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">{Dictionary.upload}</button>
+                                    </div>
+                                </div>
+                            </div> */}
+
+            <ImageUpload />
+
+            <div class="form-group">
+                <textarea rows="4" class="details" cols="50" name="highlights" id="highlights" placeholder="Highlights" required></textarea>
+            </div>
+
+
+            <div class="form-group">
+                <textarea rows="4" class="details" cols="50" name="biography" id="biography" placeholder="Biography" ></textarea>
+            </div>
+
+            <div class="form-group">
+                <textarea rows="4" class="details" cols="50" name="history" id="historical" placeholder="Historical events related" ></textarea>
+            </div>
+
+            <div class="form-group">
+                <textarea rows="4" class="details" cols="50" name="feminism" id="contribution" placeholder="Contribution to Feminism" ></textarea>
+            </div>
+
+            <div class="form-group">
+                <textarea rows="4" class="details" cols="50" name="facts" id="facts" placeholder="Interesting fact / story" ></textarea>
+            </div>
+
+            <div class="form-group">
+                <select name="type" id="type">
+                    <option value="bibliography" name="bibliography">Bibliography</option>
+                    <option value="link" name="link">Link</option>
+                </select>
+                <input type="text" rows="4" class="details" cols="50" name="quotes" id="quotes" placeholder="Quotes and notable works" />
+                <input id="link" type="text" rows="4" class="details" cols="50" name="link" placeholder="link" />
+            </div>
+            </div>
+        
+    )
+}
+
+
 
 export const EditWomanForm = () => {
     return (
@@ -72,86 +153,27 @@ export const EditWomanForm = () => {
                         </button>
                         <h5 class="modal-title" id="staticBackdropLabel">{Dictionary.addWoman}</h5>
                     </div>
+
                     <div class="modal-body">
-                        <form dir="RTL" id="woman_form" name="woman_form"  >
+                    <form dir="RTL" id="woman_form" name="woman_form"  >
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a data-toggle="tab" href="#hebrew">עברית</a></li>
+                            <li><a data-toggle="tab" href="#english">English</a></li>
+                            <li><a data-toggle="tab" href="#arabic">Arabic</a></li>
+                        </ul>
 
-                            <div id="name-group" class="form-group">
-                                {/* <label for="name"></label> */}
-                                <input type="text" rows="1" class="details" cols="35" id="name" name="name" placeholder={Dictionary.name} required />
-                            </div>
-
-                            <div id="name-group" class="form-group">
-                                {/* <label for="display"></label> */}
-                                <input type="text" rows="1" class="details" cols="35" id="display" name="display" placeholder="display name" />
-                            </div>
-
-                            <div id="name-group" class="form-group">
-                                <input type="text" rows="1" class="details" cols="35" id="timeline" name="Year in timelineme" placeholder="Year in timeline" />
-                            </div>
-
-                            <div id="name-group" class="form-group">
-                                <label for="born_date">{Dictionary.bday}</label>
-                                <input type="date" name="date" id="date" required />
-                            </div>
-
-                            <div id="name-group" class="form-group">
-                                <label for="death_date">{Dictionary.dethDay}</label>
-                                <input type="date" name="death_date" id="death" />
-                            </div>
-
-                                {/* <label for="img">Select image:</label>
-                                <input type="file" id="img" name="image" name="img" accept="image/*|audio/*|video/*" />
-                                <button id="add">add</button> */}
-                            {/* <div id="name-group" class="form-group">
-                                <label id="lb" for="inputGroupFile04">{Dictionary.upload}</label>
-                                <div class="input-group">
-                                    <div class="custom-file">
-                                        <input type="file" name="file" class="custom-file-input" id="inputGroupFile04" id="media" aria-describedby="inputGroupFileAddon04" />
-                                        <label class="custom-file-label" for="inputGroupFile04">Choose file</label>
-                                    </div>
-                                    <div class="input-group-append">
-                                        <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">{Dictionary.upload}</button>
-                                    </div>
-                                </div>
-                            </div> */}
-
-                            <ImageUpload/>
-
-                            <div class="form-group">
-                                <textarea rows="4" class="details" cols="50" name="highlights" id="highlights" placeholder="Highlights" required></textarea>
-                            </div>
-
-
-                            <div class="form-group">
-                                <textarea rows="4" class="details" cols="50" name="biography" id="biography" placeholder="Biography" ></textarea>
-                            </div>
-
-                            <div class="form-group">
-                                <textarea rows="4" class="details" cols="50" name="history" id="historical" placeholder="Historical events related" ></textarea>
-                            </div>
-
-                            <div class="form-group">
-                                <textarea rows="4" class="details" cols="50" name="feminism" id="contribution" placeholder="Contribution to Feminism" ></textarea>
-                            </div>
-
-                            <div class="form-group">
-                                <textarea rows="4" class="details" cols="50" name="facts" id="facts" placeholder="Interesting fact / story" ></textarea>
-                            </div>
-
-                            <div class="form-group">
-                                <select name="type" id="type">
-                                    <option value="bibliography" name="bibliography">Bibliography</option>
-                                    <option value="link" name="link">Link</option>
-                                </select>
-                                <input type="text" rows="4" class="details" cols="50" name="quotes" id="quotes" placeholder="Quotes and notable works" />
-                                <input id="link" type="text" rows="4" class="details" cols="50" name="link" placeholder="link" />
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="close" class="btn btn-secondary" onClick={resetForm("woman_form")} data-dismiss="modal">{Dictionary.close}</button>
-                                <button type="submit" class="btn btn-success" id="submit_form" >{Dictionary.submit} <span class="fa fa-arrow-right"></span></button>
-                            </div>
+                        <div class="tab-content">
+                            <GenralForm id="hebrew" />
+                            <GenralForm id="english" />
+                            <GenralForm id="arabic" />
+                        </div>
                         </form>
                     </div>
+                    <div class="modal-footer">
+                        <button type="button" class="close" class="btn btn-secondary" onClick={resetForm("woman_form")} data-dismiss="modal">{Dictionary.close}</button>
+                        <button type="submit" class="btn btn-success" id="submit_form" >{Dictionary.submit} <span class="fa fa-arrow-right"></span></button>
+                    </div>
+                    
                 </div>
             </div>
         </div>
@@ -215,7 +237,7 @@ $("document").ready(function () {
         //     email: $("#feed_email").val(),
         //     improvement: $("#improvement").val()
         // });
-        
+
         $("#feedbackForm").modal('hide');
         // stop the form from submitting the normal way and refreshing the page
         event.preventDefault();
