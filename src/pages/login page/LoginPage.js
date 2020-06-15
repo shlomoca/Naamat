@@ -1,60 +1,48 @@
+import React, { Component } from 'react';
 import './LoginPage.css';
 import $ from 'jquery';
+import firebase, { db, auth } from '../../config/Firebase';
 import { Link } from 'react-router-dom';
-import React, { Component } from 'react';
 import logo from '../../images/naamatlogo.png';
-import { Dictionary, LangBtn } from '../../Dictionary'
+import { Dictionary, LangBtn } from '../../Dictionary';
+import MainUserPage from '../main user page/MainUserPage';
+import LoginComponent from '../../Components';
+
+// import validator from 'validator';
+// import isEmail from 'validator/lib/isEmail';
+
 
 
 
 
 
 class LoginPage extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            user: {},
+        }
+    }
+
+    authListener() {
+        auth.onAuthStateChanged((user) => {
+            if (user) this.setState({ user });
+            else this.setState({ user: null });
+        })
+    }
+
+    componentDidMount() {
+        this.authListener();
+    }
+
     render() {
-
-
-        return (<div id="loginWrapper" class="wrapper">
-            <div id="langBtnWeapper">
-
-                <LangBtn />
+        return (
+            <div className="page">
+                {this.state.user ? (<MainUserPage />) : (<LoginComponent />)}
             </div>
-            <div class = "loginContainer">
-                <a id="bigLogo"> <img src={logo} alt="logo" /></a>
-
-                <div id="buttonWrapper123">
-                    <form dir="RTL" id="buttonWrapper" name="login_form" >
-                        < input type="email"
-                            id="userName"
-                            placeholder={Dictionary.enterMail}
-                            defaultValue="" required>
-                        </input>
-                        < input type="password"
-                            id="password"
-                            placeholder={Dictionary.enterPass}
-                            defaultValue="" required>
-                        </input>
-
-
-                        <Link to="/mainUserPage">
-                            <button id="loginbtn"
-                                type="submit"
-                                text={Dictionary.login}
-                                className="btn btn-success" >
-                                {Dictionary.login}
-                                </button>
-                        </Link>
-
-
-                    </form>
-                </div>
-            </div>
-        </div>
-
-
         )
-
     }
 }
 export default LoginPage;
-
 

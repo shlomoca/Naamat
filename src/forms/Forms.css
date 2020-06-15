@@ -1,8 +1,6 @@
-
-
-
 label {
     vertical-align: top;
+  
 }
 #modal-header
 {
@@ -14,18 +12,27 @@ background-color: purple;
     overflow-x: none;
 }
 
-#woman_form
+.modal-content
+{
+    overflow-x: none;
+    overflow-y: auto;
+}
+
+.form_content 
 {
     display: flex;
+    border:1px;
+    border-color: #222222;
     /* display: inline-block; */
     flex-wrap: wrap;
     border-collapse:collapse;
-    width:100%;
+    /* width:100%; */
     justify-items: center;
     text-align: center;
     overflow-x: none;
     max-height: 100%;
     overflow-y: auto;
+
 }
 
 .form-group
@@ -48,8 +55,11 @@ background-color: purple;
   font-size: 8em;
   font-family: FontAwesome;
   display: inline-block; 
+  cursor: pointer;
 
 }
+
+
 
 .starrating > label
 {

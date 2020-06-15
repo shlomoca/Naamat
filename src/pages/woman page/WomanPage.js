@@ -1,11 +1,21 @@
 import './WomanPage.css';
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 // import { Dictionary, LangBtn } from '../../Dictionary'
 import { NavBar, BottomBar  } from '../../Components';
 import { EditWomanForm, FeedbackButton } from '../../forms/Forms';
 import { db } from '../../config/Firebase'
 import { Dictionary } from '../../Dictionary';
+<<<<<<< HEAD
  import  ScrollUpButton from "react-scroll-up-button";
+=======
+import $ from 'jquery';
+import ScrollUpButton from "react-scroll-up-button";
+
+
+
+
+>>>>>>> d206c965817c478e40e173dc028be1a4936b44c6
 
 const MainDetails = (props) => {
 
@@ -20,7 +30,15 @@ const MainDetails = (props) => {
     );
 }
 
-
+export const WomenCard = (props) => {
+    return (
+        <div id="womanCardsContainer">
+            <img id="roundImage" src={props.link} alt={props.display} />
+            <h1 >{props.display} </h1>
+            <p>{props.summary}  </p>
+        </div>
+    )
+}
 
 class WomanPage extends Component {
 
@@ -48,10 +66,7 @@ class WomanPage extends Component {
                 <FeedbackButton />
                 <ScrollUpButton />
 
-                {/* <div id="details"  >
-
-                    
-                </div> */}
+               
                 {this.state.women &&
                     this.state.women.map(woman => {
                         return (
@@ -87,7 +102,7 @@ class WomanPage extends Component {
 export default WomanPage;
 
 
-//get women gets all women with the womenName atribute
+//get women gets all women that their name is identical to the womenName atribute
 export function getWoman(womanName) {
     if (womanName) {
 
@@ -109,20 +124,26 @@ export function getWoman(womanName) {
             else {
 
                 women.forEach(element => {
-                    var arr = {};
+                    var obj = {};
                     var keys = Object.keys(element);
-                    //filter only the 
-                    keys.forEach(i => {
-                        if (element[i]) {
-                            arr[i] = element[i];
+                    //filter only the full attributes
+                    keys.forEach(key => {
+                        if (element[key]) {
+                            obj[key] = element[key];
                         }
 
                     });
-                    sortedWomen[arr["id"]] = arr;
+                    sortedWomen[obj["id"]] = obj;
 
                 });
-                // console.log(sortedWomen);
 
+                // ReactDOM.render(<WomenCard display="one women" summary="someone importent" link="https://stack.com.au/wp-content/uploads/2019/05/Rick_Morty_S4.jpg" />,document.getElementById('womenHolder'));
+                
+                Object.keys(sortedWomen).forEach(element => {
+                   
+                   
+
+                })
             }
 
 
@@ -131,44 +152,3 @@ export function getWoman(womanName) {
     else
         console.log("women not found");
 }
-
-
-export const WomenCard = (props) => {
-    return (
-        <div id="womanCardsContainer">
-            
-            <h1 >akds </h1>
-            <p><b>{Dictionary.name}:</b>sadsa</p>
-            <p><b>{Dictionary.bday}</b>:dfsdf</p>
-            <h1 >{props.display} </h1>
-            <p><b>{Dictionary.name}:</b>dsfdsfsdf</p>
-            <p><b>{Dictionary.bday}</b>:sdfsdfs</p>
-
-        </div>
-    );
-}
-
-
-
-
-
-
-
-
-// constructor() {
-    //     super();
-    //     this.womanRef = firebase.firestore().collaction('women');
-    //     this.state = {
-    //         Quotes: "",
-    //         biography: "",
-    //         contribution: "",
-    //         birth: "",
-    //         death: "",
-    //         display: "",
-    //         highlights: "",
-    //         historicalEvents: "",
-    //         interestingFacts: "",
-    //         media: []
-    //     }
-
-    // }
