@@ -3,17 +3,17 @@ import $ from 'jquery';
 import 'jquery-validation'
 import React from 'react';
 import { db } from '../config/Firebase'
-import { Dictionary,langs } from '../Dictionary';
+import { Dictionary, langs } from '../Dictionary';
 import ImageUpload from './ImageUpload';
 import { AfterMessage } from '../Components';
 
 
 
 export const FeedbackButton = () => {
-    
+
     return (
-        <div class="modal fade" id="feedbackForm" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-           <AfterMessage  info='thank you' />
+        <div class="modal fade" id="feedbackForm" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <AfterMessage info='thank you' />
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -64,34 +64,34 @@ export const FeedbackButton = () => {
 
 
 export const GenralForm = (props) => {
-var classAttr="tab-pane fade form_content";
-    if(props.active)
-    classAttr="tab-pane fade form_content show active";
+    var classAttr = "tab-pane fade form_content";
+    if (props.active)
+        classAttr = "tab-pane fade form_content show active";
     return (
-       
-        <div id={props.lang}  class={classAttr}>
+
+        <div id={props.lang} class={classAttr}>
             <div id="name-group" class="form-group">
                 {/* <label for="name"></label> */}
-                <input type="text" lang={props.lang} rows="1" class="details" cols="35" id={"name"+ props.lang} name="name" placeholder={Dictionary.name} required />
+                <input type="text" lang={props.lang} rows="1" class="details" cols="35" id={"name" + props.lang} name="name" placeholder={Dictionary.name} required />
             </div>
 
             <div id="name-group" class="form-group">
                 {/* <label for="display"></label> */}
-                <input type="text" lang={props.lang} rows="1" class="details" cols="35" id={"display"+ props.lang} name="display" placeholder="display name arabic" />
+                <input type="text" lang={props.lang} rows="1" class="details" cols="35" id={"display" + props.lang} name="display" placeholder="display name arabic" />
             </div>
 
             <div id="name-group" class="form-group">
-                <input type="text" lang={props.lang} rows="1" class="details" cols="35" id={"timeline"+ props.lang} name="timelineme" placeholder="Year in timeline" />
+                <input type="text" lang={props.lang} rows="1" class="details" cols="35" id={"timeline" + props.lang} name="timelineme" placeholder="Year in timeline" />
             </div>
 
             <div id="name-group" class="form-group">
                 <label for="born_date">{Dictionary.bday}</label>
-                <input type="date" lang={props.lang} name="date" id={"date"+ props.lang} required  />
+                <input type="date" lang={props.lang} name="date" id={"date" + props.lang} required />
             </div>
 
             <div id="name-group" class="form-group">
                 <label for="death_date">{Dictionary.dethDay}</label>
-                <input type="date" lang={props.lang} name="death" id={"death"+ props.lang} />
+                <input type="date" lang={props.lang} name="death" id={"death" + props.lang} />
             </div>
 
             {/* <label for="img">Select image:</label>
@@ -110,28 +110,28 @@ var classAttr="tab-pane fade form_content";
                                 </div>
                             </div> */}
 
-            <ImageUpload />
+            <ImageUpload bool={$("#name").val() && $("#date").val()} path={`${$("#name").val()+$("#date").val()}/ProfilePic`} />
 
             <div class="form-group">
-                <textarea rows="4" class="details" cols="50" name="highlights" id={"highlights"+ props.lang} placeholder="Highlights" required ></textarea>
+                <textarea rows="4" class="details" cols="50" name="highlights" id={"highlights" + props.lang} placeholder="Highlights" required ></textarea>
             </div>
 
 
             <div class="form-group">
-                <textarea rows="4" class="details" cols="50" name="biography" id={"biography"+ props.lang} placeholder="Biography" ></textarea>
+                <textarea rows="4" class="details" cols="50" name="biography" id={"biography" + props.lang} placeholder="Biography" ></textarea>
             </div>
 
             <div class="form-group">
-                <textarea rows="4" class="details" cols="50" name="history" id={"historical"+ props.lang} placeholder="Historical events related" ></textarea>
+                <textarea rows="4" class="details" cols="50" name="history" id={"historical" + props.lang} placeholder="Historical events related" ></textarea>
             </div>
 
             <div class="form-group">
-                <textarea rows="4" class="details" cols="50" name="feminism" id={"contribution"+ props.lang} placeholder="Contribution to Feminism" ></textarea>
+                <textarea rows="4" class="details" cols="50" name="feminism" id={"contribution" + props.lang} placeholder="Contribution to Feminism" ></textarea>
             </div>
 
 
             <div class="form-group">
-                <textarea rows="4" class="details" cols="50" name="facts" id={"facts"+ props.lang} placeholder="Interesting fact / story" ></textarea>
+                <textarea rows="4" class="details" cols="50" name="facts" id={"facts" + props.lang} placeholder="Interesting fact / story" ></textarea>
             </div>
 
             <div class="form-group">
@@ -139,12 +139,48 @@ var classAttr="tab-pane fade form_content";
                     <option value="bibliography" name="bibliography">Bibliography</option>
                     <option value="link" name="link">Link</option>
                 </select>
-                <input type="text" rows="4" class="details" cols="50" name="quotes" id={"quotes"+ props.lang} placeholder="Quotes and notable works" />
-                <input id={"link"+ props.lang} type="text" rows="4" class="details" cols="50" name="link" placeholder="link" />
+                <input type="text" rows="4" class="details" cols="50" name="quotes" id={"quotes" + props.lang} placeholder="Quotes and notable works" />
+                <input id={"link" + props.lang} type="text" rows="4" class="details" cols="50" name="link" placeholder="link" />
             </div>
-            </div>
-        
+        </div>
+
     )
+}
+
+export const AddCategory = () => {
+    return (
+        <div class="modal fade" id="categoryForm" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <AfterMessage info='thank you' />
+            <div class="modal-dialog ">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" onClick={resetForm("category_form")} class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h5 class="modal-title" id="staticBackdropLabel">Add Category</h5>
+                    </div>
+                    <div class="modal-body">
+                        <form dir="RTL" id="category_form" name="category_form"  >
+
+                            <div id="name-group" class="form-group">
+                                <lable for="category_name">name</lable>
+                                <input type="text" rows="1" class="details" id="category_name" cols="35" name="category_name" placeholder="Category name" required />
+                            </div>
+                            <div id="image-group" class="form-group">
+                                <ImageUpload  />
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-success">{Dictionary.submit} <span class="fa fa-arrow-right"></span></button>
+                                <button type="button" onClick={resetForm("category_form")} class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+
 }
 
 
@@ -156,34 +192,34 @@ export const EditWomanForm = () => {
             <div class="modal-dialog modal-xl">
                 <div class="modal-content">
                     <form dir="RTL" id="woman_form" name="woman_form"  >
-                    <div class="modal-header">
-                        <button type="button" id="xClose" class="close" data-dismiss="modal" aria-label="Close" onClick={resetForm("woman_form")}>
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        <h5 class="modal-title" id="staticBackdropLabel">{Dictionary.addWoman}</h5>
-                    </div>
-
-                    <div class="modal-body">
-                        <ul class="nav nav-tabs">
-                            <li class="active langTabs"><a data-toggle="tab" href="#HE">עברית</a></li>
-                            <li className="langTabs"><a data-toggle="tab" href="#EN">English</a></li>
-                            <li className="langTabs"><a data-toggle="tab" href="#AR">Arabic</a></li>
-                        </ul>
-
-                        <div class="tab-content">
-                            <GenralForm lang={langs[0]} active={true} />
-                            <GenralForm lang={langs[1]}  />
-                            <GenralForm lang={langs[2]} />
-                            
+                        <div class="modal-header">
+                            <button type="button" id="xClose" class="close" data-dismiss="modal" aria-label="Close" onClick={resetForm("woman_form")}>
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <h5 class="modal-title" id="staticBackdropLabel">{Dictionary.addWoman}</h5>
                         </div>
 
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="close" class="btn btn-secondary" onClick={resetForm("woman_form")} data-dismiss="modal">{Dictionary.close}</button>
-                        <button type="submit" for="woman_form" class="btn btn-success" id="submit_form" >{Dictionary.submit} <span class="fa fa-arrow-right"></span></button>
-                    </div>
-                        </form>
-                    
+                        <div class="modal-body">
+                            <ul class="nav nav-tabs">
+                                <li class="active langTabs"><a data-toggle="tab" href="#HE">עברית</a></li>
+                                <li className="langTabs"><a data-toggle="tab" href="#EN">English</a></li>
+                                <li className="langTabs"><a data-toggle="tab" href="#AR">Arabic</a></li>
+                            </ul>
+
+                            <div class="tab-content">
+                                <GenralForm lang={langs[0]} active={true} />
+                                <GenralForm lang={langs[1]} />
+                                <GenralForm lang={langs[2]} />
+
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="close" class="btn btn-secondary" onClick={resetForm("woman_form")} data-dismiss="modal">{Dictionary.close}</button>
+                            <button type="submit" for="woman_form" class="btn btn-success" id="submit_form" >{Dictionary.submit} <span class="fa fa-arrow-right"></span></button>
+                        </div>
+                    </form>
+
                 </div>
             </div>
         </div>
@@ -215,44 +251,24 @@ $("document").ready(function () {
         // var elements = document.getElementById("woman_form").elements;
         var obj = {}
         var id = $("#nameHE").val() + $("#dateHE").val();
-        
-        $($('#woman_form').prop('elements')).each(function(){
-            if(this.value){
+
+        $($('#woman_form').prop('elements')).each(function () {
+            if (this.value) {
                 alert(this.value);
-                obj[this.id]=this.value;
+                obj[this.id] = this.value;
             }
         });
         console.log(obj);
         alert(obj);
         alert(id);
-    //     for (var i = 0, element; element = elements[i++];) {
-    //         alert(element.name);
-    // if (!(element.value === "")){
 
-    // //    obj[element.id]=element.value();
-    //    alert(element.id 
-    //     +"is going in"+element.value()
-    //     );
-    
-        // obj["id"]=id;
-        // obj["name"] = $("#name").val();
-        // obj["display"] = $("#display").val();
-        // obj["birth"] = $("#date").val();
-        // obj["death"] = $("#death").val();
-        // obj["timeline"] = $("#timeline").val();
-        // obj["biography"] = $("#biography").val();
-        // obj["highlights"] = $("#highlights").val();
-        // obj["contribution"] = $("#contribution").val();
-        // obj["historical"] = $("#historical").val();
-        // obj["facts"] = $("#facts").val();
-        // obj["media"] = $("#media").val();
-        
         db.collection('women').doc(id).set(obj);
         // alert("it was submitted");
-        $("#staticBackdrop").modal('hide');
+        // $("#staticBackdrop").modal('hide');
         // $("#afterMessage").modal('show');
         // stop the form from submitting the normal way and refreshing the page
         event.preventDefault();
+        window.location.reload();
     });
 
     //add feedback to database
@@ -261,36 +277,23 @@ $("document").ready(function () {
         //confirm id not exeisting?
         var obj = {}
         var id = $("#feed_name").val();
-        obj["name"] = $("#feed_name").val();
-        obj["email"] = $("#feed_email").val();
-        obj["improvement"] = $("#improvement").val();
-        db.collection('feedbacks').doc(id).set(obj);
-        // console.log(obj);
-        // db.collection('feedbacks').add({
-        //     name: $("#feed_name").val(),
-        //     email: $("#feed_email").val(),
-        //     improvement: $("#improvement").val()
-        // });
+        $($('#feedback_form').prop('elements')).each(function () {
+            if (this.value) {
+                // alert(this.value);
+                obj[this.id] = this.value;
+            }
+        });
+        console.log(obj);
 
-        $("#feedbackForm").modal('hide');
-        $("#afterMessage").modal('show');
+        db.collection('feedbacks').doc(id).set(obj);
+
+        // $("#feedbackForm").modal('hide');
+        // $("#afterMessage").modal('show');
+
         // stop the form from submitting the normal way and refreshing the page
         event.preventDefault();
+        window.location.reload();
     });
-
-
-
-
-
-    // $("#woman_form").submit(function (event) {
-    //     if (!$("#woman_form").valid()) return;
-
-    //     alert("hii");
-
-    //     
-    //     event.preventDefault();
-    // });
-
 
 });
 

@@ -5,7 +5,7 @@ import logo from './images/naamatlogo.png';
 import fblogo from './images/fblogo.png';
 import ytlogo from './images/ytlogo.png';
 import './Components.css';
-import { EditWomanForm } from './forms/Forms';
+import { EditWomanForm,AddCategory } from './forms/Forms';
 import { Link } from 'react-router-dom';
 import LoginPage from './pages/login page/LoginPage';
 import { auth } from 'firebase';
@@ -18,6 +18,7 @@ export const NavBar = () => {
   return (
     <div id="navbar">
       <EditWomanForm />
+      <AddCategory />
       <nav className="navbar navbar-expand-lg navbar-light bg-light" id="navList">
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
@@ -38,6 +39,11 @@ export const NavBar = () => {
               <button type="button" className="btn btn-primary nav-link" >
                 {Dictionary.categories}</button>
             </Link>
+          </li>
+
+          <li className="nav-item">
+            <button type="button" className="btn btn-primary nav-link" data-toggle="modal" data-target="#categoryForm">
+              Add category</button>
           </li>
 
 

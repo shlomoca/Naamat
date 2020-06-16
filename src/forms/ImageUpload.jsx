@@ -58,9 +58,9 @@ onUploadSubmission = e => {
 }*/
   
   handleUpload = () => {
-    if($("#name").val() && $("#date").val()){// if the important keys are written (name and date)
+    if(this.props.bool){// if the important keys are written (name and date)
       const { image } = this.state;
-      const uploadTask = storage.ref(`${$("#name").val()+$("#date").val()}/ProfilePic`).put(image);
+      const uploadTask = storage.ref(this.props.path).put(image);
       uploadTask.on('state_changed',
       (snapshot) => {
         // progrss function ....
