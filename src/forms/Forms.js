@@ -72,7 +72,7 @@ export const GenralForm = (props) => {
         <div id={props.lang} class={classAttr}>
             <div id="name-group" class="form-group">
                 {/* <label for="name"></label> */}
-                <input type="text" lang={props.lang} rows="1" class="details" cols="35"  id={"name"+props.lang} name="name" placeholder={Dictionary.name}  />
+                <input type="text" lang={props.lang} rows="1" class="details" cols="35" id={"name" + props.lang} name="name" placeholder={Dictionary.name} />
             </div>
 
             <div id="name-group" class="form-group">
@@ -86,12 +86,12 @@ export const GenralForm = (props) => {
 
             <div id="name-group" class="form-group">
                 <label for="birth">{Dictionary.bday}</label>
-                <input type="date" lang={props.lang} name="birth" id={"birth"+props.lang}   />
+                <input type="date" lang={props.lang} name="birth" id={"birth" + props.lang} />
             </div>
 
             <div id="name-group" class="form-group">
                 <label for="death">{Dictionary.dethDay}</label>
-                <input type="date" lang={props.lang} name="death" id={"death"+props.lang} />
+                <input type="date" lang={props.lang} name="death" id={"death" + props.lang} />
             </div>
 
             {/* <label for="img">Select image:</label>
@@ -110,10 +110,11 @@ export const GenralForm = (props) => {
                                 </div>
                             </div> */}
 
-            <ImageUpload bool={$("#name").val() && $("#date").val()} path={`${$("#name").val()+$("#date").val()}/ProfilePic`} />
+            <ImageUpload param1="nameHE" param2="birthHE" pathEnd="/ProfilePic" param1Empty="name not enterd" param2Empty="date of birth not ented" />
+
 
             <div class="form-group">
-                <textarea rows="4" class="details" cols="50" name="highlights" id={"highlights"+ props.lang} placeholder="Highlights"  ></textarea>
+                <textarea rows="4" class="details" cols="50" name="highlights" id={"highlights" + props.lang} placeholder="Highlights"  ></textarea>
             </div>
 
 
@@ -163,11 +164,11 @@ export const AddCategory = () => {
                         <form dir="RTL" id="category_form" name="category_form"  >
 
                             <div id="name-group" class="form-group">
-                                <lable for="category_name">name</lable>
+                                <lable for="category_name">{Dictionary.name}</lable>
                                 <input type="text" rows="1" class="details" id="category_name" cols="35" name="category_name" placeholder="Category name" required />
                             </div>
                             <div id="image-group" class="form-group">
-                                <ImageUpload  />
+                                <ImageUpload param1="category_name" param1Empty="category name not enterd" />
                             </div>
 
                             <div class="modal-footer">
@@ -256,24 +257,23 @@ $("document").ready(function () {
         //confirm id not exeisting??
         var obj = {}
         var id = $("#nameHE").val() + $("#birthHE").val();
-        
-        $($('#woman_form').prop('elements')).each(function(){
-            if(this.value){
-                // alert(this.value);
-                obj[this.id]=this.value;
+
+        $($('#woman_form').prop('elements')).each(function () {
+            if (this.value) {
+                obj[this.id] = this.value;
             }
         });
         console.log(obj);
         alert(obj);
-     
-        
+
+
         db.collection('women').doc(id).set(obj);
         // alert("it was submitted");
         // $("#staticBackdrop").modal('hide');
         // $("#afterMessage").modal('show');
         // stop the form from submitting the normal way and refreshing the page
         event.preventDefault();
-        window.location.reload();
+        // window.location.reload();
         // alert(id);
     });
 
