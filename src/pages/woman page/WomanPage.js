@@ -48,9 +48,9 @@ export const WomenDeck = (props) => {
     var cards = props.cards;
     const deck = []
 
-  cards.forEach(woman =>  {
-    deck.push(<WomenCard display={woman} summary="someone importent" link="https://stack.com.au/wp-content/uploads/2019/05/Rick_Morty_S4.jpg" />)
-  })
+//   cards.forEach(woman =>  {
+//     deck.push(<WomenCard display={woman} summary="someone importent" link="https://stack.com.au/wp-content/uploads/2019/05/Rick_Morty_S4.jpg" />)
+//   })
 
   return (
     <div>
