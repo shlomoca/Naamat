@@ -85,7 +85,8 @@ class WomanPage extends Component {
                         return (
                             <div id="womanContainer">
                                 <img id="profilePic" src="https://naamat.org.il/wp-content/themes/Naamat-Child-Theme/images/footer-img.jpg" />
-                                <MainDetails display={woman.display} womanName={woman.name} bday={woman.birth} />
+
+                                <MainDetails display={woman["display"+Dictionary.getLanguage()]} womanName={woman["name"+Dictionary.getLanguage()]} bday={woman["date"+Dictionary.getLanguage()]} />
 
                                 <p><b>{Dictionary.dethDay}:</b> {woman.death}</p>
                                 <p><b>{Dictionary.highlights}:</b> {woman.highlights}</p>

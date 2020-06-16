@@ -72,7 +72,7 @@ var classAttr="tab-pane fade form_content";
         <div id={props.lang}  class={classAttr}>
             <div id="name-group" class="form-group">
                 {/* <label for="name"></label> */}
-                <input type="text" lang={props.lang} rows="1" class="details" cols="35" id={"name"+ props.lang} name="name" placeholder={Dictionary.name} required />
+                <input type="text" lang={props.lang} rows="1" class="details" cols="35"  id={"name"+props.lang} name="name" placeholder={Dictionary.name}  />
             </div>
 
             <div id="name-group" class="form-group">
@@ -85,13 +85,13 @@ var classAttr="tab-pane fade form_content";
             </div>
 
             <div id="name-group" class="form-group">
-                <label for="born_date">{Dictionary.bday}</label>
-                <input type="date" lang={props.lang} name="date" id={"date"+ props.lang} required  />
+                <label for="birth">{Dictionary.bday}</label>
+                <input type="date" lang={props.lang} name="birth" id={"birth"+props.lang}   />
             </div>
 
             <div id="name-group" class="form-group">
-                <label for="death_date">{Dictionary.dethDay}</label>
-                <input type="date" lang={props.lang} name="death" id={"death"+ props.lang} />
+                <label for="death">{Dictionary.dethDay}</label>
+                <input type="date" lang={props.lang} name="death" id={"death"+props.lang} />
             </div>
 
             {/* <label for="img">Select image:</label>
@@ -113,7 +113,7 @@ var classAttr="tab-pane fade form_content";
             <ImageUpload />
 
             <div class="form-group">
-                <textarea rows="4" class="details" cols="50" name="highlights" id={"highlights"+ props.lang} placeholder="Highlights" required ></textarea>
+                <textarea rows="4" class="details" cols="50" name="highlights" id={"highlights"+ props.lang} placeholder="Highlights"  ></textarea>
             </div>
 
 
@@ -204,55 +204,41 @@ $("document").ready(function () {
     });
 
     //fill name and display name at same time.
-    $("#name").on('keyup', function () {
-        $("#display").val($(this).val());
-    });
+    // $("#nameHE").on('keyup', function () {
+    //     $("#displayHE").val($(this).val());
+    //     $("#nameEN").val($(this).val());
+    //     $("#nameAR").val($(this).val());
+    // });
+    // $("#dateHE").on('keyup', function () {
+    //     $("#dateEN").val($(this).val());
+    //     $("#dateAR").val($(this).val());
+    // });
 
     //add woman from the form to database
     $("#woman_form").submit(function (event) {
         if (!$("#woman_form").valid()) return;
         //confirm id not exeisting??
-        // var elements = document.getElementById("woman_form").elements;
         var obj = {}
-        var id = $("#nameHE").val() + $("#dateHE").val();
+        var id = $("#nameHE").val() + $("#birthHE").val();
         
         $($('#woman_form').prop('elements')).each(function(){
             if(this.value){
-                alert(this.value);
+                // alert(this.value);
                 obj[this.id]=this.value;
             }
         });
         console.log(obj);
         alert(obj);
-        alert(id);
-    //     for (var i = 0, element; element = elements[i++];) {
-    //         alert(element.name);
-    // if (!(element.value === "")){
-
-    // //    obj[element.id]=element.value();
-    //    alert(element.id 
-    //     +"is going in"+element.value()
-    //     );
-    
-        // obj["id"]=id;
-        // obj["name"] = $("#name").val();
-        // obj["display"] = $("#display").val();
-        // obj["birth"] = $("#date").val();
-        // obj["death"] = $("#death").val();
-        // obj["timeline"] = $("#timeline").val();
-        // obj["biography"] = $("#biography").val();
-        // obj["highlights"] = $("#highlights").val();
-        // obj["contribution"] = $("#contribution").val();
-        // obj["historical"] = $("#historical").val();
-        // obj["facts"] = $("#facts").val();
-        // obj["media"] = $("#media").val();
+     
         
         db.collection('women').doc(id).set(obj);
         // alert("it was submitted");
-        $("#staticBackdrop").modal('hide');
+        // $("#staticBackdrop").modal('hide');
         // $("#afterMessage").modal('show');
         // stop the form from submitting the normal way and refreshing the page
         event.preventDefault();
+        window.location.reload();
+        // alert(id);
     });
 
     //add feedback to database
