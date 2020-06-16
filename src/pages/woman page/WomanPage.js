@@ -2,7 +2,7 @@ import './WomanPage.css';
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 // import { Dictionary, LangBtn } from '../../Dictionary'
-import { NavBar, BottomBar  } from '../../Components';
+import { NavBar, BottomBar } from '../../Components';
 import { EditWomanForm, FeedbackButton } from '../../forms/Forms';
 import { db } from '../../config/Firebase'
 import { Dictionary } from '../../Dictionary';
@@ -36,41 +36,45 @@ export const WomenCard = (props) => {
     )
 }
 export const WomenDeck = (props) => {
-// var deck= <div id='womanDeck'></div>;
-{/* var deck = document.createElement('div').createAttribute("id").setAttribute("womanDeck"); */}
-//  console.log(props.cards);
-//  return (
-//     {if(props.cards)
-//    deck.appendChild( <WomenCard display="one women" summary="someone importent" link="https://stack.com.au/wp-content/uploads/2019/05/Rick_Morty_S4.jpg" />
-   // deck+=</div>;
+    // var deck= <div id='womanDeck'></div>;
+    {/* var deck = document.createElement('div').createAttribute("id").setAttribute("womanDeck"); */ }
+    //  console.log(props.cards);
+    //  return (
+    //     {if(props.cards)
+    //    deck.appendChild( <WomenCard display="one women" summary="someone importent" link="https://stack.com.au/wp-content/uploads/2019/05/Rick_Morty_S4.jpg" />
+    // deck+=</div>;
     //    deck
     // )
-    var cards = props.cards;
-    const deck = []
 
-  cards.forEach(woman =>  {
-    deck.push(<WomenCard display={woman} summary="someone importent" link="https://stack.com.au/wp-content/uploads/2019/05/Rick_Morty_S4.jpg" />)
-  })
+    const cards = Object.values(props.cards);
+    const deck = [];
 
-  return (
-    <div>
-      {deck}
-    </div>
-  )
+    console.log(cards);
+
+    cards.map(woman => {
+        deck.push(<WomenCard display={woman.nameHE} summary={woman.highlightsHE} link={woman.link} />)
+    })
+
+    return (
+        <div>
+            {deck}
+        </div>
+    )
 }
 
 
 //delete woman by id.
 export function deleteWoman(id) {
-    
+
     return () => {
         console.log(id);
         if (id) {
-            db.collection('women').doc(id).delete();
-            // alert("woman "+id+" was deleted");
-            //  window.location.reload();
+            db.collection('women').doc(id).delete().then(() => {
+                alert("woman " + id + " was deleted");
+                window.location.reload();
+            });
         }
-        else 
+        else
             alert("wrong id");
     }
 
@@ -101,15 +105,15 @@ class WomanPage extends Component {
                 <NavBar />
                 <FeedbackButton />
                 <ScrollUpButton />
-                <div id = "womenHolder"></div>
-               
+                <div id="womenHolder"></div>
+
                 {this.state.women &&
                     this.state.women.map(woman => {
                         return (
                             <div id="womanContainer">
                                 <img id="profilePic" src="https://naamat.org.il/wp-content/themes/Naamat-Child-Theme/images/footer-img.jpg" />
 
-                                <MainDetails display={woman["display"+Dictionary.getLanguage()]} womanName={woman["name"+Dictionary.getLanguage()]} bday={woman["date"+Dictionary.getLanguage()]} />
+                                <MainDetails display={woman["display" + Dictionary.getLanguage()]} womanName={woman["name" + Dictionary.getLanguage()]} bday={woman["date" + Dictionary.getLanguage()]} />
 
                                 <p><b>{Dictionary.dethDay}:</b> {woman.death}</p>
                                 <p><b>{Dictionary.highlights}:</b> {woman.highlights}</p>
@@ -152,29 +156,30 @@ export function getWoman(womanName) {
                     console.log("no data");
 
             });
+            console.log(women);
             var sortedWomen = {};
             if (women.length === 0)
                 console.log("no women");
             else {
 
-                women.forEach(element => {
-                    var obj = {};
-                    var keys = Object.keys(element);
-                    //filter only the full attributes
-                    keys.forEach(key => {
-                        if (element[key]) {
-                            obj[key] = element[key];
-                        }
+                // women.forEach(element => {
+                //     var obj = {};
+                //     var keys = Object.keys(element);
+                //     //filter only the full attributes
+                //     keys.forEach(key => {
+                //         if (element[key]) {
+                //             obj[key] = element[key];
+                //         }
 
-                    });
-                    sortedWomen[obj["id"]] = obj;
+                //     });
+                //     sortedWomen[obj["id"]] = obj;
 
-                });
+                // });
 
-               
-ReactDOM.render(<WomenDeck cards={sortedWomen} />, document.getElementById('womenHolder'))
                 
-             
+                ReactDOM.render(<WomenDeck cards={women} />, document.getElementById('womenHolder'))
+
+
             }
 
 
@@ -183,3 +188,9 @@ ReactDOM.render(<WomenDeck cards={sortedWomen} />, document.getElementById('wome
     else
         console.log("women not found");
 }
+
+
+$(document).ready( () => {
+    
+    getWoman("שלמה כרמי");
+});
