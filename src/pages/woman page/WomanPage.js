@@ -35,6 +35,29 @@ export const WomenCard = (props) => {
         </div>
     )
 }
+export const WomenDeck = (props) => {
+// var deck= <div id='womanDeck'></div>;
+{/* var deck = document.createElement('div').createAttribute("id").setAttribute("womanDeck"); */}
+//  console.log(props.cards);
+//  return (
+//     {if(props.cards)
+//    deck.appendChild( <WomenCard display="one women" summary="someone importent" link="https://stack.com.au/wp-content/uploads/2019/05/Rick_Morty_S4.jpg" />
+   // deck+=</div>;
+    //    deck
+    // )
+    var cards = props.cards;
+    const deck = []
+
+  cards.forEach(woman =>  {
+    deck.push(<WomenCard display={woman} summary="someone importent" link="https://stack.com.au/wp-content/uploads/2019/05/Rick_Morty_S4.jpg" />)
+  })
+
+  return (
+    <div>
+      {deck}
+    </div>
+  )
+}
 
 
 //delete woman by id.
@@ -78,7 +101,7 @@ class WomanPage extends Component {
                 <NavBar />
                 <FeedbackButton />
                 <ScrollUpButton />
-
+                <div id = "womenHolder"></div>
                
                 {this.state.women &&
                     this.state.women.map(woman => {
@@ -117,7 +140,7 @@ export function getWoman(womanName) {
     console.log(womanName);
     if (womanName) {
 
-        db.collection('women').where("name", "==", womanName).get().then(snapshot => {
+        db.collection('women').where("nameHE", "==", womanName).get().then(snapshot => {
             const women = [];
             //get a women arry with all women results for this search
             snapshot.forEach(doc => {
@@ -148,9 +171,9 @@ export function getWoman(womanName) {
 
                 });
 
-                console.log(sortedWomen);
-
-                var card = <WomenCard display="one women" summary="someone importent" link="https://stack.com.au/wp-content/uploads/2019/05/Rick_Morty_S4.jpg" />;
+               
+ReactDOM.render(<WomenDeck cards={sortedWomen} />, document.getElementById('womenHolder'))
+                
              
             }
 

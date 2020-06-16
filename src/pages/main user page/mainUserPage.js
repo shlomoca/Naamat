@@ -16,15 +16,13 @@ class MainUserPage extends Component {
              
                 <NavBar />
 
-                <div id = "womenHolder">
-
-                </div>
+                
                 <FeedbackButton />
                 <PictursCarousel />
                 
                 {/* <BottomBar/> */}
-                {/* <DisplayModal link='https://he.wikipedia.org/wiki/%D7%A0%D7%A2%D7%9E%D7%AA' details='Wikipedia'/>
-                <AfterMessage info='this is check!!!' /> */}
+                 {/* <DisplayModal link='https://he.wikipedia.org/wiki/%D7%A0%D7%A2%D7%9E%D7%AA' details='Wikipedia'/> */}
+                {/* <AfterMessage info='this is check!!!' />  */}
             </div>
         );
         
