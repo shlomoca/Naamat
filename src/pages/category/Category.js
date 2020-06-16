@@ -1,7 +1,7 @@
 import './Category.css'
 import React, { Component } from 'react';
 import { NavBar, BottomBar } from '../../Components';
-import { db } from '../../config/Firebase'
+import { db,storage } from '../../config/Firebase'
 
 
 class Category extends Component {

@@ -1,4 +1,5 @@
-.container {
+.container 
+{
     position: relative;
     width: 100%;
     max-width: 400px;
@@ -12,15 +13,18 @@
       flex-wrap: wrap;
       justify-content: center;
       /* align-content: center; */
+      
   }
   
-  .container img {
+  .container img 
+  {
     width: 250px;
     height: 250px;
     object-fit: cover;
   }
   
-  .container .btn {
+  .container .btn 
+  {
     position: absolute;
     top: 13%;
     left: 50%;
@@ -36,6 +40,7 @@
     text-align: center;
   }
   
-  .container .btn:hover {
+  .container .btn:hover 
+  {
     background-color:transparent;
   }

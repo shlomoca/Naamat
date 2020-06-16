@@ -137,7 +137,7 @@ export default WomanPage;
 
 //get women gets all women that their name is identical to the womenName atribute
 export function getWoman(womanName) {
-    console.log(womanName);
+    // console.log(womanName);
     if (womanName) {
 
         db.collection('women').where("nameHE", "==", womanName).get().then(snapshot => {
