@@ -31,6 +31,6 @@ class MainUserPage extends Component {
 export default MainUserPage
 $(document).ready( () => {
     
-         getWoman("שלמה כרמי");
+        //  getWoman("שלמה כרמי");
     });
 
