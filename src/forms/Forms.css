@@ -84,9 +84,7 @@ padding-bottom: 3%;
 { color: #ffca08 ;  } /* Set yellow color when star hover */
 .starrating{
     /* overflow: auto; */
-    max-width: 30%;
-    /* max-width: 100%; */
-
+    max-width: 100%;
 }
 /* --------------------------- */
 
@@ -97,7 +95,7 @@ padding-bottom: 3%;
 
 .details2{
     width: 180%;
-    /* padding-top: 0%; */
+    padding-top: 0%;
 }
     
 
