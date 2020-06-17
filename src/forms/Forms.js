@@ -52,7 +52,7 @@ export const FeedbackButton = () => {
 
                             <div class="modal-footer">
                                 <button type="submit" class="btn btn-success">{Dictionary.submit} <span class="fa fa-arrow-right"></span></button>
-                                <button type="button" onClick={resetForm("feedback_form")} class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" onClick={resetForm("feedback_form")} class="btn btn-secondary" data-dismiss="modal">{Dictionary.close}</button>
                             </div>
                         </form>
                     </div>
@@ -282,15 +282,21 @@ $("document").ready(function () {
         if (!$("#feedback_form").valid()) return;
         //confirm id not exeisting?
         var obj = {}
-        var id = $("#feed_name").val();
+        var id = $("#feed_name").val()+$("#feed_email").val();
+        var maxscoreSet=false;
         $($('#feedback_form').prop('elements')).each(function () {
             if (this.value) {
-                // alert(this.value);
+                if(this.type=="radio"){
+                    if($(this).is(':checked')&&!maxscoreSet){
+                        maxscoreSet=true;
+                        obj["score"]=this.value;
+                    }
+                }
+                else
                 obj[this.id] = this.value;
             }
         });
         console.log(obj);
-
         db.collection('feedbacks').doc(id).set(obj);
 
         // $("#feedbackForm").modal('hide');
@@ -298,7 +304,7 @@ $("document").ready(function () {
 
         // stop the form from submitting the normal way and refreshing the page
         event.preventDefault();
-        window.location.reload();
+        // window.location.reload();
     });
 
 });
