@@ -9,6 +9,7 @@ import { AfterMessage } from '../Components';
 
 
 
+
 export const FeedbackButton = () => {
 
     return (
@@ -70,29 +71,18 @@ export const GenralForm = (props) => {
     return (
 
         <div id={props.lang} class={classAttr}>
-            <div id="name-group" class="form-group">
-                {/* <label for="name"></label> */}
-                <input type="text" lang={props.lang} rows="1" class="details" cols="35" id={"name" + props.lang} name="name" placeholder={Dictionary.name} />
-            </div>
+
 
             <div id="name-group" class="form-group">
                 {/* <label for="display"></label> */}
                 <input type="text" lang={props.lang} rows="1" class="details" cols="35" id={"display" + props.lang} name="display" placeholder="display name arabic" />
             </div>
 
-            <div id="name-group" class="form-group">
-                <input type="text" lang={props.lang} rows="1" class="details" cols="35" id={"timeline" + props.lang} name="timelineme" placeholder="Year in timeline" />
-            </div>
 
-            <div id="name-group" class="form-group">
-                <label for="birth">{Dictionary.bday}</label>
-                <input type="date" lang={props.lang} name="birth" id={"birth" + props.lang} />
-            </div>
 
-            <div id="name-group" class="form-group">
-                <label for="death">{Dictionary.dethDay}</label>
-                <input type="date" lang={props.lang} name="death" id={"death" + props.lang} />
-            </div>
+
+
+
 
             {/* <label for="img">Select image:</label>
                                 <input type="file" id="img" name="image" name="img" accept="image/*|audio/*|video/*" />
@@ -187,6 +177,8 @@ export const AddCategory = () => {
 
 
 export const EditWomanForm = () => {
+    $("#step2").hide();
+    $("#popup").hide();
     return (
 
         <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -208,9 +200,36 @@ export const EditWomanForm = () => {
                             </ul>
 
                             <div class="tab-content">
-                                <GenralForm lang={langs[0]} active={true} />
-                                <GenralForm lang={langs[1]} />
-                                <GenralForm lang={langs[2]} />
+                                <div id="step1">
+                                    <h2>step 1</h2>
+                                    <div id="name-group" class="form-group">
+                                        {/* <label for="name"></label> */}
+                                        <label for="name">{Dictionary.name}</label>
+
+                                        <input type="text" rows="1" class="details" cols="35" id="name1" name="name" placeholder="אנא הכנס שם מלא" />
+                                    </div>
+                                    <div id="name-group" class="form-group">
+                                        <label for="birth">{Dictionary.bday}</label>
+                                        <input type="date" name="birth" id="birth1" />
+                                    </div>
+                                    <div id="name-group" class="form-group">
+                                        <label for="death">{Dictionary.dethDay}</label>
+                                        <input type="date" name="death" id="death" />
+                                    </div>
+                                    <div id="name-group" class="form-group">
+                                        <input type="text" rows="1" class="details" cols="35" id="timeline" name="timelineme" placeholder="Year in timeline" />
+                                    </div>
+                                    <button id="submit1" type="button" class="btn btn-success" onClick={showing("#step2", "#step1")}>הבא</button>
+                                </div>
+                                <div id="popup">
+                                    <span class="popuptext" id="myPopup">בבקשה מלא את כל הפרטים</span>
+                                </div>
+                                <div id="step2">
+                                    <h2>step 2</h2>
+                                    <GenralForm lang={langs[0]} active={true} />
+                                    <GenralForm lang={langs[1]} />
+                                    <GenralForm lang={langs[2]} />
+                                </div>
 
                             </div>
 
@@ -308,7 +327,27 @@ function resetForm(id) {
     return () => {
         console.log(id);
         $("#" + id).trigger("reset");
+        $("#step1").show();
+        $("#step2").hide();
     }
 };
+
+function showing(id, id2) {
+    return () => {
+        if (!($("#name1").val()) || !($("#birth1").val())) {
+            $("#popup").show();
+            $("#popup").fadeOut(2000, function () {
+                // Animation complete.
+            });
+            // alert("מלא את הפרטים כדי להמשיך");
+        }
+        else {
+            $(id).show();
+            $(id2).hide();
+        }
+    }
+
+
+}
 
 
