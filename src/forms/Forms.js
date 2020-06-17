@@ -150,7 +150,7 @@ export const GenralForm = (props) => {
 
 export const AddCategory = () => {
     return (
-        <div class="modal fade" id="categoryForm" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal fade" id="categoryForm" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <AfterMessage info='thank you' />
             <div class="modal-dialog ">
                 <div class="modal-content">
@@ -158,7 +158,7 @@ export const AddCategory = () => {
                         <button type="button" onClick={resetForm("category_form")} class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
-                        <h5 class="modal-title" id="staticBackdropLabel">Add Category</h5>
+                        <h5 class="modal-title" id="staticBackdropLabel">{Dictionary.addcategory}</h5>
                     </div>
                     <div class="modal-body">
                         <form dir="RTL" id="category_form" name="category_form"  >
@@ -280,20 +280,20 @@ $("document").ready(function () {
     //add feedback to database
     $("#feedback_form").submit(function (event) {
         if (!$("#feedback_form").valid()) return;
-        //confirm id not exeisting?
+
         var obj = {}
-        var id = $("#feed_name").val()+$("#feed_email").val();
-        var maxscoreSet=false;
+        var id = $("#feed_name").val() + $("#feed_email").val();
+        var maxscoreSet = false;
         $($('#feedback_form').prop('elements')).each(function () {
             if (this.value) {
-                if(this.type=="radio"){
-                    if($(this).is(':checked')&&!maxscoreSet){
-                        maxscoreSet=true;
-                        obj["score"]=this.value;
+                if (this.type == "radio") {
+                    if ($(this).is(':checked') && !maxscoreSet) {
+                        maxscoreSet = true;
+                        obj["score"] = this.value;
                     }
                 }
                 else
-                obj[this.id] = this.value;
+                    obj[this.id] = this.value;
             }
         });
         console.log(obj);

@@ -17,7 +17,7 @@ class MainUserPage extends Component {
                 <NavBar />
 
                 
-                <FeedbackButton />
+                
                 <PictursCarousel />
                 
                 {/* <BottomBar/> */}
