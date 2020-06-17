@@ -25,7 +25,7 @@ export const Dictionary = new LocalizedStrings({
     categories: `Categories`,
     search: `Search`,
     addWoman: `Add woman`,
-    
+    addcategory: `add category`,
     
     //forms
     name: `Name`,
@@ -46,7 +46,7 @@ export const Dictionary = new LocalizedStrings({
     close:`Close`,
     profilepic:'Profile Picture',
     anotherpictures:'Another Pictures',
-    mustfilled:' Must filled *',
+    mustfilled:' required field *',
     //components
     
     builders: `This site was built by: Shlomo Carmi, Daniel Raz, Sahar Cohen, Adiel Tsayag, Matan Yemin`,
@@ -67,6 +67,7 @@ export const Dictionary = new LocalizedStrings({
     categories: `קטגוריות`,
     search: `חיפוש`,
     addWoman: `הוסיפי אישה`,
+    addcategory: `הוסיפי קטגוריה`,
     
     //forms
     name: `שם`,
@@ -87,7 +88,7 @@ export const Dictionary = new LocalizedStrings({
     close:`סגרי`,
     profilepic:'תמונת פרופיל',
     anotherpictures:'תמונות נוספות',
-    mustfilled:'* חייב למלא',
+    mustfilled:'* שדות חובה',
     //components
     builders: 'אתר זה נבנה על ידי: שלמה כרמי, דניאל רז, סהר כהן, עדיאל צייג, מתן ימין',
     
@@ -108,7 +109,7 @@ export const Dictionary = new LocalizedStrings({
     categories: `التصنيفات`,
     search: `بحث`,
     addWoman: `أضف امرأة`,
-    
+    addcategory: `إضافة فئة`,
     
     //forms
     name: `اسم`,
@@ -129,7 +130,7 @@ export const Dictionary = new LocalizedStrings({
     close:`أغلق`,
     profilepic:'الصوره الشخصيه',
     anotherpictures:'صور أخرى',
-    mustfilled:'يجب ملؤها *',
+    mustfilled:' يتطلب حقلا *',
     //components
     
     builders: `تم بناء هذا الموقع من قبل: شلومو كرمي ، دانيال راز ، سحر كوهين ، أديل تساياج ، ماتان يمين `,

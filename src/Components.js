@@ -5,7 +5,7 @@ import logo from './images/naamatlogo.png';
 import fblogo from './images/fblogo.png';
 import ytlogo from './images/ytlogo.png';
 import './Components.css';
-import { EditWomanForm } from './forms/Forms';
+import { EditWomanForm,AddCategory, FeedbackButton } from './forms/Forms';
 import { Link } from 'react-router-dom';
 import LoginPage from './pages/login page/LoginPage';
 import { auth } from 'firebase';
@@ -18,6 +18,8 @@ export const NavBar = () => {
   return (
     <div id="navbar">
       <EditWomanForm />
+      <AddCategory />
+      <FeedbackButton />
       <nav className="navbar navbar-expand-lg navbar-light bg-light" id="navList">
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
@@ -25,7 +27,7 @@ export const NavBar = () => {
 
         <ul className="navbar-nav mr-auto mt-2 mt-lg-0" dir="rtl">
           <li className="nav-item">
-            <a id="smallLogo" href="#" dir="rtl"><img id="logo" src={logo} alt="logo"></img></a>
+            <a id="smallLogo" href="/" dir="rtl"><img id="logo" src={logo} alt="logo"></img></a>
           </li>
           <li id="langItam" className="nav-item" >
             <LangBtn />
@@ -34,10 +36,15 @@ export const NavBar = () => {
 
 
           <li className="nav-item" >
-            <Link to="/serchPage?catagorys">
+            <Link to="/Category">
               <button type="button" className="btn btn-primary nav-link" >
                 {Dictionary.categories}</button>
             </Link>
+          </li>
+
+          <li className="nav-item">
+            <button type="button" className="btn btn-primary nav-link" data-toggle="modal" data-target="#categoryForm">
+              Add category</button>
           </li>
 
 
