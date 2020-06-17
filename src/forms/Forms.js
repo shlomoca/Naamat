@@ -1,6 +1,6 @@
 import './Forms.css';
 import $ from 'jquery';
-import 'jquery-validation'
+import 'jquery-validation';
 import React from 'react';
 import { db } from '../config/Firebase'
 import { Dictionary, langs } from '../Dictionary';
@@ -23,7 +23,7 @@ export const FeedbackButton = () => {
                         <h5 class="modal-title" id="staticBackdropLabel">{Dictionary.feedback}</h5>
                     </div>
                     <div class="modal-body">
-                        <form dir="RTL" id="feedback_form" name="feedback_form"  >
+                        <form dir="RTL" id="feedback_form" name="feedback_form" method="POST"  >
 
                             <div id="name-group" class="form-group">
                                 <input type="text" rows="1" class="details" id="feed_name" cols="35" name="feed_name" placeholder="name" required />
@@ -192,7 +192,7 @@ export const EditWomanForm = () => {
         <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-xl">
                 <div class="modal-content">
-                    <form dir="RTL" id="woman_form" name="woman_form"  >
+                    <form dir="RTL" id="woman_form" name="woman_form" method="POST"  >
                         <div class="modal-header">
                             <button type="button" id="xClose" class="close" data-dismiss="modal" aria-label="Close" onClick={resetForm("woman_form")}>
                                 <span aria-hidden="true">&times;</span>
@@ -267,7 +267,9 @@ $("document").ready(function () {
         alert(obj);
 
 
-        db.collection('women').doc(id).set(obj);
+        db.collection('women').doc(id).set(obj).then(()=>{
+            window.$("#staticBackdrop").modal('hide');
+        });
         // alert("it was submitted");
         // $("#staticBackdrop").modal('hide');
         // $("#afterMessage").modal('show');
@@ -291,14 +293,16 @@ $("document").ready(function () {
         });
         console.log(obj);
 
-        db.collection('feedbacks').doc(id).set(obj);
+        db.collection('feedbacks').doc(id).set(obj).then(function() {
 
-        // $("#feedbackForm").modal('hide');
+            window.$("#feedbackForm").modal('hide');
+            // window.location.reload();
+        });
+
         // $("#afterMessage").modal('show');
 
         // stop the form from submitting the normal way and refreshing the page
         event.preventDefault();
-        window.location.reload();
     });
 
 });
