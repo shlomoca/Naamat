@@ -51,7 +51,7 @@ padding-bottom: 3%;
     width: 90%;
 }
 .langTabs{
- margin: 20px; 
+ padding: 20px; 
 }
 
 
@@ -125,7 +125,13 @@ padding-bottom: 3%;
     margin-left: -80px;
   }
 
-  
+  /* #oneone:target {
+    background: red;
 
-  
-  
+} */
+
+.highlight{     
+    font-weight:bold;
+    /* background: rgb(100, 93, 93); */
+    font-size: 21px;
+   }

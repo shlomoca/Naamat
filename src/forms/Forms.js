@@ -193,13 +193,14 @@ export const EditWomanForm = () => {
                             <h5 class="modal-title" id="staticBackdropLabel">{Dictionary.addWoman}</h5>
                         </div>
 
+                        {/* <div id="mylinks"> */}
                         <div class="modal-body">
-                            <ul class="nav nav-tabs">
+                            <ul id="mylinks" class="nav nav-tabs">
                                 <li class="active langTabs"><a data-toggle="tab" href="#HE">עברית</a></li>
                                 <li className="langTabs"><a data-toggle="tab" href="#EN">English</a></li>
                                 <li className="langTabs"><a data-toggle="tab" href="#AR">Arabic</a></li>
                             </ul>
-
+                            {/* </div> */}
                             <div class="tab-content">
                                 <div id="step1">
                                     <h2>step 1</h2>
@@ -251,6 +252,10 @@ export const EditWomanForm = () => {
 $("document").ready(function () {
 
     // show and hide link input from add woman form.
+    $('#mylinks a').click(function(){
+        $('#mylinks a').removeClass('highlight');
+        $(this).addClass('highlight');
+       });
     $("#link").hide();
     $('select[name=type]').change(function () {
         if ($('select[name=type]').val() == 'link') {
