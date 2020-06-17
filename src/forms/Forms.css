@@ -95,4 +95,34 @@ padding-bottom: 3%;
     width: 180%;
 }
     
-    
+
+/* Popup container - can be anything you want */
+#popup {
+    position: absolute;
+    background-color:purple;
+    cursor: pointer;
+    margin-top:5% ;
+    left: 50%;
+
+  }
+  
+  /* The actual popup */
+  #popup .popuptext {
+    width: 50px;
+    width: 160px;
+    background-color:purple;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 0%;
+    margin-left: -80px;
+  }
+
+  
+
+  
+  
