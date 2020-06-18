@@ -118,7 +118,7 @@ export class LoginComponent extends Component {
         auth.onAuthStateChanged((user) => {
             if (user) this.setState({ user });
             else this.setState({ user: null });
-            alert("onAuthStateChange: " + user)
+            // alert("onAuthStateChange: " + user)
         })
     }
 
@@ -138,11 +138,11 @@ export class LoginComponent extends Component {
 
     render() {
         if (this.state.user) {
-            alert("in user if");
+            // alert("in user if");
             return <div id='renderDiv'>{this.renderDiv()}</div>;
         }
         else if (this.state.user == null) {
-            alert("in null else if");
+            // alert("in null else if");
             return <LoginPage />
         }
     }
