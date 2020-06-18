@@ -193,14 +193,12 @@ export const EditWomanForm = () => {
                             <h5 class="modal-title" id="staticBackdropLabel">{Dictionary.addWoman}</h5>
                         </div>
 
-                        {/* <div id="mylinks"> */}
                         <div class="modal-body">
                             <ul id="mylinks" class="nav nav-tabs">
                                 <li class="active langTabs"><a data-toggle="tab" href="#HE">עברית</a></li>
                                 <li className="langTabs"><a data-toggle="tab" href="#EN">English</a></li>
-                                <li className="langTabs"><a data-toggle="tab" href="#AR">Arabic</a></li>
+                                <li className="langTabs"><a data-toggle="tab" href="#AR">عربى</a></li>
                             </ul>
-                            {/* </div> */}
                             <div class="tab-content">
                                 <div id="step1">
                                     <h2>step 1</h2>
