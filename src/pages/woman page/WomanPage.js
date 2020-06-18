@@ -80,63 +80,102 @@ export function deleteWoman(id) {
 
 }
 
-class WomanPage extends Component {
-
-    state = {
-        women: null
-    }
-
-    componentDidMount() {
-        db.collection('women').get().then(snapshot => {
-            const women = [];
-            snapshot.forEach(doc => {
-                const data = doc.data();
-                women.push(data);
-            })
-            this.setState({ women: women })
-
-        }).catch(error => console.log(error))
-    }
-
-    render() {
-        return (
-            <div id="WomanPageWrapper" class="wrapper" >
-
-                <NavBar />
-                <FeedbackButton />
-                <ScrollUpButton />
-                <div id="womenHolder"></div>
-
-                {this.state.women &&
-                    this.state.women.map(woman => {
-                        return (
-                            <div id="womanContainer">
-                                <img id="profilePic" src="https://naamat.org.il/wp-content/themes/Naamat-Child-Theme/images/footer-img.jpg" />
-
-                                <MainDetails display={woman["display" + Dictionary.getLanguage()]} womanName={woman["name" + Dictionary.getLanguage()]} bday={woman["date" + Dictionary.getLanguage()]} />
-
-                                <p><b>{Dictionary.dethDay}:</b> {woman.death}</p>
-                                <p><b>{Dictionary.highlights}:</b> {woman.highlights}</p>
-                                <p><b>{Dictionary.biography}:</b> {woman.biography}</p>
-                                <p><b>{Dictionary.QuotesAnd}:</b> {woman.quotes}</p>
-                                <p><b>{Dictionary.History}:</b> {woman.historical}</p>
-                                <p><b>{Dictionary.Contribution}:</b> {woman.contribution}</p>
-                                <p><b>{Dictionary.facts}:</b> {woman.facts}</p>
-                                <p><b>{Dictionary.media}:</b> {woman.media}</p>
-                                <button onClick={deleteWoman(woman.id)} >Delete</button>
 
 
-                            </div>)
-                    })}
-                <BottomBar />
 
-            </div>
+export const WomanPage = (props) => {
+    var id = props.id;
+    var attributes = ["Banana", "Orange", "Apple", "Mango"];
+    var n = attributes.includes("Mango");
+    const woman = [];
+    db.collection('women').doc(id).get().then(snapshot => {
+        woman.push(snapshot.data());
+    })
+        .catch(error => console.log(error));
+    return (
+        <div id="WomanPageWrapper" class="wrapper" >
+            <NavBar />
+            <FeedbackButton />
+            <ScrollUpButton />
+            <div id="womenHolder"></div>
+            <img id="profilePic" src="https://naamat.org.il/wp-content/themes/Naamat-Child-Theme/images/footer-img.jpg" />
+            <MainDetails display={woman["display" + Dictionary.getLanguage()]} womanName={woman["name" + Dictionary.getLanguage()]} bday={woman["date" + Dictionary.getLanguage()]} />
+            <p><b>{Dictionary.dethDay}:</b> {woman.death}</p>
+            <p><b>{Dictionary.highlights}:</b> {woman.highlights}</p>
+            <p><b>{Dictionary.biography}:</b> {woman.biography}</p>
+            <p><b>{Dictionary.QuotesAnd}:</b> {woman.quotes}</p>
+            <p><b>{Dictionary.History}:</b> {woman.historical}</p>
+            <p><b>{Dictionary.Contribution}:</b> {woman.contribution}</p>
+            <p><b>{Dictionary.facts}:</b> {woman.facts}</p>
+            <p><b>{Dictionary.media}:</b> {woman.media}</p>
+            <button onClick={deleteWoman(woman.id)} >{Dictionary.delete}</button>
 
-        )
+            <BottomBar />
 
-    }
+        </div>)
+
+
+
 }
+
 export default WomanPage;
+// class WomanPage extends Component {
+
+//     state = {
+//         women: null
+//     }
+
+//     componentDidMount() {
+//         db.collection('women').get().then(snapshot => {
+//             const women = [];
+//             snapshot.forEach(doc => {
+//                 const data = doc.data();
+//                 women.push(data);
+//             })
+//             this.setState({ women: women })
+
+//         }).catch(error => console.log(error))
+//     }
+
+//     render() {
+//         return (
+//             <div id="WomanPageWrapper" class="wrapper" >
+
+//                 <NavBar />
+//                 <FeedbackButton />
+//                 <ScrollUpButton />
+//                 <div id="womenHolder"></div>
+
+//                 {this.state.women &&
+//                     this.state.women.map(woman => {
+//                         return (
+//                             <div id="womanContainer">
+//                                 <img id="profilePic" src="https://naamat.org.il/wp-content/themes/Naamat-Child-Theme/images/footer-img.jpg" />
+
+//                                 <MainDetails display={woman["display" + Dictionary.getLanguage()]} womanName={woman["name" + Dictionary.getLanguage()]} bday={woman["date" + Dictionary.getLanguage()]} />
+
+//                                 <p><b>{Dictionary.dethDay}:</b> {woman.death}</p>
+//                                 <p><b>{Dictionary.highlights}:</b> {woman.highlights}</p>
+//                                 <p><b>{Dictionary.biography}:</b> {woman.biography}</p>
+//                                 <p><b>{Dictionary.QuotesAnd}:</b> {woman.quotes}</p>
+//                                 <p><b>{Dictionary.History}:</b> {woman.historical}</p>
+//                                 <p><b>{Dictionary.Contribution}:</b> {woman.contribution}</p>
+//                                 <p><b>{Dictionary.facts}:</b> {woman.facts}</p>
+//                                 <p><b>{Dictionary.media}:</b> {woman.media}</p>
+//                                 <button onClick={deleteWoman(woman.id)} >Delete</button>
+
+
+//                             </div>)
+//                     })}
+//                 <BottomBar />
+
+//             </div>
+
+//         )
+
+//     }
+// }
+// export default WomanPage;
 
 
 //get women gets all women that their name is identical to the womenName atribute
@@ -176,7 +215,7 @@ export function getWoman(womanName) {
 
                 // });
 
-                
+
                 ReactDOM.render(<WomenDeck cards={women} />, document.getElementById('womenHolder'))
 
 
@@ -190,7 +229,7 @@ export function getWoman(womanName) {
 }
 
 
-$(document).ready( () => {
-    
+$(document).ready(() => {
+
     getWoman("שלמה כרמי");
 });

@@ -15,9 +15,6 @@ class MainUserPage extends Component {
                 
              
                 <NavBar />
-
-                
-                
                 <PictursCarousel />
                 
                 {/* <BottomBar/> */}
@@ -31,6 +28,6 @@ class MainUserPage extends Component {
 export default MainUserPage
 $(document).ready( () => {
     
-        //  getWoman("שלמה כרמי");
+       
     });
 

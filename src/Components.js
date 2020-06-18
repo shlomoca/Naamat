@@ -44,7 +44,7 @@ export const NavBar = () => {
 
           <li className="nav-item">
             <button type="button" className="btn btn-primary nav-link" data-toggle="modal" data-target="#categoryForm">
-              Add category</button>
+              {Dictionary.addcategory}</button>
           </li>
 
 
