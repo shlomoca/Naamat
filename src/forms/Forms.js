@@ -1,11 +1,12 @@
 import './Forms.css';
 import $ from 'jquery';
-import 'jquery-validation'
+import 'jquery-validation';
 import React from 'react';
 import { db } from '../config/Firebase'
 import { Dictionary, langs } from '../Dictionary';
 import ImageUpload from './ImageUpload';
 import { AfterMessage } from '../Components';
+
 
 
 
@@ -23,7 +24,7 @@ export const FeedbackButton = () => {
                         <h5 class="modal-title" id="staticBackdropLabel">{Dictionary.feedback}</h5>
                     </div>
                     <div class="modal-body">
-                        <form dir="RTL" id="feedback_form" name="feedback_form"  >
+                        <form dir="RTL" id="feedback_form" name="feedback_form" method="POST"  >
 
                             <div id="name-group" class="form-group">
                                 <input type="text" rows="1" class="details" id="feed_name" cols="35" name="feed_name" placeholder="name" required />
@@ -33,8 +34,9 @@ export const FeedbackButton = () => {
                             </div>
 
 
-                            <div id="name-group" classname="form-group starContainer">
-                                {Dictionary.HowWasVisit}
+                            <div id="name-groups" classname="form-group starContainer">
+                                {/* centerd info */}
+                            <div align="center"> {Dictionary.HowWasVisit} </div>
                                 <div className="starrating risingstar d-flex justify-content-center flex-row-reverse">
                                     <input type="radio" className="star" id="star5" name="rating" value="5" /><label for="star5" title="5 star"></label>
                                     <input type="radio" className="star" id="star4" name="rating" value="4" /><label for="star4" title="4 star"></label>
@@ -52,7 +54,7 @@ export const FeedbackButton = () => {
 
                             <div class="modal-footer">
                                 <button type="submit" class="btn btn-success">{Dictionary.submit} <span class="fa fa-arrow-right"></span></button>
-                                <button type="button" onClick={resetForm("feedback_form")} class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" onClick={resetForm("feedback_form")} class="btn btn-secondary" data-dismiss="modal">{Dictionary.close}</button>
                             </div>
                         </form>
                     </div>
@@ -70,29 +72,18 @@ export const GenralForm = (props) => {
     return (
 
         <div id={props.lang} class={classAttr}>
-            <div id="name-group" class="form-group">
-                {/* <label for="name"></label> */}
-                <input type="text" lang={props.lang} rows="1" class="details" cols="35" id={"name" + props.lang} name="name" placeholder={Dictionary.name} />
-            </div>
+
 
             <div id="name-group" class="form-group">
                 {/* <label for="display"></label> */}
                 <input type="text" lang={props.lang} rows="1" class="details" cols="35" id={"display" + props.lang} name="display" placeholder="display name arabic" />
             </div>
 
-            <div id="name-group" class="form-group">
-                <input type="text" lang={props.lang} rows="1" class="details" cols="35" id={"timeline" + props.lang} name="timelineme" placeholder="Year in timeline" />
-            </div>
 
-            <div id="name-group" class="form-group">
-                <label for="birth">{Dictionary.bday}</label>
-                <input type="date" lang={props.lang} name="birth" id={"birth" + props.lang} />
-            </div>
 
-            <div id="name-group" class="form-group">
-                <label for="death">{Dictionary.dethDay}</label>
-                <input type="date" lang={props.lang} name="death" id={"death" + props.lang} />
-            </div>
+
+
+
 
             {/* <label for="img">Select image:</label>
                                 <input type="file" id="img" name="image" name="img" accept="image/*|audio/*|video/*" />
@@ -150,7 +141,7 @@ export const GenralForm = (props) => {
 
 export const AddCategory = () => {
     return (
-        <div class="modal fade" id="categoryForm" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal fade" id="categoryForm" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <AfterMessage info='thank you' />
             <div class="modal-dialog ">
                 <div class="modal-content">
@@ -158,7 +149,7 @@ export const AddCategory = () => {
                         <button type="button" onClick={resetForm("category_form")} class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
-                        <h5 class="modal-title" id="staticBackdropLabel">Add Category</h5>
+                        <h5 class="modal-title" id="staticBackdropLabel">{Dictionary.addcategory}</h5>
                     </div>
                     <div class="modal-body">
                         <form dir="RTL" id="category_form" name="category_form"  >
@@ -187,12 +178,14 @@ export const AddCategory = () => {
 
 
 export const EditWomanForm = () => {
+    $("#step2").hide();
+    $("#popup").hide();
     return (
 
         <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-xl">
                 <div class="modal-content">
-                    <form dir="RTL" id="woman_form" name="woman_form"  >
+                    <form dir="RTL" id="woman_form" name="woman_form" method="POST"  >
                         <div class="modal-header">
                             <button type="button" id="xClose" class="close" data-dismiss="modal" aria-label="Close" onClick={resetForm("woman_form")}>
                                 <span aria-hidden="true">&times;</span>
@@ -201,16 +194,42 @@ export const EditWomanForm = () => {
                         </div>
 
                         <div class="modal-body">
-                            <ul class="nav nav-tabs">
+                            <ul id="mylinks" class="nav nav-tabs">
                                 <li class="active langTabs"><a data-toggle="tab" href="#HE">עברית</a></li>
                                 <li className="langTabs"><a data-toggle="tab" href="#EN">English</a></li>
-                                <li className="langTabs"><a data-toggle="tab" href="#AR">Arabic</a></li>
+                                <li className="langTabs"><a data-toggle="tab" href="#AR">عربى</a></li>
                             </ul>
-
                             <div class="tab-content">
-                                <GenralForm lang={langs[0]} active={true} />
-                                <GenralForm lang={langs[1]} />
-                                <GenralForm lang={langs[2]} />
+                                <div id="step1">
+                                    <h2>step 1</h2>
+                                    <div id="name-group" class="form-group">
+                                        {/* <label for="name"></label> */}
+                                        <label for="name">{Dictionary.name}</label>
+
+                                        <input type="text" rows="1" class="details" cols="35" id="name1" name="name" placeholder="אנא הכנס שם מלא" />
+                                    </div>
+                                    <div id="name-group" class="form-group">
+                                        <label for="birth">{Dictionary.bday}</label>
+                                        <input type="date" name="birth" id="birth1" />
+                                    </div>
+                                    <div id="name-group" class="form-group">
+                                        <label for="death">{Dictionary.dethDay}</label>
+                                        <input type="date" name="death" id="death" />
+                                    </div>
+                                    <div id="name-group" class="form-group">
+                                        <input type="text" rows="1" class="details" cols="35" id="timeline" name="timelineme" placeholder="Year in timeline" />
+                                    </div>
+                                    <button id="submit1" type="button" class="btn btn-success" onClick={showing("#step2", "#step1")}>הבא</button>
+                                </div>
+                                <div id="popup">
+                                    <span class="popuptext" id="myPopup">בבקשה מלא את כל הפרטים</span>
+                                </div>
+                                <div id="step2">
+                                    <h2>step 2</h2>
+                                    <GenralForm lang={langs[0]} active={true} />
+                                    <GenralForm lang={langs[1]} />
+                                    <GenralForm lang={langs[2]} />
+                                </div>
 
                             </div>
 
@@ -231,6 +250,10 @@ export const EditWomanForm = () => {
 $("document").ready(function () {
 
     // show and hide link input from add woman form.
+    $('#mylinks a').click(function(){
+        $('#mylinks a').removeClass('highlight');
+        $(this).addClass('highlight');
+       });
     $("#link").hide();
     $('select[name=type]').change(function () {
         if ($('select[name=type]').val() == 'link') {
@@ -267,7 +290,9 @@ $("document").ready(function () {
         alert(obj);
 
 
-        db.collection('women').doc(id).set(obj);
+        db.collection('women').doc(id).set(obj).then(()=>{
+            window.$("#staticBackdrop").modal('hide');
+        });
         // alert("it was submitted");
         // $("#staticBackdrop").modal('hide');
         // $("#afterMessage").modal('show');
@@ -280,25 +305,34 @@ $("document").ready(function () {
     //add feedback to database
     $("#feedback_form").submit(function (event) {
         if (!$("#feedback_form").valid()) return;
-        //confirm id not exeisting?
+
         var obj = {}
-        var id = $("#feed_name").val();
+        var id = $("#feed_name").val() + $("#feed_email").val();
+        var maxscoreSet = false;
         $($('#feedback_form').prop('elements')).each(function () {
             if (this.value) {
-                // alert(this.value);
-                obj[this.id] = this.value;
+                if (this.type == "radio") {
+                    if ($(this).is(':checked') && !maxscoreSet) {
+                        maxscoreSet = true;
+                        obj["score"] = this.value;
+                    }
+                }
+                else
+                    obj[this.id] = this.value;
             }
         });
         console.log(obj);
 
-        db.collection('feedbacks').doc(id).set(obj);
+        db.collection('feedbacks').doc(id).set(obj).then(function() {
 
-        // $("#feedbackForm").modal('hide');
+            window.$("#feedbackForm").modal('hide');
+            // window.location.reload();
+        });
+
         // $("#afterMessage").modal('show');
 
         // stop the form from submitting the normal way and refreshing the page
         event.preventDefault();
-        window.location.reload();
     });
 
 });
@@ -308,7 +342,27 @@ function resetForm(id) {
     return () => {
         console.log(id);
         $("#" + id).trigger("reset");
+        $("#step1").show();
+        $("#step2").hide();
     }
 };
+
+function showing(id, id2) {
+    return () => {
+        if (!($("#name1").val()) || !($("#birth1").val())) {
+            $("#popup").show();
+            $("#popup").fadeOut(2000, function () {
+                // Animation complete.
+            });
+            // alert("מלא את הפרטים כדי להמשיך");
+        }
+        else {
+            $(id).show();
+            $(id2).hide();
+        }
+    }
+
+
+}
 
 

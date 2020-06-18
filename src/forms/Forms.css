@@ -9,6 +9,7 @@ background-color: purple;
 .modal-dialog{
 margin: auto;
 padding-bottom: 3%;
+
 }
 .modal-body
 {
@@ -43,13 +44,14 @@ padding-bottom: 3%;
 
 .form-group
 {
-    padding: 3vh;
+    padding: 0vh;
     /* flex-grow: 1; */
     display: inline-flex;
     white-space: nowrap;
+    width: 90%;
 }
 .langTabs{
- margin: 20px; 
+ padding: 20px; 
 }
 
 
@@ -61,7 +63,7 @@ padding-bottom: 3%;
 .starrating > label:before { 
   content: "\f005"; /* Star */
   margin: 2px;
-  font-size: 2em;
+  font-size: 4em;
   font-family: FontAwesome;
   display: inline-block; 
   cursor: pointer;
@@ -82,7 +84,7 @@ padding-bottom: 3%;
 { color: #ffca08 ;  } /* Set yellow color when star hover */
 .starrating{
     /* overflow: auto; */
-    max-width: 30%;
+    max-width: 100%;
 }
 /* --------------------------- */
 
@@ -93,6 +95,39 @@ padding-bottom: 3%;
 
 .details2{
     width: 180%;
+    padding-top: 0%;
 }
     
-    
+
+/* Popup container - can be anything you want */
+#popup {
+    position: absolute;
+    background-color:purple;
+    cursor: pointer;
+    margin-top:5% ;
+    left: 50%;
+
+  }
+  
+  /* The actual popup */
+  #popup .popuptext {
+    width: 50px;
+    width: 160px;
+    background-color:purple;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 0%;
+    margin-left: -80px;
+  }
+
+/* style the Englsh Arabic עברית on the edit woman form */
+.highlight{     
+    font-weight:bold;
+    /* background: rgb(100, 93, 93); */
+    font-size: 21px;
+   }
