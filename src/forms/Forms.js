@@ -156,8 +156,7 @@ export const AddCategory = () => {
 
 
 export const EditWomanForm = () => {
-    $("#step2").hide();
-    $("#popup").hide();
+
     return (
 
         <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -224,7 +223,8 @@ export const EditWomanForm = () => {
 
 
 $("document").ready(function () {
-
+    $("#step2").hide();
+    $("#popup").hide();
     // show and hide link input from add woman form.
     $('#mylinks a').click(function () {
         $('#mylinks a').removeClass('highlight');
