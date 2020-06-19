@@ -5,12 +5,13 @@ import logo from './images/naamatlogo.png';
 import fblogo from './images/fblogo.png';
 import ytlogo from './images/ytlogo.png';
 import './Components.css';
-import { EditWomanForm, AddCategory, FeedbackButton } from './forms/Forms';
+import { EditWomanModal, AddCategoryModal, FeedbackModal } from './forms/Forms';
 import { db } from './/config/Firebase'
 import { Link } from 'react-router-dom';
 import LoginPage from './pages/login page/LoginPage';
 import { auth } from 'firebase';
 import { getWoman } from '../src/pages/woman page/WomanPage'
+import ScrollUpButton from "react-scroll-up-button";
 
 
 //set a navigation bar to the top of the site
@@ -19,9 +20,10 @@ export const NavBar = () => {
 
   return (
     <div id="navbar">
-      <EditWomanForm />
-      <AddCategory />
-      <FeedbackButton />
+      <EditWomanModal />
+      <AddCategoryModal />
+      <FeedbackModal />
+      <ScrollUpButton />
       <nav className="navbar navbar-expand-lg navbar-light bg-light" id="navList">
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>

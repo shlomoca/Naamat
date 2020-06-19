@@ -10,7 +10,7 @@ import { AfterMessage } from '../Components';
 
 
 
-export const FeedbackButton = () => {
+export const FeedbackModal = () => {
 
     return (
         <div class="modal fade" id="feedbackForm" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -117,7 +117,7 @@ export const GenralForm = (props) => {
     )
 }
 
-export const AddCategory = () => {
+export const AddCategoryModal = () => {
     return (
         <div class="modal fade" id="categoryForm" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <AfterMessage info='thank you' />
@@ -155,9 +155,10 @@ export const AddCategory = () => {
 
 
 
-export const EditWomanForm = () => {
+export const EditWomanModal = () => {
     $("#step2").hide();
     $("#popup").hide();
+
     return (
 
         <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">

@@ -2,7 +2,6 @@ import './MainUserPage.css';
 import $ from 'jquery';
 import React, { Component } from 'react';
 import { NavBar, PictursCarousel, DisplayModal, BottomBar, AfterMessage } from '../../Components.js';
-import { FeedbackButton } from '../../forms/Forms';
 import { getWoman, WomenCard } from '../woman page/WomanPage';
 import { auth } from '../../config/Firebase';
 

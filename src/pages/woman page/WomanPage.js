@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 // import { Dictionary, LangBtn } from '../../Dictionary'
 import { NavBar, BottomBar } from '../../Components';
-import { EditWomanForm, FeedbackButton } from '../../forms/Forms';
+import { FeedbackModal } from '../../forms/Forms';
 import { db } from '../../config/Firebase'
 import { Dictionary } from '../../Dictionary';
 import $ from 'jquery';
@@ -98,8 +98,7 @@ export const WomanPage = (props) => {
 <div>
 
             <NavBar />
-            <FeedbackButton />
-            <ScrollUpButton />
+           
             <div id="womenHolder"></div>
             
             <MainDetails display={obj["display" + Dictionary.getLanguage()]} link={"https://naamat.org.il/wp-content/themes/Naamat-Child-Theme/images/footer-img.jpg"} bday={woman["date" + Dictionary.getLanguage()]} /> 
@@ -152,7 +151,7 @@ export default WomanPage;
 //             <div id="WomanPageWrapper" class="wrapper" >
 
 //                 <NavBar />
-//                 <FeedbackButton />
+//                 <FeedbackModal />
 //                 <ScrollUpButton />
 //                 <div id="womenHolder"></div>
 
