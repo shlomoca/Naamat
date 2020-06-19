@@ -171,36 +171,37 @@ export const EditWomanModal = () => {
                         </div>
 
                         <div class="modal-body">
-                            <ul id="mylinks" class="nav nav-tabs">
-                                <li class="active langTabs"><a data-toggle="tab" href="#HE">עברית</a></li>
-                                <li className="langTabs"><a data-toggle="tab" href="#EN">English</a></li>
-                                <li className="langTabs"><a data-toggle="tab" href="#AR">عربى</a></li>
-                            </ul>
-                            <div class="tab-content">
-                                <div id="step1">
-                                    <h2>step 1</h2>
-                                    <div id="name-group" class="form-group">
-                                        {/* <label for="name"></label> */}
-                                        <label for="name">{Dictionary.name}</label>
 
-                                        <input type="text" rows="1" class="details" cols="35" id="name" name="name" placeholder="אנא הכנס שם מלא" />
-                                    </div>
-                                    <div id="name-group" class="form-group">
-                                        <label for="birth">{Dictionary.bday}</label>
-                                        <input type="date" name="birth" id="birth" />
-                                    </div>
-                                    <div id="name-group" class="form-group">
-                                        <label for="death">{Dictionary.dethDay}</label>
-                                        <input type="date" name="death" id="death" />
-                                    </div>
+                            <div id="step1">
+                                <h2>step 1</h2>
+                                <div id="name-group" class="form-group">
+                                    {/* <label for="name"></label> */}
+                                    <label for="name">{Dictionary.name}</label>
 
-                                    <button id="submit1" type="button" class="btn btn-success" onClick={showing("#step2", "#step1")}>הבא</button>
+                                    <input type="text" rows="1" class="details" cols="35" id="name" name="name" placeholder="אנא הכנס שם מלא" />
                                 </div>
-                                <div id="popup">
-                                    <span class="popuptext" id="myPopup">בבקשה מלא את כל הפרטים</span>
+                                <div id="name-group" class="form-group">
+                                    <label for="birth">{Dictionary.bday}</label>
+                                    <input type="date" name="birth" id="birth" />
                                 </div>
-                                <div id="step2">
-                                    <h2>step 2</h2>
+                                <div id="name-group" class="form-group">
+                                    <label for="death">{Dictionary.dethDay}</label>
+                                    <input type="date" name="death" id="death" />
+                                </div>
+
+                                <button id="submit1" type="button" class="btn btn-success" onClick={showing("#step2", "#step1")}>הבא</button>
+                            </div>
+                            <div id="popup">
+                                <span class="popuptext" id="myPopup">בבקשה מלא את כל הפרטים</span>
+                            </div>
+                            <div id="step2">
+                                <h2>step 2</h2>
+                                <ul id="mylinks" class="nav nav-tabs">
+                                    <li class="langTabs active"><a data-toggle="tab" href="#HE">עברית</a></li>
+                                    <li class="langTabs"><a data-toggle="tab" href="#EN">English</a></li>
+                                    <li class="langTabs"><a data-toggle="tab" href="#AR">عربى</a></li>
+                                </ul>
+                                <div class="tab-content">
                                     <GenralForm lang={langs[0]} active={true} />
                                     <GenralForm lang={langs[1]} />
                                     <GenralForm lang={langs[2]} />
@@ -239,7 +240,7 @@ $("document").ready(function () {
         }
     });
 
-   
+
 
     //add woman from the form to database
     $("#woman_form").submit(function (event) {
@@ -260,11 +261,11 @@ $("document").ready(function () {
                 else if (this.lang == "AR")
                     ar[this.name] = this.value;
                 else
-                    gen[this.name]= this.value;
+                    gen[this.name] = this.value;
             }
         });
 
-gen["id"]=id;
+        gen["id"] = id;
         // console.log(id);
         // console.log(he);
         // console.log(en);
@@ -274,15 +275,15 @@ gen["id"]=id;
             window.$("#staticBackdrop").modal('hide');
             //after message presented
         });
-     
-            db.collection('women').doc(id).collection("langs").doc("EN").set(en).then(() => {
-                window.$("#staticBackdrop").modal('hide');
-                 //after message presented
-            });
-            db.collection('women').doc(id).collection("langs").doc("AR").set(ar).then(() => {
-                window.$("#staticBackdrop").modal('hide');
-                 //after message presented
-            });
+
+        db.collection('women').doc(id).collection("langs").doc("EN").set(en).then(() => {
+            window.$("#staticBackdrop").modal('hide');
+            //after message presented
+        });
+        db.collection('women').doc(id).collection("langs").doc("AR").set(ar).then(() => {
+            window.$("#staticBackdrop").modal('hide');
+            //after message presented
+        });
         // $("#staticBackdrop").modal('hide');
         // $("#afterMessage").modal('show');
         // stop the form from submitting the normal way and refreshing the page
