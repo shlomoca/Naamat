@@ -17,7 +17,7 @@ const MainDetails = (props) => {
 
     return (
         <div id="main_details">
-            <img />
+            <img alt=""/>
             <h1 >{props.display} </h1>
             <p><b>{Dictionary.name}:</b>{props.womanName}</p>
             <p><b>{Dictionary.bday}</b>:{props.bday}</p>
@@ -37,7 +37,7 @@ export const WomenCard = (props) => {
 }
 export const WomenDeck = (props) => {
     // var deck= <div id='womanDeck'></div>;
-    {/* var deck = document.createElement('div').createAttribute("id").setAttribute("womanDeck"); */ }
+    /* var deck = document.createElement('div').createAttribute("id").setAttribute("womanDeck"); */ 
     //  console.log(props.cards);
     //  return (
     //     {if(props.cards)
@@ -106,12 +106,13 @@ class WomanPage extends Component {
                 <FeedbackButton />
                 <ScrollUpButton />
                 <div id="womenHolder"></div>
+                
 
                 {this.state.women &&
                     this.state.women.map(woman => {
                         return (
                             <div id="womanContainer">
-                                <img id="profilePic" src="https://naamat.org.il/wp-content/themes/Naamat-Child-Theme/images/footer-img.jpg" />
+                                <img id="profilePic" src="https://naamat.org.il/wp-content/themes/Naamat-Child-Theme/images/footer-img.jpg" alt="" />
 
                                 <MainDetails display={woman["display" + Dictionary.getLanguage()]} womanName={woman["name" + Dictionary.getLanguage()]} bday={woman["date" + Dictionary.getLanguage()]} />
 
@@ -143,8 +144,9 @@ export default WomanPage;
 export function getWoman(womanName) {
     // console.log(womanName);
     if (womanName) {
-
-        db.collection('women').where("nameHE", "==", womanName).get().then(snapshot => {
+console.log("max:"+getMaxIndex(womanName))
+        db.collection('women').where("nameHE", ">=", womanName).where("nameHE","<",getMaxIndex(womanName)).get().then(snapshot => {
+        // db.collection('women').startAt("nameHE", "==", womanName).get().then(snapshot => {
             const women = [];
             //get a women arry with all women results for this search
             snapshot.forEach(doc => {
@@ -157,27 +159,16 @@ export function getWoman(womanName) {
 
             });
             console.log(women);
-            var sortedWomen = {};
+            // var sortedWomen = {};
             if (women.length === 0)
                 console.log("no women");
             else {
 
-                // women.forEach(element => {
-                //     var obj = {};
-                //     var keys = Object.keys(element);
-                //     //filter only the full attributes
-                //     keys.forEach(key => {
-                //         if (element[key]) {
-                //             obj[key] = element[key];
-                //         }
-
-                //     });
-                //     sortedWomen[obj["id"]] = obj;
-
-                // });
+              
 
                 
                 ReactDOM.render(<WomenDeck cards={women} />, document.getElementById('womenHolder'))
+                // return <WomenDeck cards={women}/>
 
 
             }
@@ -189,8 +180,33 @@ export function getWoman(womanName) {
         console.log("women not found");
 }
 
+//get the next lexicographic index
+function getMaxIndex(str) {
+    var char = str.slice(-1);
+    var newchar = String.fromCharCode(char.charCodeAt(0) + 1);
+    var newstr = str.substring(0, str.length - 1);
+
+    if (str.match(/[\u0600-\u06FF]/i)) {
+      if (!(newchar.match(/[\u0600-\u06FF]/i)))
+        newchar = "اا";
+      return newstr.concat(newchar);
+  
+    }
+    if (str.match(/[\u0590-\u05FF]/i)) {
+      if (!(newchar.match(/[\u0590-\u05FF]/i)))
+        newchar = "אא";
+      return newstr.concat(newchar);
+    }
+    if (str.match(/^[a-zA-Z]+$/i)) {
+      if (char == 'z' || char == 'Z')
+        newchar = "aa";
+      return newstr.concat(newchar);;
+    }
+  
+  }
+
 
 $(document).ready( () => {
     
-    getWoman("שלמה כרמי");
+    // getWoman("שלמה כרמי");
 });

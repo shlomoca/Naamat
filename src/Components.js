@@ -5,10 +5,12 @@ import logo from './images/naamatlogo.png';
 import fblogo from './images/fblogo.png';
 import ytlogo from './images/ytlogo.png';
 import './Components.css';
-import { EditWomanForm,AddCategory, FeedbackButton } from './forms/Forms';
+import { EditWomanForm, AddCategory, FeedbackButton } from './forms/Forms';
+import { db } from './/config/Firebase'
 import { Link } from 'react-router-dom';
 import LoginPage from './pages/login page/LoginPage';
 import { auth } from 'firebase';
+import { getWoman } from '../src/pages/woman page/WomanPage'
 
 
 //set a navigation bar to the top of the site
@@ -59,17 +61,7 @@ export const NavBar = () => {
           </li>
 
           <li className="nav-item" id="stretcher">
-            <form className="form-inline my-2 my-lg-0 input-group mb-3" id="search-form">
-              <button id="search-btn" type="button">
-                <div id="search-bar-outline">
-                  <input class="form-control " type="text" placeholder={Dictionary.search} id="example-search-input4" />
-                  <button id="clear-btn" type="button">
-                    <i class="fa fa-close" onClick={() => document.getElementById('example-search-input4').value = ''}></i>
-                  </button>
-                </div>
-                <i class="fa fa-search" id="search-icon"></i>
-              </button>
-            </form>
+            <Search />
           </li>
 
 
@@ -96,6 +88,61 @@ export const NavBar = () => {
     </div>
   )
 }
+
+
+class Search extends Component {
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      women: null,
+      term: ''
+    }
+    this.searchHandler = this.searchHandler.bind(this);
+  }
+
+  // componentDidMount() {
+  //   db.collection('women').get().then(snapshot => {
+  //     const women = [];
+  //     snapshot.forEach(doc => {
+  //       const data = doc.data();
+  //       women.push(data);
+  //     })
+  //     this.setState({ women: women })
+
+  //   }).catch(error => console.log(error))
+  // }
+
+
+  //follow after input in serach bar
+  searchHandler(event) {
+    this.setState({ term: event.target.value })
+  }
+
+
+  render() {
+    console.log(this.state.term);
+    return (
+      <form className="form-inline my-2 my-lg-0 input-group mb-3" id="search-form">
+        <button id="search-btn" type="button">
+          <div id="search-bar-outline">
+            <input class="form-control " onChange={this.searchHandler} type="text" placeholder={Dictionary.search} id="example-search-input4" />
+            <button id="clear-btn" type="button">
+              <i class="fa fa-close" onClick={() => document.getElementById('example-search-input4').value = ''}></i>
+            </button>
+          </div>
+          <i class="fa fa-search" id="search-icon"></i>
+        </button>
+        <div id="temp">{getWoman(this.state.term)}</div>
+      </form>
+    )
+
+
+  }
+
+}
+
 
 
 //show bottom bar 
@@ -208,23 +255,23 @@ export const AfterMessage = (props) => {
 
   return (
     <div>
-    {/* <button class="clearBtn" data-toggle="modal" data-target="#afterMessage"> <a href="#">something</a></button>  */}
-   <div class="modal fade" id="afterMessage" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-     <div class="modal-dialog modal-xl">
-       <div class="modal-content">
-         <div class="modal-header ">
-            {/* <h5 class="modal-title" id="staticBackdropLabel"></h5>  */}
-         </div>
-         <div class="modal-body">
-           <h1>{props.info}</h1>
-         </div>
-           <div align="center"> 
-           <button type="button" class="close" class="btn btn-secondary" data-dismiss="modal">{Dictionary.close}</button>
-           </div>
-       </div>
-     </div>
-   </div>
- </div>
+      {/* <button class="clearBtn" data-toggle="modal" data-target="#afterMessage"> <a href="#">something</a></button>  */}
+      <div class="modal fade" id="afterMessage" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+          <div class="modal-content">
+            <div class="modal-header ">
+              {/* <h5 class="modal-title" id="staticBackdropLabel"></h5>  */}
+            </div>
+            <div class="modal-body">
+              <h1>{props.info}</h1>
+            </div>
+            <div align="center">
+              <button type="button" class="close" class="btn btn-secondary" data-dismiss="modal">{Dictionary.close}</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   )
 }
 
