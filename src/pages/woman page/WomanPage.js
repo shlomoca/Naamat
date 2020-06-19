@@ -16,10 +16,9 @@ import ScrollUpButton from "react-scroll-up-button";
 const MainDetails = (props) => {
 
     return (
-        <div id="main_details">
-            <img />
+        <div id="main_details" id="profilePic">
+            <img src={props.link} alt={props.display}/>
             <h1 >{props.display} </h1>
-            <p><b>{Dictionary.name}:</b>{props.womanName}</p>
             <p><b>{Dictionary.bday}</b>:{props.bday}</p>
 
         </div>
@@ -52,7 +51,7 @@ export const WomenDeck = (props) => {
     console.log(cards);
 
     cards.map(woman => {
-        deck.push(<WomenCard display={woman.nameHE} summary={woman.highlightsHE} link={woman.link} />)
+        deck.push(<WomenCard display={woman.name} summary={woman.highlightsHE} link={woman.link} />)
     })
 
     return (
@@ -87,19 +86,23 @@ export const WomanPage = (props) => {
     var id = props.id;
     var attributes = ["Banana", "Orange", "Apple", "Mango"];
     var n = attributes.includes("Mango");
+    //get woman by id
     const woman = [];
+    var obj;
     db.collection('women').doc(id).get().then(snapshot => {
         woman.push(snapshot.data());
-    })
-        .catch(error => console.log(error));
-    return (
-        <div id="WomanPageWrapper" class="wrapper" >
+        obj = Object.keys(woman[0]);
+        // console.log(woman);
+        console.log(obj);
+        ReactDOM.render(
+<div>
+
             <NavBar />
             <FeedbackButton />
             <ScrollUpButton />
             <div id="womenHolder"></div>
-            <img id="profilePic" src="https://naamat.org.il/wp-content/themes/Naamat-Child-Theme/images/footer-img.jpg" />
-            <MainDetails display={woman["display" + Dictionary.getLanguage()]} womanName={woman["name" + Dictionary.getLanguage()]} bday={woman["date" + Dictionary.getLanguage()]} />
+            
+            <MainDetails display={obj["display" + Dictionary.getLanguage()]} link={"https://naamat.org.il/wp-content/themes/Naamat-Child-Theme/images/footer-img.jpg"} bday={woman["date" + Dictionary.getLanguage()]} /> 
             <p><b>{Dictionary.dethDay}:</b> {woman.death}</p>
             <p><b>{Dictionary.highlights}:</b> {woman.highlights}</p>
             <p><b>{Dictionary.biography}:</b> {woman.biography}</p>
@@ -109,8 +112,15 @@ export const WomanPage = (props) => {
             <p><b>{Dictionary.facts}:</b> {woman.facts}</p>
             <p><b>{Dictionary.media}:</b> {woman.media}</p>
             <button onClick={deleteWoman(woman.id)} >{Dictionary.delete}</button>
-
+            
             <BottomBar />
+</div>
+            )
+        })
+    .catch(error => console.log(error));
+    
+    return (
+        <div id="WomanPageWrapper" class="wrapper" >
 
         </div>)
 
@@ -183,7 +193,7 @@ export function getWoman(womanName) {
     // console.log(womanName);
     if (womanName) {
 
-        db.collection('women').where("nameHE", "==", womanName).get().then(snapshot => {
+        db.collection('women').where("name", "==", womanName).get().then(snapshot => {
             const women = [];
             //get a women arry with all women results for this search
             snapshot.forEach(doc => {
@@ -200,20 +210,6 @@ export function getWoman(womanName) {
             if (women.length === 0)
                 console.log("no women");
             else {
-
-                // women.forEach(element => {
-                //     var obj = {};
-                //     var keys = Object.keys(element);
-                //     //filter only the full attributes
-                //     keys.forEach(key => {
-                //         if (element[key]) {
-                //             obj[key] = element[key];
-                //         }
-
-                //     });
-                //     sortedWomen[obj["id"]] = obj;
-
-                // });
 
 
                 ReactDOM.render(<WomenDeck cards={women} />, document.getElementById('womenHolder'))

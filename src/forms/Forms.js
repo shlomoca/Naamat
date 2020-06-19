@@ -36,7 +36,7 @@ export const FeedbackButton = () => {
 
                             <div id="name-groups" classname="form-group starContainer">
                                 {/* centerd info */}
-                            <div align="center"> {Dictionary.HowWasVisit} </div>
+                                <div align="center"> {Dictionary.HowWasVisit} </div>
                                 <div className="starrating risingstar d-flex justify-content-center flex-row-reverse">
                                     <input type="radio" className="star" id="star5" name="rating" value="5" /><label for="star5" title="5 star"></label>
                                     <input type="radio" className="star" id="star4" name="rating" value="4" /><label for="star4" title="4 star"></label>
@@ -79,51 +79,29 @@ export const GenralForm = (props) => {
                 <input type="text" lang={props.lang} rows="1" class="details" cols="35" id={"display" + props.lang} name="display" placeholder="display name arabic" />
             </div>
 
-
-
-
-
-
-
-            {/* <label for="img">Select image:</label>
-                                <input type="file" id="img" name="image" name="img" accept="image/*|audio/*|video/*" />
-                                <button id="add">add</button> */}
-            {/* <div id="name-group" class="form-group">
-                                <label id="lb" for="inputGroupFile04">{Dictionary.upload}</label>
-                                <div class="input-group">
-                                    <div class="custom-file">
-                                        <input type="file" name="file" class="custom-file-input" id="inputGroupFile04" id="media" aria-describedby="inputGroupFileAddon04" />
-                                        <label class="custom-file-label" for="inputGroupFile04">Choose file</label>
-                                    </div>
-                                    <div class="input-group-append">
-                                        <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">{Dictionary.upload}</button>
-                                    </div>
-                                </div>
-                            </div> */}
-
-            <ImageUpload param1="nameHE" param2="birthHE" pathEnd="/ProfilePic" param1Empty="name not enterd" param2Empty="date of birth not ented" />
+            <ImageUpload param1="name" param2="birth" pathEnd="/ProfilePic" param1Empty="name not enterd" param2Empty="date of birth not ented" />
 
 
             <div class="form-group">
-                <textarea rows="4" class="details" cols="50" name="highlights" id={"highlights" + props.lang} placeholder="Highlights"  ></textarea>
+                <textarea rows="4" class="details" cols="50" name="highlights" lang={props.lang} id={"highlights" + props.lang} placeholder="Highlights"  ></textarea>
             </div>
 
 
             <div class="form-group">
-                <textarea rows="4" class="details" cols="50" name="biography" id={"biography" + props.lang} placeholder="Biography" ></textarea>
+                <textarea rows="4" class="details" cols="50" name="biography" lang={props.lang} id={"biography" + props.lang} placeholder="Biography" ></textarea>
             </div>
 
             <div class="form-group">
-                <textarea rows="4" class="details" cols="50" name="history" id={"historical" + props.lang} placeholder="Historical events related" ></textarea>
+                <textarea rows="4" class="details" cols="50" name="history" lang={props.lang} id={"historical" + props.lang} placeholder="Historical events related" ></textarea>
             </div>
 
             <div class="form-group">
-                <textarea rows="4" class="details" cols="50" name="feminism" id={"contribution" + props.lang} placeholder="Contribution to Feminism" ></textarea>
+                <textarea rows="4" class="details" cols="50" name="feminism" lang={props.lang} id={"contribution" + props.lang} placeholder="Contribution to Feminism" ></textarea>
             </div>
 
 
             <div class="form-group">
-                <textarea rows="4" class="details" cols="50" name="facts" id={"facts" + props.lang} placeholder="Interesting fact / story" ></textarea>
+                <textarea rows="4" class="details" cols="50" name="facts" lang={props.lang} id={"facts" + props.lang} placeholder="Interesting fact / story" ></textarea>
             </div>
 
             <div class="form-group">
@@ -131,7 +109,7 @@ export const GenralForm = (props) => {
                     <option value="bibliography" name="bibliography">Bibliography</option>
                     <option value="link" name="link">Link</option>
                 </select>
-                <input type="text" rows="4" class="details" cols="50" name="quotes" id={"quotes" + props.lang} placeholder="Quotes and notable works" />
+                <input type="text" rows="4" class="details" cols="50" name="quotes" lang={props.lang} id={"quotes" + props.lang} placeholder="Quotes and notable works" />
                 <input id={"link" + props.lang} type="text" rows="4" class="details" cols="50" name="link" placeholder="link" />
             </div>
         </div>
@@ -206,19 +184,17 @@ export const EditWomanForm = () => {
                                         {/* <label for="name"></label> */}
                                         <label for="name">{Dictionary.name}</label>
 
-                                        <input type="text" rows="1" class="details" cols="35" id="name1" name="name" placeholder="אנא הכנס שם מלא" />
+                                        <input type="text" rows="1" class="details" cols="35" id="name" name="name" placeholder="אנא הכנס שם מלא" />
                                     </div>
                                     <div id="name-group" class="form-group">
                                         <label for="birth">{Dictionary.bday}</label>
-                                        <input type="date" name="birth" id="birth1" />
+                                        <input type="date" name="birth" id="birth" />
                                     </div>
                                     <div id="name-group" class="form-group">
                                         <label for="death">{Dictionary.dethDay}</label>
                                         <input type="date" name="death" id="death" />
                                     </div>
-                                    <div id="name-group" class="form-group">
-                                        <input type="text" rows="1" class="details" cols="35" id="timeline" name="timelineme" placeholder="Year in timeline" />
-                                    </div>
+
                                     <button id="submit1" type="button" class="btn btn-success" onClick={showing("#step2", "#step1")}>הבא</button>
                                 </div>
                                 <div id="popup">
@@ -250,10 +226,10 @@ export const EditWomanForm = () => {
 $("document").ready(function () {
 
     // show and hide link input from add woman form.
-    $('#mylinks a').click(function(){
+    $('#mylinks a').click(function () {
         $('#mylinks a').removeClass('highlight');
         $(this).addClass('highlight');
-       });
+    });
     $("#link").hide();
     $('select[name=type]').change(function () {
         if ($('select[name=type]').val() == 'link') {
@@ -263,43 +239,55 @@ $("document").ready(function () {
         }
     });
 
-    //fill name and display name at same time.
-    // $("#nameHE").on('keyup', function () {
-    //     $("#displayHE").val($(this).val());
-    //     $("#nameEN").val($(this).val());
-    //     $("#nameAR").val($(this).val());
-    // });
-    // $("#dateHE").on('keyup', function () {
-    //     $("#dateEN").val($(this).val());
-    //     $("#dateAR").val($(this).val());
-    // });
+   
 
     //add woman from the form to database
     $("#woman_form").submit(function (event) {
         if (!$("#woman_form").valid()) return;
         //confirm id not exeisting??
-        var obj = {}
-        var id = $("#nameHE").val() + $("#birthHE").val();
+        var he = {};
+        var en = {};
+        var ar = {};
+        var gen = {};
+        var id = $("#name").val() + $("#birth").val();
 
         $($('#woman_form').prop('elements')).each(function () {
             if (this.value) {
-                obj[this.id] = this.value;
+                if (this.lang == "EN")
+                    en[this.name] = this.value;
+                else if (this.lang == "HE")
+                    he[this.name] = this.value;
+                else if (this.lang == "AR")
+                    ar[this.name] = this.value;
+                else
+                    gen[this.name]= this.value;
             }
         });
-        console.log(obj);
-        alert(obj);
 
-
-        db.collection('women').doc(id).set(obj).then(()=>{
+gen["id"]=id;
+        // console.log(id);
+        // console.log(he);
+        // console.log(en);
+        // console.log(ar);
+        db.collection('women').doc(id).set(gen);
+        db.collection('women').doc(id).collection("langs").doc("HE").set(he).then(() => {
             window.$("#staticBackdrop").modal('hide');
+            //after message presented
         });
-        // alert("it was submitted");
+     
+            db.collection('women').doc(id).collection("langs").doc("EN").set(en).then(() => {
+                window.$("#staticBackdrop").modal('hide');
+                 //after message presented
+            });
+            db.collection('women').doc(id).collection("langs").doc("AR").set(ar).then(() => {
+                window.$("#staticBackdrop").modal('hide');
+                 //after message presented
+            });
         // $("#staticBackdrop").modal('hide');
         // $("#afterMessage").modal('show');
         // stop the form from submitting the normal way and refreshing the page
         event.preventDefault();
         // window.location.reload();
-        // alert(id);
     });
 
     //add feedback to database
@@ -311,6 +299,7 @@ $("document").ready(function () {
         var maxscoreSet = false;
         $($('#feedback_form').prop('elements')).each(function () {
             if (this.value) {
+                //if it is the stars rating
                 if (this.type == "radio") {
                     if ($(this).is(':checked') && !maxscoreSet) {
                         maxscoreSet = true;
@@ -323,7 +312,7 @@ $("document").ready(function () {
         });
         console.log(obj);
 
-        db.collection('feedbacks').doc(id).set(obj).then(function() {
+        db.collection('feedbacks').doc(id).set(obj).then(function () {
 
             window.$("#feedbackForm").modal('hide');
             // window.location.reload();
@@ -349,7 +338,7 @@ function resetForm(id) {
 
 function showing(id, id2) {
     return () => {
-        if (!($("#name1").val()) || !($("#birth1").val())) {
+        if (!($("#name").val()) || !($("#birth").val())) {
             $("#popup").show();
             $("#popup").fadeOut(2000, function () {
                 // Animation complete.
