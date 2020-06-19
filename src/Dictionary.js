@@ -47,6 +47,7 @@ export const Dictionary = new LocalizedStrings({
     profilepic:'Profile Picture',
     anotherpictures:'Another Pictures',
     mustfilled:' required field *',
+    delete: `delete`,
     //components
     
     builders: `This site was built by: Shlomo Carmi, Daniel Raz, Sahar Cohen, Adiel Tsayag, Matan Yemin`,
@@ -89,6 +90,7 @@ export const Dictionary = new LocalizedStrings({
     profilepic:'תמונת פרופיל',
     anotherpictures:'תמונות נוספות',
     mustfilled:'* שדות חובה',
+    delete: `מחקי`,
     //components
     builders: 'אתר זה נבנה על ידי: שלמה כרמי, דניאל רז, סהר כהן, עדיאל צייג, מתן ימין',
     
@@ -131,6 +133,7 @@ export const Dictionary = new LocalizedStrings({
     profilepic:'الصوره الشخصيه',
     anotherpictures:'صور أخرى',
     mustfilled:' يتطلب حقلا *',
+    delete: `حذف`,
     //components
     
     builders: `تم بناء هذا الموقع من قبل: شلومو كرمي ، دانيال راز ، سحر كوهين ، أديل تساياج ، ماتان يمين `,
