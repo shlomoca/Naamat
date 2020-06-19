@@ -36,7 +36,7 @@ export const WomenCard = (props) => {
 }
 export const WomenDeck = (props) => {
     // var deck= <div id='womanDeck'></div>;
-    {/* var deck = document.createElement('div').createAttribute("id").setAttribute("womanDeck"); */ }
+    /* var deck = document.createElement('div').createAttribute("id").setAttribute("womanDeck"); */ 
     //  console.log(props.cards);
     //  return (
     //     {if(props.cards)
@@ -192,8 +192,9 @@ export default WomanPage;
 export function getWoman(womanName) {
     // console.log(womanName);
     if (womanName) {
-
-        db.collection('women').where("name", "==", womanName).get().then(snapshot => {
+console.log("max:"+getMaxIndex(womanName))
+        db.collection('women').where("nameHE", ">=", womanName).where("nameHE","<",getMaxIndex(womanName)).get().then(snapshot => {
+        // db.collection('women').startAt("nameHE", "==", womanName).get().then(snapshot => {
             const women = [];
             //get a women arry with all women results for this search
             snapshot.forEach(doc => {
@@ -206,13 +207,14 @@ export function getWoman(womanName) {
 
             });
             console.log(women);
-            var sortedWomen = {};
+            // var sortedWomen = {};
             if (women.length === 0)
                 console.log("no women");
             else {
 
 
                 ReactDOM.render(<WomenDeck cards={women} />, document.getElementById('womenHolder'))
+                // return <WomenDeck cards={women}/>
 
 
             }
@@ -224,8 +226,33 @@ export function getWoman(womanName) {
         console.log("women not found");
 }
 
+//get the next lexicographic index
+function getMaxIndex(str) {
+    var char = str.slice(-1);
+    var newchar = String.fromCharCode(char.charCodeAt(0) + 1);
+    var newstr = str.substring(0, str.length - 1);
 
-$(document).ready(() => {
+    if (str.match(/[\u0600-\u06FF]/i)) {
+      if (!(newchar.match(/[\u0600-\u06FF]/i)))
+        newchar = "اا";
+      return newstr.concat(newchar);
+  
+    }
+    if (str.match(/[\u0590-\u05FF]/i)) {
+      if (!(newchar.match(/[\u0590-\u05FF]/i)))
+        newchar = "אא";
+      return newstr.concat(newchar);
+    }
+    if (str.match(/^[a-zA-Z]+$/i)) {
+      if (char == 'z' || char == 'Z')
+        newchar = "aa";
+      return newstr.concat(newchar);;
+    }
+  
+  }
 
-    getWoman("שלמה כרמי");
+
+$(document).ready( () => {
+    
+    // getWoman("שלמה כרמי");
 });
