@@ -156,8 +156,6 @@ export const AddCategoryModal = () => {
 
 
 export const EditWomanModal = () => {
-    $("#step2").hide();
-    $("#popup").hide();
 
     return (
 
@@ -225,7 +223,8 @@ export const EditWomanModal = () => {
 
 
 $("document").ready(function () {
-
+    $("#step2").hide();
+    $("#popup").hide();
     // show and hide link input from add woman form.
     $('#mylinks a').click(function () {
         $('#mylinks a').removeClass('highlight');
