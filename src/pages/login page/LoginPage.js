@@ -7,7 +7,7 @@ import firebase, { auth } from '../../config/Firebase';
 import logo from '../../images/naamatlogo.png';
 import { Dictionary, LangBtn } from '../../Dictionary';
 import MainUserPage from '../main user page/MainUserPage';
-import WomanPage from '../woman page/WomanPage';
+import {WomanPage} from '../woman page/WomanPage';
 import Category from '../category/Category';
 
 

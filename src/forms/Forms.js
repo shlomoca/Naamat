@@ -64,6 +64,41 @@ export const FeedbackModal = () => {
     );
 };
 
+export const AddCategoryModal = () => {
+    return (
+        <div class="modal fade" id="categoryForm" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <AfterMessage info='thank you' />
+            <div class="modal-dialog ">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" onClick={resetForm("category_form")} class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h5 class="modal-title" id="staticBackdropLabel">{Dictionary.addcategory}</h5>
+                    </div>
+                    <div class="modal-body">
+                        <form dir="RTL" id="category_form" name="category_form"  >
+
+                            <div id="name-group" class="form-group">
+                                <lable for="category_name">{Dictionary.name}</lable>
+                                <input type="text" rows="1" class="details" id="category_name" cols="35" name="category_name" placeholder="Category name" required />
+                            </div>
+                            <div id="image-group" class="form-group">
+                                <ImageUpload param1="category_name" param1Empty="category name not enterd" />
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-success">{Dictionary.submit} <span class="fa fa-arrow-right"></span></button>
+                                <button type="button" onClick={resetForm("category_form")} class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+
+}
 
 export const GenralForm = (props) => {
     var classAttr = "tab-pane fade form_content";
@@ -116,43 +151,6 @@ export const GenralForm = (props) => {
 
     )
 }
-
-export const AddCategoryModal = () => {
-    return (
-        <div class="modal fade" id="categoryForm" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <AfterMessage info='thank you' />
-            <div class="modal-dialog ">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" onClick={resetForm("category_form")} class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        <h5 class="modal-title" id="staticBackdropLabel">{Dictionary.addcategory}</h5>
-                    </div>
-                    <div class="modal-body">
-                        <form dir="RTL" id="category_form" name="category_form"  >
-
-                            <div id="name-group" class="form-group">
-                                <lable for="category_name">{Dictionary.name}</lable>
-                                <input type="text" rows="1" class="details" id="category_name" cols="35" name="category_name" placeholder="Category name" required />
-                            </div>
-                            <div id="image-group" class="form-group">
-                                <ImageUpload param1="category_name" param1Empty="category name not enterd" />
-                            </div>
-
-                            <div class="modal-footer">
-                                <button type="submit" class="btn btn-success">{Dictionary.submit} <span class="fa fa-arrow-right"></span></button>
-                                <button type="button" onClick={resetForm("category_form")} class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    );
-
-}
-
 
 
 export const EditWomanModal = () => {
@@ -224,6 +222,7 @@ export const EditWomanModal = () => {
 
 
 $("document").ready(function () {
+    //make sure only step 1 is shown 
     $("#step2").hide();
     $("#popup").hide();
     // show and hide link input from add woman form.
@@ -239,8 +238,6 @@ $("document").ready(function () {
             $("#link").hide();
         }
     });
-
-
 
     //add woman from the form to database
     $("#woman_form").submit(function (event) {
@@ -272,23 +269,20 @@ $("document").ready(function () {
         // console.log(ar);
         db.collection('women').doc(id).set(gen);
         db.collection('women').doc(id).collection("langs").doc("HE").set(he).then(() => {
-            window.$("#staticBackdrop").modal('hide');
-            //after message presented
         });
 
         db.collection('women').doc(id).collection("langs").doc("EN").set(en).then(() => {
-            window.$("#staticBackdrop").modal('hide');
-            //after message presented
+
         });
         db.collection('women').doc(id).collection("langs").doc("AR").set(ar).then(() => {
-            window.$("#staticBackdrop").modal('hide');
+          
             //after message presented
-        });
+        });  
+        window.$("#staticBackdrop").modal('hide');
         // $("#staticBackdrop").modal('hide');
         // $("#afterMessage").modal('show');
         // stop the form from submitting the normal way and refreshing the page
         event.preventDefault();
-        // window.location.reload();
     });
 
     //add feedback to database
@@ -314,13 +308,10 @@ $("document").ready(function () {
         console.log(obj);
 
         db.collection('feedbacks').doc(id).set(obj).then(function () {
-
             window.$("#feedbackForm").modal('hide');
-            // window.location.reload();
         });
 
         // $("#afterMessage").modal('show');
-
         // stop the form from submitting the normal way and refreshing the page
         event.preventDefault();
     });
@@ -330,13 +321,14 @@ $("document").ready(function () {
 //reset the add woman form when close
 function resetForm(id) {
     return () => {
-        console.log(id);
         $("#" + id).trigger("reset");
         $("#step1").show();
         $("#step2").hide();
+        
     }
 };
 
+//make sure that the use enterd in step one the name and birth date
 function showing(id, id2) {
     return () => {
         if (!($("#name").val()) || !($("#birth").val())) {
@@ -344,7 +336,6 @@ function showing(id, id2) {
             $("#popup").fadeOut(2000, function () {
                 // Animation complete.
             });
-            // alert("מלא את הפרטים כדי להמשיך");
         }
         else {
             $(id).show();

@@ -1,13 +1,11 @@
 import './WomanPage.css';
-import React, { Component } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
-// import { Dictionary, LangBtn } from '../../Dictionary'
 import { NavBar, BottomBar } from '../../Components';
-import { FeedbackModal } from '../../forms/Forms';
 import { db } from '../../config/Firebase'
 import { Dictionary } from '../../Dictionary';
 import $ from 'jquery';
-import ScrollUpButton from "react-scroll-up-button";
+
 
 
 
@@ -17,7 +15,7 @@ const MainDetails = (props) => {
 
     return (
         <div id="main_details" id="profilePic">
-            <img src={props.link} alt={props.display}/>
+            <img src={props.link} alt={props.display} />
             <h1 >{props.display} </h1>
             <p><b>{Dictionary.bday}</b>:{props.bday}</p>
 
@@ -36,7 +34,7 @@ export const WomenCard = (props) => {
 }
 export const WomenDeck = (props) => {
     // var deck= <div id='womanDeck'></div>;
-    /* var deck = document.createElement('div').createAttribute("id").setAttribute("womanDeck"); */ 
+    /* var deck = document.createElement('div').createAttribute("id").setAttribute("womanDeck"); */
     //  console.log(props.cards);
     //  return (
     //     {if(props.cards)
@@ -95,39 +93,38 @@ export const WomanPage = (props) => {
         // console.log(woman);
         console.log(obj);
         ReactDOM.render(
-<div>
 
-            <NavBar />
-           
-            <div id="womenHolder"></div>
-            
-            <MainDetails display={obj["display" + Dictionary.getLanguage()]} link={"https://naamat.org.il/wp-content/themes/Naamat-Child-Theme/images/footer-img.jpg"} bday={woman["date" + Dictionary.getLanguage()]} /> 
-            <p><b>{Dictionary.dethDay}:</b> {woman.death}</p>
-            <p><b>{Dictionary.highlights}:</b> {woman.highlights}</p>
-            <p><b>{Dictionary.biography}:</b> {woman.biography}</p>
-            <p><b>{Dictionary.QuotesAnd}:</b> {woman.quotes}</p>
-            <p><b>{Dictionary.History}:</b> {woman.historical}</p>
-            <p><b>{Dictionary.Contribution}:</b> {woman.contribution}</p>
-            <p><b>{Dictionary.facts}:</b> {woman.facts}</p>
-            <p><b>{Dictionary.media}:</b> {woman.media}</p>
-            <button onClick={deleteWoman(woman.id)} >{Dictionary.delete}</button>
-            
-            <BottomBar />
-</div>
-            )
-        })
-    .catch(error => console.log(error));
-    
+        )
+    })
+        .catch(error => console.log(error));
+
     return (
         <div id="WomanPageWrapper" class="wrapper" >
+            <div>
 
+                <NavBar />
+
+                <div id="womenHolder"></div>
+
+                {/* <MainDetails display={obj["display" + Dictionary.getLanguage()]} link={"https://naamat.org.il/wp-content/themes/Naamat-Child-Theme/images/footer-img.jpg"} bday={woman["date" + Dictionary.getLanguage()]} /> */}
+                {/* <p><b>{Dictionary.dethDay}:</b> {woman.death}</p>
+                <p><b>{Dictionary.highlights}:</b> {woman.highlights}</p>
+                <p><b>{Dictionary.biography}:</b> {woman.biography}</p>
+                <p><b>{Dictionary.QuotesAnd}:</b> {woman.quotes}</p>
+                <p><b>{Dictionary.History}:</b> {woman.historical}</p>
+                <p><b>{Dictionary.Contribution}:</b> {woman.contribution}</p>
+                <p><b>{Dictionary.facts}:</b> {woman.facts}</p>
+                <p><b>{Dictionary.media}:</b> {woman.media}</p>
+                <button onClick={deleteWoman(woman.id)} >{Dictionary.delete}</button> */}
+
+                <BottomBar />
+            </div>
         </div>)
 
 
 
 }
 
-export default WomanPage;
 // class WomanPage extends Component {
 
 //     state = {
@@ -191,9 +188,9 @@ export default WomanPage;
 export function getWoman(womanName) {
     // console.log(womanName);
     if (womanName) {
-console.log("max:"+getMaxIndex(womanName))
-        db.collection('women').where("nameHE", ">=", womanName).where("nameHE","<",getMaxIndex(womanName)).get().then(snapshot => {
-        // db.collection('women').startAt("nameHE", "==", womanName).get().then(snapshot => {
+        console.log("max:" + getMaxIndex(womanName))
+        db.collection('women').where("nameHE", ">=", womanName).where("nameHE", "<", getMaxIndex(womanName)).get().then(snapshot => {
+            // db.collection('women').startAt("nameHE", "==", womanName).get().then(snapshot => {
             const women = [];
             //get a women arry with all women results for this search
             snapshot.forEach(doc => {
@@ -232,26 +229,26 @@ function getMaxIndex(str) {
     var newstr = str.substring(0, str.length - 1);
 
     if (str.match(/[\u0600-\u06FF]/i)) {
-      if (!(newchar.match(/[\u0600-\u06FF]/i)))
-        newchar = "اا";
-      return newstr.concat(newchar);
-  
+        if (!(newchar.match(/[\u0600-\u06FF]/i)))
+            newchar = "اا";
+        return newstr.concat(newchar);
+
     }
     if (str.match(/[\u0590-\u05FF]/i)) {
-      if (!(newchar.match(/[\u0590-\u05FF]/i)))
-        newchar = "אא";
-      return newstr.concat(newchar);
+        if (!(newchar.match(/[\u0590-\u05FF]/i)))
+            newchar = "אא";
+        return newstr.concat(newchar);
     }
     if (str.match(/^[a-zA-Z]+$/i)) {
-      if (char == 'z' || char == 'Z')
-        newchar = "aa";
-      return newstr.concat(newchar);;
+        if (char == 'z' || char == 'Z')
+            newchar = "aa";
+        return newstr.concat(newchar);;
     }
-  
-  }
+
+}
 
 
-$(document).ready( () => {
-    
+$(document).ready(() => {
+
     // getWoman("שלמה כרמי");
 });
