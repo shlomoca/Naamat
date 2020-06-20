@@ -243,41 +243,47 @@ $("document").ready(function () {
     $("#woman_form").submit(function (event) {
         if (!$("#woman_form").valid()) return;
         //confirm id not exeisting??
-        var he = {};
-        var en = {};
-        var ar = {};
-        var gen = {};
+        var he = {},en = {},ar = {},gen = {};
+        var boolHe = false,boolEn = false,boolAr = false;
+       
         var id = $("#name").val() + $("#birth").val();
 
         $($('#woman_form').prop('elements')).each(function () {
             if (this.value) {
-                if (this.lang == "EN")
+                if(this.name==="highlights"||this.name==="display"){
+                        gen[this.id]=this.value;
+                    }
+                if (this.lang == "EN"){
+                    boolEn=true;
+                    en["id"] = id;
                     en[this.name] = this.value;
-                else if (this.lang == "HE")
+                    
+                }
+                else if (this.lang == "HE"){
+                    boolHe=true;
+                    ar["id"] = id;
                     he[this.name] = this.value;
-                else if (this.lang == "AR")
+                }
+                else if (this.lang == "AR"){
+                    boolAr=true;
+                    ar["id"] = id;
                     ar[this.name] = this.value;
-                else
+                }
+                else{
                     gen[this.name] = this.value;
+                    gen["id"] = id;
+                }
             }
         });
 
-        gen["id"] = id;
-        // console.log(id);
-        // console.log(he);
-        // console.log(en);
-        // console.log(ar);
+       
         db.collection('women').doc(id).set(gen);
-        db.collection('women').doc(id).collection("langs").doc("HE").set(he).then(() => {
-        });
-
-        db.collection('women').doc(id).collection("langs").doc("EN").set(en).then(() => {
-
-        });
-        db.collection('women').doc(id).collection("langs").doc("AR").set(ar).then(() => {
-          
-            //after message presented
-        });  
+        if(boolHe)
+        db.collection('women').doc(id).collection("langs").doc("HE").set(he);
+        if(boolEn)
+        db.collection('women').doc(id).collection("langs").doc("EN").set(en);
+        if(boolAr)
+        db.collection('women').doc(id).collection("langs").doc("AR").set(ar);
         window.$("#staticBackdrop").modal('hide');
         // $("#staticBackdrop").modal('hide');
         // $("#afterMessage").modal('show');

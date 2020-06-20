@@ -42,14 +42,21 @@ export const WomenDeck = (props) => {
     // deck+=</div>;
     //    deck
     // )
+    console.log(props.cards);
 
-    const cards = Object.values(props.cards);
+
+    // cards.forEach()
+    const vals = Object.values(props.cards);
     const deck = [];
 
-    console.log(cards);
 
-    cards.map(woman => {
-        deck.push(<WomenCard display={woman.name} summary={woman.highlightsHE} link={woman.link} />)
+
+    vals.map(woman => {
+        var wName = woman["display" + Dictionary.getLanguage()];
+        var sum  = woman["highlights" + Dictionary.getLanguage()];
+        var id = woman.id;
+        if (wName && sum)
+            deck.push(<WomenCard display={wName} summary={sum} link={woman.link} />);
     })
 
     return (
@@ -185,12 +192,17 @@ export const WomanPage = (props) => {
 
 
 //get women gets all women that their name is identical to the womenName atribute
-export function getWoman(womanName) {
-    // console.log(womanName);
+
+
+
+
+export function getWomen(womanName) {
     if (womanName) {
-        console.log("max:" + getMaxIndex(womanName))
-        db.collection('women').where("nameHE", ">=", womanName).where("nameHE", "<", getMaxIndex(womanName)).get().then(snapshot => {
-            // db.collection('women').startAt("nameHE", "==", womanName).get().then(snapshot => {
+        var nameattr="display"+Dictionary.getLanguage()
+        var MaxIndex=getMaxIndex(womanName);
+        console.log(MaxIndex)
+        //get all the women that ae in the lexicografical area of the search term womanName
+        var coolac = db.collection('women').where(nameattr, ">=", womanName).where(nameattr, "<", MaxIndex).get().then(snapshot => {
             const women = [];
             //get a women arry with all women results for this search
             snapshot.forEach(doc => {
@@ -203,14 +215,12 @@ export function getWoman(womanName) {
 
             });
             console.log(women);
-            // var sortedWomen = {};
             if (women.length === 0)
                 console.log("no women");
             else {
 
 
                 ReactDOM.render(<WomenDeck cards={women} />, document.getElementById('womenHolder'))
-                // return <WomenDeck cards={women}/>
 
 
             }
@@ -227,7 +237,6 @@ function getMaxIndex(str) {
     var char = str.slice(-1);
     var newchar = String.fromCharCode(char.charCodeAt(0) + 1);
     var newstr = str.substring(0, str.length - 1);
-
     if (str.match(/[\u0600-\u06FF]/i)) {
         if (!(newchar.match(/[\u0600-\u06FF]/i)))
             newchar = "اا";
@@ -239,10 +248,10 @@ function getMaxIndex(str) {
             newchar = "אא";
         return newstr.concat(newchar);
     }
-    if (str.match(/^[a-zA-Z]+$/i)) {
+    if (str.match(/^[a-zA-Z]/i)) {
         if (char == 'z' || char == 'Z')
             newchar = "aa";
-        return newstr.concat(newchar);;
+        return newstr.concat(newchar);
     }
 
 }
@@ -250,5 +259,5 @@ function getMaxIndex(str) {
 
 $(document).ready(() => {
 
-    // getWoman("שלמה כרמי");
+    // getWomen("shlomo carmi");
 });

@@ -10,7 +10,7 @@ import { db } from './/config/Firebase'
 import { Link } from 'react-router-dom';
 import LoginPage from './pages/login page/LoginPage';
 import { auth } from 'firebase';
-import { getWoman } from '../src/pages/woman page/WomanPage'
+import {  getWomen } from '../src/pages/woman page/WomanPage'
 import ScrollUpButton from "react-scroll-up-button";
 
 
@@ -136,7 +136,7 @@ class Search extends Component {
           </div>
           <i class="fa fa-search" id="search-icon"></i>
         </button>
-        <div id="temp">{getWoman(this.state.term)}</div>
+        <div id="temp">{getWomen(this.state.term)}</div>
       </form>
     )
 
