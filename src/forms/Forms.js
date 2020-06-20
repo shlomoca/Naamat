@@ -251,7 +251,7 @@ $("document").ready(function () {
         $($('#woman_form').prop('elements')).each(function () {
             if (this.value) {
                 if(this.name==="highlights"||this.name==="display"){
-                        gen[this.id]=this.value;
+                        gen[this.id]=(this.value).toLowerCase();
                     }
                 if (this.lang == "EN"){
                     boolEn=true;
@@ -261,7 +261,7 @@ $("document").ready(function () {
                 }
                 else if (this.lang == "HE"){
                     boolHe=true;
-                    ar["id"] = id;
+                    he["id"] = id;
                     he[this.name] = this.value;
                 }
                 else if (this.lang == "AR"){
