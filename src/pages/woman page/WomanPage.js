@@ -33,24 +33,8 @@ export const WomenCard = (props) => {
     )
 }
 export const WomenDeck = (props) => {
-    // var deck= <div id='womanDeck'></div>;
-    /* var deck = document.createElement('div').createAttribute("id").setAttribute("womanDeck"); */
-    //  console.log(props.cards);
-    //  return (
-    //     {if(props.cards)
-    //    deck.appendChild( <WomenCard display="one women" summary="someone importent" link="https://stack.com.au/wp-content/uploads/2019/05/Rick_Morty_S4.jpg" />
-    // deck+=</div>;
-    //    deck
-    // )
-    console.log(props.cards);
-
-
-    // cards.forEach()
     const vals = Object.values(props.cards);
     const deck = [];
-
-
-
     vals.map(woman => {
         var wName = woman["display" + Dictionary.getLanguage()];
         var sum  = woman["highlights" + Dictionary.getLanguage()];
@@ -218,7 +202,7 @@ export function getWomen(womanName) {
             if (women.length === 0)
                 console.log("no women");
             else {
-                ReactDOM.render(<WomenDeck cards={women} />, document.getElementById('womenHolder'))
+                ReactDOM.render(<WomenDeck cards={women} />, document.getElementById('womenHolder'));
             }
 
 
