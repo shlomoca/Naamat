@@ -3,6 +3,7 @@ import $ from 'jquery';
 import React, { Component } from 'react';
 import { NavBar, PictursCarousel, DisplayModal, BottomBar, AfterMessage } from '../../Components.js';
 import { getWoman, WomenCard } from '../woman page/WomanPage';
+import { AdminPage } from '../Admin Page/AdminPage';
 import { auth } from '../../config/Firebase';
 
 
@@ -26,6 +27,6 @@ class MainUserPage extends Component {
 export default MainUserPage
 $(document).ready(() => {
 
-    //  getWoman("שלמה כרמי");
+    
 });
 

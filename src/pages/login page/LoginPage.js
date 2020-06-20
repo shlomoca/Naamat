@@ -9,6 +9,7 @@ import { Dictionary, LangBtn } from '../../Dictionary';
 import MainUserPage from '../main user page/MainUserPage';
 import {WomanPage} from '../woman page/WomanPage';
 import Category from '../category/Category';
+import AdminPage from '../Admin Page/AdminPage';
 
 
 
@@ -132,6 +133,8 @@ export class LoginComponent extends Component {
                 <Route exact path="/" component={MainUserPage} />
                 <Route path="/WomanPage" component={props => <WomanPage {...props} id="שלמה כרמי2020-06-09" />} />
                 <Route path="/Category" component={Category} />
+                <Route path="/AdminPage" component={AdminPage} />
+
             </Router>, document.getElementById('root')
         );
     }
