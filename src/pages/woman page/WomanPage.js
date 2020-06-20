@@ -3,7 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { NavBar, BottomBar } from '../../Components';
 import { db } from '../../config/Firebase'
-import { Dictionary } from '../../Dictionary';
+import { Dictionary, langs } from '../../Dictionary';
 import $ from 'jquery';
 
 
@@ -29,6 +29,7 @@ export const WomenCard = (props) => {
             <img id="roundImage" src={props.link} alt={props.display} />
             <h1 >{props.display} </h1>
             <p>{props.summary}  </p>
+            <button onClick={editWoman("שלמה כרמי1993-06-09")}>Edit</button>
         </div>
     )
 }
@@ -37,7 +38,7 @@ export const WomenDeck = (props) => {
     const deck = [];
     vals.map(woman => {
         var wName = woman["display" + Dictionary.getLanguage()];
-        var sum  = woman["highlights" + Dictionary.getLanguage()];
+        var sum = woman["highlights" + Dictionary.getLanguage()];
         var id = woman.id;
         if (wName && sum)
             deck.push(<WomenCard display={wName} summary={sum} link={woman.link} id={id} />);
@@ -246,6 +247,48 @@ function determineLang(str) {
         return "EN";
     }
     return "HE"
+}
+
+export function editWoman(id) {
+    var woman;
+
+
+    db.collection('women').doc(id).get().then(doc => {
+        woman = doc.data();
+
+        $("#name").val(woman.name);
+        $("#name").attr('readonly', true);
+
+        $("#birth").val(woman.birth);
+        $("#birth").attr('readonly', true);
+
+        $("#death").val(woman.death);
+        $("#death").attr('readonly', true);
+
+    })
+
+    langs.forEach(lang => {
+
+        db.collection('women').doc(id).collection('langs').doc(lang).get().then(doc => {
+
+            const info = [];
+            const data = doc.data();
+            if (data) {
+                info.push(data);
+            }
+
+            if (info.length != 0) {
+
+                Object.values(info).map(fileds => {
+                    Object.keys(fileds).map(key => {
+
+                        $("#" + key + lang).val(fileds[key]);
+                    })
+                })
+            }
+        })
+    })
+
 }
 
 

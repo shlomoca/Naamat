@@ -111,7 +111,7 @@ export const GenralForm = (props) => {
 
             <div id="name-group" class="form-group">
                 {/* <label for="display"></label> */}
-                <input type="text" lang={props.lang} rows="1" class="details" cols="35" id={"display" + props.lang} name="display" placeholder="display name arabic" />
+                <input type="text" lang={props.lang} rows="1" class="details" cols="35" id={"display" + props.lang} name="display" placeholder="display name" />
             </div>
 
             <ImageUpload param1="name" param2="birth" pathEnd="/ProfilePic" param1Empty="name not enterd" param2Empty="date of birth not ented" />
