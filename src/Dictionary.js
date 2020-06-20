@@ -17,7 +17,14 @@ export const Dictionary = new LocalizedStrings({
     enterPass: `Password`,
     login: `Log in`,
     
-    
+    //admin page
+    adminAddWoman: 'Add woman',
+    adminEditWoman: 'Edit Woman',
+    adminFeedback: 'Watch Feedback',
+    adminEditAbout: 'Edit About',
+
+
+
   //main user page
     about: `Na'amat is a Movement for the advancement of the Status of Women and the Social Force for women in Israel. Na'amat’s top priority is to advance and strengthen the status of women in the family and in the work force. Na'amat is striving to achieve equality between the sexes and full participation of women in social, economic and political spheres. Na'amat, previously called Moetzet Hapoalot (Council of Working Women), was established in 1921 by young working women, pioneers who came to Palestine in the early 1920’s. Moetzet Hapoalot was organized as an autonomous movement with affiliation to the Histadrut (The General Federation of Labor). Today Na'amat is a non-profit organization, a socio-political, multi-party women’s movement comprised of women from diverse sectors of the population, communities, countries of origin and religious streams.`,
     aboutTitle: "About Na'amat",
@@ -58,7 +65,12 @@ export const Dictionary = new LocalizedStrings({
     enterPass: `סיסמא`,
     login: `התחברי`,
     
-    
+
+    //admin page
+    adminAddWoman: 'הוסיפי אישה',
+    adminEditWoman: 'ערכי אישה',
+    adminFeedback: 'צפייה במשובים',
+    adminEditAbout: 'עריכת אודות',
     
     
   //main user page
@@ -103,7 +115,13 @@ export const Dictionary = new LocalizedStrings({
     login: "تسجيل الدخول",
     
     
+    //admin page
+    adminAddWoman: 'أضف امرأة',
+    adminEditWoman: 'تحرير المرأة',
+    adminFeedback: 'ردود الفعل',
+    adminEditAbout: 'تحرير حول',
     
+
   //main user page
   about: "نعمات هي حركة من أجل النهوض بوضع المرأة والقوة الاجتماعية للمرأة في إسرائيل. أولوية نعمة هي تعزيز وتعزيز مكانة المرأة في الأسرة وفي القوى العاملة. تسعى نعمة إلى تحقيق المساواة بين الجنسين والمشاركة الكاملة للمرأة في المجالات الاجتماعية والاقتصادية والسياسية. تم تأسيس نعمة ، التي كانت تسمى سابقًا Moetzet Hapoalot (مجلس النساء العاملات) ، في عام 1921 على يد شابات رائدات جاءن إلى فلسطين في أوائل عشرينيات القرن العشرين. تم تنظيم Moetzet Hapoalot كحركة مستقلة مع الانتماء إلى الهستدروت (الاتحاد العام للعمل). نعمة اليوم هي منظمة غير ربحية ، وهي حركة نسائية سياسية اجتماعية متعددة الأحزاب تتألف من نساء من قطاعات متنوعة من السكان والمجتمعات المحلية وبلدان الأصل والتيارات الدينية.",
   aboutTitle: "عن نعمة",

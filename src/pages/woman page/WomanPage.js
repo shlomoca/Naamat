@@ -57,7 +57,7 @@ export const WomenDeck = (props) => {
         var sum = woman["highlights" + Dictionary.getLanguage()];
         var id = woman.id;
         if (wName && sum)
-            deck.push(<WomenCard display={wName} summary={sum} link={woman.link} />);
+            deck.push(<WomenCard display={wName} summary={sum} link={woman.link} id={id} />);
     })
 
     return (
@@ -199,11 +199,11 @@ export const WomanPage = (props) => {
 
 export function getWomen(womanName) {
     if (womanName) {
-        var nameattr = "display" + Dictionary.getLanguage()
-        var MaxIndex = getMaxIndex(womanName);
+        var nameattr="display"+determineLang(womanName);
+        var MaxIndex=getMaxIndex(womanName);
         console.log(MaxIndex)
         //get all the women that ae in the lexicografical area of the search term womanName
-        var coolac = db.collection('women').where(nameattr, ">=", womanName).where(nameattr, "<", MaxIndex).get().then(snapshot => {
+        db.collection('women').where(nameattr, ">=", womanName).where(nameattr, "<", MaxIndex).get().then(snapshot => {
             const women = [];
             //get a women arry with all women results for this search
             snapshot.forEach(doc => {
@@ -219,11 +219,7 @@ export function getWomen(womanName) {
             if (women.length === 0)
                 console.log("no women");
             else {
-
-
                 ReactDOM.render(<WomenDeck cards={women} />, document.getElementById('womenHolder'))
-
-
             }
 
 
@@ -255,6 +251,18 @@ function getMaxIndex(str) {
         return newstr.concat(newchar);
     }
 
+}
+function determineLang(str) {
+    if (str[0].match(/[\u0600-\u06FF]/i)) {
+        return "AR";
+    }
+    if (str[0].match(/[\u0590-\u05FF]/i)) {
+        return "HE";
+    }
+    if (str[0].match(/^[a-zA-Z]/i)) {
+        return "EN";
+    }
+    return "HE"
 }
 
 export function editWoman(id) {
@@ -301,6 +309,5 @@ export function editWoman(id) {
 
 
 $(document).ready(() => {
-
     // getWomen("shlomo carmi");
 });

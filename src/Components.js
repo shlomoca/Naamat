@@ -126,7 +126,7 @@ class Search extends Component {
 
 
   render() {
-    console.log(this.state.term);
+    var term =(this.state.term).toLowerCase();
     return (
       <form className="form-inline my-2 my-lg-0 input-group mb-3" id="search-form">
         <button id="search-btn" type="button">
@@ -138,7 +138,7 @@ class Search extends Component {
           </div>
           <i class="fa fa-search" id="search-icon"></i>
         </button>
-        <div id="temp">{getWomen(this.state.term)}</div>
+        <div id="temp">{getWomen(term)}</div>
       </form>
     )
 
@@ -212,15 +212,7 @@ export const PictursCarousel = () => {
   )
 }
 
-function previewUrl(url, target) {
-  //use timeout coz mousehover fires several times
-  clearTimeout(window.ht);
-  window.ht = setTimeout(function () {
-    var div = document.getElementById(target);
-    div.innerHTML = '<iframe style="width:100%;height:100%;" frameborder="0" src="' + url + '" />';
-  }, 20);
-}
-//check
+
 
 
 
