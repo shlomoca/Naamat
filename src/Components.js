@@ -14,6 +14,8 @@ import {  getWomen } from '../src/pages/woman page/WomanPage'
 import ScrollUpButton from "react-scroll-up-button";
 
 
+
+
 //set a navigation bar to the top of the site
 //under the navigation bar there is a 
 export const NavBar = () => {
@@ -276,3 +278,4 @@ export const AfterMessage = (props) => {
     </div>
   )
 }
+
