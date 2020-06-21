@@ -1,17 +1,12 @@
 import './MainUserPage.css';
 import $ from 'jquery';
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import { NavBar, PictursCarousel, DisplayModal, BottomBar, AfterMessage, CarouselLi, CarouselSlide } from '../../Components.js';
 import { FeedbackButton } from '../../forms/Forms';
-import { getWoman, WomenCard } from '../woman page/WomanPage';
 import Firebase, { auth, storage, db } from '../../config/Firebase';
 import { Dictionary } from '../../Dictionary';
-
-import { NavBar, PictursCarousel, DisplayModal, BottomBar, AfterMessage } from '../../Components.js';
 import { getWoman, WomenCard } from '../woman page/WomanPage';
 import { AdminPage } from '../Admin Page/AdminPage';
-import { auth } from '../../config/Firebase';
 
 
 class MainUserPage extends Component {
