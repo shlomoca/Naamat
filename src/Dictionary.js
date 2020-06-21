@@ -36,6 +36,7 @@ export const Dictionary = new LocalizedStrings({
     
     //forms
     name: `Name`,
+    displayname:"display name",
     bday: `Date of birth`,
     submit:`Submit`, 
     dethDay: `Date of death`,
@@ -84,6 +85,7 @@ export const Dictionary = new LocalizedStrings({
     
     //forms
     name: `שם`,
+    displayname:"שם תצוגה",
     bday: `תאריך לידה`,
     submit:`שלח`,
     dethDay: `יום פטירה`,
@@ -103,6 +105,7 @@ export const Dictionary = new LocalizedStrings({
     anotherpictures:'תמונות נוספות',
     mustfilled:'* שדות חובה',
     delete: `מחקי`,
+    
     //components
     builders: 'אתר זה נבנה על ידי: שלמה כרמי, דניאל רז, סהר כהן, עדיאל צייג, מתן ימין',
     
@@ -152,6 +155,7 @@ export const Dictionary = new LocalizedStrings({
     anotherpictures:'صور أخرى',
     mustfilled:' يتطلب حقلا *',
     delete: `حذف`,
+    displayname:"اسم العرض",
     //components
     
     builders: `تم بناء هذا الموقع من قبل: شلومو كرمي ، دانيال راز ، سحر كوهين ، أديل تساياج ، ماتان يمين `,
