@@ -10,7 +10,17 @@ import { AfterMessage } from '../Components';
 
 
 
-export const FeedbackButton = () => {
+// function hideMe() {
+//     var x = document.getElementById("submit1");
+//     if (x.style.display === "none") {
+//       x.style.display = "block";
+//     } else {
+//       x.style.display = "none";
+//     }
+//   }
+
+
+export const FeedbackModal = () => {
 
     return (
         <div class="modal fade" id="feedbackForm" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -36,7 +46,7 @@ export const FeedbackButton = () => {
 
                             <div id="name-groups" classname="form-group starContainer">
                                 {/* centerd info */}
-                            <div align="center"> {Dictionary.HowWasVisit} </div>
+                                <div align="center"> {Dictionary.HowWasVisit} </div>
                                 <div className="starrating risingstar d-flex justify-content-center flex-row-reverse">
                                     <input type="radio" className="star" id="star5" name="rating" value="5" /><label for="star5" title="5 star"></label>
                                     <input type="radio" className="star" id="star4" name="rating" value="4" /><label for="star4" title="4 star"></label>
@@ -64,82 +74,7 @@ export const FeedbackButton = () => {
     );
 };
 
-
-export const GenralForm = (props) => {
-    var classAttr = "tab-pane fade form_content";
-    if (props.active)
-        classAttr = "tab-pane fade form_content show active";
-    return (
-
-        <div id={props.lang} class={classAttr}>
-
-
-            <div id="name-group" class="form-group">
-                {/* <label for="display"></label> */}
-                <input type="text" lang={props.lang} rows="1" class="details" cols="35" id={"display" + props.lang} name="display" placeholder="display name arabic" />
-            </div>
-
-
-
-
-
-
-
-            {/* <label for="img">Select image:</label>
-                                <input type="file" id="img" name="image" name="img" accept="image/*|audio/*|video/*" />
-                                <button id="add">add</button> */}
-            {/* <div id="name-group" class="form-group">
-                                <label id="lb" for="inputGroupFile04">{Dictionary.upload}</label>
-                                <div class="input-group">
-                                    <div class="custom-file">
-                                        <input type="file" name="file" class="custom-file-input" id="inputGroupFile04" id="media" aria-describedby="inputGroupFileAddon04" />
-                                        <label class="custom-file-label" for="inputGroupFile04">Choose file</label>
-                                    </div>
-                                    <div class="input-group-append">
-                                        <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">{Dictionary.upload}</button>
-                                    </div>
-                                </div>
-                            </div> */}
-
-            <ImageUpload param1="nameHE" param2="birthHE" pathEnd="/ProfilePic" param1Empty="name not enterd" param2Empty="date of birth not ented" />
-
-
-            <div class="form-group">
-                <textarea rows="4" class="details" cols="50" name="highlights" id={"highlights" + props.lang} placeholder="Highlights"  ></textarea>
-            </div>
-
-
-            <div class="form-group">
-                <textarea rows="4" class="details" cols="50" name="biography" id={"biography" + props.lang} placeholder="Biography" ></textarea>
-            </div>
-
-            <div class="form-group">
-                <textarea rows="4" class="details" cols="50" name="history" id={"historical" + props.lang} placeholder="Historical events related" ></textarea>
-            </div>
-
-            <div class="form-group">
-                <textarea rows="4" class="details" cols="50" name="feminism" id={"contribution" + props.lang} placeholder="Contribution to Feminism" ></textarea>
-            </div>
-
-
-            <div class="form-group">
-                <textarea rows="4" class="details" cols="50" name="facts" id={"facts" + props.lang} placeholder="Interesting fact / story" ></textarea>
-            </div>
-
-            <div class="form-group">
-                <select name="type" id="type">
-                    <option value="bibliography" name="bibliography">Bibliography</option>
-                    <option value="link" name="link">Link</option>
-                </select>
-                <input type="text" rows="4" class="details" cols="50" name="quotes" id={"quotes" + props.lang} placeholder="Quotes and notable works" />
-                <input id={"link" + props.lang} type="text" rows="4" class="details" cols="50" name="link" placeholder="link" />
-            </div>
-        </div>
-
-    )
-}
-
-export const AddCategory = () => {
+export const AddCategoryModal = () => {
     return (
         <div class="modal fade" id="categoryForm" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <AfterMessage info='thank you' />
@@ -175,11 +110,61 @@ export const AddCategory = () => {
 
 }
 
+export const GenralForm = (props) => {
+    var classAttr = "tab-pane fade form_content";
+    if (props.active)
+        classAttr = "tab-pane fade form_content show active";
+    return (
+
+        <div id={props.lang} class={classAttr}>
 
 
-export const EditWomanForm = () => {
-    $("#step2").hide();
-    $("#popup").hide();
+            <div id="name-group1" class="form-group">
+                {/* <label for="display"></label> */}
+                <input type="text" lang={props.lang} rows="1" class="details" cols="35" id={"display" + props.lang} name="display" placeholder={Dictionary.displayname} />
+            </div>
+            <ImageUpload param1="name" param2="birth" pathEnd="/ProfilePic" param1Empty="name not enterd" param2Empty="date of birth not ented" />
+
+
+
+            {/* <div class="form-group"> */}
+                <textarea rows="4" class="detail" cols="50" name="highlights" lang={props.lang} id={"highlights" + props.lang} placeholder="Highlights"  ></textarea>
+            {/* </div> */}
+
+
+            {/* <div class="form-group"> */}
+                <textarea rows="4" class="detail" cols="50" name="biography" lang={props.lang} id={"biography" + props.lang} placeholder="Biography" ></textarea>
+            {/* </div> */}
+
+            {/* <div class="form-group"> */}
+                <textarea rows="4" class="detail" cols="50" name="history" lang={props.lang} id={"historical" + props.lang} placeholder="Historical events related" ></textarea>
+            {/* </div> */}
+
+            {/* <div class="form-group"> */}
+                <textarea rows="4" class="detail" cols="50" name="feminism" lang={props.lang} id={"contribution" + props.lang} placeholder="Contribution to Feminism" ></textarea>
+            {/* </div> */}
+
+
+            {/* <div class="form-group"> */}
+                <textarea rows="4" class="detail" cols="50" name="facts" lang={props.lang} id={"facts" + props.lang} placeholder="Interesting fact / story" ></textarea>
+            {/* </div> */}
+
+            <div class="form-group">
+                <select name="type" id="type">
+                    <option value="bibliography" name="bibliography">Bibliography</option>
+                    <option value="link" name="link">Link</option>
+                </select>
+                <input type="text" rows="4" class="details" cols="50" name="quotes" lang={props.lang} id={"quotes" + props.lang} placeholder="Quotes and notable works" />
+                <input id={"link" + props.lang} type="text" rows="4" class="details" cols="50" name="link" placeholder="link" />
+            </div>
+        </div>
+
+    )
+}
+
+
+export const EditWomanModal = () => {
+
     return (
 
         <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -194,38 +179,38 @@ export const EditWomanForm = () => {
                         </div>
 
                         <div class="modal-body">
-                            <ul id="mylinks" class="nav nav-tabs">
-                                <li class="active langTabs"><a data-toggle="tab" href="#HE">עברית</a></li>
-                                <li className="langTabs"><a data-toggle="tab" href="#EN">English</a></li>
-                                <li className="langTabs"><a data-toggle="tab" href="#AR">عربى</a></li>
-                            </ul>
-                            <div class="tab-content">
-                                <div id="step1">
-                                    <h2>step 1</h2>
-                                    <div id="name-group" class="form-group">
-                                        {/* <label for="name"></label> */}
-                                        <label for="name">{Dictionary.name}</label>
+                            <div id="step1">
+                                {/* <h2>step 1</h2> */}
+                                <ul id="mylinks" class="nav nav-tabs">
+                                    <li  class="langTabs active"><a data-toggle="tab" href="#HE">עברית</a></li>
+                                    <li class="langTabs"><a data-toggle="tab" href="#EN">English</a></li>
+                                    <li class="langTabs"><a data-toggle="tab" href="#AR">عربى</a></li>
+                                </ul>
+                                <div id="name-group" class="form-group">
+                                    {/* <label for="name"></label> */}
+                                    <label id="lineName" for="name">{Dictionary.name}</label>
+                                    <input type="text" rows="1" class="details" cols="35" id="name" name="name" placeholder="" />
 
-                                        <input type="text" rows="1" class="details" cols="35" id="name1" name="name" placeholder="אנא הכנס שם מלא" />
-                                    </div>
-                                    <div id="name-group" class="form-group">
-                                        <label for="birth">{Dictionary.bday}</label>
-                                        <input type="date" name="birth" id="birth1" />
-                                    </div>
-                                    <div id="name-group" class="form-group">
-                                        <label for="death">{Dictionary.dethDay}</label>
-                                        <input type="date" name="death" id="death" />
-                                    </div>
-                                    <div id="name-group" class="form-group">
-                                        <input type="text" rows="1" class="details" cols="35" id="timeline" name="timelineme" placeholder="Year in timeline" />
-                                    </div>
-                                    <button id="submit1" type="button" class="btn btn-success" onClick={showing("#step2", "#step1")}>הבא</button>
+                                    <div class="bdayclass">
+                                <div id="name-group" class="form-group">
+                                    <div  id="line2" for="birth">{Dictionary.bday}</div>
+                                    <input class ="details2" type="date" name="birth" id="birth" />
+                                <div class="dethDay"> 
+                                <div id="name-group" class="form-group">
+                                    <label id="line3" for="death">{Dictionary.dethDay}</label>
+                                    <input type="date" name="death" id="death" />
                                 </div>
-                                <div id="popup">
-                                    <span class="popuptext" id="myPopup">בבקשה מלא את כל הפרטים</span>
                                 </div>
-                                <div id="step2">
-                                    <h2>step 2</h2>
+                                    </div>
+                                </div>
+                                </div>
+                                <button  id="submit1" type="button" class="btn btn-success" onClick=  {showing("#step2")} >{Dictionary.next}</button>
+                            </div>
+                            <div id="popup">
+                                <span class="popuptext" id="myPopup">בבקשה מלא את כל הפרטים</span>
+                            </div>
+                            <div id="step2">
+                                <div class="tab-content">
                                     <GenralForm lang={langs[0]} active={true} />
                                     <GenralForm lang={langs[1]} />
                                     <GenralForm lang={langs[2]} />
@@ -242,18 +227,21 @@ export const EditWomanForm = () => {
 
                 </div>
             </div>
+            
         </div>
     );
 }
 
 
 $("document").ready(function () {
-
+    //make sure only step 1 is shown 
+    $("#step2").hide();
+    $("#popup").hide();
     // show and hide link input from add woman form.
-    $('#mylinks a').click(function(){
+    $('#mylinks a').click(function () {
         $('#mylinks a').removeClass('highlight');
         $(this).addClass('highlight');
-       });
+    });
     $("#link").hide();
     $('select[name=type]').change(function () {
         if ($('select[name=type]').val() == 'link') {
@@ -263,43 +251,58 @@ $("document").ready(function () {
         }
     });
 
-    //fill name and display name at same time.
-    // $("#nameHE").on('keyup', function () {
-    //     $("#displayHE").val($(this).val());
-    //     $("#nameEN").val($(this).val());
-    //     $("#nameAR").val($(this).val());
-    // });
-    // $("#dateHE").on('keyup', function () {
-    //     $("#dateEN").val($(this).val());
-    //     $("#dateAR").val($(this).val());
-    // });
-
     //add woman from the form to database
     $("#woman_form").submit(function (event) {
+        
         if (!$("#woman_form").valid()) return;
         //confirm id not exeisting??
-        var obj = {}
-        var id = $("#nameHE").val() + $("#birthHE").val();
+        var he = {},en = {},ar = {},gen = {};
+        var boolHe = false,boolEn = false,boolAr = false;
+       
+        var id = $("#name").val() + $("#birth").val();
+        $('#submit1').show();
 
         $($('#woman_form').prop('elements')).each(function () {
             if (this.value) {
-                obj[this.id] = this.value;
+                if(this.name==="highlights"||this.name==="display"){
+                        gen[this.id]=(this.value).toLowerCase();
+                    }
+                if (this.lang == "EN"){
+                    boolEn=true;
+                    en["id"] = id;
+                    en[this.name] = this.value;
+                    
+                }
+                else if (this.lang == "HE"){
+                    boolHe=true;
+                    he["id"] = id;
+                    he[this.name] = this.value;
+                }
+                else if (this.lang == "AR"){
+                    boolAr=true;
+                    ar["id"] = id;
+                    ar[this.name] = this.value;
+                }
+                else{
+                    gen[this.name] = this.value;
+                    gen["id"] = id;
+                }
             }
         });
-        console.log(obj);
-        alert(obj);
 
-
-        db.collection('women').doc(id).set(obj).then(()=>{
-            window.$("#staticBackdrop").modal('hide');
-        });
-        // alert("it was submitted");
+       
+        db.collection('women').doc(id).set(gen);
+        if(boolHe)
+        db.collection('women').doc(id).collection("langs").doc("HE").set(he);
+        if(boolEn)
+        db.collection('women').doc(id).collection("langs").doc("EN").set(en);
+        if(boolAr)
+        db.collection('women').doc(id).collection("langs").doc("AR").set(ar);
+        window.$("#staticBackdrop").modal('hide');
         // $("#staticBackdrop").modal('hide');
         // $("#afterMessage").modal('show');
         // stop the form from submitting the normal way and refreshing the page
         event.preventDefault();
-        // window.location.reload();
-        // alert(id);
     });
 
     //add feedback to database
@@ -311,6 +314,7 @@ $("document").ready(function () {
         var maxscoreSet = false;
         $($('#feedback_form').prop('elements')).each(function () {
             if (this.value) {
+                //if it is the stars rating
                 if (this.type == "radio") {
                     if ($(this).is(':checked') && !maxscoreSet) {
                         maxscoreSet = true;
@@ -323,14 +327,11 @@ $("document").ready(function () {
         });
         console.log(obj);
 
-        db.collection('feedbacks').doc(id).set(obj).then(function() {
-
+        db.collection('feedbacks').doc(id).set(obj).then(function () {
             window.$("#feedbackForm").modal('hide');
-            // window.location.reload();
         });
 
         // $("#afterMessage").modal('show');
-
         // stop the form from submitting the normal way and refreshing the page
         event.preventDefault();
     });
@@ -340,29 +341,28 @@ $("document").ready(function () {
 //reset the add woman form when close
 function resetForm(id) {
     return () => {
-        console.log(id);
         $("#" + id).trigger("reset");
         $("#step1").show();
         $("#step2").hide();
+        $('#submit1').show();
     }
 };
 
+//make sure that the use enterd in step one the name and birth date
 function showing(id, id2) {
     return () => {
-        if (!($("#name1").val()) || !($("#birth1").val())) {
+        if (!($("#name").val()) || !($("#birth").val())) {
             $("#popup").show();
             $("#popup").fadeOut(2000, function () {
                 // Animation complete.
             });
-            // alert("מלא את הפרטים כדי להמשיך");
         }
         else {
             $(id).show();
             $(id2).hide();
+            $("#submit1").hide()
+
         }
     }
 
-
 }
-
-

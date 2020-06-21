@@ -15,7 +15,8 @@ padding-bottom: 3%;
 {
     overflow-x: none;
     overflow-y: auto;
-    height: 100%;
+    background-color: rgb(216,191,216);
+    /* height: 100%; */
 }
 
 .modal-content
@@ -42,6 +43,16 @@ padding-bottom: 3%;
 
 }
 
+#step1{
+
+    /* position: absolute; */
+    /* padding-top: 1%; */
+    padding-left: 50%;
+
+}
+
+
+
 .form-group
 {
     padding: 0vh;
@@ -53,7 +64,6 @@ padding-bottom: 3%;
 .langTabs{
  padding: 20px; 
 }
-
 
   
 /* stars */
@@ -96,6 +106,27 @@ padding-bottom: 3%;
 .details2{
     width: 180%;
     padding-top: 0%;
+    padding-left: 3%;
+    border-color: purple;
+    border-radius: 5%;
+
+}
+
+.details{
+    /* padding-top: %; */
+    padding-left: 0%;
+    /* position: 0%; */
+    /* width: 25%; */
+    border-color: purple;
+
+   
+}
+
+.detail{
+    /* padding-top: 4%; */
+    border-radius: 15%;
+    text-align: center;
+    border-color: purple;
 }
     
 
@@ -128,6 +159,52 @@ padding-bottom: 3%;
 /* style the Englsh Arabic עברית on the edit woman form */
 .highlight{     
     font-weight:bold;
-    /* background: rgb(100, 93, 93); */
+    /* background: rgba(213, 30, 250, 0.603); */
     font-size: 21px;
    }
+
+   #line{
+    position: absolute;
+    padding-right: 10%;
+    color: purple;
+    font-size: larger;
+       /* padding-right: 10%; */
+   }
+
+   #line2{
+    font-size: larger;
+    padding-top: 3%;
+    padding-left: 4%;
+    color: purple;
+
+    /* padding-right: 10%; */
+}
+
+#line3{
+
+    font-size: larger;
+    padding-top: 5%;
+    border-color: purple;
+    padding-left: 2%;
+    color: purple;
+}
+
+.bdayclass{
+    /* position: absolute; */
+    padding-left: 0%;
+}
+
+
+#lineName{
+
+  padding-left: 1%; 
+  padding-top: 5%; 
+  font-size: larger;
+  color: purple;
+}
+
+.detailsNew{
+    text-align: center;
+    border-color: purple;
+
+}

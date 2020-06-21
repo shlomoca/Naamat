@@ -134,3 +134,8 @@ img {
     background-color: rgba(0, 0, 0, 0.329);
     border-radius: 25px;
 }
+#bottom{
+    position: absolute;
+    justify-content: center;
+    bottom: 0%;
+}

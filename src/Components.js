@@ -5,10 +5,17 @@ import logo from './images/naamatlogo.png';
 import fblogo from './images/fblogo.png';
 import ytlogo from './images/ytlogo.png';
 import './Components.css';
-import { EditWomanForm, AddCategory, FeedbackButton } from './forms/Forms';
+import { EditWomanModal, AddCategoryModal, FeedbackModal } from './forms/Forms';
+import { db } from './/config/Firebase'
 import { Link } from 'react-router-dom';
 import LoginPage from './pages/login page/LoginPage';
 import { auth } from 'firebase';
+import { getWomen, WomenDeck } from '../src/pages/woman page/WomanPage'
+import ScrollUpButton from "react-scroll-up-button";
+import ReactDOM from 'react-dom';
+
+
+
 
 
 //set a navigation bar to the top of the site
@@ -17,9 +24,10 @@ export const NavBar = () => {
 
   return (
     <div id="navbar">
-      <EditWomanForm />
-      <AddCategory />
-      <FeedbackButton />
+      <EditWomanModal />
+      <AddCategoryModal />
+      <FeedbackModal />
+      <ScrollUpButton />
       <nav className="navbar navbar-expand-lg navbar-light bg-light" id="navList">
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
@@ -44,7 +52,7 @@ export const NavBar = () => {
 
           <li className="nav-item">
             <button type="button" className="btn btn-primary nav-link" data-toggle="modal" data-target="#categoryForm">
-              Add category</button>
+              {Dictionary.addcategory}</button>
           </li>
 
 
@@ -59,17 +67,7 @@ export const NavBar = () => {
           </li>
 
           <li className="nav-item" id="stretcher">
-            <form className="form-inline my-2 my-lg-0 input-group mb-3" id="search-form">
-              <button id="search-btn" type="button">
-                <div id="search-bar-outline">
-                  <input class="form-control " type="text" placeholder={Dictionary.search} id="example-search-input4" />
-                  <button id="clear-btn" type="button">
-                    <i class="fa fa-close" onClick={() => document.getElementById('example-search-input4').value = ''}></i>
-                  </button>
-                </div>
-                <i class="fa fa-search" id="search-icon"></i>
-              </button>
-            </form>
+            <Search />
           </li>
 
 
@@ -98,13 +96,68 @@ export const NavBar = () => {
 }
 
 
+class Search extends Component {
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      women: null,
+      term: ''
+    }
+    this.searchHandler = this.searchHandler.bind(this);
+  }
+
+  // componentDidMount() {
+  //   db.collection('women').get().then(snapshot => {
+  //     const women = [];
+  //     snapshot.forEach(doc => {
+  //       const data = doc.data();
+  //       women.push(data);
+  //     })
+  //     this.setState({ women: women })
+
+  //   }).catch(error => console.log(error))
+  // }
+
+
+  //follow after input in serach bar
+  searchHandler(event) {
+    this.setState({ term: event.target.value })
+  }
+
+
+  render() {
+    var term =(this.state.term).toLowerCase();
+    return (
+      <form className="form-inline my-2 my-lg-0 input-group mb-3" id="search-form">
+        <button id="search-btn" type="button">
+          <div id="search-bar-outline">
+            <input class="form-control " onChange={this.searchHandler} type="text" placeholder={Dictionary.search} id="example-search-input4" />
+            <button id="clear-btn" type="button">
+              <i class="fa fa-close" onClick={() => document.getElementById('example-search-input4').value = ''}></i>
+            </button>
+          </div>
+          <i class="fa fa-search" id="search-icon"></i>
+        </button>
+        <div id="temp">{getWomen(term)}</div>
+      </form>
+    )
+
+
+  }
+
+}
+
+
+
 //show bottom bar 
 export const BottomBar = () => {
 
   return (
     <div id="bottom">
 
-
+      <ScrollUpButton />
       <a>{Dictionary.builders} </a>
       <a href="#"><img id="fblogo" src={fblogo} alt="facebook" /> נעמת בפייסבוק</a>
       <a href="#"> <img id="ytlogo" src={ytlogo} alt="youtube" /> נעמת ביוטיוב</a>
@@ -179,17 +232,6 @@ export const CarouselLi = props => {
   )
 }
 
-function previewUrl(url, target) {
-  //use timeout coz mousehover fires several times
-  clearTimeout(window.ht);
-  window.ht = setTimeout(function () {
-    var div = document.getElementById(target);
-    div.innerHTML = '<iframe style="width:100%;height:100%;" frameborder="0" src="' + url + '" />';
-  }, 20);
-}
-//check
-
-
 
 //will show a modal: gets info ("details") and a url ("link") 
 export const DisplayModal = (props) => {
@@ -245,3 +287,31 @@ export const AfterMessage = (props) => {
     </div>
   )
 }
+
+export function getFeedback() {
+ // console.log("matan and sahar");
+      //get all the women that ae in the lexicografical area of the search term womanName
+      db.collection('feedbacks').get().then(snapshot => {
+          const feedbacks = [];
+          //get a women arry with all women results for this search
+          snapshot.forEach(doc => {
+              const data = doc.data();
+              if (data) {
+                  feedbacks.push(data);
+              }
+              else
+                  console.log("no data");
+
+          });
+          console.log(feedbacks);
+          if (feedbacks.length === 0)
+              console.log("no feedbacks");
+          else {
+              ReactDOM.render(<WomenDeck cards={feedbacks} />, document.getElementById('feedBackHolder'));
+              
+          }
+
+
+      }).catch(error => console.log(error))
+  }
+
