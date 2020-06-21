@@ -3,6 +3,7 @@ import $ from 'jquery';
 import React, { Component } from 'react';
 import { NavBar, PictursCarousel, DisplayModal, BottomBar, AfterMessage, CarouselLi, CarouselSlide } from '../../Components.js';
 import { FeedbackButton } from '../../forms/Forms';
+import ReactDOM from 'react-dom';
 import Firebase, { auth, storage, db } from '../../config/Firebase';
 import { Dictionary } from '../../Dictionary';
 import { getWoman, WomenCard } from '../woman page/WomanPage';
@@ -14,6 +15,7 @@ class MainUserPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            img:{},
             carouselSlids: 3,
         }
     }
@@ -22,6 +24,7 @@ class MainUserPage extends Component {
     handlePictures() {
         var imgSrc = storage.ref("/שלמה כרמי2020-06-09").child("ProfilePic").getDownloadURL().then(url => {
             console.log("url: " + url);
+            this.state.img=imgSrc;
         })
 
         // get corrent languge
@@ -49,10 +52,15 @@ class MainUserPage extends Component {
                 // alert("in else");
                 // var element  = React.createElement(<CarouselLi data-slide-to= {this.carouselSlids} />);
                 // console.log(element);
-                var element = <li data-target="#carouselIndicators" data-slide-to = {this.state.carouselSlids}></li>;
-                document.getElementById("carouselIndicators").append(element);
-                // ReactDOM.render(<li data-target="#carouselIndicators" data-slide-to = {this.state.carouselSlids}></li>, document.getElementById("carouselIndicators"))
-                // ReactDOM.render(<CarouselSlide src={imgSrc} class="carousel-item " womanName={name} womanHighlights={highlights} />, document.getElementById("carouselInner"));
+                // var element = <li data-target="#carouselIndicators" data-slide-to = {this.state.carouselSlids}></li>;
+                // document.getElementById("carouselIndicators").append({element});
+                // var lir= ;
+                
+                $("#carouselIndicators").append(<div id="empty"></div>);
+                // $(lir).appendTo(cpy);
+                // console.log(cpy)
+                // ReactDOM.render(<li data-target="#carouselIndicators" data-slide-to = {this.state.carouselSlids}></li>, document.getElementById("empty"))
+                // ReactDOM.render(<CarouselSlide src={this.state.img} class="carousel-item " womanName={name} womanHighlights={highlights} />, document.getElementById("carouselInner"));
                 // $(".carousel-inner").append(<CarouselSlide src={imgSrc} class="carousel-item " womanName={name} womanHighlights={highlights} />)
             }
 
