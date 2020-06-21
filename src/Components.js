@@ -74,6 +74,7 @@ export const NavBar = () => {
 
           <li className="nav-item" id="stretcher">
             <Search />
+            <div id="womenHolder"></div>
           </li>
 
 

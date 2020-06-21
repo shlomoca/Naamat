@@ -128,7 +128,7 @@ export class LoginComponent extends Component {
         ReactDOM.render(
             <Router>
                 <Route exact path="/" component={MainUserPage} />
-                <Route path="/WomanPage" component={props => <WomanPage {...props} id="שלמה כרמי2020-06-09" />} />
+                <Route path="/WomanPage" component={props => <WomanPage {...props} id="דניאל רז1992-03-31" />} />
                 <Route path="/Category" component={Category} />
                 <Route path="/AdminPage" component={AdminPage} />
 
