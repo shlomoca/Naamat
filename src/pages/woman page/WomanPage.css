@@ -26,7 +26,7 @@ text-align: center;
 text-justify: inter-word;
 }
 
-#roundImage{
+.roundImage{
     border-radius: 50%;
     height: 130px;
     width: 130px;

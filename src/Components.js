@@ -10,8 +10,10 @@ import { db } from './/config/Firebase'
 import { Link } from 'react-router-dom';
 import LoginPage from './pages/login page/LoginPage';
 import { auth } from 'firebase';
-import { getWomen } from '../src/pages/woman page/WomanPage'
+import { getWomen, WomenDeck } from '../src/pages/woman page/WomanPage'
 import ScrollUpButton from "react-scroll-up-button";
+import ReactDOM from 'react-dom';
+
 
 
 
@@ -270,4 +272,31 @@ export const AfterMessage = (props) => {
     </div>
   )
 }
+
+export function getFeedback() {
+ // console.log("matan and sahar");
+      //get all the women that ae in the lexicografical area of the search term womanName
+      db.collection('feedbacks').get().then(snapshot => {
+          const feedbacks = [];
+          //get a women arry with all women results for this search
+          snapshot.forEach(doc => {
+              const data = doc.data();
+              if (data) {
+                  feedbacks.push(data);
+              }
+              else
+                  console.log("no data");
+
+          });
+          console.log(feedbacks);
+          if (feedbacks.length === 0)
+              console.log("no feedbacks");
+          else {
+              ReactDOM.render(<WomenDeck cards={feedbacks} />, document.getElementById('feedBackHolder'));
+              
+          }
+
+
+      }).catch(error => console.log(error))
+  }
 
