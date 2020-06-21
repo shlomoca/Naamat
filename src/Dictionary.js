@@ -22,6 +22,10 @@ export const Dictionary = new LocalizedStrings({
     adminEditWoman: 'Edit Woman',
     adminFeedback: 'Watch Feedback',
     adminEditAbout: 'Edit About',
+    adminAddCategory: 'Add Category',
+    adminAddAdmin: 'Add Admin',
+    adminRemoveAdmin: 'Remove Admin',
+
 
 
 
@@ -56,6 +60,7 @@ export const Dictionary = new LocalizedStrings({
     anotherpictures:'Another Pictures',
     mustfilled:' required field *',
     delete: `delete`,
+    next: 'next',
     //components
     
     builders: `This site was built by: Shlomo Carmi, Daniel Raz, Sahar Cohen, Adiel Tsayag, Matan Yemin`,
@@ -72,6 +77,9 @@ export const Dictionary = new LocalizedStrings({
     adminEditWoman: 'ערכי אישה',
     adminFeedback: 'צפייה במשובים',
     adminEditAbout: 'עריכת אודות',
+    adminAddCategory: 'הוסף קטגוריה',
+    adminAddAdmin: 'הוסף מנהל',
+    adminRemoveAdmin: 'הסר מנהל',
     
     
   //main user page
@@ -88,7 +96,7 @@ export const Dictionary = new LocalizedStrings({
     displayname:"שם תצוגה",
     bday: `תאריך לידה`,
     submit:`שלח`,
-    dethDay: `יום פטירה`,
+    dethDay: `תאריך פטירה`,
     highlights:`תקציר`,
     biography:`ביוגרפיה`,
     QuotesAnd: `ציטוטים ויצירות בולטות`,
@@ -105,7 +113,8 @@ export const Dictionary = new LocalizedStrings({
     anotherpictures:'תמונות נוספות',
     mustfilled:'* שדות חובה',
     delete: `מחקי`,
-    
+    next: 'הבא',
+
     //components
     builders: 'אתר זה נבנה על ידי: שלמה כרמי, דניאל רז, סהר כהן, עדיאל צייג, מתן ימין',
     
@@ -123,6 +132,9 @@ export const Dictionary = new LocalizedStrings({
     adminEditWoman: 'تحرير المرأة',
     adminFeedback: 'ردود الفعل',
     adminEditAbout: 'تحرير حول',
+    adminAddCategory: 'إضافة فئة',
+    adminAddAdmin: 'أضف المشرف',
+    adminRemoveAdmin: 'إزالة المشرف',
     
 
   //main user page
@@ -156,6 +168,7 @@ export const Dictionary = new LocalizedStrings({
     mustfilled:' يتطلب حقلا *',
     delete: `حذف`,
     displayname:"اسم العرض",
+    next: 'التالى',
     //components
     
     builders: `تم بناء هذا الموقع من قبل: شلومو كرمي ، دانيال راز ، سحر كوهين ، أديل تساياج ، ماتان يمين `,
