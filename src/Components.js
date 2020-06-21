@@ -311,8 +311,7 @@ export const AfterMessage = (props) => {
 export function getFeedback() {
  // console.log("matan and sahar");
       //get all the women that ae in the lexicografical area of the search term womanName
-      $("#allAdmin").hide();
-
+      // $("#thisAdmin").hide();
       db.collection('feedbacks').get().then(snapshot => {
           const feedbacks = [];
           //get a women arry with all women results for this search
@@ -402,7 +401,6 @@ export function getFeedback() {
               <FeedBackHeader />
               {deck}
               <button id="backBtn" class="btn" >חזור</button>
-              
         </table>
           </div>
     )
