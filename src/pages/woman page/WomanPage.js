@@ -137,7 +137,7 @@ export const WomanPage = (props) => {
         )
     })
         .catch(error => {
-            alert("woman not found");
+            // alert("woman not found");
             console.log(error);});
 
     return (
