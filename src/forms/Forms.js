@@ -365,7 +365,4 @@ function showing(id, id2) {
         }
     }
 
-
 }
-
-
