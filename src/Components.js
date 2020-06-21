@@ -102,6 +102,19 @@ export const NavBar = () => {
   )
 }
 
+export function adminPageClick() {
+  console.log("in onclick")
+  var userEmail = sessionStorage.getItem("userEmail");
+  console.log(userEmail);
+  var permission;
+
+  db.collection('users').doc("AccessControl").collection(userEmail).doc("permissions").get().then(res => {
+    console.log(res.data());
+    permission = res.data().admin;
+    console.log(permission);
+    if (permission == "true") alert("manager")
+  });
+}
 
 class Search extends Component {
 
@@ -135,7 +148,7 @@ class Search extends Component {
 
 
   render() {
-    var term =(this.state.term).toLowerCase();
+    var term = (this.state.term).toLowerCase();
     return (
       <form className="form-inline my-2 my-lg-0 input-group mb-3" id="search-form">
         <button id="search-btn" type="button">
@@ -185,7 +198,7 @@ export const PictursCarousel = () => {
           <li data-target="#carouselIndicators" data-slide-to="1"></li>
           <li data-target="#carouselIndicators" data-slide-to="2"></li>
         </ol>
-        <div id = "carouselInner" class="carousel-inner">
+        <div id="carouselInner" class="carousel-inner">
           <div class="carousel-item active">
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Maimon_ada.jpeg/375px-Maimon_ada.jpeg" class="d-block w-100" alt="example 1" height="600px" width="115" />
             <div class="carousel-caption d-none d-md-block pictureDiscription">
@@ -235,7 +248,7 @@ export const CarouselSlide = props => {
 
 export const CarouselLi = props => {
   return (
-    <li data-target="#carouselIndicators" data-slide-to = {props.dataSlideTo}></li>
+    <li data-target="#carouselIndicators" data-slide-to={props.dataSlideTo}></li>
   )
 }
 
@@ -296,29 +309,29 @@ export const AfterMessage = (props) => {
 }
 
 export function getFeedback() {
- // console.log("matan and sahar");
-      //get all the women that ae in the lexicografical area of the search term womanName
-      db.collection('feedbacks').get().then(snapshot => {
-          const feedbacks = [];
-          //get a women arry with all women results for this search
-          snapshot.forEach(doc => {
-              const data = doc.data();
-              if (data) {
-                  feedbacks.push(data);
-              }
-              else
-                  console.log("no data");
+  // console.log("matan and sahar");
+  //get all the women that ae in the lexicografical area of the search term womanName
+  db.collection('feedbacks').get().then(snapshot => {
+    const feedbacks = [];
+    //get a women arry with all women results for this search
+    snapshot.forEach(doc => {
+      const data = doc.data();
+      if (data) {
+        feedbacks.push(data);
+      }
+      else
+        console.log("no data");
 
-          });
-          console.log(feedbacks);
-          if (feedbacks.length === 0)
-              console.log("no feedbacks");
-          else {
-              ReactDOM.render(<WomenDeck cards={feedbacks} />, document.getElementById('feedBackHolder'));
-              
-          }
+    });
+    console.log(feedbacks);
+    if (feedbacks.length === 0)
+      console.log("no feedbacks");
+    else {
+      ReactDOM.render(<WomenDeck cards={feedbacks} />, document.getElementById('feedBackHolder'));
+
+    }
 
 
-      }).catch(error => console.log(error))
-  }
+  }).catch(error => console.log(error))
+}
 
