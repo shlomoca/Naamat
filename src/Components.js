@@ -4,7 +4,7 @@ import { LangBtn, Dictionary } from './Dictionary';
 import logo from './images/naamatlogo.png';
 import fblogo from './images/fblogo.png';
 import ytlogo from './images/ytlogo.png';
-import './Components.css';
+import { showing } from './Components.css';
 import { EditWomanModal, AddCategoryModal, FeedbackModal, SuggestWoman } from './forms/Forms';
 import { db } from './/config/Firebase'
 import { Link } from 'react-router-dom';
@@ -298,6 +298,8 @@ export const AfterMessage = (props) => {
 export function getFeedback() {
  // console.log("matan and sahar");
       //get all the women that ae in the lexicografical area of the search term womanName
+      $("#allAdmin").hide();
+
       db.collection('feedbacks').get().then(snapshot => {
           const feedbacks = [];
           //get a women arry with all women results for this search
@@ -339,7 +341,7 @@ export function getFeedback() {
           <td> {props.email} </td>
           <td> {props.score} </td>
           <td> {props.improvement} </td>
-          <td> <button onClick={deleteFeedBack(props.name+props.email)}>מחק</button> </td>
+          <td> <button class="btn" onClick={deleteFeedBack(props.name+props.email)}>מחק</button> </td>
         </tr>
       </thead>
 
@@ -382,12 +384,13 @@ export function getFeedback() {
         
       })
     return (
-        <div>
-        <table>
+        <div id="feedbackTable">
+        <table table class="table table-dark">
               <FeedBackHeader />
               {deck}
-              <button>חזור</button>
-        </table>       
+              <button id="backBtn" class="btn" >חזור</button>
+              
+        </table>
           </div>
     )
         }
