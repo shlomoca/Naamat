@@ -5,13 +5,15 @@ import logo from './images/naamatlogo.png';
 import fblogo from './images/fblogo.png';
 import ytlogo from './images/ytlogo.png';
 import './Components.css';
-import { EditWomanModal, AddCategoryModal, FeedbackModal } from './forms/Forms';
+import { EditWomanModal, AddCategoryModal, FeedbackModal, SuggestWoman } from './forms/Forms';
 import { db } from './/config/Firebase'
 import { Link } from 'react-router-dom';
 import LoginPage from './pages/login page/LoginPage';
 import { auth } from 'firebase';
-import { getWomen } from '../src/pages/woman page/WomanPage'
+import { getWomen, WomenDeck } from '../src/pages/woman page/WomanPage'
 import ScrollUpButton from "react-scroll-up-button";
+import ReactDOM from 'react-dom';
+
 
 
 
@@ -24,6 +26,7 @@ export const NavBar = () => {
     <div id="navbar">
       <EditWomanModal />
       <AddCategoryModal />
+      <SuggestWoman />
       <FeedbackModal />
       <ScrollUpButton />
       <nav className="navbar navbar-expand-lg navbar-light bg-light" id="navList">
@@ -48,9 +51,14 @@ export const NavBar = () => {
             </Link>
           </li>
 
-          <li className="nav-item">
+          {/* <li className="nav-item">
             <button type="button" className="btn btn-primary nav-link" data-toggle="modal" data-target="#categoryForm">
               {Dictionary.addcategory}</button>
+          </li> */}
+
+          <li className="nav-item">
+            <button type="button" className="btn btn-primary nav-link" data-toggle="modal" data-target="#suggestWomanModal">
+              הצעת אישה</button>
           </li>
 
 
@@ -172,12 +180,12 @@ export const PictursCarousel = () => {
   return (
     <div id="pictureCarousel">
       <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-        <ol class="carousel-indicators">
-          <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-          <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-          <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+        <ol id="carouselIndicators" class="carousel-indicators">
+          <li data-target="#carouselIndicators" data-slide-to="0" class="active"></li>
+          <li data-target="#carouselIndicators" data-slide-to="1"></li>
+          <li data-target="#carouselIndicators" data-slide-to="2"></li>
         </ol>
-        <div class="carousel-inner">
+        <div id = "carouselInner" class="carousel-inner">
           <div class="carousel-item active">
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Maimon_ada.jpeg/375px-Maimon_ada.jpeg" class="d-block w-100" alt="example 1" height="600px" width="115" />
             <div class="carousel-caption d-none d-md-block pictureDiscription">
@@ -200,11 +208,11 @@ export const PictursCarousel = () => {
             </div>
           </div>
         </div>
-        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+        <a class="carousel-control-prev" href="#carouselIndicators" role="button" data-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
           <span class="sr-only">Previous</span>
         </a>
-        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+        <a class="carousel-control-next" href="#carouselIndicators" role="button" data-slide="next">
           <span class="carousel-control-next-icon" aria-hidden="true"></span>
           <span class="sr-only">Next</span>
         </a>
@@ -213,8 +221,23 @@ export const PictursCarousel = () => {
   )
 }
 
+export const CarouselSlide = props => {
+  return (
+    <div class={props.class}>
+      <img src={props.src} class="d-block w-100" alt="example 1" height="600px" width="115" />
+      <div class="carousel-caption d-none d-md-block pictureDiscription">
+        <h5>{props.womanName}</h5>
+        <p>{props.womanHighlights}</p>
+      </div>
+    </div>
+  )
+}
 
-
+export const CarouselLi = props => {
+  return (
+    <li data-target="#carouselIndicators" data-slide-to = {props.dataSlideTo}></li>
+  )
+}
 
 
 //will show a modal: gets info ("details") and a url ("link") 
@@ -271,4 +294,31 @@ export const AfterMessage = (props) => {
     </div>
   )
 }
+
+export function getFeedback() {
+ // console.log("matan and sahar");
+      //get all the women that ae in the lexicografical area of the search term womanName
+      db.collection('feedbacks').get().then(snapshot => {
+          const feedbacks = [];
+          //get a women arry with all women results for this search
+          snapshot.forEach(doc => {
+              const data = doc.data();
+              if (data) {
+                  feedbacks.push(data);
+              }
+              else
+                  console.log("no data");
+
+          });
+          console.log(feedbacks);
+          if (feedbacks.length === 0)
+              console.log("no feedbacks");
+          else {
+              ReactDOM.render(<WomenDeck cards={feedbacks} />, document.getElementById('feedBackHolder'));
+              
+          }
+
+
+      }).catch(error => console.log(error))
+  }
 

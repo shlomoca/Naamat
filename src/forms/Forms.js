@@ -118,7 +118,6 @@ export const GenralForm = (props) => {
 
         <div id={props.lang} class={classAttr}>
 
-
             <div id="name-group1" class="form-group">
                 {/* <label for="display"></label> */}
                 <input type="text" lang={props.lang} rows="1" class="details" cols="35" id={"display" + props.lang} name="display" placeholder={Dictionary.displayname} />
@@ -128,25 +127,25 @@ export const GenralForm = (props) => {
 
 
             {/* <div class="form-group"> */}
-                <textarea rows="4" class="detail" cols="50" name="highlights" lang={props.lang} id={"highlights" + props.lang} placeholder="Highlights"  ></textarea>
+            <textarea rows="4" class="detail" cols="50" name="highlights" lang={props.lang} id={"highlights" + props.lang} placeholder="Highlights"  ></textarea>
             {/* </div> */}
 
 
             {/* <div class="form-group"> */}
-                <textarea rows="4" class="detail" cols="50" name="biography" lang={props.lang} id={"biography" + props.lang} placeholder="Biography" ></textarea>
+            <textarea rows="4" class="detail" cols="50" name="biography" lang={props.lang} id={"biography" + props.lang} placeholder="Biography" ></textarea>
             {/* </div> */}
 
             {/* <div class="form-group"> */}
-                <textarea rows="4" class="detail" cols="50" name="history" lang={props.lang} id={"historical" + props.lang} placeholder="Historical events related" ></textarea>
+            <textarea rows="4" class="detail" cols="50" name="history" lang={props.lang} id={"historical" + props.lang} placeholder="Historical events related" ></textarea>
             {/* </div> */}
 
             {/* <div class="form-group"> */}
-                <textarea rows="4" class="detail" cols="50" name="feminism" lang={props.lang} id={"contribution" + props.lang} placeholder="Contribution to Feminism" ></textarea>
+            <textarea rows="4" class="detail" cols="50" name="feminism" lang={props.lang} id={"contribution" + props.lang} placeholder="Contribution to Feminism" ></textarea>
             {/* </div> */}
 
 
             {/* <div class="form-group"> */}
-                <textarea rows="4" class="detail" cols="50" name="facts" lang={props.lang} id={"facts" + props.lang} placeholder="Interesting fact / story" ></textarea>
+            <textarea rows="4" class="detail" cols="50" name="facts" lang={props.lang} id={"facts" + props.lang} placeholder="Interesting fact / story" ></textarea>
             {/* </div> */}
 
             <div class="form-group">
@@ -159,6 +158,82 @@ export const GenralForm = (props) => {
             </div>
         </div>
 
+    )
+}
+
+export const SuggestWoman = () => {
+
+    return (
+        <div class="modal fade" id="suggestWomanModal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <form dir="RTL" id="suggest_woman_form" name="suggest_woman_form" method="POST"  >
+                        <div class="modal-header">
+                            <button type="button" id="xClose" class="close" data-dismiss="modal" aria-label="Close" onClick={resetForm("suggest_woman_form")}>
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <h5 class="modal-title" id="staticBackdropLabel">{Dictionary.addWoman}</h5>
+                        </div>
+
+                        <div class="modal-body">
+
+                            <div id="name-group1" class="form-group">
+                                {/* <label for="display"></label> */}
+                                <input type="text" rows="1" class="detailsNew" cols="35" id="yourName" name="yourName" placeholder="enter your name" required />
+                            </div>
+
+                            <div id="name-group1" class="form-group">
+                                {/* <label for="display"></label> */}
+                                <input type="text" rows="1" class="detailsNew" cols="35" id="yourEmail" name="yourEmail" placeholder="enter your email" required />
+                            </div>
+
+                            <div id="name-group1" class="form-group">
+                                {/* <label for="display"></label> */}
+                                <input type="text" rows="1" class="detailsNew" cols="35" id="display" name="display" placeholder="display name" />
+                            </div>
+
+                            {/* <div class="form-group"> */}
+                            <textarea rows="4" class="detail" cols="50" name="highlights" id="highlights" placeholder="Highlights"  ></textarea>
+                            {/* </div> */}
+
+
+                            {/* <div class="form-group"> */}
+                            <textarea rows="4" class="detail" cols="50" name="biography" id="biography" placeholder="Biography" ></textarea>
+                            {/* </div> */}
+
+                            {/* <div class="form-group"> */}
+                            <textarea rows="4" class="detail" cols="50" name="history" id="historical" placeholder="Historical events related" ></textarea>
+                            {/* </div> */}
+
+                            {/* <div class="form-group"> */}
+                            <textarea rows="4" class="detail" cols="50" name="feminism" id="contribution" placeholder="Contribution to Feminism" ></textarea>
+                            {/* </div> */}
+
+
+                            {/* <div class="form-group"> */}
+                            <textarea rows="4" class="detail" cols="50" name="facts" id="facts" placeholder="Interesting fact / story" ></textarea>
+                            {/* </div> */}
+
+                            <div class="form-group">
+                                <select name="type" id="type">
+                                    <option value="bibliography" name="bibliography">Bibliography</option>
+                                    <option value="link" name="link">Link</option>
+                                </select>
+                                <input type="text" rows="4" class="details" cols="50" name="quotes" id="quotes" placeholder="Quotes and notable works" />
+                                <input id="link" type="text" rows="4" class="details" cols="50" name="link" placeholder="link" />
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="close" class="btn btn-secondary" onClick={resetForm("suggest_woman_form")} data-dismiss="modal">{Dictionary.close}</button>
+                            <button type="submit" for="suggest_woman_form" class="btn btn-success" id="submit_form" >{Dictionary.submit} <span class="fa fa-arrow-right"></span></button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
     )
 }
 
@@ -182,7 +257,7 @@ export const EditWomanModal = () => {
                             <div id="step1">
                                 {/* <h2>step 1</h2> */}
                                 <ul id="mylinks" class="nav nav-tabs">
-                                    <li  class="langTabs active"><a data-toggle="tab" href="#HE">עברית</a></li>
+                                    <li class="langTabs active"><a data-toggle="tab" href="#HE">עברית</a></li>
                                     <li class="langTabs"><a data-toggle="tab" href="#EN">English</a></li>
                                     <li class="langTabs"><a data-toggle="tab" href="#AR">عربى</a></li>
                                 </ul>
@@ -192,19 +267,19 @@ export const EditWomanModal = () => {
                                     <input type="text" rows="1" class="details" cols="35" id="name" name="name" placeholder="" />
 
                                     <div class="bdayclass">
-                                <div id="name-group" class="form-group">
-                                    <div  id="line2" for="birth">{Dictionary.bday}</div>
-                                    <input class ="details2" type="date" name="birth" id="birth" />
-                                <div class="dethDay"> 
-                                <div id="name-group" class="form-group">
-                                    <label id="line3" for="death">{Dictionary.dethDay}</label>
-                                    <input type="date" name="death" id="death" />
-                                </div>
-                                </div>
+                                        <div id="name-group" class="form-group">
+                                            <div id="line2" for="birth">{Dictionary.bday}</div>
+                                            <input class="details2" type="date" name="birth" id="birth" />
+                                            <div class="dethDay">
+                                                <div id="name-group" class="form-group">
+                                                    <label id="line3" for="death">{Dictionary.dethDay}</label>
+                                                    <input type="date" name="death" id="death" />
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                                </div>
-                                <button  id="submit1" type="button" class="btn btn-success" onClick=  {showing("#step2")} >{Dictionary.next}</button>
+                                <button id="submit1" type="button" class="btn btn-success" onClick={showing("#step2")} >{Dictionary.next}</button>
                             </div>
                             <div id="popup">
                                 <span class="popuptext" id="myPopup">בבקשה מלא את כל הפרטים</span>
@@ -227,7 +302,7 @@ export const EditWomanModal = () => {
 
                 </div>
             </div>
-            
+
         </div>
     );
 }
@@ -253,51 +328,51 @@ $("document").ready(function () {
 
     //add woman from the form to database
     $("#woman_form").submit(function (event) {
-        
+
         if (!$("#woman_form").valid()) return;
         //confirm id not exeisting??
-        var he = {},en = {},ar = {},gen = {};
-        var boolHe = false,boolEn = false,boolAr = false;
-       
+        var he = {}, en = {}, ar = {}, gen = {};
+        var boolHe = false, boolEn = false, boolAr = false;
+
         var id = $("#name").val() + $("#birth").val();
         $('#submit1').show();
 
         $($('#woman_form').prop('elements')).each(function () {
             if (this.value) {
-                if(this.name==="highlights"||this.name==="display"){
-                        gen[this.id]=(this.value).toLowerCase();
-                    }
-                if (this.lang == "EN"){
-                    boolEn=true;
+                if (this.name === "highlights" || this.name === "display") {
+                    gen[this.id] = (this.value).toLowerCase();
+                }
+                if (this.lang == "EN") {
+                    boolEn = true;
                     en["id"] = id;
                     en[this.name] = this.value;
-                    
+
                 }
-                else if (this.lang == "HE"){
-                    boolHe=true;
+                else if (this.lang == "HE") {
+                    boolHe = true;
                     he["id"] = id;
                     he[this.name] = this.value;
                 }
-                else if (this.lang == "AR"){
-                    boolAr=true;
+                else if (this.lang == "AR") {
+                    boolAr = true;
                     ar["id"] = id;
                     ar[this.name] = this.value;
                 }
-                else{
+                else {
                     gen[this.name] = this.value;
                     gen["id"] = id;
                 }
             }
         });
 
-       
+
         db.collection('women').doc(id).set(gen);
-        if(boolHe)
-        db.collection('women').doc(id).collection("langs").doc("HE").set(he);
-        if(boolEn)
-        db.collection('women').doc(id).collection("langs").doc("EN").set(en);
-        if(boolAr)
-        db.collection('women').doc(id).collection("langs").doc("AR").set(ar);
+        if (boolHe)
+            db.collection('women').doc(id).collection("langs").doc("HE").set(he);
+        if (boolEn)
+            db.collection('women').doc(id).collection("langs").doc("EN").set(en);
+        if (boolAr)
+            db.collection('women').doc(id).collection("langs").doc("AR").set(ar);
         window.$("#staticBackdrop").modal('hide');
         // $("#staticBackdrop").modal('hide');
         // $("#afterMessage").modal('show');
@@ -335,8 +410,34 @@ $("document").ready(function () {
         // stop the form from submitting the normal way and refreshing the page
         event.preventDefault();
     });
+    
+    
+    $("#suggest_woman_form").submit(function (event) {
+        if (!$("#suggest_woman_form").valid()) return;
+        event.preventDefault();  
+        suggestWoman();
+        // $("#afterMessage").modal('show');
+        // stop the form from submitting the normal way and refreshing the page
+    });
 
 });
+
+// add to suggest woman collection
+function suggestWoman(){
+    var obj = {}
+    var id = $("#yourEmail").val();
+    
+    $($('#suggest_woman_form').prop('elements')).each(function () {
+        if (this.value) {
+                obj[this.id] = this.value;
+        }
+    });
+    console.log(obj);
+
+    db.collection('suggest_women').doc(id).set(obj).then(function () {
+        window.$("#suggestWomanModal").modal('hide');
+    });
+}
 
 //reset the add woman form when close
 function resetForm(id) {
@@ -365,7 +466,4 @@ function showing(id, id2) {
         }
     }
 
-
 }
-
-
