@@ -10,6 +10,16 @@ import { AfterMessage } from '../Components';
 
 
 
+// function hideMe() {
+//     var x = document.getElementById("submit1");
+//     if (x.style.display === "none") {
+//       x.style.display = "block";
+//     } else {
+//       x.style.display = "none";
+//     }
+//   }
+
+
 export const FeedbackModal = () => {
 
     return (
@@ -109,35 +119,35 @@ export const GenralForm = (props) => {
         <div id={props.lang} class={classAttr}>
 
 
-            <div id="name-group" class="form-group">
+            <div id="name-group1" class="form-group">
                 {/* <label for="display"></label> */}
-                <input type="text" lang={props.lang} rows="1" class="details" cols="35" id={"display" + props.lang} name="display" placeholder="display name arabic" />
+                <input type="text" lang={props.lang} rows="1" class="detailsNew" cols="35" id={"display" + props.lang} name="display" placeholder="display name" />
             </div>
-
             <ImageUpload param1="name" param2="birth" pathEnd="/ProfilePic" param1Empty="name not enterd" param2Empty="date of birth not ented" />
 
 
-            <div class="form-group">
-                <textarea rows="4" class="details" cols="50" name="highlights" lang={props.lang} id={"highlights" + props.lang} placeholder="Highlights"  ></textarea>
-            </div>
+
+            {/* <div class="form-group"> */}
+                <textarea rows="4" class="detail" cols="50" name="highlights" lang={props.lang} id={"highlights" + props.lang} placeholder="Highlights"  ></textarea>
+            {/* </div> */}
 
 
-            <div class="form-group">
-                <textarea rows="4" class="details" cols="50" name="biography" lang={props.lang} id={"biography" + props.lang} placeholder="Biography" ></textarea>
-            </div>
+            {/* <div class="form-group"> */}
+                <textarea rows="4" class="detail" cols="50" name="biography" lang={props.lang} id={"biography" + props.lang} placeholder="Biography" ></textarea>
+            {/* </div> */}
 
-            <div class="form-group">
-                <textarea rows="4" class="details" cols="50" name="history" lang={props.lang} id={"historical" + props.lang} placeholder="Historical events related" ></textarea>
-            </div>
+            {/* <div class="form-group"> */}
+                <textarea rows="4" class="detail" cols="50" name="history" lang={props.lang} id={"historical" + props.lang} placeholder="Historical events related" ></textarea>
+            {/* </div> */}
 
-            <div class="form-group">
-                <textarea rows="4" class="details" cols="50" name="feminism" lang={props.lang} id={"contribution" + props.lang} placeholder="Contribution to Feminism" ></textarea>
-            </div>
+            {/* <div class="form-group"> */}
+                <textarea rows="4" class="detail" cols="50" name="feminism" lang={props.lang} id={"contribution" + props.lang} placeholder="Contribution to Feminism" ></textarea>
+            {/* </div> */}
 
 
-            <div class="form-group">
-                <textarea rows="4" class="details" cols="50" name="facts" lang={props.lang} id={"facts" + props.lang} placeholder="Interesting fact / story" ></textarea>
-            </div>
+            {/* <div class="form-group"> */}
+                <textarea rows="4" class="detail" cols="50" name="facts" lang={props.lang} id={"facts" + props.lang} placeholder="Interesting fact / story" ></textarea>
+            {/* </div> */}
 
             <div class="form-group">
                 <select name="type" id="type">
@@ -169,36 +179,37 @@ export const EditWomanModal = () => {
                         </div>
 
                         <div class="modal-body">
-
                             <div id="step1">
-                                <h2>step 1</h2>
+                                {/* <h2>step 1</h2> */}
+                                <ul id="mylinks" class="nav nav-tabs">
+                                    <li  class="langTabs active"><a data-toggle="tab" href="#HE">עברית</a></li>
+                                    <li class="langTabs"><a data-toggle="tab" href="#EN">English</a></li>
+                                    <li class="langTabs"><a data-toggle="tab" href="#AR">عربى</a></li>
+                                </ul>
                                 <div id="name-group" class="form-group">
                                     {/* <label for="name"></label> */}
-                                    <label for="name">{Dictionary.name}</label>
+                                    <label id="lineName" for="name">{Dictionary.name}</label>
+                                    <input type="text" rows="1" class="details" cols="35" id="name" name="name" placeholder="" />
 
-                                    <input type="text" rows="1" class="details" cols="35" id="name" name="name" placeholder="אנא הכנס שם מלא" />
-                                </div>
+                                    <div class="bdayclass">
                                 <div id="name-group" class="form-group">
-                                    <label for="birth">{Dictionary.bday}</label>
-                                    <input type="date" name="birth" id="birth" />
-                                </div>
+                                    <div  id="line2" for="birth">{Dictionary.bday}</div>
+                                    <input class ="details2" type="date" name="birth" id="birth" />
+                                <div class="dethDay"> 
                                 <div id="name-group" class="form-group">
-                                    <label for="death">{Dictionary.dethDay}</label>
+                                    <label id="line3" for="death">{Dictionary.dethDay}</label>
                                     <input type="date" name="death" id="death" />
                                 </div>
-
-                                <button id="submit1" type="button" class="btn btn-success" onClick={showing("#step2", "#step1")}>הבא</button>
+                                </div>
+                                    </div>
+                                </div>
+                                </div>
+                                <button  id="submit1" type="button" class="btn btn-success" onClick=  {showing("#step2")} >{Dictionary.next}</button>
                             </div>
                             <div id="popup">
                                 <span class="popuptext" id="myPopup">בבקשה מלא את כל הפרטים</span>
                             </div>
                             <div id="step2">
-                                <h2>step 2</h2>
-                                <ul id="mylinks" class="nav nav-tabs">
-                                    <li class="langTabs active"><a data-toggle="tab" href="#HE">עברית</a></li>
-                                    <li class="langTabs"><a data-toggle="tab" href="#EN">English</a></li>
-                                    <li class="langTabs"><a data-toggle="tab" href="#AR">عربى</a></li>
-                                </ul>
                                 <div class="tab-content">
                                     <GenralForm lang={langs[0]} active={true} />
                                     <GenralForm lang={langs[1]} />
@@ -216,6 +227,7 @@ export const EditWomanModal = () => {
 
                 </div>
             </div>
+            
         </div>
     );
 }
@@ -241,17 +253,19 @@ $("document").ready(function () {
 
     //add woman from the form to database
     $("#woman_form").submit(function (event) {
+        
         if (!$("#woman_form").valid()) return;
         //confirm id not exeisting??
         var he = {},en = {},ar = {},gen = {};
         var boolHe = false,boolEn = false,boolAr = false;
        
         var id = $("#name").val() + $("#birth").val();
+        $('#submit1').show();
 
         $($('#woman_form').prop('elements')).each(function () {
             if (this.value) {
                 if(this.name==="highlights"||this.name==="display"){
-                        gen[this.id]=this.value;
+                        gen[this.id]=(this.value).toLowerCase();
                     }
                 if (this.lang == "EN"){
                     boolEn=true;
@@ -261,7 +275,7 @@ $("document").ready(function () {
                 }
                 else if (this.lang == "HE"){
                     boolHe=true;
-                    ar["id"] = id;
+                    he["id"] = id;
                     he[this.name] = this.value;
                 }
                 else if (this.lang == "AR"){
@@ -330,6 +344,8 @@ function resetForm(id) {
         $("#" + id).trigger("reset");
         $("#step1").show();
         $("#step2").hide();
+        $('#submit1').show();
+
         
     }
 };
@@ -346,6 +362,8 @@ function showing(id, id2) {
         else {
             $(id).show();
             $(id2).hide();
+            $("#submit1").hide()
+
         }
     }
 

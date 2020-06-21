@@ -3,7 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { NavBar, BottomBar } from '../../Components';
 import { db } from '../../config/Firebase'
-import { Dictionary } from '../../Dictionary';
+import { Dictionary, langs } from '../../Dictionary';
 import $ from 'jquery';
 
 
@@ -25,38 +25,23 @@ const MainDetails = (props) => {
 
 export const WomenCard = (props) => {
     return (
-        <div id="womanCardsContainer">
+        <div id="womanCardsContainer" >
             <img id="roundImage" src={props.link} alt={props.display} />
-            <h1 >{props.display} </h1>
+            <h1  >{props.display} </h1>
             <p>{props.summary}  </p>
+            <button onClick={editWoman(props.id)}>Edit</button>
         </div>
     )
 }
 export const WomenDeck = (props) => {
-    // var deck= <div id='womanDeck'></div>;
-    /* var deck = document.createElement('div').createAttribute("id").setAttribute("womanDeck"); */
-    //  console.log(props.cards);
-    //  return (
-    //     {if(props.cards)
-    //    deck.appendChild( <WomenCard display="one women" summary="someone importent" link="https://stack.com.au/wp-content/uploads/2019/05/Rick_Morty_S4.jpg" />
-    // deck+=</div>;
-    //    deck
-    // )
-    console.log(props.cards);
-
-
-    // cards.forEach()
     const vals = Object.values(props.cards);
     const deck = [];
-
-
-
     vals.map(woman => {
         var wName = woman["display" + Dictionary.getLanguage()];
-        var sum  = woman["highlights" + Dictionary.getLanguage()];
+        var sum = woman["highlights" + Dictionary.getLanguage()];
         var id = woman.id;
         if (wName && sum)
-            deck.push(<WomenCard display={wName} summary={sum} link={woman.link} />);
+            deck.push(<WomenCard display={wName} summary={sum} link={woman.link} id={id} />);
     })
 
     return (
@@ -198,11 +183,11 @@ export const WomanPage = (props) => {
 
 export function getWomen(womanName) {
     if (womanName) {
-        var nameattr="display"+Dictionary.getLanguage()
+        var nameattr="display"+determineLang(womanName);
         var MaxIndex=getMaxIndex(womanName);
         console.log(MaxIndex)
         //get all the women that ae in the lexicografical area of the search term womanName
-        var coolac = db.collection('women').where(nameattr, ">=", womanName).where(nameattr, "<", MaxIndex).get().then(snapshot => {
+        db.collection('women').where(nameattr, ">=", womanName).where(nameattr, "<", MaxIndex).get().then(snapshot => {
             const women = [];
             //get a women arry with all women results for this search
             snapshot.forEach(doc => {
@@ -218,11 +203,7 @@ export function getWomen(womanName) {
             if (women.length === 0)
                 console.log("no women");
             else {
-
-
-                ReactDOM.render(<WomenDeck cards={women} />, document.getElementById('womenHolder'))
-
-
+                ReactDOM.render(<WomenDeck cards={women} />, document.getElementById('womenHolder'));
             }
 
 
@@ -255,9 +236,62 @@ function getMaxIndex(str) {
     }
 
 }
+function determineLang(str) {
+    if (str[0].match(/[\u0600-\u06FF]/i)) {
+        return "AR";
+    }
+    if (str[0].match(/[\u0590-\u05FF]/i)) {
+        return "HE";
+    }
+    if (str[0].match(/^[a-zA-Z]/i)) {
+        return "EN";
+    }
+    return "HE"
+}
+
+export function editWoman(id) {
+    var woman;
+
+
+    db.collection('women').doc(id).get().then(doc => {
+        woman = doc.data();
+
+        $("#name").val(woman.name);
+        $("#name").attr('readonly', true);
+
+        $("#birth").val(woman.birth);
+        $("#birth").attr('readonly', true);
+
+        $("#death").val(woman.death);
+        $("#death").attr('readonly', true);
+
+    })
+
+    langs.forEach(lang => {
+
+        db.collection('women').doc(id).collection('langs').doc(lang).get().then(doc => {
+
+            const info = [];
+            const data = doc.data();
+            if (data) {
+                info.push(data);
+            }
+
+            if (info.length != 0) {
+
+                Object.values(info).map(fileds => {
+                    Object.keys(fileds).map(key => {
+
+                        $("#" + key + lang).val(fileds[key]);
+                    })
+                })
+            }
+        })
+    })
+
+}
 
 
 $(document).ready(() => {
-
     // getWomen("shlomo carmi");
 });

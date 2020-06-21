@@ -16,7 +16,8 @@
     font-size: 50px;
   }
   
-  #adminButtons {
+
+  .adminButtons {
     display: block;
     width: 100%;
     margin: 0 auto 0 auto;
