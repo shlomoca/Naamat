@@ -7,10 +7,6 @@ import { Dictionary, langs } from '../../Dictionary';
 import $ from 'jquery';
 
 
-
-
-
-
 const MainDetails = (props) => {
 
     return (

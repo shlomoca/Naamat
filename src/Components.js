@@ -5,7 +5,7 @@ import logo from './images/naamatlogo.png';
 import fblogo from './images/fblogo.png';
 import ytlogo from './images/ytlogo.png';
 import './Components.css';
-import { EditWomanModal, AddCategoryModal, FeedbackModal } from './forms/Forms';
+import { EditWomanModal, AddCategoryModal, FeedbackModal, SuggestWoman } from './forms/Forms';
 import { db } from './/config/Firebase'
 import { Link } from 'react-router-dom';
 import LoginPage from './pages/login page/LoginPage';
@@ -24,6 +24,7 @@ export const NavBar = () => {
     <div id="navbar">
       <EditWomanModal />
       <AddCategoryModal />
+      <SuggestWoman />
       <FeedbackModal />
       <ScrollUpButton />
       <nav className="navbar navbar-expand-lg navbar-light bg-light" id="navList">
@@ -48,9 +49,14 @@ export const NavBar = () => {
             </Link>
           </li>
 
-          <li className="nav-item">
+          {/* <li className="nav-item">
             <button type="button" className="btn btn-primary nav-link" data-toggle="modal" data-target="#categoryForm">
               {Dictionary.addcategory}</button>
+          </li> */}
+
+          <li className="nav-item">
+            <button type="button" className="btn btn-primary nav-link" data-toggle="modal" data-target="#suggestWomanModal">
+              הצעת אישה</button>
           </li>
 
 
