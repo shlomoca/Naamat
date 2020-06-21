@@ -6,19 +6,37 @@
     --dark: rgb(186,85,211);
   }
   
-
+  #adminTitle{
+    color: purple;
+    font-style: normal;
+    position: absolute;
+    margin-top:0%;
+    width:100%;
+    left:30%;
+    font-size: 50px;
+  }
   
-  .adminButtons {
+  #adminButtons {
     display: block;
-    width: 400px;
+    width: 100%;
     margin: 0 auto 0 auto;
     position: absolute;
-    left: 0;
+    left:0;
     right: 0;
     top: 30vh;
   }
+
+  #leftButtons{
+    position: absolute;
+    left:10%;
+  }
+
+  #rightButtons{
+    position: absolute;
+    left: 62%;
+  }
   
-  #btn1, #btn2, #btn3, #btn4 {
+  #btn1, #btn2, #btn3, #btn4,#btn5,#btn6,#btn7,#btn8 {
     display: block;
     cursor: pointer;
     outline: none;
