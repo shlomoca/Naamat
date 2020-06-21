@@ -345,8 +345,6 @@ function resetForm(id) {
         $("#step1").show();
         $("#step2").hide();
         $('#submit1').show();
-
-        
     }
 };
 
