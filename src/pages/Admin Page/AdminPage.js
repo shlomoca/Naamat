@@ -1,11 +1,12 @@
 import './AdminPage.css';
 import $ from 'jquery';
 import React, { Component } from 'react';
-import { NavBar, PictursCarousel, DisplayModal, BottomBar, AfterMessage } from '../../Components.js';
+import { NavBar, PictursCarousel, DisplayModal, BottomBar, AfterMessage, getFeedback } from '../../Components.js';
 import { getWoman, WomenCard } from '../woman page/WomanPage';
 import { auth } from '../../config/Firebase';
 import { Dictionary } from '../../Dictionary';
 import { EditWomanModal, AddCategoryModal, FeedbackModal } from '../../forms/Forms';
+import { scryRenderedComponentsWithType } from 'react-dom/test-utils';
 
 
 class AdminPage extends Component {
@@ -21,7 +22,7 @@ class AdminPage extends Component {
                     <div id="rightButtons">
                         <button class="btnhover" type="button" id="btn1" data-toggle="modal" data-target="#staticBackdrop"> {Dictionary.adminAddWoman} </button>
                         <button class="btnhover" type="button" id="btn2" > {Dictionary.adminEditWoman} </button>
-                        <button class="btnhover" type="button" id="btn3" data-toggle="modal" data-target="#feedbackForm"> {Dictionary.adminFeedback} </button>
+                        <button class="btnhover" type="button" id="btn3" onClick={getFeedback}> {Dictionary.adminFeedback} </button>
                         <button class="btnhover" type="button" id="btn4"> {Dictionary.adminEditAbout} </button>
                     </div>
                     <div id="leftButtons">
@@ -31,6 +32,7 @@ class AdminPage extends Component {
                         <button class="btnhover" type="button" id="btn8"> חסר שימוש כרגע </button>
                     </div>
                 </div>
+                <div id="feedBackHolder"></div>
             </div>
         );
 

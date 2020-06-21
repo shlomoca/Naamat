@@ -1,10 +1,12 @@
 import './WomanPage.css';
-import React from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { NavBar, BottomBar } from '../../Components';
 import { db } from '../../config/Firebase'
 import { Dictionary, langs } from '../../Dictionary';
 import $ from 'jquery';
+import { storage } from '../../config/Firebase';
+import { render } from '@testing-library/react';
 
 
 const MainDetails = (props) => {
@@ -19,15 +21,34 @@ const MainDetails = (props) => {
     );
 }
 
-export const WomenCard = (props) => {
-    return (
-        <div id="womanCardsContainer" >
-            <img id="roundImage" src={props.link} alt={props.display} />
-            <h1  >{props.display} </h1>
-            <p>{props.summary}  </p>
-            <button onClick={editWoman(props.id)}>Edit</button>
-        </div>
-    )
+export class WomenCard extends Component{
+    constructor(props) {
+        super(props);
+        this.state = {
+          id: props.id,
+          display: props.display,
+          summery: props.summery,
+          url: ''
+        }
+    }
+    
+    componentDidMount() {
+    storage.ref("/"+this.state.id).child("ProfilePic").getDownloadURL().then(url => {
+        this.state.url=url;
+    }); 
+ }
+    render(){
+        return (
+            <div id="womanCardsContainer" >
+                <img id={"roundImage"+this.state.id} className="roundImage" src={this.state.url} alt={this.state.display} />
+                <h1  >{this.state.display} </h1>
+                <p>{this.state.summary}  </p>
+                <button onClick={editWoman(this.state.id)}>Edit</button>
+            </div>
+        )
+    }
+    
+
 }
 export const WomenDeck = (props) => {
     const vals = Object.values(props.cards);
@@ -37,7 +58,7 @@ export const WomenDeck = (props) => {
         var sum = woman["highlights" + Dictionary.getLanguage()];
         var id = woman.id;
         if (wName && sum)
-            deck.push(<WomenCard display={wName} summary={sum} link={woman.link} id={id} />);
+            deck.push(<WomenCard display={wName} summary={sum} id={id} />);   
     })
 
     return (
@@ -47,7 +68,33 @@ export const WomenDeck = (props) => {
     )
 }
 
+// //scan all pictures of a specific folder by id of woman
+// export function handlePictures(callback,id){
+//     // Create a reference under which you want to list
+//     var listRef = storage.ref().child(id);
+//     // Find all the prefixes and items.
+//     listRef.listAll().then(function (res) {
+//         res.prefixes.forEach(function (folderRef) {
+//             // All the prefixes under listRef.
+//             // You may call listAll() recursively on them.
+//         });
+//         res.items.forEach(function (itemRef) {
+//             // All the items under listRef sends to callback function.
+//              callback(itemRef);
+//         });
+//     }).catch(function (error) {
+//         // Uh-oh, an error occurred!
+//     });
+// }
 
+// //get reference for picture and delete it 
+// export function deleteWomanPicture(ref){
+//             ref.delete().then(function() {
+//                 // File deleted successfully
+//               }).catch(function(error) {
+//                 // Uh-oh, an error occurred!
+//               });
+// }
 //delete woman by id.
 export function deleteWoman(id) {
 
@@ -70,12 +117,13 @@ export function deleteWoman(id) {
 
 export const WomanPage = (props) => {
     var id = props.id;
-    var attributes = ["Banana", "Orange", "Apple", "Mango"];
-    var n = attributes.includes("Mango");
+    // var attributes = ["Banana", "Orange", "Apple", "Mango"];
+    // var n = attributes.includes("Mango");
     //get woman by id
     const woman = [];
     var obj;
-    db.collection('women').doc(id).get().then(snapshot => {
+    
+    db.collection('women').doc(id).collection('langs').doc(Dictionary.getLanguage()).get().then(snapshot => {
         woman.push(snapshot.data());
         obj = Object.keys(woman[0]);
         // console.log(woman);
@@ -84,7 +132,9 @@ export const WomanPage = (props) => {
 
         )
     })
-        .catch(error => console.log(error));
+        .catch(error => {
+            // alert("woman not found");
+            console.log(error);});
 
     return (
         <div id="WomanPageWrapper" class="wrapper" >
@@ -176,10 +226,16 @@ export const WomanPage = (props) => {
 
 
 
+const showWoman = (props) => {
+    
+}
+
+
 
 export function getWomen(womanName) {
     if (womanName) {
         var nameattr="display"+determineLang(womanName);
+        console.log(nameattr);
         var MaxIndex=getMaxIndex(womanName);
         console.log(MaxIndex)
         //get all the women that ae in the lexicografical area of the search term womanName
@@ -230,6 +286,7 @@ function getMaxIndex(str) {
             newchar = "aa";
         return newstr.concat(newchar);
     }
+    return str;
 
 }
 function determineLang(str) {
