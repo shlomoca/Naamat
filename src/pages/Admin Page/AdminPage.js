@@ -17,7 +17,7 @@ class AdminPage extends Component {
                 <FeedbackModal/>
 
                 <p id="adminTitle">ברוכים הבאים למערכת הניהול</p>
-                <div id="adminButtons">
+                <div class="adminButtons">
                     <div id="rightButtons">
                         <button class="btnhover" type="button" id="btn1" data-toggle="modal" data-target="#staticBackdrop"> {Dictionary.adminAddWoman} </button>
                         <button class="btnhover" type="button" id="btn2" > {Dictionary.adminEditWoman} </button>
