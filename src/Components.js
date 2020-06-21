@@ -288,15 +288,103 @@ export function getFeedback() {
                   console.log("no data");
 
           });
-          console.log(feedbacks);
+          // console.log(feedbacks);
           if (feedbacks.length === 0)
               console.log("no feedbacks");
           else {
-              ReactDOM.render(<WomenDeck cards={feedbacks} />, document.getElementById('feedBackHolder'));
-              
+              ReactDOM.render(<DisplayFeedback feedbacks={feedbacks} />, document.getElementById('feedBackHolder'));
           }
 
 
       }).catch(error => console.log(error))
+
+      return(
+
+        <div> </div>
+       
+    )
+
   }
 
+
+
+  export const FeedBackBody = (props) => {
+
+    return(
+
+      <thead>
+        <tr>
+          {/* <td> {props.date} </td> */}
+          <td> {props.name} </td>
+          <td> {props.email} </td>
+          <td> {props.score} </td>
+          <td> {props.improvement} </td>
+          <td> <button onClick={deleteFeedBack(props.name+props.email)}> delete </button> </td>
+        </tr>
+      </thead>
+
+    )
+
+    }
+
+    export const FeedBackHeader = () => {
+
+      return(
+        <thead>
+          <tr>
+            {/* <th> Date </th> */}
+            <th> שם </th>
+            <th> דואר אלקטרוני </th>
+            <th> דירוג </th>
+            <th> הצעות לשיפור </th>
+            <th> </th>
+          </tr>
+        </thead>
+      )
+    }
+    
+      export const DisplayFeedback = (props) => {
+
+        var name, email, score, improvement;
+        const vals = Object.values(props.feedbacks);
+        const deck = [];
+        vals.map(feed => {
+        Object.keys(feed).map(runner =>{
+          name = feed["feed_name"];
+          email = feed["feed_email"];
+          score = feed["score"];
+          improvement = feed["improvement"];
+        }
+        )
+        if (name && email && score && improvement){
+          deck.push(<FeedBackBody name={name} email={email} score={score} improvement={improvement} />);   
+        }
+        
+      })
+    return (
+        <div>
+        <table>
+              <FeedBackHeader />
+              {deck}
+              <button> go back</button>
+        </table>       
+          </div>
+    )
+        }
+
+        //delete feedback by id
+        export function deleteFeedBack(id){
+
+          return () => {
+              // console.log(id);
+              if (id) {
+                  db.collection('feedbacks').doc(id).delete().then(() => {
+                      alert("feedback " + id + " was deleted");
+                      window.location.reload();
+                  });
+              }
+              else
+                  alert("wrong id");
+          }
+      }
+    
