@@ -6,7 +6,7 @@ import $ from 'jquery';
 import firebase, { auth } from '../../config/Firebase';
 import logo from '../../images/naamatlogo.png';
 import { Dictionary, LangBtn } from '../../Dictionary';
-import MainUserPage from '../main user page/MainUserPage';
+import MainUserPage from '../Main user page/MainUserPage';
 import {WomanPage} from '../woman page/WomanPage';
 import Category from '../category/Category';
 import AdminPage from '../Admin Page/AdminPage';

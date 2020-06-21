@@ -22,6 +22,10 @@ export const Dictionary = new LocalizedStrings({
     adminEditWoman: 'Edit Woman',
     adminFeedback: 'Watch Feedback',
     adminEditAbout: 'Edit About',
+    adminAddCategory: 'Add Category',
+    adminAddAdmin: 'Add Admin',
+    adminRemoveAdmin: 'Remove Admin',
+
 
 
 
@@ -72,6 +76,9 @@ export const Dictionary = new LocalizedStrings({
     adminEditWoman: 'ערכי אישה',
     adminFeedback: 'צפייה במשובים',
     adminEditAbout: 'עריכת אודות',
+    adminAddCategory: 'הוסף קטגוריה',
+    adminAddAdmin: 'הוסף מנהל',
+    adminRemoveAdmin: 'הסר מנהל',
     
     
   //main user page
@@ -123,6 +130,9 @@ export const Dictionary = new LocalizedStrings({
     adminEditWoman: 'تحرير المرأة',
     adminFeedback: 'ردود الفعل',
     adminEditAbout: 'تحرير حول',
+    adminAddCategory: 'إضافة فئة',
+    adminAddAdmin: 'أضف المشرف',
+    adminRemoveAdmin: 'إزالة المشرف',
     
 
   //main user page

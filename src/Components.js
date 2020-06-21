@@ -10,7 +10,7 @@ import { db } from './/config/Firebase'
 import { Link } from 'react-router-dom';
 import LoginPage from './pages/login page/LoginPage';
 import { auth } from 'firebase';
-import {  getWomen } from '../src/pages/woman page/WomanPage'
+import { getWomen } from '../src/pages/woman page/WomanPage'
 import ScrollUpButton from "react-scroll-up-button";
 
 
@@ -155,7 +155,7 @@ export const BottomBar = () => {
   return (
     <div id="bottom">
 
-
+      <ScrollUpButton />
       <a>{Dictionary.builders} </a>
       <a href="#"><img id="fblogo" src={fblogo} alt="facebook" /> נעמת בפייסבוק</a>
       <a href="#"> <img id="ytlogo" src={ytlogo} alt="youtube" /> נעמת ביוטיוב</a>
