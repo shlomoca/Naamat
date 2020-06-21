@@ -328,8 +328,6 @@ export function getFeedback() {
 
   }
 
-
-
   export const FeedBackBody = (props) => {
 
     return(
@@ -341,7 +339,7 @@ export function getFeedback() {
           <td> {props.email} </td>
           <td> {props.score} </td>
           <td> {props.improvement} </td>
-          <td> <button onClick={deleteFeedBack(props.name+props.email)}> delete </button> </td>
+          <td> <button onClick={deleteFeedBack(props.name+props.email)}>מחק</button> </td>
         </tr>
       </thead>
 
@@ -388,7 +386,7 @@ export function getFeedback() {
         <table>
               <FeedBackHeader />
               {deck}
-              <button> go back</button>
+              <button>חזור</button>
         </table>       
           </div>
     )
