@@ -5,7 +5,7 @@ import logo from './images/naamatlogo.png';
 import fblogo from './images/fblogo.png';
 import ytlogo from './images/ytlogo.png';
 import './Components.css';
-import { EditWomanModal, AddCategoryModal, FeedbackModal } from './forms/Forms';
+import { EditWomanModal, AddCategoryModal, FeedbackModal, SuggestWoman } from './forms/Forms';
 import { db } from './/config/Firebase'
 import { Link } from 'react-router-dom';
 import LoginPage from './pages/login page/LoginPage';
@@ -26,6 +26,7 @@ export const NavBar = () => {
     <div id="navbar">
       <EditWomanModal />
       <AddCategoryModal />
+      <SuggestWoman />
       <FeedbackModal />
       <ScrollUpButton />
       <nav className="navbar navbar-expand-lg navbar-light bg-light" id="navList">
@@ -50,9 +51,14 @@ export const NavBar = () => {
             </Link>
           </li>
 
-          <li className="nav-item">
+          {/* <li className="nav-item">
             <button type="button" className="btn btn-primary nav-link" data-toggle="modal" data-target="#categoryForm">
               {Dictionary.addcategory}</button>
+          </li> */}
+
+          <li className="nav-item">
+            <button type="button" className="btn btn-primary nav-link" data-toggle="modal" data-target="#suggestWomanModal">
+              הצעת אישה</button>
           </li>
 
 
@@ -68,6 +74,7 @@ export const NavBar = () => {
 
           <li className="nav-item" id="stretcher">
             <Search />
+            <div id="womenHolder"></div>
           </li>
 
 
@@ -173,12 +180,12 @@ export const PictursCarousel = () => {
   return (
     <div id="pictureCarousel">
       <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-        <ol class="carousel-indicators">
-          <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-          <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-          <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+        <ol id="carouselIndicators" class="carousel-indicators">
+          <li data-target="#carouselIndicators" data-slide-to="0" class="active"></li>
+          <li data-target="#carouselIndicators" data-slide-to="1"></li>
+          <li data-target="#carouselIndicators" data-slide-to="2"></li>
         </ol>
-        <div class="carousel-inner">
+        <div id = "carouselInner" class="carousel-inner">
           <div class="carousel-item active">
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Maimon_ada.jpeg/375px-Maimon_ada.jpeg" class="d-block w-100" alt="example 1" height="600px" width="115" />
             <div class="carousel-caption d-none d-md-block pictureDiscription">
@@ -201,11 +208,11 @@ export const PictursCarousel = () => {
             </div>
           </div>
         </div>
-        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+        <a class="carousel-control-prev" href="#carouselIndicators" role="button" data-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
           <span class="sr-only">Previous</span>
         </a>
-        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+        <a class="carousel-control-next" href="#carouselIndicators" role="button" data-slide="next">
           <span class="carousel-control-next-icon" aria-hidden="true"></span>
           <span class="sr-only">Next</span>
         </a>
@@ -214,8 +221,23 @@ export const PictursCarousel = () => {
   )
 }
 
+export const CarouselSlide = props => {
+  return (
+    <div class={props.class}>
+      <img src={props.src} class="d-block w-100" alt="example 1" height="600px" width="115" />
+      <div class="carousel-caption d-none d-md-block pictureDiscription">
+        <h5>{props.womanName}</h5>
+        <p>{props.womanHighlights}</p>
+      </div>
+    </div>
+  )
+}
 
-
+export const CarouselLi = props => {
+  return (
+    <li data-target="#carouselIndicators" data-slide-to = {props.dataSlideTo}></li>
+  )
+}
 
 
 //will show a modal: gets info ("details") and a url ("link") 
