@@ -253,12 +253,14 @@ $("document").ready(function () {
 
     //add woman from the form to database
     $("#woman_form").submit(function (event) {
+        
         if (!$("#woman_form").valid()) return;
         //confirm id not exeisting??
         var he = {},en = {},ar = {},gen = {};
         var boolHe = false,boolEn = false,boolAr = false;
        
         var id = $("#name").val() + $("#birth").val();
+        $('#submit1').show();
 
         $($('#woman_form').prop('elements')).each(function () {
             if (this.value) {
@@ -342,6 +344,8 @@ function resetForm(id) {
         $("#" + id).trigger("reset");
         $("#step1").show();
         $("#step2").hide();
+        $('#submit1').show();
+
         
     }
 };
