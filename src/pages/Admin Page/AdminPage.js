@@ -16,9 +16,8 @@ class AdminPage extends Component {
                 <EditWomanModal/>
                 <AddCategoryModal/>
                 <FeedbackModal/>
-
                 <p id="adminTitle">ברוכים הבאים למערכת הניהול</p>
-                <div class="adminButtons">
+                <div  class="adminButtons">
                     <div id="rightButtons">
                         <button class="btnhover" type="button" id="btn1" data-toggle="modal" data-target="#staticBackdrop"> {Dictionary.adminAddWoman} </button>
                         <button class="btnhover" type="button" id="btn2" > {Dictionary.adminEditWoman} </button>
@@ -34,6 +33,7 @@ class AdminPage extends Component {
                 </div>
                 <div id="feedBackHolder"></div>
             </div>
+            
         );
 
     }

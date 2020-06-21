@@ -7,7 +7,7 @@ import firebase, { auth } from '../../config/Firebase';
 import logo from '../../images/naamatlogo.png';
 import { Dictionary, LangBtn } from '../../Dictionary';
 import MainUserPage from '../Main user page/MainUserPage';
-import {WomanPage} from '../woman page/WomanPage';
+import { WomanPage } from '../woman page/WomanPage';
 import Category from '../category/Category';
 import AdminPage from '../Admin Page/AdminPage';
 
@@ -43,15 +43,9 @@ class LoginPage extends Component {
 
         if (!$("#login_form").valid()) return;
 
-
-        auth.setPersistence(auth.Auth.Persistence.SESSION)
-            .then(function () {
-                alert("login");
-                return auth.signInWithEmailAndPassword(this.state.email, this.state.password);
-            })
-            .catch(function (error) {
-                alert(error);
-            });
+        auth.signInWithEmailAndPassword(this.state.email, this.state.password);
+        sessionStorage.setItem("user", true);
+        sessionStorage.setItem("userEmail", this.state.email);
     }
 
     handleChange(e) {
@@ -111,19 +105,23 @@ export class LoginComponent extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            user: {},
+            user: false,
         }
     }
 
     authListener() {
         auth.onAuthStateChanged((user) => {
             if (user) this.setState({ user });
-            else this.setState({ user: null });
-            // alert("onAuthStateChange: " + user)
+            else this.setState({ user: false });
         })
     }
 
+    signOutFun() {
+        auth.signOut();
+    }
+
     componentDidMount() {
+        window.addEventListener("beforeunload", this.signOutFun);
         this.authListener();
     }
 
@@ -134,17 +132,17 @@ export class LoginComponent extends Component {
                 <Route path="/WomanPage" component={props => <WomanPage {...props} id="דניאל רז1992-03-31" />} />
                 <Route path="/Category" component={Category} />
                 <Route path="/AdminPage" component={AdminPage} />
-
+                <Route path="/AdminPage" component={AdminPage} />
             </Router>, document.getElementById('root')
         );
     }
 
     render() {
-        if (this.state.user) {
+        if (this.state.user || sessionStorage.getItem("user")) {
             // alert("in user if");
             return <div id='renderDiv'>{this.renderDiv()}</div>;
         }
-        else if (this.state.user == null) {
+        else {
             // alert("in null else if");
             return <LoginPage />
         }

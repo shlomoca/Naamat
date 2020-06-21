@@ -4,7 +4,7 @@ import { LangBtn, Dictionary } from './Dictionary';
 import logo from './images/naamatlogo.png';
 import fblogo from './images/fblogo.png';
 import ytlogo from './images/ytlogo.png';
-import './Components.css';
+import { showing } from './Components.css';
 import { EditWomanModal, AddCategoryModal, FeedbackModal, SuggestWoman } from './forms/Forms';
 import { db } from './/config/Firebase'
 import { Link } from 'react-router-dom';
@@ -102,6 +102,19 @@ export const NavBar = () => {
   )
 }
 
+export function adminPageClick() {
+  console.log("in onclick")
+  var userEmail = sessionStorage.getItem("userEmail");
+  console.log(userEmail);
+  var permission;
+
+  db.collection('users').doc("AccessControl").collection(userEmail).doc("permissions").get().then(res => {
+    console.log(res.data());
+    permission = res.data().admin;
+    console.log(permission);
+    if (permission == "true") alert("manager")
+  });
+}
 
 class Search extends Component {
 
@@ -135,7 +148,7 @@ class Search extends Component {
 
 
   render() {
-    var term =(this.state.term).toLowerCase();
+    var term = (this.state.term).toLowerCase();
     return (
       <form className="form-inline my-2 my-lg-0 input-group mb-3" id="search-form">
         <button id="search-btn" type="button">
@@ -185,7 +198,7 @@ export const PictursCarousel = () => {
           <li data-target="#carouselIndicators" data-slide-to="1"></li>
           <li data-target="#carouselIndicators" data-slide-to="2"></li>
         </ol>
-        <div id = "carouselInner" class="carousel-inner">
+        <div id="carouselInner" class="carousel-inner">
           <div class="carousel-item active">
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Maimon_ada.jpeg/375px-Maimon_ada.jpeg" class="d-block w-100" alt="example 1" height="600px" width="115" />
             <div class="carousel-caption d-none d-md-block pictureDiscription">
@@ -235,7 +248,7 @@ export const CarouselSlide = props => {
 
 export const CarouselLi = props => {
   return (
-    <li data-target="#carouselIndicators" data-slide-to = {props.dataSlideTo}></li>
+    <li data-target="#carouselIndicators" data-slide-to={props.dataSlideTo}></li>
   )
 }
 
@@ -298,6 +311,7 @@ export const AfterMessage = (props) => {
 export function getFeedback() {
  // console.log("matan and sahar");
       //get all the women that ae in the lexicografical area of the search term womanName
+      // $("#thisAdmin").hide();
       db.collection('feedbacks').get().then(snapshot => {
           const feedbacks = [];
           //get a women arry with all women results for this search
@@ -310,15 +324,101 @@ export function getFeedback() {
                   console.log("no data");
 
           });
-          console.log(feedbacks);
+          // console.log(feedbacks);
           if (feedbacks.length === 0)
               console.log("no feedbacks");
           else {
-              ReactDOM.render(<WomenDeck cards={feedbacks} />, document.getElementById('feedBackHolder'));
-              
+              ReactDOM.render(<DisplayFeedback feedbacks={feedbacks} />, document.getElementById('feedBackHolder'));
           }
 
 
       }).catch(error => console.log(error))
+
+      return(
+
+        <div> </div>
+       
+    )
+
   }
 
+  export const FeedBackBody = (props) => {
+
+    return(
+
+      <thead>
+        <tr>
+          {/* <td> {props.date} </td> */}
+          <td> {props.name} </td>
+          <td> {props.email} </td>
+          <td> {props.score} </td>
+          <td> {props.improvement} </td>
+          <td> <button class="btn" onClick={deleteFeedBack(props.name+props.email)}>מחק</button> </td>
+        </tr>
+      </thead>
+
+    )
+
+    }
+
+    export const FeedBackHeader = () => {
+
+      return(
+        <thead>
+          <tr>
+            {/* <th> Date </th> */}
+            <th> שם </th>
+            <th> דואר אלקטרוני </th>
+            <th> דירוג </th>
+            <th> הצעות לשיפור </th>
+            <th> </th>
+          </tr>
+        </thead>
+      )
+    }
+    
+      export const DisplayFeedback = (props) => {
+
+        var name, email, score, improvement;
+        const vals = Object.values(props.feedbacks);
+        const deck = [];
+        vals.map(feed => {
+        Object.keys(feed).map(runner =>{
+          name = feed["feed_name"];
+          email = feed["feed_email"];
+          score = feed["score"];
+          improvement = feed["improvement"];
+        }
+        )
+        if (name && email && score && improvement){
+          deck.push(<FeedBackBody name={name} email={email} score={score} improvement={improvement} />);   
+        }
+        
+      })
+    return (
+        <div id="feedbackTable">
+        <table table class="table table-dark">
+              <FeedBackHeader />
+              {deck}
+              <button id="backBtn" class="btn" >חזור</button>
+        </table>
+          </div>
+    )
+        }
+
+        //delete feedback by id
+        export function deleteFeedBack(id){
+
+          return () => {
+              // console.log(id);
+              if (id) {
+                  db.collection('feedbacks').doc(id).delete().then(() => {
+                      alert("feedback " + id + " was deleted");
+                      window.location.reload();
+                  });
+              }
+              else
+                  alert("wrong id");
+          }
+      }
+    

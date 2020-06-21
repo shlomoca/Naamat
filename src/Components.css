@@ -139,3 +139,12 @@ img {
     justify-content: center;
     bottom: 0%;
 }
+
+#feedbackTable{
+    padding-top: 10%;
+    /* width: 100%; */
+    padding-right: 10%;
+    padding-left: 10%;
+    text-align: right;
+
+}
