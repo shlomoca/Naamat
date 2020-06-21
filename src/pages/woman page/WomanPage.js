@@ -25,11 +25,11 @@ const MainDetails = (props) => {
 
 export const WomenCard = (props) => {
     return (
-        <div id="womanCardsContainer">
+        <div id="womanCardsContainer" >
             <img id="roundImage" src={props.link} alt={props.display} />
-            <h1 >{props.display} </h1>
+            <h1  >{props.display} </h1>
             <p>{props.summary}  </p>
-            <button onClick={editWoman("שלמה כרמי1993-06-09")}>Edit</button>
+            <button onClick={editWoman(props.id)}>Edit</button>
         </div>
     )
 }
