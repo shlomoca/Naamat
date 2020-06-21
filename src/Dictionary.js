@@ -40,6 +40,7 @@ export const Dictionary = new LocalizedStrings({
     
     //forms
     name: `Name`,
+    displayname:"display name",
     bday: `Date of birth`,
     submit:`Submit`, 
     dethDay: `Date of death`,
@@ -92,6 +93,7 @@ export const Dictionary = new LocalizedStrings({
     
     //forms
     name: `שם`,
+    displayname:"שם תצוגה",
     bday: `תאריך לידה`,
     submit:`שלח`,
     dethDay: `תאריך פטירה`,
@@ -165,6 +167,7 @@ export const Dictionary = new LocalizedStrings({
     anotherpictures:'صور أخرى',
     mustfilled:' يتطلب حقلا *',
     delete: `حذف`,
+    displayname:"اسم العرض",
     next: 'التالى',
     //components
     
