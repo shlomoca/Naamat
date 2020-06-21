@@ -45,6 +45,7 @@ class LoginPage extends Component {
 
         auth.signInWithEmailAndPassword(this.state.email, this.state.password);
         sessionStorage.setItem("user", true);
+        sessionStorage.setItem("userEmail", this.state.email);
     }
 
     handleChange(e) {
@@ -131,7 +132,7 @@ export class LoginComponent extends Component {
                 <Route path="/WomanPage" component={props => <WomanPage {...props} id="דניאל רז1992-03-31" />} />
                 <Route path="/Category" component={Category} />
                 <Route path="/AdminPage" component={AdminPage} />
-
+                <Route path="/AdminPage" component={AdminPage} />
             </Router>, document.getElementById('root')
         );
     }
