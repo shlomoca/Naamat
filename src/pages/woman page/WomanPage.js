@@ -9,10 +9,6 @@ import { storage } from '../../config/Firebase';
 import { render } from '@testing-library/react';
 
 
-
-
-
-
 const MainDetails = (props) => {
 
     return (
