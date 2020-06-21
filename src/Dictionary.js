@@ -55,6 +55,7 @@ export const Dictionary = new LocalizedStrings({
     anotherpictures:'Another Pictures',
     mustfilled:' required field *',
     delete: `delete`,
+    next: 'next',
     //components
     
     builders: `This site was built by: Shlomo Carmi, Daniel Raz, Sahar Cohen, Adiel Tsayag, Matan Yemin`,
@@ -86,7 +87,7 @@ export const Dictionary = new LocalizedStrings({
     name: `שם`,
     bday: `תאריך לידה`,
     submit:`שלח`,
-    dethDay: `יום פטירה`,
+    dethDay: `תאריך פטירה`,
     highlights:`תקציר`,
     biography:`ביוגרפיה`,
     QuotesAnd: `ציטוטים ויצירות בולטות`,
@@ -103,6 +104,8 @@ export const Dictionary = new LocalizedStrings({
     anotherpictures:'תמונות נוספות',
     mustfilled:'* שדות חובה',
     delete: `מחקי`,
+    next: 'הבא',
+
     //components
     builders: 'אתר זה נבנה על ידי: שלמה כרמי, דניאל רז, סהר כהן, עדיאל צייג, מתן ימין',
     
@@ -152,6 +155,7 @@ export const Dictionary = new LocalizedStrings({
     anotherpictures:'صور أخرى',
     mustfilled:' يتطلب حقلا *',
     delete: `حذف`,
+    next: 'التالى',
     //components
     
     builders: `تم بناء هذا الموقع من قبل: شلومو كرمي ، دانيال راز ، سحر كوهين ، أديل تساياج ، ماتان يمين `,
