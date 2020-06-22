@@ -74,6 +74,8 @@ export const FeedbackModal = () => {
     );
 };
 
+
+
 export const AddCategoryModal = () => {
     return (
         <div class="modal fade" id="categoryForm" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -87,18 +89,23 @@ export const AddCategoryModal = () => {
                         <h5 class="modal-title" id="staticBackdropLabel">{Dictionary.addcategory}</h5>
                     </div>
                     <div class="modal-body">
-                        <form dir="RTL" id="category_form" name="category_form"  >
-
+                        <form dir="RTL" id="category_form" name="category_form" method="POST" >
                             <div id="name-group" class="form-group">
-                                <lable for="category_name">{Dictionary.name}</lable>
-                                <input type="text" rows="1" class="details" id="category_name" cols="35" name="category_name" placeholder="Category name" required />
+                                <div id="name-group1" class="form-group">
+                                    <lable for="category_name">{Dictionary.name}</lable>
+                                    <input type="text" lang="HE" rows="1" class="details" cols="35" id="category_nameHE" name="category_name" placeholder="הכנס שם קטגוריה בעברית" required />
+                                    <input type="text" lang="EN" rows="1" class="details" cols="35" id="category_nameEN" name="category_name" placeholder="הכנס שם קטגוריה באנגלית" required />
+                                    <input type="text" lang="AR" rows="1" class="details" cols="35" id="category_nameAR" name="category_name" placeholder="הכנס שם קטגוריה בערבית" required />
+                                </div>
+
                             </div>
+
                             <div id="image-group" class="form-group">
-                                <ImageUpload param1="category_name" param1Empty="category name not enterd" />
+                                <ImageUpload param1="category_nameHE" param1Empty="category name not enterd" />
                             </div>
 
                             <div class="modal-footer">
-                                <button type="submit" class="btn btn-success">{Dictionary.submit} <span class="fa fa-arrow-right"></span></button>
+                                <button type="submit" id="submitCategory" for="category_form" class="btn btn-success">{Dictionary.submit} <span class="fa fa-arrow-right"></span></button>
                                 <button type="button" onClick={resetForm("category_form")} class="btn btn-secondary" data-dismiss="modal">Close</button>
                             </div>
                         </form>
@@ -109,7 +116,6 @@ export const AddCategoryModal = () => {
     );
 
 }
-
 export const GenralForm = (props) => {
     var classAttr = "tab-pane fade form_content";
     if (props.active)
@@ -160,7 +166,6 @@ export const GenralForm = (props) => {
 
     )
 }
-
 export const SuggestWoman = () => {
 
     return (
@@ -236,8 +241,6 @@ export const SuggestWoman = () => {
         </div>
     )
 }
-
-
 export const EditWomanModal = () => {
 
     return (
@@ -306,8 +309,6 @@ export const EditWomanModal = () => {
         </div>
     );
 }
-
-
 $("document").ready(function () {
     //make sure only step 1 is shown 
     $("#step2").hide();
@@ -326,7 +327,6 @@ $("document").ready(function () {
             $("#link").hide();
         }
     });
-
     //add woman from the form to database
     $("#woman_form").submit(function (event) {
 
@@ -380,7 +380,6 @@ $("document").ready(function () {
         // stop the form from submitting the normal way and refreshing the page
         event.preventDefault();
     });
-
     //add feedback to database
     $("#feedback_form").submit(function (event) {
         if (!$("#feedback_form").valid()) return;
@@ -411,26 +410,51 @@ $("document").ready(function () {
         // stop the form from submitting the normal way and refreshing the page
         event.preventDefault();
     });
-    
-    
     $("#suggest_woman_form").submit(function (event) {
         if (!$("#suggest_woman_form").valid()) return;
-        event.preventDefault();  
+        event.preventDefault();
         suggestWoman();
         // $("#afterMessage").modal('show');
         // stop the form from submitting the normal way and refreshing the page
     });
 
+    //add woman from the form to database
+    $("#category_form").submit(function (event) {
+        
+        console.log("IM READY SHLOMO");
+        if (!$("#category_form").valid()) return;
+        //confirm id not exeisting??
+        var gen = {};
+        var id = $("#category_nameHE").val();
+        //  $('#submitCategory').show();
+
+        $($('#category_form').prop('elements')).each(function () {
+            if (this.value) {
+                gen[this.id] = this.value;
+
+            }
+        });
+        console.log(gen);
+        console.log(id);
+        alert("checkCategories");
+        db.collection('categories').doc(id).set(gen);
+        //window.$("#categoryForm").modal('hide');
+        // $("#staticBackdrop").modal('hide');
+        // $("#afterMessage").modal('show');
+        // stop the form from submitting the normal way and refreshing the page
+        event.preventDefault();
+    });
+
 });
 
 // add to suggest woman collection
-function suggestWoman(){
+function suggestWoman() {
     var obj = {}
     var id = $("#yourEmail").val();
-    
+
     $($('#suggest_woman_form').prop('elements')).each(function () {
         if (this.value) {
-                obj[this.id] = this.value;
+            obj[this.id] = this.value;
         }
     });
     console.log(obj);
