@@ -51,6 +51,9 @@ padding-bottom: 3%;
 
 }
 
+#step2{
+    display: none;
+}
 
 
 .form-group
@@ -137,7 +140,7 @@ padding-bottom: 3%;
     cursor: pointer;
     margin-top:5% ;
     left: 50%;
-
+    display: none;
   }
   
   /* The actual popup */
@@ -154,6 +157,7 @@ padding-bottom: 3%;
     bottom: 125%;
     left: 0%;
     margin-left: -80px;
+    
   }
 
 /* style the Englsh Arabic עברית on the edit woman form */
