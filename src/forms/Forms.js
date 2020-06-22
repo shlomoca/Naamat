@@ -34,7 +34,7 @@ export const FeedbackModal = () => {
                         <h5 class="modal-title" id="staticBackdropLabel">{Dictionary.feedback}</h5>
                     </div>
                     <div class="modal-body">
-                        <form dir="RTL" id="feedback_form" name="feedback_form"  onSubmit={handleFeedback}  >
+                        <form dir="RTL" id="feedback_form" name="feedback_form" onSubmit={handleFeedback}  >
 
                             <div id="name-group" class="form-group">
                                 <input type="text" rows="1" class="details" id="feed_name" cols="35" name="feed_name" placeholder="name" required />
@@ -63,7 +63,7 @@ export const FeedbackModal = () => {
                             </div>
 
                             <div class="modal-footer">
-                                <button type="submit"  class="btn btn-success">{Dictionary.submit} <span class="fa fa-arrow-right"></span></button>
+                                <button type="submit" class="btn btn-success">{Dictionary.submit} <span class="fa fa-arrow-right"></span></button>
                                 <button type="button" onClick={resetForm("feedback_form")} class="btn btn-secondary" data-dismiss="modal">{Dictionary.close}</button>
                             </div>
                         </form>
@@ -203,7 +203,7 @@ export const SuggestWoman = () => {
 
                         <div class="modal-body">
 
-                            <div id="name-group1" class="form-group">
+                            <div id="name-group" class="form-group">
                                 {/* <label for="display"></label> */}
                                 <input type="text" rows="1" class="detailsNew" cols="35" id="yourName" name="yourName" placeholder="enter your name" required />
                                 {/* </div> */}
@@ -240,25 +240,29 @@ export const SuggestWoman = () => {
                             <textarea rows="4" class="boxDetail" cols="50" name="facts" id="facts" placeholder="Interesting fact / story" ></textarea>
                             {/* </div> */}
 
-                            <div class="form-group">
-                                {/* <select name="type" id="type">
+                            {/* <div class="form-group"> */}
+                            <textarea rows="4" class="boxDetail" cols="50" name="facts" id="facts" placeholder="Quotes and notable works" ></textarea>
+                            {/* </div> */}
+
+
+                            {/* <select name="type" id="type">
                                     <option value="bibliography" name="bibliography">Bibliography</option>
                                     <option value="link" name="link">Link</option>
                                 </select> */}
-                                {/* <div class="quotesClass">  */}
-                                <a id="fill20"></a>
-                                <textarea type="text" rows="4" class="boxDetails" cols="50" name="quotes" id={"quotes"+j} placeholder="Quotes and notable works" />
-                                <button id="myAdd1" onClick={(e) => {
-                                    e.preventDefault();
-                                    var fill = $("#fill20");
-                                    if($("#quotes"+j).val()){
-                                        j++;
-                                        fill.append(`<textarea id=${"quotes"+j}  type="text" rows="4" class="boxDetails" cols="50" name="quotes"  placeholder="Quotes and notable works" />`)
-                                    }
-                                   
-                                }}>add</button>
-                                
-                            </div>
+                            {/* <div class="quotesClass">  */}
+                            <input type="text" rows="4" class="boxDetail" cols="50" name="quotes" id={"quotes" + j} placeholder="Bibliography" />
+                            <a id="fill20"></a>
+                            <button id="myAdd1" onClick={(e) => {
+                                e.preventDefault();
+                                var fill = $("#fill20");
+                                if ($("#quotes" + j).val()) {
+                                    j++;
+                                    fill.append(`<input id=${"quotes" + j}  type="text" rows="4" class="boxDetail" cols="50" name="quotes"  placeholder="Bibliography" />`)
+                                }
+
+                            }}>add</button>
+
+
 
                         </div>
                         {/* </div> */}
@@ -417,8 +421,8 @@ $("document").ready(function () {
         // stop the form from submitting the normal way and refreshing the page
         event.preventDefault();
     });
-    
-    
+
+
 
     // $("#suggest_woman_form").submit(function (event) {
     //     if (!$("#suggest_woman_form").valid()) return;
@@ -503,30 +507,29 @@ function showing(id, id2) {
 }
 
 //add feedback to database
-function handleFeedback(e)
-{
+function handleFeedback(e) {
     e.preventDefault();
     var obj = {}
-        var id = $("#feed_name").val() + $("#feed_email").val();
-        var maxscoreSet = false;
-        $($('#feedback_form').prop('elements')).each(function () {
-            if (this.value) {
-                //if it is the stars rating
-                if (this.type == "radio") {
-                    if ($(this).is(':checked') && !maxscoreSet) {
-                        maxscoreSet = true;
-                        obj["score"] = this.value;
-                    }
+    var id = $("#feed_name").val() + $("#feed_email").val();
+    var maxscoreSet = false;
+    $($('#feedback_form').prop('elements')).each(function () {
+        if (this.value) {
+            //if it is the stars rating
+            if (this.type == "radio") {
+                if ($(this).is(':checked') && !maxscoreSet) {
+                    maxscoreSet = true;
+                    obj["score"] = this.value;
                 }
-                else
-                    obj[this.id] = this.value;
             }
-        });
-        console.log(obj);
+            else
+                obj[this.id] = this.value;
+        }
+    });
+    console.log(obj);
 
-        db.collection('feedbacks').doc(id).set(obj).then(function () {
-            window.$("#feedbackForm").modal('hide');
-        });
+    db.collection('feedbacks').doc(id).set(obj).then(function () {
+        window.$("#feedbackForm").modal('hide');
+    });
 }
 
 // function addLinks(e) {
@@ -538,35 +541,35 @@ function handleFeedback(e)
 // }
 
 // //add feedback to database
-    // $("#feedback_form").submit(function (event) {
-    //     if (!$("#feedback_form").valid()) return;
-    //     // stop the form from submitting the normal way and refreshing the page
-    //     event.preventDefault();
-        
-    //     var obj = {}
-    //     var id = $("#feed_name").val() + $("#feed_email").val();
-    //     var maxscoreSet = false;
-    //     $($('#feedback_form').prop('elements')).each(function () {
-    //         if (this.value) {
-    //             //if it is the stars rating
-    //             if (this.type == "radio") {
-    //                 if ($(this).is(':checked') && !maxscoreSet) {
-    //                     maxscoreSet = true;
-    //                     obj["score"] = this.value;
-    //                 }
-    //             }
-    //             else
-    //                 obj[this.id] = this.value;
-    //         }
-    //     });
-    //     console.log(obj);
+// $("#feedback_form").submit(function (event) {
+//     if (!$("#feedback_form").valid()) return;
+//     // stop the form from submitting the normal way and refreshing the page
+//     event.preventDefault();
 
-    //     db.collection('feedbacks').doc(id).set(obj).then(function () {
-    //         window.$("#feedbackForm").modal('hide');
-    //     });
+//     var obj = {}
+//     var id = $("#feed_name").val() + $("#feed_email").val();
+//     var maxscoreSet = false;
+//     $($('#feedback_form').prop('elements')).each(function () {
+//         if (this.value) {
+//             //if it is the stars rating
+//             if (this.type == "radio") {
+//                 if ($(this).is(':checked') && !maxscoreSet) {
+//                     maxscoreSet = true;
+//                     obj["score"] = this.value;
+//                 }
+//             }
+//             else
+//                 obj[this.id] = this.value;
+//         }
+//     });
+//     console.log(obj);
 
-    //     // $("#afterMessage").modal('show');
-    // });
+//     db.collection('feedbacks').doc(id).set(obj).then(function () {
+//         window.$("#feedbackForm").modal('hide');
+//     });
+
+//     // $("#afterMessage").modal('show');
+// });
 
 function sub_cat(event) {
 
