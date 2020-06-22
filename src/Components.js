@@ -20,10 +20,12 @@ import { storage } from './config/Firebase'
 //under the navigation bar there is a 
 export const NavBar = (props) => {
 
-  var obj = <button type="button" className="btn btn-primary nav-link" data-toggle="modal" data-target="#feedbackForm">{Dictionary.feedback}</button>
+
 
   if (props.admin == "true")
     obj = <Link to="/AdminPage"><button type="button" className="btn btn-primary nav-link" >manager</button></Link>
+  else
+    var obj = <button type="button" className="btn btn-primary nav-link" data-toggle="modal" data-target="#feedbackForm">{Dictionary.feedback}</button>
 
 
   return (
@@ -535,27 +537,27 @@ export function deleteFeedBack(id) {
 //hiding feedback table and showing the managment buttons again
 function hideFeedTable(id) {
   return () => {
-      
-          $("#allAdmin").show();
-          $("#feedBackHolder").hide()
+
+    $("#allAdmin").show();
+    $("#feedBackHolder").hide()
   }
 
 }
 ///////////////
 
 function askAndDelete(id) {
-  
+
   return () => {
-      
-    var del=window.confirm('בטוח שתרצה למחוק?');
+
+    var del = window.confirm('בטוח שתרצה למחוק?');
     // console.log(del);
-    if (del==true){
+    if (del == true) {
       deleteFeedBack(id)
       console.log(id);
-      }
     }
-  
   }
+
+}
       //  alert ("המשוב נמחק בהצלחה")
     // }else{
     //     alert("Record Not Deleted")

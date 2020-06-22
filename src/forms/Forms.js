@@ -34,7 +34,7 @@ export const FeedbackModal = () => {
                         <h5 class="modal-title" id="staticBackdropLabel">{Dictionary.feedback}</h5>
                     </div>
                     <div class="modal-body">
-                        <form dir="RTL" id="feedback_form" name="feedback_form" method="POST"  >
+                        <form dir="RTL" id="feedback_form" name="feedback_form"  onSubmit={handleFeedback}  >
 
                             <div id="name-group" class="form-group">
                                 <input type="text" rows="1" class="details" id="feed_name" cols="35" name="feed_name" placeholder="name" required />
@@ -63,7 +63,7 @@ export const FeedbackModal = () => {
                             </div>
 
                             <div class="modal-footer">
-                                <button type="submit" class="btn btn-success">{Dictionary.submit} <span class="fa fa-arrow-right"></span></button>
+                                <button type="submit"  class="btn btn-success">{Dictionary.submit} <span class="fa fa-arrow-right"></span></button>
                                 <button type="button" onClick={resetForm("feedback_form")} class="btn btn-secondary" data-dismiss="modal">{Dictionary.close}</button>
                             </div>
                         </form>
@@ -190,7 +190,7 @@ export const SuggestWoman = () => {
         <div class="modal fade" id="suggestWomanModal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-xl">
                 <div class="modal-content">
-                    <form dir="RTL" id="suggest_woman_form" name="suggest_woman_form" method="POST"  >
+                    <form dir="RTL" id="suggest_woman_form" name="suggest_woman_form" onSubmit={suggestWoman}  >
                         <div class="modal-header">
                             <button type="button" id="xClose" class="close" data-dismiss="modal" aria-label="Close" onClick={resetForm("suggest_woman_form")}>
                                 <span aria-hidden="true">&times;</span>
@@ -404,46 +404,16 @@ $("document").ready(function () {
         // stop the form from submitting the normal way and refreshing the page
         event.preventDefault();
     });
+    
+    
 
-    //add feedback to database
-    $("#feedback_form").submit(function (event) {
-        if (!$("#feedback_form").valid()) return;
-
-        var obj = {}
-        var id = $("#feed_name").val() + $("#feed_email").val();
-        var maxscoreSet = false;
-        $($('#feedback_form').prop('elements')).each(function () {
-            if (this.value) {
-                //if it is the stars rating
-                if (this.type == "radio") {
-                    if ($(this).is(':checked') && !maxscoreSet) {
-                        maxscoreSet = true;
-                        obj["score"] = this.value;
-                    }
-                }
-                else
-                    obj[this.id] = this.value;
-            }
-        });
-        console.log(obj);
-
-        db.collection('feedbacks').doc(id).set(obj).then(function () {
-            window.$("#feedbackForm").modal('hide');
-        });
-
-        // $("#afterMessage").modal('show');
-        // stop the form from submitting the normal way and refreshing the page
-        event.preventDefault();
-    });
-
-
-    $("#suggest_woman_form").submit(function (event) {
-        if (!$("#suggest_woman_form").valid()) return;
-        // stop the form from submitting the normal way and refreshing the page
-        event.preventDefault();
-        suggestWoman();
-        // $("#afterMessage").modal('show');
-    });
+    // $("#suggest_woman_form").submit(function (event) {
+    //     if (!$("#suggest_woman_form").valid()) return;
+    //     // stop the form from submitting the normal way and refreshing the page
+    //     event.preventDefault();
+    //     suggestWoman();
+    //     // $("#afterMessage").modal('show');
+    // });
 
 });
 
@@ -492,6 +462,32 @@ function showing(id, id2) {
 
 }
 
+//add feedback to database
+function handleFeedback()
+{
+    var obj = {}
+        var id = $("#feed_name").val() + $("#feed_email").val();
+        var maxscoreSet = false;
+        $($('#feedback_form').prop('elements')).each(function () {
+            if (this.value) {
+                //if it is the stars rating
+                if (this.type == "radio") {
+                    if ($(this).is(':checked') && !maxscoreSet) {
+                        maxscoreSet = true;
+                        obj["score"] = this.value;
+                    }
+                }
+                else
+                    obj[this.id] = this.value;
+            }
+        });
+        console.log(obj);
+
+        db.collection('feedbacks').doc(id).set(obj).then(function () {
+            window.$("#feedbackForm").modal('hide');
+        });
+}
+
 // function addLinks(e) {
 //     e.preventDefault();
 
@@ -499,3 +495,34 @@ function showing(id, id2) {
 //     <input id="link" lang = {props.lang} type="text" rows="4" class="details" cols="50" name="link" placeholder="link" />`)
 
 // }
+
+// //add feedback to database
+    // $("#feedback_form").submit(function (event) {
+    //     if (!$("#feedback_form").valid()) return;
+    //     // stop the form from submitting the normal way and refreshing the page
+    //     event.preventDefault();
+        
+    //     var obj = {}
+    //     var id = $("#feed_name").val() + $("#feed_email").val();
+    //     var maxscoreSet = false;
+    //     $($('#feedback_form').prop('elements')).each(function () {
+    //         if (this.value) {
+    //             //if it is the stars rating
+    //             if (this.type == "radio") {
+    //                 if ($(this).is(':checked') && !maxscoreSet) {
+    //                     maxscoreSet = true;
+    //                     obj["score"] = this.value;
+    //                 }
+    //             }
+    //             else
+    //                 obj[this.id] = this.value;
+    //         }
+    //     });
+    //     console.log(obj);
+
+    //     db.collection('feedbacks').doc(id).set(obj).then(function () {
+    //         window.$("#feedbackForm").modal('hide');
+    //     });
+
+    //     // $("#afterMessage").modal('show');
+    // });

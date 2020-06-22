@@ -32,6 +32,7 @@ class LoginPage extends Component {
                 email: {
                     required: true,
                     minlength: 1,
+                    email:true,
                 },
                 password: {
                     required: true,
