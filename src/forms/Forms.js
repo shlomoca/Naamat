@@ -87,18 +87,23 @@ export const AddCategoryModal = () => {
                         <h5 class="modal-title" id="staticBackdropLabel">{Dictionary.addcategory}</h5>
                     </div>
                     <div class="modal-body">
-                        <form dir="RTL" id="category_form" name="category_form"  >
-
+                        <form dir="RTL" id="category_form" onSubmit={sub_cat} name="category_form"  >
                             <div id="name-group" class="form-group">
-                                <lable for="category_name">{Dictionary.name}</lable>
-                                <input type="text" rows="1" class="details" id="category_name" cols="35" name="category_name" placeholder="Category name" required />
+                                <div id="name-group1" class="form-group">
+                                    <lable for="category_name">{Dictionary.name}</lable>
+                                    <input type="text" lang="HE" rows="1" class="details" cols="35" id="category_nameHE" name="category_name" placeholder="הכנס שם קטגוריה בעברית" required />
+                                    <input type="text" lang="EN" rows="1" class="details" cols="35" id="category_nameEN" name="category_name" placeholder="הכנס שם קטגוריה באנגלית" required />
+                                    <input type="text" lang="AR" rows="1" class="details" cols="35" id="category_nameAR" name="category_name" placeholder="הכנס שם קטגוריה בערבית" required />
+                                </div>
+
                             </div>
+
                             <div id="image-group" class="form-group">
-                                <ImageUpload param1="category_name" param1Empty="category name not enterd" />
+                                <ImageUpload param1="category_nameHE" param1Empty="category name not enterd" />
                             </div>
 
                             <div class="modal-footer">
-                                <button type="submit" class="btn btn-success">{Dictionary.submit} <span class="fa fa-arrow-right"></span></button>
+                                <button type="submit" id="submitCategory" for="category_form" class="btn btn-success">{Dictionary.submit} <span class="fa fa-arrow-right"></span></button>
                                 <button type="button" onClick={resetForm("category_form")} class="btn btn-secondary" data-dismiss="modal">Close</button>
                             </div>
                         </form>
@@ -109,7 +114,6 @@ export const AddCategoryModal = () => {
     );
 
 }
-
 export const GenralForm = (props) => {
     var classAttr = "tab-pane fade form_content";
     if (props.active)
@@ -183,7 +187,6 @@ export const GenralForm = (props) => {
 
     )
 }
-
 export const SuggestWoman = () => {
     var i=0,j=0;
     return (
@@ -277,8 +280,6 @@ export const SuggestWoman = () => {
         </div>
     )
 }
-
-
 export const EditWomanModal = () => {
 
     return (
@@ -347,8 +348,6 @@ export const EditWomanModal = () => {
         </div>
     );
 }
-
-
 $("document").ready(function () {
     //make sure only step 1 is shown 
     $("#step2").hide();
@@ -360,6 +359,7 @@ $("document").ready(function () {
         $(this).addClass('highlight');
     });
 
+
     // $("#link").hide();
     // $('select[name=type]').change(function () {
     //     if ($('select[name=type]').val() == 'link') {
@@ -368,6 +368,7 @@ $("document").ready(function () {
     //         $("#link").hide();
     //     }
     // });
+
 
     //add woman from the form to database
     $("#woman_form").submit(function (event) {
@@ -455,12 +456,41 @@ $("document").ready(function () {
     });
 
 
+
     $("#suggest_woman_form").submit(function (event) {
         if (!$("#suggest_woman_form").valid()) return;
         // stop the form from submitting the normal way and refreshing the page
+
         event.preventDefault();
         suggestWoman();
         // $("#afterMessage").modal('show');
+    });
+
+    //add woman from the form to database
+    $("#category_form").submit(function (event) {
+        
+        console.log("IM READY SHLOMO");
+        if (!$("#category_form").valid()) return;
+        //confirm id not exeisting??
+        var gen = {};
+        var id = $("#category_nameHE").val();
+        //  $('#submitCategory').show();
+
+        $($('#category_form').prop('elements')).each(function () {
+            if (this.value) {
+                gen[this.id] = this.value;
+
+            }
+        });
+        console.log(gen);
+        console.log(id);
+        alert("checkCategories");
+        db.collection('categories').doc(id).set(gen);
+        //window.$("#categoryForm").modal('hide');
+        // $("#staticBackdrop").modal('hide');
+        // $("#afterMessage").modal('show');
+        // stop the form from submitting the normal way and refreshing the page
+        event.preventDefault();
     });
 
 });
@@ -517,3 +547,30 @@ function showing(id, id2) {
 //     <input id="link" lang = {props.lang} type="text" rows="4" class="details" cols="50" name="link" placeholder="link" />`)
 
 // }
+
+
+function sub_cat (event) {
+        
+    console.log("IM READY SHLOMO");
+    if (!$("#category_form").valid()) return;
+    //confirm id not exeisting??
+    var gen = {};
+    var id = $("#category_nameHE").val();
+    //  $('#submitCategory').show();
+
+    $($('#category_form').prop('elements')).each(function () {
+        if (this.value) {
+            gen[this.id] = this.value;
+
+        }
+    });
+    console.log(gen);
+    console.log(id);
+    alert("checkCategories");
+    db.collection('categories').doc(id).set(gen);
+    window.$("#categoryForm").modal('hide');
+    // $("#staticBackdrop").modal('hide');
+    // $("#afterMessage").modal('show');
+    // stop the form from submitting the normal way and refreshing the page
+    event.preventDefault();
+};
