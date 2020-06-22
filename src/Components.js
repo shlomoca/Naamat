@@ -21,7 +21,13 @@ import { storage } from './config/Firebase'
 
 //set a navigation bar to the top of the site
 //under the navigation bar there is a 
-export const NavBar = () => {
+export const NavBar = (props) => {
+
+  var obj = <button type="button" className="btn btn-primary nav-link" data-toggle="modal" data-target="#feedbackForm">{Dictionary.feedback}</button>
+
+  if (props.admin == "true")
+    obj = <Link to="/AdminPage"><button type="button" className="btn btn-primary nav-link" >manager</button></Link>
+
 
   return (
     <div id="navbar">
@@ -63,11 +69,11 @@ export const NavBar = () => {
           </li>
 
 
-          <li className="nav-item">
+          {/* <li className="nav-item">
             <button type="button" class="btn btn-primary nav-link" data-toggle="modal" data-target="#staticBackdrop">
               {Dictionary.addWoman}
             </button>
-          </li>
+          </li> */}
 
           <li className="nav-item">
             <button type="button" class="btn btn-primary nav-link" data-toggle="collapse" data-target="#about-drop">{Dictionary.aboutTitle}</button>
@@ -80,8 +86,7 @@ export const NavBar = () => {
 
 
           <li className="nav-item">
-            <button type="button" className="btn btn-primary nav-link" data-toggle="modal" data-target="#feedbackForm">
-              {Dictionary.feedback}</button>
+            {obj}
           </li>
 
 
@@ -132,7 +137,7 @@ class Search extends Component {
   //follow after input in serach bar
   searchHandler(event) {
     this.setState({ term: event.target.value })
-    var term =(this.state.term).toLowerCase();
+    var term = (this.state.term).toLowerCase();
     // getWomen(term);
   }
 
@@ -152,8 +157,8 @@ class Search extends Component {
         </button>
         <div id="temp">
           {/* {getWomen(term)} */}
-          </div>
-        
+        </div>
+
       </form>
     )
   }
@@ -186,70 +191,70 @@ export class PictursCarousel extends Component {
     super(props);
     this.state = {
       url: [],
-      ids :["גולדה מאיר1898-03-03", "דניאל רז1992-03-31", "סהר כהן1995-09-21", "עדיאל צייג2020-06-01", "שלמה כרמי1993-06-09"],
-       indicators :[],
-       items :[],
-       dataslide :0,
+      ids: ["גולדה מאיר1898-03-03", "דניאל רז1992-03-31", "סהר כהן1995-09-21", "עדיאל צייג2020-06-01", "שלמה כרמי1993-06-09"],
+      indicators: [],
+      items: [],
+      dataslide: 0,
     }
   }
 
   componentDidMount() {
-      var active = false;
-     
-      var active =true;
-      var ids =this.state.ids;
-      var indicators =[];
-      var items =[];
-      ids.forEach(id => {
-        console.log(id);
-        db.collection('women').doc(id).collection('langs').doc(Dictionary.getLanguage()).get().then(snapshot => {
-          if (snapshot.data()) {
-            var data = snapshot.data();
-            if (data) {
-  
-              var id = data["id"];
-              // console.log(id + "/ProfilePic");
-              if (id)
-                storage.ref("/" + id).child("ProfilePic").getDownloadURL().then(url => {
-                  if (this.state.dataslide != 0)
+    var active = false;
+
+    var active = true;
+    var ids = this.state.ids;
+    var indicators = [];
+    var items = [];
+    ids.forEach(id => {
+      console.log(id);
+      db.collection('women').doc(id).collection('langs').doc(Dictionary.getLanguage()).get().then(snapshot => {
+        if (snapshot.data()) {
+          var data = snapshot.data();
+          if (data) {
+
+            var id = data["id"];
+            // console.log(id + "/ProfilePic");
+            if (id)
+              storage.ref("/" + id).child("ProfilePic").getDownloadURL().then(url => {
+                if (this.state.dataslide != 0)
                   active = false;
-                  indicators.push(<CarouselLi dataslide={this.state.dataslide} active={active} />);
-                  items.push(<CarouselSlide display={data["display"]} highlights={data["highlights"]} id={id} src={url} active={active} />);
-                  this.setState({indicators: indicators});
-                  this.setState({items: items});
-                  this.setState({dataslide: this.state.dataslide+1});
-                });
-              }
-            }
-          })
-          
-        })
-        console.log(indicators)
-      
-    }
-    render(){
-console.log("rendering");
-      return (
-        <div id="pictureCarousel">
-            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-              <ol id="carouselIndicators" class="carousel-indicators">
-                {this.state.indicators}
-              </ol>
-              <div id="carouselInner" class="carousel-inner">
-                {this.state.items}
-              </div>
-              <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-              </a>
-              <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-              </a>
-            </div>
+                indicators.push(<CarouselLi dataslide={this.state.dataslide} active={active} />);
+                items.push(<CarouselSlide display={data["display"]} highlights={data["highlights"]} id={id} src={url} active={active} />);
+                this.setState({ indicators: indicators });
+                this.setState({ items: items });
+                this.setState({ dataslide: this.state.dataslide + 1 });
+              });
+          }
+        }
+      })
+
+    })
+    console.log(indicators)
+
+  }
+  render() {
+    console.log("rendering");
+    return (
+      <div id="pictureCarousel">
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+          <ol id="carouselIndicators" class="carousel-indicators">
+            {this.state.indicators}
+          </ol>
+          <div id="carouselInner" class="carousel-inner">
+            {this.state.items}
           </div>
-        )
-      }
+          <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+      </div>
+    )
+  }
 }
 // export const PictursCarousel = (props) => {
 //   return (
@@ -299,8 +304,8 @@ console.log("rendering");
 export const CarouselSlide = props => {
 
   var clas = "carousel-item";
-  if(props.active)
-   clas = "carousel-item active" ;
+  if (props.active)
+    clas = "carousel-item active";
   return (
     <div class={clas}>
       <img src={props.src} class="d-block w-100" alt="example 1" height="600px" width="115" />
