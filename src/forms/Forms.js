@@ -183,7 +183,7 @@ export const GenralForm = (props) => {
                     }}>add</button>
                 </label>
             </div>
-        </div>
+         </div>
 
     )
 }
