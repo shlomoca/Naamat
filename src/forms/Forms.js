@@ -509,8 +509,9 @@ function showing(id, id2) {
 }
 
 //add feedback to database
-function handleFeedback()
+function handleFeedback(e)
 {
+    e.preventDefault();
     var obj = {}
         var id = $("#feed_name").val() + $("#feed_email").val();
         var maxscoreSet = false;
