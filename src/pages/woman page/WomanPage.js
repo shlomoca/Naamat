@@ -208,40 +208,69 @@ export const WomanPage = (props) => {
     
 // }
 
+export  class getWomen extends Component
+{
+    constructor(props)
+    {
+        super(props);
 
-
-export function getWomen(womanName) {
-    if (womanName) {
-        var nameattr="display"+determineLang(womanName);
-        // console.log(nameattr);
-        var MaxIndex=getMaxIndex(womanName);
-        // console.log(MaxIndex)
-        //get all the women that ae in the lexicografical area of the search term womanName
-        db.collection('women').where(nameattr, ">=", womanName).where(nameattr, "<", MaxIndex).get().then(snapshot => {
-            const women = [];
-            //get a women arry with all women results for this search
-            snapshot.forEach(doc => {
-                const data = doc.data();
-                if (data) {
-                    women.push(data);
-                }
-                else
-                    console.log("no data");
-
-            });
-            console.log(women);
-            if (women.length === 0)
-                console.log("no women");
-            else {
-                ReactDOM.render(<WomenDeck cards={women} />, document.getElementById('womenHolder'));
-            }
-
-
-        }).catch(error => console.log(error))
+        this.state=
+        {
+            
+        }
     }
-    else
-        console.log("women not found");
 }
+
+// export function getWomen(womanName) {
+//     if (womanName) {
+//         var nameattr="display"+determineLang(womanName);
+//         // console.log(nameattr);
+//         var MaxIndex=getMaxIndex(womanName);
+//         // console.log(MaxIndex)
+//         //get all the women that ae in the lexicografical area of the search term womanName
+//         db.collection('women').where(nameattr, ">=", womanName).where(nameattr, "<", MaxIndex).get().then(snapshot => {
+//             const women = [];
+//             //get a women arry with all women results for this search
+//             snapshot.forEach(doc => {
+//                 const data = doc.data();
+//                 if (data) {
+//                     women.push(data);
+//                 }
+//                 else
+//                     console.log("no data");
+
+// export function getWomen(womanName) {
+//     if (womanName) {
+//         var nameattr="display"+determineLang(womanName);
+//         console.log(nameattr);
+//         var MaxIndex=getMaxIndex(womanName);
+//         console.log(MaxIndex)
+//         //get all the women that ae in the lexicografical area of the search term womanName
+//         db.collection('women').where(nameattr, ">=", womanName).where(nameattr, "<", MaxIndex).get().then(snapshot => {
+//             const women = [];
+//             //get a women arry with all women results for this search
+//             snapshot.forEach(doc => {
+//                 const data = doc.data();
+//                 if (data) {
+//                     women.push(data);
+//                 }
+//                 else
+//                     console.log("no data");
+
+//             });
+//             console.log(women);
+//             if (women.length === 0)
+//                 console.log("no women");
+//             else {
+//                 ReactDOM.render(<WomenDeck cards={women} />, document.getElementById('womenHolder'));
+//             }
+
+
+//         }).catch(error => console.log(error))
+//     }
+//     else
+//         console.log("women not found");
+// }
 
 //get the next lexicographic index
 function getMaxIndex(str) {
