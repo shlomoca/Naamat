@@ -24,7 +24,7 @@ export const FeedbackModal = () => {
 
     return (
         <div class="modal fade" id="feedbackForm" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <AfterMessage info='thank you' />
+            {/* <AfterMessage info='thank you' /> */}
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -74,6 +74,8 @@ export const FeedbackModal = () => {
     );
 };
 
+
+
 export const AddCategoryModal = () => {
     return (
         <div class="modal fade" id="categoryForm" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -87,18 +89,23 @@ export const AddCategoryModal = () => {
                         <h5 class="modal-title" id="staticBackdropLabel">{Dictionary.addcategory}</h5>
                     </div>
                     <div class="modal-body">
-                        <form dir="RTL" id="category_form" name="category_form"  >
-
+                        <form dir="RTL" id="category_form" name="category_form" method="POST" >
                             <div id="name-group" class="form-group">
-                                <lable for="category_name">{Dictionary.name}</lable>
-                                <input type="text" rows="1" class="details" id="category_name" cols="35" name="category_name" placeholder="Category name" required />
+                                <div id="name-group1" class="form-group">
+                                    <lable for="category_name">{Dictionary.name}</lable>
+                                    <input type="text" lang="HE" rows="1" class="details" cols="35" id="category_nameHE" name="category_name" placeholder="הכנס שם קטגוריה בעברית" required />
+                                    <input type="text" lang="EN" rows="1" class="details" cols="35" id="category_nameEN" name="category_name" placeholder="הכנס שם קטגוריה באנגלית" required />
+                                    <input type="text" lang="AR" rows="1" class="details" cols="35" id="category_nameAR" name="category_name" placeholder="הכנס שם קטגוריה בערבית" required />
+                                </div>
+
                             </div>
+
                             <div id="image-group" class="form-group">
-                                <ImageUpload param1="category_name" param1Empty="category name not enterd" />
+                                <ImageUpload param1="category_nameHE" param1Empty="category name not enterd" />
                             </div>
 
                             <div class="modal-footer">
-                                <button type="submit" class="btn btn-success">{Dictionary.submit} <span class="fa fa-arrow-right"></span></button>
+                                <button type="submit" id="submitCategory" for="category_form" class="btn btn-success">{Dictionary.submit} <span class="fa fa-arrow-right"></span></button>
                                 <button type="button" onClick={resetForm("category_form")} class="btn btn-secondary" data-dismiss="modal">Close</button>
                             </div>
                         </form>
@@ -109,11 +116,11 @@ export const AddCategoryModal = () => {
     );
 
 }
-
 export const GenralForm = (props) => {
     var classAttr = "tab-pane fade form_content";
     if (props.active)
         classAttr = "tab-pane fade form_content show active";
+        var i=0,j=0;
     return (
 
         <div id={props.lang} class={classAttr}>
@@ -148,19 +155,40 @@ export const GenralForm = (props) => {
             <textarea rows="4" class="detail" cols="50" name="facts" lang={props.lang} id={"facts" + props.lang} placeholder="Interesting fact / story" ></textarea>
             {/* </div> */}
 
+            <textarea rows="4" class="detail" cols="50" name="quotes" lang={props.lang} id={"quotes" + props.lang} placeholder="Quotes and notable works" ></textarea>
+
             <div class="form-group">
-                <select name="type" id="type">
-                    <option value="bibliography" name="bibliography">Bibliography</option>
-                    <option value="link" name="link">Link</option>
-                </select>
-                <input type="text" rows="4" class="details" cols="50" name="quotes" lang={props.lang} id={"quotes" + props.lang} placeholder="Quotes and notable works" />
-                <input id={"link" + props.lang} type="text" rows="4" class="details" cols="50" name="link" placeholder="link" />
+                <label for={"link" + props.lang}>
+                    <input id={"description"+i} lang={props.lang} type="text" rows="4" class="details" cols="50" name="description" placeholder="description" />
+                    <input id={"link" +i} lang={props.lang} type="text" rows="4" class="details" cols="50" name="link" placeholder="link" />
+                    <a id="fill1" ></a>
+                    <button onClick={(e) => {
+                        e.preventDefault();
+                        i++;
+                        var fill = $("#fill1");
+                        fill.append(`<input id=${"description"+i}  lang = ${props.lang} type="text" rows="4" class="details" cols="50" name="description" placeholder="description" />
+                        <input id=${"link"+i} lang = ${props.lang} type="text" rows="4" class="details" cols="50" name="link" placeholder="link" />`)
+                        console.log(fill.num);
+                    }}>add</button>
+                </label>
+            </div>
+
+            <div class="form-group">
+                <label for={"reading" + props.lang}>
+                    <input id={"reading"+j} lang={props.lang} type="text" rows="4" class="details" cols="50" name="description" placeholder="further reading" />
+                    <a id="fill2"></a>
+                    <button onClick={(e) => {
+                        e.preventDefault();
+                        j++;
+                        var fill =$("#fill2");
+                        fill.append(`<input id=${"reading"+j} lang=${props.lang} type="text" rows="4" class="details" cols="50" name="description" placeholder="further reading" />`)
+                    }}>add</button>
+                </label>
             </div>
         </div>
 
     )
 }
-
 export const SuggestWoman = () => {
 
     return (
@@ -180,38 +208,38 @@ export const SuggestWoman = () => {
                             <div id="name-group1" class="form-group">
                                 {/* <label for="display"></label> */}
                                 <input type="text" rows="1" class="detailsNew" cols="35" id="yourName" name="yourName" placeholder="enter your name" required />
-                            </div>
+                            {/* </div> */}
 
-                            <div id="name-group1" class="form-group">
+                            {/* <div id="name-group1" class="form-group"> */}
                                 {/* <label for="display"></label> */}
                                 <input type="text" rows="1" class="detailsNew" cols="35" id="yourEmail" name="yourEmail" placeholder="enter your email" required />
-                            </div>
+                            {/* </div> */}
 
-                            <div id="name-group1" class="form-group">
+                            {/* <div id="name-group1" class="form-group"> */}
                                 {/* <label for="display"></label> */}
                                 <input type="text" rows="1" class="detailsNew" cols="35" id="display" name="display" placeholder="display name" />
                             </div>
 
                             {/* <div class="form-group"> */}
-                            <textarea rows="4" class="detail" cols="50" name="highlights" id="highlights" placeholder="Highlights"  ></textarea>
+                            <textarea rows="4" class="boxDetail" cols="50" name="highlights" id="highlights" placeholder="Highlights"  ></textarea>
                             {/* </div> */}
 
 
                             {/* <div class="form-group"> */}
-                            <textarea rows="4" class="detail" cols="50" name="biography" id="biography" placeholder="Biography" ></textarea>
+                            <textarea rows="4" class="boxDetail" cols="50" name="biography" id="biography" placeholder="Biography" ></textarea>
                             {/* </div> */}
 
                             {/* <div class="form-group"> */}
-                            <textarea rows="4" class="detail" cols="50" name="history" id="historical" placeholder="Historical events related" ></textarea>
+                            <textarea rows="4" class="boxDetail" cols="50" name="history" id="historical" placeholder="Historical events related" ></textarea>
                             {/* </div> */}
 
                             {/* <div class="form-group"> */}
-                            <textarea rows="4" class="detail" cols="50" name="feminism" id="contribution" placeholder="Contribution to Feminism" ></textarea>
+                            <textarea rows="4" class="boxDetail" cols="50" name="feminism" id="contribution" placeholder="Contribution to Feminism" ></textarea>
                             {/* </div> */}
 
 
                             {/* <div class="form-group"> */}
-                            <textarea rows="4" class="detail" cols="50" name="facts" id="facts" placeholder="Interesting fact / story" ></textarea>
+                            <textarea rows="4" class="boxDetail" cols="50" name="facts" id="facts" placeholder="Interesting fact / story" ></textarea>
                             {/* </div> */}
 
                             <div class="form-group">
@@ -236,8 +264,6 @@ export const SuggestWoman = () => {
         </div>
     )
 }
-
-
 export const EditWomanModal = () => {
 
     return (
@@ -306,8 +332,6 @@ export const EditWomanModal = () => {
         </div>
     );
 }
-
-
 $("document").ready(function () {
     //make sure only step 1 is shown 
     $("#step2").hide();
@@ -318,14 +342,17 @@ $("document").ready(function () {
         $('#mylinks a').removeClass('highlight');
         $(this).addClass('highlight');
     });
-    $("#link").hide();
-    $('select[name=type]').change(function () {
-        if ($('select[name=type]').val() == 'link') {
-            $('#link').show();
-        } else {
-            $("#link").hide();
-        }
-    });
+
+
+    // $("#link").hide();
+    // $('select[name=type]').change(function () {
+    //     if ($('select[name=type]').val() == 'link') {
+    //         $('#link').show();
+    //     } else {
+    //         $("#link").hide();
+    //     }
+    // });
+
 
     //add woman from the form to database
     $("#woman_form").submit(function (event) {
@@ -380,7 +407,6 @@ $("document").ready(function () {
         // stop the form from submitting the normal way and refreshing the page
         event.preventDefault();
     });
-
     //add feedback to database
     $("#feedback_form").submit(function (event) {
         if (!$("#feedback_form").valid()) return;
@@ -411,26 +437,55 @@ $("document").ready(function () {
         // stop the form from submitting the normal way and refreshing the page
         event.preventDefault();
     });
-    
-    
+
+
+
     $("#suggest_woman_form").submit(function (event) {
         if (!$("#suggest_woman_form").valid()) return;
-        event.preventDefault();  
+        // stop the form from submitting the normal way and refreshing the page
+
+        event.preventDefault();
         suggestWoman();
         // $("#afterMessage").modal('show');
+    });
+
+    //add woman from the form to database
+    $("#category_form").submit(function (event) {
+        
+        console.log("IM READY SHLOMO");
+        if (!$("#category_form").valid()) return;
+        //confirm id not exeisting??
+        var gen = {};
+        var id = $("#category_nameHE").val();
+        //  $('#submitCategory').show();
+
+        $($('#category_form').prop('elements')).each(function () {
+            if (this.value) {
+                gen[this.id] = this.value;
+
+            }
+        });
+        console.log(gen);
+        console.log(id);
+        alert("checkCategories");
+        db.collection('categories').doc(id).set(gen);
+        //window.$("#categoryForm").modal('hide');
+        // $("#staticBackdrop").modal('hide');
+        // $("#afterMessage").modal('show');
         // stop the form from submitting the normal way and refreshing the page
+        event.preventDefault();
     });
 
 });
 
 // add to suggest woman collection
-function suggestWoman(){
+function suggestWoman() {
     var obj = {}
     var id = $("#yourEmail").val();
-    
+
     $($('#suggest_woman_form').prop('elements')).each(function () {
         if (this.value) {
-                obj[this.id] = this.value;
+            obj[this.id] = this.value;
         }
     });
     console.log(obj);
@@ -467,3 +522,11 @@ function showing(id, id2) {
     }
 
 }
+
+// function addLinks(e) {
+//     e.preventDefault();
+
+//     $("#fill").append(`<input id="description" lang = `{props.lang}` type="text" rows="4" class="details" cols="50" name="description" placeholder="description" />
+//     <input id="link" lang = {props.lang} type="text" rows="4" class="details" cols="50" name="link" placeholder="link" />`)
+
+// }

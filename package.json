@@ -16,6 +16,7 @@
     "jquery-validation": "^1.19.2",
     "ora": "^4.0.4",
     "react": "^16.13.1",
+    "react-confirm-alert": "^2.6.1",
     "react-dom": "^16.13.1",
     "react-localization": "^1.0.15",
     "react-multi-language": "^0.4.2",
