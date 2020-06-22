@@ -16,12 +16,17 @@ import ReactDOM from 'react-dom';
 import { storage } from './config/Firebase'
 
 
-
-
-
 //set a navigation bar to the top of the site
 //under the navigation bar there is a 
-export const NavBar = () => {
+export const NavBar = (props) => {
+
+
+
+  if (props.admin == "true")
+    obj = <Link to="/AdminPage"><button type="button" className="btn btn-primary nav-link" >manager</button></Link>
+  else
+    var obj = <button type="button" className="btn btn-primary nav-link" data-toggle="modal" data-target="#feedbackForm">{Dictionary.feedback}</button>
+
 
   return (
     <div id="navbar">
@@ -63,11 +68,11 @@ export const NavBar = () => {
           </li>
 
 
-          <li className="nav-item">
+          {/* <li className="nav-item">
             <button type="button" class="btn btn-primary nav-link" data-toggle="modal" data-target="#staticBackdrop">
               {Dictionary.addWoman}
             </button>
-          </li>
+          </li> */}
 
           <li className="nav-item">
             <button type="button" class="btn btn-primary nav-link" data-toggle="collapse" data-target="#about-drop">{Dictionary.aboutTitle}</button>
@@ -80,8 +85,7 @@ export const NavBar = () => {
 
 
           <li className="nav-item">
-            <button type="button" className="btn btn-primary nav-link" data-toggle="modal" data-target="#feedbackForm">
-              {Dictionary.feedback}</button>
+            {obj}
           </li>
 
 
@@ -355,6 +359,42 @@ export const DisplayModal = (props) => {
   )
 }
 
+
+
+// export const DisplayModal = (props) => {
+
+//   return (
+//     <div>
+//       <button class="clearBtn" data-toggle="modal" data-target="#displayModal"> <a href="#">{props.details}</a></button>
+//       <div class="modal fade" id="displayModal" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+//         <div class="modal-dialog modal-xl">
+//           <div class="modal-content">
+//             <div class="modal-header ">
+//               <h5 class="modal-title" id="staticBackdropLabel">{props.details}</h5>
+//               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+//                 <span aria-hidden="true">&times;</span>
+//               </button>
+//             </div>
+//             <div class="modal-body">
+//               <iframe src={props.link}
+//                 width="100%"
+//                 height="100%"
+//                 frameBorder='0'
+//                 allow='autoplay; encrypted-media'
+//                 allowFullScreen
+//                 title='url' />
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+//     </div>
+//   )
+// }
+
+
+
+
+
 export const AfterMessage = (props) => {
 
   return (
@@ -382,7 +422,8 @@ export const AfterMessage = (props) => {
 export function getFeedback() {
   // console.log("matan and sahar");
   //get all the women that ae in the lexicografical area of the search term womanName
-  // $("#thisAdmin").hide();
+  $("#allAdmin").hide();
+  $("#feedBackHolder").show()
   db.collection('feedbacks').get().then(snapshot => {
     const feedbacks = [];
     //get a women arry with all women results for this search
@@ -402,7 +443,6 @@ export function getFeedback() {
       ReactDOM.render(<DisplayFeedback feedbacks={feedbacks} />, document.getElementById('feedBackHolder'));
     }
 
-
   }).catch(error => console.log(error))
 
   return (
@@ -410,7 +450,6 @@ export function getFeedback() {
     <div> </div>
 
   )
-
 }
 
 export const FeedBackBody = (props) => {
@@ -418,18 +457,20 @@ export const FeedBackBody = (props) => {
   return (
 
     <thead>
-      <tr>
+      <tr id={props.name+props.email}>
         {/* <td> {props.date} </td> */}
         <td> {props.name} </td>
         <td> {props.email} </td>
         <td> {props.score} </td>
         <td> {props.improvement} </td>
-        <td> <button class="btn" onClick={deleteFeedBack(props.name + props.email)}>מחק</button> </td>
+        <td> <button class="btn" onClick={askAndDelete(props.name + props.email)} >מחק</button></td>
+        {/* <td> <button class="btn" onClick={deleteFeedBack(props.name + props.email)}>מחק</button> </td> */}
+        {/* onclick="if (confirm('Are you...?')) commentDelete(1); return false" */}
+        {/* <td> <button class="btn" onClick={() => { if (window.confirm('בטוח שתרצה למחוק?')) deleteFeedBack(props.name+props.email) } }>מחק</button> </td> */}
       </tr>
     </thead>
 
   )
-
 }
 
 export const FeedBackHeader = () => {
@@ -447,7 +488,6 @@ export const FeedBackHeader = () => {
     </thead>
   )
 }
-
 export const DisplayFeedback = (props) => {
 
   var name, email, score, improvement;
@@ -466,29 +506,54 @@ export const DisplayFeedback = (props) => {
     }
 
   })
+
   return (
     <div id="feedbackTable">
       <table table class="table table-dark">
         <FeedBackHeader />
         {deck}
-        <button id="backBtn" class="btn" >חזור</button>
+        <button onClick={hideFeedTable()} id="backBtn" class="btn" >חזור</button>
       </table>
     </div>
   )
 }
 
-//delete feedback by id
-export function deleteFeedBack(id) {
 
+
+//hiding feedback table and showing the managment buttons again
+function hideFeedTable(id) {
   return () => {
-    // console.log(id);
-    if (id) {
-      db.collection('feedbacks').doc(id).delete().then(() => {
-        alert("feedback " + id + " was deleted");
-        window.location.reload();
-      });
-    }
-    else
-      alert("wrong id");
+
+    $("#allAdmin").show();
+    $("#feedBackHolder").hide()
   }
+  
 }
+///////////////
+
+export function askAndDelete(id) {
+  
+    return () => {
+      
+      var del=window.confirm('בטוח שתרצה למחוק?');
+      // console.log(del);
+      if (del==true){
+        deleteFeedBack(id)
+        }
+        // return deleteFeedBack(id);
+      }
+      }
+      //delete feedback by id
+export function deleteFeedBack(id) {
+      
+          console.log(id);
+          if (id) {
+            db.collection('feedbacks').doc(id).delete().then(() => { 
+              
+              ReactDOM.render(<div></div>, document.getElementById(id));
+              
+            });
+          }
+          else
+            alert("שגיאה");
+      }

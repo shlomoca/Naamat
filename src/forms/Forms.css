@@ -125,6 +125,15 @@ padding-bottom: 3%;
    
 }
 
+.detailsL{
+
+
+    border-color: purple;
+    /* padding-left: 20%; */
+    /* inline-size: 50%; */
+
+}
+
 .detail{
     /* padding-top: 4%; */
     border-radius: 15%;
@@ -212,3 +221,38 @@ padding-bottom: 3%;
     border-color: purple;
 
 }
+
+.boxDetail{
+
+    padding-left: 46%;
+    padding-right: 5%;
+    text-align: right;
+    border-radius: 10%;
+    border-color: rebeccapurple;
+}
+
+.myNewClass{
+
+    padding-right: 35%;
+
+}
+
+#myAdd{
+
+    /* height: 13%; */
+    height: auto;
+
+}
+
+.quotesClass{
+
+    padding-right: 10%;
+
+    
+
+}
+
+/* #fill20{
+
+    padding-top: 20%;
+} */

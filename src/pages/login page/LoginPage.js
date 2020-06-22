@@ -32,6 +32,7 @@ class LoginPage extends Component {
                 email: {
                     required: true,
                     minlength: 1,
+                    email:true,
                 },
                 password: {
                     required: true,
@@ -108,7 +109,9 @@ export class LoginComponent extends Component {
         this.state = {
             user: false,
             page: [],
+            permission: '',
         }
+
     }
 
     authListener() {
@@ -130,9 +133,9 @@ export class LoginComponent extends Component {
             var userEmail = sessionStorage.getItem("userEmail");
 
             db.collection('users').doc("AccessControl").collection(userEmail).doc("permissions").get().then(res => {
-                var permission = res.data().admin;
+                this.setState({permission: res.data().admin});
 
-                if (permission == "true") {
+                if (this.state.permission == "true") {
                     // admin rout
                     this.setState({ page: this.renderAdminDiv() });
                 }
@@ -153,8 +156,8 @@ export class LoginComponent extends Component {
     renderAdminDiv() {
         ReactDOM.render(
             <Router>
-                <Route exact path="/" component={MainUserPage} />
-                <Route path="/WomanPage" component={props => <WomanPage {...props} id="דניאל רז1992-03-31" />} />
+                <Route exact path="/" component={props =><MainUserPage admin = {this.state.permission} />} />
+                <Route path="/WomanPage" component={props => <WomanPage {...props} admin = {this.state.permission} id="דניאל רז1992-03-31" />} />
                 <Route path="/Category" component={Category} />
                 <Route path="/AdminPage" component={AdminPage} />
             </Router>, document.getElementById('root')

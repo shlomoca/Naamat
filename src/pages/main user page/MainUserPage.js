@@ -16,7 +16,7 @@ class MainUserPage extends Component {
         super(props);
         this.state = {
             img:{},
-            carouselSlids: 3,
+            carouselSlids: 0,
         }
     }
 
@@ -78,7 +78,7 @@ class MainUserPage extends Component {
             <div id="mainUPWrapper" className="wrapper">
 
 
-                <NavBar />
+                <NavBar admin={this.props.admin}/>
                 <PictursCarousel />
 
                 <BottomBar/>

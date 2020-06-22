@@ -24,7 +24,7 @@ export const FeedbackModal = () => {
 
     return (
         <div class="modal fade" id="feedbackForm" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <AfterMessage info='thank you' />
+            {/* <AfterMessage info='thank you' /> */}
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -34,7 +34,7 @@ export const FeedbackModal = () => {
                         <h5 class="modal-title" id="staticBackdropLabel">{Dictionary.feedback}</h5>
                     </div>
                     <div class="modal-body">
-                        <form dir="RTL" id="feedback_form" name="feedback_form" method="POST"  >
+                        <form dir="RTL" id="feedback_form" name="feedback_form"  onSubmit={handleFeedback}  >
 
                             <div id="name-group" class="form-group">
                                 <input type="text" rows="1" class="details" id="feed_name" cols="35" name="feed_name" placeholder="name" required />
@@ -63,7 +63,7 @@ export const FeedbackModal = () => {
                             </div>
 
                             <div class="modal-footer">
-                                <button type="submit" class="btn btn-success">{Dictionary.submit} <span class="fa fa-arrow-right"></span></button>
+                                <button type="submit"  class="btn btn-success">{Dictionary.submit} <span class="fa fa-arrow-right"></span></button>
                                 <button type="button" onClick={resetForm("feedback_form")} class="btn btn-secondary" data-dismiss="modal">{Dictionary.close}</button>
                             </div>
                         </form>
@@ -87,18 +87,23 @@ export const AddCategoryModal = () => {
                         <h5 class="modal-title" id="staticBackdropLabel">{Dictionary.addcategory}</h5>
                     </div>
                     <div class="modal-body">
-                        <form dir="RTL" id="category_form" name="category_form"  >
-
+                        <form dir="RTL" id="category_form" onSubmit={sub_cat} name="category_form"  >
                             <div id="name-group" class="form-group">
-                                <lable for="category_name">{Dictionary.name}</lable>
-                                <input type="text" rows="1" class="details" id="category_name" cols="35" name="category_name" placeholder="Category name" required />
+                                <div id="name-group1" class="form-group">
+                                    <lable for="category_name">{Dictionary.name}</lable>
+                                    <input type="text" lang="HE" rows="1" class="details" cols="35" id="category_nameHE" name="category_name" placeholder="הכנס שם קטגוריה בעברית" required />
+                                    <input type="text" lang="EN" rows="1" class="details" cols="35" id="category_nameEN" name="category_name" placeholder="הכנס שם קטגוריה באנגלית" required />
+                                    <input type="text" lang="AR" rows="1" class="details" cols="35" id="category_nameAR" name="category_name" placeholder="הכנס שם קטגוריה בערבית" required />
+                                </div>
+
                             </div>
+
                             <div id="image-group" class="form-group">
-                                <ImageUpload param1="category_name" param1Empty="category name not enterd" />
+                                <ImageUpload param1="category_nameHE" param1Empty="category name not enterd" />
                             </div>
 
                             <div class="modal-footer">
-                                <button type="submit" class="btn btn-success">{Dictionary.submit} <span class="fa fa-arrow-right"></span></button>
+                                <button type="submit" id="submitCategory" for="category_form" class="btn btn-success">{Dictionary.submit} <span class="fa fa-arrow-right"></span></button>
                                 <button type="button" onClick={resetForm("category_form")} class="btn btn-secondary" data-dismiss="modal">Close</button>
                             </div>
                         </form>
@@ -109,11 +114,11 @@ export const AddCategoryModal = () => {
     );
 
 }
-
 export const GenralForm = (props) => {
     var classAttr = "tab-pane fade form_content";
     if (props.active)
         classAttr = "tab-pane fade form_content show active";
+        var i=0,j=0;
     return (
 
         <div id={props.lang} class={classAttr}>
@@ -148,26 +153,47 @@ export const GenralForm = (props) => {
             <textarea rows="4" class="detail" cols="50" name="facts" lang={props.lang} id={"facts" + props.lang} placeholder="Interesting fact / story" ></textarea>
             {/* </div> */}
 
+            <textarea rows="4" class="detail" cols="50" name="quotes" lang={props.lang} id={"quotes" + props.lang} placeholder="Quotes and notable works" ></textarea>
+
             <div class="form-group">
-                <select name="type" id="type">
-                    <option value="bibliography" name="bibliography">Bibliography</option>
-                    <option value="link" name="link">Link</option>
-                </select>
-                <input type="text" rows="4" class="details" cols="50" name="quotes" lang={props.lang} id={"quotes" + props.lang} placeholder="Quotes and notable works" />
-                <input id={"link" + props.lang} type="text" rows="4" class="details" cols="50" name="link" placeholder="link" />
+                <label class="myNewClass" for={"link" + props.lang}>
+                    <input class="myNewClass" id={"description"+i} lang={props.lang} type="text" rows="4" class="details" cols="50" name="description" placeholder="description" />
+                    <input class="myNewClass" id={"link" +i} lang={props.lang} type="text" rows="4" class="details" cols="50" name="link" placeholder="link" />
+                    <a id="fill1" ></a>
+                    <button onClick={(e) => {
+                        e.preventDefault();
+                        i++;
+                        var fill = $("#fill1");
+                        fill.append(`<input id=${"description"+i}  lang = ${props.lang} type="text" rows="4" class="details" cols="50" name="description" placeholder="description" />
+                        <input id=${"link"+i} lang = ${props.lang} type="text" rows="4" class="details" cols="50" name="link" placeholder="link" />`)
+                        console.log(fill.num);
+                    }}>add</button>
+                </label>
+            </div>
+
+            <div class="form-group">
+                <label class="myNewClass" for={"reading" + props.lang}>
+                    <input class="myNewClass" id={"reading"+j} lang={props.lang} type="text" rows="4" class="details" cols="50" name="description" placeholder="further reading" />
+                    <a id="fill2"></a>
+                    <button onClick={(e) => {
+                        e.preventDefault();
+                        j++;
+                        var fill =$("#fill2");
+                        fill.append(`<input id=${"reading"+j} lang=${props.lang} type="text" rows="4" class="details" cols="50" name="description" placeholder="further reading" />`)
+                    }}>add</button>
+                </label>
             </div>
         </div>
 
     )
 }
-
 export const SuggestWoman = () => {
-
+    var i=0,j=0;
     return (
         <div class="modal fade" id="suggestWomanModal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-xl">
                 <div class="modal-content">
-                    <form dir="RTL" id="suggest_woman_form" name="suggest_woman_form" method="POST"  >
+                    <form dir="RTL" id="suggest_woman_form" name="suggest_woman_form" onSubmit={suggestWoman}  >
                         <div class="modal-header">
                             <button type="button" id="xClose" class="close" data-dismiss="modal" aria-label="Close" onClick={resetForm("suggest_woman_form")}>
                                 <span aria-hidden="true">&times;</span>
@@ -180,50 +206,68 @@ export const SuggestWoman = () => {
                             <div id="name-group1" class="form-group">
                                 {/* <label for="display"></label> */}
                                 <input type="text" rows="1" class="detailsNew" cols="35" id="yourName" name="yourName" placeholder="enter your name" required />
-                            </div>
+                            {/* </div> */}
 
-                            <div id="name-group1" class="form-group">
+                            {/* <div id="name-group1" class="form-group"> */}
                                 {/* <label for="display"></label> */}
                                 <input type="text" rows="1" class="detailsNew" cols="35" id="yourEmail" name="yourEmail" placeholder="enter your email" required />
-                            </div>
+                            {/* </div> */}
 
-                            <div id="name-group1" class="form-group">
+                            {/* <div id="name-group1" class="form-group"> */}
                                 {/* <label for="display"></label> */}
                                 <input type="text" rows="1" class="detailsNew" cols="35" id="display" name="display" placeholder="display name" />
                             </div>
 
                             {/* <div class="form-group"> */}
-                            <textarea rows="4" class="detail" cols="50" name="highlights" id="highlights" placeholder="Highlights"  ></textarea>
+                            <textarea rows="4" class="boxDetail" cols="50" name="highlights" id="highlights" placeholder="Highlights"  ></textarea>
                             {/* </div> */}
 
 
                             {/* <div class="form-group"> */}
-                            <textarea rows="4" class="detail" cols="50" name="biography" id="biography" placeholder="Biography" ></textarea>
+                            <textarea rows="4" class="boxDetail" cols="50" name="biography" id="biography" placeholder="Biography" ></textarea>
                             {/* </div> */}
 
                             {/* <div class="form-group"> */}
-                            <textarea rows="4" class="detail" cols="50" name="history" id="historical" placeholder="Historical events related" ></textarea>
+                            <textarea rows="4" class="boxDetail" cols="50" name="history" id="historical" placeholder="Historical events related" ></textarea>
                             {/* </div> */}
 
                             {/* <div class="form-group"> */}
-                            <textarea rows="4" class="detail" cols="50" name="feminism" id="contribution" placeholder="Contribution to Feminism" ></textarea>
+                            <textarea rows="4" class="boxDetail" cols="50" name="feminism" id="contribution" placeholder="Contribution to Feminism" ></textarea>
                             {/* </div> */}
 
 
                             {/* <div class="form-group"> */}
-                            <textarea rows="4" class="detail" cols="50" name="facts" id="facts" placeholder="Interesting fact / story" ></textarea>
+                            <textarea rows="4" class="boxDetail" cols="50" name="facts" id="facts" placeholder="Interesting fact / story" ></textarea>
                             {/* </div> */}
 
                             <div class="form-group">
-                                <select name="type" id="type">
+                                {/* <select name="type" id="type">
                                     <option value="bibliography" name="bibliography">Bibliography</option>
                                     <option value="link" name="link">Link</option>
-                                </select>
+                                </select> */}
+                                {/* <div class="quotesClass">  */}
                                 <input type="text" rows="4" class="details" cols="50" name="quotes" id="quotes" placeholder="Quotes and notable works" />
+                                </div>
+                                <a id="fill20"></a>
+                                <button id="myAdd" onClick={(e) => {
+                                    e.preventDefault();
+                                    j++;
+                                    var fill =$("#fill20");
+                                    fill.append(`<input id=${"quotes"}  type="text" rows="4" class="details" cols="50" name="quotes" placeholder="Quotes and notable works" />`)
+                                }}>add</button>
+                                <div class="form-group">
                                 <input id="link" type="text" rows="4" class="details" cols="50" name="link" placeholder="link" />
+                                <a id="fill21"></a>
+                                <button id="myAdd" onClick={(e) => {
+                                    e.preventDefault();
+                                    i++;
+                                    var fill =$("#fill21");
+                                    fill.append(`<input id=${"link"}  type="text" rows="4" class="details" cols="50" name="link" placeholder="link" />`)
+                                }}>add</button>
                             </div>
 
                         </div>
+                        {/* </div> */}
                         <div class="modal-footer">
                             <button type="button" class="close" class="btn btn-secondary" onClick={resetForm("suggest_woman_form")} data-dismiss="modal">{Dictionary.close}</button>
                             <button type="submit" for="suggest_woman_form" class="btn btn-success" id="submit_form" >{Dictionary.submit} <span class="fa fa-arrow-right"></span></button>
@@ -236,8 +280,6 @@ export const SuggestWoman = () => {
         </div>
     )
 }
-
-
 export const EditWomanModal = () => {
 
     return (
@@ -306,8 +348,6 @@ export const EditWomanModal = () => {
         </div>
     );
 }
-
-
 $("document").ready(function () {
     //make sure only step 1 is shown 
     $("#step2").hide();
@@ -318,14 +358,17 @@ $("document").ready(function () {
         $('#mylinks a').removeClass('highlight');
         $(this).addClass('highlight');
     });
-    $("#link").hide();
-    $('select[name=type]').change(function () {
-        if ($('select[name=type]').val() == 'link') {
-            $('#link').show();
-        } else {
-            $("#link").hide();
-        }
-    });
+
+
+    // $("#link").hide();
+    // $('select[name=type]').change(function () {
+    //     if ($('select[name=type]').val() == 'link') {
+    //         $('#link').show();
+    //     } else {
+    //         $("#link").hide();
+    //     }
+    // });
+
 
     //add woman from the form to database
     $("#woman_form").submit(function (event) {
@@ -380,57 +423,54 @@ $("document").ready(function () {
         // stop the form from submitting the normal way and refreshing the page
         event.preventDefault();
     });
+    
+    
 
-    //add feedback to database
-    $("#feedback_form").submit(function (event) {
-        if (!$("#feedback_form").valid()) return;
+    // $("#suggest_woman_form").submit(function (event) {
+    //     if (!$("#suggest_woman_form").valid()) return;
+    //     // stop the form from submitting the normal way and refreshing the page
+    //     event.preventDefault();
+    //     suggestWoman();
+    //     // $("#afterMessage").modal('show');
+    // });
 
-        var obj = {}
-        var id = $("#feed_name").val() + $("#feed_email").val();
-        var maxscoreSet = false;
-        $($('#feedback_form').prop('elements')).each(function () {
+    //add woman from the form to database
+    $("#category_form").submit(function (event) {
+        
+        console.log("IM READY SHLOMO");
+        if (!$("#category_form").valid()) return;
+        //confirm id not exeisting??
+        var gen = {};
+        var id = $("#category_nameHE").val();
+        //  $('#submitCategory').show();
+
+        $($('#category_form').prop('elements')).each(function () {
             if (this.value) {
-                //if it is the stars rating
-                if (this.type == "radio") {
-                    if ($(this).is(':checked') && !maxscoreSet) {
-                        maxscoreSet = true;
-                        obj["score"] = this.value;
-                    }
-                }
-                else
-                    obj[this.id] = this.value;
+                gen[this.id] = this.value;
+
             }
         });
-        console.log(obj);
-
-        db.collection('feedbacks').doc(id).set(obj).then(function () {
-            window.$("#feedbackForm").modal('hide');
-        });
-
+        console.log(gen);
+        console.log(id);
+        alert("checkCategories");
+        db.collection('categories').doc(id).set(gen);
+        //window.$("#categoryForm").modal('hide');
+        // $("#staticBackdrop").modal('hide');
         // $("#afterMessage").modal('show');
         // stop the form from submitting the normal way and refreshing the page
         event.preventDefault();
-    });
-    
-    
-    $("#suggest_woman_form").submit(function (event) {
-        if (!$("#suggest_woman_form").valid()) return;
-        event.preventDefault();  
-        suggestWoman();
-        // $("#afterMessage").modal('show');
-        // stop the form from submitting the normal way and refreshing the page
     });
 
 });
 
 // add to suggest woman collection
-function suggestWoman(){
+function suggestWoman() {
     var obj = {}
     var id = $("#yourEmail").val();
-    
+
     $($('#suggest_woman_form').prop('elements')).each(function () {
         if (this.value) {
-                obj[this.id] = this.value;
+            obj[this.id] = this.value;
         }
     });
     console.log(obj);
@@ -467,3 +507,94 @@ function showing(id, id2) {
     }
 
 }
+
+//add feedback to database
+function handleFeedback()
+{
+    var obj = {}
+        var id = $("#feed_name").val() + $("#feed_email").val();
+        var maxscoreSet = false;
+        $($('#feedback_form').prop('elements')).each(function () {
+            if (this.value) {
+                //if it is the stars rating
+                if (this.type == "radio") {
+                    if ($(this).is(':checked') && !maxscoreSet) {
+                        maxscoreSet = true;
+                        obj["score"] = this.value;
+                    }
+                }
+                else
+                    obj[this.id] = this.value;
+            }
+        });
+        console.log(obj);
+
+        db.collection('feedbacks').doc(id).set(obj).then(function () {
+            window.$("#feedbackForm").modal('hide');
+        });
+}
+
+// function addLinks(e) {
+//     e.preventDefault();
+
+//     $("#fill").append(`<input id="description" lang = `{props.lang}` type="text" rows="4" class="details" cols="50" name="description" placeholder="description" />
+//     <input id="link" lang = {props.lang} type="text" rows="4" class="details" cols="50" name="link" placeholder="link" />`)
+
+// }
+
+// //add feedback to database
+    // $("#feedback_form").submit(function (event) {
+    //     if (!$("#feedback_form").valid()) return;
+    //     // stop the form from submitting the normal way and refreshing the page
+    //     event.preventDefault();
+        
+    //     var obj = {}
+    //     var id = $("#feed_name").val() + $("#feed_email").val();
+    //     var maxscoreSet = false;
+    //     $($('#feedback_form').prop('elements')).each(function () {
+    //         if (this.value) {
+    //             //if it is the stars rating
+    //             if (this.type == "radio") {
+    //                 if ($(this).is(':checked') && !maxscoreSet) {
+    //                     maxscoreSet = true;
+    //                     obj["score"] = this.value;
+    //                 }
+    //             }
+    //             else
+    //                 obj[this.id] = this.value;
+    //         }
+    //     });
+    //     console.log(obj);
+
+    //     db.collection('feedbacks').doc(id).set(obj).then(function () {
+    //         window.$("#feedbackForm").modal('hide');
+    //     });
+
+    //     // $("#afterMessage").modal('show');
+    // });
+
+function sub_cat (event) {
+        
+    console.log("IM READY SHLOMO");
+    if (!$("#category_form").valid()) return;
+    //confirm id not exeisting??
+    var gen = {};
+    var id = $("#category_nameHE").val();
+    //  $('#submitCategory').show();
+
+    $($('#category_form').prop('elements')).each(function () {
+        if (this.value) {
+            gen[this.id] = this.value;
+
+        }
+    });
+    console.log(gen);
+    console.log(id);
+    alert("checkCategories");
+    db.collection('categories').doc(id).set(gen);
+    window.$("#categoryForm").modal('hide');
+    // $("#staticBackdrop").modal('hide');
+    // $("#afterMessage").modal('show');
+    // stop the form from submitting the normal way and refreshing the page
+    event.preventDefault();
+};

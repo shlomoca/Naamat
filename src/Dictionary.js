@@ -119,6 +119,7 @@ export const Dictionary = new LocalizedStrings({
     suggest: `הציעי אישה`,
     //components
     builders: 'אתר זה נבנה על ידי: שלמה כרמי, דניאל רז, סהר כהן, עדיאל צייג, מתן ימין',
+    CategoryName:'שם קטגוריה',
     
    
   },
