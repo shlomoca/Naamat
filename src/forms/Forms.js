@@ -114,6 +114,7 @@ export const GenralForm = (props) => {
     var classAttr = "tab-pane fade form_content";
     if (props.active)
         classAttr = "tab-pane fade form_content show active";
+        var i=0,j=0;
     return (
 
         <div id={props.lang} class={classAttr}>
@@ -148,13 +149,35 @@ export const GenralForm = (props) => {
             <textarea rows="4" class="detail" cols="50" name="facts" lang={props.lang} id={"facts" + props.lang} placeholder="Interesting fact / story" ></textarea>
             {/* </div> */}
 
+            <textarea rows="4" class="detail" cols="50" name="quotes" lang={props.lang} id={"quotes" + props.lang} placeholder="Quotes and notable works" ></textarea>
+
             <div class="form-group">
-                <select name="type" id="type">
-                    <option value="bibliography" name="bibliography">Bibliography</option>
-                    <option value="link" name="link">Link</option>
-                </select>
-                <input type="text" rows="4" class="details" cols="50" name="quotes" lang={props.lang} id={"quotes" + props.lang} placeholder="Quotes and notable works" />
-                <input id={"link" + props.lang} type="text" rows="4" class="details" cols="50" name="link" placeholder="link" />
+                <label for={"link" + props.lang}>
+                    <input id={"description"+i} lang={props.lang} type="text" rows="4" class="details" cols="50" name="description" placeholder="description" />
+                    <input id={"link" +i} lang={props.lang} type="text" rows="4" class="details" cols="50" name="link" placeholder="link" />
+                    <a id="fill1" ></a>
+                    <button onClick={(e) => {
+                        e.preventDefault();
+                        i++;
+                        var fill = $("#fill1");
+                        fill.append(`<input id=${"description"+i}  lang = ${props.lang} type="text" rows="4" class="details" cols="50" name="description" placeholder="description" />
+                        <input id=${"link"+i} lang = ${props.lang} type="text" rows="4" class="details" cols="50" name="link" placeholder="link" />`)
+                        console.log(fill.num);
+                    }}>add</button>
+                </label>
+            </div>
+
+            <div class="form-group">
+                <label for={"reading" + props.lang}>
+                    <input id={"reading"+j} lang={props.lang} type="text" rows="4" class="details" cols="50" name="description" placeholder="further reading" />
+                    <a id="fill2"></a>
+                    <button onClick={(e) => {
+                        e.preventDefault();
+                        j++;
+                        var fill =$("#fill2");
+                        fill.append(`<input id=${"reading"+j} lang=${props.lang} type="text" rows="4" class="details" cols="50" name="description" placeholder="further reading" />`)
+                    }}>add</button>
+                </label>
             </div>
         </div>
 
@@ -318,14 +341,15 @@ $("document").ready(function () {
         $('#mylinks a').removeClass('highlight');
         $(this).addClass('highlight');
     });
-    $("#link").hide();
-    $('select[name=type]').change(function () {
-        if ($('select[name=type]').val() == 'link') {
-            $('#link').show();
-        } else {
-            $("#link").hide();
-        }
-    });
+
+    // $("#link").hide();
+    // $('select[name=type]').change(function () {
+    //     if ($('select[name=type]').val() == 'link') {
+    //         $('#link').show();
+    //     } else {
+    //         $("#link").hide();
+    //     }
+    // });
 
     //add woman from the form to database
     $("#woman_form").submit(function (event) {
@@ -411,26 +435,26 @@ $("document").ready(function () {
         // stop the form from submitting the normal way and refreshing the page
         event.preventDefault();
     });
-    
-    
+
+
     $("#suggest_woman_form").submit(function (event) {
         if (!$("#suggest_woman_form").valid()) return;
-        event.preventDefault();  
+        // stop the form from submitting the normal way and refreshing the page
+        event.preventDefault();
         suggestWoman();
         // $("#afterMessage").modal('show');
-        // stop the form from submitting the normal way and refreshing the page
     });
 
 });
 
 // add to suggest woman collection
-function suggestWoman(){
+function suggestWoman() {
     var obj = {}
     var id = $("#yourEmail").val();
-    
+
     $($('#suggest_woman_form').prop('elements')).each(function () {
         if (this.value) {
-                obj[this.id] = this.value;
+            obj[this.id] = this.value;
         }
     });
     console.log(obj);
@@ -467,3 +491,11 @@ function showing(id, id2) {
     }
 
 }
+
+// function addLinks(e) {
+//     e.preventDefault();
+
+//     $("#fill").append(`<input id="description" lang = `{props.lang}` type="text" rows="4" class="details" cols="50" name="description" placeholder="description" />
+//     <input id="link" lang = {props.lang} type="text" rows="4" class="details" cols="50" name="link" placeholder="link" />`)
+
+// }
