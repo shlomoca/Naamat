@@ -132,7 +132,7 @@ class Search extends Component {
   //follow after input in serach bar
   searchHandler(event) {
     this.setState({ term: event.target.value })
-    var term =(this.state.term).toLowerCase();
+    var term = (this.state.term).toLowerCase();
     // getWomen(term);
   }
 
@@ -152,8 +152,8 @@ class Search extends Component {
         </button>
         <div id="temp">
           {/* {getWomen(term)} */}
-          </div>
-        
+        </div>
+
       </form>
     )
   }
@@ -186,70 +186,68 @@ export class PictursCarousel extends Component {
     super(props);
     this.state = {
       url: [],
-      ids :["גולדה מאיר1898-03-03", "דניאל רז1992-03-31", "סהר כהן1995-09-21", "עדיאל צייג2020-06-01", "שלמה כרמי1993-06-09"],
-       indicators :[],
-       items :[],
-       dataslide :0,
+      ids: ["גולדה מאיר1898-03-03", "דניאל רז1992-03-31", "סהר כהן1995-09-21", "עדיאל צייג2020-06-01", "שלמה כרמי1993-06-09"],
+      indicators: [],
+      items: [],
+      dataslide: 0,
     }
   }
 
   componentDidMount() {
-      var active = false;
-     
-      var active =true;
-      var ids =this.state.ids;
-      var indicators =[];
-      var items =[];
-      ids.forEach(id => {
-        console.log(id);
-        db.collection('women').doc(id).collection('langs').doc(Dictionary.getLanguage()).get().then(snapshot => {
-          if (snapshot.data()) {
-            var data = snapshot.data();
-            if (data) {
-  
-              var id = data["id"];
-              // console.log(id + "/ProfilePic");
-              if (id)
-                storage.ref("/" + id).child("ProfilePic").getDownloadURL().then(url => {
-                  if (this.state.dataslide != 0)
+    var active = false;
+
+    var active = true;
+    var ids = this.state.ids;
+    var indicators = [];
+    var items = [];
+    ids.forEach(id => {
+      console.log(id);
+      db.collection('women').doc(id).collection('langs').doc(Dictionary.getLanguage()).get().then(snapshot => {
+        if (snapshot.data()) {
+          var data = snapshot.data();
+          if (data) {
+            var id = data["id"];
+            if (id)
+              storage.ref("/" + id).child("ProfilePic").getDownloadURL().then(url => {
+                if (this.state.dataslide != 0)
                   active = false;
-                  indicators.push(<CarouselLi dataslide={this.state.dataslide} active={active} />);
-                  items.push(<CarouselSlide display={data["display"]} highlights={data["highlights"]} id={id} src={url} active={active} />);
-                  this.setState({indicators: indicators});
-                  this.setState({items: items});
-                  this.setState({dataslide: this.state.dataslide+1});
-                });
-              }
-            }
-          })
-          
-        })
-        console.log(indicators)
-      
-    }
-    render(){
-console.log("rendering");
-      return (
-        <div id="pictureCarousel">
-            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-              <ol id="carouselIndicators" class="carousel-indicators">
-                {this.state.indicators}
-              </ol>
-              <div id="carouselInner" class="carousel-inner">
-                {this.state.items}
-              </div>
-              <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-              </a>
-              <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-              </a>
-            </div>
+                indicators.push(<CarouselLi dataslide={this.state.dataslide} active={active} />);
+                items.push(<CarouselSlide display={data["display"]} highlights={data["highlights"]} id={id} src={url} active={active} />);
+                this.setState({ indicators: indicators });
+                this.setState({ items: items });
+                this.setState({ dataslide: this.state.dataslide + 1 });
+              });
+          }
+        }
+      })
+
+    })
+    console.log(indicators)
+
+  }
+  render() {
+    console.log("rendering");
+    return (
+      <div id="pictureCarousel">
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+          <ol id="carouselIndicators" class="carousel-indicators">
+            {this.state.indicators}
+          </ol>
+          <div id="carouselInner" class="carousel-inner">
+            {this.state.items}
           </div>
-        )
-      }
+          <a class="carousel-control-prev arrow" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next arrow" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+      </div>
+    )
+  }
 }
 // export const PictursCarousel = (props) => {
 //   return (
@@ -299,14 +297,18 @@ console.log("rendering");
 export const CarouselSlide = props => {
 
   var clas = "carousel-item";
-  if(props.active)
-   clas = "carousel-item active" ;
+  if (props.active)
+    clas = "carousel-item active";
   return (
     <div class={clas}>
-      <img src={props.src} class="d-block w-100" alt="example 1" height="600px" width="115" />
+      <div class="d-block w-100 details" alt="example 1" height="500px" width="200px">
+        <h1 class="displayName">{props.display}</h1>
+        <a href={"/womanPage/" + props.id}>
+          <img src={props.src} class="roundedImg" alt="example 1" height="150px" width="150px" />
+        </a>
+      </div>
       <div class="carousel-caption d-none d-md-block pictureDiscription">
-        <h5>{props.display}</h5>
-        <p>{props.womanHighlights}</p>
+        <p><h3 class="highlights">{props.highlights}</h3></p>
       </div>
     </div>
   )
