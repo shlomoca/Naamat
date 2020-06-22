@@ -24,7 +24,7 @@ export const FeedbackModal = () => {
 
     return (
         <div class="modal fade" id="feedbackForm" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <AfterMessage info='thank you' />
+            {/* <AfterMessage info='thank you' /> */}
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -203,38 +203,38 @@ export const SuggestWoman = () => {
                             <div id="name-group1" class="form-group">
                                 {/* <label for="display"></label> */}
                                 <input type="text" rows="1" class="detailsNew" cols="35" id="yourName" name="yourName" placeholder="enter your name" required />
-                            </div>
+                            {/* </div> */}
 
-                            <div id="name-group1" class="form-group">
+                            {/* <div id="name-group1" class="form-group"> */}
                                 {/* <label for="display"></label> */}
                                 <input type="text" rows="1" class="detailsNew" cols="35" id="yourEmail" name="yourEmail" placeholder="enter your email" required />
-                            </div>
+                            {/* </div> */}
 
-                            <div id="name-group1" class="form-group">
+                            {/* <div id="name-group1" class="form-group"> */}
                                 {/* <label for="display"></label> */}
                                 <input type="text" rows="1" class="detailsNew" cols="35" id="display" name="display" placeholder="display name" />
                             </div>
 
                             {/* <div class="form-group"> */}
-                            <textarea rows="4" class="detail" cols="50" name="highlights" id="highlights" placeholder="Highlights"  ></textarea>
+                            <textarea rows="4" class="boxDetail" cols="50" name="highlights" id="highlights" placeholder="Highlights"  ></textarea>
                             {/* </div> */}
 
 
                             {/* <div class="form-group"> */}
-                            <textarea rows="4" class="detail" cols="50" name="biography" id="biography" placeholder="Biography" ></textarea>
+                            <textarea rows="4" class="boxDetail" cols="50" name="biography" id="biography" placeholder="Biography" ></textarea>
                             {/* </div> */}
 
                             {/* <div class="form-group"> */}
-                            <textarea rows="4" class="detail" cols="50" name="history" id="historical" placeholder="Historical events related" ></textarea>
+                            <textarea rows="4" class="boxDetail" cols="50" name="history" id="historical" placeholder="Historical events related" ></textarea>
                             {/* </div> */}
 
                             {/* <div class="form-group"> */}
-                            <textarea rows="4" class="detail" cols="50" name="feminism" id="contribution" placeholder="Contribution to Feminism" ></textarea>
+                            <textarea rows="4" class="boxDetail" cols="50" name="feminism" id="contribution" placeholder="Contribution to Feminism" ></textarea>
                             {/* </div> */}
 
 
                             {/* <div class="form-group"> */}
-                            <textarea rows="4" class="detail" cols="50" name="facts" id="facts" placeholder="Interesting fact / story" ></textarea>
+                            <textarea rows="4" class="boxDetail" cols="50" name="facts" id="facts" placeholder="Interesting fact / story" ></textarea>
                             {/* </div> */}
 
                             <div class="form-group">
