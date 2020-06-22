@@ -22,35 +22,35 @@ const MainDetails = (props) => {
     );
 }
 
-export class WomenCard extends Component{
+export class WomenCard extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          id: props.id,
-          display: props.display,
-          summery: props.summery,
-          url: ''
+            id: props.id,
+            display: props.display,
+            summery: props.summery,
+            url: ''
         }
     }
-    
+
     componentDidMount() {
-    storage.ref("/"+this.state.id).child("ProfilePic").getDownloadURL().then(url => {
-        this.state.url=url;
-    }); 
- }
-    render(){
+        storage.ref("/" + this.state.id).child("ProfilePic").getDownloadURL().then(url => {
+            this.state.url = url;
+        });
+    }
+    render() {
         return (
-           
+            // <Link to={"/womanPage"+this.state.id}>
             <div id="womanCardsContainer" >
-                <img id={"roundImage"+this.state.id} className="roundImage" src={this.state.url} alt={this.state.display} />
+                <img id={"roundImage" + this.state.id} className="roundImage" src={this.state.url} alt={this.state.display} />
                 <h1  >{this.state.display} </h1>
                 <p>{this.state.summary}  </p>
                 <button onClick={editWoman(this.state.id)}>Edit</button>
             </div>
-           
+            //    </Link>
         )
     }
-    
+
 
 }
 
@@ -64,8 +64,8 @@ export const WomenDeck = (props) => {
         var sum = woman["highlights" + Dictionary.getLanguage()];
         var id = woman.id;
         if (wName && sum)
-            deck.push(  
-           <WomenCard display={wName} summary={sum} id={id} /> );   
+            deck.push(
+                <WomenCard display={wName} summary={sum} id={id} />);
     })
 
     return (
@@ -101,7 +101,7 @@ export const WomanPage = (props) => {
     //get woman by id
     const woman = [];
     var obj;
-    
+
     db.collection('women').doc(id).collection('langs').doc(Dictionary.getLanguage()).get().then(snapshot => {
         woman.push(snapshot.data());
         obj = Object.keys(woman[0]);
@@ -112,7 +112,8 @@ export const WomanPage = (props) => {
     })
         .catch(error => {
             alert("woman not found");
-            console.log(error);});
+            console.log(error);
+        });
 
     return (
         <div id="WomanPageWrapper" class="wrapper" >
@@ -120,7 +121,7 @@ export const WomanPage = (props) => {
 
                 <NavBar />
 
-                
+
 
                 {/* <MainDetails display={obj["display" + Dictionary.getLanguage()]} link={"https://naamat.org.il/wp-content/themes/Naamat-Child-Theme/images/footer-img.jpg"} bday={woman["date" + Dictionary.getLanguage()]} /> */}
                 {/* <p><b>{Dictionary.dethDay}:</b> {woman.death}</p>
@@ -205,39 +206,74 @@ export const WomanPage = (props) => {
 
 
 // const showWoman = (props) => {
-    
+
 // }
 
-export  class getWomen extends Component
-{
-    constructor(props)
-    {
+export class getWomen extends Component {
+    constructor(props) {
         super(props);
-
-        this.state=
-        {
-            
+        this.state = {
+            womanName: props.womanName
         }
+
+    }
+
+    componentWillMount() {
+        var womanName = this.state.womanName
+
+
+        if (womanName) {
+            var nameattr = "display" + determineLang(womanName);
+            // console.log(nameattr);
+            var MaxIndex = getMaxIndex(womanName);
+            // console.log(MaxIndex)
+            //     //get a women arry with all women results for this search
+            // }
+            //  )   // ).catch(error => console.log(error));
+            
+            //get all the women that ae in the lexicografical area of the search term womanName
+            const women = [];
+            db.collection('women').where(nameattr, ">=", womanName).where(nameattr, "<", MaxIndex).get().then(snapshot => {
+                    snapshot.forEach(doc => {
+                        const data = doc.data();
+                        if (data) {
+                            women.push(data);
+                        }
+                        else
+                        console.log("no data");
+                    })
+                // var data = snapshot.docs.data();
+                // women.push(data);
+                var obj = Object.keys(women[0]);
+                console.log(obj);
+
+            })
+                .catch(error => {
+                    alert("woman not found");
+                    console.log(error);
+                });
+        }
+    }
+    render() {
+        return (
+            // <Link to={"/womanPage"+this.state.id}>
+            <div id="womanCardsContainer" >
+                <img id={"roundImage" + this.state.id} className="roundImage" src={this.state.url} alt={this.state.display} />
+                <h1  >{this.state.display} </h1>
+                <p>{this.state.summary}  </p>
+                <button onClick={editWoman(this.state.id)}>Edit</button>
+            </div>
+            //    </Link>
+        )
     }
 }
 
-// export function getWomen(womanName) {
-//     if (womanName) {
-//         var nameattr="display"+determineLang(womanName);
-//         // console.log(nameattr);
-//         var MaxIndex=getMaxIndex(womanName);
-//         // console.log(MaxIndex)
-//         //get all the women that ae in the lexicografical area of the search term womanName
-//         db.collection('women').where(nameattr, ">=", womanName).where(nameattr, "<", MaxIndex).get().then(snapshot => {
-//             const women = [];
-//             //get a women arry with all women results for this search
-//             snapshot.forEach(doc => {
-//                 const data = doc.data();
-//                 if (data) {
-//                     women.push(data);
-//                 }
-//                 else
-//                     console.log("no data");
+
+
+
+
+
+
 
 // export function getWomen(womanName) {
 //     if (womanName) {

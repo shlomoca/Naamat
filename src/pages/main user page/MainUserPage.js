@@ -16,7 +16,7 @@ class MainUserPage extends Component {
         super(props);
         this.state = {
             img:{},
-            carouselSlids: 3,
+            carouselSlids: 0,
         }
     }
 
