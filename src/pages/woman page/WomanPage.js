@@ -7,6 +7,7 @@ import { Dictionary, langs } from '../../Dictionary';
 import $ from 'jquery';
 import { storage } from '../../config/Firebase';
 import { render } from '@testing-library/react';
+import { Link } from 'react-router-dom';
 
 
 const MainDetails = (props) => {
@@ -39,17 +40,22 @@ export class WomenCard extends Component{
  }
     render(){
         return (
+           
             <div id="womanCardsContainer" >
                 <img id={"roundImage"+this.state.id} className="roundImage" src={this.state.url} alt={this.state.display} />
                 <h1  >{this.state.display} </h1>
                 <p>{this.state.summary}  </p>
                 <button onClick={editWoman(this.state.id)}>Edit</button>
             </div>
+           
         )
     }
     
 
 }
+
+
+//WomenDeck expots a list of women by a pop calld cadrs that is an array of fierebase docs
 export const WomenDeck = (props) => {
     const vals = Object.values(props.cards);
     const deck = [];
@@ -58,7 +64,8 @@ export const WomenDeck = (props) => {
         var sum = woman["highlights" + Dictionary.getLanguage()];
         var id = woman.id;
         if (wName && sum)
-            deck.push(<WomenCard display={wName} summary={sum} id={id} />);   
+            deck.push(  
+           <WomenCard display={wName} summary={sum} id={id} /> );   
     })
 
     return (
@@ -68,33 +75,7 @@ export const WomenDeck = (props) => {
     )
 }
 
-// //scan all pictures of a specific folder by id of woman
-// export function handlePictures(callback,id){
-//     // Create a reference under which you want to list
-//     var listRef = storage.ref().child(id);
-//     // Find all the prefixes and items.
-//     listRef.listAll().then(function (res) {
-//         res.prefixes.forEach(function (folderRef) {
-//             // All the prefixes under listRef.
-//             // You may call listAll() recursively on them.
-//         });
-//         res.items.forEach(function (itemRef) {
-//             // All the items under listRef sends to callback function.
-//              callback(itemRef);
-//         });
-//     }).catch(function (error) {
-//         // Uh-oh, an error occurred!
-//     });
-// }
 
-// //get reference for picture and delete it 
-// export function deleteWomanPicture(ref){
-//             ref.delete().then(function() {
-//                 // File deleted successfully
-//               }).catch(function(error) {
-//                 // Uh-oh, an error occurred!
-//               });
-// }
 //delete woman by id.
 export function deleteWoman(id) {
 
@@ -114,11 +95,9 @@ export function deleteWoman(id) {
 
 
 
-
+//shows a woman by id. gets a prop called id wich should corraspond with a woman id
 export const WomanPage = (props) => {
     var id = props.id;
-    // var attributes = ["Banana", "Orange", "Apple", "Mango"];
-    // var n = attributes.includes("Mango");
     //get woman by id
     const woman = [];
     var obj;
@@ -126,14 +105,13 @@ export const WomanPage = (props) => {
     db.collection('women').doc(id).collection('langs').doc(Dictionary.getLanguage()).get().then(snapshot => {
         woman.push(snapshot.data());
         obj = Object.keys(woman[0]);
-        // console.log(woman);
         console.log(obj);
         ReactDOM.render(
 
         )
     })
         .catch(error => {
-            // alert("woman not found");
+            alert("woman not found");
             console.log(error);});
 
     return (
@@ -142,7 +120,7 @@ export const WomanPage = (props) => {
 
                 <NavBar />
 
-                <div id="womenHolder"></div>
+                
 
                 {/* <MainDetails display={obj["display" + Dictionary.getLanguage()]} link={"https://naamat.org.il/wp-content/themes/Naamat-Child-Theme/images/footer-img.jpg"} bday={woman["date" + Dictionary.getLanguage()]} /> */}
                 {/* <p><b>{Dictionary.dethDay}:</b> {woman.death}</p>
@@ -226,9 +204,9 @@ export const WomanPage = (props) => {
 
 
 
-const showWoman = (props) => {
+// const showWoman = (props) => {
     
-}
+// }
 
 export  class getWomen extends Component
 {
@@ -243,6 +221,23 @@ export  class getWomen extends Component
     }
 }
 
+// export function getWomen(womanName) {
+//     if (womanName) {
+//         var nameattr="display"+determineLang(womanName);
+//         // console.log(nameattr);
+//         var MaxIndex=getMaxIndex(womanName);
+//         // console.log(MaxIndex)
+//         //get all the women that ae in the lexicografical area of the search term womanName
+//         db.collection('women').where(nameattr, ">=", womanName).where(nameattr, "<", MaxIndex).get().then(snapshot => {
+//             const women = [];
+//             //get a women arry with all women results for this search
+//             snapshot.forEach(doc => {
+//                 const data = doc.data();
+//                 if (data) {
+//                     women.push(data);
+//                 }
+//                 else
+//                     console.log("no data");
 
 // export function getWomen(womanName) {
 //     if (womanName) {
@@ -301,6 +296,7 @@ function getMaxIndex(str) {
     return str;
 
 }
+//deteminLang determins what is the lang first letter in str
 function determineLang(str) {
     if (str[0].match(/[\u0600-\u06FF]/i)) {
         return "AR";
@@ -314,6 +310,8 @@ function determineLang(str) {
     return "HE"
 }
 
+
+//editWoman adds the infomation of a woman to the add woman model
 export function editWoman(id) {
     var woman;
 

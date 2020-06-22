@@ -312,6 +312,7 @@ $("document").ready(function () {
     //make sure only step 1 is shown 
     $("#step2").hide();
     $("#popup").hide();
+    // $('feedbackTable').hide();
     // show and hide link input from add woman form.
     $('#mylinks a').click(function () {
         $('#mylinks a').removeClass('highlight');
@@ -462,7 +463,6 @@ function showing(id, id2) {
             $(id).show();
             $(id2).hide();
             $("#submit1").hide()
-
         }
     }
 

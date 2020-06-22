@@ -61,6 +61,8 @@ export const Dictionary = new LocalizedStrings({
     mustfilled:' required field *',
     delete: `delete`,
     next: 'next',
+    suggest: `suggest woman`,
+   
     //components
     
     builders: `This site was built by: Shlomo Carmi, Daniel Raz, Sahar Cohen, Adiel Tsayag, Matan Yemin`,
@@ -114,7 +116,7 @@ export const Dictionary = new LocalizedStrings({
     mustfilled:'* שדות חובה',
     delete: `מחקי`,
     next: 'הבא',
-
+    suggest: `הציעי אישה`,
     //components
     builders: 'אתר זה נבנה על ידי: שלמה כרמי, דניאל רז, סהר כהן, עדיאל צייג, מתן ימין',
     
@@ -169,6 +171,8 @@ export const Dictionary = new LocalizedStrings({
     delete: `حذف`,
     displayname:"اسم العرض",
     next: 'التالى',
+    suggest: `توحي امرأة`,
+    
     //components
     
     builders: `تم بناء هذا الموقع من قبل: شلومو كرمي ، دانيال راز ، سحر كوهين ، أديل تساياج ، ماتان يمين `,
