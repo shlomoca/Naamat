@@ -63,6 +63,7 @@ padding-bottom: 3%;
     display: inline-flex;
     white-space: nowrap;
     width: 90%;
+
 }
 .langTabs{
  padding: 20px; 
@@ -236,23 +237,46 @@ padding-bottom: 3%;
     padding-right: 35%;
 
 }
-
-#myAdd{
-
-    /* height: 13%; */
-    height: auto;
-
-}
-
-.quotesClass{
-
-    padding-right: 10%;
-
-    
-
-}
-
-/* #fill20{
-
-    padding-top: 20%;
+/* #fill20,#fill21{
+    display: none;
 } */
+#quotes{
+    position: absolute;
+    display: flex;
+    margin-top: 0%;
+    width: 20%;
+    left: 15%;
+    flex-flow: column;
+}
+
+/* #link{
+    position: absolute;
+    margin-top: 0%;
+    width: 20%;
+    left: 60%;
+    
+} */
+
+#myAdd1{
+    position: absolute;
+    margin-top: 5%;
+    width: 10%;
+    left: 20%;
+}
+#myAdd2{
+    position: absolute;
+    margin-top: 5%;
+    width: 10%;
+    left: 65%;    
+}
+
+/* .quotesClass{
+    padding-right: 10%;
+} */
+
+ #fill20{
+    display: flex;
+    /* flex-wrap: unset; */
+    flex-flow: column;
+    justify-content: space-around;
+} 
