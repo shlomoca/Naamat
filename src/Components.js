@@ -517,21 +517,6 @@ export const DisplayFeedback = (props) => {
   )
 }
 
-//delete feedback by id
-export function deleteFeedBack(id) {
-
-  return () => {
-    console.log(id);
-    if (id) {
-      db.collection('feedbacks').doc(id).delete().then(() => {
-        alert("feedback " + id + " was deleted");
-        window.location.reload();
-      });
-    }
-    else
-      alert("wrong id");
-  }
-}
 
 
 //hiding feedback table and showing the managment buttons again
@@ -541,25 +526,32 @@ function hideFeedTable(id) {
     $("#allAdmin").show();
     $("#feedBackHolder").hide()
   }
-
+  
 }
 ///////////////
 
-function askAndDelete(id) {
-
-  return () => {
-
-    var del = window.confirm('בטוח שתרצה למחוק?');
-    // console.log(del);
-    if (del == true) {
-      deleteFeedBack(id)
-      console.log(id);
-    }
-  }
-
-}
-      //  alert ("המשוב נמחק בהצלחה")
-    // }else{
-    //     alert("Record Not Deleted")
-    // }
-    // return del;
+export function askAndDelete(id) {
+  
+    return () => {
+      
+      var del=window.confirm('בטוח שתרצה למחוק?');
+      // console.log(del);
+      if (del==true){
+        deleteFeedBack(id)
+        }
+        // return deleteFeedBack(id);
+      }
+      }
+      //delete feedback by id
+export function deleteFeedBack(id) {
+      
+          console.log(id);
+          if (id) {
+            db.collection('feedbacks').doc(id).delete().then(() => {
+              window.location.reload();
+            });
+          }
+          else
+            alert("שגיאה");
+      }
+    

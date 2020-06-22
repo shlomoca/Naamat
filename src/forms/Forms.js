@@ -87,18 +87,23 @@ export const AddCategoryModal = () => {
                         <h5 class="modal-title" id="staticBackdropLabel">{Dictionary.addcategory}</h5>
                     </div>
                     <div class="modal-body">
-                        <form dir="RTL" id="category_form" name="category_form"  >
-
+                        <form dir="RTL" id="category_form" onSubmit={sub_cat} name="category_form"  >
                             <div id="name-group" class="form-group">
-                                <lable for="category_name">{Dictionary.name}</lable>
-                                <input type="text" rows="1" class="details" id="category_name" cols="35" name="category_name" placeholder="Category name" required />
+                                <div id="name-group1" class="form-group">
+                                    <lable for="category_name">{Dictionary.name}</lable>
+                                    <input type="text" lang="HE" rows="1" class="details" cols="35" id="category_nameHE" name="category_name" placeholder="הכנס שם קטגוריה בעברית" required />
+                                    <input type="text" lang="EN" rows="1" class="details" cols="35" id="category_nameEN" name="category_name" placeholder="הכנס שם קטגוריה באנגלית" required />
+                                    <input type="text" lang="AR" rows="1" class="details" cols="35" id="category_nameAR" name="category_name" placeholder="הכנס שם קטגוריה בערבית" required />
+                                </div>
+
                             </div>
+
                             <div id="image-group" class="form-group">
-                                <ImageUpload param1="category_name" param1Empty="category name not enterd" />
+                                <ImageUpload param1="category_nameHE" param1Empty="category name not enterd" />
                             </div>
 
                             <div class="modal-footer">
-                                <button type="submit" class="btn btn-success">{Dictionary.submit} <span class="fa fa-arrow-right"></span></button>
+                                <button type="submit" id="submitCategory" for="category_form" class="btn btn-success">{Dictionary.submit} <span class="fa fa-arrow-right"></span></button>
                                 <button type="button" onClick={resetForm("category_form")} class="btn btn-secondary" data-dismiss="modal">Close</button>
                             </div>
                         </form>
@@ -109,7 +114,6 @@ export const AddCategoryModal = () => {
     );
 
 }
-
 export const GenralForm = (props) => {
     var classAttr = "tab-pane fade form_content";
     if (props.active)
@@ -152,9 +156,9 @@ export const GenralForm = (props) => {
             <textarea rows="4" class="detail" cols="50" name="quotes" lang={props.lang} id={"quotes" + props.lang} placeholder="Quotes and notable works" ></textarea>
 
             <div class="form-group">
-                <label for={"link" + props.lang}>
-                    <input id={"description"+i} lang={props.lang} type="text" rows="4" class="details" cols="50" name="description" placeholder="description" />
-                    <input id={"link" +i} lang={props.lang} type="text" rows="4" class="details" cols="50" name="link" placeholder="link" />
+                <label class="myNewClass" for={"link" + props.lang}>
+                    <input class="myNewClass" id={"description"+i} lang={props.lang} type="text" rows="4" class="details" cols="50" name="description" placeholder="description" />
+                    <input class="myNewClass" id={"link" +i} lang={props.lang} type="text" rows="4" class="details" cols="50" name="link" placeholder="link" />
                     <a id="fill1" ></a>
                     <button onClick={(e) => {
                         e.preventDefault();
@@ -168,8 +172,8 @@ export const GenralForm = (props) => {
             </div>
 
             <div class="form-group">
-                <label for={"reading" + props.lang}>
-                    <input id={"reading"+j} lang={props.lang} type="text" rows="4" class="details" cols="50" name="description" placeholder="further reading" />
+                <label class="myNewClass" for={"reading" + props.lang}>
+                    <input class="myNewClass" id={"reading"+j} lang={props.lang} type="text" rows="4" class="details" cols="50" name="description" placeholder="further reading" />
                     <a id="fill2"></a>
                     <button onClick={(e) => {
                         e.preventDefault();
@@ -183,9 +187,8 @@ export const GenralForm = (props) => {
 
     )
 }
-
 export const SuggestWoman = () => {
-
+    var i=0,j=0;
     return (
         <div class="modal fade" id="suggestWomanModal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-xl">
@@ -238,15 +241,33 @@ export const SuggestWoman = () => {
                             {/* </div> */}
 
                             <div class="form-group">
-                                <select name="type" id="type">
+                                {/* <select name="type" id="type">
                                     <option value="bibliography" name="bibliography">Bibliography</option>
                                     <option value="link" name="link">Link</option>
-                                </select>
+                                </select> */}
+                                {/* <div class="quotesClass">  */}
                                 <input type="text" rows="4" class="details" cols="50" name="quotes" id="quotes" placeholder="Quotes and notable works" />
+                                </div>
+                                <a id="fill20"></a>
+                                <button id="myAdd" onClick={(e) => {
+                                    e.preventDefault();
+                                    j++;
+                                    var fill =$("#fill20");
+                                    fill.append(`<input id=${"quotes"}  type="text" rows="4" class="details" cols="50" name="quotes" placeholder="Quotes and notable works" />`)
+                                }}>add</button>
+                                <div class="form-group">
                                 <input id="link" type="text" rows="4" class="details" cols="50" name="link" placeholder="link" />
+                                <a id="fill21"></a>
+                                <button id="myAdd" onClick={(e) => {
+                                    e.preventDefault();
+                                    i++;
+                                    var fill =$("#fill21");
+                                    fill.append(`<input id=${"link"}  type="text" rows="4" class="details" cols="50" name="link" placeholder="link" />`)
+                                }}>add</button>
                             </div>
 
                         </div>
+                        {/* </div> */}
                         <div class="modal-footer">
                             <button type="button" class="close" class="btn btn-secondary" onClick={resetForm("suggest_woman_form")} data-dismiss="modal">{Dictionary.close}</button>
                             <button type="submit" for="suggest_woman_form" class="btn btn-success" id="submit_form" >{Dictionary.submit} <span class="fa fa-arrow-right"></span></button>
@@ -259,8 +280,6 @@ export const SuggestWoman = () => {
         </div>
     )
 }
-
-
 export const EditWomanModal = () => {
 
     return (
@@ -329,8 +348,6 @@ export const EditWomanModal = () => {
         </div>
     );
 }
-
-
 $("document").ready(function () {
     //make sure only step 1 is shown 
     $("#step2").hide();
@@ -342,6 +359,7 @@ $("document").ready(function () {
         $(this).addClass('highlight');
     });
 
+
     // $("#link").hide();
     // $('select[name=type]').change(function () {
     //     if ($('select[name=type]').val() == 'link') {
@@ -350,6 +368,7 @@ $("document").ready(function () {
     //         $("#link").hide();
     //     }
     // });
+
 
     //add woman from the form to database
     $("#woman_form").submit(function (event) {
@@ -414,6 +433,33 @@ $("document").ready(function () {
     //     suggestWoman();
     //     // $("#afterMessage").modal('show');
     // });
+
+    //add woman from the form to database
+    $("#category_form").submit(function (event) {
+        
+        console.log("IM READY SHLOMO");
+        if (!$("#category_form").valid()) return;
+        //confirm id not exeisting??
+        var gen = {};
+        var id = $("#category_nameHE").val();
+        //  $('#submitCategory').show();
+
+        $($('#category_form').prop('elements')).each(function () {
+            if (this.value) {
+                gen[this.id] = this.value;
+
+            }
+        });
+        console.log(gen);
+        console.log(id);
+        alert("checkCategories");
+        db.collection('categories').doc(id).set(gen);
+        //window.$("#categoryForm").modal('hide');
+        // $("#staticBackdrop").modal('hide');
+        // $("#afterMessage").modal('show');
+        // stop the form from submitting the normal way and refreshing the page
+        event.preventDefault();
+    });
 
 });
 
@@ -526,3 +572,29 @@ function handleFeedback()
 
     //     // $("#afterMessage").modal('show');
     // });
+
+function sub_cat (event) {
+        
+    console.log("IM READY SHLOMO");
+    if (!$("#category_form").valid()) return;
+    //confirm id not exeisting??
+    var gen = {};
+    var id = $("#category_nameHE").val();
+    //  $('#submitCategory').show();
+
+    $($('#category_form').prop('elements')).each(function () {
+        if (this.value) {
+            gen[this.id] = this.value;
+
+        }
+    });
+    console.log(gen);
+    console.log(id);
+    alert("checkCategories");
+    db.collection('categories').doc(id).set(gen);
+    window.$("#categoryForm").modal('hide');
+    // $("#staticBackdrop").modal('hide');
+    // $("#afterMessage").modal('show');
+    // stop the form from submitting the normal way and refreshing the page
+    event.preventDefault();
+};
