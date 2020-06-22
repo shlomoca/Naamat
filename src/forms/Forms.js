@@ -74,8 +74,6 @@ export const FeedbackModal = () => {
     );
 };
 
-
-
 export const AddCategoryModal = () => {
     return (
         <div class="modal fade" id="categoryForm" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -89,7 +87,7 @@ export const AddCategoryModal = () => {
                         <h5 class="modal-title" id="staticBackdropLabel">{Dictionary.addcategory}</h5>
                     </div>
                     <div class="modal-body">
-                        <form dir="RTL" id="category_form" name="category_form" method="POST" >
+                        <form dir="RTL" id="category_form" onSubmit={sub_cat} name="category_form"  >
                             <div id="name-group" class="form-group">
                                 <div id="name-group1" class="form-group">
                                     <lable for="category_name">{Dictionary.name}</lable>
@@ -407,6 +405,7 @@ $("document").ready(function () {
         // stop the form from submitting the normal way and refreshing the page
         event.preventDefault();
     });
+
     //add feedback to database
     $("#feedback_form").submit(function (event) {
         if (!$("#feedback_form").valid()) return;
@@ -530,3 +529,30 @@ function showing(id, id2) {
 //     <input id="link" lang = {props.lang} type="text" rows="4" class="details" cols="50" name="link" placeholder="link" />`)
 
 // }
+
+
+function sub_cat (event) {
+        
+    console.log("IM READY SHLOMO");
+    if (!$("#category_form").valid()) return;
+    //confirm id not exeisting??
+    var gen = {};
+    var id = $("#category_nameHE").val();
+    //  $('#submitCategory').show();
+
+    $($('#category_form').prop('elements')).each(function () {
+        if (this.value) {
+            gen[this.id] = this.value;
+
+        }
+    });
+    console.log(gen);
+    console.log(id);
+    alert("checkCategories");
+    db.collection('categories').doc(id).set(gen);
+    window.$("#categoryForm").modal('hide');
+    // $("#staticBackdrop").modal('hide');
+    // $("#afterMessage").modal('show');
+    // stop the form from submitting the normal way and refreshing the page
+    event.preventDefault();
+};
