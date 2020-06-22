@@ -135,9 +135,27 @@ class Search extends Component {
 
   //follow after input in serach bar
   searchHandler(event) {
+    // return ()=>{
+      console.log("event");
+var cg =event.target.value;
+      console.log(cg);
+    // }
     this.setState({ term: event.target.value })
-    var term = (this.state.term).toLowerCase();
-    // getWomen(term);
+    if(event.target.value.length>1){
+// console.log("term:" +term)
+      var term = (this.state.term).toLowerCase();
+      getWomen(term);
+    }
+    else{
+      // alert("non")
+      var find = document.getElementById("womenHolder");
+      var deck = document.getElementById("deckContainer");
+      if(deck)
+      ReactDOM.unmountComponentAtNode(deck);
+      if(find)
+      ReactDOM.unmountComponentAtNode(find);
+      // document.getElementById('womanCardsContainer').innerHTML = '';
+    }
   }
 
 
@@ -147,7 +165,7 @@ class Search extends Component {
       <form className="form-inline my-2 my-lg-0 input-group mb-3" id="search-form">
         <button id="search-btn" type="button">
           <div id="search-bar-outline">
-            <input class="form-control " onChange={this.searchHandler} type="text" placeholder={Dictionary.search} id="example-search-input4" />
+            <input class="form-control " onKeyUp={this.searchHandler} type="text" placeholder={Dictionary.search} id="example-search-input4" />
             <button id="clear-btn" type="button">
               <i class="fa fa-close" onClick={() => document.getElementById('example-search-input4').value = ''}></i>
             </button>
