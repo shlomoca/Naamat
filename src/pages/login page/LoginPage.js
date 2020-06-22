@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import './LoginPage.css';
 import $ from 'jquery';
-import firebase, { auth } from '../../config/Firebase';
+import firebase, { auth, db } from '../../config/Firebase';
 import logo from '../../images/naamatlogo.png';
 import { Dictionary, LangBtn } from '../../Dictionary';
 import MainUserPage from '../Main user page/MainUserPage';
@@ -44,8 +44,9 @@ class LoginPage extends Component {
         if (!$("#login_form").valid()) return;
 
         auth.signInWithEmailAndPassword(this.state.email, this.state.password);
-        sessionStorage.setItem("user", true);
+        sessionStorage.setItem("userConnect", true);
         sessionStorage.setItem("userEmail", this.state.email);
+        window.location.reload();
     }
 
     handleChange(e) {
@@ -106,6 +107,7 @@ export class LoginComponent extends Component {
         super(props);
         this.state = {
             user: false,
+            page: [],
         }
     }
 
@@ -123,28 +125,55 @@ export class LoginComponent extends Component {
     componentDidMount() {
         window.addEventListener("beforeunload", this.signOutFun);
         this.authListener();
+
+        if (this.state.user || sessionStorage.getItem("userConnect")) {
+            var userEmail = sessionStorage.getItem("userEmail");
+
+            db.collection('users').doc("AccessControl").collection(userEmail).doc("permissions").get().then(res => {
+                var permission = res.data().admin;
+
+                if (permission == "true") {
+                    // admin rout
+                    this.setState({ page: this.renderAdminDiv() });
+                }
+                else {
+
+                    // visitor rout
+                    this.setState({ page: this.renderVisitorDiv() });
+                }
+            });
+        }
+        else {
+            // alert("in null else if");
+            this.setState({ page: <LoginPage /> });
+        }
+
     }
 
-    renderDiv() {
+    renderAdminDiv() {
         ReactDOM.render(
             <Router>
                 <Route exact path="/" component={MainUserPage} />
                 <Route path="/WomanPage" component={props => <WomanPage {...props} id="דניאל רז1992-03-31" />} />
                 <Route path="/Category" component={Category} />
                 <Route path="/AdminPage" component={AdminPage} />
-                <Route path="/AdminPage" component={AdminPage} />
+            </Router>, document.getElementById('root')
+        );
+    }
+
+    renderVisitorDiv() {
+        ReactDOM.render(
+            <Router>
+                <Route exact path="/" component={MainUserPage} />
+                <Route path="/WomanPage" component={props => <WomanPage {...props} id="דניאל רז1992-03-31" />} />
+                <Route path="/Category" component={Category} />
             </Router>, document.getElementById('root')
         );
     }
 
     render() {
-        if (this.state.user || sessionStorage.getItem("user")) {
-            // alert("in user if");
-            return <div id='renderDiv'>{this.renderDiv()}</div>;
-        }
-        else {
-            // alert("in null else if");
-            return <LoginPage />
-        }
+
+        return <div id="renderDiv"> {this.state.page}</div>
+
     }
 }
