@@ -7,6 +7,7 @@ import { auth } from '../../config/Firebase';
 import { Dictionary } from '../../Dictionary';
 import { EditWomanModal, AddCategoryModal, FeedbackModal } from '../../forms/Forms';
 import { scryRenderedComponentsWithType } from 'react-dom/test-utils';
+import { Link } from 'react-router-dom';
 
 
 class AdminPage extends Component {
@@ -16,6 +17,7 @@ class AdminPage extends Component {
                 <EditWomanModal/>
                 <AddCategoryModal/>
                 <FeedbackModal/>
+                <Link to="/"><button>חזור</button></Link>
                 <p id="adminTitle">ברוכים הבאים למערכת הניהול</p>
                 <div id="allAdmin"> 
                 <div  class="adminButtons">
