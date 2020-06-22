@@ -22,7 +22,7 @@ export const NavBar = (props) => {
 
 
 
-  if (props.admin == "true")
+  if (props.admin)
     obj = <Link to="/AdminPage"><button type="button" className="btn btn-primary nav-link" >manager</button></Link>
   else
     var obj = <button type="button" className="btn btn-primary nav-link" data-toggle="modal" data-target="#feedbackForm">{Dictionary.feedback}</button>
@@ -113,11 +113,11 @@ export function adminPageClick() {
   console.log(userEmail);
   var permission;
 
-  db.collection('users').doc("AccessControl").collection(userEmail).doc("permissions").get().then(res => {
+  db.collection('users').doc(userEmail).get().then(res => {
     console.log(res.data());
     permission = res.data().admin;
     console.log(permission);
-    if (permission == "true") alert("manager")
+    if (permission) alert("manager")
   });
 }
 
