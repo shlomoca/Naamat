@@ -453,7 +453,7 @@ export const FeedBackBody = (props) => {
   return (
 
     <thead>
-      <tr>
+      <tr id={props.name+props.email}>
         {/* <td> {props.date} </td> */}
         <td> {props.name} </td>
         <td> {props.email} </td>
@@ -484,7 +484,6 @@ export const FeedBackHeader = () => {
     </thead>
   )
 }
-
 export const DisplayFeedback = (props) => {
 
   var name, email, score, improvement;
@@ -545,11 +544,12 @@ export function deleteFeedBack(id) {
       
           console.log(id);
           if (id) {
-            db.collection('feedbacks').doc(id).delete().then(() => {
-              window.location.reload();
+            db.collection('feedbacks').doc(id).delete().then(() => { 
+              
+              ReactDOM.render(<div></div>, document.getElementById(id));
+              
             });
           }
           else
             alert("שגיאה");
       }
-    
