@@ -108,33 +108,21 @@ class Search extends Component {
     super(props);
 
     this.state = {
-      women: null,
       term: ''
     }
     this.searchHandler = this.searchHandler.bind(this);
   }
 
-  // componentDidMount() {
-  //   db.collection('women').get().then(snapshot => {
-  //     const women = [];
-  //     snapshot.forEach(doc => {
-  //       const data = doc.data();
-  //       women.push(data);
-  //     })
-  //     this.setState({ women: women })
-
-  //   }).catch(error => console.log(error))
-  // }
-
 
   //follow after input in serach bar
   searchHandler(event) {
     this.setState({ term: event.target.value })
+    var term =(this.state.term).toLowerCase();
+    // getWomen(term);
   }
 
 
   render() {
-    var term =(this.state.term).toLowerCase();
     return (
       <form className="form-inline my-2 my-lg-0 input-group mb-3" id="search-form">
         <button id="search-btn" type="button">
@@ -146,11 +134,12 @@ class Search extends Component {
           </div>
           <i class="fa fa-search" id="search-icon"></i>
         </button>
-        <div id="temp">{getWomen(term)}</div>
+        <div id="temp">
+          {/* {getWomen(term)} */}
+          </div>
+        
       </form>
     )
-
-
   }
 
 }
