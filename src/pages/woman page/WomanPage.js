@@ -69,7 +69,7 @@ export const WomenDeck = (props) => {
     })
 
     return (
-        <div>
+        <div id= "deckContainer">
             {deck}
         </div>
     )
@@ -102,27 +102,28 @@ export const WomanPage = (props) => {
     const woman = [];
     var obj;
 
-    db.collection('women').doc(id).collection('langs').doc(Dictionary.getLanguage()).get().then(snapshot => {
-        woman.push(snapshot.data());
-        obj = Object.keys(woman[0]);
-        console.log(obj);
-        ReactDOM.render(
+    // db.collection('women').doc(id).collection('langs').doc(Dictionary.getLanguage()).get().then(snapshot => {
+    //     woman.push(snapshot.data());
+    //     obj = Object.keys(woman[0]);
+    //     console.log(obj);
+    //     ReactDOM.render(
 
-        )
-    })
-        .catch(error => {
-            alert("woman not found");
-            console.log(error);
-        });
+    //     )
+    // })
+        // .catch(error => {
+        //     alert("woman not found");
+        //     console.log(error);
+        // });
 
     return (
         <div id="WomanPageWrapper" class="wrapper" >
-            <div>
+            {/* </div> */}
 
                 <NavBar />
+        {/* <div id="womenHolder"  > */}
 
-
-
+{/* 
+{ getWomen("shlomo carmi")} */}
                 {/* <MainDetails display={obj["display" + Dictionary.getLanguage()]} link={"https://naamat.org.il/wp-content/themes/Naamat-Child-Theme/images/footer-img.jpg"} bday={woman["date" + Dictionary.getLanguage()]} /> */}
                 {/* <p><b>{Dictionary.dethDay}:</b> {woman.death}</p>
                 <p><b>{Dictionary.highlights}:</b> {woman.highlights}</p>
@@ -134,8 +135,8 @@ export const WomanPage = (props) => {
                 <p><b>{Dictionary.media}:</b> {woman.media}</p>
                 <button onClick={deleteWoman(woman.id)} >{Dictionary.delete}</button> */}
 
+          
                 <BottomBar />
-            </div>
         </div>)
 
 
@@ -209,104 +210,102 @@ export const WomanPage = (props) => {
 
 // }
 
-export class getWomen extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            womanName: props.womanName
-        }
+// export class getWomen extends Component {
+//     constructor(props) {
+//         super(props);
+//         this.state = {
+//             womanName: props.womanName ,
+//             women : []
+//         }
 
-    }
-
-    componentWillMount() {
-        var womanName = this.state.womanName
-
-
-        if (womanName) {
-            var nameattr = "display" + determineLang(womanName);
-            // console.log(nameattr);
-            var MaxIndex = getMaxIndex(womanName);
-            // console.log(MaxIndex)
-            //     //get a women arry with all women results for this search
-            // }
-            //  )   // ).catch(error => console.log(error));
-            
-            //get all the women that ae in the lexicografical area of the search term womanName
-            const women = [];
-            db.collection('women').where(nameattr, ">=", womanName).where(nameattr, "<", MaxIndex).get().then(snapshot => {
-                    snapshot.forEach(doc => {
-                        const data = doc.data();
-                        if (data) {
-                            women.push(data);
-                        }
-                        else
-                        console.log("no data");
-                    })
-                // var data = snapshot.docs.data();
-                // women.push(data);
-                var obj = Object.keys(women[0]);
-                console.log(obj);
-
-            })
-                .catch(error => {
-                    alert("woman not found");
-                    console.log(error);
-                });
-        }
-    }
-    render() {
-        return (
-            // <Link to={"/womanPage"+this.state.id}>
-            <div id="womanCardsContainer" >
-                <img id={"roundImage" + this.state.id} className="roundImage" src={this.state.url} alt={this.state.display} />
-                <h1  >{this.state.display} </h1>
-                <p>{this.state.summary}  </p>
-                <button onClick={editWoman(this.state.id)}>Edit</button>
-            </div>
-            //    </Link>
-        )
-    }
-}
-
-
-
-
-
-
-
-
-// export function getWomen(womanName) {
-//     if (womanName) {
-//         var nameattr="display"+determineLang(womanName);
-//         console.log(nameattr);
-//         var MaxIndex=getMaxIndex(womanName);
-//         console.log(MaxIndex)
-//         //get all the women that ae in the lexicografical area of the search term womanName
-//         db.collection('women').where(nameattr, ">=", womanName).where(nameattr, "<", MaxIndex).get().then(snapshot => {
-//             const women = [];
-//             //get a women arry with all women results for this search
-//             snapshot.forEach(doc => {
-//                 const data = doc.data();
-//                 if (data) {
-//                     women.push(data);
-//                 }
-//                 else
-//                     console.log("no data");
-
-//             });
-//             console.log(women);
-//             if (women.length === 0)
-//                 console.log("no women");
-//             else {
-//                 ReactDOM.render(<WomenDeck cards={women} />, document.getElementById('womenHolder'));
-//             }
-
-
-//         }).catch(error => console.log(error))
 //     }
-//     else
-//         console.log("women not found");
-// }
+
+//     componentWillMount() {
+//         var womanName = this.state.womanName;
+//         if (womanName) {
+//             var nameattr = "display" + determineLang(womanName);
+//             // console.log(nameattr);
+//             var MaxIndex = getMaxIndex(womanName);
+//             // console.log(MaxIndex)
+//             //     //get a women arry with all women results for this search
+//             // }
+//             //  )   // ).catch(error => console.log(error));
+            
+//             //get all the women that ae in the lexicografical area of the search term womanName
+//             const women = [];
+//             db.collection('women').where(nameattr, ">=", womanName).where(nameattr, "<", MaxIndex).get().then(snapshot => {
+//                     snapshot.forEach(doc => {
+//                         const data = doc.data();
+//                         if (data) {
+//                             women.push(data);
+//                         }
+//                         else
+//                         console.log("no data");
+//                     })
+//                 // var data = snapshot.docs.data();
+//                 // women.push(data);
+//                 // var obj = Object.keys(women[0]);
+//                 // console.log(obj);
+//                 this.setState({ women: women });
+//             })
+//                 .catch(error => {
+//                     alert("woman not found");
+//                     console.log(error);
+//                 });
+//         }
+//     }
+//     render() {
+//         return (<WomenDeck cards={this.state.women} />)
+//         }
+//     }
+    
+    // // <Link to={"/womanPage"+this.state.id}>
+    // <div id="womanCardsContainer" >
+    //     <img id={"roundImage" + this.state.id} className="roundImage" src={this.state.url} alt={this.state.display} />
+    //     <h1  >{this.state.display} </h1>
+    //     <p>{this.state.summary}  </p>
+    //     <button onClick={editWoman(this.state.id)}>Edit</button>
+    // </div>
+    // //    </Link>
+    
+
+
+
+
+
+
+export function getWomen(womanName) {
+    if (womanName) {
+        var nameattr="display"+determineLang(womanName);
+        console.log(nameattr);
+        var MaxIndex=getMaxIndex(womanName);
+        console.log(MaxIndex)
+        //get all the women that ae in the lexicografical area of the search term womanName
+        db.collection('women').where(nameattr, ">=", womanName).where(nameattr, "<", MaxIndex).get().then(snapshot => {
+            const women = [];
+            //get a women arry with all women results for this search
+            snapshot.forEach(doc => {
+                const data = doc.data();
+                if (data) {
+                    women.push(data);
+                }
+                else
+                    console.log("no data");
+
+            });
+            console.log(women);
+            if (women.length === 0)
+                console.log("no women");
+            else {
+                ReactDOM.render(<WomenDeck cards={women} />, document.getElementById('womenHolder'));
+            }
+
+
+        }).catch(error => console.log(error))
+    }
+    else
+        console.log("women not found");
+}
 
 //get the next lexicographic index
 function getMaxIndex(str) {
@@ -392,5 +391,6 @@ export function editWoman(id) {
 
 
 $(document).ready(() => {
+
     // getWomen("shlomo carmi");
 });
