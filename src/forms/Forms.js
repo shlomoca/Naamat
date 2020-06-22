@@ -8,18 +8,6 @@ import ImageUpload from './ImageUpload';
 import { AfterMessage } from '../Components';
 
 
-
-
-// function hideMe() {
-//     var x = document.getElementById("submit1");
-//     if (x.style.display === "none") {
-//       x.style.display = "block";
-//     } else {
-//       x.style.display = "none";
-//     }
-//   }
-
-
 export const FeedbackModal = () => {
 
     return (
@@ -114,6 +102,7 @@ export const AddCategoryModal = () => {
     );
 
 }
+
 export const GenralForm = (props) => {
     var classAttr = "tab-pane fade form_content";
     if (props.active)
@@ -187,6 +176,7 @@ export const GenralForm = (props) => {
 
     )
 }
+
 export const SuggestWoman = () => {
     var i = 0, j = 0;
     return (
@@ -278,6 +268,7 @@ export const SuggestWoman = () => {
         </div>
     )
 }
+
 export const EditWomanModal = () => {
 
     return (
@@ -285,7 +276,7 @@ export const EditWomanModal = () => {
         <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-xl">
                 <div class="modal-content">
-                    <form dir="RTL" id="woman_form" name="woman_form" method="POST"  >
+                    <form dir="RTL" id="woman_form" name="woman_form" onSubmit={addWoman}  >
                         <div class="modal-header">
                             <button type="button" id="xClose" class="close" data-dismiss="modal" aria-label="Close" onClick={resetForm("woman_form")}>
                                 <span aria-hidden="true">&times;</span>
@@ -346,6 +337,7 @@ export const EditWomanModal = () => {
         </div>
     );
 }
+
 $("document").ready(function () {
     //make sure only step 1 is shown 
     $("#step2").hide();
@@ -358,108 +350,59 @@ $("document").ready(function () {
     });
 
 
-    // $("#link").hide();
-    // $('select[name=type]').change(function () {
-    //     if ($('select[name=type]').val() == 'link') {
-    //         $('#link').show();
-    //     } else {
-    //         $("#link").hide();
-    //     }
-    // });
-
-
-    //add woman from the form to database
-    $("#woman_form").submit(function (event) {
-
-        if (!$("#woman_form").valid()) return;
-        //confirm id not exeisting??
-        var he = {}, en = {}, ar = {}, gen = {};
-        var boolHe = false, boolEn = false, boolAr = false;
-
-        var id = $("#name").val() + $("#birth").val();
-        $('#submit1').show();
-
-        $($('#woman_form').prop('elements')).each(function () {
-            if (this.value) {
-                if (this.name === "highlights" || this.name === "display") {
-                    gen[this.id] = (this.value).toLowerCase();
-                }
-                if (this.lang == "EN") {
-                    boolEn = true;
-                    en["id"] = id;
-                    en[this.name] = this.value;
-
-                }
-                else if (this.lang == "HE") {
-                    boolHe = true;
-                    he["id"] = id;
-                    he[this.name] = this.value;
-                }
-                else if (this.lang == "AR") {
-                    boolAr = true;
-                    ar["id"] = id;
-                    ar[this.name] = this.value;
-                }
-                else {
-                    gen[this.name] = this.value;
-                    gen["id"] = id;
-                }
-            }
-        });
-
-
-        db.collection('women').doc(id).set(gen);
-        if (boolHe)
-            db.collection('women').doc(id).collection("langs").doc("HE").set(he);
-        if (boolEn)
-            db.collection('women').doc(id).collection("langs").doc("EN").set(en);
-        if (boolAr)
-            db.collection('women').doc(id).collection("langs").doc("AR").set(ar);
-        window.$("#staticBackdrop").modal('hide');
-        // $("#staticBackdrop").modal('hide');
-        // $("#afterMessage").modal('show');
-        // stop the form from submitting the normal way and refreshing the page
-        event.preventDefault();
-    });
-
-
-
-    // $("#suggest_woman_form").submit(function (event) {
-    //     if (!$("#suggest_woman_form").valid()) return;
-    //     // stop the form from submitting the normal way and refreshing the page
-    //     event.preventDefault();
-    //     suggestWoman();
-    //     // $("#afterMessage").modal('show');
-    // });
-
-    //add woman from the form to database
-    $("#category_form").submit(function (event) {
-
-        console.log("IM READY SHLOMO");
-        if (!$("#category_form").valid()) return;
-        //confirm id not exeisting??
-        var gen = {};
-        var id = $("#category_nameHE").val();
-        //  $('#submitCategory').show();
-
-        $($('#category_form').prop('elements')).each(function () {
-            if (this.value) {
-                gen[this.id] = this.value;
-
-            }
-        });
-        console.log(gen);
-        console.log(id);
-        alert("checkCategories");
-        db.collection('categories').doc(id).set(gen);
-        //window.$("#categoryForm").modal('hide');
-        // $("#staticBackdrop").modal('hide');
-        // $("#afterMessage").modal('show');
-        // stop the form from submitting the normal way and refreshing the page
-        event.preventDefault();
-    });
-
 });
+
+//add woman to database
+function addWoman(e) {
+    e.preventDefault();
+
+    var he = {}, en = {}, ar = {}, gen = {};
+    var boolHe = false, boolEn = false, boolAr = false;
+
+    var id = $("#name").val() + $("#birth").val();
+    $('#submit1').show();
+
+    $($('#woman_form').prop('elements')).each(function () {
+        if (this.value) {
+            if (this.name === "highlights" || this.name === "display") {
+                gen[this.id] = (this.value).toLowerCase();
+            }
+            if (this.lang == "EN") {
+                boolEn = true;
+                en["id"] = id;
+                en[this.name] = this.value;
+
+            }
+            else if (this.lang == "HE") {
+                boolHe = true;
+                he["id"] = id;
+                he[this.name] = this.value;
+            }
+            else if (this.lang == "AR") {
+                boolAr = true;
+                ar["id"] = id;
+                ar[this.name] = this.value;
+            }
+            else {
+                gen[this.name] = this.value;
+                gen["id"] = id;
+            }
+        }
+    });
+
+
+
+
+    db.collection('women').doc(id).set(gen);
+    if (boolHe)
+        db.collection('women').doc(id).collection("langs").doc("HE").set(he);
+    if (boolEn)
+        db.collection('women').doc(id).collection("langs").doc("EN").set(en);
+    if (boolAr)
+        db.collection('women').doc(id).collection("langs").doc("AR").set(ar);
+    window.$("#staticBackdrop").modal('hide');
+
+}
 
 // add to suggest woman collection
 function suggestWoman() {
@@ -532,8 +475,34 @@ function handleFeedback(e) {
     });
 }
 
-// function addLinks(e) {
-//     e.preventDefault();
+function sub_cat(event) {
+
+    console.log("IM READY SHLOMO");
+    if (!$("#category_form").valid()) return;
+    //confirm id not exeisting??
+    var gen = {};
+    var id = $("#category_nameHE").val();
+    //  $('#submitCategory').show();
+
+    $($('#category_form').prop('elements')).each(function () {
+        if (this.value) {
+            gen[this.id] = this.value;
+
+        }
+    });
+    console.log(gen);
+    console.log(id);
+    alert("checkCategories");
+    db.collection('categories').doc(id).set(gen);
+    window.$("#categoryForm").modal('hide');
+    // $("#staticBackdrop").modal('hide');
+    // $("#afterMessage").modal('show');
+    // stop the form from submitting the normal way and refreshing the page
+    event.preventDefault();
+};
+
+    // function addLinks(e) {
+        //     e.preventDefault();
 
 //     $("#fill").append(`<input id="description" lang = `{props.lang}` type="text" rows="4" class="details" cols="50" name="description" placeholder="description" />
 //     <input id="link" lang = {props.lang} type="text" rows="4" class="details" cols="50" name="link" placeholder="link" />`)
@@ -571,28 +540,113 @@ function handleFeedback(e) {
 //     // $("#afterMessage").modal('show');
 // });
 
-function sub_cat(event) {
+    // $("#link").hide();
+    // $('select[name=type]').change(function () {
+    //     if ($('select[name=type]').val() == 'link') {
+    //         $('#link').show();
+    //     } else {
+    //         $("#link").hide();
+    //     }
+    // });
 
-    console.log("IM READY SHLOMO");
-    if (!$("#category_form").valid()) return;
-    //confirm id not exeisting??
-    var gen = {};
-    var id = $("#category_nameHE").val();
-    //  $('#submitCategory').show();
 
-    $($('#category_form').prop('elements')).each(function () {
-        if (this.value) {
-            gen[this.id] = this.value;
+    //add woman from the form to database
+    // $("#woman_form").submit(function (event) {
 
-        }
-    });
-    console.log(gen);
-    console.log(id);
-    alert("checkCategories");
-    db.collection('categories').doc(id).set(gen);
-    window.$("#categoryForm").modal('hide');
-    // $("#staticBackdrop").modal('hide');
-    // $("#afterMessage").modal('show');
-    // stop the form from submitting the normal way and refreshing the page
-    event.preventDefault();
-};
+    //     if (!$("#woman_form").valid()) return;
+    //     //confirm id not exeisting??
+    //     var he = {}, en = {}, ar = {}, gen = {};
+    //     var boolHe = false, boolEn = false, boolAr = false;
+
+    //     var id = $("#name").val() + $("#birth").val();
+    //     $('#submit1').show();
+
+    //     $($('#woman_form').prop('elements')).each(function () {
+    //         if (this.value) {
+    //             if (this.name === "highlights" || this.name === "display") {
+    //                 gen[this.id] = (this.value).toLowerCase();
+    //             }
+    //             if (this.lang == "EN") {
+    //                 boolEn = true;
+    //                 en["id"] = id;
+    //                 en[this.name] = this.value;
+
+    //             }
+    //             else if (this.lang == "HE") {
+    //                 boolHe = true;
+    //                 he["id"] = id;
+    //                 he[this.name] = this.value;
+    //             }
+    //             else if (this.lang == "AR") {
+    //                 boolAr = true;
+    //                 ar["id"] = id;
+    //                 ar[this.name] = this.value;
+    //             }
+    //             else {
+    //                 gen[this.name] = this.value;
+    //                 gen["id"] = id;
+    //             }
+    //         }
+    //     });
+
+
+    //     db.collection('women').doc(id).set(gen);
+    //     if (boolHe)
+    //         db.collection('women').doc(id).collection("langs").doc("HE").set(he);
+    //     if (boolEn)
+    //         db.collection('women').doc(id).collection("langs").doc("EN").set(en);
+    //     if (boolAr)
+    //         db.collection('women').doc(id).collection("langs").doc("AR").set(ar);
+    //     window.$("#staticBackdrop").modal('hide');
+    //     // $("#staticBackdrop").modal('hide');
+    //     // $("#afterMessage").modal('show');
+    //     // stop the form from submitting the normal way and refreshing the page
+    //     event.preventDefault();
+    // });
+
+
+
+    // $("#suggest_woman_form").submit(function (event) {
+    //     if (!$("#suggest_woman_form").valid()) return;
+    //     // stop the form from submitting the normal way and refreshing the page
+    //     event.preventDefault();
+    //     suggestWoman();
+    //     // $("#afterMessage").modal('show');
+    // });
+
+    //add woman from the form to database
+    // $("#category_form").submit(function (event) {
+
+    //     console.log("IM READY SHLOMO");
+    //     if (!$("#category_form").valid()) return;
+    //     //confirm id not exeisting??
+    //     var gen = {};
+    //     var id = $("#category_nameHE").val();
+    //     //  $('#submitCategory').show();
+
+    //     $($('#category_form').prop('elements')).each(function () {
+    //         if (this.value) {
+    //             gen[this.id] = this.value;
+
+    //         }
+    //     });
+    //     console.log(gen);
+    //     console.log(id);
+    //     alert("checkCategories");
+    //     db.collection('categories').doc(id).set(gen);
+    //     //window.$("#categoryForm").modal('hide');
+    //     // $("#staticBackdrop").modal('hide');
+    //     // $("#afterMessage").modal('show');
+    //     // stop the form from submitting the normal way and refreshing the page
+    //     event.preventDefault();
+    // });
+
+
+    // function hideMe() {
+//     var x = document.getElementById("submit1");
+//     if (x.style.display === "none") {
+//       x.style.display = "block";
+//     } else {
+//       x.style.display = "none";
+//     }
+//   }
