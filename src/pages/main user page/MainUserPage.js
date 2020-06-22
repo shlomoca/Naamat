@@ -78,7 +78,7 @@ class MainUserPage extends Component {
             <div id="mainUPWrapper" className="wrapper">
 
 
-                <NavBar />
+                <NavBar admin={this.props.admin}/>
                 <PictursCarousel />
 
                 {/* <BottomBar/> */}

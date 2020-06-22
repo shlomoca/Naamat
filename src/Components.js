@@ -16,12 +16,15 @@ import ReactDOM from 'react-dom';
 import { storage } from './config/Firebase'
 
 
-
-
-
 //set a navigation bar to the top of the site
 //under the navigation bar there is a 
-export const NavBar = () => {
+export const NavBar = (props) => {
+
+  var obj = <button type="button" className="btn btn-primary nav-link" data-toggle="modal" data-target="#feedbackForm">{Dictionary.feedback}</button>
+
+  if (props.admin == "true")
+    obj = <Link to="/AdminPage"><button type="button" className="btn btn-primary nav-link" >manager</button></Link>
+
 
   return (
     <div id="navbar">
@@ -63,11 +66,11 @@ export const NavBar = () => {
           </li>
 
 
-          <li className="nav-item">
+          {/* <li className="nav-item">
             <button type="button" class="btn btn-primary nav-link" data-toggle="modal" data-target="#staticBackdrop">
               {Dictionary.addWoman}
             </button>
-          </li>
+          </li> */}
 
           <li className="nav-item">
             <button type="button" class="btn btn-primary nav-link" data-toggle="collapse" data-target="#about-drop">{Dictionary.aboutTitle}</button>
@@ -80,8 +83,7 @@ export const NavBar = () => {
 
 
           <li className="nav-item">
-            <button type="button" className="btn btn-primary nav-link" data-toggle="modal" data-target="#feedbackForm">
-              {Dictionary.feedback}</button>
+            {obj}
           </li>
 
 
@@ -132,7 +134,7 @@ class Search extends Component {
   //follow after input in serach bar
   searchHandler(event) {
     this.setState({ term: event.target.value })
-    var term =(this.state.term).toLowerCase();
+    var term = (this.state.term).toLowerCase();
     // getWomen(term);
   }
 
@@ -152,8 +154,8 @@ class Search extends Component {
         </button>
         <div id="temp">
           {/* {getWomen(term)} */}
-          </div>
-        
+        </div>
+
       </form>
     )
   }
@@ -186,70 +188,70 @@ export class PictursCarousel extends Component {
     super(props);
     this.state = {
       url: [],
-      ids :["גולדה מאיר1898-03-03", "דניאל רז1992-03-31", "סהר כהן1995-09-21", "עדיאל צייג2020-06-01", "שלמה כרמי1993-06-09"],
-       indicators :[],
-       items :[],
-       dataslide :0,
+      ids: ["גולדה מאיר1898-03-03", "דניאל רז1992-03-31", "סהר כהן1995-09-21", "עדיאל צייג2020-06-01", "שלמה כרמי1993-06-09"],
+      indicators: [],
+      items: [],
+      dataslide: 0,
     }
   }
 
   componentDidMount() {
-      var active = false;
-     
-      var active =true;
-      var ids =this.state.ids;
-      var indicators =[];
-      var items =[];
-      ids.forEach(id => {
-        console.log(id);
-        db.collection('women').doc(id).collection('langs').doc(Dictionary.getLanguage()).get().then(snapshot => {
-          if (snapshot.data()) {
-            var data = snapshot.data();
-            if (data) {
-  
-              var id = data["id"];
-              // console.log(id + "/ProfilePic");
-              if (id)
-                storage.ref("/" + id).child("ProfilePic").getDownloadURL().then(url => {
-                  if (this.state.dataslide != 0)
+    var active = false;
+
+    var active = true;
+    var ids = this.state.ids;
+    var indicators = [];
+    var items = [];
+    ids.forEach(id => {
+      console.log(id);
+      db.collection('women').doc(id).collection('langs').doc(Dictionary.getLanguage()).get().then(snapshot => {
+        if (snapshot.data()) {
+          var data = snapshot.data();
+          if (data) {
+
+            var id = data["id"];
+            // console.log(id + "/ProfilePic");
+            if (id)
+              storage.ref("/" + id).child("ProfilePic").getDownloadURL().then(url => {
+                if (this.state.dataslide != 0)
                   active = false;
-                  indicators.push(<CarouselLi dataslide={this.state.dataslide} active={active} />);
-                  items.push(<CarouselSlide display={data["display"]} highlights={data["highlights"]} id={id} src={url} active={active} />);
-                  this.setState({indicators: indicators});
-                  this.setState({items: items});
-                  this.setState({dataslide: this.state.dataslide+1});
-                });
-              }
-            }
-          })
-          
-        })
-        console.log(indicators)
-      
-    }
-    render(){
-console.log("rendering");
-      return (
-        <div id="pictureCarousel">
-            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-              <ol id="carouselIndicators" class="carousel-indicators">
-                {this.state.indicators}
-              </ol>
-              <div id="carouselInner" class="carousel-inner">
-                {this.state.items}
-              </div>
-              <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-              </a>
-              <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-              </a>
-            </div>
+                indicators.push(<CarouselLi dataslide={this.state.dataslide} active={active} />);
+                items.push(<CarouselSlide display={data["display"]} highlights={data["highlights"]} id={id} src={url} active={active} />);
+                this.setState({ indicators: indicators });
+                this.setState({ items: items });
+                this.setState({ dataslide: this.state.dataslide + 1 });
+              });
+          }
+        }
+      })
+
+    })
+    console.log(indicators)
+
+  }
+  render() {
+    console.log("rendering");
+    return (
+      <div id="pictureCarousel">
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+          <ol id="carouselIndicators" class="carousel-indicators">
+            {this.state.indicators}
+          </ol>
+          <div id="carouselInner" class="carousel-inner">
+            {this.state.items}
           </div>
-        )
-      }
+          <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+      </div>
+    )
+  }
 }
 // export const PictursCarousel = (props) => {
 //   return (
@@ -299,8 +301,8 @@ console.log("rendering");
 export const CarouselSlide = props => {
 
   var clas = "carousel-item";
-  if(props.active)
-   clas = "carousel-item active" ;
+  if (props.active)
+    clas = "carousel-item active";
   return (
     <div class={clas}>
       <img src={props.src} class="d-block w-100" alt="example 1" height="600px" width="115" />
@@ -353,6 +355,42 @@ export const DisplayModal = (props) => {
   )
 }
 
+
+
+// export const DisplayModal = (props) => {
+
+//   return (
+//     <div>
+//       <button class="clearBtn" data-toggle="modal" data-target="#displayModal"> <a href="#">{props.details}</a></button>
+//       <div class="modal fade" id="displayModal" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+//         <div class="modal-dialog modal-xl">
+//           <div class="modal-content">
+//             <div class="modal-header ">
+//               <h5 class="modal-title" id="staticBackdropLabel">{props.details}</h5>
+//               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+//                 <span aria-hidden="true">&times;</span>
+//               </button>
+//             </div>
+//             <div class="modal-body">
+//               <iframe src={props.link}
+//                 width="100%"
+//                 height="100%"
+//                 frameBorder='0'
+//                 allow='autoplay; encrypted-media'
+//                 allowFullScreen
+//                 title='url' />
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+//     </div>
+//   )
+// }
+
+
+
+
+
 export const AfterMessage = (props) => {
 
   return (
@@ -380,7 +418,8 @@ export const AfterMessage = (props) => {
 export function getFeedback() {
   // console.log("matan and sahar");
   //get all the women that ae in the lexicografical area of the search term womanName
-  // $("#thisAdmin").hide();
+  $("#allAdmin").hide();
+  $("#feedBackHolder").show()
   db.collection('feedbacks').get().then(snapshot => {
     const feedbacks = [];
     //get a women arry with all women results for this search
@@ -400,7 +439,6 @@ export function getFeedback() {
       ReactDOM.render(<DisplayFeedback feedbacks={feedbacks} />, document.getElementById('feedBackHolder'));
     }
 
-
   }).catch(error => console.log(error))
 
   return (
@@ -408,7 +446,6 @@ export function getFeedback() {
     <div> </div>
 
   )
-
 }
 
 export const FeedBackBody = (props) => {
@@ -422,12 +459,14 @@ export const FeedBackBody = (props) => {
         <td> {props.email} </td>
         <td> {props.score} </td>
         <td> {props.improvement} </td>
-        <td> <button class="btn" onClick={deleteFeedBack(props.name + props.email)}>מחק</button> </td>
+        <td> <button class="btn" onClick={askAndDelete(props.name + props.email)} >מחק</button></td>
+        {/* <td> <button class="btn" onClick={deleteFeedBack(props.name + props.email)}>מחק</button> </td> */}
+        {/* onclick="if (confirm('Are you...?')) commentDelete(1); return false" */}
+        {/* <td> <button class="btn" onClick={() => { if (window.confirm('בטוח שתרצה למחוק?')) deleteFeedBack(props.name+props.email) } }>מחק</button> </td> */}
       </tr>
     </thead>
 
   )
-
 }
 
 export const FeedBackHeader = () => {
@@ -464,12 +503,13 @@ export const DisplayFeedback = (props) => {
     }
 
   })
+
   return (
     <div id="feedbackTable">
       <table table class="table table-dark">
         <FeedBackHeader />
         {deck}
-        <button id="backBtn" class="btn" >חזור</button>
+        <button onClick={hideFeedTable()} id="backBtn" class="btn" >חזור</button>
       </table>
     </div>
   )
@@ -479,7 +519,7 @@ export const DisplayFeedback = (props) => {
 export function deleteFeedBack(id) {
 
   return () => {
-    // console.log(id);
+    console.log(id);
     if (id) {
       db.collection('feedbacks').doc(id).delete().then(() => {
         alert("feedback " + id + " was deleted");
@@ -490,3 +530,34 @@ export function deleteFeedBack(id) {
       alert("wrong id");
   }
 }
+
+
+//hiding feedback table and showing the managment buttons again
+function hideFeedTable(id) {
+  return () => {
+      
+          $("#allAdmin").show();
+          $("#feedBackHolder").hide()
+  }
+
+}
+///////////////
+
+function askAndDelete(id) {
+  
+  return () => {
+      
+    var del=window.confirm('בטוח שתרצה למחוק?');
+    // console.log(del);
+    if (del==true){
+      deleteFeedBack(id)
+      console.log(id);
+      }
+    }
+  
+  }
+      //  alert ("המשוב נמחק בהצלחה")
+    // }else{
+    //     alert("Record Not Deleted")
+    // }
+    // return del;
