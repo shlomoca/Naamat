@@ -212,3 +212,12 @@ padding-bottom: 3%;
     border-color: purple;
 
 }
+
+.boxDetail{
+
+    padding-left: 46%;
+    padding-right: 5%;
+    text-align: right;
+    border-radius: 10%;
+    border-color: rebeccapurple;
+}

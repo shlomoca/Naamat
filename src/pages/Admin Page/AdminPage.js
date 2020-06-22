@@ -17,6 +17,7 @@ class AdminPage extends Component {
                 <AddCategoryModal/>
                 <FeedbackModal/>
                 <p id="adminTitle">ברוכים הבאים למערכת הניהול</p>
+                <div id="allAdmin"> 
                 <div  class="adminButtons">
                     <div id="rightButtons">
                         <button class="btnhover" type="button" id="btn1" data-toggle="modal" data-target="#staticBackdrop"> {Dictionary.adminAddWoman} </button>
@@ -30,6 +31,7 @@ class AdminPage extends Component {
                         <button class="btnhover" type="button" id="btn7"> {Dictionary.adminRemoveAdmin} </button>
                         <button class="btnhover" type="button" id="btn8"> חסר שימוש כרגע </button>
                     </div>
+                </div>
                 </div>
                 <div id="feedBackHolder"></div>
             </div>
