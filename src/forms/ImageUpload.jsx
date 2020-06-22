@@ -97,8 +97,10 @@ class ImageUpload extends Component {
         () => {
           //displays the picture on screen directly
           // complete function ....
-          // storage.ref('images').child(image.name).getDownloadURL().then(url => {
-          //alert("upload completed");
+          storage.ref().child(path).getDownloadURL().then(url => {
+            alert("תמונה הועלתה בהצלחה");
+            $("#insertdata").val(url);
+          });
           // console.log(url);
           // this.setState({ url });
           //})
@@ -112,6 +114,7 @@ class ImageUpload extends Component {
         <p>{Dictionary.profilepic}</p>
         <progress value={this.state.progress} max="100" />
         <input type="file" name="file" id="inputGroupFile04" id="media" aria-describedby="inputGroupFileAddon04" accept="image/*|audio/*|video/*" onChange={this.handleChange} />
+        <input type="hidden" id="insertdata" name="ProfilePic" value=""/>
         <button type="button" onClick={this.handleUpload}>{Dictionary.upload}</button>
         <br />
         {/* <img src={this.state.url || 'http://via.placeholder.com/400x300'} alt="Uploaded images" height="300" width="400" /> */}
