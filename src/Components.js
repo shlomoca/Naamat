@@ -20,10 +20,12 @@ import { storage } from './config/Firebase'
 //under the navigation bar there is a 
 export const NavBar = (props) => {
 
-  var obj = <button type="button" className="btn btn-primary nav-link" data-toggle="modal" data-target="#feedbackForm">{Dictionary.feedback}</button>
 
-  if (props.admin == "true")
+
+  if (props.admin)
     obj = <Link to="/AdminPage"><button type="button" className="btn btn-primary nav-link" >manager</button></Link>
+  else
+    var obj = <button type="button" className="btn btn-primary nav-link" data-toggle="modal" data-target="#feedbackForm">{Dictionary.feedback}</button>
 
 
   return (
@@ -111,11 +113,11 @@ export function adminPageClick() {
   console.log(userEmail);
   var permission;
 
-  db.collection('users').doc("AccessControl").collection(userEmail).doc("permissions").get().then(res => {
+  db.collection('users').doc(userEmail).get().then(res => {
     console.log(res.data());
     permission = res.data().admin;
     console.log(permission);
-    if (permission == "true") alert("manager")
+    if (permission) alert("manager")
   });
 }
 
@@ -208,9 +210,7 @@ export class PictursCarousel extends Component {
         if (snapshot.data()) {
           var data = snapshot.data();
           if (data) {
-
             var id = data["id"];
-            // console.log(id + "/ProfilePic");
             if (id)
               storage.ref("/" + id).child("ProfilePic").getDownloadURL().then(url => {
                 if (this.state.dataslide != 0)
@@ -240,11 +240,11 @@ export class PictursCarousel extends Component {
           <div id="carouselInner" class="carousel-inner">
             {this.state.items}
           </div>
-          <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+          <a class="carousel-control-prev arrow" href="#carouselExampleIndicators" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="sr-only">Previous</span>
           </a>
-          <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+          <a class="carousel-control-next arrow" href="#carouselExampleIndicators" role="button" data-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="sr-only">Next</span>
           </a>
@@ -305,10 +305,14 @@ export const CarouselSlide = props => {
     clas = "carousel-item active";
   return (
     <div class={clas}>
-      <img src={props.src} class="d-block w-100" alt="example 1" height="600px" width="115" />
+      <div class="d-block w-100 details" alt="example 1" height="500px" width="200px">
+        <h1 class="displayName">{props.display}</h1>
+        <a href={"/womanPage/" + props.id}>
+          <img src={props.src} class="roundedImg" alt="example 1" height="150px" width="150px" />
+        </a>
+      </div>
       <div class="carousel-caption d-none d-md-block pictureDiscription">
-        <h5>{props.display}</h5>
-        <p>{props.womanHighlights}</p>
+        <p><h3 class="highlights">{props.highlights}</h3></p>
       </div>
     </div>
   )
@@ -453,7 +457,7 @@ export const FeedBackBody = (props) => {
   return (
 
     <thead>
-      <tr>
+      <tr id={props.name+props.email}>
         {/* <td> {props.date} </td> */}
         <td> {props.name} </td>
         <td> {props.email} </td>
@@ -484,7 +488,6 @@ export const FeedBackHeader = () => {
     </thead>
   )
 }
-
 export const DisplayFeedback = (props) => {
 
   var name, email, score, improvement;
@@ -520,9 +523,9 @@ export const DisplayFeedback = (props) => {
 //hiding feedback table and showing the managment buttons again
 function hideFeedTable(id) {
   return () => {
-    
-          $("#allAdmin").show();
-          $("#feedBackHolder").hide()
+
+    $("#allAdmin").show();
+    $("#feedBackHolder").hide()
   }
   
 }
@@ -545,11 +548,12 @@ export function deleteFeedBack(id) {
       
           console.log(id);
           if (id) {
-            db.collection('feedbacks').doc(id).delete().then(() => {
-              window.location.reload();
+            db.collection('feedbacks').doc(id).delete().then(() => { 
+              
+              ReactDOM.render(<div></div>, document.getElementById(id));
+              
             });
           }
           else
             alert("שגיאה");
       }
-    

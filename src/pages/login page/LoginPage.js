@@ -32,6 +32,7 @@ class LoginPage extends Component {
                 email: {
                     required: true,
                     minlength: 1,
+                    email:true,
                 },
                 password: {
                     required: true,
@@ -108,7 +109,7 @@ export class LoginComponent extends Component {
         this.state = {
             user: false,
             page: [],
-            permission: '',
+            permission: false,
         }
 
     }
@@ -131,10 +132,10 @@ export class LoginComponent extends Component {
         if (this.state.user || sessionStorage.getItem("userConnect")) {
             var userEmail = sessionStorage.getItem("userEmail");
 
-            db.collection('users').doc("AccessControl").collection(userEmail).doc("permissions").get().then(res => {
+            db.collection('users').doc(userEmail).get().then(res => {
                 this.setState({permission: res.data().admin});
 
-                if (this.state.permission == "true") {
+                if (this.state.permission) {
                     // admin rout
                     this.setState({ page: this.renderAdminDiv() });
                 }
