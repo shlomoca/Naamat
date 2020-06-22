@@ -118,7 +118,7 @@ export const GenralForm = (props) => {
     var classAttr = "tab-pane fade form_content";
     if (props.active)
         classAttr = "tab-pane fade form_content show active";
-        var i=0,j=0;
+    var i = 0, j = 0;
     return (
 
         <div id={props.lang} class={classAttr}>
@@ -157,15 +157,15 @@ export const GenralForm = (props) => {
 
             <div class="form-group">
                 <label class="myNewClass" for={"link" + props.lang}>
-                    <input class="myNewClass" id={"description"+i} lang={props.lang} type="text" rows="4" class="details" cols="50" name="description" placeholder="description" />
-                    <input class="myNewClass" id={"link" +i} lang={props.lang} type="text" rows="4" class="details" cols="50" name="link" placeholder="link" />
+                    <input class="myNewClass" id={"description" + i} lang={props.lang} type="text" rows="4" class="details" cols="50" name="description" placeholder="description" />
+                    <input class="myNewClass" id={"link" + i} lang={props.lang} type="text" rows="4" class="details" cols="50" name="link" placeholder="link" />
                     <a id="fill1" ></a>
                     <button onClick={(e) => {
                         e.preventDefault();
                         i++;
                         var fill = $("#fill1");
-                        fill.append(`<input id=${"description"+i}  lang = ${props.lang} type="text" rows="4" class="details" cols="50" name="description" placeholder="description" />
-                        <input id=${"link"+i} lang = ${props.lang} type="text" rows="4" class="details" cols="50" name="link" placeholder="link" />`)
+                        fill.append(`<input id=${"description" + i}  lang = ${props.lang} type="text" rows="4" class="details" cols="50" name="description" placeholder="description" />
+                        <input id=${"link" + i} lang = ${props.lang} type="text" rows="4" class="details" cols="50" name="link" placeholder="link" />`)
                         console.log(fill.num);
                     }}>add</button>
                 </label>
@@ -173,13 +173,13 @@ export const GenralForm = (props) => {
 
             <div class="form-group">
                 <label class="myNewClass" for={"reading" + props.lang}>
-                    <input class="myNewClass" id={"reading"+j} lang={props.lang} type="text" rows="4" class="details" cols="50" name="description" placeholder="further reading" />
+                    <input class="myNewClass" id={"reading" + j} lang={props.lang} type="text" rows="4" class="details" cols="50" name="description" placeholder="further reading" />
                     <a id="fill2"></a>
                     <button onClick={(e) => {
                         e.preventDefault();
                         j++;
-                        var fill =$("#fill2");
-                        fill.append(`<input id=${"reading"+j} lang=${props.lang} type="text" rows="4" class="details" cols="50" name="description" placeholder="further reading" />`)
+                        var fill = $("#fill2");
+                        fill.append(`<input id=${"reading" + j} lang=${props.lang} type="text" rows="4" class="details" cols="50" name="description" placeholder="further reading" />`)
                     }}>add</button>
                 </label>
             </div>
@@ -188,7 +188,7 @@ export const GenralForm = (props) => {
     )
 }
 export const SuggestWoman = () => {
-    var i=0,j=0;
+    var i = 0, j = 0;
     return (
         <div class="modal fade" id="suggestWomanModal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-xl">
@@ -206,14 +206,14 @@ export const SuggestWoman = () => {
                             <div id="name-group1" class="form-group">
                                 {/* <label for="display"></label> */}
                                 <input type="text" rows="1" class="detailsNew" cols="35" id="yourName" name="yourName" placeholder="enter your name" required />
-                            {/* </div> */}
+                                {/* </div> */}
 
-                            {/* <div id="name-group1" class="form-group"> */}
+                                {/* <div id="name-group1" class="form-group"> */}
                                 {/* <label for="display"></label> */}
                                 <input type="text" rows="1" class="detailsNew" cols="35" id="yourEmail" name="yourEmail" placeholder="enter your email" required />
-                            {/* </div> */}
+                                {/* </div> */}
 
-                            {/* <div id="name-group1" class="form-group"> */}
+                                {/* <div id="name-group1" class="form-group"> */}
                                 {/* <label for="display"></label> */}
                                 <input type="text" rows="1" class="detailsNew" cols="35" id="display" name="display" placeholder="display name" />
                             </div>
@@ -246,24 +246,18 @@ export const SuggestWoman = () => {
                                     <option value="link" name="link">Link</option>
                                 </select> */}
                                 {/* <div class="quotesClass">  */}
-                                <input type="text" rows="4" class="details" cols="50" name="quotes" id="quotes" placeholder="Quotes and notable works" />
-                                </div>
                                 <a id="fill20"></a>
-                                <button id="myAdd" onClick={(e) => {
+                                <textarea type="text" rows="4" class="boxDetails" cols="50" name="quotes" id={"quotes"+j} placeholder="Quotes and notable works" />
+                                <button id="myAdd1" onClick={(e) => {
                                     e.preventDefault();
-                                    j++;
-                                    var fill =$("#fill20");
-                                    fill.append(`<input id=${"quotes"}  type="text" rows="4" class="details" cols="50" name="quotes" placeholder="Quotes and notable works" />`)
+                                    var fill = $("#fill20");
+                                    if($("#quotes"+j).val()){
+                                        j++;
+                                        fill.append(`<textarea id=${"quotes"+j}  type="text" rows="4" class="boxDetails" cols="50" name="quotes"  placeholder="Quotes and notable works" />`)
+                                    }
+                                   
                                 }}>add</button>
-                                <div class="form-group">
-                                <input id="link" type="text" rows="4" class="details" cols="50" name="link" placeholder="link" />
-                                <a id="fill21"></a>
-                                <button id="myAdd" onClick={(e) => {
-                                    e.preventDefault();
-                                    i++;
-                                    var fill =$("#fill21");
-                                    fill.append(`<input id=${"link"}  type="text" rows="4" class="details" cols="50" name="link" placeholder="link" />`)
-                                }}>add</button>
+                                
                             </div>
 
                         </div>
@@ -468,7 +462,7 @@ $("document").ready(function () {
 
     //add woman from the form to database
     $("#category_form").submit(function (event) {
-        
+
         console.log("IM READY SHLOMO");
         if (!$("#category_form").valid()) return;
         //confirm id not exeisting??
@@ -549,8 +543,8 @@ function showing(id, id2) {
 // }
 
 
-function sub_cat (event) {
-        
+function sub_cat(event) {
+
     console.log("IM READY SHLOMO");
     if (!$("#category_form").valid()) return;
     //confirm id not exeisting??
