@@ -181,9 +181,10 @@
 }
 
 #bottom {
-    position: absolute;
+    position: fixed;
+    display: flex;
     justify-content: center;
-    bottom: 0%;
+    margin-bottom: 0%;
 }
 
 #feedbackTable{
