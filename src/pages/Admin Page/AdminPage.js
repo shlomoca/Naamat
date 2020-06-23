@@ -47,4 +47,5 @@ class AdminPage extends Component {
 export default AdminPage
 $(document).ready(() => {
 
+
 });

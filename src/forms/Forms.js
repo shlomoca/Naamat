@@ -289,16 +289,15 @@ export const EditWomanModal = () => {
 
                         <div class="modal-body">
                             <div id="step1">
-                                {/* <h2>step 1</h2> */}
                                 <ul id="mylinks" class="nav nav-tabs">
-                                    <li class="langTabs active"><a data-toggle="tab" href="#HE">עברית</a></li>
-                                    <li class="langTabs"><a data-toggle="tab" href="#EN">English</a></li>
-                                    <li class="langTabs"><a data-toggle="tab" href="#AR">عربى</a></li>
+                                    <li id="mylinks" class="langTabs active"><a data-toggle="tab" href="#HE">עברית</a></li>
+                                    <li id="mylinks" class="langTabs"><a data-toggle="tab" href="#EN">English</a></li>
+                                    <li id="mylinks" class="langTabs"><a data-toggle="tab" href="#AR">عربى</a></li>
                                 </ul>
                                 <div id="name-group" class="form-group">
                                     {/* <label for="name"></label> */}
                                     <label id="lineName" for="name">{Dictionary.name}</label>
-                                    <input type="text" rows="1" class="details" cols="35" id="name" name="name" placeholder="" />
+                                    <input type="text" rows="1" class="detailsName" cols="35" id="name" name="name" placeholder="" />
 
                                     <div class="bdayclass">
                                         <div id="name-group" class="form-group">
@@ -351,14 +350,13 @@ $("document").ready(function () {
         $('#mylinks a').removeClass('highlight');
         $(this).addClass('highlight');
     });
-
-
+   
 });
 
 //check if woman allready exist when we want to add woman 
 function allreadyExist(id) {
 
-    alert(id);
+    // alert(id);
     var woman = db.collection('women').doc(id);
     woman.get().then(doc => {
         if (doc.exists) {
