@@ -7,6 +7,7 @@ import { Dictionary, langs } from '../Dictionary';
 import ImageUpload from './ImageUpload';
 import { AfterMessage } from '../Components';
 import { editWoman } from '../pages/woman page/WomanPage';
+import ReactDOM from 'react-dom';
 
 
 export const FeedbackModal = () => {
@@ -181,92 +182,94 @@ export const GenralForm = (props) => {
 export const SuggestWoman = () => {
     var i = 0, j = 0;
     return (
-        <div class="modal fade" id="suggestWomanModal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog modal-xl">
-                <div class="modal-content">
-                    <form dir="RTL" id="suggest_woman_form" name="suggest_woman_form" onSubmit={suggestWoman}  >
-                        <div class="modal-header">
-                            <button type="button" id="xClose" class="close" data-dismiss="modal" aria-label="Close" onClick={resetForm("suggest_woman_form")}>
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                            <h5 class="modal-title" id="staticBackdropLabel">{Dictionary.addWoman}</h5>
-                        </div>
-
-                        <div class="modal-body">
-
-                            <div id="name-group" class="form-group">
-                                {/* <label for="display"></label> */}
-                                <input type="text" rows="1" class="detailsNew" cols="35" id="yourName" name="yourName" placeholder="enter your name" required />
-                                {/* </div> */}
-
-                                {/* <div id="name-group1" class="form-group"> */}
-                                {/* <label for="display"></label> */}
-                                <input type="text" rows="1" class="detailsNew" cols="35" id="yourEmail" name="yourEmail" placeholder="enter your email" required />
-                                {/* </div> */}
-
-                                {/* <div id="name-group1" class="form-group"> */}
-                                {/* <label for="display"></label> */}
-                                <input type="text" rows="1" class="detailsNew" cols="35" id="display" name="display" placeholder="display name" />
+        
+            <div class="modal fade" id="suggestWomanModal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-xl">
+                    <div class="modal-content">
+                        <form dir="RTL" id="suggest_woman_form" name="suggest_woman_form" onSubmit={suggestWoman}  >
+                            <div class="modal-header">
+                                <button type="button" id="xClose" class="close" data-dismiss="modal" aria-label="Close" onClick={resetFormSuggestWoman("suggest_woman_form")}>
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                <h5 class="modal-title" id="staticBackdropLabel">{Dictionary.suggest}</h5>
                             </div>
 
-                            {/* <div class="form-group"> */}
-                            <textarea rows="4" class="boxDetail" cols="50" name="highlights" id="highlights" placeholder="Highlights"  ></textarea>
-                            {/* </div> */}
+                            <div class="modal-body">
+
+                                <div id="name-group" class="form-group">
+                                    {/* <label for="display"></label> */}
+                                    <input type="text" rows="1" class="detailsNew" cols="35" id="yourName" name="yourName" placeholder="enter your name" required />
+                                    {/* </div> */}
+
+                                    {/* <div id="name-group1" class="form-group"> */}
+                                    {/* <label for="display"></label> */}
+                                    <input type="text" rows="1" class="detailsNew" cols="35" id="yourEmail" name="yourEmail" placeholder="enter your email" required />
+                                    {/* </div> */}
+
+                                    {/* <div id="name-group1" class="form-group"> */}
+                                    {/* <label for="display"></label> */}
+                                    <input type="text" rows="1" class="detailsNew" cols="35" id="display" name="display" placeholder="display name" />
+                                </div>
+
+                                {/* <div class="form-group"> */}
+                                <textarea rows="4" class="boxDetail" cols="50" name="highlights" id="highlights" placeholder="Highlights"  ></textarea>
+                                {/* </div> */}
 
 
-                            {/* <div class="form-group"> */}
-                            <textarea rows="4" class="boxDetail" cols="50" name="biography" id="biography" placeholder="Biography" ></textarea>
-                            {/* </div> */}
+                                {/* <div class="form-group"> */}
+                                <textarea rows="4" class="boxDetail" cols="50" name="biography" id="biography" placeholder="Biography" ></textarea>
+                                {/* </div> */}
 
-                            {/* <div class="form-group"> */}
-                            <textarea rows="4" class="boxDetail" cols="50" name="history" id="historical" placeholder="Historical events related" ></textarea>
-                            {/* </div> */}
+                                {/* <div class="form-group"> */}
+                                <textarea rows="4" class="boxDetail" cols="50" name="history" id="historical" placeholder="Historical events related" ></textarea>
+                                {/* </div> */}
 
-                            {/* <div class="form-group"> */}
-                            <textarea rows="4" class="boxDetail" cols="50" name="feminism" id="contribution" placeholder="Contribution to Feminism" ></textarea>
-                            {/* </div> */}
-
-
-                            {/* <div class="form-group"> */}
-                            <textarea rows="4" class="boxDetail" cols="50" name="facts" id="facts" placeholder="Interesting fact / story" ></textarea>
-                            {/* </div> */}
-
-                            {/* <div class="form-group"> */}
-                            <textarea rows="4" class="boxDetail" cols="50" name="facts" id="facts" placeholder="Quotes and notable works" ></textarea>
-                            {/* </div> */}
+                                {/* <div class="form-group"> */}
+                                <textarea rows="4" class="boxDetail" cols="50" name="feminism" id="contribution" placeholder="Contribution to Feminism" ></textarea>
+                                {/* </div> */}
 
 
-                            {/* <select name="type" id="type">
+                                {/* <div class="form-group"> */}
+                                <textarea rows="4" class="boxDetail" cols="50" name="facts" id="facts" placeholder="Interesting fact / story" ></textarea>
+                                {/* </div> */}
+
+                                {/* <div class="form-group"> */}
+                                <textarea rows="4" class="boxDetail" cols="50" name="facts" id="facts" placeholder="Quotes and notable works" ></textarea>
+                                {/* </div> */}
+
+
+                                {/* <select name="type" id="type">
                                     <option value="bibliography" name="bibliography">Bibliography</option>
                                     <option value="link" name="link">Link</option>
                                 </select> */}
-                            {/* <div class="quotesClass">  */}
-                            <input type="text" rows="4" class="boxDetail" cols="50" name="quotes" id={"quotes" + j} placeholder="Bibliography" />
-                            <a id="fill20"></a>
-                            <button id="myAdd1" onClick={(e) => {
-                                e.preventDefault();
-                                var fill = $("#fill20");
-                                if ($("#quotes" + j).val()) {
-                                    j++;
-                                    fill.append(`<input id=${"quotes" + j}  type="text" rows="4" class="boxDetail" cols="50" name="quotes"  placeholder="Bibliography" />`)
-                                }
+                                {/* <div class="quotesClass">  */}
+                                <input type="text" rows="4" class="boxDetail" cols="50" name="quotes" id={"quotes" + j} placeholder="Bibliography" />
+                                <a id="fill20"></a>
+                                <button id="myAdd1" onClick={(e) => {
+                                    e.preventDefault();
+                                    var fill = $("#fill20");
 
-                            }}>add</button>
+                                    if ($("#quotes" + j).val()) {
+                                        j++;
+                                        fill.append(`<input id=${"quotes" + j}  type="text" rows="4" class="boxDetail" cols="50" name="quotes"  placeholder="Bibliography" />`)
+                                    }
+
+                                }}>add</button>
 
 
 
-                        </div>
-                        {/* </div> */}
-                        <div class="modal-footer">
-                            <button type="button" class="close" class="btn btn-secondary" onClick={resetForm("suggest_woman_form")} data-dismiss="modal">{Dictionary.close}</button>
-                            <button type="submit" for="suggest_woman_form" class="btn btn-success" id="submit_form" >{Dictionary.submit} <span class="fa fa-arrow-right"></span></button>
-                        </div>
-                    </form>
+                            </div>
+                            {/* </div> */}
+                            <div class="modal-footer">
+                                <button type="button" class="close" class="btn btn-secondary" onClick={resetFormSuggestWoman("suggest_woman_form")} data-dismiss="modal">{Dictionary.close}</button>
+                                <button type="submit" for="suggest_woman_form" class="btn btn-success" id="submit_form" >{Dictionary.submit} <span class="fa fa-arrow-right"></span></button>
+                            </div>
+                        </form>
 
+                    </div>
                 </div>
-            </div>
 
-        </div>
+            </div>
     )
 }
 
@@ -369,7 +372,7 @@ function allreadyExist(id) {
         else
             showing("#step2");
     }).catch()
-    
+
 
 }
 
@@ -454,12 +457,20 @@ function resetForm(id) {
 
         $("#name").attr('readonly', false);
         $("#birth").attr('readonly', false);
-        
+
         $("#step1").show();
         $("#step2").hide();
         $('#submit1').show();
     }
 };
+
+function resetFormSuggestWoman(id) {
+    return () => {
+
+         window.location.reload();
+       
+    }
+}
 
 //make sure that the use enterd in step one the name and birth date
 function showing(id, id2) {
