@@ -66,7 +66,7 @@ class ImageUpload extends Component {
           //displays the picture on screen directly
           // complete function ....
           storage.ref().child(path).getDownloadURL().then(url => {
-            alert("תמונה הועלתה בהצלחה");
+            alert(Dictionary.uploadSuccess);
             $("#insertdata").val(url);
             this.setState({
               progress: 0,
