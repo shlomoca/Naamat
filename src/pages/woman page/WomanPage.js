@@ -34,13 +34,16 @@ export class WomenCard extends Component {
   
     render() {
         return (
-            // <Link to={"/womanPage?"+this.state.id}>
+            // <Link to={"/womanPage?"}>
+                <a href={"/womanPage/"+this.state.id}>
             <div id="womanCardsContainer" >
+
                 <img id={"roundImage" + this.state.id} className="roundImage" src={this.state.url} alt={this.state.display} />
                 <h1  >{this.state.display} </h1>
                 <p>{this.state.summary}  </p>
                 <button onClick={editWoman(this.state.id)}>{Dictionary.edit}</button>
             </div>
+                </a>
             //    </Link>
         )
     }
@@ -57,7 +60,7 @@ export const WomenDeck = (props) => {
         var wName = woman["display" + Dictionary.getLanguage()];
         var sum = woman["highlights" + Dictionary.getLanguage()];
         var id = woman.id;
-        var prof = woman.ProfilePic;
+        var prof = woman["ProfilePic"];
         if (wName && sum)
             deck.push(
                 <WomenCard display={wName} summary={sum} id={id} prof={prof} />);
@@ -90,8 +93,11 @@ export function deleteWoman(id) {
 
 //shows a woman by id. gets a prop called id wich should corraspond with a woman id
 export const WomanPage = (props) => {
-    var id = props.id;
+    var id = props.match.params.id;
+    // const userId = this.props.match.id;
+console.log(id);
     //get woman by id
+    // console.log()
     const woman = [];
     var obj;
 
@@ -99,7 +105,7 @@ export const WomanPage = (props) => {
         <div id="WomanPageWrapper" class="wrapper" >
 
             <NavBar />
-            <ShowWoman id={"גולדה מאיר1898-03-03"}/>
+            <ShowWoman id={id}/>
     
             <BottomBar />
         </div>)
@@ -131,6 +137,7 @@ export class ShowWoman extends Component {
     }
 
     componentWillMount() {
+        console.log(this.state.id)
         var info = [];
         var display="",
         ProfilePic=""
@@ -153,7 +160,8 @@ export class ShowWoman extends Component {
             var both=[]
             both.push(<MainDetails display={display} link={ProfilePic}/>);
             both.push(details);
-            this.setState({ womanData: both });
+            this.setState({ womanData: both,
+            id:this.state.id });
             
         }
         );

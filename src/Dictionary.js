@@ -25,7 +25,8 @@ export const Dictionary = new LocalizedStrings({
     adminAddCategory: 'Add Category',
     adminAddAdmin: 'Add Admin',
     adminRemoveAdmin: 'Remove Admin',
-
+    welcomeManager: `Welcome to the management platform`,
+    
 
   //woman page
   edit: 'Edit',
@@ -94,6 +95,7 @@ export const Dictionary = new LocalizedStrings({
     adminAddCategory: 'הוסף קטגוריה',
     adminAddAdmin: 'הוסף מנהל',
     adminRemoveAdmin: 'הסר מנהל',
+    welcomeManager: `ברוכים הבאים למערכת הניהול`,
     
   //woman page
   edit: 'ערוך',
@@ -162,6 +164,7 @@ export const Dictionary = new LocalizedStrings({
     adminAddCategory: 'إضافة فئة',
     adminAddAdmin: 'أضف المشرف',
     adminRemoveAdmin: 'إزالة المشرف',
+    welcomeManager: `مرحبا بكم في نظام الإدارة`,
     
    //woman page
    edit: 'تعديل',

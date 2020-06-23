@@ -136,23 +136,23 @@ class Search extends Component {
   //follow after input in serach bar
   searchHandler(event) {
     // return ()=>{
-//       console.log("event");
-var term =event.target.value;
-// }
-this.setState({ term: term })
-if(term.length>1){
-  // console.log("term:" +term)
-   term = (term).toLowerCase();
+    //       console.log("event");
+    var term = event.target.value;
+    // }
+    this.setState({ term: term })
+    if (term.length > 1) {
+      // console.log("term:" +term)
+      term = (term).toLowerCase();
       getWomen(term);
     }
-    else{
+    else {
       // alert("non")
       var find = document.getElementById("womenHolder");
       var deck = document.getElementById("deckContainer");
-      if(deck)
-      ReactDOM.unmountComponentAtNode(deck);
-      if(find)
-      ReactDOM.unmountComponentAtNode(find);
+      if (deck)
+        ReactDOM.unmountComponentAtNode(deck);
+      if (find)
+        ReactDOM.unmountComponentAtNode(find);
       // document.getElementById('womanCardsContainer').innerHTML = '';
     }
   }
@@ -225,17 +225,17 @@ export class PictursCarousel extends Component {
           var data = snapshot.data();
           if (data) {
             // var id = data["id"];
-            if (data["ProfilePic"]){
+            if (data["ProfilePic"]) {
               if (this.state.dataslide != 0)
-              active = false;
+                active = false;
               indicators.push(<CarouselLi dataslide={this.state.dataslide} active={active} />);
               // {console.log(data["ProfilePic"])}
-              items.push(<CarouselSlide display={data["display"+Dictionary.getLanguage()]} highlights={data["highlights"+Dictionary.getLanguage()]} id={id} src={data["ProfilePic"]} active={active} />);
+              items.push(<CarouselSlide display={data["display" + Dictionary.getLanguage()]} highlights={data["highlights" + Dictionary.getLanguage()]} id={id} src={data["ProfilePic"]} active={active} />);
               this.setState({ indicators: indicators });
               this.setState({ items: items });
               this.setState({ dataslide: this.state.dataslide + 1 });
             }
-              
+
           }
         }
       })
@@ -320,16 +320,16 @@ export const CarouselSlide = props => {
     clas = "carousel-item active";
   return (
     <div class={clas}>
-      <div class="d-block w-100 details" alt="example 1" height="500px" width="200px">
-        <h1 class="displayName">{props.display}</h1>
-        <a href={"/womanPage/" + props.id}>
+      <Link to={`/womanPage/${props.id}`}>
+        <div class="d-block w-100 details" alt="example 1" height="500px" width="200px">
+          <h1 class="displayName">{props.display}</h1>
           <img src={props.src} class="roundedImg" alt="example 1" height="150px" width="150px" />
-        </a>
+        </div>
+        <div class="carousel-caption d-none d-md-block pictureDiscription">
+          <p><h3 class="highlights">{props.highlights}</h3></p>
+        </div>
+    </Link>
       </div>
-      <div class="carousel-caption d-none d-md-block pictureDiscription">
-        <p><h3 class="highlights">{props.highlights}</h3></p>
-      </div>
-    </div>
   )
 }
 
@@ -472,7 +472,7 @@ export const FeedBackBody = (props) => {
   return (
 
     <thead>
-      <tr id={props.name+props.email}>
+      <tr id={props.name + props.email}>
         {/* <td> {props.date} </td> */}
         <td> {props.name} </td>
         <td> {props.email} </td>
@@ -542,33 +542,33 @@ function hideFeedTable(id) {
     $("#allAdmin").show();
     $("#feedBackHolder").hide()
   }
-  
+
 }
 ///////////////
 
 export function askAndDelete(id) {
-  
-    return () => {
-      
-      var del=window.confirm(Dictionary.areYouSure);
-      // console.log(del);
-      if (del==true){
-        deleteFeedBack(id)
-        }
-        // return deleteFeedBack(id);
-      }
-      }
-      //delete feedback by id
+
+  return () => {
+
+    var del = window.confirm(Dictionary.areYouSure);
+    // console.log(del);
+    if (del == true) {
+      deleteFeedBack(id)
+    }
+    // return deleteFeedBack(id);
+  }
+}
+//delete feedback by id
 export function deleteFeedBack(id) {
-      
-          console.log(id);
-          if (id) {
-            db.collection('feedbacks').doc(id).delete().then(() => { 
-              
-              ReactDOM.render(<div></div>, document.getElementById(id));
-              
-            });
-          }
-          else
-            alert(Dictionary.error);
-      }
+
+  console.log(id);
+  if (id) {
+    db.collection('feedbacks').doc(id).delete().then(() => {
+
+      ReactDOM.render(<div></div>, document.getElementById(id));
+
+    });
+  }
+  else
+    alert(Dictionary.error);
+}
