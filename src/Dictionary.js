@@ -68,7 +68,7 @@ export const Dictionary = new LocalizedStrings({
     //components
     
     builders: `This site was built by: Shlomo Carmi, Daniel Raz, Sahar Cohen, Adiel Tsayag, Matan Yemin`,
-    managmentPlatform:'managmentPlatform',
+    managmentPlatform:'Managment Platform',
     NaamatInFacebook: 'Naamat in Facebook',
     NaamatInYoutube: 'Naamat in Youtube',
     email:'Email',

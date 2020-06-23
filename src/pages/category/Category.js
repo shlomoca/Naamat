@@ -44,23 +44,3 @@ class Category extends Component {
 }
 export default Category;
 
-{/* <div>
-                <NavBar />
-
-                <div class="container">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRCGr0Zt1YnKCHjFGOCLzLAKng9zXDYObGIhEoJfhU1_kTv7Do1&usqp=CAU" alt="Snow" />
-                    <button class="btn">פוליטיקה</button>
-                </div>
-
-                <div class="container">
-                    <img src="https://cdn.brainpop.com/he/he/new_common_images/images/10/103566.jpg" alt="Snow" />
-                    <button class="btn">מדעים</button>
-                </div>
-
-                <div class="container">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS8m6X1kQLG23ItGp7yhe3KDNY-RFuY4OJogQz-Ox2lsttKZPbp&usqp=CAU" alt="Snow" />
-                    <button class="btn">ספורט</button>
-                </div>
-
-                <BottomBar />
-            </div> */}

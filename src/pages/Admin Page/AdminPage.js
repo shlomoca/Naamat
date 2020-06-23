@@ -28,7 +28,8 @@ class AdminPage extends Component {
                         <button class="btnhover" type="button" id="btn1" data-toggle="modal" data-target="#staticBackdrop"> {Dictionary.adminAddWoman} </button>
                         <button class="btnhover" type="button" id="btn2" > {Dictionary.adminEditWoman} </button>
                         <button class="btnhover" type="button" id="btn3" onClick={getFeedback}> {Dictionary.adminFeedback} </button>
-                        <button class="btnhover" type="button" id="btn4"> {Dictionary.adminEditAbout} </button>
+                        {/* <button class="btnhover" type="button" id="btn4"> {Dictionary.adminEditAbout} </button> */}
+                        <button class="btnhover" type="button" id="btn8"> חסר שימוש כרגע </button>
                     </div>
                     <div id="leftButtons">
                         <button class="btnhover" type="button" id="btn5" data-toggle="modal" data-target="#categoryForm"> {Dictionary.adminAddCategory} </button>

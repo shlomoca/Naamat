@@ -190,9 +190,9 @@ export const BottomBar = () => {
     <div id="bottom">
 
       <ScrollUpButton />
-      <a>{Dictionary.builders} </a>
+      {/* <a>{Dictionary.builders} </a>
       <a href="#"><img id="fblogo" src={fblogo} alt="facebook" />{Dictionary.NaamatInFacebook}</a>
-      <a href="#"> <img id="ytlogo" src={ytlogo} alt="youtube" />{Dictionary.NaamatInYoutube}</a>
+      <a href="#"> <img id="ytlogo" src={ytlogo} alt="youtube" />{Dictionary.NaamatInYoutube}</a> */}
 
 
     </div>
