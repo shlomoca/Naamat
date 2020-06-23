@@ -86,7 +86,7 @@ class ImageUpload extends Component {
       <div >
         <p>{Dictionary.profilepic}</p>
         <progress value={this.state.progress} max="100" />
-        <input type="file" name="file" id="inputGroupFile04" id="media" aria-describedby="inputGroupFileAddon04" accept="image/*,audio/*,video/*" onChange={this.handleChange} />
+        <input type="file" name="file" id="inputGroupFile04" id="media" aria-describedby="inputGroupFileAddon04" accept="image/*,audio/*,video/*" onChange={this.handleChange} required/>
         <input type="hidden" id="insertdata" name="ProfilePic" value={this.state.url} />
         <button type="button" onClick={this.handleUpload}>{Dictionary.upload}</button>
         <br />
