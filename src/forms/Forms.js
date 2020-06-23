@@ -6,6 +6,7 @@ import { db } from '../config/Firebase'
 import { Dictionary, langs } from '../Dictionary';
 import ImageUpload from './ImageUpload';
 import { AfterMessage } from '../Components';
+import { editWoman } from '../pages/woman page/WomanPage';
 
 
 export const FeedbackModal = () => {
@@ -172,7 +173,7 @@ export const GenralForm = (props) => {
                     }}>add</button>
                 </label>
             </div>
-         </div>
+        </div>
 
     )
 }
@@ -312,7 +313,7 @@ export const EditWomanModal = () => {
                                         </div>
                                     </div>
                                 </div>
-                                <button id="submit1" type="button" class="btn btn-success" onClick={showing("#step2")} >{Dictionary.next}</button>
+                                <button id="submit1" type="button" class="btn btn-success" onClick={() => allreadyExist($("#name").val() + $("#birth").val())} >{Dictionary.next}</button>
                             </div>
                             <div id="popup">
                                 <span class="popuptext" id="myPopup">בבקשה מלא את כל הפרטים</span>
@@ -354,6 +355,26 @@ $("document").ready(function () {
 
 });
 
+//check if woman allready exist when we want to add woman 
+function allreadyExist(id) {
+
+    alert(id);
+    var woman = db.collection('women').doc(id);
+    woman.get().then(doc => {
+        if (doc.exists) {
+            var temp = window.confirm('ערך קיים האם תרצה לערוך?');
+            if (temp) {
+                showing("#step2");
+                editWoman(id);
+            }
+        }
+        else
+            showing("#step2");
+    }).catch()
+    
+
+}
+
 //add woman to database
 function addWoman(e) {
     e.preventDefault();
@@ -386,7 +407,7 @@ function addWoman(e) {
                 ar[this.name] = this.value;
             }
             else {
-                if(this.name==="ProfilePic"){
+                if (this.name === "ProfilePic") {
                     ar[this.name] = this.value;
                     he[this.name] = this.value;
                     en[this.name] = this.value;
@@ -430,6 +451,10 @@ function suggestWoman() {
 function resetForm(id) {
     return () => {
         $("#" + id).trigger("reset");
+
+        $("#name").attr('readonly', false);
+        $("#birth").attr('readonly', false);
+        
         $("#step1").show();
         $("#step2").hide();
         $('#submit1').show();
@@ -438,19 +463,20 @@ function resetForm(id) {
 
 //make sure that the use enterd in step one the name and birth date
 function showing(id, id2) {
-    return () => {
-        if (!($("#name").val()) || !($("#birth").val())) {
-            $("#popup").show();
-            $("#popup").fadeOut(2000, function () {
-                // Animation complete.
-            });
-        }
-        else {
-            $(id).show();
-            $(id2).hide();
-            $("#submit1").hide()
-        }
+    // return () => {
+    // alert("in showing");
+    if (!($("#name").val()) || !($("#birth").val())) {
+        $("#popup").show();
+        $("#popup").fadeOut(2000, function () {
+            // Animation complete.
+        });
     }
+    else {
+        $(id).show();
+        $(id2).hide();
+        $("#submit1").hide()
+    }
+    // }
 
 }
 

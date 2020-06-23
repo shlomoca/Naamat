@@ -302,11 +302,11 @@ export class showWoman extends Component {
 
 export function getWomen(womanName) {
     if (womanName) {
-        console.log("min: "+ womanName);
+        console.log("min: " + womanName);
         var nameattr = "display" + determineLang(womanName);
         // console.log("min: "+ womanName);
         var MaxIndex = getMaxIndex(womanName);
-        console.log( "max: "+MaxIndex)
+        console.log("max: " + MaxIndex)
         //get all the women that ae in the lexicografical area of the search term womanName
         db.collection('women').where(nameattr, ">=", womanName).where(nameattr, "<", MaxIndex).get().then(snapshot => {
             const women = [];
@@ -387,15 +387,15 @@ export function editWoman(id) {
     db.collection('women').doc(id).get().then(doc => {
         woman = doc.data();
 
-        $("#name").val(woman.name);
-        $("#name").attr('readonly', true);
+        
+            $("#name").val(woman.name);
+            $("#name").attr('readonly', true);
 
-        $("#birth").val(woman.birth);
-        $("#birth").attr('readonly', true);
+            $("#birth").val(woman.birth);
+            $("#birth").attr('readonly', true);
 
-        $("#death").val(woman.death);
-        $("#death").attr('readonly', true);
-
+            $("#death").val(woman.death);
+        
     })
 
     langs.forEach(lang => {
