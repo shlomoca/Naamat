@@ -299,7 +299,7 @@ export const EditWomanModal = () => {
                                 <div id="name-group" class="form-group">
                                     {/* <label for="name"></label> */}
                                     <label id="lineName" for="name">{Dictionary.name}</label>
-                                    <input type="text" rows="1" class="detailsName" cols="35" id="name" name="name" placeholder="" />
+                                    <input type="text" rows="1" class="detailsName" cols="35" id="name" name="name"  />
 
                                     <div class="bdayclass">
                                         <div id="name-group" class="form-group">
