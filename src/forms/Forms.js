@@ -358,7 +358,7 @@ $("document").ready(function () {
 //check if woman allready exist when we want to add woman 
 function allreadyExist(id) {
 
-    alert(id);
+    // alert(id);
     var woman = db.collection('women').doc(id);
     woman.get().then(doc => {
         if (doc.exists) {

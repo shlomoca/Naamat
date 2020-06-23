@@ -31,11 +31,7 @@ export class WomenCard extends Component {
         }
     }
 
-    // componentDidMount() {
-    //     storage.ref("/" + this.state.id).child("ProfilePic").getDownloadURL().then(url => {
-    //         this.state.url = url;
-    //     });
-    // }
+  
     render() {
         return (
             // <Link to={"/womanPage"+this.state.id}>
@@ -77,9 +73,7 @@ export const WomenDeck = (props) => {
 
 //delete woman by id.
 export function deleteWoman(id) {
-
     return () => {
-        console.log(id);
         if (id) {
             db.collection('women').doc(id).delete().then(() => {
                 alert("woman " + id + " was deleted");
@@ -101,41 +95,12 @@ export const WomanPage = (props) => {
     const woman = [];
     var obj;
 
-    // db.collection('women').doc(id).collection('langs').doc(Dictionary.getLanguage()).get().then(snapshot => {
-    //     woman.push(snapshot.data());
-    //     obj = Object.keys(woman[0]);
-    //     console.log(obj);
-    //     ReactDOM.render(
-
-    //     )
-    // })
-    // .catch(error => {
-    //     alert("woman not found");
-    //     console.log(error);
-    // });
-
     return (
         <div id="WomanPageWrapper" class="wrapper" >
-            {/* </div> */}
 
             <NavBar />
             <ShowWoman id={"גולדה מאיר1898-03-03"}/>
-            {/* <div id="womenHolder"  > */}
-
-            {/* 
-{ getWomen("shlomo carmi")} */}
-            {/* <MainDetails display={obj["display" + Dictionary.getLanguage()]} link={"https://naamat.org.il/wp-content/themes/Naamat-Child-Theme/images/footer-img.jpg"} bday={woman["date" + Dictionary.getLanguage()]} /> */}
-            {/* <p><b>{Dictionary.dethDay}:</b> {woman.death}</p>
-                <p><b>{Dictionary.highlights}:</b> {woman.highlights}</p>
-                <p><b>{Dictionary.biography}:</b> {woman.biography}</p>
-                <p><b>{Dictionary.QuotesAnd}:</b> {woman.quotes}</p>
-                <p><b>{Dictionary.History}:</b> {woman.historical}</p>
-                <p><b>{Dictionary.Contribution}:</b> {woman.contribution}</p>
-                <p><b>{Dictionary.facts}:</b> {woman.facts}</p>
-                <p><b>{Dictionary.media}:</b> {woman.media}</p>
-                <button onClick={deleteWoman(woman.id)} >{Dictionary.delete}</button> */}
-
-
+    
             <BottomBar />
         </div>)
 
@@ -143,63 +108,7 @@ export const WomanPage = (props) => {
 
 }
 
-// class WomanPage extends Component {
 
-//     state = {
-//         women: null
-//     }
-
-//     componentDidMount() {
-//         db.collection('women').get().then(snapshot => {
-//             const women = [];
-//             snapshot.forEach(doc => {
-//                 const data = doc.data();
-//                 women.push(data);
-//             })
-//             this.setState({ women: women })
-
-//         }).catch(error => console.log(error))
-//     }
-
-//     render() {
-//         return (
-//             <div id="WomanPageWrapper" class="wrapper" >
-
-//                 <NavBar />
-//                 <FeedbackModal />
-//                 <ScrollUpButton />
-//                 <div id="womenHolder"></div>
-
-//                 {this.state.women &&
-//                     this.state.women.map(woman => {
-//                         return (
-//                             <div id="womanContainer">
-//                                 <img id="profilePic" src="https://naamat.org.il/wp-content/themes/Naamat-Child-Theme/images/footer-img.jpg" />
-
-//                                 <MainDetails display={woman["display" + Dictionary.getLanguage()]} womanName={woman["name" + Dictionary.getLanguage()]} bday={woman["date" + Dictionary.getLanguage()]} />
-
-//                                 <p><b>{Dictionary.dethDay}:</b> {woman.death}</p>
-//                                 <p><b>{Dictionary.highlights}:</b> {woman.highlights}</p>
-//                                 <p><b>{Dictionary.biography}:</b> {woman.biography}</p>
-//                                 <p><b>{Dictionary.QuotesAnd}:</b> {woman.quotes}</p>
-//                                 <p><b>{Dictionary.History}:</b> {woman.historical}</p>
-//                                 <p><b>{Dictionary.Contribution}:</b> {woman.contribution}</p>
-//                                 <p><b>{Dictionary.facts}:</b> {woman.facts}</p>
-//                                 <p><b>{Dictionary.media}:</b> {woman.media}</p>
-//                                 <button onClick={deleteWoman(woman.id)} >Delete</button>
-
-
-//                             </div>)
-//                     })}
-//                 <BottomBar />
-
-//             </div>
-
-//         )
-
-//     }
-// }
-// export default WomanPage;
 
 
 //get women gets all women that their name is identical to the womenName atribute
@@ -227,13 +136,8 @@ export class ShowWoman extends Component {
         ProfilePic=""
         db.collection('women').doc(this.state.id).collection('langs').doc(Dictionary.getLanguage()).get().then(snapshot => {
             const data = snapshot.data();
-            // snapshot.forEach(doc => {
-            //     const data = doc.data();
                 info.push(data);
-            // })
             var details=[];
-            // console.log(info);
-            // console.log(Object.keys(info[0]));
             var alldata=info[0];
             (Object.keys(alldata)).forEach(key => {
                 if (alldata[key]) {
@@ -250,9 +154,7 @@ export class ShowWoman extends Component {
             both.push(<MainDetails display={display} link={ProfilePic}/>);
             both.push(details);
             this.setState({ womanData: both });
-            // this.state.womanData.push();
-            // this.state.womanData.push(details);
-            // console.log(details);
+            
         }
         );
     }
@@ -264,65 +166,6 @@ export class ShowWoman extends Component {
             );
     }
 }
-// export class getWomen extends Component {
-//     constructor(props) {
-//         super(props);
-//         this.state = {
-//             womanName: props.womanName ,
-//             women : []
-//         }
-
-//     }
-
-//     componentWillMount() {
-//         var womanName = this.state.womanName;
-//         if (womanName) {
-//             var nameattr = "display" + determineLang(womanName);
-//             // console.log(nameattr);
-//             var MaxIndex = getMaxIndex(womanName);
-//             // console.log(MaxIndex)
-//             //     //get a women arry with all women results for this search
-//             // }
-//             //  )   // ).catch(error => console.log(error));
-
-//             //get all the women that ae in the lexicografical area of the search term womanName
-//             const women = [];
-//             db.collection('women').where(nameattr, ">=", womanName).where(nameattr, "<", MaxIndex).get().then(snapshot => {
-//                     snapshot.forEach(doc => {
-//                         const data = doc.data();
-//                         if (data) {
-//                             women.push(data);
-//                         }
-//                         else
-//                         console.log("no data");
-//                     })
-//                 // var data = snapshot.docs.data();
-//                 // women.push(data);
-//                 // var obj = Object.keys(women[0]);
-//                 // console.log(obj);
-//                 this.setState({ women: women });
-//             })
-//                 .catch(error => {
-//                     alert("woman not found");
-//                     console.log(error);
-//                 });
-//         }
-//     }
-//     render() {
-//         return (<WomenDeck cards={this.state.women} />)
-//         }
-//     }
-
-// // <Link to={"/womanPage"+this.state.id}>
-// <div id="womanCardsContainer" >
-//     <img id={"roundImage" + this.state.id} className="roundImage" src={this.state.url} alt={this.state.display} />
-//     <h1  >{this.state.display} </h1>
-//     <p>{this.state.summary}  </p>
-//     <button onClick={editWoman(this.state.id)}>Edit</button>
-// </div>
-// //    </Link>
-
-
 
 
 
@@ -330,11 +173,8 @@ export class ShowWoman extends Component {
 
 export function getWomen(womanName) {
     if (womanName) {
-        // console.log("min: " + womanName);
         var nameattr = "display" + determineLang(womanName);
-        // console.log("min: "+ womanName);
         var MaxIndex = getMaxIndex(womanName);
-        // console.log("max: " + MaxIndex)
         //get all the women that ae in the lexicografical area of the search term womanName
         db.collection('women').where(nameattr, ">=", womanName).where(nameattr, "<", MaxIndex).get().then(snapshot => {
             const women = [];
@@ -346,9 +186,7 @@ export function getWomen(womanName) {
                 }
                 else
                     console.log("no data");
-
             });
-            // console.log(women);
             if (women.length === 0) {
                 var find = document.getElementById("womenHolder");
                 var deck = document.getElementById("deckContainer");
@@ -440,7 +278,6 @@ export function editWoman(id) {
 
                 Object.values(info).map(fileds => {
                     Object.keys(fileds).map(key => {
-
                         $("#" + key + lang).val(fileds[key]);
                     })
                 })
@@ -453,5 +290,4 @@ export function editWoman(id) {
 
 $(document).ready(() => {
 
-    // getWomen("shlomo carmi");
 });
