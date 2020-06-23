@@ -164,7 +164,7 @@ if(term.length>1){
       <form className="form-inline my-2 my-lg-0 input-group mb-3" id="search-form">
         <button id="search-btn" type="button">
           <div id="search-bar-outline">
-            <input class="form-control " autocomplete="off" onKeyUp={this.searchHandler} type="text" placeholder={Dictionary.search} id="example-search-input4" />
+            <input class="form-control " autoComplete="off" onKeyUp={this.searchHandler} type="text" placeholder={Dictionary.search} id="example-search-input4" />
             <button id="clear-btn" type="button">
               <i class="fa fa-close" onClick={() => document.getElementById('example-search-input4').value = ''}></i>
             </button>

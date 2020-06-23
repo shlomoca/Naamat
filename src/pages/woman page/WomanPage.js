@@ -13,11 +13,9 @@ import { Link } from 'react-router-dom';
 const MainDetails = (props) => {
 
     return (
-        <div id="main_details" id="profilePic">
-            <img src={props.link} alt={props.display} />
+        <div id="main_details" >
+            <img id="profilePic" className="roundImage" src={props.link} alt={props.display} />
             <h1 >{props.display} </h1>
-            <p><b>{Dictionary.bday}</b>:{props.bday}</p>
-
         </div>
     );
 }
@@ -121,6 +119,7 @@ export const WomanPage = (props) => {
             {/* </div> */}
 
             <NavBar />
+            <ShowWoman id={"גולדה מאיר1898-03-03"}/>
             {/* <div id="womenHolder"  > */}
 
             {/* 
@@ -211,29 +210,58 @@ export const WomanPage = (props) => {
 
 // }
 
-export class showWoman extends Component {
+export class ShowWoman extends Component {
     constructor(props) {
         super(props);
         this.state = {
             id: props.id,
             womanData: []
+        
         }
 
     }
 
     componentWillMount() {
+        var info = [];
+        var display="",
+        ProfilePic=""
         db.collection('women').doc(this.state.id).collection('langs').doc(Dictionary.getLanguage()).get().then(snapshot => {
-            if (snapshot.data()) {
-                var data = snapshot.data();
-                if (data) {
-                    // var id = data["id"];
-                    if (data["ProfilePic"]) { }
+            const data = snapshot.data();
+            // snapshot.forEach(doc => {
+            //     const data = doc.data();
+                info.push(data);
+            // })
+            var details=[];
+            // console.log(info);
+            // console.log(Object.keys(info[0]));
+            var alldata=info[0];
+            (Object.keys(alldata)).forEach(key => {
+                if (alldata[key]) {
+
+                    if(key==="display")
+                     display=alldata[key]; 
+                    else if(key==="ProfilePic")
+                     ProfilePic= alldata[key];
+                    else
+                    details.push(<p><b>{Dictionary[key]}:</b> {alldata[key]}</p>);
                 }
-            }
-        });
+            })
+            var both=[]
+            both.push(<MainDetails display={display} link={ProfilePic}/>);
+            both.push(details);
+            this.setState({ womanData: both });
+            // this.state.womanData.push();
+            // this.state.womanData.push(details);
+            // console.log(details);
+        }
+        );
     }
     render() {
-        return (this.state.womanData);
+        return (
+        <div id="shoWoman">
+            {this.state.womanData}
+        </div>
+            );
     }
 }
 // export class getWomen extends Component {
@@ -302,11 +330,11 @@ export class showWoman extends Component {
 
 export function getWomen(womanName) {
     if (womanName) {
-        console.log("min: "+ womanName);
+        // console.log("min: " + womanName);
         var nameattr = "display" + determineLang(womanName);
         // console.log("min: "+ womanName);
         var MaxIndex = getMaxIndex(womanName);
-        console.log( "max: "+MaxIndex)
+        // console.log("max: " + MaxIndex)
         //get all the women that ae in the lexicografical area of the search term womanName
         db.collection('women').where(nameattr, ">=", womanName).where(nameattr, "<", MaxIndex).get().then(snapshot => {
             const women = [];
@@ -320,7 +348,7 @@ export function getWomen(womanName) {
                     console.log("no data");
 
             });
-            console.log(women);
+            // console.log(women);
             if (women.length === 0) {
                 var find = document.getElementById("womenHolder");
                 var deck = document.getElementById("deckContainer");

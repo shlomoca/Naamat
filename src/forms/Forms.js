@@ -78,7 +78,7 @@ export const AddCategoryModal = () => {
                         <form dir="RTL" id="category_form" onSubmit={sub_cat} name="category_form"  >
                             <div id="name-group" class="form-group">
                                 <div id="name-group1" class="form-group">
-                                    <lable for="category_name">{Dictionary.name}</lable>
+                                    <label for="category_name">{Dictionary.name}</label>
                                     <input type="text" lang="HE" rows="1" class="details" cols="35" id="category_nameHE" name="category_name" placeholder="הכנס שם קטגוריה בעברית" required />
                                     <input type="text" lang="EN" rows="1" class="details" cols="35" id="category_nameEN" name="category_name" placeholder="הכנס שם קטגוריה באנגלית" required />
                                     <input type="text" lang="AR" rows="1" class="details" cols="35" id="category_nameAR" name="category_name" placeholder="הכנס שם קטגוריה בערבית" required />
