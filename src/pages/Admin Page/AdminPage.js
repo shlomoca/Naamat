@@ -14,11 +14,14 @@ class AdminPage extends Component {
     render() {
         return (
             <div id="mainUPWrapper" className="wrapper">
+                <NavBar/>
                 <EditWomanModal/>
                 <AddCategoryModal/>
                 <FeedbackModal/>
-                <Link to="/"><button>חזור</button></Link>
-                <p id="adminTitle">ברוכים הבאים למערכת הניהול</p>
+                <div class="backBtn">
+                <Link to="/"><button id="backBtn" class="btn">{Dictionary.back}</button></Link>
+                </div>
+        <p id="adminTitle">{Dictionary.welcomeManager}</p>
                 <div id="allAdmin"> 
                 <div  class="adminButtons">
                     <div id="rightButtons">
@@ -44,5 +47,6 @@ class AdminPage extends Component {
 }
 export default AdminPage
 $(document).ready(() => {
+
 
 });

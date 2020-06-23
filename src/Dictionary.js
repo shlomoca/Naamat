@@ -24,9 +24,11 @@ export const Dictionary = new LocalizedStrings({
     adminEditAbout: 'Edit About',
     adminAddCategory: 'Add Category',
     adminUserManagement: 'Users Management',
+    welcomeManager: `Welcome to the management platform`,
+    
 
-
-
+  //woman page
+  edit: 'Edit',
   //main user page
     about: `Na'amat is a Movement for the advancement of the Status of Women and the Social Force for women in Israel. Na'amat’s top priority is to advance and strengthen the status of women in the family and in the work force. Na'amat is striving to achieve equality between the sexes and full participation of women in social, economic and political spheres. Na'amat, previously called Moetzet Hapoalot (Council of Working Women), was established in 1921 by young working women, pioneers who came to Palestine in the early 1920’s. Moetzet Hapoalot was organized as an autonomous movement with affiliation to the Histadrut (The General Federation of Labor). Today Na'amat is a non-profit organization, a socio-political, multi-party women’s movement comprised of women from diverse sectors of the population, communities, countries of origin and religious streams.`,
     aboutTitle: "About Na'amat",
@@ -37,11 +39,11 @@ export const Dictionary = new LocalizedStrings({
     addcategory: `add category`,
     
     //forms
-    name: `Name`,
+    name: `Full Name`,
     displayname:"display name",
-    bday: `Date of birth`,
+    birth: `Date of birth`,
     submit:`Submit`, 
-    dethDay: `Date of death`,
+    death: `Date of death`,
     highlights:`Highlights`,
     biography:`Biography`,
     QuotesAnd: `Quotes and notable works`,
@@ -60,10 +62,22 @@ export const Dictionary = new LocalizedStrings({
     delete: `delete`,
     next: 'next',
     suggest: `suggest woman`,
-   
+    popup:'Please fill all details',
+    editExistVal:'Do you want to edit exist value?',
     //components
     
     builders: `This site was built by: Shlomo Carmi, Daniel Raz, Sahar Cohen, Adiel Tsayag, Matan Yemin`,
+    managmentPlatform:'managmentPlatform',
+    NaamatInFacebook: 'Naamat in Facebook',
+    NaamatInYoutube: 'Naamat in Youtube',
+    email:'Email',
+    back: 'Back',
+    areYouSure: 'Are you sure?',
+    error: 'Error',
+    uploadSuccess:'File Uploaded successfully',
+    score:'score',
+    improvement:'improvement',
+
   },
   HE: {
     //login page
@@ -79,8 +93,10 @@ export const Dictionary = new LocalizedStrings({
     adminEditAbout: 'עריכת אודות',
     adminAddCategory: 'הוסף קטגוריה',
     adminUserManagement: 'ניהול משתמשים',
+    welcomeManager: `ברוכים הבאים למערכת הניהול`,
     
-    
+  //woman page
+  edit: 'ערוך',
   //main user page
     about: `נעמת היא תנועה לקידום מעמד האישה והכוח החברתי לנשים. העדיפות העליונה של נעמת היא קידום וחיזוק מעמד האישה במשפחה ובכוח העבודה. נעמת שואפת להשיג שוויון בין המינים והשתתפות מלאה של נשים בתחומים חברתיים, כלכליים ופוליטיים. נעמת, שכונתה בעבר "מועצת הנשים העובדות", הוקמה בשנת 1921 על ידי נשים עובדות, חלוצות שהגיעו לארץ ישראל בראשית שנות העשרים. מוצת הפועלות הייתה מאורגנת כתנועה אוטונומית עם שיוך להסתדרות (הסתדרות העובדים הכללית). כיום נעמת היא ארגון ללא מטרות רווח, תנועת נשים סוציו-פוליטית ורב-מפלגתית המורכבת מנשים ממגזרים שונים באוכלוסייה, קהילות, ארצות מוצא וזרמים דתיים.`,
     aboutTitle: `אודות נעמת`,
@@ -91,11 +107,11 @@ export const Dictionary = new LocalizedStrings({
     addcategory: `הוסיפי קטגוריה`,
     
     //forms
-    name: `שם`,
+    name: `שם מלא`,
     displayname:"שם תצוגה",
-    bday: `תאריך לידה`,
+    birth: `תאריך לידה`,
     submit:`שלח`,
-    dethDay: `תאריך פטירה`,
+    death: `תאריך פטירה`,
     highlights:`תקציר`,
     biography:`ביוגרפיה`,
     QuotesAnd: `ציטוטים ויצירות בולטות`,
@@ -117,7 +133,18 @@ export const Dictionary = new LocalizedStrings({
     //components
     builders: 'אתר זה נבנה על ידי: שלמה כרמי, דניאל רז, סהר כהן, עדיאל צייג, מתן ימין',
     CategoryName:'שם קטגוריה',
-    
+    managmentPlatform: 'ממשק ניהול',
+    NaamatInFacebook: 'נעמת בפייסבוק',
+    NaamatInYoutube: 'נעמת ביוטיוב',
+    email: 'מייל',
+    back: 'חזור',
+    areYouSure: 'האם אתה בטוח ?',
+    error: 'שגיאה',
+    uploadSuccess:'ההעלאה הסתיימה בהצלחה',
+    popup:'בבקשה מלא את כל הפרטים',
+    editExistVal:'האם תרצה לערוך ערך קיים?',
+    score:'דירוג',
+    improvement:'הצעות לשיפור',
    
   },
   AR: {
@@ -134,8 +161,10 @@ export const Dictionary = new LocalizedStrings({
     adminEditAbout: 'تحرير حول',
     adminAddCategory: 'إضافة فئة',
     adminUserManagement: 'إدارةالمستخدم',
+    welcomeManager: `مرحبا بكم في نظام الإدارة`,
     
-
+   //woman page
+   edit: 'تعديل',
   //main user page
   about: "نعمات هي حركة من أجل النهوض بوضع المرأة والقوة الاجتماعية للمرأة في إسرائيل. أولوية نعمة هي تعزيز وتعزيز مكانة المرأة في الأسرة وفي القوى العاملة. تسعى نعمة إلى تحقيق المساواة بين الجنسين والمشاركة الكاملة للمرأة في المجالات الاجتماعية والاقتصادية والسياسية. تم تأسيس نعمة ، التي كانت تسمى سابقًا Moetzet Hapoalot (مجلس النساء العاملات) ، في عام 1921 على يد شابات رائدات جاءن إلى فلسطين في أوائل عشرينيات القرن العشرين. تم تنظيم Moetzet Hapoalot كحركة مستقلة مع الانتماء إلى الهستدروت (الاتحاد العام للعمل). نعمة اليوم هي منظمة غير ربحية ، وهي حركة نسائية سياسية اجتماعية متعددة الأحزاب تتألف من نساء من قطاعات متنوعة من السكان والمجتمعات المحلية وبلدان الأصل والتيارات الدينية.",
   aboutTitle: "عن نعمة",
@@ -147,9 +176,9 @@ export const Dictionary = new LocalizedStrings({
     
     //forms
     name: `اسم`,
-    bday: `تاريخ الولاده`,
+    birth: `تاريخ الولاده`,
     submit:`إرسال`, 
-    dethDay:`تاريخ الوفاة`,
+    death:`تاريخ الوفاة`,
     highlights:`تسليط الضوء`,
     biography:`سيرة شخصية`,
     QuotesAnd: `اقتباسات وأعمال بارزة`,
@@ -169,12 +198,24 @@ export const Dictionary = new LocalizedStrings({
     displayname:"اسم العرض",
     next: 'التالى',
     suggest: `توحي امرأة`,
-    
+    popup:'يرجى ملء جميع التفاصيل',
+    editExistVal:'هل تريد تحرير القيمة الموجودة؟',
     //components
     
     builders: `تم بناء هذا الموقع من قبل: شلومو كرمي ، دانيال راز ، سحر كوهين ، أديل تساياج ، ماتان يمين `,
+    managmentPlatform: 'منصة الإدارة',
+    NaamatInFacebook:  'نعمات في الفيسبك', 
+    NaamatInYoutube: 'نعمات في اليوتيوب',
+    email:'البريد الإلكتروني',
+    back: 'عودة',
+    areYouSure:'?هل أنت واثق',
+    error: 'خطأ',
+    uploadSuccess:'تم الرفع بنجاح',
+    score:'أحرز هدفا',
+    improvement:'تحسين',
     
-    //woman page
+    
+    
 
   },
 });

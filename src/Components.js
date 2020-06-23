@@ -23,7 +23,7 @@ export const NavBar = (props) => {
 
 
   if (props.admin)
-    obj = <Link to="/AdminPage"><button type="button" className="btn btn-primary nav-link" >manager</button></Link>
+    obj = <Link to="/AdminPage"><button type="button" className="btn btn-primary nav-link" >{Dictionary.managmentPlatform}</button></Link>
   else
     var obj = <button type="button" className="btn btn-primary nav-link" data-toggle="modal" data-target="#feedbackForm">{Dictionary.feedback}</button>
 
@@ -135,19 +135,36 @@ class Search extends Component {
 
   //follow after input in serach bar
   searchHandler(event) {
-    this.setState({ term: event.target.value })
-    var term = (this.state.term).toLowerCase();
-    // getWomen(term);
+    // return ()=>{
+    //       console.log("event");
+    var term = event.target.value;
+    // }
+    this.setState({ term: term })
+    if (term.length > 1) {
+      // console.log("term:" +term)
+      term = (term).toLowerCase();
+      getWomen(term);
+    }
+    else {
+      // alert("non")
+      var find = document.getElementById("womenHolder");
+      var deck = document.getElementById("deckContainer");
+      if (deck)
+        ReactDOM.unmountComponentAtNode(deck);
+      if (find)
+        ReactDOM.unmountComponentAtNode(find);
+      // document.getElementById('womanCardsContainer').innerHTML = '';
+    }
   }
 
 
   render() {
-    var term = (this.state.term).toLowerCase();
+    // var term = (this.state.term).toLowerCase();
     return (
       <form className="form-inline my-2 my-lg-0 input-group mb-3" id="search-form">
         <button id="search-btn" type="button">
           <div id="search-bar-outline">
-            <input class="form-control " onChange={this.searchHandler} type="text" placeholder={Dictionary.search} id="example-search-input4" />
+            <input class="form-control " autoComplete="off" onKeyUp={this.searchHandler} type="text" placeholder={Dictionary.search} id="example-search-input4" />
             <button id="clear-btn" type="button">
               <i class="fa fa-close" onClick={() => document.getElementById('example-search-input4').value = ''}></i>
             </button>
@@ -174,8 +191,8 @@ export const BottomBar = () => {
 
       <ScrollUpButton />
       <a>{Dictionary.builders} </a>
-      <a href="#"><img id="fblogo" src={fblogo} alt="facebook" /> נעמת בפייסבוק</a>
-      <a href="#"> <img id="ytlogo" src={ytlogo} alt="youtube" /> נעמת ביוטיוב</a>
+      <a href="#"><img id="fblogo" src={fblogo} alt="facebook" />{Dictionary.NaamatInFacebook}</a>
+      <a href="#"> <img id="ytlogo" src={ytlogo} alt="youtube" />{Dictionary.NaamatInYoutube}</a>
 
 
     </div>
@@ -198,29 +215,27 @@ export class PictursCarousel extends Component {
   }
 
   componentDidMount() {
-    var active = false;
-
     var active = true;
     var ids = this.state.ids;
     var indicators = [];
     var items = [];
     ids.forEach(id => {
-      console.log(id);
-      db.collection('women').doc(id).collection('langs').doc(Dictionary.getLanguage()).get().then(snapshot => {
+      db.collection('women').doc(id).get().then(snapshot => {
         if (snapshot.data()) {
           var data = snapshot.data();
           if (data) {
-            var id = data["id"];
-            if (id)
-              storage.ref("/" + id).child("ProfilePic").getDownloadURL().then(url => {
-                if (this.state.dataslide != 0)
-                  active = false;
-                indicators.push(<CarouselLi dataslide={this.state.dataslide} active={active} />);
-                items.push(<CarouselSlide display={data["display"]} highlights={data["highlights"]} id={id} src={url} active={active} />);
-                this.setState({ indicators: indicators });
-                this.setState({ items: items });
-                this.setState({ dataslide: this.state.dataslide + 1 });
-              });
+            // var id = data["id"];
+            if (data["ProfilePic"]) {
+              if (this.state.dataslide != 0)
+                active = false;
+              indicators.push(<CarouselLi dataslide={this.state.dataslide} active={active} />);
+              // {console.log(data["ProfilePic"])}
+              items.push(<CarouselSlide display={data["display" + Dictionary.getLanguage()]} highlights={data["highlights" + Dictionary.getLanguage()]} id={id} src={data["ProfilePic"]} active={active} />);
+              this.setState({ indicators: indicators });
+              this.setState({ items: items });
+              this.setState({ dataslide: this.state.dataslide + 1 });
+            }
+
           }
         }
       })
@@ -305,16 +320,16 @@ export const CarouselSlide = props => {
     clas = "carousel-item active";
   return (
     <div class={clas}>
-      <div class="d-block w-100 details" alt="example 1" height="500px" width="200px">
-        <h1 class="displayName">{props.display}</h1>
-        <a href={"/womanPage/" + props.id}>
+      <Link to={`/womanPage/${props.id}`}>
+        <div class="d-block w-100 details" alt="example 1" height="500px" width="200px">
+          <h1 class="displayName">{props.display}</h1>
           <img src={props.src} class="roundedImg" alt="example 1" height="150px" width="150px" />
-        </a>
+        </div>
+        <div class="carousel-caption d-none d-md-block pictureDiscription">
+          <p><h3 class="highlights">{props.highlights}</h3></p>
+        </div>
+    </Link>
       </div>
-      <div class="carousel-caption d-none d-md-block pictureDiscription">
-        <p><h3 class="highlights">{props.highlights}</h3></p>
-      </div>
-    </div>
   )
 }
 
@@ -491,7 +506,7 @@ export const FeedBackBody = (props) => {
         <td> {props.email} </td>
         <td> {props.score} </td>
         <td> {props.improvement} </td>
-        <td> <button class="btn" onClick={askAndDelete(props.name + props.email)} >מחק</button></td>
+        <td> <button class="btn" onClick={askAndDelete(props.name + props.email)} >{Dictionary.delete}</button></td>
         {/* <td> <button class="btn" onClick={deleteFeedBack(props.name + props.email)}>מחק</button> </td> */}
         {/* onclick="if (confirm('Are you...?')) commentDelete(1); return false" */}
         {/* <td> <button class="btn" onClick={() => { if (window.confirm('בטוח שתרצה למחוק?')) deleteFeedBack(props.name+props.email) } }>מחק</button> </td> */}
@@ -507,10 +522,10 @@ export const FeedBackHeader = () => {
     <thead>
       <tr>
         {/* <th> Date </th> */}
-        <th> שם </th>
-        <th> דואר אלקטרוני </th>
-        <th> דירוג </th>
-        <th> הצעות לשיפור </th>
+        <th> {Dictionary.name} </th>
+        <th> {Dictionary.email} </th>
+        <th> {Dictionary.score} </th>
+        <th> {Dictionary.improvement}  </th>
         <th> </th>
       </tr>
     </thead>
@@ -540,7 +555,7 @@ export const DisplayFeedback = (props) => {
       <table table class="table table-dark">
         <FeedBackHeader />
         {deck}
-        <button onClick={hideFeedTable()} id="backBtn" class="btn" >חזור</button>
+        <button onClick={hideFeedTable()} id="backBtn" class="btn" >{Dictionary.back}</button>
       </table>
     </div>
   )
@@ -595,7 +610,7 @@ export function askAndDelete(id) {
 
   return () => {
 
-    var del = window.confirm('בטוח שתרצה למחוק?');
+    var del = window.confirm(Dictionary.areYouSure);
     // console.log(del);
     if (del == true) {
       deleteFeedBack(id)
@@ -615,5 +630,5 @@ export function deleteFeedBack(id) {
     });
   }
   else
-    alert("שגיאה");
+    alert(Dictionary.error);
 }
