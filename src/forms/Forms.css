@@ -43,13 +43,6 @@ padding-bottom: 3%;
 
 }
 
-#step1{
-
-    /* position: absolute; */
-    /* padding-top: 1%; */
-    /* padding-left: 75%; */
-
-}
 
 #step2{
     display: none;
@@ -76,6 +69,7 @@ padding-bottom: 3%;
 {
     padding: 0vh;
     /* flex-grow: 1; */
+    display: flex;
     /* display: inline-flex; */
     white-space: nowrap;
     width: 90%;
@@ -256,6 +250,9 @@ padding-bottom: 3%;
     text-align: right;
     border-radius: 10%;
     border-color: rebeccapurple;
+    width: 100%;
+    display: flex;
+    flex-flow: column;
 }
 
 .myNewClass{
@@ -267,14 +264,14 @@ padding-bottom: 3%;
 /* #fill20,#fill21{
     display: none;
 } */
-#quotes{
+/* #quotes{
     position: absolute;
     display: flex;
     margin-top: 0%;
     width: 20%;
     left: 15%;
     flex-flow: column;
-}
+} */
 
 /* #link{
     position: absolute;
@@ -286,27 +283,22 @@ padding-bottom: 3%;
 
 #myAdd1{
     position: absolute;
-    margin-top: 5%;
+    margin-top: 0%;
     width: 10%;
-    left: 20%;
-}
-#myAdd2{
-    position: absolute;
-    margin-top: 5%;
-    width: 10%;
-    left: 65%;    
+    left: 45%;
 }
 
 /* .quotesClass{
     padding-right: 10%;
 } */
 
- #fill20{
+ /* #fill20{
     display: flex;
-    /* flex-wrap: unset; */
+    flex-wrap: unset;
     flex-flow: column;
     justify-content: space-around;
-} 
+}  */
+
 
 #death{
 
