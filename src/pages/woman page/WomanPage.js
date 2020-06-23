@@ -13,11 +13,9 @@ import { Link } from 'react-router-dom';
 const MainDetails = (props) => {
 
     return (
-        <div id="main_details" id="profilePic">
-            <img src={props.link} alt={props.display} />
+        <div id="main_details" >
+            <img id="profilePic" className="roundImage" src={props.link} alt={props.display} />
             <h1 >{props.display} </h1>
-            <p><b>{Dictionary.bday}</b>:{props.bday}</p>
-
         </div>
     );
 }
@@ -33,20 +31,19 @@ export class WomenCard extends Component {
         }
     }
 
-    // componentDidMount() {
-    //     storage.ref("/" + this.state.id).child("ProfilePic").getDownloadURL().then(url => {
-    //         this.state.url = url;
-    //     });
-    // }
+  
     render() {
         return (
-            // <Link to={"/womanPage"+this.state.id}>
+            // <Link to={"/womanPage?"}>
+                <a href={"/womanPage/"+this.state.id}>
             <div id="womanCardsContainer" >
+
                 <img id={"roundImage" + this.state.id} className="roundImage" src={this.state.url} alt={this.state.display} />
                 <h1  >{this.state.display} </h1>
                 <p>{this.state.summary}  </p>
-                <button onClick={editWoman(this.state.id)}>Edit</button>
+                <button onClick={editWoman(this.state.id)}>{Dictionary.edit}</button>
             </div>
+                </a>
             //    </Link>
         )
     }
@@ -63,7 +60,7 @@ export const WomenDeck = (props) => {
         var wName = woman["display" + Dictionary.getLanguage()];
         var sum = woman["highlights" + Dictionary.getLanguage()];
         var id = woman.id;
-        var prof = woman.ProfilePic;
+        var prof = woman["ProfilePic"];
         if (wName && sum)
             deck.push(
                 <WomenCard display={wName} summary={sum} id={id} prof={prof} />);
@@ -124,45 +121,20 @@ function deletePhoto(path) {
 
 //shows a woman by id. gets a prop called id wich should corraspond with a woman id
 export const WomanPage = (props) => {
-    var id = props.id;
+    var id = props.match.params.id;
+    // const userId = this.props.match.id;
+console.log(id);
     //get woman by id
+    // console.log()
     const woman = [];
     var obj;
 
-    // db.collection('women').doc(id).collection('langs').doc(Dictionary.getLanguage()).get().then(snapshot => {
-    //     woman.push(snapshot.data());
-    //     obj = Object.keys(woman[0]);
-    //     console.log(obj);
-    //     ReactDOM.render(
-
-    //     )
-    // })
-    // .catch(error => {
-    //     alert("woman not found");
-    //     console.log(error);
-    // });
-
     return (
         <div id="WomanPageWrapper" class="wrapper" >
-            {/* </div> */}
 
             <NavBar />
-            {/* <div id="womenHolder"  > */}
-
-            {/* 
-{ getWomen("shlomo carmi")} */}
-            {/* <MainDetails display={obj["display" + Dictionary.getLanguage()]} link={"https://naamat.org.il/wp-content/themes/Naamat-Child-Theme/images/footer-img.jpg"} bday={woman["date" + Dictionary.getLanguage()]} /> */}
-            {/* <p><b>{Dictionary.dethDay}:</b> {woman.death}</p>
-                <p><b>{Dictionary.highlights}:</b> {woman.highlights}</p>
-                <p><b>{Dictionary.biography}:</b> {woman.biography}</p>
-                <p><b>{Dictionary.QuotesAnd}:</b> {woman.quotes}</p>
-                <p><b>{Dictionary.History}:</b> {woman.historical}</p>
-                <p><b>{Dictionary.Contribution}:</b> {woman.contribution}</p>
-                <p><b>{Dictionary.facts}:</b> {woman.facts}</p>
-                <p><b>{Dictionary.media}:</b> {woman.media}</p>
-                <button onClick={deleteWoman(woman.id)} >{Dictionary.delete}</button> */}
-
-
+            <ShowWoman id={id}/>
+    
             <BottomBar />
         </div>)
 
@@ -172,40 +144,73 @@ export const WomanPage = (props) => {
 
 
 
-export class showWoman extends Component {
+
+//get women gets all women that their name is identical to the womenName atribute
+
+
+
+// const showWoman = (props) => {
+
+// }
+
+export class ShowWoman extends Component {
     constructor(props) {
         super(props);
         this.state = {
             id: props.id,
             womanData: []
+        
         }
 
     }
 
     componentWillMount() {
+        console.log(this.state.id)
+        var info = [];
+        var display="",
+        ProfilePic=""
         db.collection('women').doc(this.state.id).collection('langs').doc(Dictionary.getLanguage()).get().then(snapshot => {
-            if (snapshot.data()) {
-                var data = snapshot.data();
-                if (data) {
-                    // var id = data["id"];
-                    if (data["ProfilePic"]) { }
+            const data = snapshot.data();
+                info.push(data);
+            var details=[];
+            var alldata=info[0];
+            (Object.keys(alldata)).forEach(key => {
+                if (alldata[key]) {
+
+                    if(key==="display")
+                     display=alldata[key]; 
+                    else if(key==="ProfilePic")
+                     ProfilePic= alldata[key];
+                    else
+                    details.push(<p><b>{Dictionary[key]}:</b> {alldata[key]}</p>);
                 }
-            }
-        });
+            })
+            var both=[]
+            both.push(<MainDetails display={display} link={ProfilePic}/>);
+            both.push(details);
+            this.setState({ womanData: both,
+            id:this.state.id });
+            
+        }
+        );
     }
     render() {
-        return (this.state.womanData);
+        return (
+        <div id="shoWoman">
+            {this.state.womanData}
+        </div>
+            );
     }
 }
 
 
+
+
+
 export function getWomen(womanName) {
     if (womanName) {
-        console.log("min: " + womanName);
         var nameattr = "display" + determineLang(womanName);
-        // console.log("min: "+ womanName);
         var MaxIndex = getMaxIndex(womanName);
-        console.log("max: " + MaxIndex)
         //get all the women that ae in the lexicografical area of the search term womanName
         db.collection('women').where(nameattr, ">=", womanName).where(nameattr, "<", MaxIndex).get().then(snapshot => {
             const women = [];
@@ -217,9 +222,7 @@ export function getWomen(womanName) {
                 }
                 else
                     console.log("no data");
-
             });
-            console.log(women);
             if (women.length === 0) {
                 var find = document.getElementById("womenHolder");
                 var deck = document.getElementById("deckContainer");
@@ -311,7 +314,6 @@ export function editWoman(id) {
 
                 Object.values(info).map(fileds => {
                     Object.keys(fileds).map(key => {
-
                         $("#" + key + lang).val(fileds[key]);
                     })
                 })
@@ -324,5 +326,4 @@ export function editWoman(id) {
 
 $(document).ready(() => {
 
-    // getWomen("shlomo carmi");
 });

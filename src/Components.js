@@ -23,7 +23,7 @@ export const NavBar = (props) => {
 
 
   if (props.admin)
-    obj = <Link to="/AdminPage"><button type="button" className="btn btn-primary nav-link" >manager</button></Link>
+    obj = <Link to="/AdminPage"><button type="button" className="btn btn-primary nav-link" >{Dictionary.managmentPlatform}</button></Link>
   else
     var obj = <button type="button" className="btn btn-primary nav-link" data-toggle="modal" data-target="#feedbackForm">{Dictionary.feedback}</button>
 
@@ -136,23 +136,23 @@ class Search extends Component {
   //follow after input in serach bar
   searchHandler(event) {
     // return ()=>{
-//       console.log("event");
-var term =event.target.value;
-// }
-this.setState({ term: term })
-if(term.length>1){
-  // console.log("term:" +term)
-   term = (term).toLowerCase();
+    //       console.log("event");
+    var term = event.target.value;
+    // }
+    this.setState({ term: term })
+    if (term.length > 1) {
+      // console.log("term:" +term)
+      term = (term).toLowerCase();
       getWomen(term);
     }
-    else{
+    else {
       // alert("non")
       var find = document.getElementById("womenHolder");
       var deck = document.getElementById("deckContainer");
-      if(deck)
-      ReactDOM.unmountComponentAtNode(deck);
-      if(find)
-      ReactDOM.unmountComponentAtNode(find);
+      if (deck)
+        ReactDOM.unmountComponentAtNode(deck);
+      if (find)
+        ReactDOM.unmountComponentAtNode(find);
       // document.getElementById('womanCardsContainer').innerHTML = '';
     }
   }
@@ -164,7 +164,7 @@ if(term.length>1){
       <form className="form-inline my-2 my-lg-0 input-group mb-3" id="search-form">
         <button id="search-btn" type="button">
           <div id="search-bar-outline">
-            <input class="form-control " autocomplete="off" onKeyUp={this.searchHandler} type="text" placeholder={Dictionary.search} id="example-search-input4" />
+            <input class="form-control " autoComplete="off" onKeyUp={this.searchHandler} type="text" placeholder={Dictionary.search} id="example-search-input4" />
             <button id="clear-btn" type="button">
               <i class="fa fa-close" onClick={() => document.getElementById('example-search-input4').value = ''}></i>
             </button>
@@ -190,9 +190,9 @@ export const BottomBar = () => {
     <div id="bottom">
 
       <ScrollUpButton />
-      <a>{Dictionary.builders} </a>
-      <a href="#"><img id="fblogo" src={fblogo} alt="facebook" /> נעמת בפייסבוק</a>
-      <a href="#"> <img id="ytlogo" src={ytlogo} alt="youtube" /> נעמת ביוטיוב</a>
+      {/* <a>{Dictionary.builders} </a>
+      <a href="#"><img id="fblogo" src={fblogo} alt="facebook" />{Dictionary.NaamatInFacebook}</a>
+      <a href="#"> <img id="ytlogo" src={ytlogo} alt="youtube" />{Dictionary.NaamatInYoutube}</a> */}
 
 
     </div>
@@ -225,17 +225,17 @@ export class PictursCarousel extends Component {
           var data = snapshot.data();
           if (data) {
             // var id = data["id"];
-            if (data["ProfilePic"]){
+            if (data["ProfilePic"]) {
               if (this.state.dataslide != 0)
-              active = false;
+                active = false;
               indicators.push(<CarouselLi dataslide={this.state.dataslide} active={active} />);
               // {console.log(data["ProfilePic"])}
-              items.push(<CarouselSlide display={data["display"+Dictionary.getLanguage()]} highlights={data["highlights"+Dictionary.getLanguage()]} id={id} src={data["ProfilePic"]} active={active} />);
+              items.push(<CarouselSlide display={data["display" + Dictionary.getLanguage()]} highlights={data["highlights" + Dictionary.getLanguage()]} id={id} src={data["ProfilePic"]} active={active} />);
               this.setState({ indicators: indicators });
               this.setState({ items: items });
               this.setState({ dataslide: this.state.dataslide + 1 });
             }
-              
+
           }
         }
       })
@@ -320,16 +320,16 @@ export const CarouselSlide = props => {
     clas = "carousel-item active";
   return (
     <div class={clas}>
-      <div class="d-block w-100 details" alt="example 1" height="500px" width="200px">
-        <h1 class="displayName">{props.display}</h1>
-        <a href={"/womanPage/" + props.id}>
+      <Link to={`/womanPage/${props.id}`}>
+        <div class="d-block w-100 details" alt="example 1" height="500px" width="200px">
+          <h1 class="displayName">{props.display}</h1>
           <img src={props.src} class="roundedImg" alt="example 1" height="150px" width="150px" />
-        </a>
+        </div>
+        <div class="carousel-caption d-none d-md-block pictureDiscription">
+          <p><h3 class="highlights">{props.highlights}</h3></p>
+        </div>
+    </Link>
       </div>
-      <div class="carousel-caption d-none d-md-block pictureDiscription">
-        <p><h3 class="highlights">{props.highlights}</h3></p>
-      </div>
-    </div>
   )
 }
 
@@ -434,6 +434,34 @@ export const AfterMessage = (props) => {
   )
 }
 
+export function usersManager() {
+  $("#allAdmin").hide();
+  $("#feedBackHolder").show()
+  db.collection('users').get().then(res => {
+    const users = [];
+    res.forEach(doc => {
+      const data = doc.data();
+      if (data) {
+        users.push(data);
+        console.log(users);
+      }
+      else
+        console.log("no users");
+    });
+
+    if (users.length === 0)
+      console.log("no users");
+    else {
+      // ReactDOM.render(<usersTable users={users} />, document.getElementById('feedBackHolder'));
+    }
+  }).catch(error => console.log(error))
+
+  return (
+    <div> </div>
+  )
+
+}
+
 export function getFeedback() {
   // console.log("matan and sahar");
   //get all the women that ae in the lexicografical area of the search term womanName
@@ -472,13 +500,13 @@ export const FeedBackBody = (props) => {
   return (
 
     <thead>
-      <tr id={props.name+props.email}>
+      <tr id={props.name + props.email}>
         {/* <td> {props.date} </td> */}
         <td> {props.name} </td>
         <td> {props.email} </td>
         <td> {props.score} </td>
         <td> {props.improvement} </td>
-        <td> <button class="btn" onClick={askAndDelete(props.name + props.email)} >מחק</button></td>
+        <td> <button class="btn" onClick={askAndDelete(props.name + props.email)} >{Dictionary.delete}</button></td>
         {/* <td> <button class="btn" onClick={deleteFeedBack(props.name + props.email)}>מחק</button> </td> */}
         {/* onclick="if (confirm('Are you...?')) commentDelete(1); return false" */}
         {/* <td> <button class="btn" onClick={() => { if (window.confirm('בטוח שתרצה למחוק?')) deleteFeedBack(props.name+props.email) } }>מחק</button> </td> */}
@@ -494,10 +522,10 @@ export const FeedBackHeader = () => {
     <thead>
       <tr>
         {/* <th> Date </th> */}
-        <th> שם </th>
-        <th> דואר אלקטרוני </th>
-        <th> דירוג </th>
-        <th> הצעות לשיפור </th>
+        <th> {Dictionary.name} </th>
+        <th> {Dictionary.email} </th>
+        <th> {Dictionary.score} </th>
+        <th> {Dictionary.improvement}  </th>
         <th> </th>
       </tr>
     </thead>
@@ -527,12 +555,44 @@ export const DisplayFeedback = (props) => {
       <table table class="table table-dark">
         <FeedBackHeader />
         {deck}
-        <button onClick={hideFeedTable()} id="backBtn" class="btn" >חזור</button>
+        <button onClick={hideFeedTable()} id="backBtn" class="btn" >{Dictionary.back}</button>
       </table>
     </div>
   )
 }
 
+export const usersTableHeader = () => {
+
+  return (
+    <thead>
+      <tr>
+        {/* <th> Date </th> */}
+        <th> email </th>
+        <th> admin </th>
+        <th> </th>
+      </tr>
+    </thead>
+  )
+}
+
+
+//create users table via db data
+export const usersTable= (props) => {
+ 
+  var email,admin;
+  const vals = Object.values(props.users);
+  const deck = [];
+ 
+  return (
+    <div id="usersTable">
+      <table table class="table table-dark">
+        <usersTableHeader />
+        {deck}
+        <button onClick={hideFeedTable()} id="backBtn" class="btn" >חזור</button>
+      </table>
+    </div>
+  )
+}
 
 
 //hiding feedback table and showing the managment buttons again
@@ -542,33 +602,33 @@ function hideFeedTable(id) {
     $("#allAdmin").show();
     $("#feedBackHolder").hide()
   }
-  
+
 }
 ///////////////
 
 export function askAndDelete(id) {
-  
-    return () => {
-      
-      var del=window.confirm('בטוח שתרצה למחוק?');
-      // console.log(del);
-      if (del==true){
-        deleteFeedBack(id)
-        }
-        // return deleteFeedBack(id);
-      }
-      }
-      //delete feedback by id
+
+  return () => {
+
+    var del = window.confirm(Dictionary.areYouSure);
+    // console.log(del);
+    if (del == true) {
+      deleteFeedBack(id)
+    }
+    // return deleteFeedBack(id);
+  }
+}
+//delete feedback by id
 export function deleteFeedBack(id) {
-      
-          console.log(id);
-          if (id) {
-            db.collection('feedbacks').doc(id).delete().then(() => { 
-              
-              ReactDOM.render(<div></div>, document.getElementById(id));
-              
-            });
-          }
-          else
-            alert("שגיאה");
-      }
+
+  console.log(id);
+  if (id) {
+    db.collection('feedbacks').doc(id).delete().then(() => {
+
+      ReactDOM.render(<div></div>, document.getElementById(id));
+
+    });
+  }
+  else
+    alert(Dictionary.error);
+}

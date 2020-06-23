@@ -12,11 +12,10 @@
     position: absolute;
     margin-top:0%;
     width:100%;
-    left:30%;
-    font-size: 50px;
+    left:26%;
+    font-size: 65px;
   }
   
-
   .adminButtons {
     display: block;
     width: 100%;
@@ -46,7 +45,7 @@
     width: 450px;
     height: 100px;
     border-radius: 30px;
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     font-weight: 600;
     color: white;
     background-size: 100% 100%;
@@ -80,3 +79,15 @@
     }
   }
 
+  .backBtn{
+
+    padding-left: 3%;
+    padding-top: 1%;
+
+  }
+
+  #backBtn{
+
+    /* width: 20%; */
+    font-size: xx-large;
+  }
