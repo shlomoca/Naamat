@@ -17,7 +17,9 @@ class AdminPage extends Component {
                 <EditWomanModal/>
                 <AddCategoryModal/>
                 <FeedbackModal/>
-                <Link to="/"><button>חזור</button></Link>
+                <div class="backBtn">
+                <Link to="/"><button id="backBtn" class="btn">חזור</button></Link>
+                </div>
                 <p id="adminTitle">ברוכים הבאים למערכת הניהול</p>
                 <div id="allAdmin"> 
                 <div  class="adminButtons">
@@ -44,5 +46,6 @@ class AdminPage extends Component {
 }
 export default AdminPage
 $(document).ready(() => {
+
 
 });
