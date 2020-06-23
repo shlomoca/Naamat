@@ -81,7 +81,6 @@
 
   .backBtn{
 
-
     padding-left: 3%;
     padding-top: 1%;
 
@@ -89,6 +88,6 @@
 
   #backBtn{
 
-    width: 10%;
+    /* width: 20%; */
     font-size: xx-large;
   }

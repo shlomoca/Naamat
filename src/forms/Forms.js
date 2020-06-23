@@ -30,7 +30,7 @@ export const FeedbackModal = () => {
                             </div>
                                 <input type="text" rows="1" class="feedbacLine" id="feed_name" cols="35" name="feed_name" required />
                             <div id="email-group" class="form-group">
-                                <label id="feedLineName" for="feed_email">{Dictionary.enterMail}</label>
+                                <label id="feedLineName2" for="feed_email">{Dictionary.enterMail}</label>
                             </div>
                                 <input type="email" rows="1" class="feedbacLine" id="feed_email" cols="35" name="feed_email" required />
 
@@ -117,7 +117,7 @@ export const GenralForm = (props) => {
 
             <div id="name-group1" class="form-group">
                 {/* <label for="display"></label> */}
-                <input type="text" lang={props.lang} rows="1" class="details" cols="35" id={"display" + props.lang} name="display" placeholder={Dictionary.displayname} />
+                <input type="text" lang={props.lang} rows="1" class="displayBox" cols="35" id={"display" + props.lang} name="display" placeholder={Dictionary.displayname} />
             </div>
             <ImageUpload param1="name" param2="birth" pathEnd="/ProfilePic" param1Empty="name not enterd" param2Empty="date of birth not ented" />
 
@@ -149,15 +149,15 @@ export const GenralForm = (props) => {
 
             <div class="form-group">
                 <label class="myNewClass" for={"link" + props.lang}>
-                    <input class="myNewClass" id={"description" + i} lang={props.lang} type="text" rows="4" class="details" cols="50" name="description" placeholder="description" />
-                    <input class="myNewClass" id={"link" + i} lang={props.lang} type="text" rows="4" class="details" cols="50" name="link" placeholder="link" />
+                    <input class="myNewClass" id={"description" + i} lang={props.lang} type="text" rows="4" class="descAndLink" cols="50" name="description" placeholder="description" />
+                    <input class="myNewClass" id={"link" + i} lang={props.lang} type="text" rows="4" class="descAndLink" cols="50" name="link" placeholder="link" />
                     <a id="fill1" ></a>
                     <button onClick={(e) => {
                         e.preventDefault();
                         i++;
                         var fill = $("#fill1");
-                        fill.append(`<input id=${"description" + i}  lang = ${props.lang} type="text" rows="4" class="details" cols="50" name="description" placeholder="description" />
-                        <input id=${"link" + i} lang = ${props.lang} type="text" rows="4" class="details" cols="50" name="link" placeholder="link" />`)
+                        fill.append(`<input id=${"description" + i}  lang = ${props.lang} type="text" rows="4" class="descAndLink" cols="50" name="description" placeholder="description" />
+                        <input id=${"link" + i} lang = ${props.lang} type="text" rows="4" class="descAndLink" cols="50" name="link" placeholder="link" />`)
                         console.log(fill.num);
                     }}>add</button>
                 </label>
@@ -165,13 +165,13 @@ export const GenralForm = (props) => {
 
             <div class="form-group">
                 <label class="myNewClass" for={"reading" + props.lang}>
-                    <input class="myNewClass" id={"reading" + j} lang={props.lang} type="text" rows="4" class="details" cols="50" name="description" placeholder="further reading" />
+                    <input class="myNewClass" id={"reading" + j} lang={props.lang} type="text" rows="4" class="descAndLink" cols="50" name="description" placeholder="further reading" />
                     <a id="fill2"></a>
                     <button onClick={(e) => {
                         e.preventDefault();
                         j++;
                         var fill = $("#fill2");
-                        fill.append(`<input id=${"reading" + j} lang=${props.lang} type="text" rows="4" class="details" cols="50" name="description" placeholder="further reading" />`)
+                        fill.append(`<input id=${"reading" + j} lang=${props.lang} type="text" rows="4" class="descAndLink" cols="50" name="description" placeholder="further reading" />`)
                     }}>add</button>
                 </label>
             </div>
@@ -299,21 +299,23 @@ export const EditWomanModal = () => {
                                 <div id="name-group" class="form-group">
                                     {/* <label for="name"></label> */}
                                     <label id="lineName" for="name">{Dictionary.name}</label>
-                                    <input type="text" rows="1" class="detailsName" cols="35" id="name" name="name"  />
-
+                                    <input type="text" rows="1" class="addWomanName" cols="35" id="name" name="name"  />
+                                    </div>
                                     <div class="bdayclass">
                                         <div id="name-group" class="form-group">
                                             <div id="line2" for="birth">{Dictionary.birth}</div>
+                                            </div>
                                             <input class="details2" type="date" name="birth" id="birth" />
                                             <div class="dethDay">
                                                 <div id="name-group" class="form-group">
                                                     <label id="line3" for="death">{Dictionary.death}</label>
-                                                    <input type="date" name="death" id="death" />
+                                                    </div>
                                                 </div>
+                                                    <input type="date" name="death" id="death" />
                                             </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                        {/* </div> */}
+                                    {/* </div> */}
+                                {/* </div> */}
                                 <button id="submit1" type="button" class="btn btn-success" onClick={() => allreadyExist($("#name").val() + $("#birth").val())} >{Dictionary.next}</button>
                             </div>
                             <div id="popup">
@@ -325,9 +327,7 @@ export const EditWomanModal = () => {
                                     <GenralForm lang={langs[1]} />
                                     <GenralForm lang={langs[2]} />
                                 </div>
-
                             </div>
-
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="close" class="btn btn-secondary" onClick={resetForm("woman_form")} data-dismiss="modal">{Dictionary.close}</button>

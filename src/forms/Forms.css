@@ -46,7 +46,13 @@ padding-bottom: 3%;
 
 #step2{
     display: none;
-    margin-left: 10%;
+    margin-right: 10%;
+}
+
+#step1{
+
+
+
 }
 
 
@@ -74,10 +80,10 @@ padding-bottom: 3%;
 {
     padding: 0vh;
     /* flex-grow: 1; */
-    display: flex;
+    /* display: flex; */
     /* display: inline-flex; */
     white-space: nowrap;
-    width: 90%;
+    /* width: 90%; */
 
 }
 .langTabs{
@@ -124,12 +130,22 @@ padding-bottom: 3%;
 
 .details2{
     
-    width: 180%;
+    /* width: 180%; */
+    /* margin-top: 10%; */
+    margin-right: 58%;
+
     /* padding-top: 0%; */
     /* padding-left: 3%; */
     border-color: purple;
     /* border-radius: 5%; */
 
+}
+
+.addWomanName{
+
+    /* width: 180%; */
+    margin-left: 27.5%;
+    border-color: purple;
 }
 
 .details{
@@ -203,8 +219,11 @@ padding-bottom: 3%;
    #line2{
     font-weight:bold;
     font-size: larger;
-    padding-top: 3%;
-    padding-left: 40%;
+    /* padding-top: 3%; */
+    /* margin-right: 55%; */
+    padding-left: 11.5%;
+    font-size: xx-large;
+    /* padding-left: 40%; */
     color: purple;
     /* font-size: xx-large; */
 
@@ -214,10 +233,12 @@ padding-bottom: 3%;
 #line3{
 
     font-weight:bold;
-    font-size: larger;
-    padding-top: 5%;
+    font-size: xx-large;
+    margin-left: 10%;
+    /* padding-top: 5%; */
+    margin-top: 2%;
     border-color: purple;
-    padding-left: 33%;
+    /* padding-left: 33%; */
     color: purple;
     /* padding-right: 30%; */
 }
@@ -227,7 +248,8 @@ padding-bottom: 3%;
     /* padding-left: 0%; */
     /* padding-right: 39%; */
     font-size: x-large;
-    padding-right: 10%;
+    margin-left: 30%;
+    /* padding-right: 10%; */
     /* width: 73.5%; */
     /* padding-right: 10%; */
 }
@@ -236,10 +258,11 @@ padding-bottom: 3%;
 #lineName{
 
   font-weight:bold;
-  padding-left: 48%; 
+  /* padding-left: 48%;  */
   /* padding-top: 4%;  */
   font-size: xx-large;
   color: purple;
+  margin-left: 40%;
 }
 
 .detailsNew{
@@ -262,7 +285,7 @@ padding-bottom: 3%;
 
 .myNewClass{
 
-    padding-right: 10%;
+    /* padding-right: 10%; */
     /* padding-bottom: 20%; */
 
 }
@@ -308,9 +331,9 @@ padding-bottom: 3%;
 #death{
 
     border-color: purple;
-    width: 45%;
+    width: 40%;
     font-size: 1em;
-    margin-right: 33%;
+    margin-right: 58%;
     /* padding-right: 30%; */
     /* padding-right: 10%; */
 }
@@ -326,13 +349,17 @@ padding-bottom: 3%;
 #submit1{
 
     margin-left: 50%;
+    margin-top: 2%;
 
 }
 
 .detailsName{
 
-    padding-left: 0%;
-    width: 33%;
+    /* padding-left: 0%; */
+    /* margin-right: 40%; */
+    /* width: 33%; */
+    margin-top: 8%;
+    margin-left: 12%;
     border-color: purple;
 
 }
@@ -345,10 +372,10 @@ padding-bottom: 3%;
 .feedbacImpro{
 
     width: 53%;
-    /* padding-right: 20%; */
-    /* margin-right: 0%; */
+    /* padding-left: 20%; */
+    margin-left: 25%;
     border-color: purple;
-    margin-right: 28%;
+    /* margin-right: 28%; */
     padding-top: 20%;
     font-size: x-large;
 }
@@ -360,13 +387,27 @@ padding-bottom: 3%;
 
 #feedLineName{
 
-  margin-right: 32%;
+  /* margin-right: 28%; */
   font-weight:bold;
   /* padding-left: 48%;  */
   /* padding-top: 4%;  */
-  /* padding-left: 30%; */
+  padding-left: 57%;
   font-size: xx-large;
   color: purple;
+
+}
+
+#feedLineName2{
+
+
+ /* margin-right: 28%; */
+ font-weight:bold;
+ /* padding-left: 48%;  */
+ /* padding-top: 4%;  */
+ padding-left: 43%;
+ font-size: xx-large;
+ color: purple;
+
 
 }
 
@@ -376,5 +417,30 @@ padding-bottom: 3%;
     font-size: xx-large;
     /* font-weight:bold; */
 
+
+}
+
+.displayBox{
+
+/* padding-top: %; */
+padding-left: 0%;
+/* position: 0%; */
+/* width: 25%; */
+/* width: 100%; */
+margin-left: 29%;
+border-color: purple;
+
+}
+
+.descAndLink{
+
+ /* padding-top: %; */
+ /* padding-left: 0%; */
+ /* position: 0%; */
+ /* width: 25%; */
+ width: 110%;
+ padding-left: 40%;
+ margin-left: 10%;
+ border-color: purple;
 
 }
