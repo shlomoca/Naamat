@@ -386,6 +386,11 @@ function addWoman(e) {
                 ar[this.name] = this.value;
             }
             else {
+                if(this.name==="ProfilePic"){
+                    ar[this.name] = this.value;
+                    he[this.name] = this.value;
+                    en[this.name] = this.value;
+                }
                 gen[this.name] = this.value;
                 gen["id"] = id;
             }

@@ -29,15 +29,15 @@ export class WomenCard extends Component {
             id: props.id,
             display: props.display,
             summery: props.summery,
-            url: ''
+            url: props.prof
         }
     }
 
-    componentDidMount() {
-        storage.ref("/" + this.state.id).child("ProfilePic").getDownloadURL().then(url => {
-            this.state.url = url;
-        });
-    }
+    // componentDidMount() {
+    //     storage.ref("/" + this.state.id).child("ProfilePic").getDownloadURL().then(url => {
+    //         this.state.url = url;
+    //     });
+    // }
     render() {
         return (
             // <Link to={"/womanPage"+this.state.id}>
@@ -63,13 +63,14 @@ export const WomenDeck = (props) => {
         var wName = woman["display" + Dictionary.getLanguage()];
         var sum = woman["highlights" + Dictionary.getLanguage()];
         var id = woman.id;
+        var prof = woman.ProfilePic;
         if (wName && sum)
             deck.push(
-                <WomenCard display={wName} summary={sum} id={id} />);
+                <WomenCard display={wName} summary={sum} id={id} prof={prof} />);
     })
 
     return (
-        <div id= "deckContainer">
+        <div id="deckContainer">
             {deck}
         </div>
     )
@@ -110,22 +111,22 @@ export const WomanPage = (props) => {
 
     //     )
     // })
-        // .catch(error => {
-        //     alert("woman not found");
-        //     console.log(error);
-        // });
+    // .catch(error => {
+    //     alert("woman not found");
+    //     console.log(error);
+    // });
 
     return (
         <div id="WomanPageWrapper" class="wrapper" >
             {/* </div> */}
 
-                <NavBar />
-        {/* <div id="womenHolder"  > */}
+            <NavBar />
+            {/* <div id="womenHolder"  > */}
 
-{/* 
+            {/* 
 { getWomen("shlomo carmi")} */}
-                {/* <MainDetails display={obj["display" + Dictionary.getLanguage()]} link={"https://naamat.org.il/wp-content/themes/Naamat-Child-Theme/images/footer-img.jpg"} bday={woman["date" + Dictionary.getLanguage()]} /> */}
-                {/* <p><b>{Dictionary.dethDay}:</b> {woman.death}</p>
+            {/* <MainDetails display={obj["display" + Dictionary.getLanguage()]} link={"https://naamat.org.il/wp-content/themes/Naamat-Child-Theme/images/footer-img.jpg"} bday={woman["date" + Dictionary.getLanguage()]} /> */}
+            {/* <p><b>{Dictionary.dethDay}:</b> {woman.death}</p>
                 <p><b>{Dictionary.highlights}:</b> {woman.highlights}</p>
                 <p><b>{Dictionary.biography}:</b> {woman.biography}</p>
                 <p><b>{Dictionary.QuotesAnd}:</b> {woman.quotes}</p>
@@ -135,8 +136,8 @@ export const WomanPage = (props) => {
                 <p><b>{Dictionary.media}:</b> {woman.media}</p>
                 <button onClick={deleteWoman(woman.id)} >{Dictionary.delete}</button> */}
 
-          
-                <BottomBar />
+
+            <BottomBar />
         </div>)
 
 
@@ -210,6 +211,31 @@ export const WomanPage = (props) => {
 
 // }
 
+export class showWoman extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            id: props.id,
+            womanData: []
+        }
+
+    }
+
+    componentWillMount() {
+        db.collection('women').doc(this.state.id).collection('langs').doc(Dictionary.getLanguage()).get().then(snapshot => {
+            if (snapshot.data()) {
+                var data = snapshot.data();
+                if (data) {
+                    // var id = data["id"];
+                    if (data["ProfilePic"]) { }
+                }
+            }
+        });
+    }
+    render() {
+        return (this.state.womanData);
+    }
+}
 // export class getWomen extends Component {
 //     constructor(props) {
 //         super(props);
@@ -230,7 +256,7 @@ export const WomanPage = (props) => {
 //             //     //get a women arry with all women results for this search
 //             // }
 //             //  )   // ).catch(error => console.log(error));
-            
+
 //             //get all the women that ae in the lexicografical area of the search term womanName
 //             const women = [];
 //             db.collection('women').where(nameattr, ">=", womanName).where(nameattr, "<", MaxIndex).get().then(snapshot => {
@@ -258,16 +284,16 @@ export const WomanPage = (props) => {
 //         return (<WomenDeck cards={this.state.women} />)
 //         }
 //     }
-    
-    // // <Link to={"/womanPage"+this.state.id}>
-    // <div id="womanCardsContainer" >
-    //     <img id={"roundImage" + this.state.id} className="roundImage" src={this.state.url} alt={this.state.display} />
-    //     <h1  >{this.state.display} </h1>
-    //     <p>{this.state.summary}  </p>
-    //     <button onClick={editWoman(this.state.id)}>Edit</button>
-    // </div>
-    // //    </Link>
-    
+
+// // <Link to={"/womanPage"+this.state.id}>
+// <div id="womanCardsContainer" >
+//     <img id={"roundImage" + this.state.id} className="roundImage" src={this.state.url} alt={this.state.display} />
+//     <h1  >{this.state.display} </h1>
+//     <p>{this.state.summary}  </p>
+//     <button onClick={editWoman(this.state.id)}>Edit</button>
+// </div>
+// //    </Link>
+
 
 
 
@@ -276,10 +302,11 @@ export const WomanPage = (props) => {
 
 export function getWomen(womanName) {
     if (womanName) {
-        var nameattr="display"+determineLang(womanName);
-        console.log(nameattr);
-        var MaxIndex=getMaxIndex(womanName);
-        console.log(MaxIndex)
+        console.log("min: "+ womanName);
+        var nameattr = "display" + determineLang(womanName);
+        // console.log("min: "+ womanName);
+        var MaxIndex = getMaxIndex(womanName);
+        console.log( "max: "+MaxIndex)
         //get all the women that ae in the lexicografical area of the search term womanName
         db.collection('women').where(nameattr, ">=", womanName).where(nameattr, "<", MaxIndex).get().then(snapshot => {
             const women = [];
@@ -294,8 +321,15 @@ export function getWomen(womanName) {
 
             });
             console.log(women);
-            if (women.length === 0)
-                console.log("no women");
+            if (women.length === 0) {
+                var find = document.getElementById("womenHolder");
+                var deck = document.getElementById("deckContainer");
+                if (deck)
+                    ReactDOM.unmountComponentAtNode(deck);
+                if (find)
+                    ReactDOM.unmountComponentAtNode(find);
+            }
+
             else {
                 ReactDOM.render(<WomenDeck cards={women} />, document.getElementById('womenHolder'));
             }
@@ -344,7 +378,6 @@ function determineLang(str) {
     }
     return "HE"
 }
-
 
 //editWoman adds the infomation of a woman to the add woman model
 export function editWoman(id) {
