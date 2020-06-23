@@ -6,6 +6,7 @@ import { db } from '../config/Firebase'
 import { Dictionary, langs } from '../Dictionary';
 import ImageUpload from './ImageUpload';
 import { AfterMessage } from '../Components';
+import { editWoman } from '../pages/woman page/WomanPage';
 
 
 export const FeedbackModal = () => {
@@ -78,7 +79,7 @@ export const AddCategoryModal = () => {
                         <form dir="RTL" id="category_form" onSubmit={sub_cat} name="category_form"  >
                             <div id="name-group" class="form-group">
                                 <div id="name-group1" class="form-group">
-                                    <lable for="category_name">{Dictionary.name}</lable>
+                                    <label for="category_name">{Dictionary.name}</label>
                                     <input type="text" lang="HE" rows="1" class="details" cols="35" id="category_nameHE" name="category_name" placeholder="הכנס שם קטגוריה בעברית" required />
                                     <input type="text" lang="EN" rows="1" class="details" cols="35" id="category_nameEN" name="category_name" placeholder="הכנס שם קטגוריה באנגלית" required />
                                     <input type="text" lang="AR" rows="1" class="details" cols="35" id="category_nameAR" name="category_name" placeholder="הכנס שם קטגוריה בערבית" required />
@@ -310,7 +311,7 @@ export const EditWomanModal = () => {
                                         </div>
                                     </div>
                                 </div>
-                                <button id="submit1" type="button" class="btn btn-success" onClick={showing("#step2")} >{Dictionary.next}</button>
+                                <button id="submit1" type="button" class="btn btn-success" onClick={() => allreadyExist($("#name").val() + $("#birth").val())} >{Dictionary.next}</button>
                             </div>
                             <div id="popup">
                                 <span class="popuptext" id="myPopup">בבקשה מלא את כל הפרטים</span>
@@ -352,6 +353,26 @@ $("document").ready(function () {
 
 });
 
+//check if woman allready exist when we want to add woman 
+function allreadyExist(id) {
+
+    alert(id);
+    var woman = db.collection('women').doc(id);
+    woman.get().then(doc => {
+        if (doc.exists) {
+            var temp = window.confirm('ערך קיים האם תרצה לערוך?');
+            if (temp) {
+                showing("#step2");
+                editWoman(id);
+            }
+        }
+        else
+            showing("#step2");
+    }).catch()
+    
+
+}
+
 //add woman to database
 function addWoman(e) {
     e.preventDefault();
@@ -384,6 +405,11 @@ function addWoman(e) {
                 ar[this.name] = this.value;
             }
             else {
+                if (this.name === "ProfilePic") {
+                    ar[this.name] = this.value;
+                    he[this.name] = this.value;
+                    en[this.name] = this.value;
+                }
                 gen[this.name] = this.value;
                 gen["id"] = id;
             }
@@ -425,6 +451,10 @@ function suggestWoman() {
 function resetForm(id) {
     return () => {
         $("#" + id).trigger("reset");
+
+        $("#name").attr('readonly', false);
+        $("#birth").attr('readonly', false);
+        
         $("#step1").show();
         $("#step2").hide();
         $('#submit1').show();
@@ -433,19 +463,20 @@ function resetForm(id) {
 
 //make sure that the use enterd in step one the name and birth date
 function showing(id, id2) {
-    return () => {
-        if (!($("#name").val()) || !($("#birth").val())) {
-            $("#popup").show();
-            $("#popup").fadeOut(2000, function () {
-                // Animation complete.
-            });
-        }
-        else {
-            $(id).show();
-            $(id2).hide();
-            $("#submit1").hide()
-        }
+    // return () => {
+    // alert("in showing");
+    if (!($("#name").val()) || !($("#birth").val())) {
+        $("#popup").show();
+        $("#popup").fadeOut(2000, function () {
+            // Animation complete.
+        });
     }
+    else {
+        $(id).show();
+        $(id2).hide();
+        $("#submit1").hide()
+    }
+    // }
 
 }
 

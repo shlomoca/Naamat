@@ -47,7 +47,7 @@ padding-bottom: 3%;
 
     /* position: absolute; */
     /* padding-top: 1%; */
-    padding-left: 50%;
+    padding-left: 75%;
 
 }
 
@@ -122,12 +122,10 @@ padding-bottom: 3%;
     /* position: 0%; */
     /* width: 25%; */
     border-color: purple;
-
    
 }
 
 .detailsL{
-
 
     border-color: purple;
     /* padding-left: 20%; */
@@ -238,6 +236,7 @@ padding-bottom: 3%;
 .myNewClass{
 
     padding-right: 35%;
+    padding-bottom: 20%;
 
 }
 /* #fill20,#fill21{

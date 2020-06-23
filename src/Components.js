@@ -135,19 +135,36 @@ class Search extends Component {
 
   //follow after input in serach bar
   searchHandler(event) {
-    this.setState({ term: event.target.value })
-    var term = (this.state.term).toLowerCase();
-    // getWomen(term);
+    // return ()=>{
+//       console.log("event");
+var term =event.target.value;
+// }
+this.setState({ term: term })
+if(term.length>1){
+  // console.log("term:" +term)
+   term = (term).toLowerCase();
+      getWomen(term);
+    }
+    else{
+      // alert("non")
+      var find = document.getElementById("womenHolder");
+      var deck = document.getElementById("deckContainer");
+      if(deck)
+      ReactDOM.unmountComponentAtNode(deck);
+      if(find)
+      ReactDOM.unmountComponentAtNode(find);
+      // document.getElementById('womanCardsContainer').innerHTML = '';
+    }
   }
 
 
   render() {
-    var term = (this.state.term).toLowerCase();
+    // var term = (this.state.term).toLowerCase();
     return (
       <form className="form-inline my-2 my-lg-0 input-group mb-3" id="search-form">
         <button id="search-btn" type="button">
           <div id="search-bar-outline">
-            <input class="form-control " onChange={this.searchHandler} type="text" placeholder={Dictionary.search} id="example-search-input4" />
+            <input class="form-control " autoComplete="off" onKeyUp={this.searchHandler} type="text" placeholder={Dictionary.search} id="example-search-input4" />
             <button id="clear-btn" type="button">
               <i class="fa fa-close" onClick={() => document.getElementById('example-search-input4').value = ''}></i>
             </button>
@@ -198,29 +215,27 @@ export class PictursCarousel extends Component {
   }
 
   componentDidMount() {
-    var active = false;
-
     var active = true;
     var ids = this.state.ids;
     var indicators = [];
     var items = [];
     ids.forEach(id => {
-      console.log(id);
-      db.collection('women').doc(id).collection('langs').doc(Dictionary.getLanguage()).get().then(snapshot => {
+      db.collection('women').doc(id).get().then(snapshot => {
         if (snapshot.data()) {
           var data = snapshot.data();
           if (data) {
-            var id = data["id"];
-            if (id)
-              storage.ref("/" + id).child("ProfilePic").getDownloadURL().then(url => {
-                if (this.state.dataslide != 0)
-                  active = false;
-                indicators.push(<CarouselLi dataslide={this.state.dataslide} active={active} />);
-                items.push(<CarouselSlide display={data["display"]} highlights={data["highlights"]} id={id} src={url} active={active} />);
-                this.setState({ indicators: indicators });
-                this.setState({ items: items });
-                this.setState({ dataslide: this.state.dataslide + 1 });
-              });
+            // var id = data["id"];
+            if (data["ProfilePic"]){
+              if (this.state.dataslide != 0)
+              active = false;
+              indicators.push(<CarouselLi dataslide={this.state.dataslide} active={active} />);
+              // {console.log(data["ProfilePic"])}
+              items.push(<CarouselSlide display={data["display"+Dictionary.getLanguage()]} highlights={data["highlights"+Dictionary.getLanguage()]} id={id} src={data["ProfilePic"]} active={active} />);
+              this.setState({ indicators: indicators });
+              this.setState({ items: items });
+              this.setState({ dataslide: this.state.dataslide + 1 });
+            }
+              
           }
         }
       })
