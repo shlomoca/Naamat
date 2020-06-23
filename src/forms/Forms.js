@@ -26,18 +26,18 @@ export const FeedbackModal = () => {
                     <div class="modal-body">
                         <form dir="RTL" id="feedback_form" name="feedback_form" onSubmit={handleFeedback}  >
                             <div id="name-group" class="form-group">
-                            <label id="lineName" for="feed_name">{Dictionary.name}</label>
-                                <input type="text" rows="1" class="feedbacLine" id="feed_name" cols="35" name="feed_name" required />
+                            <label id="feedLineName" for="feed_name">{Dictionary.name}</label>
                             </div>
+                                <input type="text" rows="1" class="feedbacLine" id="feed_name" cols="35" name="feed_name" required />
                             <div id="email-group" class="form-group">
                                 <label id="feedLineName" for="feed_email">{Dictionary.enterMail}</label>
-                                <input type="email" rows="1" class="feedbacLine" id="feed_email" cols="35" name="feed_email" required />
                             </div>
+                                <input type="email" rows="1" class="feedbacLine" id="feed_email" cols="35" name="feed_email" required />
 
                         <div class="starLocation"> 
                             <div id="name-groups" classname="form-group starContainer">
                                 {/* centerd info */}
-                                <div align="center"> {Dictionary.HowWasVisit} </div>
+                                <div id="howWasVisit" align="center"> {Dictionary.HowWasVisit} </div>
                                 <div className="starrating risingstar d-flex justify-content-center flex-row-reverse">
                                     <input type="radio" className="star" id="star5" name="rating" value="5" /><label for="star5" title="5 star"></label>
                                     <input type="radio" className="star" id="star4" name="rating" value="4" /><label for="star4" title="4 star"></label>

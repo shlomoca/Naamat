@@ -52,13 +52,18 @@ padding-bottom: 3%;
 
 .feedbacLine{
 
-    /* padding-top: %; */
+    /* padding-top: 20%; */
     /* padding-left: 0%; */
     /* position: 0%; */
     /* width: 25%; */
-    width: 43%;
-    /* margin-right: 0%; */
+    /* width: 43%; */
+    /* margin-left: 20%; */
+    /* margin-top: 10%; */
+
+    /* margin-left: 60%; */
+    margin-bottom: 5%;
     border-color: purple;
+    
    
 
 
@@ -339,10 +344,11 @@ padding-bottom: 3%;
 
 .feedbacImpro{
 
-    width: 43%;
+    width: 53%;
+    /* padding-right: 20%; */
     /* margin-right: 0%; */
     border-color: purple;
-    margin-left: 28%;
+    margin-right: 28%;
     padding-top: 20%;
     font-size: x-large;
 }
@@ -354,11 +360,21 @@ padding-bottom: 3%;
 
 #feedLineName{
 
-margin-right: 32%;
-font-weight:bold;
-  padding-left: 48%; 
+  margin-right: 32%;
+  font-weight:bold;
+  /* padding-left: 48%;  */
   /* padding-top: 4%;  */
+  /* padding-left: 30%; */
   font-size: xx-large;
   color: purple;
+
+}
+
+
+#howWasVisit{
+
+    font-size: xx-large;
+    /* font-weight:bold; */
+
 
 }
