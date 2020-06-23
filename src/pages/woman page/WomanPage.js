@@ -80,18 +80,44 @@ export const WomenDeck = (props) => {
 //delete woman by id.
 export function deleteWoman(id) {
 
-    return () => {
-        console.log(id);
-        if (id) {
-            db.collection('women').doc(id).delete().then(() => {
-                alert("woman " + id + " was deleted");
-                window.location.reload();
-            });
+    // return () => {
+    var woman = db.collection('women').doc(id);
+    woman.get().then(temp => {
+        if (temp.exists) {
+            db.collection('women').doc(id).collection('langs').get().then(res => {
+                res.forEach(doc => {
+                    // first delete sub-collection
+                    doc.ref.delete();
+                })
+                db.collection('women').doc(id).delete().then(() => {
+                    alert(`user ${id} was deleted`);
+                })
+            })
         }
         else
-            alert("wrong id");
-    }
+            alert("woman not found");
+    })
+    // console.log(id);
+    // if (id) {
+    //     db.collection('women').doc(id).collection('langs').get().then(res => {
+    //         res.forEach(doc => {
+    //             // console.log(doc.ref);
+    //             doc.ref.delete();
+    //         })
+    //         db.collection('women').doc(id).delete().then(() => {
+    //             alert(`user ${id} was deleted`);
+    //         })
+    //     })
 
+    // }
+    // else
+    //     alert("wrong id");
+    // }
+
+}
+
+function deletePhoto(path) {
+    
 }
 
 
@@ -144,72 +170,7 @@ export const WomanPage = (props) => {
 
 }
 
-// class WomanPage extends Component {
 
-//     state = {
-//         women: null
-//     }
-
-//     componentDidMount() {
-//         db.collection('women').get().then(snapshot => {
-//             const women = [];
-//             snapshot.forEach(doc => {
-//                 const data = doc.data();
-//                 women.push(data);
-//             })
-//             this.setState({ women: women })
-
-//         }).catch(error => console.log(error))
-//     }
-
-//     render() {
-//         return (
-//             <div id="WomanPageWrapper" class="wrapper" >
-
-//                 <NavBar />
-//                 <FeedbackModal />
-//                 <ScrollUpButton />
-//                 <div id="womenHolder"></div>
-
-//                 {this.state.women &&
-//                     this.state.women.map(woman => {
-//                         return (
-//                             <div id="womanContainer">
-//                                 <img id="profilePic" src="https://naamat.org.il/wp-content/themes/Naamat-Child-Theme/images/footer-img.jpg" />
-
-//                                 <MainDetails display={woman["display" + Dictionary.getLanguage()]} womanName={woman["name" + Dictionary.getLanguage()]} bday={woman["date" + Dictionary.getLanguage()]} />
-
-//                                 <p><b>{Dictionary.dethDay}:</b> {woman.death}</p>
-//                                 <p><b>{Dictionary.highlights}:</b> {woman.highlights}</p>
-//                                 <p><b>{Dictionary.biography}:</b> {woman.biography}</p>
-//                                 <p><b>{Dictionary.QuotesAnd}:</b> {woman.quotes}</p>
-//                                 <p><b>{Dictionary.History}:</b> {woman.historical}</p>
-//                                 <p><b>{Dictionary.Contribution}:</b> {woman.contribution}</p>
-//                                 <p><b>{Dictionary.facts}:</b> {woman.facts}</p>
-//                                 <p><b>{Dictionary.media}:</b> {woman.media}</p>
-//                                 <button onClick={deleteWoman(woman.id)} >Delete</button>
-
-
-//                             </div>)
-//                     })}
-//                 <BottomBar />
-
-//             </div>
-
-//         )
-
-//     }
-// }
-// export default WomanPage;
-
-
-//get women gets all women that their name is identical to the womenName atribute
-
-
-
-// const showWoman = (props) => {
-
-// }
 
 export class showWoman extends Component {
     constructor(props) {
@@ -236,68 +197,6 @@ export class showWoman extends Component {
         return (this.state.womanData);
     }
 }
-// export class getWomen extends Component {
-//     constructor(props) {
-//         super(props);
-//         this.state = {
-//             womanName: props.womanName ,
-//             women : []
-//         }
-
-//     }
-
-//     componentWillMount() {
-//         var womanName = this.state.womanName;
-//         if (womanName) {
-//             var nameattr = "display" + determineLang(womanName);
-//             // console.log(nameattr);
-//             var MaxIndex = getMaxIndex(womanName);
-//             // console.log(MaxIndex)
-//             //     //get a women arry with all women results for this search
-//             // }
-//             //  )   // ).catch(error => console.log(error));
-
-//             //get all the women that ae in the lexicografical area of the search term womanName
-//             const women = [];
-//             db.collection('women').where(nameattr, ">=", womanName).where(nameattr, "<", MaxIndex).get().then(snapshot => {
-//                     snapshot.forEach(doc => {
-//                         const data = doc.data();
-//                         if (data) {
-//                             women.push(data);
-//                         }
-//                         else
-//                         console.log("no data");
-//                     })
-//                 // var data = snapshot.docs.data();
-//                 // women.push(data);
-//                 // var obj = Object.keys(women[0]);
-//                 // console.log(obj);
-//                 this.setState({ women: women });
-//             })
-//                 .catch(error => {
-//                     alert("woman not found");
-//                     console.log(error);
-//                 });
-//         }
-//     }
-//     render() {
-//         return (<WomenDeck cards={this.state.women} />)
-//         }
-//     }
-
-// // <Link to={"/womanPage"+this.state.id}>
-// <div id="womanCardsContainer" >
-//     <img id={"roundImage" + this.state.id} className="roundImage" src={this.state.url} alt={this.state.display} />
-//     <h1  >{this.state.display} </h1>
-//     <p>{this.state.summary}  </p>
-//     <button onClick={editWoman(this.state.id)}>Edit</button>
-// </div>
-// //    </Link>
-
-
-
-
-
 
 
 export function getWomen(womanName) {
@@ -387,15 +286,15 @@ export function editWoman(id) {
     db.collection('women').doc(id).get().then(doc => {
         woman = doc.data();
 
-        
-            $("#name").val(woman.name);
-            $("#name").attr('readonly', true);
 
-            $("#birth").val(woman.birth);
-            $("#birth").attr('readonly', true);
+        $("#name").val(woman.name);
+        $("#name").attr('readonly', true);
 
-            $("#death").val(woman.death);
-        
+        $("#birth").val(woman.birth);
+        $("#birth").attr('readonly', true);
+
+        $("#death").val(woman.death);
+
     })
 
     langs.forEach(lang => {

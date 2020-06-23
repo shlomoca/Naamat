@@ -2,7 +2,7 @@ import './AdminPage.css';
 import $ from 'jquery';
 import React, { Component } from 'react';
 import { NavBar, PictursCarousel, DisplayModal, BottomBar, AfterMessage, getFeedback } from '../../Components.js';
-import { getWoman, WomenCard } from '../woman page/WomanPage';
+import { getWoman, WomenCard, deleteWoman } from '../woman page/WomanPage';
 import { auth } from '../../config/Firebase';
 import { Dictionary } from '../../Dictionary';
 import { EditWomanModal, AddCategoryModal, FeedbackModal } from '../../forms/Forms';
@@ -43,6 +43,8 @@ class AdminPage extends Component {
     }
 }
 export default AdminPage
+
 $(document).ready(() => {
+//    deleteWoman("דניאל רז2020-06-10");
 
 });
