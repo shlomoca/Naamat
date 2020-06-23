@@ -24,15 +24,16 @@ export const FeedbackModal = () => {
                     </div>
                     <div class="modal-body">
                         <form dir="RTL" id="feedback_form" name="feedback_form" onSubmit={handleFeedback}  >
-
                             <div id="name-group" class="form-group">
-                                <input type="text" rows="1" class="details" id="feed_name" cols="35" name="feed_name" placeholder="name" required />
+                            <label id="lineName" for="feed_name">{Dictionary.name}</label>
+                                <input type="text" rows="1" class="feedbacLine" id="feed_name" cols="35" name="feed_name" required />
                             </div>
                             <div id="email-group" class="form-group">
-                                <input type="email" rows="1" class="details" id="feed_email" cols="35" name="feed_email" placeholder="email" required />
+                                <label id="feedLineName" for="feed_email">{Dictionary.enterMail}</label>
+                                <input type="email" rows="1" class="feedbacLine" id="feed_email" cols="35" name="feed_email" required />
                             </div>
 
-
+                        <div class="starLocation"> 
                             <div id="name-groups" classname="form-group starContainer">
                                 {/* centerd info */}
                                 <div align="center"> {Dictionary.HowWasVisit} </div>
@@ -44,10 +45,10 @@ export const FeedbackModal = () => {
                                     <input type="radio" className="star" id="star1" name="rating" value="1" /><label for="star1" title="1 star"></label>
                                 </div>
                             </div>
-
+                        </div>
                             <div id="name-group" class="form-group">
                                 {/* <label for="profession"></label> */}
-                                <textarea rows="4" class="details2" id="improvement" cols="35" name="improvement" placeholder={Dictionary.seggestions} ></textarea>
+                                <textarea rows="4" class="feedbacImpro" id="improvement" cols="35" name="improvement" placeholder={Dictionary.seggestions} ></textarea>
 
                             </div>
 

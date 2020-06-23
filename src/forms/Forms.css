@@ -57,6 +57,21 @@ padding-bottom: 3%;
 }
 
 
+.feedbacLine{
+
+    /* padding-top: %; */
+    /* padding-left: 0%; */
+    /* position: 0%; */
+    /* width: 25%; */
+    width: 43%;
+    /* margin-right: 0%; */
+    border-color: purple;
+   
+
+
+}
+
+
 .form-group
 {
     padding: 0vh;
@@ -322,5 +337,36 @@ padding-bottom: 3%;
     padding-left: 0%;
     width: 33%;
     border-color: purple;
+
+}
+
+.starLocation{
+
+    margin-left: 10%;
+}
+
+.feedbacImpro{
+
+    width: 43%;
+    /* margin-right: 0%; */
+    border-color: purple;
+    margin-left: 28%;
+    padding-top: 20%;
+    font-size: x-large;
+}
+
+#improvement{
+
+    padding-top: 10px;
+}
+
+#feedLineName{
+
+margin-right: 32%;
+font-weight:bold;
+  padding-left: 48%; 
+  /* padding-top: 4%;  */
+  font-size: xx-large;
+  color: purple;
 
 }
