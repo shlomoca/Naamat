@@ -18,14 +18,12 @@ export const Dictionary = new LocalizedStrings({
     login: `Log in`,
     
     //admin page
-    adminAddWoman: 'Add woman',
+    adminAddWoman: 'Add Woman',
     adminEditWoman: 'Edit Woman',
     adminFeedback: 'Watch Feedback',
     adminEditAbout: 'Edit About',
     adminAddCategory: 'Add Category',
-    adminAddAdmin: 'Add Admin',
-    adminRemoveAdmin: 'Remove Admin',
-
+    adminUserManagement: 'Users Management',
 
 
 
@@ -80,8 +78,7 @@ export const Dictionary = new LocalizedStrings({
     adminFeedback: 'צפייה במשובים',
     adminEditAbout: 'עריכת אודות',
     adminAddCategory: 'הוסף קטגוריה',
-    adminAddAdmin: 'הוסף מנהל',
-    adminRemoveAdmin: 'הסר מנהל',
+    adminUserManagement: 'ניהול משתמשים',
     
     
   //main user page
@@ -136,8 +133,7 @@ export const Dictionary = new LocalizedStrings({
     adminFeedback: 'ردود الفعل',
     adminEditAbout: 'تحرير حول',
     adminAddCategory: 'إضافة فئة',
-    adminAddAdmin: 'أضف المشرف',
-    adminRemoveAdmin: 'إزالة المشرف',
+    adminUserManagement: 'إدارةالمستخدم',
     
 
   //main user page

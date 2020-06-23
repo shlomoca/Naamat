@@ -1,7 +1,7 @@
 import './AdminPage.css';
 import $ from 'jquery';
 import React, { Component } from 'react';
-import { NavBar, PictursCarousel, DisplayModal, BottomBar, AfterMessage, getFeedback } from '../../Components.js';
+import { NavBar, PictursCarousel, DisplayModal, BottomBar, AfterMessage, getFeedback, usersManager } from '../../Components.js';
 import { getWoman, WomenCard } from '../woman page/WomanPage';
 import { auth } from '../../config/Firebase';
 import { Dictionary } from '../../Dictionary';
@@ -29,8 +29,8 @@ class AdminPage extends Component {
                     </div>
                     <div id="leftButtons">
                         <button class="btnhover" type="button" id="btn5" data-toggle="modal" data-target="#categoryForm"> {Dictionary.adminAddCategory} </button>
-                        <button class="btnhover" type="button" id="btn6"> {Dictionary.adminAddAdmin} </button>
-                        <button class="btnhover" type="button" id="btn7"> {Dictionary.adminRemoveAdmin} </button>
+                        <button class="btnhover" type="button" id="btn6" onClick={usersManager}> {Dictionary.adminUserManagement} </button>
+                        <button class="btnhover" type="button" id="btn7">  חסר שימוש כרגע  </button>
                         <button class="btnhover" type="button" id="btn8"> חסר שימוש כרגע </button>
                     </div>
                 </div>

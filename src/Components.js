@@ -419,6 +419,34 @@ export const AfterMessage = (props) => {
   )
 }
 
+export function usersManager() {
+  $("#allAdmin").hide();
+  $("#feedBackHolder").show()
+  db.collection('users').get().then(res => {
+    const users = [];
+    res.forEach(doc => {
+      const data = doc.data();
+      if (data) {
+        users.push(data);
+        console.log(users);
+      }
+      else
+        console.log("no users");
+    });
+
+    if (users.length === 0)
+      console.log("no users");
+    else {
+      // ReactDOM.render(<usersTable users={users} />, document.getElementById('feedBackHolder'));
+    }
+  }).catch(error => console.log(error))
+
+  return (
+    <div> </div>
+  )
+
+}
+
 export function getFeedback() {
   // console.log("matan and sahar");
   //get all the women that ae in the lexicografical area of the search term womanName
@@ -457,7 +485,7 @@ export const FeedBackBody = (props) => {
   return (
 
     <thead>
-      <tr id={props.name+props.email}>
+      <tr id={props.name + props.email}>
         {/* <td> {props.date} </td> */}
         <td> {props.name} </td>
         <td> {props.email} </td>
@@ -518,6 +546,38 @@ export const DisplayFeedback = (props) => {
   )
 }
 
+export const usersTableHeader = () => {
+
+  return (
+    <thead>
+      <tr>
+        {/* <th> Date </th> */}
+        <th> email </th>
+        <th> admin </th>
+        <th> </th>
+      </tr>
+    </thead>
+  )
+}
+
+
+//create users table via db data
+export const usersTable= (props) => {
+ 
+  var email,admin;
+  const vals = Object.values(props.users);
+  const deck = [];
+ 
+  return (
+    <div id="usersTable">
+      <table table class="table table-dark">
+        <usersTableHeader />
+        {deck}
+        <button onClick={hideFeedTable()} id="backBtn" class="btn" >חזור</button>
+      </table>
+    </div>
+  )
+}
 
 
 //hiding feedback table and showing the managment buttons again
@@ -527,33 +587,33 @@ function hideFeedTable(id) {
     $("#allAdmin").show();
     $("#feedBackHolder").hide()
   }
-  
+
 }
 ///////////////
 
 export function askAndDelete(id) {
-  
-    return () => {
-      
-      var del=window.confirm('בטוח שתרצה למחוק?');
-      // console.log(del);
-      if (del==true){
-        deleteFeedBack(id)
-        }
-        // return deleteFeedBack(id);
-      }
-      }
-      //delete feedback by id
+
+  return () => {
+
+    var del = window.confirm('בטוח שתרצה למחוק?');
+    // console.log(del);
+    if (del == true) {
+      deleteFeedBack(id)
+    }
+    // return deleteFeedBack(id);
+  }
+}
+//delete feedback by id
 export function deleteFeedBack(id) {
-      
-          console.log(id);
-          if (id) {
-            db.collection('feedbacks').doc(id).delete().then(() => { 
-              
-              ReactDOM.render(<div></div>, document.getElementById(id));
-              
-            });
-          }
-          else
-            alert("שגיאה");
-      }
+
+  console.log(id);
+  if (id) {
+    db.collection('feedbacks').doc(id).delete().then(() => {
+
+      ReactDOM.render(<div></div>, document.getElementById(id));
+
+    });
+  }
+  else
+    alert("שגיאה");
+}
