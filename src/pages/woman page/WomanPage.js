@@ -15,7 +15,7 @@ const MainDetails = (props) => {
     return (
         <div id="main_details" >
             <img id="profilePic" className="roundImage" src={props.link} alt={props.display} />
-            <h1 >{props.display} </h1>
+            <h1 id="dispName">{props.display} </h1>
         </div>
     );
 }
