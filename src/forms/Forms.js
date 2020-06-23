@@ -6,6 +6,7 @@ import { db } from '../config/Firebase'
 import { Dictionary, langs } from '../Dictionary';
 import ImageUpload from './ImageUpload';
 import { AfterMessage } from '../Components';
+import { editWoman } from '../pages/woman page/WomanPage';
 
 
 export const FeedbackModal = () => {
@@ -172,7 +173,7 @@ export const GenralForm = (props) => {
                     }}>add</button>
                 </label>
             </div>
-         </div>
+        </div>
 
     )
 }
@@ -312,7 +313,7 @@ export const EditWomanModal = () => {
                                         </div>
                                     </div>
                                 </div>
-                                <button id="submit1" type="button" class="btn btn-success" onClick={showing("#step2")} >{Dictionary.next}</button>
+                                <button id="submit1" type="button" class="btn btn-success" onClick={() => allreadyExist($("#name").val() + $("#birth").val())} >{Dictionary.next}</button>
                             </div>
                             <div id="popup">
                                 <span class="popuptext" id="myPopup">בבקשה מלא את כל הפרטים</span>
@@ -354,6 +355,26 @@ $("document").ready(function () {
 
 });
 
+//check if woman allready exist when we want to add woman 
+function allreadyExist(id) {
+
+    alert(id);
+    var woman = db.collection('women').doc(id);
+    woman.get().then(doc => {
+        if (doc.exists) {
+            var temp = window.confirm('ערך קיים האם תרצה לערוך?');
+            if (temp) {
+                showing("#step2");
+                editWoman(id);
+            }
+        }
+        else
+            showing("#step2");
+    }).catch()
+    
+
+}
+
 //add woman to database
 function addWoman(e) {
     e.preventDefault();
@@ -386,7 +407,7 @@ function addWoman(e) {
                 ar[this.name] = this.value;
             }
             else {
-                if(this.name==="ProfilePic"){
+                if (this.name === "ProfilePic") {
                     ar[this.name] = this.value;
                     he[this.name] = this.value;
                     en[this.name] = this.value;
@@ -430,6 +451,10 @@ function suggestWoman() {
 function resetForm(id) {
     return () => {
         $("#" + id).trigger("reset");
+
+        $("#name").attr('readonly', false);
+        $("#birth").attr('readonly', false);
+        
         $("#step1").show();
         $("#step2").hide();
         $('#submit1').show();
@@ -438,19 +463,20 @@ function resetForm(id) {
 
 //make sure that the use enterd in step one the name and birth date
 function showing(id, id2) {
-    return () => {
-        if (!($("#name").val()) || !($("#birth").val())) {
-            $("#popup").show();
-            $("#popup").fadeOut(2000, function () {
-                // Animation complete.
-            });
-        }
-        else {
-            $(id).show();
-            $(id2).hide();
-            $("#submit1").hide()
-        }
+    // return () => {
+    // alert("in showing");
+    if (!($("#name").val()) || !($("#birth").val())) {
+        $("#popup").show();
+        $("#popup").fadeOut(2000, function () {
+            // Animation complete.
+        });
     }
+    else {
+        $(id).show();
+        $(id2).hide();
+        $("#submit1").hide()
+    }
+    // }
 
 }
 
@@ -505,153 +531,3 @@ function sub_cat(event) {
     // stop the form from submitting the normal way and refreshing the page
     event.preventDefault();
 };
-
-    // function addLinks(e) {
-        //     e.preventDefault();
-
-//     $("#fill").append(`<input id="description" lang = `{props.lang}` type="text" rows="4" class="details" cols="50" name="description" placeholder="description" />
-//     <input id="link" lang = {props.lang} type="text" rows="4" class="details" cols="50" name="link" placeholder="link" />`)
-
-// }
-
-// //add feedback to database
-    // $("#feedback_form").submit(function (event) {
-    //     if (!$("#feedback_form").valid()) return;
-    //     // stop the form from submitting the normal way and refreshing the page
-    //     event.preventDefault();
-
-    //     var obj = {}
-    //     var id = $("#feed_name").val() + $("#feed_email").val();
-    //     var maxscoreSet = false;
-    //     $($('#feedback_form').prop('elements')).each(function () {
-    //         if (this.value) {
-    //             //if it is the stars rating
-    //             if (this.type == "radio") {
-    //                 if ($(this).is(':checked') && !maxscoreSet) {
-    //                     maxscoreSet = true;
-    //                     obj["score"] = this.value;
-    //                 }
-    //             }
-    //             else
-    //                 obj[this.id] = this.value;
-    //         }
-    //     });
-    //     console.log(obj);
-
-    //     db.collection('feedbacks').doc(id).set(obj).then(function () {
-    //         window.$("#feedbackForm").modal('hide');
-    //     });
-
-    //     // $("#afterMessage").modal('show');
-    // });
-
-    // $("#link").hide();
-    // $('select[name=type]').change(function () {
-    //     if ($('select[name=type]').val() == 'link') {
-    //         $('#link').show();
-    //     } else {
-    //         $("#link").hide();
-    //     }
-    // });
-
-
-    //add woman from the form to database
-    // $("#woman_form").submit(function (event) {
-
-    //     if (!$("#woman_form").valid()) return;
-    //     //confirm id not exeisting??
-    //     var he = {}, en = {}, ar = {}, gen = {};
-    //     var boolHe = false, boolEn = false, boolAr = false;
-
-    //     var id = $("#name").val() + $("#birth").val();
-    //     $('#submit1').show();
-
-    //     $($('#woman_form').prop('elements')).each(function () {
-    //         if (this.value) {
-    //             if (this.name === "highlights" || this.name === "display") {
-    //                 gen[this.id] = (this.value).toLowerCase();
-    //             }
-    //             if (this.lang == "EN") {
-    //                 boolEn = true;
-    //                 en["id"] = id;
-    //                 en[this.name] = this.value;
-
-    //             }
-    //             else if (this.lang == "HE") {
-    //                 boolHe = true;
-    //                 he["id"] = id;
-    //                 he[this.name] = this.value;
-    //             }
-    //             else if (this.lang == "AR") {
-    //                 boolAr = true;
-    //                 ar["id"] = id;
-    //                 ar[this.name] = this.value;
-    //             }
-    //             else {
-    //                 gen[this.name] = this.value;
-    //                 gen["id"] = id;
-    //             }
-    //         }
-    //     });
-
-
-    //     db.collection('women').doc(id).set(gen);
-    //     if (boolHe)
-    //         db.collection('women').doc(id).collection("langs").doc("HE").set(he);
-    //     if (boolEn)
-    //         db.collection('women').doc(id).collection("langs").doc("EN").set(en);
-    //     if (boolAr)
-    //         db.collection('women').doc(id).collection("langs").doc("AR").set(ar);
-    //     window.$("#staticBackdrop").modal('hide');
-    //     // $("#staticBackdrop").modal('hide');
-    //     // $("#afterMessage").modal('show');
-    //     // stop the form from submitting the normal way and refreshing the page
-    //     event.preventDefault();
-    // });
-
-
-
-    // $("#suggest_woman_form").submit(function (event) {
-    //     if (!$("#suggest_woman_form").valid()) return;
-    //     // stop the form from submitting the normal way and refreshing the page
-    //     event.preventDefault();
-    //     suggestWoman();
-    //     // $("#afterMessage").modal('show');
-    // });
-
-    //add woman from the form to database
-    // $("#category_form").submit(function (event) {
-
-    //     console.log("IM READY SHLOMO");
-    //     if (!$("#category_form").valid()) return;
-    //     //confirm id not exeisting??
-    //     var gen = {};
-    //     var id = $("#category_nameHE").val();
-    //     //  $('#submitCategory').show();
-
-    //     $($('#category_form').prop('elements')).each(function () {
-    //         if (this.value) {
-    //             gen[this.id] = this.value;
-
-    //         }
-    //     });
-    //     console.log(gen);
-    //     console.log(id);
-    //     alert("checkCategories");
-    //     db.collection('categories').doc(id).set(gen);
-    //     //window.$("#categoryForm").modal('hide');
-    //     // $("#staticBackdrop").modal('hide');
-    //     // $("#afterMessage").modal('show');
-    //     // stop the form from submitting the normal way and refreshing the page
-    //     event.preventDefault();
-    // });
-
-
-    // function hideMe() {
-//     var x = document.getElementById("submit1");
-//     if (x.style.display === "none") {
-//       x.style.display = "block";
-//     } else {
-//       x.style.display = "none";
-//     }
-//   }

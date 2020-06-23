@@ -415,15 +415,15 @@ export function editWoman(id) {
     db.collection('women').doc(id).get().then(doc => {
         woman = doc.data();
 
-        $("#name").val(woman.name);
-        $("#name").attr('readonly', true);
+        
+            $("#name").val(woman.name);
+            $("#name").attr('readonly', true);
 
-        $("#birth").val(woman.birth);
-        $("#birth").attr('readonly', true);
+            $("#birth").val(woman.birth);
+            $("#birth").attr('readonly', true);
 
-        $("#death").val(woman.death);
-        $("#death").attr('readonly', true);
-
+            $("#death").val(woman.death);
+        
     })
 
     langs.forEach(lang => {
