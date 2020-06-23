@@ -123,12 +123,12 @@ export const GenralForm = (props) => {
 
 
             {/* <div class="form-group"> */}
-            <textarea rows="4" class="detail" cols="50" name="highlights" lang={props.lang} id={"highlights" + props.lang} placeholder="Highlights"  ></textarea>
+            <textarea rows="4" class="detail" cols="50" name="highlights" lang={props.lang} id={"highlights" + props.lang} placeholder="highlights"  ></textarea>
             {/* </div> */}
 
 
             {/* <div class="form-group"> */}
-            <textarea rows="4" class="detail" cols="50" name="biography" lang={props.lang} id={"biography" + props.lang} placeholder="Biography" ></textarea>
+            <textarea rows="4" class="detail" cols="50" name="biography" lang={props.lang} id={"biography" + props.lang} placeholder="biography" ></textarea>
             {/* </div> */}
 
             {/* <div class="form-group"> */}
@@ -302,11 +302,11 @@ export const EditWomanModal = () => {
 
                                     <div class="bdayclass">
                                         <div id="name-group" class="form-group">
-                                            <div id="line2" for="birth">{Dictionary.bday}</div>
+                                            <div id="line2" for="birth">{Dictionary.birth}</div>
                                             <input class="details2" type="date" name="birth" id="birth" />
                                             <div class="dethDay">
                                                 <div id="name-group" class="form-group">
-                                                    <label id="line3" for="death">{Dictionary.dethDay}</label>
+                                                    <label id="line3" for="death">{Dictionary.death}</label>
                                                     <input type="date" name="death" id="death" />
                                                 </div>
                                             </div>
@@ -316,7 +316,7 @@ export const EditWomanModal = () => {
                                 <button id="submit1" type="button" class="btn btn-success" onClick={() => allreadyExist($("#name").val() + $("#birth").val())} >{Dictionary.next}</button>
                             </div>
                             <div id="popup">
-                                <span class="popuptext" id="myPopup">בבקשה מלא את כל הפרטים</span>
+                            <span class="popuptext" id="myPopup">{Dictionary.popup}</span>
                             </div>
                             <div id="step2">
                                 <div class="tab-content">
@@ -361,7 +361,7 @@ function allreadyExist(id) {
     var woman = db.collection('women').doc(id);
     woman.get().then(doc => {
         if (doc.exists) {
-            var temp = window.confirm('ערך קיים האם תרצה לערוך?');
+            var temp = window.confirm(Dictionary.editExistVal);
             if (temp) {
                 showing("#step2");
                 editWoman(id);

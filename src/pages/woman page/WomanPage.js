@@ -43,7 +43,7 @@ export class WomenCard extends Component {
                 <img id={"roundImage" + this.state.id} className="roundImage" src={this.state.url} alt={this.state.display} />
                 <h1  >{this.state.display} </h1>
                 <p>{this.state.summary}  </p>
-                <button onClick={editWoman(this.state.id)}>Edit</button>
+                <button onClick={editWoman(this.state.id)}>{Dictionary.edit}</button>
             </div>
             //    </Link>
         )
