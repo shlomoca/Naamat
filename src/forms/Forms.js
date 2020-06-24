@@ -25,18 +25,18 @@ export const FeedbackModal = () => {
                     <div class="modal-body">
                         <form dir="RTL" id="feedback_form" name="feedback_form" onSubmit={handleFeedback}  >
                             <div id="name-group" class="form-group">
-                                <label id="feedLineName" for="feed_name">{Dictionary.name}</label>
+                                <label id="regularLabel" for="feed_name">{Dictionary.name}</label>
                             </div>
-                            <input type="text" rows="1" class="feedbacLine" id="feed_name" cols="35" name="name" required />
+                            <input type="text" rows="1" class="regularInput" id="feed_name" cols="35" name="name" required />
                             <div id="email-group" class="form-group">
-                                <label id="feedLineName2" for="feed_email">{Dictionary.enterMail}</label>
+                                <label id="regularLabel" for="feed_email">{Dictionary.enterMail}</label>
                             </div>
-                            <input type="email" rows="1" class="feedbacLine" id="feed_email" cols="35" name="email" required />
-
+                            <input type="email" rows="1" class="regularInput" id="feed_email" cols="35" name="email" required />
+                    {/* </div> */}
+                                    <div id="howWas" classname="form-group"> {Dictionary.HowWasVisit} </div>
                             <div class="starLocation">
-                                <div id="name-groups" classname="form-group starContainer">
+                                <div  classname="form-group starContainer">
                                     {/* centerd info */}
-                                    <div id="howWasVisit" align="center"> {Dictionary.HowWasVisit} </div>
                                     <div className="starrating risingstar d-flex justify-content-center flex-row-reverse">
                                         <input type="radio" className="star" id="star5" name="rating" value="5" /><label for="star5" title="5 star"></label>
                                         <input type="radio" className="star" id="star4" name="rating" value="4" /><label for="star4" title="4 star"></label>
@@ -48,7 +48,7 @@ export const FeedbackModal = () => {
                             </div>
                             <div id="name-group" class="form-group">
                                 {/* <label for="profession"></label> */}
-                                <textarea rows="4" class="feedbacImpro" id="improvement" cols="35" name="improvement" placeholder={Dictionary.seggestions} ></textarea>
+                                <textarea rows="4" id="improvement" cols="35" name="improvement" placeholder={Dictionary.seggestions} ></textarea>
 
                             </div>
 
@@ -111,11 +111,11 @@ export const GenralForm = (props) => {
 
         <div id={props.lang} class={classAttr}>
 
-            <div id="name-group1" class="form-group">
+            <div  class="form-group">
                 {/* <label for="display"></label> */}
-                <input type="text" lang={props.lang} rows="1" class="displayBox" cols="35" id={"display" + props.lang} name="display" placeholder={Dictionary.displayname} />
-            </div>
+                <input type="text" lang={props.lang} rows="1" class="regularInput" cols="35" id={"display" + props.lang} name="display" placeholder={Dictionary.displayname} />
             <ImageUpload param1="name" param2="birth" pathEnd="/ProfilePic" param1Empty="name not enterd" param2Empty="date of birth not ented" />
+            </div>
 
 
 
@@ -143,10 +143,10 @@ export const GenralForm = (props) => {
 
             <textarea rows="4" class="detail" cols="50" name="quotes" lang={props.lang} id={"quotes" + props.lang} placeholder="Quotes and notable works" ></textarea>
 
+                <label  for={"link" + props.lang}>
             <div class="form-group">
-                <label class="myNewClass" for={"link" + props.lang}>
-                    <input class="myNewClass" id={"description" + i} lang={props.lang} type="text" rows="4" class="descAndLink" cols="50" name="description" placeholder="description" />
-                    <input class="myNewClass" id={"link" + i} lang={props.lang} type="text" rows="4" class="descAndLink" cols="50" name="link" placeholder="link" />
+                    <input class="regularInput" id={"description" + i} lang={props.lang} type="text" rows="4" cols="50" name="description" placeholder="description" />
+                    <input class="regularInput" id={"link" + i} lang={props.lang} type="text" rows="4" cols="50" name="link" placeholder="link" />
                     <a id="fill1" ></a>
                     <button onClick={(e) => {
                         e.preventDefault();
@@ -154,17 +154,17 @@ export const GenralForm = (props) => {
                         if ($("#description" + i).val())
                             if ($("#link" + i).val()) {
                                 i++;
-                                fill.append(`<input id=${"description" + i}  lang = ${props.lang} type="text" rows="4" class="descAndLink" cols="50" name="description" placeholder="description" />
-                        <input id=${"link" + i} lang = ${props.lang} type="text" rows="4" class="descAndLink" cols="50" name="link" placeholder="link" />`)
+                                fill.append(`<input id=${"description" + i}  lang = ${props.lang} type="text" rows="4" class="regularInput" cols="50" name="description" placeholder="description" />
+                        <input id=${"link" + i} lang = ${props.lang} type="text" rows="4" class="regularInput" cols="50" name="link" placeholder="link" />`)
                             }
                         // console.log(fill.num);
                     }}>add</button>
-                </label>
             </div>
+                </label>
 
             <div class="form-group">
-                <label class="myNewClass" for={"reading" + props.lang}>
-                    <input class="myNewClass" id={"reading" + j} lang={props.lang} type="text" rows="4" class="descAndLink" cols="50" name="description" placeholder="further reading" />
+                <label for={"reading" + props.lang}>
+                    <input  id={"reading" + j} lang={props.lang} type="text" rows="4" cols="50" name="description" placeholder="further reading" />
                     <a id="fill2"></a>
                     <button onClick={(e) => {
                         e.preventDefault();
@@ -172,7 +172,7 @@ export const GenralForm = (props) => {
 
                         if ($("#reading" + j).val()) {
                             j++;
-                            fill.append(`<input id=${"reading" + j} lang=${props.lang} type="text" rows="4" class="descAndLink" cols="50" name="description" placeholder="further reading" />`)
+                            fill.append(`<input id=${"reading" + j} lang=${props.lang} type="text" rows="4" cols="50" name="description" placeholder="further reading" />`)
                         }
                     }}>add</button>
                 </label>
