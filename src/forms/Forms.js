@@ -213,12 +213,12 @@ export const GenralForm = (props) => {
         <div id={props.lang} class={classAttr}>
 
             <div  class="form-group">
-                {/* <label for="display"></label> */}
                 <input type="text" lang={props.lang} rows="1" class="regularInput" cols="35" id={"display" + props.lang} name="display" placeholder={Dictionary.displayname} />
             <ImageUpload param1="name" param2="birth" pathEnd="/ProfilePic" param1Empty="name not enterd" param2Empty="date of birth not ented" />
             </div>
 
 
+            <div  class="form-group">
 
             {/* <div class="form-group"> */}
             <textarea rows="4" class="detail" cols="50" name="highlights" lang={props.lang} id={"highlights" + props.lang} placeholder="highlights"  ></textarea>
@@ -243,7 +243,8 @@ export const GenralForm = (props) => {
             {/* </div> */}
 
             <textarea rows="4" class="detail" cols="50" name="quotes" lang={props.lang} id={"quotes" + props.lang} placeholder="Quotes and notable works" ></textarea>
-
+            
+            </div>
                 <label  for={"link" + props.lang}>
             <div class="form-group">
                     <input class="regularInput" id={"description" + i} lang={props.lang} type="text" rows="4" cols="50" name="description" placeholder="description" />
@@ -273,9 +274,7 @@ export const GenralForm = (props) => {
 
                         if ($("#reading" + j).val()) {
                             j++;
-                            fill.append(`<input id=${"reading" + j} lang=${props.lang} type="text" rows="4" cols="50" name="description" placeholder="further reading" />`)
-                        }
-                    }}>add</button>
+                            fill.append(`<input id=${"reading" + j} lang=${props.lang} type="text" rows="4" cols="50" name="description" placeholder="further reading" />`)}}}>add</button>
                 </label>
             </div>
         </div>
