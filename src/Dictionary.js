@@ -101,7 +101,7 @@ export const Dictionary = new LocalizedStrings({
     adminUserManagement: 'ניהול משתמשים',
     welcomeManager: `ברוכים הבאים למערכת הניהול`,
     manageCategory: `נהל קטגוריות`,
-    addUserBtn: `הוסף משתמש`,
+    addUserBtn: `הוסיפי משתמש`,
     
   //woman page
   edit: 'ערוך',
