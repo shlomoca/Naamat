@@ -596,6 +596,8 @@ function handleFeedback(e) {
     var id = $("#feed_name").val() + $("#feed_email").val();
     var maxscoreSet = false;
     $($('#feedback_form').prop('elements')).each(function () {
+        console.log(this.name);
+        console.log(this.value);
         if (this.value) {
             //if it is the stars rating
             if (this.type == "radio") {
@@ -607,7 +609,16 @@ function handleFeedback(e) {
             else
                 obj[this.name] = this.value;
         }
+        else if (this.name === "improvement" && this.value == "") {
+            console.log("in else improv")
+            obj[this.name] = "-";
+        }
     });
+    if (!maxscoreSet) {
+        alert("נא לבחור דירוג");
+        return;
+    }
+
     obj["id"] = id;
     if (id);
     db.collection('feedback').doc(id).set(obj).then(function () {
