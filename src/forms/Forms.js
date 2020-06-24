@@ -368,31 +368,29 @@ export const EditWomanModal = () => {
                                     <li id="mylinks" class="langTabs"><a data-toggle="tab" href="#EN">English</a></li>
                                     <li id="mylinks" class="langTabs"><a data-toggle="tab" href="#AR">عربى</a></li>
                                 </ul>
-                                <div id="name-group" class="form-group">
-                                    {/* <label for="name"></label> */}
-                                    <label id="lineName" for="name">{Dictionary.name}</label>
-                                    <input type="text" rows="1" class="addWomanName" cols="35" id="name" name="name" />
+                        <div class="addWomanContainer"> 
+                                <div class="form-group">
+                                    <label class="regularLabel"  for="name">{Dictionary.name}</label>
+                                    <input class="regularInput" type="text" rows="1"  cols="35" id="name" name="name" />
                                 </div>
-                                <div class="bdayclass">
-                                    <div id="name-group" class="form-group">
-                                        <div id="line2" for="birth">{Dictionary.birth}</div>
-                                    </div>
-                                    <input class="details2" type="date" name="birth" id="birth" />
-                                    <div class="dethDay">
-                                        <div id="name-group" class="form-group">
-                                            <label id="line3" for="death">{Dictionary.death}</label>
-                                        </div>
-                                    </div>
-                                    <input type="date" name="death" id="death" />
+                                <div class="form-group">
+                                    <label class="regularLabel" for="birth">{Dictionary.birth}</label>
+                                    <input class="regularInput" type="date" rows="1"  cols="35" id="birth" name="birth" />
                                 </div>
-                                {/* </div> */}
-                                {/* </div> */}
-                                {/* </div> */}
+                                <div class="form-group">
+                                    <label class="regularLabel"  for="death">{Dictionary.death}</label>
+                                    <input class="regularInput" type="date" rows="1"  cols="35" id="death" name="death" />
+                                </div>
+                                {/* ///////////////////////////// */}
+                                <div class="form-group">
+                                    נא למלא את הפרטים לפני לחיצה על הבא
                                 <button id="submit1" type="button" class="btn btn-success" onClick={() => allreadyExist($("#name").val() + $("#birth").val())} >{Dictionary.next}</button>
+                                </div>
                             </div>
                             <div id="popup">
                                 <span class="popuptext" id="myPopup">{Dictionary.popup}</span>
                             </div>
+                        </div>
                             <div id="step2">
                                 <div class="tab-content">
                                     <GenralForm lang={langs[0]} active={true} />
