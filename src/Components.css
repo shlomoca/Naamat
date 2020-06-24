@@ -86,8 +86,7 @@
     /* margin-top: 1%;
     margin-bottom: 3%; */
     margin:auto;
-background: rgb(63,94,251);
-background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(0,212,255,1) 100%);
+background: rgb(191, 224, 232);
     border-radius: 25px;
 }
 
@@ -129,7 +128,7 @@ background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(0,212,255,1) 100%
 .highlights {
     position: absolute;
     margin-top: 13%;
-    color: rgb(206, 206, 206);
+    color: rgb(49, 49, 49);
     z-index: 5;
     /* text-align: justify ; */
     text-align: center;

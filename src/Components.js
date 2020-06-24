@@ -8,8 +8,6 @@ import { showing } from './Components.css';
 import { EditWomanModal, AddCategoryModal, FeedbackModal, SuggestWoman } from './forms/Forms';
 import { db } from './config/Firebase'
 import { Link } from 'react-router-dom';
-import LoginPage from './pages/login page/LoginPage';
-import { auth } from 'firebase';
 import { getWomen, WomenDeck } from '../src/pages/woman page/WomanPage'
 import ScrollUpButton from "react-scroll-up-button";
 import ReactDOM from 'react-dom';
@@ -160,9 +158,7 @@ class Search extends Component {
         <button id="search-btn" type="button">
           <div id="search-bar-outline">
             <input class="form-control " autoComplete="off" onKeyUp={this.searchHandler} type="text" placeholder={Dictionary.search} id="example-search-input4" />
-            <button id="clear-btn" type="button">
-              <i class="fa fa-close" onClick={() => document.getElementById('example-search-input4').value = ''}></i>
-            </button>
+
           </div>
           <i class="fa fa-search" id="search-icon"></i>
         </button>

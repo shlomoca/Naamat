@@ -110,7 +110,6 @@ export const GenralForm = (props) => {
     return (
 
         <div id={props.lang} class={classAttr}>
-
             <div id="name-group1" class="form-group">
                 {/* <label for="display"></label> */}
                 <input type="text" lang={props.lang} rows="1" class="displayBox" cols="35" id={"display" + props.lang} name="display" placeholder={Dictionary.displayname} />
@@ -143,7 +142,8 @@ export const GenralForm = (props) => {
 
             <textarea rows="4" class="detail" cols="50" name="quotes" lang={props.lang} id={"quotes" + props.lang} placeholder="Quotes and notable works" ></textarea>
 
-            <div class="form-group">
+
+            <div class="form-group" id="links-uploading">
                 <label class="myNewClass" for={"link" + props.lang}>
                     <input class="myNewClass" id={"description" + i} lang={props.lang} type="text" rows="4" class="descAndLink" cols="50" name="description" placeholder="description" />
                     <input class="myNewClass" id={"link" + i} lang={props.lang} type="text" rows="4" class="descAndLink" cols="50" name="link" placeholder="link" />
@@ -157,8 +157,8 @@ export const GenralForm = (props) => {
                                 fill.append(`<input id=${"description" + i}  lang = ${props.lang} type="text" rows="4" class="descAndLink" cols="50" name="description" placeholder="description" />
                         <input id=${"link" + i} lang = ${props.lang} type="text" rows="4" class="descAndLink" cols="50" name="link" placeholder="link" />`)
                             }
-                        // console.log(fill.num);
-                    }}>add</button>
+                    
+                    }}>{Dictionary.add}</button>
                 </label>
             </div>
 
@@ -315,9 +315,6 @@ export const EditWomanModal = () => {
                                     </div>
                                     <input type="date" name="death" id="death" />
                                 </div>
-                                {/* </div> */}
-                                {/* </div> */}
-                                {/* </div> */}
                                 <button id="submit1" type="button" class="btn btn-success" onClick={() => allreadyExist($("#name").val() + $("#birth").val())} >{Dictionary.next}</button>
                             </div>
                             <div id="popup">
@@ -550,152 +547,3 @@ function sub_cat(event) {
     event.preventDefault();
 };
 
-    // function addLinks(e) {
-        //     e.preventDefault();
-
-//     $("#fill").append(`<input id="description" lang = `{props.lang}` type="text" rows="4" class="details" cols="50" name="description" placeholder="description" />
-//     <input id="link" lang = {props.lang} type="text" rows="4" class="details" cols="50" name="link" placeholder="link" />`)
-
-// }
-
-// //add feedback to database
-// $("#feedback_form").submit(function (event) {
-//     if (!$("#feedback_form").valid()) return;
-//     // stop the form from submitting the normal way and refreshing the page
-//     event.preventDefault();
-
-//     var obj = {}
-//     var id = $("#feed_name").val() + $("#feed_email").val();
-//     var maxscoreSet = false;
-//     $($('#feedback_form').prop('elements')).each(function () {
-//         if (this.value) {
-//             //if it is the stars rating
-//             if (this.type == "radio") {
-//                 if ($(this).is(':checked') && !maxscoreSet) {
-//                     maxscoreSet = true;
-//                     obj["score"] = this.value;
-//                 }
-//             }
-//             else
-//                 obj[this.id] = this.value;
-//         }
-//     });
-//     console.log(obj);
-
-//     db.collection('feedback').doc(id).set(obj).then(function () {
-//         window.$("#feedbackForm").modal('hide');
-//     });
-
-//     // $("#afterMessage").modal('show');
-// });
-
-    // $("#link").hide();
-    // $('select[name=type]').change(function () {
-    //     if ($('select[name=type]').val() == 'link') {
-    //         $('#link').show();
-    //     } else {
-    //         $("#link").hide();
-    //     }
-    // });
-
-
-    //add woman from the form to database
-    // $("#woman_form").submit(function (event) {
-
-    //     if (!$("#woman_form").valid()) return;
-    //     //confirm id not exeisting??
-    //     var he = {}, en = {}, ar = {}, gen = {};
-    //     var boolHe = false, boolEn = false, boolAr = false;
-
-    //     var id = $("#name").val() + $("#birth").val();
-    //     $('#submit1').show();
-
-    //     $($('#woman_form').prop('elements')).each(function () {
-    //         if (this.value) {
-    //             if (this.name === "highlights" || this.name === "display") {
-    //                 gen[this.id] = (this.value).toLowerCase();
-    //             }
-    //             if (this.lang == "EN") {
-    //                 boolEn = true;
-    //                 en["id"] = id;
-    //                 en[this.name] = this.value;
-
-    //             }
-    //             else if (this.lang == "HE") {
-    //                 boolHe = true;
-    //                 he["id"] = id;
-    //                 he[this.name] = this.value;
-    //             }
-    //             else if (this.lang == "AR") {
-    //                 boolAr = true;
-    //                 ar["id"] = id;
-    //                 ar[this.name] = this.value;
-    //             }
-    //             else {
-    //                 gen[this.name] = this.value;
-    //                 gen["id"] = id;
-    //             }
-    //         }
-    //     });
-
-
-    //     db.collection('women').doc(id).set(gen);
-    //     if (boolHe)
-    //         db.collection('women').doc(id).collection("langs").doc("HE").set(he);
-    //     if (boolEn)
-    //         db.collection('women').doc(id).collection("langs").doc("EN").set(en);
-    //     if (boolAr)
-    //         db.collection('women').doc(id).collection("langs").doc("AR").set(ar);
-    //     window.$("#staticBackdrop").modal('hide');
-    //     // $("#staticBackdrop").modal('hide');
-    //     // $("#afterMessage").modal('show');
-    //     // stop the form from submitting the normal way and refreshing the page
-    //     event.preventDefault();
-    // });
-
-
-
-    // $("#suggest_woman_form").submit(function (event) {
-    //     if (!$("#suggest_woman_form").valid()) return;
-    //     // stop the form from submitting the normal way and refreshing the page
-    //     event.preventDefault();
-    //     suggestWoman();
-    //     // $("#afterMessage").modal('show');
-    // });
-
-    //add woman from the form to database
-    // $("#category_form").submit(function (event) {
-
-    //     console.log("IM READY SHLOMO");
-    //     if (!$("#category_form").valid()) return;
-    //     //confirm id not exeisting??
-    //     var gen = {};
-    //     var id = $("#category_nameHE").val();
-    //     //  $('#submitCategory').show();
-
-    //     $($('#category_form').prop('elements')).each(function () {
-    //         if (this.value) {
-    //             gen[this.id] = this.value;
-
-    //         }
-    //     });
-    //     console.log(gen);
-    //     console.log(id);
-    //     alert("checkCategories");
-    //     db.collection('categories').doc(id).set(gen);
-    //     //window.$("#categoryForm").modal('hide');
-    //     // $("#staticBackdrop").modal('hide');
-    //     // $("#afterMessage").modal('show');
-    //     // stop the form from submitting the normal way and refreshing the page
-    //     event.preventDefault();
-    // });
-
-
-    // function hideMe() {
-//     var x = document.getElementById("submit1");
-//     if (x.style.display === "none") {
-//       x.style.display = "block";
-//     } else {
-//       x.style.display = "none";
-//     }
-//   }

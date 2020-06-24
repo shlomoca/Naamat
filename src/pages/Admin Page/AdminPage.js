@@ -5,8 +5,6 @@ import { NavBar, PictursCarousel, DisplayModal, BottomBar, AfterMessage, usersMa
 import { getWoman, WomenCard } from '../woman page/WomanPage';
 import { Dictionary } from '../../Dictionary';
 import { EditWomanModal, AddCategoryModal, FeedbackModal } from '../../forms/Forms';
-import { scryRenderedComponentsWithType } from 'react-dom/test-utils';
-import { Link } from 'react-router-dom';
 import { db } from '../../config/Firebase';
 import ReactDOM from 'react-dom';
 
