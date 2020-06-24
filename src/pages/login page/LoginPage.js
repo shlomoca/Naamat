@@ -135,17 +135,23 @@ export class LoginComponent extends Component {
             var userEmail = sessionStorage.getItem("userEmail");
 
             db.collection('users').doc(userEmail).get().then(res => {
-                this.setState({ permission: res.data().admin });
+                if (res.data()) {
+                    this.setState({ permission: res.data().admin });
 
-                if (this.state.permission) {
-                    // admin rout
-                    this.setState({ page: this.renderAdminDiv() });
+                    if (this.state.permission) {
+                        // admin rout
+                        this.setState({ page: this.renderAdminDiv() });
+                    }
+                    else {
+
+                        // visitor rout
+                        this.setState({ page: this.renderVisitorDiv() });
+                    }
                 }
                 else {
-
-                    // visitor rout
-                    this.setState({ page: this.renderVisitorDiv() });
-                }
+                    alert(Dictionary.userDoesntExists)
+                    this.setState({ page: <LoginPage /> })
+                };
             });
         }
         else {
@@ -170,7 +176,7 @@ export class LoginComponent extends Component {
         ReactDOM.render(
             <Router>
                 <Route exact path="/" component={MainUserPage} />
-                <Route path="/WomanPage" component={props => <WomanPage {...props}  />} />
+                <Route path="/WomanPage" component={props => <WomanPage {...props} />} />
                 <Route path="/Category" component={Category} />
             </Router>, document.getElementById('root')
         );
