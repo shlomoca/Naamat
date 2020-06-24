@@ -186,14 +186,12 @@ export const AddCategoryModal = () => {
                     </div>
                     <div class="modal-body">
                         <form dir="RTL" id="category_form" onSubmit={sub_cat} name="category_form"  >
-                            <div id="name-group" class="form-group">
-                                <div id="name-group1" class="form-group">
-                                    <label class="regularLabel" for="category_name">{Dictionary.name}</label>
-                                    <input type="text" lang="HE" rows="1" class="details" cols="35" id="category_nameHE" name="category_name" placeholder="הכנס שם קטגוריה בעברית" required />
-                                    <input type="text" lang="EN" rows="1" class="details" cols="35" id="category_nameEN" name="category_name" placeholder="הכנס שם קטגוריה באנגלית" required />
-                                    <input type="text" lang="AR" rows="1" class="details" cols="35" id="category_nameAR" name="category_name" placeholder="הכנס שם קטגוריה בערבית" required />
+                                <div class="form-group">
+                                    {/* <label class="regularLabel" for="category_name">{Dictionary.name}</label> */}
+                                    <input type="text" lang="HE" rows="1" cols="35" id="category_nameHE" name="category_name" placeholder="הכניסי שם קטגוריה בעברית" required />
+                                    <input type="text" lang="EN" rows="1" cols="35" id="category_nameEN" name="category_name" placeholder="הכניסי שם קטגוריה באנגלית" required />
+                                    <input type="text" lang="AR" rows="1" cols="35" id="category_nameAR" name="category_name" placeholder="הכניסי שם קטגוריה בערבית" required />
                                 </div>
-                            </div>
                             <div id="image-group" class="form-group">
                                 <ImageUpload param1="category_nameHE" param1Empty="category name not enterd" />
                             </div>
@@ -228,28 +226,28 @@ export const GenralForm = (props) => {
             <div class="form-group">
 
                 {/* <div class="form-group"> */}
-                <textarea rows="4" class="detail" cols="50" name="highlights" lang={props.lang} id={"highlights" + props.lang} placeholder="highlights"  ></textarea>
+                <textarea rows="4" cols="50" name="highlights" lang={props.lang} id={"highlights" + props.lang} placeholder="highlights"  ></textarea>
                 {/* </div> */}
 
 
                 {/* <div class="form-group"> */}
-                <textarea rows="4" class="detail" cols="50" name="biography" lang={props.lang} id={"biography" + props.lang} placeholder="biography" ></textarea>
+                <textarea rows="4" cols="50" name="biography" lang={props.lang} id={"biography" + props.lang} placeholder="biography" ></textarea>
                 {/* </div> */}
 
                 {/* <div class="form-group"> */}
-                <textarea rows="4" class="detail" cols="50" name="history" lang={props.lang} id={"historical" + props.lang} placeholder="Historical events related" ></textarea>
+                <textarea rows="4" cols="50" name="history" lang={props.lang} id={"historical" + props.lang} placeholder="Historical events related" ></textarea>
                 {/* </div> */}
 
                 {/* <div class="form-group"> */}
-                <textarea rows="4" class="detail" cols="50" name="feminism" lang={props.lang} id={"contribution" + props.lang} placeholder="Contribution to Feminism" ></textarea>
+                <textarea rows="4" cols="50" name="feminism" lang={props.lang} id={"contribution" + props.lang} placeholder="Contribution to Feminism" ></textarea>
                 {/* </div> */}
 
 
                 {/* <div class="form-group"> */}
-                <textarea rows="4" class="detail" cols="50" name="facts" lang={props.lang} id={"facts" + props.lang} placeholder="Interesting fact / story" ></textarea>
+                <textarea rows="4" cols="50" name="facts" lang={props.lang} id={"facts" + props.lang} placeholder="Interesting fact / story" ></textarea>
                 {/* </div> */}
 
-                <textarea rows="4" class="detail" cols="50" name="quotes" lang={props.lang} id={"quotes" + props.lang} placeholder="Quotes and notable works" ></textarea>
+                <textarea rows="4" cols="50" name="quotes" lang={props.lang} id={"quotes" + props.lang} placeholder="Quotes and notable works" ></textarea>
 
             </div>
             <div class="form-group">
