@@ -95,26 +95,26 @@ function newUserHandler(e) {
 
     var email = $("#email").val();
     var password = $("#password").val();
-    var admin = $("#adminSelect").val();
+    var admin = $("#adminSelect").val()? true : false;
     // console.log(email, password, admin);
+    var obj = {};
+    obj["email"] = email;
+    obj["id"] = email;
+    obj["superUser"] = false;
+    obj["admin"] = admin;
+    console.log(obj);
+    console.log(email);
 
-    auth.createUserWithEmailAndPassword(email, password).then(() => {
-        var obj = {};
-        obj["email"] = email;
-        obj["id"] = email;
-        obj["superUser"] = false;
-        obj["admin"] = admin;
-        console.log(obj);
-
-        db.collection("users").doc(email).set(obj);
-        window.location.reload();
-        alert("New User added!")
-        
+    db.collection('users').doc(email).set(obj).then(() => {
+        auth.createUserWithEmailAndPassword(email, password).then(() => {
+            alert(Dictionary.userAddedSuccefully);
+            window.location.reload();
+        }).catch(function (error) {
+            alert(error)
+        });
     }).catch(function (error) {
         alert(error)
     });
-    
-    window.$("#newUserModal").modal('hide');
 }
 
 export const FeedbackModal = () => {
@@ -139,10 +139,10 @@ export const FeedbackModal = () => {
                                 <label class="regularLabel" for="feed_email">{Dictionary.enterMail}</label>
                             </div>
                             <input type="email" rows="1" class="regularInput" id="feed_email" cols="35" name="email" required />
-                    {/* </div> */}
-                                    <div id="howWas" classname="form-group"> {Dictionary.HowWasVisit} </div>
+                            {/* </div> */}
+                            <div id="howWas" classname="form-group"> {Dictionary.HowWasVisit} </div>
                             <div class="starLocation">
-                                <div  classname="form-group starContainer">
+                                <div classname="form-group starContainer">
                                     {/* centerd info */}
                                     <div className="starrating risingstar d-flex justify-content-center flex-row-reverse">
                                         <input type="radio" className="star" id="star5" name="rating" value="5" /><label for="star5" title="5 star"></label>
@@ -218,38 +218,38 @@ export const GenralForm = (props) => {
 
         <div id={props.lang} class={classAttr}>
 
-            <div  class="form-group">
+            <div class="form-group">
                 <input type="text" lang={props.lang} rows="1" class="regularInput" cols="35" id={"display" + props.lang} name="display" placeholder={Dictionary.displayname} />
-            <ImageUpload param1="name" param2="birth" pathEnd="/ProfilePic" param1Empty="name not enterd" param2Empty="date of birth not ented" />
+                <ImageUpload param1="name" param2="birth" pathEnd="/ProfilePic" param1Empty="name not enterd" param2Empty="date of birth not ented" />
             </div>
 
 
-            <div  class="form-group">
+            <div class="form-group">
 
-            {/* <div class="form-group"> */}
-            <textarea rows="4" class="detail" cols="50" name="highlights" lang={props.lang} id={"highlights" + props.lang} placeholder="highlights"  ></textarea>
-            {/* </div> */}
-
-
-            {/* <div class="form-group"> */}
-            <textarea rows="4" class="detail" cols="50" name="biography" lang={props.lang} id={"biography" + props.lang} placeholder="biography" ></textarea>
-            {/* </div> */}
-
-            {/* <div class="form-group"> */}
-            <textarea rows="4" class="detail" cols="50" name="history" lang={props.lang} id={"historical" + props.lang} placeholder="Historical events related" ></textarea>
-            {/* </div> */}
-
-            {/* <div class="form-group"> */}
-            <textarea rows="4" class="detail" cols="50" name="feminism" lang={props.lang} id={"contribution" + props.lang} placeholder="Contribution to Feminism" ></textarea>
-            {/* </div> */}
+                {/* <div class="form-group"> */}
+                <textarea rows="4" class="detail" cols="50" name="highlights" lang={props.lang} id={"highlights" + props.lang} placeholder="highlights"  ></textarea>
+                {/* </div> */}
 
 
-            {/* <div class="form-group"> */}
-            <textarea rows="4" class="detail" cols="50" name="facts" lang={props.lang} id={"facts" + props.lang} placeholder="Interesting fact / story" ></textarea>
-            {/* </div> */}
+                {/* <div class="form-group"> */}
+                <textarea rows="4" class="detail" cols="50" name="biography" lang={props.lang} id={"biography" + props.lang} placeholder="biography" ></textarea>
+                {/* </div> */}
 
-            <textarea rows="4" class="detail" cols="50" name="quotes" lang={props.lang} id={"quotes" + props.lang} placeholder="Quotes and notable works" ></textarea>
-            
+                {/* <div class="form-group"> */}
+                <textarea rows="4" class="detail" cols="50" name="history" lang={props.lang} id={"historical" + props.lang} placeholder="Historical events related" ></textarea>
+                {/* </div> */}
+
+                {/* <div class="form-group"> */}
+                <textarea rows="4" class="detail" cols="50" name="feminism" lang={props.lang} id={"contribution" + props.lang} placeholder="Contribution to Feminism" ></textarea>
+                {/* </div> */}
+
+
+                {/* <div class="form-group"> */}
+                <textarea rows="4" class="detail" cols="50" name="facts" lang={props.lang} id={"facts" + props.lang} placeholder="Interesting fact / story" ></textarea>
+                {/* </div> */}
+
+                <textarea rows="4" class="detail" cols="50" name="quotes" lang={props.lang} id={"quotes" + props.lang} placeholder="Quotes and notable works" ></textarea>
+
             </div>
             <div class="form-group">
                 <label  for={"link" + props.lang}> </label>
@@ -270,7 +270,7 @@ export const GenralForm = (props) => {
 
             <div class="form-group">
                 <label for={"reading" + props.lang}>
-                    <input  id={"reading" + j} lang={props.lang} type="text" rows="4" cols="50" name="description" placeholder="further reading" />
+                    <input id={"reading" + j} lang={props.lang} type="text" rows="4" cols="50" name="description" placeholder="further reading" />
                     <a id="fill2"></a>
                     <button onClick={(e) => {
                         e.preventDefault();
@@ -402,22 +402,22 @@ export const EditWomanModal = () => {
                                     <li id="mylinks" class="langTabs"><a data-toggle="tab" href="#EN">English</a></li>
                                     <li id="mylinks" class="langTabs"><a data-toggle="tab" href="#AR">عربى</a></li>
                                 </ul>
-                        <div class="addWomanContainer"> 
-                                <div class="form-group">
-                                    <label class="regularLabel"  for="name">{Dictionary.name}</label>
-                                    <input class="regularInput" type="text" rows="1"  cols="35" id="name" name="name" required />
-                                </div>
-                                <div class="form-group">
-                                    <label class="regularLabel" for="birth">{Dictionary.birth}</label>
-                                    <input class="regularInput" type="date" rows="1"  cols="35" id="birth" name="birth" required />
-                                </div>
-                                <div class="form-group">
-                                    <label class="regularLabel"  for="death">{Dictionary.death}</label>
-                                    <input class="regularInput" type="date" rows="1"  cols="35" id="death" name="death" />
-                                </div>
-                                {/* ///////////////////////////// */}
-                                <div class="form-group">
-                                    נא למלא את הפרטים לפני לחיצה על הבא
+                                <div class="addWomanContainer">
+                                    <div class="form-group">
+                                        <label class="regularLabel" for="name">{Dictionary.name}</label>
+                                        <input class="regularInput" type="text" rows="1" cols="35" id="name" name="name" required />
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="regularLabel" for="birth">{Dictionary.birth}</label>
+                                        <input class="regularInput" type="date" rows="1" cols="35" id="birth" name="birth" required />
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="regularLabel" for="death">{Dictionary.death}</label>
+                                        <input class="regularInput" type="date" rows="1" cols="35" id="death" name="death" />
+                                    </div>
+                                    {/* ///////////////////////////// */}
+                                    <div class="form-group">
+                                        נא למלא את הפרטים לפני לחיצה על הבא
                                 <button id="submit1" type="button" class="btn btn-success" onClick={() => allreadyExist($("#name").val() + $("#birth").val())} >{Dictionary.next}</button>
                                     </div>
                                 </div>
