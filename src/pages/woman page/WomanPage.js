@@ -2,9 +2,9 @@ import './WomanPage.css';
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { NavBar, BottomBar } from '../../Components';
-import { db } from '../../config/Firebase'
+import { db ,storage} from '../../config/Firebase'
 import { Dictionary, langs } from '../../Dictionary';
-import {allreadyExist} from '../../forms/Forms'
+import { allreadyExist } from '../../forms/Forms'
 import $ from 'jquery';
 
 
@@ -42,7 +42,7 @@ export class WomenCard extends Component {
                     <p>{this.state.summary}  </p>
                     <button onClick={(e) => {
                         e.preventDefault();
-                        allreadyExist(this.state.id,true);
+                        allreadyExist(this.state.id, true);
                     }}>{Dictionary.edit}</button>
                 </div>
             </a>
@@ -92,6 +92,7 @@ export function deleteWoman(id) {
                     alert(`user ${id} was deleted`);
                 })
             })
+            deletePhoto(id);
         }
         else
             alert("woman not found");
@@ -115,7 +116,22 @@ export function deleteWoman(id) {
 
 }
 
-function deletePhoto(path) {
+function deletePhoto(id) {
+    // Since you mentioned your images are in a folder,
+    // we'll create a Reference to that folder:
+    var storageRef = storage.ref(id);
+    // Now we get the references of these images
+    storageRef.listAll().then(function(result) {
+      result.items.forEach(function(imageRef) {
+        // And finally display them
+        
+        imageRef.delete();
+      });
+    }).catch(function(error) {
+      // Handle any errors
+    });
+
+    
 
 }
 
@@ -135,7 +151,7 @@ export const WomanPage = (props) => {
         <div id="WPcover" className="cover">
             <div id="WomanPageWrapper" class="wrapper" >
                 <NavBar />
-                <ShowWoman id={id} />
+                <ShowWoman id={id} fields={["highlights", "biography", "histoy", "feminism", "facts", "quotes"]} />
             </div>
             <BottomBar />
         </div>
@@ -150,18 +166,12 @@ export const WomanPage = (props) => {
 
 
 //get women gets all women that their name is identical to the womenName atribute
-
-
-
-// const showWoman = (props) => {
-
-// }
-
 export class ShowWoman extends Component {
     constructor(props) {
         super(props);
         this.state = {
             id: props.id,
+            fields: props.fields,
             womanData: []
 
         }
@@ -169,32 +179,23 @@ export class ShowWoman extends Component {
     }
 
     componentWillMount() {
-
-        console.log(this.state.id)
-        var info = [];
-        var display = "",
-            ProfilePic = ""
+        var info = [],
+            page = [];
         db.collection('women').doc(this.state.id).collection('langs').doc(Dictionary.getLanguage()).get().then(snapshot => {
             const data = snapshot.data();
             info.push(data);
-            var details = [];
             var alldata = info[0];
-            (Object.keys(alldata)).forEach(key => {
-                if (alldata[key]) {
-
-                    if (key === "display")
-                        display = alldata[key];
-                    else if (key === "ProfilePic")
-                        ProfilePic = alldata[key];
-                    else
-                        details.push(<p><b>{Dictionary[key]}:</b> {alldata[key]}</p>);
-                }
-            })
-            var both = []
-            both.push(<MainDetails display={display} link={ProfilePic} />);
-            both.push(details);
+            if (alldata) {
+                page.push(<MainDetails display={alldata["display"]} link={alldata["ProfilePic"]} />);
+                (Object.values(this.state.fields)).forEach(key => {
+                    if (alldata[key])
+                        page.push(<p><b>{Dictionary[key]}:</b> {alldata[key]}</p>);
+                })
+            }
+            else
+                alert(Dictionary.nothingToShow)
             this.setState({
-                womanData: both,
+                womanData: page,
                 id: this.state.id
             });
 
