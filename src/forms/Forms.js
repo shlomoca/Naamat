@@ -96,14 +96,12 @@ function newUserHandler(e) {
     var email = $("#email").val();
     var password = $("#password").val();
     var admin = $("#adminSelect").val()? true : false;
-    // console.log(email, password, admin);
+   
     var obj = {};
     obj["email"] = email;
     obj["id"] = email;
     obj["superUser"] = false;
     obj["admin"] = admin;
-    console.log(obj);
-    console.log(email);
 
     db.collection('users').doc(email).set(obj).then(() => {
         auth.createUserWithEmailAndPassword(email, password).then(() => {
@@ -253,33 +251,35 @@ export const GenralForm = (props) => {
 
             </div>
             <div class="form-group">
-                <label  for={"link" + props.lang}> </label>
-                    <input class="regularInput" id={"description" + i} lang={props.lang} type="text" rows="4" cols="50" name="description" placeholder="description" />
-                    <input class="regularInput" id={"link" + i} lang={props.lang} type="text" rows="4" cols="50" name="link" placeholder="link" />
-                    <a id="fill1" ></a>
-                    <button id="addBtn" onClick={(e) => {
-                        e.preventDefault();
-                        var fill = $("#fill1");
-                        if ($("#description" + i).val())
-                            if ($("#link" + i).val()) {
-                                i++;
-                                fill.append(`<input id=${"description" + i}  lang = ${props.lang} type="text" rows="4" class="regularInput" cols="50" name="description" placeholder="description" />
-                        <input id=${"link" + i} lang = ${props.lang} type="text" rows="4" class="regularInput" cols="50" name="link" placeholder="link" />`)
-                            }
-                    }}>{Dictionary.addMore}</button>
+                <label for={"link" + props.lang}> </label>
+                <input class="regularInput" id={"description" + props.lang + i} lang={props.lang} type="text" rows="4" cols="50" name="description" placeholder="description" />
+                <input class="regularInput" id={"link" + props.lang + i} lang={props.lang} type="text" rows="4" cols="50" name="link" placeholder="link" />
+                <a id={"fill1" + props.lang} ></a>
+                <button id="addBtn" onClick={(e) => {
+                    e.preventDefault();
+                    var fill = $("#fill1" + props.lang);
+                    if ($("#description" + props.lang + i).val())
+                        if ($("#link" + props.lang + i).val()) {
+                            i++;
+                            fill.append(`<input id=${"description" + props.lang + i}  lang = ${props.lang} type="text" rows="4" class="regularInput" cols="50" name="description" placeholder="description" />
+                        <input id=${"link" + props.lang + i} lang = ${props.lang} type="text" rows="4" class="regularInput" cols="50" name="link" placeholder="link" />`)
+                        }
+                }}>{Dictionary.addMore}</button>
             </div>
 
             <div class="form-group">
                 <label for={"reading" + props.lang}>
-                    <input id={"reading" + j} lang={props.lang} type="text" rows="4" cols="50" name="description" placeholder="further reading" />
-                    <a id="fill2"></a>
+                    <input id={"reading" + props.lang + j} lang={props.lang} type="text" rows="4" cols="50" name="description" placeholder="further reading" />
+                    <a id={"fill2" + props.lang}></a>
                     <button onClick={(e) => {
                         e.preventDefault();
-                        var fill = $("#fill2");
+                        var fill = $("#fill2" + props.lang);
 
-                        if ($("#reading" + j).val()) {
+                        if ($("#reading" + props.lang + j).val()) {
                             j++;
-                            fill.append(`<input id=${"reading" + j} lang=${props.lang} type="text" rows="4" cols="50" name="description" placeholder="further reading" />`)}}}>{Dictionary.addMore}</button>
+                            fill.append(`<input id=${"reading" + props.lang + j} lang=${props.lang} type="text" rows="4" cols="50" name="description" placeholder="further reading" />`)
+                        }
+                    }}>{Dictionary.addMore}</button>
                 </label>
             </div>
         </div>
