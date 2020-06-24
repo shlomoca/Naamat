@@ -301,13 +301,13 @@ export const EditWomanModal = () => {
                                 <div id="name-group" class="form-group">
                                     {/* <label for="name"></label> */}
                                     <label id="lineName" for="name">{Dictionary.name}</label>
-                                    <input type="text" rows="1" class="addWomanName" cols="35" id="name" name="name" />
+                                    <input type="text" rows="1" class="addWomanName" cols="35" id="name" name="name" required />
                                 </div>
                                 <div class="bdayclass">
                                     <div id="name-group" class="form-group">
                                         <div id="line2" for="birth">{Dictionary.birth}</div>
                                     </div>
-                                    <input class="details2" type="date" name="birth" id="birth" />
+                                    <input class="details2" type="date" name="birth" id="birth" required />
                                     <div class="dethDay">
                                         <div id="name-group" class="form-group">
                                             <label id="line3" for="death">{Dictionary.death}</label>
@@ -358,21 +358,24 @@ $("document").ready(function () {
 });
 
 //check if woman allready exist when we want to add woman 
-function allreadyExist(id) {
+export function allreadyExist(id, wantToEdit) {
 
-    // alert(id);
-    var woman = db.collection('women').doc(id);
-    woman.get().then(doc => {
-        if (doc.exists) {
-            var temp = window.confirm(Dictionary.editExistVal);
-            if (temp) {
-                showing("#step2");
-                editWoman(id);
+    if (id) {
+        var woman = db.collection('women').doc(id);
+        woman.get().then(doc => {
+            if (doc.exists) {
+                if (wantToEdit || window.confirm(Dictionary.editExistVal)) {
+                    showing("#step2", wantToEdit);
+                    editWoman(id);
+                }
+
             }
-        }
-        else
-            showing("#step2");
-    }).catch()
+            else
+                showing("#step2");
+        }).catch()
+    }
+    else
+        showing("#step2");
 
 
 }
@@ -471,30 +474,20 @@ function resetForm(id, id2, id3) {
     }
 };
 
-// function resetFormSuggestWoman(id) {
-//     return () => {
-
-//         window.location.reload();
-
-//     }
-// }
 
 //make sure that the use enterd in step one the name and birth date
-function showing(id, id2) {
-    // return () => {
-    // alert("in showing");
-    if (!($("#name").val()) || !($("#birth").val())) {
+export function showing(id, wantToEdit) {
+
+    if (($("#name").val() && $("#birth").val()) || wantToEdit) {
+        $(id).show();
+        $("#submit1").hide()
+    }
+    else {
         $("#popup").show();
         $("#popup").fadeOut(2000, function () {
             // Animation complete.
         });
     }
-    else {
-        $(id).show();
-        $(id2).hide();
-        $("#submit1").hide()
-    }
-    // }
 
 }
 
