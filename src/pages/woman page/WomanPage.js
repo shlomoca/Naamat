@@ -2,9 +2,9 @@ import './WomanPage.css';
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { NavBar, BottomBar } from '../../Components';
-import { db } from '../../config/Firebase'
+import { db ,storage} from '../../config/Firebase'
 import { Dictionary, langs } from '../../Dictionary';
-import {allreadyExist} from '../../forms/Forms'
+import { allreadyExist } from '../../forms/Forms'
 import $ from 'jquery';
 
 
@@ -42,7 +42,7 @@ export class WomenCard extends Component {
                     <p>{this.state.summary}  </p>
                     <button onClick={(e) => {
                         e.preventDefault();
-                        allreadyExist(this.state.id,true);
+                        allreadyExist(this.state.id, true);
                     }}>{Dictionary.edit}</button>
                 </div>
             </a>
@@ -92,6 +92,7 @@ export function deleteWoman(id) {
                     alert(`user ${id} was deleted`);
                 })
             })
+            deletePhoto(id);
         }
         else
             alert("woman not found");
@@ -115,7 +116,22 @@ export function deleteWoman(id) {
 
 }
 
-function deletePhoto(path) {
+function deletePhoto(id) {
+    // Since you mentioned your images are in a folder,
+    // we'll create a Reference to that folder:
+    var storageRef = storage.ref(id);
+    // Now we get the references of these images
+    storageRef.listAll().then(function(result) {
+      result.items.forEach(function(imageRef) {
+        // And finally display them
+        
+        imageRef.delete();
+      });
+    }).catch(function(error) {
+      // Handle any errors
+    });
+
+    
 
 }
 
