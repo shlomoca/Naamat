@@ -91,12 +91,11 @@ class LoginPage extends Component {
                                     onClick={this.login} >
                                     {Dictionary.login}
                                 </button>
-                             
                             </form>
                         </div>
                     </div>
                 </div>
-                <BottomBar/>
+                <BottomBar />
             </div>
         )
     }

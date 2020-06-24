@@ -3,31 +3,28 @@
   }
   
   :root {
-    --dark: rgb(186,85,211);
+  --dark: rgb(186, 85, 211);
   }
 
-  #adminTitle{
+#adminTitle {
     justify-self: center;
     text-align: center;
     color: purple;
     font-style: normal;
-    margin-top:0%;
-    max-width:100%;
+  margin-top: 0%;
+  max-width: 100%;
     margin: auto;
     font-size: 65px;
-    
   }
   
-#allAdmin{
+#allAdmin {
 display: flex;
 flex-wrap: wrap;
 justify-content: space-between;
 align-content: space-around;
 }
 
-  
   .btnhover {
-    
     display: block;
     cursor: pointer;
     outline: none;
@@ -70,15 +67,22 @@ align-content: space-around;
     }
   }
 
-  .backBtn{
-
+.backBtn {
     padding-left: 3%;
     padding-top: 1%;
     float: left;
   }
 
-  #backBtn{
-    
+#backBtn {
     /* width: 20%; */
+  
     font-size: xx-large;
+  margin: 3px;
+  margin-bottom: 8px;
+}
+
+#addUserBtn {
+  align-content: center;
+  margin: 3px;
+  margin-bottom: 8px;
   }

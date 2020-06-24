@@ -150,11 +150,14 @@ export const GenralForm = (props) => {
                     <a id="fill1" ></a>
                     <button onClick={(e) => {
                         e.preventDefault();
-                        i++;
                         var fill = $("#fill1");
-                        fill.append(`<input id=${"description" + i}  lang = ${props.lang} type="text" rows="4" class="descAndLink" cols="50" name="description" placeholder="description" />
+                        if ($("#description" + i).val())
+                            if ($("#link" + i).val()) {
+                                i++;
+                                fill.append(`<input id=${"description" + i}  lang = ${props.lang} type="text" rows="4" class="descAndLink" cols="50" name="description" placeholder="description" />
                         <input id=${"link" + i} lang = ${props.lang} type="text" rows="4" class="descAndLink" cols="50" name="link" placeholder="link" />`)
-                        console.log(fill.num);
+                            }
+                        // console.log(fill.num);
                     }}>add</button>
                 </label>
             </div>
@@ -165,9 +168,12 @@ export const GenralForm = (props) => {
                     <a id="fill2"></a>
                     <button onClick={(e) => {
                         e.preventDefault();
-                        j++;
                         var fill = $("#fill2");
-                        fill.append(`<input id=${"reading" + j} lang=${props.lang} type="text" rows="4" class="descAndLink" cols="50" name="description" placeholder="further reading" />`)
+
+                        if ($("#reading" + j).val()) {
+                            j++;
+                            fill.append(`<input id=${"reading" + j} lang=${props.lang} type="text" rows="4" class="descAndLink" cols="50" name="description" placeholder="further reading" />`)
+                        }
                     }}>add</button>
                 </label>
             </div>
@@ -185,7 +191,7 @@ export const SuggestWoman = () => {
                 <div class="modal-content">
                     <form dir="RTL" id="suggest_woman_form" name="suggest_woman_form" onSubmit={suggestWoman}  >
                         <div class="modal-header">
-                            <button type="button" id="xClose" class="close" data-dismiss="modal" aria-label="Close" onClick={resetFormSuggestWoman("suggest_woman_form")}>
+                            <button type="button" id="xClose" class="close" data-dismiss="modal" aria-label="Close" onClick={resetForm("suggest_woman_form", "fill20")}>
                                 <span aria-hidden="true">&times;</span>
                             </button>
                             <h5 class="modal-title" id="staticBackdropLabel">{Dictionary.suggest}</h5>
@@ -258,7 +264,7 @@ export const SuggestWoman = () => {
                         </div>
                         {/* </div> */}
                         <div class="modal-footer">
-                            <button type="button" class="close" class="btn btn-secondary" onClick={resetFormSuggestWoman("suggest_woman_form")} data-dismiss="modal">{Dictionary.close}</button>
+                            <button type="button" class="close" class="btn btn-secondary" onClick={resetForm("suggest_woman_form", "fill20")} data-dismiss="modal">{Dictionary.close}</button>
                             <button type="submit" for="suggest_woman_form" class="btn btn-success" id="submit_form" >{Dictionary.submit} <span class="fa fa-arrow-right"></span></button>
                         </div>
                     </form>
@@ -279,7 +285,7 @@ export const EditWomanModal = () => {
                 <div class="modal-content">
                     <form dir="RTL" id="woman_form" name="woman_form" onSubmit={addWoman}  >
                         <div class="modal-header">
-                            <button type="button" id="xClose" class="close" data-dismiss="modal" aria-label="Close" onClick={resetForm("woman_form")}>
+                            <button type="button" id="xClose" class="close" data-dismiss="modal" aria-label="Close" onClick={resetForm("woman_form", "fill1", "fill2")}>
                                 <span aria-hidden="true">&times;</span>
                             </button>
                             <h5 class="modal-title" id="staticBackdropLabel">{Dictionary.addWoman}</h5>
@@ -326,7 +332,7 @@ export const EditWomanModal = () => {
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="close" class="btn btn-secondary" onClick={resetForm("woman_form")} data-dismiss="modal">{Dictionary.close}</button>
+                            <button type="button" class="close" class="btn btn-secondary" onClick={resetForm("woman_form", "fill1", "fill2")} data-dismiss="modal">{Dictionary.close}</button>
                             <button type="submit" for="woman_form" class="btn btn-success" id="submit_form" >{Dictionary.submit} <span class="fa fa-arrow-right"></span></button>
                         </div>
                     </form>
@@ -446,9 +452,15 @@ function suggestWoman() {
 }
 
 //reset the add woman form when close
-function resetForm(id) {
+function resetForm(id, id2, id3) {
     return () => {
         $("#" + id).trigger("reset");
+
+        if (id2)
+            $(`#${id2}`).html("");
+
+        if (id3)
+            $(`#${id3}`).html("");
 
         $("#name").attr('readonly', false);
         $("#birth").attr('readonly', false);
@@ -459,13 +471,13 @@ function resetForm(id) {
     }
 };
 
-function resetFormSuggestWoman(id) {
-    return () => {
+// function resetFormSuggestWoman(id) {
+//     return () => {
 
-        window.location.reload();
+//         window.location.reload();
 
-    }
-}
+//     }
+// }
 
 //make sure that the use enterd in step one the name and birth date
 function showing(id, id2) {
@@ -505,8 +517,8 @@ function handleFeedback(e) {
                 obj[this.name] = this.value;
         }
     });
-    obj["id"]=id;
-if(id);
+    obj["id"] = id;
+    if (id);
     db.collection('feedback').doc(id).set(obj).then(function () {
         window.$("#feedbackForm").modal('hide');
     });
