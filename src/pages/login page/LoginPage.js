@@ -76,6 +76,7 @@ class LoginPage extends Component {
                                     defaultValue="" required
                                     onChange={this.handleChange}>
                                 </input>
+                                <a>‏ </a>
                                 < input type="password"
                                     id="password"
                                     name="password"
@@ -83,7 +84,6 @@ class LoginPage extends Component {
                                     defaultValue="" required
                                     onChange={this.handleChange}>
                                 </input>
-
                                 <button id="loginbtn"
                                     type="submit"
                                     text={Dictionary.login}
@@ -135,17 +135,23 @@ export class LoginComponent extends Component {
             var userEmail = sessionStorage.getItem("userEmail");
 
             db.collection('users').doc(userEmail).get().then(res => {
-                this.setState({ permission: res.data().admin });
+                if (res.data()) {
+                    this.setState({ permission: res.data().admin });
 
-                if (this.state.permission) {
-                    // admin rout
-                    this.setState({ page: this.renderAdminDiv() });
+                    if (this.state.permission) {
+                        // admin rout
+                        this.setState({ page: this.renderAdminDiv() });
+                    }
+                    else {
+
+                        // visitor rout
+                        this.setState({ page: this.renderVisitorDiv() });
+                    }
                 }
                 else {
-
-                    // visitor rout
-                    this.setState({ page: this.renderVisitorDiv() });
-                }
+                    alert(Dictionary.userDoesntExists)
+                    this.setState({ page: <LoginPage /> })
+                };
             });
         }
         else {

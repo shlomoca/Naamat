@@ -16,6 +16,7 @@ export const Dictionary = new LocalizedStrings({
     enterMail: `Please enter email`,
     enterPass: `Password`,
     login: `Log in`,
+    userDoesntExists:`Permission denied`,
     
     //admin page
     adminAddWoman: 'Add Woman',
@@ -93,6 +94,7 @@ export const Dictionary = new LocalizedStrings({
     enterMail: `אנא הכניסי מייל`,
     enterPass: `סיסמא`,
     login: `התחברי`,
+    userDoesntExists:`גישה נדחתה`,
     
 
     //admin page
@@ -170,7 +172,7 @@ export const Dictionary = new LocalizedStrings({
     enterMail: "يرجى إدخال بريد إلكتروني",
     enterPass: "كلمه السر",
     login: "تسجيل الدخول",
-    
+    userDoesntExists:`طلب الاذن مرفوض`,
     
     //admin page
     adminAddWoman: 'أضف امرأة',
