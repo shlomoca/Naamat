@@ -226,34 +226,34 @@ export const GenralForm = (props) => {
             <div class="form-group">
 
                 {/* <div class="form-group"> */}
-                <textarea rows="4" class="detail" cols="50" name="highlights" lang={props.lang} id={"highlights" + props.lang} placeholder="highlights"  ></textarea>
+                <textarea rows="4" class="detail" cols="50" name="highlights" lang={props.lang} id={"highlights" + props.lang} placeholder={Dictionary.highlights}  ></textarea>
                 {/* </div> */}
 
 
                 {/* <div class="form-group"> */}
-                <textarea rows="4" class="detail" cols="50" name="biography" lang={props.lang} id={"biography" + props.lang} placeholder="biography" ></textarea>
+                <textarea rows="4" class="detail" cols="50" name="biography" lang={props.lang} id={"biography" + props.lang} placeholder={Dictionary.biography} ></textarea>
                 {/* </div> */}
 
                 {/* <div class="form-group"> */}
-                <textarea rows="4" class="detail" cols="50" name="history" lang={props.lang} id={"historical" + props.lang} placeholder="Historical events related" ></textarea>
+                <textarea rows="4" class="detail" cols="50" name="history" lang={props.lang} id={"historical" + props.lang} placeholder={Dictionary.History} ></textarea>
                 {/* </div> */}
 
                 {/* <div class="form-group"> */}
-                <textarea rows="4" class="detail" cols="50" name="feminism" lang={props.lang} id={"contribution" + props.lang} placeholder="Contribution to Feminism" ></textarea>
+                <textarea rows="4" class="detail" cols="50" name="feminism" lang={props.lang} id={"contribution" + props.lang} placeholder={Dictionary.feminism} ></textarea>
                 {/* </div> */}
 
 
                 {/* <div class="form-group"> */}
-                <textarea rows="4" class="detail" cols="50" name="facts" lang={props.lang} id={"facts" + props.lang} placeholder="Interesting fact / story" ></textarea>
+                <textarea rows="4" class="detail" cols="50" name="facts" lang={props.lang} id={"facts" + props.lang} placeholder={Dictionary.facts} ></textarea>
                 {/* </div> */}
 
-                <textarea rows="4" class="detail" cols="50" name="quotes" lang={props.lang} id={"quotes" + props.lang} placeholder="Quotes and notable works" ></textarea>
+                <textarea rows="4" class="detail" cols="50" name="quotes" lang={props.lang} id={"quotes" + props.lang} placeholder={Dictionary.quotes} ></textarea>
 
             </div>
             <div class="form-group">
                 <label for={"link" + props.lang}> </label>
-                <input class="regularInput" id={"description" + props.lang + i} lang={props.lang} type="text" rows="4" cols="50" name="description" placeholder="description" />
-                <input class="regularInput" id={"link" + props.lang + i} lang={props.lang} type="text" rows="4" cols="50" name="link" placeholder="link" />
+                <input class="regularInput" id={"description" + props.lang + i} lang={props.lang} type="text" rows="4" cols="50" name="description" placeholder={Dictionary.description} />
+                <input class="regularInput" id={"link" + props.lang + i} lang={props.lang} type="text" rows="4" cols="50" name="link" placeholder={Dictionary.link} />
                 <a id={"fill1" + props.lang} ></a>
                 <button id="addBtn" onClick={(e) => {
                     e.preventDefault();
@@ -261,15 +261,15 @@ export const GenralForm = (props) => {
                     if ($("#description" + props.lang + i).val())
                         if ($("#link" + props.lang + i).val()) {
                             i++;
-                            fill.append(`<input id=${"description" + props.lang + i}  lang = ${props.lang} type="text" rows="4" class="regularInput" cols="50" name="description" placeholder="description" />
-                        <input id=${"link" + props.lang + i} lang = ${props.lang} type="text" rows="4" class="regularInput" cols="50" name="link" placeholder="link" />`)
+                            fill.append(`<input id=${"description" + props.lang + i}  lang = ${props.lang} type="text" rows="4" class="regularInput" cols="50" name="description" placeholder=${Dictionary.description} />
+                        <input id=${"link" + props.lang + i} lang = ${props.lang} type="text" rows="4" class="regularInput" cols="50" name="link" placeholder=${Dictionary.link} />`)
                         }
                 }}>{Dictionary.addMore}</button>
             </div>
 
             <div class="form-group">
                 <label for={"reading" + props.lang}>
-                    <input id={"reading" + props.lang + j} lang={props.lang} type="text" rows="4" cols="50" name="description" placeholder="further reading" />
+                    <input id={"reading" + props.lang + j} lang={props.lang} type="text" rows="4" cols="50" name="reading" placeholder={Dictionary.bibliography} />
                     <a id={"fill2" + props.lang}></a>
                     <button onClick={(e) => {
                         e.preventDefault();
@@ -277,7 +277,7 @@ export const GenralForm = (props) => {
 
                         if ($("#reading" + props.lang + j).val()) {
                             j++;
-                            fill.append(`<input id=${"reading" + props.lang + j} lang=${props.lang} type="text" rows="4" cols="50" name="description" placeholder="further reading" />`)
+                            fill.append(`<input id=${"reading" + props.lang + j} lang=${props.lang} type="text" rows="4" cols="50" name="reading" placeholder=${Dictionary.bibliography} />`)
                         }
                     }}>{Dictionary.addMore}</button>
                 </label>

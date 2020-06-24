@@ -71,7 +71,9 @@ export const Dictionary = new LocalizedStrings({
     action:`action`,
     deletedSuccessfully: "deleted successfully",
     addMore:"add more",
-    bibliography: "bibliography",
+    bibliography: "further reading",
+    description:"description",
+    link:"link",
     
     //components
     
@@ -100,15 +102,15 @@ export const Dictionary = new LocalizedStrings({
     adminEditWoman: 'ערכי אישה',
     adminFeedback: 'צפייה במשובים',
     adminEditAbout: 'עריכת אודות',
-    adminAddCategory: 'הוסף קטגוריה',
+    adminAddCategory: 'הוסיפי קטגוריה',
     adminUserManagement: 'ניהול משתמשים',
     welcomeManager: `ברוכים הבאים למערכת הניהול`,
-    manageCategory: `נהלי קטגוריות`,
+    manageCategory: `ניהול קטגוריות`,
     addUserBtn: `הוסיפי משתמש`,
     userAddedSuccefully:`משתמש חדש נוסף בהצלחה`,
     
   //woman page
-  edit: 'ערוך',
+  edit: 'ערכי',
   //main user page
     about: `נעמת היא תנועה לקידום מעמד האישה והכוח החברתי לנשים. העדיפות העליונה של נעמת היא קידום וחיזוק מעמד האישה במשפחה ובכוח העבודה. נעמת שואפת להשיג שוויון בין המינים והשתתפות מלאה של נשים בתחומים חברתיים, כלכליים ופוליטיים. נעמת, שכונתה בעבר "מועצת הנשים העובדות", הוקמה בשנת 1921 על ידי נשים עובדות, חלוצות שהגיעו לארץ ישראל בראשית שנות העשרים. מוצת הפועלות הייתה מאורגנת כתנועה אוטונומית עם שיוך להסתדרות (הסתדרות העובדים הכללית). כיום נעמת היא ארגון ללא מטרות רווח, תנועת נשים סוציו-פוליטית ורב-מפלגתית המורכבת מנשים ממגזרים שונים באוכלוסייה, קהילות, ארצות מוצא וזרמים דתיים.`,
     aboutTitle: `אודות נעמת`,
@@ -122,7 +124,7 @@ export const Dictionary = new LocalizedStrings({
     name: `שם מלא`,
     displayname:"שם תצוגה",
     birth: `תאריך לידה`,
-    submit:`שלח`,
+    submit:`שלחי`,
     death: `תאריך פטירה`,
     highlights:`תקציר`,
     biography:`ביוגרפיה`,
@@ -145,6 +147,8 @@ export const Dictionary = new LocalizedStrings({
     action:`פעולה`,
     deletedSuccessfully: "נמחק בהצלחה",
     bibliography: "ביבליוגרפיה",
+    description:"תיאור",
+    link:"קישור",
    
     //components
     builders: 'אתר זה נבנה על ידי: שלמה כרמי, דניאל רז, סהר כהן, עדיאל צייג, מתן ימין ©',
@@ -225,6 +229,8 @@ export const Dictionary = new LocalizedStrings({
     nothingToShow:"لا يوجد شيء لإظهاره",
     deletedSuccessfully: "حذف بنجاح",
     bibliography: "فهرس",
+    description:"وصف",
+    link:"حلقة الوصل",
     
     //components
     
