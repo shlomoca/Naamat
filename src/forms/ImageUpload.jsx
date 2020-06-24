@@ -9,7 +9,8 @@ class ImageUpload extends Component {
     this.state = {
       image: null,
       progress: 0,
-      url: ""
+      url: "",
+      required:props.required
     }
     this.handleChange = this
       .handleChange
@@ -86,7 +87,7 @@ class ImageUpload extends Component {
         <p>{Dictionary.profilepic}</p>
         <progress value={this.state.progress} max="100" />
         <div class="form-group"> 
-        <input type="file" name="file" id="inputGroupFile04" id="media" aria-describedby="inputGroupFileAddon04" accept="image/*,audio/*,video/*" onChange={this.handleChange}/>
+        <input type="file" name="file" id="inputGroupFile04" id="media" aria-describedby="inputGroupFileAddon04" accept="image/*,audio/*,video/*" onChange={this.handleChange} required={this.state.required}/>
         </div>
         <input type="hidden" id="ProfilePic" name="ProfilePic" value={this.state.url} />
         <button type="button" onClick={this.handleUpload}>{Dictionary.upload}</button>

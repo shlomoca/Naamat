@@ -193,7 +193,7 @@ export const AddCategoryModal = () => {
                                 </div>
                             </div>
                             <div id="image-group" class="form-group">
-                                <ImageUpload param1="category_nameHE" param1Empty="category name not enterd" />
+                                <ImageUpload required="required" param1="category_nameHE" param1Empty="category name not enterd" />
                             </div>
                             <div class="modal-footer">
                                 <button type="submit" id="submitCategory" for="category_form" class="btn btn-success">{Dictionary.submit} <span class="fa fa-arrow-right"></span></button>
@@ -219,7 +219,7 @@ export const GenralForm = (props) => {
 
             <div class="form-group">
                 <input type="text" lang={props.lang} rows="1" class="regularInput" cols="35" id={"display" + props.lang} name="display" placeholder={Dictionary.displayname} />
-                <ImageUpload param1="name" param2="birth" pathEnd="/ProfilePic" param1Empty="name not enterd" param2Empty="date of birth not ented" />
+                <ImageUpload  param1="name" param2="birth" pathEnd="/ProfilePic" param1Empty="name not enterd" param2Empty="date of birth not ented" />
             </div>
 
 

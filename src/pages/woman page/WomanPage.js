@@ -312,9 +312,6 @@ export function editWoman(id) {
                         if (key != "ProfilePic")
                             $("#" + key + lang).val(fileds[key]);
                         else {
-                            // console.log(fileds[key])
-                            // console.log(key)
-                            // alert("hey")
                             $("#" + key).val(fileds[key]);
                         }
                     })
