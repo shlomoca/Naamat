@@ -190,10 +190,10 @@ export const BottomBar = () => {
     <div id="bottom">
 
       <ScrollUpButton />
-      {/* <a>{Dictionary.builders} </a>
-      <a href="#"><img id="fblogo" src={fblogo} alt="facebook" />{Dictionary.NaamatInFacebook}</a>
-      <a href="#"> <img id="ytlogo" src={ytlogo} alt="youtube" />{Dictionary.NaamatInYoutube}</a> */}
-
+      <a>{Dictionary.builders} </a>
+      <a id="facebook" href="https://www.facebook.com/womenatwork" data-target="#mymodal"><img id="fblogo" src={fblogo} alt="facebook" />{Dictionary.NaamatInFacebook}</a>
+      <a id="youtube" href="https://www.youtube.com/embed/channel/UCdKKqQogmEQp7KNDRYCnV6A"> <img id="ytlogo" src={ytlogo} alt="youtube" />{Dictionary.NaamatInYoutube}</a>
+      {/* <DisplayModal link='https://www.youtube.com/embed/watch?v=vg2gscdAQBo' details='Wikipedia' /> */}
 
     </div>
   )
@@ -328,8 +328,8 @@ export const CarouselSlide = props => {
         <div class="carousel-caption d-none d-md-block pictureDiscription">
           <p><h3 class="highlights">{props.highlights}</h3></p>
         </div>
-    </Link>
-      </div>
+      </Link>
+    </div>
   )
 }
 
@@ -363,7 +363,7 @@ export const DisplayModal = (props) => {
                 width="100%"
                 height="100%"
                 frameBorder='0'
-                allow='autoplay; encrypted-media'
+                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
                 title='url' />
             </div>
@@ -484,12 +484,12 @@ export const usersTableHeader = () => {
 
 
 //create users table via db data
-export const usersTable= (props) => {
- 
-  var email,admin;
+export const usersTable = (props) => {
+
+  var email, admin;
   const vals = Object.values(props.users);
   const deck = [];
- 
+
   return (
     <div id="usersTable">
       <table table class="table table-dark">

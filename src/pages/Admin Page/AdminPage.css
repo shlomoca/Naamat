@@ -5,38 +5,29 @@
   :root {
     --dark: rgb(186,85,211);
   }
-  
+
   #adminTitle{
+    justify-self: center;
+    text-align: center;
     color: purple;
     font-style: normal;
-    position: absolute;
     margin-top:0%;
-    width:100%;
-    left:26%;
+    max-width:100%;
+    margin: auto;
     font-size: 65px;
+    
   }
   
-  .adminButtons {
-    display: block;
-    width: 100%;
-    margin: 0 auto 0 auto;
-    position: absolute;
-    left:0;
-    right: 0;
-    top: 30vh;
-  }
+#allAdmin{
+display: flex;
+flex-wrap: wrap;
+justify-content: space-between;
+align-content: space-around;
+}
 
-  #leftButtons{
-    position: absolute;
-    left:10%;
-  }
-
-  #rightButtons{
-    position: absolute;
-    left: 62%;
-  }
   
-  #btn1, #btn2, #btn3, #btn4,#btn5,#btn6,#btn7,#btn8 {
+  .btnhover {
+    
     display: block;
     cursor: pointer;
     outline: none;
@@ -50,7 +41,7 @@
     color: white;
     background-size: 100% 100%;
     box-shadow: 0 0 0 7px var(--dark) inset;
-    margin-bottom: 15px;
+    margin: 10px;
   }
   
   .btnhover:hover {
@@ -83,11 +74,11 @@
 
     padding-left: 3%;
     padding-top: 1%;
-
+    float: left;
   }
 
   #backBtn{
-
+    
     /* width: 20%; */
     font-size: xx-large;
   }

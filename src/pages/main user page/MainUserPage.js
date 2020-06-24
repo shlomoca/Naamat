@@ -15,7 +15,7 @@ class MainUserPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            img:{},
+            img: {},
             carouselSlids: 0,
         }
     }
@@ -55,7 +55,7 @@ class MainUserPage extends Component {
     //             // var element = <li data-target="#carouselIndicators" data-slide-to = {this.state.carouselSlids}></li>;
     //             // document.getElementById("carouselIndicators").append({element});
     //             // var lir= ;
-                
+
     //             $("#carouselIndicators").append(<div id="empty"></div>);
     //             // $(lir).appendTo(cpy);
     //             // console.log(cpy)
@@ -75,16 +75,16 @@ class MainUserPage extends Component {
 
     render() {
         return (
-            <div id="mainUPWrapper" className="wrapper">
-
-
-                <NavBar admin={this.props.admin}/>
-                <PictursCarousel />
-
-                {/* <BottomBar/> */}
-                {/* <DisplayModal link='https://he.wikipedia.org/wiki/%D7%A0%D7%A2%D7%9E%D7%AA' details='Wikipedia'/> */}
-                {/* <AfterMessage info='this is check!!!' />  */}
+            <div id="mainUPcover" className="cover">
+                <div id="mainUPWrapper" className="wrapper">
+                    <NavBar admin={this.props.admin} />
+                    <PictursCarousel />
+                    {/* <DisplayModal link='https://he.wikipedia.org/wiki/%D7%A0%D7%A2%D7%9E%D7%AA' details='Wikipedia'/> */}
+                    {/* <AfterMessage info='this is check!!!' />  */}
+                </div>
+                <BottomBar />
             </div>
+
         );
 
     }

@@ -78,12 +78,14 @@
 }
 
 #pictureCarousel {
-    position: absolute;
-    width: 800px;
-    height: 550px;
-    left: 25%;
+    position: relative;
+    width: 55%;
+    height: 80vh;
     margin-top: 1%;
-    margin-bottom: 3%;
+    /* left: 25%; */
+    /* margin-top: 1%;
+    margin-bottom: 3%; */
+    margin:auto;
     background-color: rgb(59, 57, 57);
     border-radius: 25px;
 }
@@ -181,10 +183,13 @@
 }
 
 #bottom {
-    position: fixed;
+    position: relative;
     display: flex;
     justify-content: center;
     margin-bottom: 0%;
+    width: 100%;
+    background-color: slategray;
+    
 }
 
 #feedbackTable{
@@ -206,4 +211,11 @@
     color: white;   
     font-size:14px;
     font-weight:700;
+}
+
+#mymodal{
+    position: absolute;
+    width: 100%;
+    height: 50%;
+
 }
