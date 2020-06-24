@@ -13,7 +13,7 @@ import ReactDOM from 'react-dom';
 export const AddNewUserForm = () => {
     return (
         <div class="modal fade" id="newUserModal">
-            <div class="modal-dialog modal-sm">
+            <div class="modal-dialog modal-lg" >
                 <div class="modal-header">
                     <button type="button" onClick={resetForm("newUserForm")} class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
@@ -21,7 +21,10 @@ export const AddNewUserForm = () => {
                     <h5 class="modal-title" id="staticBackdropLabel">{Dictionary.addUserBtn}</h5>
                 </div>
                 <div class="modal-content">
+                <div class="modal-body">
                     <form dir="RTL" id="newUserForm" name="newUserForm" onSubmit={newUserHandler}  >
+                        <div class="form-group">
+                        <label class="regularLabel">{Dictionary.enterMail}</label>
                         < input type="email"
                             id="email"
                             name="email"
@@ -29,7 +32,10 @@ export const AddNewUserForm = () => {
                             defaultValue="" required
                         >
                         </input>
+                        </div>
                         <br></br>
+                        <div class="form-group">
+                        <label class="regularLabel">{Dictionary.enterPass}</label>
                         < input type="password"
                             id="password"
                             name="password"
@@ -37,6 +43,7 @@ export const AddNewUserForm = () => {
                             defaultValue="" required
                         >
                         </input>
+                        </div>
                         <br></br>
 
                         <div class="input-group mb-3">
@@ -59,6 +66,7 @@ export const AddNewUserForm = () => {
                             </button>
                         </div>
                     </form>
+                </div>
                 </div>
             </div>
         </div>
