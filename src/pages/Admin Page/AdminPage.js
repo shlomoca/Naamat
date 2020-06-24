@@ -14,185 +14,188 @@ class AdminPage extends Component {
     render() {
         return (
             <div id="mainUPWrapper" className="wrapper">
-                <NavBar/>
-                <EditWomanModal/>
-                <AddCategoryModal/>
-                <FeedbackModal/>
+                <NavBar />
+                <EditWomanModal />
+                <AddCategoryModal />
+                <FeedbackModal />
                 <div class="backBtn">
-                <Link to="/"><button id="backBtn" class="btn">{Dictionary.back}</button></Link>
+                    <Link to="/"><button id="backBtn" class="btn">{Dictionary.back}</button></Link>
                 </div>
-        <p id="adminTitle">{Dictionary.welcomeManager}</p>
-                <div id="allAdmin"> 
-                <div  class="adminButtons">
-                    <div id="rightButtons">
-                        <button class="btnhover" type="button" id="btn1" data-toggle="modal" data-target="#staticBackdrop"> {Dictionary.adminAddWoman} </button>
-                        <button class="btnhover" type="button" id="btn2" > {Dictionary.adminEditWoman} </button>
-                        <button class="btnhover" type="button" id="btn3" onClick={()=>{getFeedback()}}> {Dictionary.adminFeedback} </button>
-                        {/* <button class="btnhover" type="button" id="btn4"> {Dictionary.adminEditAbout} </button> */}
-                        <button class="btnhover" type="button" id="btn8"> חסר שימוש כרגע </button>
+                <p id="adminTitle">{Dictionary.welcomeManager}</p>
+                <div id="allAdmin">
+                    <div class="adminButtons">
+                        <div id="rightButtons">
+                            <button class="btnhover" type="button" id="btn1" data-toggle="modal" data-target="#staticBackdrop"> {Dictionary.adminAddWoman} </button>
+                            <button class="btnhover" type="button" id="btn2" > {Dictionary.adminEditWoman} </button>
+                            <button class="btnhover" type="button" id="btn3" onClick={() => { getData("feedback", ["name", "email", "score", "improvement"]) }}> {Dictionary.adminFeedback} </button>
+                            {/* <button class="btnhover" type="button" id="btn4"> {Dictionary.adminEditAbout} </button> */}
+                            <button class="btnhover" type="button" id="btn8"> חסר שימוש כרגע </button>
+                        </div>
+                        <div id="leftButtons">
+                            <button class="btnhover" type="button" id="btn5" data-toggle="modal" data-target="#categoryForm"> {Dictionary.adminAddCategory} </button>
+                            <button class="btnhover" type="button" id="btn6" onClick={usersManager}> {Dictionary.adminUserManagement} </button>
+                            <button class="btnhover" type="button" id="btn7">  חסר שימוש כרגע  </button>
+                            <button class="btnhover" type="button" id="btn8"> חסר שימוש כרגע </button>
+                        </div>
                     </div>
-                    <div id="leftButtons">
-                        <button class="btnhover" type="button" id="btn5" data-toggle="modal" data-target="#categoryForm"> {Dictionary.adminAddCategory} </button>
-                        <button class="btnhover" type="button" id="btn6" onClick={usersManager}> {Dictionary.adminUserManagement} </button>
-                        <button class="btnhover" type="button" id="btn7">  חסר שימוש כרגע  </button>
-                        <button class="btnhover" type="button" id="btn8"> חסר שימוש כרגע </button>
-                    </div>
                 </div>
-                </div>
-                <div id="feedBackHolder"></div>
+                <div id="TableHolder"></div>
             </div>
-            
+
         );
 
     }
 }
 export default AdminPage
 
+//insert the collaction that you are looking to take data from and an array of the feilds that you are intrested in getting in your table
+//note that if not all feilds will be full the row will not be presented. 
+export function getData(collect, fields) {
+    ShowHideFunc(["TableHolder"], ["allAdmin"])
+    db.collection(collect).get().then(snapshot => {
+        const data = [];
+        //extract data from snapshot
+        snapshot.forEach(doc => {
+            const info = doc.data();
+            if (info) {
+                data.push(info);
+            }
+            else
+                console.log("no data");
 
-export function getFeedback() {
-    // console.log("matan and sahar");
-    //get all the women that ae in the lexicografical area of the search term womanName
-    $("#allAdmin").hide();
-    $("#feedBackHolder").show()
-    db.collection('feedbacks').get().then(snapshot => {
-      const feedbacks = [];
-      //get a women arry with all women results for this search
-      snapshot.forEach(doc => {
-        const data = doc.data();
-        if (data) {
-          feedbacks.push(data);
+        });
+        if (data.length === 0)
+            alert(Dictionary.nothingToShow);
+        else {
+            //render the table
+            ReactDOM.render(<DisplayData collect={collect} data={data} fields={fields} />, document.getElementById('TableHolder'));
         }
-        else
-          console.log("no data");
-  
-      });
-      // console.log(feedbacks);
-      if (feedbacks.length === 0)
-        console.log("no feedbacks");
-      else {
-        ReactDOM.render(<DisplayFeedback feedbacks={feedbacks} />, document.getElementById('feedBackHolder'));
-      }
-  
+
     }).catch(error => console.log(error))
-  
-    return (
-  
-      <div> </div>
-  
-    )
-  }
-
-  export const FeedBackBody = (props) => {
-
-    return (
-  
-      <thead>
-        <tr id={props.name + props.email}>
-          {/* <td> {props.date} </td> */}
-          <td> {props.name} </td>
-          <td> {props.email} </td>
-          <td> {props.score} </td>
-          <td> {props.improvement} </td>
-          <td> <button class="btn" onClick={askAndDelete(props.name + props.email)} >{Dictionary.delete}</button></td>
-          {/* <td> <button class="btn" onClick={deleteFeedBack(props.name + props.email)}>מחק</button> </td> */}
-          {/* onclick="if (confirm('Are you...?')) commentDelete(1); return false" */}
-          {/* <td> <button class="btn" onClick={() => { if (window.confirm('בטוח שתרצה למחוק?')) deleteFeedBack(props.name+props.email) } }>מחק</button> </td> */}
-        </tr>
-      </thead>
-  
-    )
-  }
 
 
-  export const FeedBackHeader = (props) => {
-var feilds=props.feilds;
-const res=[]
-feilds.forEach({
+}
 
-})
-    return (
-      <thead>
-        <tr>
-          {/* <th> Date </th> */}
-          <th> {Dictionary.name} </th>
-          <th> {Dictionary.email} </th>
-          <th> {Dictionary.score} </th>
-          <th> {Dictionary.improvement}  </th>
-          <th> </th>
-        </tr>
-      </thead>
-    )
-  }
-  export const DisplayFeedback = (props) => {
-  
-    var name, email, score, improvement;
-    const vals = Object.values(props.feedbacks);
+
+
+
+//DisplayData will enter the data in to the table 
+const DisplayData = (props) => {
+    var fields = props.fields,//fields to search for in data
+        collect = props.collect,//the collection that the data was taken from
+        data = props.data,//the array that the data was pushed in to 
+        id;//takes id from data
+
     const deck = [];
-    vals.map(feed => {
-      Object.keys(feed).map(runner => {
-        name = feed["feed_name"];
-        email = feed["feed_email"];
-        score = feed["score"];
-        improvement = feed["improvement"];
-      }
-      )
-      if (name && email && score && improvement) {
-        deck.push(<FeedBackBody name={name} email={email} score={score} improvement={improvement} />);
-      }
-  
+    data.forEach(singleRow => {
+        var col = [];
+        var allCollsFull = true;
+        //go through the data and take only the requierd feilds
+        fields.forEach(field => {
+            if (singleRow[field]) 
+                col.push(singleRow[field]);
+            else
+                allCollsFull = false;
+        })
+        //get id from the DB
+        id = singleRow["id"];
+        if (allCollsFull) {
+            deck.push(<BuildTableBody collect={collect} id={id} colls={col} />);
+        }
+        else {
+            console.log("col no full so wasent added");
+            console.log(col);
+        }
+
+
     })
-  
+
     return (
-      <div id="feedbackTable">
-        <table table class="table table-dark">
-          <FeedBackHeader />
-          {deck}
-          <button onClick={hideFeedTable()} id="backBtn" class="btn" >{Dictionary.back}</button>
-        </table>
-      </div>
+        <div id="feedbackTable">
+            <table class="table table-dark">
+                <BuildTableHead fields={fields} />
+                <tbody>
+                    {deck}
+                </tbody>
+                <button onClick={() => ShowHideFunc(["allAdmin"], ["TableHolder"])} id="backBtn" class="btn" >{Dictionary.back}</button>
+            </table>
+        </div>
     )
-  }
-
-  export function askAndDelete(id) {
-
-  return () => {
-
-    var del = window.confirm(Dictionary.areYouSure);
-    // console.log(del);
-    if (del == true) {
-      deleteFeedBack(id)
-    }
-    // return deleteFeedBack(id);
-  }
 }
-//delete feedback by id
-export function deleteFeedBack(id) {
-
-  console.log(id);
-  if (id) {
-    db.collection('feedbacks').doc(id).delete().then(() => {
-
-      ReactDOM.render(<div></div>, document.getElementById(id));
-
-    });
-  }
-  else
-    alert(Dictionary.error);
-}
-
-
-//hiding feedback table and showing the managment buttons again
-function hideFeedTable(id) {
+//asks if action is inteded and renders the item out of the container
+export function askAndDelete(collect, id) {
     return () => {
-  
-      $("#allAdmin").show();
-      $("#feedBackHolder").hide()
+        var del = window.confirm(Dictionary.areYouSure);
+        if (del == true)
+            removeItem(collect, id);
     }
-  
-  }
+}
+//delelte id in collaction and render it out of the container
+export function removeItem(collect, id) {
+    console.log(id, collect);
+    if (id) {
+        db.collection(collect).doc(id).delete().then(() => {
+            ReactDOM.render(<div></div>, document.getElementById("tr" + id));
+            alert(Dictionary[collect] + Dictionary.deletedSuccessfully);
+        });
+    }
+    else
+        alert(Dictionary.error);
+}
+
+
+//show everything in the show array and hide all from the hide array
+export function ShowHideFunc(show, hide) {
+    if (show)
+        show.forEach(shower => {
+            $("#" + shower).show();
+        })
+    if (hide)
+        hide.forEach(hider => {
+            $("#" + hider).hide();
+        })
+}
+
+//gets all fuilds requierd and maks a table head
+export const BuildTableHead = (props) => {
+    var fields = props.fields;
+    const res = []
+    if (fields)
+        fields.forEach(field => {
+            res.push(<th> {field} </th>)
+        })
+    return (
+        <thead>
+            <tr>
+                {res}
+            </tr>
+        </thead>
+    )
+}
+//put a row of objects in to the table one collum at a time
+export const BuildTableBody = (props) => {
+    var colls = props.colls,//data colums
+        collect = props.collect,
+        id = props.id;
+
+    var tr = [];
+
+    colls.forEach(col => {
+        tr.push(<td> {col} </td>);
+    });
+    tr.push(
+        <td> <button class="btn" onClick={askAndDelete(collect, id)} >{Dictionary.delete}</button></td>
+    );
+    return (
+        <tr id={"tr" + id}>
+            {tr}
+        </tr>
+    )
+}
+
 
 $(document).ready(() => {
-//    deleteWoman("דניאל רז2020-06-10");
+    //    deleteWoman("דניאל רז2020-06-10");
 
 
 });

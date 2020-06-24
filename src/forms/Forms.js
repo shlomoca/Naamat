@@ -27,11 +27,11 @@ export const FeedbackModal = () => {
                             <div id="name-group" class="form-group">
                                 <label id="feedLineName" for="feed_name">{Dictionary.name}</label>
                             </div>
-                            <input type="text" rows="1" class="feedbacLine" id="feed_name" cols="35" name="feed_name" required />
+                            <input type="text" rows="1" class="feedbacLine" id="feed_name" cols="35" name="name" required />
                             <div id="email-group" class="form-group">
                                 <label id="feedLineName2" for="feed_email">{Dictionary.enterMail}</label>
                             </div>
-                            <input type="email" rows="1" class="feedbacLine" id="feed_email" cols="35" name="feed_email" required />
+                            <input type="email" rows="1" class="feedbacLine" id="feed_email" cols="35" name="email" required />
 
                             <div class="starLocation">
                                 <div id="name-groups" classname="form-group starContainer">
@@ -502,12 +502,12 @@ function handleFeedback(e) {
                 }
             }
             else
-                obj[this.id] = this.value;
+                obj[this.name] = this.value;
         }
     });
-    console.log(obj);
-
-    db.collection('feedbacks').doc(id).set(obj).then(function () {
+    obj["id"]=id;
+if(id);
+    db.collection('feedback').doc(id).set(obj).then(function () {
         window.$("#feedbackForm").modal('hide');
     });
 }
@@ -570,7 +570,7 @@ function sub_cat(event) {
 //     });
 //     console.log(obj);
 
-//     db.collection('feedbacks').doc(id).set(obj).then(function () {
+//     db.collection('feedback').doc(id).set(obj).then(function () {
 //         window.$("#feedbackForm").modal('hide');
 //     });
 

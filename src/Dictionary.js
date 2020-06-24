@@ -64,6 +64,9 @@ export const Dictionary = new LocalizedStrings({
     suggest: `suggest woman`,
     popup:'Please fill all details',
     editExistVal:'Do you want to edit exist value?',
+    action:`action`,
+    deletedSuccessfully: "deleted successfully",
+    
     //components
     
     builders: `This site was built by: Shlomo Carmi, Daniel Raz, Sahar Cohen, Adiel Tsayag, Matan Yemin`,
@@ -130,6 +133,9 @@ export const Dictionary = new LocalizedStrings({
     delete: `מחקי`,
     next: 'הבא',
     suggest: `הציעי אישה`,
+    action:`פעולה`,
+    deletedSuccessfully: "נמחק בהצלחה",
+   
     //components
     builders: 'אתר זה נבנה על ידי: שלמה כרמי, דניאל רז, סהר כהן, עדיאל צייג, מתן ימין',
     CategoryName:'שם קטגוריה',
@@ -200,6 +206,9 @@ export const Dictionary = new LocalizedStrings({
     suggest: `توحي امرأة`,
     popup:'يرجى ملء جميع التفاصيل',
     editExistVal:'هل تريد تحرير القيمة الموجودة؟',
+    action:`عمل`,
+    nothingToShow:"لا يوجد شيء لإظهاره",
+    deletedSuccessfully: "حذف بنجاح",
     //components
     
     builders: `تم بناء هذا الموقع من قبل: شلومو كرمي ، دانيال راز ، سحر كوهين ، أديل تساياج ، ماتان يمين `,

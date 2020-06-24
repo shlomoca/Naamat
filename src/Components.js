@@ -14,6 +14,7 @@ import { getWomen, WomenDeck } from '../src/pages/woman page/WomanPage'
 import ScrollUpButton from "react-scroll-up-button";
 import ReactDOM from 'react-dom';
 import { storage } from './config/Firebase'
+import { ShowHideFunc } from './pages/Admin Page/AdminPage';
 
 
 //set a navigation bar to the top of the site
@@ -135,25 +136,19 @@ class Search extends Component {
 
   //follow after input in serach bar
   searchHandler(event) {
-    // return ()=>{
-    //       console.log("event");
     var term = event.target.value;
-    // }
     this.setState({ term: term })
     if (term.length > 1) {
-      // console.log("term:" +term)
       term = (term).toLowerCase();
       getWomen(term);
     }
     else {
-      // alert("non")
       var find = document.getElementById("womenHolder");
       var deck = document.getElementById("deckContainer");
       if (deck)
         ReactDOM.unmountComponentAtNode(deck);
       if (find)
         ReactDOM.unmountComponentAtNode(find);
-      // document.getElementById('womanCardsContainer').innerHTML = '';
     }
   }
 
@@ -190,9 +185,9 @@ export const BottomBar = () => {
     <div id="bottom">
 
       <ScrollUpButton />
-      {/* <a>{Dictionary.builders} </a>
+      <a>{Dictionary.builders} </a>
       <a href="#"><img id="fblogo" src={fblogo} alt="facebook" />{Dictionary.NaamatInFacebook}</a>
-      <a href="#"> <img id="ytlogo" src={ytlogo} alt="youtube" />{Dictionary.NaamatInYoutube}</a> */}
+      <a href="#"> <img id="ytlogo" src={ytlogo} alt="youtube" />{Dictionary.NaamatInYoutube}</a>
 
 
     </div>
@@ -468,48 +463,48 @@ export function usersManager() {
 
 
 
-export const usersTableHeader = () => {
+// export const usersTableHeader = () => {
 
-  return (
-    <thead>
-      <tr>
-        {/* <th> Date </th> */}
-        <th> email </th>
-        <th> admin </th>
-        <th> </th>
-      </tr>
-    </thead>
-  )
-}
+//   return (
+//     <thead>
+//       <tr>
+//         {/* <th> Date </th> */}
+//         <th> email </th>
+//         <th> admin </th>
+//         <th> </th>
+//       </tr>
+//     </thead>
+//   )
+// }
 
 
-//create users table via db data
-export const usersTable= (props) => {
+// //create users table via db data
+// export const usersTable= (props) => {
  
-  var email,admin;
-  const vals = Object.values(props.users);
-  const deck = [];
+//   var email,admin;
+//   const vals = Object.values(props.users);
+//   const deck = [];
  
-  return (
-    <div id="usersTable">
-      <table table class="table table-dark">
-        <usersTableHeader />
-        {deck}
-        <button onClick={hideFeedTable()} id="backBtn" class="btn" >חזור</button>
-      </table>
-    </div>
-  )
-}
+//   return (
+//     <div id="usersTable">
+//       <table table class="table table-dark">
+//         <usersTableHeader />
+//         {deck}
+//         <button onClick={hideFeedTable()} id="backBtn" class="btn" >חזור</button>
+//       </table>
+//     </div>
+//   )
+// }
 
 
-//hiding feedback table and showing the managment buttons again
-function hideFeedTable(id) {
-  return () => {
+// //hiding feedback table and showing the managment buttons again
+// function hideFeedTable(id) {
+//   return () => {
 
-    $("#allAdmin").show();
-    $("#feedBackHolder").hide()
-  }
+//     $("#allAdmin").show();
+//     $("#feedBackHolder").hide()
+//   }
 
-}
+// }
 ///////////////
 
