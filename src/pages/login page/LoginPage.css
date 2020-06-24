@@ -15,6 +15,7 @@ input {
     margin: auto;
     width: 40vh;
     padding-top: 1%;
+    padding-bottom: 1%;
     border-radius: 20px 20px;
     /* margin-top: 3%; */
     outline: none;
@@ -33,6 +34,8 @@ input {
 }
 
 #login_form {
+
+    margin-top: 1%;
     justify-content: space-around;
 }
 

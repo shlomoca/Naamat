@@ -19,39 +19,7 @@ const MainDetails = (props) => {
     );
 }
 
-export class WomenCard extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            id: props.id,
-            display: props.display,
-            summery: props.summery,
-            url: props.prof
-        }
-    }
 
-
-    render() {
-        return (
-            // <Link to={"/womanPage?"}>
-            <a href={"/womanPage/" + this.state.id}>
-                <div id="womanCardsContainer" >
-
-                    <img id={"roundImage" + this.state.id} className="roundImage" src={this.state.url} alt={this.state.display} />
-                    <h1  >{this.state.display} </h1>
-                    <p>{this.state.summary}  </p>
-                    <button onClick={(e) => {
-                        e.preventDefault();
-                        allreadyExist(this.state.id, true);
-                    }}>{Dictionary.edit}</button>
-                </div>
-            </a>
-            //    </Link>
-        )
-    }
-
-
-}
 
 
 //WomenDeck expots a list of women by a pop calld cadrs that is an array of fierebase docs
@@ -74,7 +42,38 @@ export const WomenDeck = (props) => {
         </div>
     )
 }
+//show a specific woman in a card shaped component
+export class WomenCard extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            id: props.id,
+            display: props.display,
+            summery: props.summery,
+            url: props.prof
+        }
+    }
 
+
+    render() {
+        return (
+            <a href={"/womanPage/" + this.state.id}>
+                <div id="womanCardsContainer" >
+
+                    <img id={"roundImage" + this.state.id} className="roundImage" src={this.state.url} alt={this.state.display} />
+                    <h1  >{this.state.display} </h1>
+                    <p>{this.state.summary}  </p>
+                    <button onClick={(e) => {
+                        e.preventDefault();
+                        allreadyExist(this.state.id, true);
+                    }}>{Dictionary.edit}</button>
+                </div>
+            </a>
+        )
+    }
+
+
+}
 
 //delete woman by id.
 export function deleteWoman(id) {
@@ -92,31 +91,14 @@ export function deleteWoman(id) {
                     alert(`user ${id} was deleted`);
                 })
             })
-            deletePhoto(id);
+            deleteBucket(id);
         }
         else
             alert("woman not found");
     })
-    // console.log(id);
-    // if (id) {
-    //     db.collection('women').doc(id).collection('langs').get().then(res => {
-    //         res.forEach(doc => {
-    //             // console.log(doc.ref);
-    //             doc.ref.delete();
-    //         })
-    //         db.collection('women').doc(id).delete().then(() => {
-    //             alert(`user ${id} was deleted`);
-    //         })
-    //     })
+ }
 
-    // }
-    // else
-    //     alert("wrong id");
-    // }
-
-}
-
-function deletePhoto(id) {
+function deleteBucket(id) {
     // Since you mentioned your images are in a folder,
     // we'll create a Reference to that folder:
     var storageRef = storage.ref(id);
@@ -124,11 +106,11 @@ function deletePhoto(id) {
     storageRef.listAll().then(function(result) {
       result.items.forEach(function(imageRef) {
         // And finally display them
-        
         imageRef.delete();
       });
     }).catch(function(error) {
-      // Handle any errors
+        // Handle any errors
+        console.log(error);
     });
 
     
