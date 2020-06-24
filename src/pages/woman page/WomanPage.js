@@ -139,18 +139,15 @@ function deletePhoto(id) {
 
 //shows a woman by id. gets a prop called id wich should corraspond with a woman id
 export const WomanPage = (props) => {
-    var id = props.match.params.id;
-    // const userId = this.props.match.id;
-    console.log(id);
-    //get woman by id
-    // console.log()
+    var id = props.match.params.id,
+    Admin=props.Admin;
     const woman = [];
     var obj;
 
     return (
         <div id="WPcover" className="cover">
             <div id="WomanPageWrapper" class="wrapper" >
-                <NavBar />
+            <NavBar AdminPage={false} Admin={Admin} />
                 <ShowWoman id={id} fields={["highlights", "biography", "histoy", "feminism", "facts", "quotes"]} />
             </div>
             <BottomBar />

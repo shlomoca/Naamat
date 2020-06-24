@@ -158,10 +158,10 @@ export class LoginComponent extends Component {
     renderAdminDiv() {
         ReactDOM.render(
             <Router>
-                <Route exact path="/" component={props => <MainUserPage admin={this.state.permission} />} />
-                <Route path="/WomanPage/:id" component={props => <WomanPage {...props} admin={this.state.permission} />} />
-                <Route path="/Category" component={Category} />
-                <Route path="/AdminPage" component={AdminPage} />
+                <Route exact path="/" component={() => <MainUserPage Admin={this.state.permission} />} />
+                <Route path="/WomanPage/:id" component={() => <WomanPage Admin={this.state.permission} />} />
+                <Route path="/Category" component={() => <Category Admin={this.state.permission} />} />
+                <Route path="/AdminPage" component={() => <AdminPage Admin={this.state.permission} />} />
             </Router>, document.getElementById('root')
         );
     }

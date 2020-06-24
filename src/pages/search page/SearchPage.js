@@ -4,11 +4,7 @@ import { Dictionary, LangBtn } from '../../Dictionary'
 
 
 
-const Buttons = (props) => {
 
-    return (<a></a>);
-
-}
 const TextBox = (props) => {
 
     return (<a></a>);
@@ -18,8 +14,8 @@ class SearchPage extends Component {
     render() {
 
 
-        return (<div id="SearchPageWrapper" class= "wrapper">
-           
+        return (<div id="SearchPageWrapper" class="wrapper">
+
         </div>
 
         )
