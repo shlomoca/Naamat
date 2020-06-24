@@ -47,7 +47,6 @@ class ImageUpload extends Component {
     if (pathEnd)
       path += pathEnd;
     {
-      alert(path);
 
       const { image } = this.state;
       const uploadTask = storage.ref(path).put(image);

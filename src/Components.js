@@ -218,7 +218,6 @@ export class PictursCarousel extends Component {
 
   }
   render() {
-    console.log("rendering");
     return (
       <div id="pictureCarousel">
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">

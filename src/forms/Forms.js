@@ -470,7 +470,7 @@ export function allreadyExist(id, wantToEdit) {
             }
             else
                 showing("#step2");
-        }).catch()
+        }).catch(error => console.log(error))
     }
     else
         showing("#step2");
@@ -524,15 +524,17 @@ function addWoman(e) {
 
 
 
-    db.collection('women').doc(id).set(gen);
     if (boolHe)
-        db.collection('women').doc(id).collection("langs").doc("HE").set(he);
+    db.collection('women').doc(id).collection("langs").doc("HE").set(he);
     if (boolEn)
-        db.collection('women').doc(id).collection("langs").doc("EN").set(en);
+    db.collection('women').doc(id).collection("langs").doc("EN").set(en);
     if (boolAr)
-        db.collection('women').doc(id).collection("langs").doc("AR").set(ar);
-    window.$("#staticBackdrop").modal('hide');
-    window.location.reload();
+    db.collection('women').doc(id).collection("langs").doc("AR").set(ar);
+    db.collection('women').doc(id).set(gen).then(()=>{
+        alert(Dictionary.uploadSuccess);
+        window.$("#staticBackdrop").modal('hide');
+        window.location.reload();
+    })
 }
 
 // add to suggest woman collection
@@ -628,7 +630,6 @@ function handleFeedback(e) {
 
 function sub_cat(event) {
 
-    console.log("IM READY SHLOMO");
     if (!$("#category_form").valid()) return;
     //confirm id not exeisting??
     var gen = {};

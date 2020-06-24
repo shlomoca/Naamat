@@ -86,14 +86,16 @@ export function deleteWoman(id) {
                     doc.ref.delete();
                 })
                 db.collection('women').doc(id).delete().then(() => {
+                    deleteBucket(id);
                     alert(`user ${id} was deleted`);
+                    window.location="/";
                 })
             })
-            deleteBucket(id);
         }
         else
             alert("woman not found");
-    })
+    }).catch(error => console.log(error));
+   
 }
 
 function deleteBucket(id) {
@@ -111,7 +113,7 @@ function deleteBucket(id) {
         console.log(error);
     });
 
-
+    
 
 }
 
@@ -161,8 +163,8 @@ export class ShoWoman extends Component {
             page = [],
             managerBtns = "";
         if (this.state.Admin) {
-            managerBtns = <td class="deleteBtnTd" ><button className="btn" onClick={(e) => { e.preventDefault(); allreadyExist(this.state.id, true); }}>{Dictionary.edit}</button>
-                <button class="btn-danger deleteBtn" onClick={() => { }} >{Dictionary.delete}</button></td>;
+            managerBtns = <div class="editWomanBtn" ><button className="btn" onClick={(e) => { e.preventDefault(); allreadyExist(this.state.id, true); }}>{Dictionary.edit}</button>
+                <button class=" btn-danger deleteBtn" onClick={() => { if(window.confirm(Dictionary.areYouSure))deleteWoman(this.state.id)}} >{Dictionary.delete}</button></div>;
         }
         db.collection('women').doc(this.state.id).collection('langs').doc(Dictionary.getLanguage()).get().then(snapshot => {
             const data = snapshot.data();
