@@ -29,6 +29,7 @@ export const Dictionary = new LocalizedStrings({
     manageCategory: `manage Category`,
     addUserBtn: `Add User`,
     userAddedSuccefully:`New User Added Succefully`,
+    homePageBack:`Home Page`,
     
     
 
@@ -108,6 +109,7 @@ export const Dictionary = new LocalizedStrings({
     manageCategory: `נהלי קטגוריות`,
     addUserBtn: `הוסיפי משתמש`,
     userAddedSuccefully:`משתמש חדש נוסף בהצלחה`,
+    homePageBack:`עמוד הבית`,
     
   //woman page
   edit: 'ערוך',
@@ -185,6 +187,7 @@ export const Dictionary = new LocalizedStrings({
     manageCategory: `إدارة الفئة`,
     addUserBtn:`إضافة مستخدم`,
     userAddedSuccefully:`تمت إضافة مستخدم جديد بنجاح`,
+    homePageBack:`الصفحة الرئيسية`,
 
    //woman page
    edit: 'تعديل',

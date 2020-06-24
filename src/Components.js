@@ -175,9 +175,6 @@ export const BottomBar = () => {
   )
 }
 
-
-
-
 export class PictursCarousel extends Component {
   constructor(props) {
     super(props);
@@ -244,50 +241,7 @@ export class PictursCarousel extends Component {
     )
   }
 }
-// export const PictursCarousel = (props) => {
-//   return (
-//     <div id="pictureCarousel">
-//       <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-//         <ol id="carouselIndicators" class="carousel-indicators">
-//           <li data-target="#carouselIndicators" data-slide-to="0" class="active"></li>
-//           <li data-target="#carouselIndicators" data-slide-to="1"></li>
-//           <li data-target="#carouselIndicators" data-slide-to="2"></li>
-//         </ol>
-//         <div id="carouselInner" class="carousel-inner">
-//           <div class="carousel-item active">
-//             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Maimon_ada.jpeg/375px-Maimon_ada.jpeg" class="d-block w-100" alt="example 1" height="600px" width="115" />
-//             <div class="carousel-caption d-none d-md-block pictureDiscription">
-//               <h5>עדה פישמן מיימון</h5>
-//               <p>מהמייסדות ומהמובילות של מפלגת הפועל הצעיר ותנועת הפועלות, חברת הכנסת הראשונה והשנייה מטעם מפא"י ומהיוזמות של חוק שיווי זכויות האשה (תשי"א). כל חייה פעלה למען שיפור מעמד הנשים ולהבטחת שוויון זכויות מלא .</p>
-//             </div>
-//           </div>
-//           <div class="carousel-item">
-//             <img src="https://q-cf.bstatic.com/images/hotel/max1280x900/148/148914590.jpg" class="d-block w-100" alt="example 2" height="600px" width="115" />
-//             <div class="carousel-caption d-none d-md-block pictureDiscription">
-//               <h5>Test 2</h5>
-//               <p>Summary 2</p>
-//             </div>
-//           </div>
-//           <div class="carousel-item">
-//             <img src="https://q-cf.bstatic.com/images/hotel/max1280x900/169/169438098.jpg" class="d-block w-100" alt="example 3" height="600px" width="115" />
-//             <div class="carousel-caption d-none d-md-block pictureDiscription">
-//               <h5>Test 3</h5>
-//               <p>Summary 3 aaaaaaa aaaaaaaaa aaaaaaaa aaa aaaa aaaaaaaaaaaaaaa aaaaa aaaaaaa aaaaaaa aaaaaaa aaa aaaaaaaaaa aa aaaaaa aaaaaaa aaaaaa aaaaaa</p>
-//             </div>
-//           </div>
-//         </div>
-//         <a class="carousel-control-prev" href="#carouselIndicators" role="button" data-slide="prev">
-//           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-//           <span class="sr-only">Previous</span>
-//         </a>
-//         <a class="carousel-control-next" href="#carouselIndicators" role="button" data-slide="next">
-//           <span class="carousel-control-next-icon" aria-hidden="true"></span>
-//           <span class="sr-only">Next</span>
-//         </a>
-//       </div>
-//     </div>
-//   )
-// }
+
 
 export const CarouselSlide = props => {
 
@@ -317,7 +271,6 @@ export const CarouselLi = props => {
     <li data-target="#carouselExampleIndicators" data-slide-to={props.dataSlideTo} className={clas}></li>
   )
 }
-
 
 //will show a modal: gets info ("details") and a url ("link") 
 export const DisplayModal = (props) => {
@@ -444,7 +397,7 @@ const Buttons = (props) => {
   
   if (props.Admin){
       if(props.AdminPage){
-          obj=<Link to="/"><button type="button" className="btn btn-primary nav-link" >{Dictionary.back}</button></Link>
+          obj=<Link to="/"><button type="button" className="btn btn-primary nav-link" >{Dictionary.homePageBack}</button></Link>
       }
       else
       obj = <Link to="/AdminPage"><button type="button" className="btn btn-primary nav-link" >{Dictionary.managmentPlatform}</button></Link>
