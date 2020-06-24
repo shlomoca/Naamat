@@ -18,17 +18,13 @@ import { ShowHideFunc } from './pages/Admin Page/AdminPage';
 //set a navigation bar to the top of the site
 //under the navigation bar there is a 
 export const NavBar = (props) => {
-
-
-
-  if (props.admin)
-    obj = <Link to="/AdminPage"><button type="button" className="btn btn-primary nav-link" >{Dictionary.managmentPlatform}</button></Link>
-  else
-    var obj = <button type="button" className="btn btn-primary nav-link" data-toggle="modal" data-target="#feedbackForm">{Dictionary.feedback}</button>
+var AdminPage = props.AdminPage,
+Admin= props.Admin;
 
 
   return (
     <div id="navbar">
+
       <EditWomanModal />
       <AddCategoryModal />
       <SuggestWoman />
@@ -56,22 +52,11 @@ export const NavBar = (props) => {
             </Link>
           </li>
 
-          {/* <li className="nav-item">
-            <button type="button" className="btn btn-primary nav-link" data-toggle="modal" data-target="#categoryForm">
-              {Dictionary.addcategory}</button>
-          </li> */}
 
           <li className="nav-item">
             <button type="button" className="btn btn-primary nav-link" data-toggle="modal" data-target="#suggestWomanModal">
               {Dictionary.suggest}</button>
           </li>
-
-
-          {/* <li className="nav-item">
-            <button type="button" class="btn btn-primary nav-link" data-toggle="modal" data-target="#staticBackdrop">
-              {Dictionary.addWoman}
-            </button>
-          </li> */}
 
           <li className="nav-item">
             <button type="button" class="btn btn-primary nav-link" data-toggle="collapse" data-target="#about-drop">{Dictionary.aboutTitle}</button>
@@ -84,7 +69,7 @@ export const NavBar = (props) => {
 
 
           <li className="nav-item">
-            {obj}
+            {<Buttons AdminPage={AdminPage} Admin={Admin}/>}
           </li>
 
 
@@ -454,53 +439,22 @@ export function usersManager() {
 }
 
 
+const Buttons = (props) => {
+  var obj;
+  
+  if (props.Admin){
+      if(props.AdminPage){
+          obj=<Link to="/"><button type="button" className="btn btn-primary nav-link" >{Dictionary.back}</button></Link>
+      }
+      else
+      obj = <Link to="/AdminPage"><button type="button" className="btn btn-primary nav-link" >{Dictionary.managmentPlatform}</button></Link>
+  }
+      else
+      obj = <button type="button" className="btn btn-primary nav-link" data-toggle="modal" data-target="#feedbackForm">{Dictionary.feedback}</button>
+
+  return obj;
+
+}
 
 
-
-
-
-// export const usersTableHeader = () => {
-
-//   return (
-//     <thead>
-//       <tr>
-//         {/* <th> Date </th> */}
-//         <th> email </th>
-//         <th> admin </th>
-//         <th> </th>
-//       </tr>
-//     </thead>
-//   )
-// }
-
-
-// //create users table via db data
-// export const usersTable= (props) => {
-
-//   var email,admin;
-//   const vals = Object.values(props.users);
-//   const deck = [];
-
-//   return (
-//     <div id="usersTable">
-//       <table table class="table table-dark">
-//         <usersTableHeader />
-//         {deck}
-//         <button onClick={hideFeedTable()} id="backBtn" class="btn" >חזור</button>
-//       </table>
-//     </div>
-//   )
-// }
-
-
-// //hiding feedback table and showing the managment buttons again
-// function hideFeedTable(id) {
-//   return () => {
-
-//     $("#allAdmin").show();
-//     $("#feedBackHolder").hide()
-//   }
-
-// }
-///////////////
 
