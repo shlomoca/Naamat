@@ -181,7 +181,7 @@ export const BottomBar = () => {
     <div id="bottom">
 
       <ScrollUpButton />
-      <a>{Dictionary.builders} </a>
+      <span id="builder"><a>{Dictionary.builders} </a></span>
       <a id="facebook" href="https://www.facebook.com/womenatwork" data-target="#mymodal"><img id="fblogo" src={fblogo} alt="facebook" />{Dictionary.NaamatInFacebook}</a>
       <a id="youtube" href="https://www.youtube.com/embed/channel/UCdKKqQogmEQp7KNDRYCnV6A"> <img id="ytlogo" src={ytlogo} alt="youtube" />{Dictionary.NaamatInYoutube}</a>
       {/* <DisplayModal link='https://www.youtube.com/embed/watch?v=vg2gscdAQBo' details='Wikipedia' /> */}
@@ -476,11 +476,11 @@ export function usersManager() {
 
 // //create users table via db data
 // export const usersTable= (props) => {
- 
+
 //   var email,admin;
 //   const vals = Object.values(props.users);
 //   const deck = [];
- 
+
 //   return (
 //     <div id="usersTable">
 //       <table table class="table table-dark">

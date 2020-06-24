@@ -147,7 +147,7 @@ export const Dictionary = new LocalizedStrings({
     bibliography: "ביבליוגרפיה",
    
     //components
-    builders: 'אתר זה נבנה על ידי: שלמה כרמי, דניאל רז, סהר כהן, עדיאל צייג, מתן ימין',
+    builders: 'אתר זה נבנה על ידי: שלמה כרמי, דניאל רז, סהר כהן, עדיאל צייג, מתן ימין ©',
     CategoryName:'שם קטגוריה',
     managmentPlatform: 'ממשק ניהול',
     NaamatInFacebook: 'נעמת בפייסבוק',
@@ -228,7 +228,7 @@ export const Dictionary = new LocalizedStrings({
     
     //components
     
-    builders: `تم بناء هذا الموقع من قبل: شلومو كرمي ، دانيال راز ، سحر كوهين ، أديل تساياج ، ماتان يمين `,
+    builders: `تم بناء هذا الموقع من قبل: شلومو كرمي ، دانيال راز ، سحر كوهين ، أديل تساياج ، ماتان يمين © `,
     managmentPlatform: 'منصة الإدارة',
     NaamatInFacebook:  'نعمات في الفيسبك', 
     NaamatInYoutube: 'نعمات في اليوتيوب',
