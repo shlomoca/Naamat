@@ -123,12 +123,12 @@ export const FeedbackModal = () => {
                     </div>
                     <div class="modal-body">
                         <form dir="RTL" id="feedback_form" name="feedback_form" onSubmit={handleFeedback}  >
-                            <div id="name-group" class="form-group">
-                                <label id="regularLabel" for="feed_name">{Dictionary.name}</label>
+                            <div  class="form-group">
+                                <label class="regularLabel" for="feed_name">{Dictionary.name}</label>
                             </div>
                             <input type="text" rows="1" class="regularInput" id="feed_name" cols="35" name="name" required />
                             <div id="email-group" class="form-group">
-                                <label id="regularLabel" for="feed_email">{Dictionary.enterMail}</label>
+                                <label class="regularLabel" for="feed_email">{Dictionary.enterMail}</label>
                             </div>
                             <input type="email" rows="1" class="regularInput" id="feed_email" cols="35" name="email" required />
                     {/* </div> */}
