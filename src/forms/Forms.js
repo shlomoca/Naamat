@@ -2,7 +2,7 @@ import './Forms.css';
 import $ from 'jquery';
 import 'jquery-validation';
 import React from 'react';
-import { db } from '../config/Firebase'
+import { db, auth } from '../config/Firebase'
 import { Dictionary, langs } from '../Dictionary';
 import ImageUpload from './ImageUpload';
 import { AfterMessage } from '../Components';
@@ -14,6 +14,12 @@ export const AddNewUserForm = () => {
     return (
         <div class="modal fade" id="newUserModal">
             <div class="modal-dialog modal-sm">
+                <div class="modal-header">
+                    <button type="button" onClick={resetForm("newUserForm")} class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h5 class="modal-title" id="staticBackdropLabel">{Dictionary.addUserBtn}</h5>
+                </div>
                 <div class="modal-content">
                     <form dir="RTL" id="newUserForm" name="newUserForm" onSubmit={newUserHandler}  >
                         < input type="email"
@@ -21,36 +27,37 @@ export const AddNewUserForm = () => {
                             name="email"
                             placeholder={Dictionary.enterMail}
                             defaultValue="" required
-                            // onChange={this.handleChange}
-                            >
+                        >
                         </input>
+                        <br></br>
                         < input type="password"
                             id="password"
                             name="password"
                             placeholder={Dictionary.enterPass}
                             defaultValue="" required
-                            // onChange={this.handleChange}
-                            >
+                        >
                         </input>
+                        <br></br>
 
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
-                                <label class="input-group-text" for="inputGroupSelect01">Options</label>
+                                <label class="input-group-text" for="inputGroupSelect01">Admin</label>
                             </div>
-                            <select class="custom-select" id="inputGroupSelect01" required>
+                            <select class="custom-select" id="adminSelect" required>
                                 <option selected disabled="disabled">Choose...</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
+                                <option value={true} >Yes</option>
+                                <option value={false}>No</option>
                             </select>
                         </div>
-
-                        <button id="addUserBtn"
-                            type="submit"
-                            text={Dictionary.addUserBtn}
-                            className="btn btn-success"
-                            onClick={newUserHandler} >
-                            {Dictionary.addUserBtn}
-                        </button>
+                        <div class="modal-footer">
+                            <button id="addUserBtn"
+                                type="submit"
+                                text={Dictionary.addUserBtn}
+                                className="btn btn-success"
+                                onClick={newUserHandler} >
+                                {Dictionary.addUserBtn}
+                            </button>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -78,6 +85,30 @@ function newUserHandler(e) {
 
     if (!$("#newUserForm").valid()) return;
 
+    var email = $("#email").val();
+    var password = $("#password").val();
+    var admin = $("#adminSelect").val();
+    // console.log(email, password, admin);
+
+    auth.createUserWithEmailAndPassword(email, password).then(() => {
+        var obj = {};
+        obj["email"] = email;
+        obj["id"] = email;
+        obj["superUser"] = false;
+        obj["admin"] = admin;
+        console.log(obj);
+
+        db.collection("users").doc(email).set(obj).then(() => {
+            window.$("#newUserModal").modal('hide');
+            window.location.reload();
+            alert("New User added!")
+        }).catch(function (error) {
+            alert(error)
+        });
+
+    }).catch(function (error) {
+        alert(error)
+    });
 }
 
 export const FeedbackModal = () => {
@@ -95,18 +126,18 @@ export const FeedbackModal = () => {
                     <div class="modal-body">
                         <form dir="RTL" id="feedback_form" name="feedback_form" onSubmit={handleFeedback}  >
                             <div id="name-group" class="form-group">
-                                <label id="feedLineName" for="feed_name">{Dictionary.name}</label>
+                                <label id="regularLabel" for="feed_name">{Dictionary.name}</label>
                             </div>
-                            <input type="text" rows="1" class="feedbacLine" id="feed_name" cols="35" name="name" required />
+                            <input type="text" rows="1" class="regularInput" id="feed_name" cols="35" name="name" required />
                             <div id="email-group" class="form-group">
-                                <label id="feedLineName2" for="feed_email">{Dictionary.enterMail}</label>
+                                <label id="regularLabel" for="feed_email">{Dictionary.enterMail}</label>
                             </div>
-                            <input type="email" rows="1" class="feedbacLine" id="feed_email" cols="35" name="email" required />
-
+                            <input type="email" rows="1" class="regularInput" id="feed_email" cols="35" name="email" required />
+                    {/* </div> */}
+                                    <div id="howWas" classname="form-group"> {Dictionary.HowWasVisit} </div>
                             <div class="starLocation">
-                                <div id="name-groups" classname="form-group starContainer">
+                                <div  classname="form-group starContainer">
                                     {/* centerd info */}
-                                    <div id="howWasVisit" align="center"> {Dictionary.HowWasVisit} </div>
                                     <div className="starrating risingstar d-flex justify-content-center flex-row-reverse">
                                         <input type="radio" className="star" id="star5" name="rating" value="5" /><label for="star5" title="5 star"></label>
                                         <input type="radio" className="star" id="star4" name="rating" value="4" /><label for="star4" title="4 star"></label>
@@ -118,7 +149,7 @@ export const FeedbackModal = () => {
                             </div>
                             <div id="name-group" class="form-group">
                                 {/* <label for="profession"></label> */}
-                                <textarea rows="4" class="feedbacImpro" id="improvement" cols="35" name="improvement" placeholder={Dictionary.seggestions} ></textarea>
+                                <textarea rows="4" id="improvement" cols="35" name="improvement" placeholder={Dictionary.seggestions} ></textarea>
 
                             </div>
 
@@ -181,13 +212,13 @@ export const GenralForm = (props) => {
 
         <div id={props.lang} class={classAttr}>
 
-            <div id="name-group1" class="form-group">
-                {/* <label for="display"></label> */}
-                <input type="text" lang={props.lang} rows="1" class="displayBox" cols="35" id={"display" + props.lang} name="display" placeholder={Dictionary.displayname} />
-            </div>
+            <div  class="form-group">
+                <input type="text" lang={props.lang} rows="1" class="regularInput" cols="35" id={"display" + props.lang} name="display" placeholder={Dictionary.displayname} />
             <ImageUpload param1="name" param2="birth" pathEnd="/ProfilePic" param1Empty="name not enterd" param2Empty="date of birth not ented" />
+            </div>
 
 
+            <div  class="form-group">
 
             {/* <div class="form-group"> */}
             <textarea rows="4" class="detail" cols="50" name="highlights" lang={props.lang} id={"highlights" + props.lang} placeholder="highlights"  ></textarea>
@@ -212,11 +243,12 @@ export const GenralForm = (props) => {
             {/* </div> */}
 
             <textarea rows="4" class="detail" cols="50" name="quotes" lang={props.lang} id={"quotes" + props.lang} placeholder="Quotes and notable works" ></textarea>
-
+            
+            </div>
             <div class="form-group">
-                <label class="myNewClass" for={"link" + props.lang}>
-                    <input class="myNewClass" id={"description" + i} lang={props.lang} type="text" rows="4" class="descAndLink" cols="50" name="description" placeholder="description" />
-                    <input class="myNewClass" id={"link" + i} lang={props.lang} type="text" rows="4" class="descAndLink" cols="50" name="link" placeholder="link" />
+                <label  for={"link" + props.lang}> </label>
+                    <input class="regularInput" id={"description" + i} lang={props.lang} type="text" rows="4" cols="50" name="description" placeholder="description" />
+                    <input class="regularInput" id={"link" + i} lang={props.lang} type="text" rows="4" cols="50" name="link" placeholder="link" />
                     <a id="fill1" ></a>
                     <button onClick={(e) => {
                         e.preventDefault();
@@ -224,17 +256,18 @@ export const GenralForm = (props) => {
                         if ($("#description" + i).val())
                             if ($("#link" + i).val()) {
                                 i++;
-                                fill.append(`<input id=${"description" + i}  lang = ${props.lang} type="text" rows="4" class="descAndLink" cols="50" name="description" placeholder="description" />
-                        <input id=${"link" + i} lang = ${props.lang} type="text" rows="4" class="descAndLink" cols="50" name="link" placeholder="link" />`)
+                                fill.append(`<input id=${"description" + i}  lang = ${props.lang} type="text" rows="4" class="regularInput" cols="50" name="description" placeholder="description" />
+                        <input id=${"link" + i} lang = ${props.lang} type="text" rows="4" class="regularInput" cols="50" name="link" placeholder="link" />`)
                             }
-                        // console.log(fill.num);
-                    }}>add</button>
-                </label>
+                    
+                    }}>{Dictionary.add}</button>
+               
             </div>
+               
 
             <div class="form-group">
-                <label class="myNewClass" for={"reading" + props.lang}>
-                    <input class="myNewClass" id={"reading" + j} lang={props.lang} type="text" rows="4" class="descAndLink" cols="50" name="description" placeholder="further reading" />
+                <label for={"reading" + props.lang}>
+                    <input  id={"reading" + j} lang={props.lang} type="text" rows="4" cols="50" name="description" placeholder="further reading" />
                     <a id="fill2"></a>
                     <button onClick={(e) => {
                         e.preventDefault();
@@ -242,9 +275,7 @@ export const GenralForm = (props) => {
 
                         if ($("#reading" + j).val()) {
                             j++;
-                            fill.append(`<input id=${"reading" + j} lang=${props.lang} type="text" rows="4" class="descAndLink" cols="50" name="description" placeholder="further reading" />`)
-                        }
-                    }}>add</button>
+                            fill.append(`<input id=${"reading" + j} lang=${props.lang} type="text" rows="4" cols="50" name="description" placeholder="further reading" />`)}}}>add</button>
                 </label>
             </div>
         </div>
@@ -385,12 +416,12 @@ export const EditWomanModal = () => {
                                 <div class="form-group">
                                     נא למלא את הפרטים לפני לחיצה על הבא
                                 <button id="submit1" type="button" class="btn btn-success" onClick={() => allreadyExist($("#name").val() + $("#birth").val())} >{Dictionary.next}</button>
+                                    </div>
+                                </div>
+                                <div id="popup">
+                                    <span class="popuptext" id="myPopup">{Dictionary.popup}</span>
                                 </div>
                             </div>
-                            <div id="popup">
-                                <span class="popuptext" id="myPopup">{Dictionary.popup}</span>
-                            </div>
-                        </div>
                             <div id="step2">
                                 <div class="tab-content">
                                     <GenralForm lang={langs[0]} active={true} />
@@ -611,152 +642,3 @@ function sub_cat(event) {
     event.preventDefault();
 };
 
-    // function addLinks(e) {
-        //     e.preventDefault();
-
-//     $("#fill").append(`<input id="description" lang = `{props.lang}` type="text" rows="4" class="details" cols="50" name="description" placeholder="description" />
-//     <input id="link" lang = {props.lang} type="text" rows="4" class="details" cols="50" name="link" placeholder="link" />`)
-
-// }
-
-// //add feedback to database
-// $("#feedback_form").submit(function (event) {
-//     if (!$("#feedback_form").valid()) return;
-//     // stop the form from submitting the normal way and refreshing the page
-//     event.preventDefault();
-
-//     var obj = {}
-//     var id = $("#feed_name").val() + $("#feed_email").val();
-//     var maxscoreSet = false;
-//     $($('#feedback_form').prop('elements')).each(function () {
-//         if (this.value) {
-//             //if it is the stars rating
-//             if (this.type == "radio") {
-//                 if ($(this).is(':checked') && !maxscoreSet) {
-//                     maxscoreSet = true;
-//                     obj["score"] = this.value;
-//                 }
-//             }
-//             else
-//                 obj[this.id] = this.value;
-//         }
-//     });
-//     console.log(obj);
-
-//     db.collection('feedback').doc(id).set(obj).then(function () {
-//         window.$("#feedbackForm").modal('hide');
-//     });
-
-//     // $("#afterMessage").modal('show');
-// });
-
-    // $("#link").hide();
-    // $('select[name=type]').change(function () {
-    //     if ($('select[name=type]').val() == 'link') {
-    //         $('#link').show();
-    //     } else {
-    //         $("#link").hide();
-    //     }
-    // });
-
-
-    //add woman from the form to database
-    // $("#woman_form").submit(function (event) {
-
-    //     if (!$("#woman_form").valid()) return;
-    //     //confirm id not exeisting??
-    //     var he = {}, en = {}, ar = {}, gen = {};
-    //     var boolHe = false, boolEn = false, boolAr = false;
-
-    //     var id = $("#name").val() + $("#birth").val();
-    //     $('#submit1').show();
-
-    //     $($('#woman_form').prop('elements')).each(function () {
-    //         if (this.value) {
-    //             if (this.name === "highlights" || this.name === "display") {
-    //                 gen[this.id] = (this.value).toLowerCase();
-    //             }
-    //             if (this.lang == "EN") {
-    //                 boolEn = true;
-    //                 en["id"] = id;
-    //                 en[this.name] = this.value;
-
-    //             }
-    //             else if (this.lang == "HE") {
-    //                 boolHe = true;
-    //                 he["id"] = id;
-    //                 he[this.name] = this.value;
-    //             }
-    //             else if (this.lang == "AR") {
-    //                 boolAr = true;
-    //                 ar["id"] = id;
-    //                 ar[this.name] = this.value;
-    //             }
-    //             else {
-    //                 gen[this.name] = this.value;
-    //                 gen["id"] = id;
-    //             }
-    //         }
-    //     });
-
-
-    //     db.collection('women').doc(id).set(gen);
-    //     if (boolHe)
-    //         db.collection('women').doc(id).collection("langs").doc("HE").set(he);
-    //     if (boolEn)
-    //         db.collection('women').doc(id).collection("langs").doc("EN").set(en);
-    //     if (boolAr)
-    //         db.collection('women').doc(id).collection("langs").doc("AR").set(ar);
-    //     window.$("#staticBackdrop").modal('hide');
-    //     // $("#staticBackdrop").modal('hide');
-    //     // $("#afterMessage").modal('show');
-    //     // stop the form from submitting the normal way and refreshing the page
-    //     event.preventDefault();
-    // });
-
-
-
-    // $("#suggest_woman_form").submit(function (event) {
-    //     if (!$("#suggest_woman_form").valid()) return;
-    //     // stop the form from submitting the normal way and refreshing the page
-    //     event.preventDefault();
-    //     suggestWoman();
-    //     // $("#afterMessage").modal('show');
-    // });
-
-    //add woman from the form to database
-    // $("#category_form").submit(function (event) {
-
-    //     console.log("IM READY SHLOMO");
-    //     if (!$("#category_form").valid()) return;
-    //     //confirm id not exeisting??
-    //     var gen = {};
-    //     var id = $("#category_nameHE").val();
-    //     //  $('#submitCategory').show();
-
-    //     $($('#category_form').prop('elements')).each(function () {
-    //         if (this.value) {
-    //             gen[this.id] = this.value;
-
-    //         }
-    //     });
-    //     console.log(gen);
-    //     console.log(id);
-    //     alert("checkCategories");
-    //     db.collection('categories').doc(id).set(gen);
-    //     //window.$("#categoryForm").modal('hide');
-    //     // $("#staticBackdrop").modal('hide');
-    //     // $("#afterMessage").modal('show');
-    //     // stop the form from submitting the normal way and refreshing the page
-    //     event.preventDefault();
-    // });
-
-
-    // function hideMe() {
-//     var x = document.getElementById("submit1");
-//     if (x.style.display === "none") {
-//       x.style.display = "block";
-//     } else {
-//       x.style.display = "none";
-//     }
-//   }
