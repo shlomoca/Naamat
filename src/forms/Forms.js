@@ -98,17 +98,15 @@ function newUserHandler(e) {
         obj["admin"] = admin;
         console.log(obj);
 
-        db.collection("users").doc(email).set(obj).then(() => {
-            window.$("#newUserModal").modal('hide');
-            window.location.reload();
-            alert("New User added!")
-        }).catch(function (error) {
-            alert(error)
-        });
-
+        db.collection("users").doc(email).set(obj);
+        window.location.reload();
+        alert("New User added!")
+        
     }).catch(function (error) {
         alert(error)
     });
+    
+    window.$("#newUserModal").modal('hide');
 }
 
 export const FeedbackModal = () => {
