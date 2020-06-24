@@ -4,7 +4,6 @@ import { LangBtn, Dictionary } from './Dictionary';
 import logo from './images/naamatlogo.png';
 import fblogo from './images/fblogo.png';
 import ytlogo from './images/ytlogo.png';
-import { showing } from './Components.css';
 import { EditWomanModal, AddCategoryModal, FeedbackModal, SuggestWoman } from './forms/Forms';
 import { db } from './config/Firebase'
 import { Link } from 'react-router-dom';
@@ -14,6 +13,7 @@ import { getWomen, WomenDeck } from '../src/pages/woman page/WomanPage'
 import ScrollUpButton from "react-scroll-up-button";
 import ReactDOM from 'react-dom';
 import { storage } from './config/Firebase'
+import { showing } from './Components.css';
 import { ShowHideFunc } from './pages/Admin Page/AdminPage';
 
 

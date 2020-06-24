@@ -46,19 +46,6 @@ padding-bottom: 3%;
 
 }
 
-
-#step2{
-    display: none;
-    margin-right: 10%;
-}
-
-#step1{
-
-
-
-}
-
-
 .feedbacLine{
 
     /* padding-top: 20%; */
@@ -350,24 +337,10 @@ padding-bottom: 3%;
 
 .starLocation{
 
-    margin-left: 10%;
+    /* margin-left: 10%; */
 }
 
-.feedbacImpro{
 
-    width: 53%;
-    /* padding-left: 20%; */
-    margin-left: 25%;
-    border-color: purple;
-    /* margin-right: 28%; */
-    padding-top: 20%;
-    font-size: x-large;
-}
-
-#improvement{
-
-    padding-top: 10px;
-}
 
 #feedLineName{
 
@@ -446,5 +419,11 @@ border-color: purple;
 #submit1{
 
 align-self: center;
+
+}
+
+#howWas{
+
+    text-align: center;
 
 }
