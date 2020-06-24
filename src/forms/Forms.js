@@ -132,11 +132,11 @@ export const FeedbackModal = () => {
                     <div class="modal-body">
                         <form dir="RTL" id="feedback_form" name="feedback_form" onSubmit={handleFeedback}  >
                             <div  class="form-group">
-                                <label class="regularLabel" for="feed_name">{Dictionary.name}</label>
+                                <label class="regularLabel" for="feed_name">{Dictionary.name}*</label>
                             </div>
                             <input type="text" rows="1" class="regularInput" id="feed_name" cols="35" name="name" required />
                             <div id="email-group" class="form-group">
-                                <label class="regularLabel" for="feed_email">{Dictionary.enterMail}</label>
+                                <label class="regularLabel" for="feed_email">{Dictionary.enterMail}*</label>
                             </div>
                             <input type="email" rows="1" class="regularInput" id="feed_email" cols="35" name="email" required />
                             {/* </div> */}
@@ -159,6 +159,7 @@ export const FeedbackModal = () => {
 
                             </div>
 
+                                <div class="requiredFooter">{Dictionary.mustfilled}</div>
                             <div class="modal-footer">
                                 <button type="submit" class="btn btn-success">{Dictionary.submit} <span class="fa fa-arrow-right"></span></button>
                                 <button type="button" onClick={resetForm("feedback_form")} class="btn btn-secondary" data-dismiss="modal">{Dictionary.close}</button>
@@ -304,12 +305,12 @@ export const SuggestWoman = () => {
                         <div class="modal-body">
 
                             <div  class="form-group">
-                                <label class="regularLabel" for="yourName">{Dictionary.name}</label>
+                                <label class="regularLabel" for="yourName">{Dictionary.name}*</label>
                                     <input type="text" rows="1" class="regularInput" cols="35" id="yourName" name="yourName" required />
                             </div>
 
                             <div class="form-group">
-                                <label class="regularLabel" for="yourEmail">{Dictionary.enterMail}</label>    
+                                <label class="regularLabel" for="yourEmail">{Dictionary.enterMail}*</label>    
                                     <input type="text" rows="1" class="regularInput" cols="35" id="yourEmail" name="yourEmail" required />
                             </div>
 
@@ -359,8 +360,9 @@ export const SuggestWoman = () => {
 
                             }}>{Dictionary.addMore}</button>
                             </div>
+
                         </div>
-                        {/* </div> */}
+                        <div class="requiredFooter">{Dictionary.mustfilled}</div>
                         <div class="modal-footer">
                             <button type="button" class="close" class="btn btn-secondary" onClick={resetForm("suggest_woman_form", "fill20")} data-dismiss="modal">{Dictionary.close}</button>
                             <button type="submit" for="suggest_woman_form" class="btn btn-success" id="submit_form" >{Dictionary.submit} <span class="fa fa-arrow-right"></span></button>
@@ -398,11 +400,11 @@ export const EditWomanModal = () => {
                                 </ul>
                                 <div class="addWomanContainer">
                                     <div class="form-group">
-                                        <label class="regularLabel" for="name">{Dictionary.name}</label>
+                                        <label class="regularLabel" for="name">{Dictionary.name}*</label>
                                         <input class="regularInput" type="text" rows="1" cols="35" id="name" name="name" required />
                                     </div>
                                     <div class="form-group">
-                                        <label class="regularLabel" for="birth">{Dictionary.birth}</label>
+                                        <label class="regularLabel" for="birth">{Dictionary.birth}*</label>
                                         <input class="regularInput" type="date" rows="1" cols="35" id="birth" name="birth" required />
                                     </div>
                                     <div class="form-group">
@@ -411,7 +413,6 @@ export const EditWomanModal = () => {
                                     </div>
                                     {/* ///////////////////////////// */}
                                     <div class="form-group">
-                                        נא למלא את הפרטים לפני לחיצה על הבא
                                 <button id="submit1" type="button" class="btn btn-success" onClick={() => allreadyExist($("#name").val() + $("#birth").val())} >{Dictionary.next}</button>
                                     </div>
                                 </div>
@@ -427,6 +428,7 @@ export const EditWomanModal = () => {
                                 </div>
                             </div>
                         </div>
+                            <div class="requiredFooter" > {Dictionary.mustfilled}  </div>
                         <div class="modal-footer">
                             <button type="button" class="close" class="btn btn-secondary" onClick={resetForm("woman_form", "fill1", "fill2")} data-dismiss="modal">{Dictionary.close}</button>
                             <button type="submit" for="woman_form" class="btn btn-success" id="submit_form" >{Dictionary.submit} <span class="fa fa-arrow-right"></span></button>
