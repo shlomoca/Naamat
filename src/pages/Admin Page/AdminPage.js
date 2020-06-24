@@ -116,7 +116,9 @@ const DisplayData = (props) => {
                 <tbody>
                     {body}
                 </tbody>
-                {serviceButtons}
+                <div id="buttonsTable">
+                    {serviceButtons}
+                </div>
             </table>
         </div>
     )
@@ -135,8 +137,8 @@ export function removeItem(collect, id) {
     if (id) {
         db.collection(collect).doc(id).delete().then(() => {
             ReactDOM.render(<a></a>, document.getElementById("tr" + id));
-            console.log(collect,id );
-            alert(Dictionary.collect+" " + Dictionary.deletedSuccessfully);//see how to make collect readable
+            console.log(collect, id);
+            alert(Dictionary.collect + " " + Dictionary.deletedSuccessfully);//see how to make collect readable
         });
     }
     else

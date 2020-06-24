@@ -73,16 +73,19 @@ align-content: space-around;
     float: left;
   }
 
+#buttonsTable{
+  display: flex;
+  justify-content: center;
+  margin-right: 90%;
+}
+
 #backBtn {
-    /* width: 20%; */
-  
-    font-size: xx-large;
-  margin: 3px;
+  font-size: x-large;
+  margin: 5px;
   margin-bottom: 8px;
 }
 
 #addUserBtn {
-  align-content: center;
-  margin: 3px;
+  margin: 5px;
   margin-bottom: 8px;
   }
