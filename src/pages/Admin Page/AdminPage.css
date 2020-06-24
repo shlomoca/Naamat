@@ -60,6 +60,7 @@ width: 80%;
     );
     animation: background 2s linear infinite;
   }
+
   button:focus {
     outline: none;
   }
@@ -79,7 +80,7 @@ width: 80%;
     float: left;
   }
 
-#buttonsTable{
+#buttonsTable {
   display: flex;
   justify-content: center;
   margin-right: 90%;
@@ -95,3 +96,19 @@ width: 80%;
   margin: 5px;
   margin-bottom: 8px;
   }
+
+.deleteBtn {
+  height: 60px;
+  border-radius: 12%;
+  width: 100px;
+  border-width: 0px;
+}
+
+.deleteBtnTd {
+  position: relative;
+  text-align-last: center;
+}
+
+.textAlign {
+  text-align: center;
+}

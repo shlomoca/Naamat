@@ -165,7 +165,7 @@ export const BuildTableHead = (props) => {
     const res = []
     if (fields)
         fields.forEach(field => {
-            res.push(<th> {field} </th>)
+            res.push(<th class = "textAlign"> {field} </th>)
         })
     return (
         <thead>
@@ -184,10 +184,10 @@ export const BuildTableBody = (props) => {
     var tds = [];
 
     colls.forEach(col => {
-        tds.push(<td> {col} </td>);
+        tds.push(<td class = "textAlign"> {col} </td>);
     });
     tds.push(
-        <td> <button class="btn" onClick={askAndDelete(collect, id)} >{Dictionary.delete}</button></td>
+        <td class ="deleteBtnTd" > <button class="btn-danger deleteBtn" onClick={askAndDelete(collect, id)} >{Dictionary.delete}</button></td>
     );
     return (
         <tr id={"tr" + id}>
