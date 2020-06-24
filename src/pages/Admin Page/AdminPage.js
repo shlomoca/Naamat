@@ -4,50 +4,49 @@ import React, { Component } from 'react';
 import { NavBar, PictursCarousel, DisplayModal, BottomBar, AfterMessage, usersManager } from '../../Components.js';
 import { getWoman, WomenCard } from '../woman page/WomanPage';
 import { Dictionary } from '../../Dictionary';
-import { EditWomanModal, AddCategoryModal, FeedbackModal } from '../../forms/Forms';
+import { EditWomanModal, AddCategoryModal, FeedbackModal, AddNewUserForm } from '../../forms/Forms';
 import { scryRenderedComponentsWithType } from 'react-dom/test-utils';
 import { Link } from 'react-router-dom';
 import { db } from '../../config/Firebase';
 import ReactDOM from 'react-dom';
 
 class AdminPage extends Component {
-  render() {
-    return (
-      <div id="APcover" className="cover">
-      <div id="mainAPWrapper" className="wrapper">
-        <NavBar />
-        <EditWomanModal />
-        <AddCategoryModal />
-        <FeedbackModal />
-        <div class="backBtn">
-          {/* <Link to="/"><button id="backBtn" class="btn">{Dictionary.back}</button></Link> */}
-        </div>
-        <p id="adminTitle">{Dictionary.welcomeManager}</p>
-        <div id="allAdmin">
-          <button class="btnhover" type="button" id="btn1" data-toggle="modal" data-target="#staticBackdrop"> {Dictionary.adminAddWoman} </button>
-          <button class="btnhover" type="button" id="btn2" > {Dictionary.adminEditWoman} </button>
-          <button class="btnhover" type="button" id="btn3" onClick={() => { getData("feedback",["name","email","improvement","score"]) }}> {Dictionary.adminFeedback} </button>
-          <button class="btnhover" type="button" id="btn5" data-toggle="modal" data-target="#categoryForm"> {Dictionary.adminAddCategory} </button>
-          <button class="btnhover" type="button" id="btn4" onClick={() => { getData("categories",["category"]) }}> {Dictionary.manageCategory} </button>
-          <button class="btnhover" type="button" id="btn6" onClick={() => { getData("users",["email","admin"]) }}> {Dictionary.adminUserManagement} </button>
-          {/* <button class="btnhover" type="button" id="btn4"> {Dictionary.adminEditAbout} </button> */}
+    render() {
+        return (
+            <div id="APcover" className="cover">
+                <div id="mainAPWrapper" className="wrapper">
+                    <NavBar />
+                    <EditWomanModal />
+                    <AddCategoryModal />
+                    <FeedbackModal />
+                    <AddNewUserForm/>
+                    <div class="backBtn">
+                        {/* <Link to="/"><button id="backBtn" class="btn">{Dictionary.back}</button></Link> */}
+                    </div>
+                    <p id="adminTitle">{Dictionary.welcomeManager}</p>
+                    <div id="allAdmin">
+                        <button class="btnhover" type="button" id="btn1" data-toggle="modal" data-target="#staticBackdrop"> {Dictionary.adminAddWoman} </button>
+                        <button class="btnhover" type="button" id="btn2" > {Dictionary.adminEditWoman} </button>
+                        <button class="btnhover" type="button" id="feedbackBtn" onClick={() => { getData("feedbackBtn", "feedback", ["name", "email", "improvement", "score"]) }}> {Dictionary.adminFeedback} </button>
+                        <button class="btnhover" type="button" id="btn5" data-toggle="modal" data-target="#categoryForm"> {Dictionary.adminAddCategory} </button>
+                        <button class="btnhover" type="button" id="categoriesBtn" onClick={() => { getData("categoriesBtn", "categories", ["category"]) }}> {Dictionary.manageCategory} </button>
+                        <button class="btnhover" type="button" id="userMngBtn" onClick={() => { getData("userMngBtn", "users", ["email", "admin"]) }}> {Dictionary.adminUserManagement} </button>
+                        {/* <button class="btnhover" type="button" id="btn4"> {Dictionary.adminEditAbout} </button> */}
 
-        </div>
-        <div id="TableHolder"></div>
-      </div>
-      <BottomBar/>
-      </div>
-      
+                    </div>
+                    <div id="TableHolder"></div>
+                </div>
+                <BottomBar />
+            </div >
 
-    );
-
-  }
+        );
+    }
 }
 export default AdminPage
 
 //insert the collaction that you are looking to take data from and an array of the feilds that you are intrested in getting in your table
 //note that if not all feilds will be full the row will not be presented. 
-export function getData(collect, fields) {
+export function getData(btnId, collect, fields) {
     ShowHideFunc(["TableHolder"], ["allAdmin"])
     db.collection(collect).get().then(snapshot => {
         const data = [];
@@ -65,33 +64,29 @@ export function getData(collect, fields) {
             alert(Dictionary.nothingToShow);
         else {
             //render the table
-            ReactDOM.render(<DisplayData collect={collect} data={data} fields={fields} />, document.getElementById('TableHolder'));
+            ReactDOM.render(<DisplayData btnId={btnId} collect={collect} data={data} fields={fields} />, document.getElementById('TableHolder'));
         }
 
     }).catch(error => console.log(error))
-
-
 }
 
- 
+
 
 
 //DisplayData will enter the data in to the table 
 const DisplayData = (props) => {
     var fields = props.fields,//fields to search for in data
         collect = props.collect,//the collection that the data was taken from
-        data = props.data,//the array that the data was pushed in to 
+        data = props.data,//the array that the data was pushed in to
+        btnId = props.btnId,// get button id from props 
         id;//takes id from data
-console.log();
-console.log();
-console.log();
     const body = [];
     data.forEach(singleRow => {
         var col = [];
         var allCollsFull = true;
         //go through the data and take only the requierd feilds
         fields.forEach(field => {
-            if (singleRow[field]!=undefined||singleRow[field]!="") 
+            if (singleRow[field] != undefined || singleRow[field] != "")
                 col.push(String(singleRow[field]));
             else
                 allCollsFull = false;
@@ -109,6 +104,12 @@ console.log();
 
     })
 
+    const serviceButtons = [];
+    serviceButtons.push(<button onClick={() => ShowHideFunc(["allAdmin"], ["TableHolder"])} id="backBtn" class="btn" >{Dictionary.back}</button>)
+    if (btnId == "userMngBtn") {
+        serviceButtons.push(<button class="btn" id="addUserBtn" data-toggle="modal" data-target="#newUserModal">{Dictionary.addUserBtn}</button>)
+    }
+
     return (
         <div id="feedbackTable">
             <table class="table table-dark">
@@ -116,7 +117,9 @@ console.log();
                 <tbody>
                     {body}
                 </tbody>
-                <button onClick={() => ShowHideFunc(["allAdmin"], ["TableHolder"])} id="backBtn" class="btn" >{Dictionary.back}</button>
+                <div id="buttonsTable">
+                    {serviceButtons}
+                </div>
             </table>
         </div>
     )
@@ -131,12 +134,12 @@ export function askAndDelete(collect, id) {
 }
 //delelte id in collaction and render it out of the container
 export function removeItem(collect, id) {
-    console.log(collect,id );
+    console.log(collect, id);
     if (id) {
         db.collection(collect).doc(id).delete().then(() => {
-            ReactDOM.render(<div></div>, document.getElementById("tr" + id));
-            console.log(collect,id );
-            alert(Dictionary.collect+" " + Dictionary.deletedSuccessfully);//see how to make collect readable
+            ReactDOM.render(<a></a>, document.getElementById("tr" + id));
+            console.log(collect, id);
+            alert(Dictionary.collect + " " + Dictionary.deletedSuccessfully);//see how to make collect readable
         });
     }
     else
@@ -178,17 +181,17 @@ export const BuildTableBody = (props) => {
         collect = props.collect,
         id = props.id;
 
-    var tr = [];
+    var tds = [];
 
     colls.forEach(col => {
-        tr.push(<td> {col} </td>);
+        tds.push(<td> {col} </td>);
     });
-    tr.push(
+    tds.push(
         <td> <button class="btn" onClick={askAndDelete(collect, id)} >{Dictionary.delete}</button></td>
     );
     return (
         <tr id={"tr" + id}>
-            {tr}
+            {tds}
         </tr>
     )
 }

@@ -15,6 +15,9 @@ padding-bottom: 3%;
 {
     overflow-x: none;
     overflow-y: auto;
+    /* min-height: 50vh; */
+    max-height: fit-content;
+    height: auto;
     background-color: rgb(216,191,216);
     /* height: 100%; */
 }
@@ -78,12 +81,17 @@ padding-bottom: 3%;
 
 .form-group
 {
-    padding: 0vh;
+    /* padding: 0vh; */
     /* flex-grow: 1; */
-    /* display: flex; */
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
     /* display: inline-flex; */
-    white-space: nowrap;
+    /* white-space: nowrap; */
     /* width: 90%; */
+    /* justify-content: right; */
+    /* flex-wrap: wrap; */
 
 }
 .langTabs{
@@ -144,7 +152,7 @@ padding-bottom: 3%;
 .addWomanName{
 
     /* width: 180%; */
-    margin-left: 27.5%;
+    /* margin-left: 27.5%; */
     border-color: purple;
 }
 
@@ -221,7 +229,7 @@ padding-bottom: 3%;
     font-size: larger;
     /* padding-top: 3%; */
     /* margin-right: 55%; */
-    padding-left: 11.5%;
+    /* padding-left: 11.5%; */
     font-size: xx-large;
     /* padding-left: 40%; */
     color: purple;
@@ -234,9 +242,9 @@ padding-bottom: 3%;
 
     font-weight:bold;
     font-size: xx-large;
-    margin-left: 10%;
+    /* margin-left: 10%; */
     /* padding-top: 5%; */
-    margin-top: 2%;
+    /* margin-top: 2%; */
     border-color: purple;
     /* padding-left: 33%; */
     color: purple;
@@ -262,7 +270,7 @@ padding-bottom: 3%;
   /* padding-top: 4%;  */
   font-size: xx-large;
   color: purple;
-  margin-left: 40%;
+  /* margin-left: 40%; */
 }
 
 .detailsNew{
@@ -328,30 +336,6 @@ padding-bottom: 3%;
 }  */
 
 
-#death{
-
-    border-color: purple;
-    width: 40%;
-    font-size: 1em;
-    margin-right: 58%;
-    /* padding-right: 30%; */
-    /* padding-right: 10%; */
-}
-    
-
-#birth{
-
-    width: 40%;
-    /* padding-right: 10%; */
-
-}
-
-#submit1{
-
-    margin-left: 50%;
-    margin-top: 2%;
-
-}
 
 .detailsName{
 
@@ -442,5 +426,25 @@ border-color: purple;
  padding-left: 40%;
  margin-left: 10%;
  border-color: purple;
+
+}
+
+
+.addWomanContainer{
+
+
+
+}
+
+.regularLabel{
+
+
+
+
+}
+
+#submit1{
+
+align-self: center;
 
 }

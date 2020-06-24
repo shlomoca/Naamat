@@ -84,8 +84,6 @@ class LoginPage extends Component {
                                     onChange={this.handleChange}>
                                 </input>
 
-
-                                {/* <Link to="/mainUserPage"> */}
                                 <button id="loginbtn"
                                     type="submit"
                                     text={Dictionary.login}
@@ -93,12 +91,11 @@ class LoginPage extends Component {
                                     onClick={this.login} >
                                     {Dictionary.login}
                                 </button>
-                                {/* </Link> */}
                             </form>
                         </div>
                     </div>
                 </div>
-                <BottomBar/>
+                <BottomBar />
             </div>
         )
     }
@@ -173,7 +170,7 @@ export class LoginComponent extends Component {
         ReactDOM.render(
             <Router>
                 <Route exact path="/" component={MainUserPage} />
-                <Route path="/WomanPage" component={props => <WomanPage {...props} id="דניאל רז1992-03-31" />} />
+                <Route path="/WomanPage" component={props => <WomanPage {...props}  />} />
                 <Route path="/Category" component={Category} />
             </Router>, document.getElementById('root')
         );

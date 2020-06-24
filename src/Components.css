@@ -86,7 +86,8 @@
     /* margin-top: 1%;
     margin-bottom: 3%; */
     margin:auto;
-    background-color: rgb(59, 57, 57);
+background: rgb(63,94,251);
+background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(0,212,255,1) 100%);
     border-radius: 25px;
 }
 
@@ -197,7 +198,6 @@
     padding-right: 5%;
     padding-left: 5%;
     text-align: right;
-
 }
 
 

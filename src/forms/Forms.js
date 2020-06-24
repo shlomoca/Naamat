@@ -10,6 +10,76 @@ import { editWoman } from '../pages/woman page/WomanPage';
 import ReactDOM from 'react-dom';
 
 
+export const AddNewUserForm = () => {
+    return (
+        <div class="modal fade" id="newUserModal">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <form dir="RTL" id="newUserForm" name="newUserForm" onSubmit={newUserHandler}  >
+                        < input type="email"
+                            id="email"
+                            name="email"
+                            placeholder={Dictionary.enterMail}
+                            defaultValue="" required
+                            // onChange={this.handleChange}
+                            >
+                        </input>
+                        < input type="password"
+                            id="password"
+                            name="password"
+                            placeholder={Dictionary.enterPass}
+                            defaultValue="" required
+                            // onChange={this.handleChange}
+                            >
+                        </input>
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="inputGroupSelect01">Options</label>
+                            </div>
+                            <select class="custom-select" id="inputGroupSelect01" required>
+                                <option selected disabled="disabled">Choose...</option>
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                            </select>
+                        </div>
+
+                        <button id="addUserBtn"
+                            type="submit"
+                            text={Dictionary.addUserBtn}
+                            className="btn btn-success"
+                            onClick={newUserHandler} >
+                            {Dictionary.addUserBtn}
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+function newUserHandler(e) {
+    e.preventDefault();
+    $("#newUserForm").validate({
+        // Specify validation rules
+        rules: {
+            email: {
+                required: true,
+                minlength: 1,
+                email: true,
+            },
+            password: {
+                required: true,
+                minlength: 1,
+            },
+        },
+        messages: {}
+    });
+
+    if (!$("#newUserForm").valid()) return;
+
+}
+
 export const FeedbackModal = () => {
     return (
         <div class="modal fade" id="feedbackForm" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -298,31 +368,29 @@ export const EditWomanModal = () => {
                                     <li id="mylinks" class="langTabs"><a data-toggle="tab" href="#EN">English</a></li>
                                     <li id="mylinks" class="langTabs"><a data-toggle="tab" href="#AR">عربى</a></li>
                                 </ul>
-                                <div id="name-group" class="form-group">
-                                    {/* <label for="name"></label> */}
-                                    <label id="lineName" for="name">{Dictionary.name}</label>
-                                    <input type="text" rows="1" class="addWomanName" cols="35" id="name" name="name" required />
+                        <div class="addWomanContainer"> 
+                                <div class="form-group">
+                                    <label class="regularLabel"  for="name">{Dictionary.name}</label>
+                                    <input class="regularInput" type="text" rows="1"  cols="35" id="name" name="name" required />
                                 </div>
-                                <div class="bdayclass">
-                                    <div id="name-group" class="form-group">
-                                        <div id="line2" for="birth">{Dictionary.birth}</div>
-                                    </div>
-                                    <input class="details2" type="date" name="birth" id="birth" required />
-                                    <div class="dethDay">
-                                        <div id="name-group" class="form-group">
-                                            <label id="line3" for="death">{Dictionary.death}</label>
-                                        </div>
-                                    </div>
-                                    <input type="date" name="death" id="death" />
+                                <div class="form-group">
+                                    <label class="regularLabel" for="birth">{Dictionary.birth}</label>
+                                    <input class="regularInput" type="date" rows="1"  cols="35" id="birth" name="birth" required />
                                 </div>
-                                {/* </div> */}
-                                {/* </div> */}
-                                {/* </div> */}
+                                <div class="form-group">
+                                    <label class="regularLabel"  for="death">{Dictionary.death}</label>
+                                    <input class="regularInput" type="date" rows="1"  cols="35" id="death" name="death" />
+                                </div>
+                                {/* ///////////////////////////// */}
+                                <div class="form-group">
+                                    נא למלא את הפרטים לפני לחיצה על הבא
                                 <button id="submit1" type="button" class="btn btn-success" onClick={() => allreadyExist($("#name").val() + $("#birth").val())} >{Dictionary.next}</button>
+                                </div>
                             </div>
                             <div id="popup">
                                 <span class="popuptext" id="myPopup">{Dictionary.popup}</span>
                             </div>
+                        </div>
                             <div id="step2">
                                 <div class="tab-content">
                                     <GenralForm lang={langs[0]} active={true} />
