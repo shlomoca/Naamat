@@ -74,7 +74,7 @@ export const Dictionary = new LocalizedStrings({
     
     //components
     
-    builders: `This site was built by: Shlomo Carmi, Daniel Raz, Sahar Cohen, Adiel Tsayag, Matan Yemin`,
+    builders: `This site was built by: Shlomo Carmi, Daniel Raz, Sahar Cohen, Adiel Tsayag, Matan Yemin ©`,
     managmentPlatform:'Managment Platform',
     NaamatInFacebook: 'Naamat in Facebook',
     NaamatInYoutube: 'Naamat in Youtube',
@@ -145,7 +145,7 @@ export const Dictionary = new LocalizedStrings({
     deletedSuccessfully: "נמחק בהצלחה",
    
     //components
-    builders: 'אתר זה נבנה על ידי: שלמה כרמי, דניאל רז, סהר כהן, עדיאל צייג, מתן ימין',
+    builders: 'אתר זה נבנה על ידי: שלמה כרמי, דניאל רז, סהר כהן, עדיאל צייג, מתן ימין ©',
     CategoryName:'שם קטגוריה',
     managmentPlatform: 'ממשק ניהול',
     NaamatInFacebook: 'נעמת בפייסבוק',
@@ -224,7 +224,7 @@ export const Dictionary = new LocalizedStrings({
     deletedSuccessfully: "حذف بنجاح",
     //components
     
-    builders: `تم بناء هذا الموقع من قبل: شلومو كرمي ، دانيال راز ، سحر كوهين ، أديل تساياج ، ماتان يمين `,
+    builders: `تم بناء هذا الموقع من قبل: شلومو كرمي ، دانيال راز ، سحر كوهين ، أديل تساياج ، ماتان يمين © `,
     managmentPlatform: 'منصة الإدارة',
     NaamatInFacebook:  'نعمات في الفيسبك', 
     NaamatInYoutube: 'نعمات في اليوتيوب',
