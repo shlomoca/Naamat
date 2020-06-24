@@ -10,6 +10,76 @@ import { editWoman } from '../pages/woman page/WomanPage';
 import ReactDOM from 'react-dom';
 
 
+export const AddNewUserForm = () => {
+    return (
+        <div class="modal fade" id="newUserModal">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <form dir="RTL" id="newUserForm" name="newUserForm" onSubmit={newUserHandler}  >
+                        < input type="email"
+                            id="email"
+                            name="email"
+                            placeholder={Dictionary.enterMail}
+                            defaultValue="" required
+                            // onChange={this.handleChange}
+                            >
+                        </input>
+                        < input type="password"
+                            id="password"
+                            name="password"
+                            placeholder={Dictionary.enterPass}
+                            defaultValue="" required
+                            // onChange={this.handleChange}
+                            >
+                        </input>
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="inputGroupSelect01">Options</label>
+                            </div>
+                            <select class="custom-select" id="inputGroupSelect01" required>
+                                <option selected disabled="disabled">Choose...</option>
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                            </select>
+                        </div>
+
+                        <button id="addUserBtn"
+                            type="submit"
+                            text={Dictionary.addUserBtn}
+                            className="btn btn-success"
+                            onClick={newUserHandler} >
+                            {Dictionary.addUserBtn}
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+function newUserHandler(e) {
+    e.preventDefault();
+    $("#newUserForm").validate({
+        // Specify validation rules
+        rules: {
+            email: {
+                required: true,
+                minlength: 1,
+                email: true,
+            },
+            password: {
+                required: true,
+                minlength: 1,
+            },
+        },
+        messages: {}
+    });
+
+    if (!$("#newUserForm").valid()) return;
+
+}
+
 export const FeedbackModal = () => {
     return (
         <div class="modal fade" id="feedbackForm" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -301,11 +371,11 @@ export const EditWomanModal = () => {
                         <div class="addWomanContainer"> 
                                 <div class="form-group">
                                     <label class="regularLabel"  for="name">{Dictionary.name}</label>
-                                    <input class="regularInput" type="text" rows="1"  cols="35" id="name" name="name" />
+                                    <input class="regularInput" type="text" rows="1"  cols="35" id="name" name="name" required />
                                 </div>
                                 <div class="form-group">
                                     <label class="regularLabel" for="birth">{Dictionary.birth}</label>
-                                    <input class="regularInput" type="date" rows="1"  cols="35" id="birth" name="birth" />
+                                    <input class="regularInput" type="date" rows="1"  cols="35" id="birth" name="birth" required />
                                 </div>
                                 <div class="form-group">
                                     <label class="regularLabel"  for="death">{Dictionary.death}</label>
@@ -356,21 +426,24 @@ $("document").ready(function () {
 });
 
 //check if woman allready exist when we want to add woman 
-function allreadyExist(id) {
+export function allreadyExist(id, wantToEdit) {
 
-    // alert(id);
-    var woman = db.collection('women').doc(id);
-    woman.get().then(doc => {
-        if (doc.exists) {
-            var temp = window.confirm(Dictionary.editExistVal);
-            if (temp) {
-                showing("#step2");
-                editWoman(id);
+    if (id) {
+        var woman = db.collection('women').doc(id);
+        woman.get().then(doc => {
+            if (doc.exists) {
+                if (wantToEdit || window.confirm(Dictionary.editExistVal)) {
+                    showing("#step2", wantToEdit);
+                    editWoman(id);
+                }
+
             }
-        }
-        else
-            showing("#step2");
-    }).catch()
+            else
+                showing("#step2");
+        }).catch()
+    }
+    else
+        showing("#step2");
 
 
 }
@@ -469,30 +542,20 @@ function resetForm(id, id2, id3) {
     }
 };
 
-// function resetFormSuggestWoman(id) {
-//     return () => {
-
-//         window.location.reload();
-
-//     }
-// }
 
 //make sure that the use enterd in step one the name and birth date
-function showing(id, id2) {
-    // return () => {
-    // alert("in showing");
-    if (!($("#name").val()) || !($("#birth").val())) {
+export function showing(id, wantToEdit) {
+
+    if (($("#name").val() && $("#birth").val()) || wantToEdit) {
+        $(id).show();
+        $("#submit1").hide()
+    }
+    else {
         $("#popup").show();
         $("#popup").fadeOut(2000, function () {
             // Animation complete.
         });
     }
-    else {
-        $(id).show();
-        $(id2).hide();
-        $("#submit1").hide()
-    }
-    // }
 
 }
 

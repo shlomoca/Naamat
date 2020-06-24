@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import { NavBar, PictursCarousel, DisplayModal, BottomBar, AfterMessage, usersManager } from '../../Components.js';
 import { getWoman, WomenCard } from '../woman page/WomanPage';
 import { Dictionary } from '../../Dictionary';
-import { EditWomanModal, AddCategoryModal, FeedbackModal } from '../../forms/Forms';
+import { EditWomanModal, AddCategoryModal, FeedbackModal, AddNewUserForm } from '../../forms/Forms';
 import { scryRenderedComponentsWithType } from 'react-dom/test-utils';
 import { Link } from 'react-router-dom';
 import { db } from '../../config/Firebase';
@@ -19,6 +19,7 @@ class AdminPage extends Component {
                     <EditWomanModal />
                     <AddCategoryModal />
                     <FeedbackModal />
+                    <AddNewUserForm/>
                     <div class="backBtn">
                         {/* <Link to="/"><button id="backBtn" class="btn">{Dictionary.back}</button></Link> */}
                     </div>
@@ -106,7 +107,7 @@ const DisplayData = (props) => {
     const serviceButtons = [];
     serviceButtons.push(<button onClick={() => ShowHideFunc(["allAdmin"], ["TableHolder"])} id="backBtn" class="btn" >{Dictionary.back}</button>)
     if (btnId == "userMngBtn") {
-        serviceButtons.push(<button class="btn" id="addUserBtn">{Dictionary.addUserBtn}</button>)
+        serviceButtons.push(<button class="btn" id="addUserBtn" data-toggle="modal" data-target="#newUserModal">{Dictionary.addUserBtn}</button>)
     }
 
     return (
