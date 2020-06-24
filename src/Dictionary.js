@@ -27,6 +27,7 @@ export const Dictionary = new LocalizedStrings({
     welcomeManager: `Welcome to the management platform`,
     manageCategory: `manage Category`,
     addUserBtn: `Add User`,
+    userAddedSuccefully:`New User Added Succefully`,
     
     
 
@@ -70,10 +71,11 @@ export const Dictionary = new LocalizedStrings({
     action:`action`,
     deletedSuccessfully: "deleted successfully",
     addMore:"add more",
+    bibliography: "bibliography",
     
     //components
     
-    builders: `This site was built by: Shlomo Carmi, Daniel Raz, Sahar Cohen, Adiel Tsayag, Matan Yemin`,
+    builders: `This site was built by: Shlomo Carmi, Daniel Raz, Sahar Cohen, Adiel Tsayag, Matan Yamin`,
     managmentPlatform:'Managment Platform',
     NaamatInFacebook: 'Naamat in Facebook',
     NaamatInYoutube: 'Naamat in Youtube',
@@ -103,6 +105,7 @@ export const Dictionary = new LocalizedStrings({
     welcomeManager: `ברוכים הבאים למערכת הניהול`,
     manageCategory: `נהל קטגוריות`,
     addUserBtn: `הוסיפי משתמש`,
+    userAddedSuccefully:`משתמש חדש נוסף בהצלחה`,
     
   //woman page
   edit: 'ערוך',
@@ -141,9 +144,10 @@ export const Dictionary = new LocalizedStrings({
     suggest: `הציעי אישה`,
     action:`פעולה`,
     deletedSuccessfully: "נמחק בהצלחה",
+    bibliography: "ביבליוגרפיה",
    
     //components
-    builders: 'אתר זה נבנה על ידי: שלמה כרמי, דניאל רז, סהר כהן, עדיאל צייג, מתן ימין',
+    builders: 'אתר זה נבנה על ידי: שלמה כרמי, דניאל רז, סהר כהן, עדיאל צייג, מתן ימין ©',
     CategoryName:'שם קטגוריה',
     managmentPlatform: 'ממשק ניהול',
     NaamatInFacebook: 'נעמת בפייסבוק',
@@ -178,6 +182,7 @@ export const Dictionary = new LocalizedStrings({
     welcomeManager: `مرحبا بكم في نظام الإدارة`,
     manageCategory: `إدارة الفئة`,
     addUserBtn:`إضافة مستخدم`,
+    userAddedSuccefully:`تمت إضافة مستخدم جديد بنجاح`,
 
    //woman page
    edit: 'تعديل',
@@ -219,9 +224,11 @@ export const Dictionary = new LocalizedStrings({
     action:`عمل`,
     nothingToShow:"لا يوجد شيء لإظهاره",
     deletedSuccessfully: "حذف بنجاح",
+    bibliography: "فهرس",
+    
     //components
     
-    builders: `تم بناء هذا الموقع من قبل: شلومو كرمي ، دانيال راز ، سحر كوهين ، أديل تساياج ، ماتان يمين `,
+    builders: `تم بناء هذا الموقع من قبل: شلومو كرمي ، دانيال راز ، سحر كوهين ، أديل تساياج ، ماتان يمين © `,
     managmentPlatform: 'منصة الإدارة',
     NaamatInFacebook:  'نعمات في الفيسبك', 
     NaamatInYoutube: 'نعمات في اليوتيوب',
@@ -233,6 +240,7 @@ export const Dictionary = new LocalizedStrings({
     score:'أحرز هدفا',
     improvement:'تحسين',
     addMore:"أضف المزيد",
+    
 
     
     
