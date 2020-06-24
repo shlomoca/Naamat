@@ -84,8 +84,6 @@ class LoginPage extends Component {
                                     onChange={this.handleChange}>
                                 </input>
 
-
-                                {/* <Link to="/mainUserPage"> */}
                                 <button id="loginbtn"
                                     type="submit"
                                     text={Dictionary.login}
@@ -93,12 +91,11 @@ class LoginPage extends Component {
                                     onClick={this.login} >
                                     {Dictionary.login}
                                 </button>
-                                {/* </Link> */}
                             </form>
                         </div>
                     </div>
                 </div>
-                <BottomBar/>
+                <BottomBar />
             </div>
         )
     }
