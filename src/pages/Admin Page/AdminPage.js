@@ -82,9 +82,6 @@ const DisplayData = (props) => {
         collect = props.collect,//the collection that the data was taken from
         data = props.data,//the array that the data was pushed in to 
         id;//takes id from data
-console.log();
-console.log();
-console.log();
     const body = [];
     data.forEach(singleRow => {
         var col = [];
@@ -134,7 +131,7 @@ export function removeItem(collect, id) {
     console.log(collect,id );
     if (id) {
         db.collection(collect).doc(id).delete().then(() => {
-            ReactDOM.render(<div></div>, document.getElementById("tr" + id));
+            ReactDOM.render(<a></a>, document.getElementById("tr" + id));
             console.log(collect,id );
             alert(Dictionary.collect+" " + Dictionary.deletedSuccessfully);//see how to make collect readable
         });
