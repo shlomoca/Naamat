@@ -28,7 +28,8 @@ class AdminPage extends Component {
           <button class="btnhover" type="button" id="btn2" > {Dictionary.adminEditWoman} </button>
           <button class="btnhover" type="button" id="btn3" onClick={() => { getData("feedback",["name","email","improvement","score"]) }}> {Dictionary.adminFeedback} </button>
           <button class="btnhover" type="button" id="btn5" data-toggle="modal" data-target="#categoryForm"> {Dictionary.adminAddCategory} </button>
-          <button class="btnhover" type="button" id="btn6" onClick={usersManager}> {Dictionary.adminUserManagement} </button>
+          <button class="btnhover" type="button" id="btn4" onClick={() => { getData("categories",["category"]) }}> {Dictionary.manageCategory} </button>
+          <button class="btnhover" type="button" id="btn6" onClick={() => { getData("users",["email","admin"]) }}> {Dictionary.adminUserManagement} </button>
           {/* <button class="btnhover" type="button" id="btn4"> {Dictionary.adminEditAbout} </button> */}
 
         </div>
@@ -81,22 +82,24 @@ const DisplayData = (props) => {
         collect = props.collect,//the collection that the data was taken from
         data = props.data,//the array that the data was pushed in to 
         id;//takes id from data
-
-    const deck = [];
+console.log();
+console.log();
+console.log();
+    const body = [];
     data.forEach(singleRow => {
         var col = [];
         var allCollsFull = true;
         //go through the data and take only the requierd feilds
         fields.forEach(field => {
-            if (singleRow[field]) 
-                col.push(singleRow[field]);
+            if (singleRow[field]!=undefined||singleRow[field]!="") 
+                col.push(String(singleRow[field]));
             else
                 allCollsFull = false;
         })
         //get id from the DB
         id = singleRow["id"];
         if (allCollsFull) {
-            deck.push(<BuildTableBody collect={collect} id={id} colls={col} />);
+            body.push(<BuildTableBody collect={collect} id={id} colls={col} />);
         }
         else {
             console.log("col no full so wasent added");
@@ -111,7 +114,7 @@ const DisplayData = (props) => {
             <table class="table table-dark">
                 <BuildTableHead fields={fields} />
                 <tbody>
-                    {deck}
+                    {body}
                 </tbody>
                 <button onClick={() => ShowHideFunc(["allAdmin"], ["TableHolder"])} id="backBtn" class="btn" >{Dictionary.back}</button>
             </table>
@@ -128,11 +131,12 @@ export function askAndDelete(collect, id) {
 }
 //delelte id in collaction and render it out of the container
 export function removeItem(collect, id) {
-    console.log(id, collect);
+    console.log(collect,id );
     if (id) {
         db.collection(collect).doc(id).delete().then(() => {
             ReactDOM.render(<div></div>, document.getElementById("tr" + id));
-            alert(Dictionary[collect]+" " + Dictionary.deletedSuccessfully);
+            console.log(collect,id );
+            alert(Dictionary.collect+" " + Dictionary.deletedSuccessfully);//see how to make collect readable
         });
     }
     else

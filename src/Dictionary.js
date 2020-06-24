@@ -25,6 +25,8 @@ export const Dictionary = new LocalizedStrings({
     adminAddCategory: 'Add Category',
     adminUserManagement: 'Users Management',
     welcomeManager: `Welcome to the management platform`,
+    manageCategory: `manage Category`,
+    
     
 
   //woman page
@@ -97,6 +99,7 @@ export const Dictionary = new LocalizedStrings({
     adminAddCategory: 'הוסף קטגוריה',
     adminUserManagement: 'ניהול משתמשים',
     welcomeManager: `ברוכים הבאים למערכת הניהול`,
+    manageCategory: `נהל קטגוריות`,
     
   //woman page
   edit: 'ערוך',
@@ -168,7 +171,7 @@ export const Dictionary = new LocalizedStrings({
     adminAddCategory: 'إضافة فئة',
     adminUserManagement: 'إدارةالمستخدم',
     welcomeManager: `مرحبا بكم في نظام الإدارة`,
-    
+    manageCategory: `إدارة الفئة`,
    //woman page
    edit: 'تعديل',
   //main user page
