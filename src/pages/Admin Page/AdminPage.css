@@ -81,9 +81,9 @@ width: 80%;
   }
 
 #buttonsTable {
-  display: flex;
+  /* display: flex; */
   justify-content: center;
-  margin-right: 90%;
+  /* margin-right: 90%; */
 }
 
 #backBtn {
