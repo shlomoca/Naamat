@@ -15,11 +15,11 @@ class AdminPage extends Component {
         return (
             <div id="APcover" className="cover">
                 <div id="mainAPWrapper" className="wrapper">
-                    <NavBar AdminPage={true} Admin={true}/>
+                    <NavBar AdminPage={true} Admin={true} />
                     <EditWomanModal />
                     <AddCategoryModal />
                     <FeedbackModal />
-                    <AddNewUserForm/>
+                    <AddNewUserForm />
                     <div class="backBtn">
                         {/* <Link to="/"><button id="backBtn" class="btn">{Dictionary.back}</button></Link> */}
                     </div>
@@ -81,9 +81,11 @@ const DisplayData = (props) => {
         btnId = props.btnId,// get button id from props 
         id;//takes id from data
     const body = [];
+    var index = 1;
     data.forEach(singleRow => {
         var col = [];
         var allCollsFull = true;
+        col.push(<td class="textAlign index">{index++}</td>);
         //go through the data and take only the requierd feilds
         fields.forEach(field => {
             if (singleRow[field] != undefined || singleRow[field] != "")
@@ -163,9 +165,10 @@ export function ShowHideFunc(show, hide) {
 export const BuildTableHead = (props) => {
     var fields = props.fields;
     const res = []
+    res.push(<th class="textAlign">#</th>)
     if (fields)
         fields.forEach(field => {
-            res.push(<th class = "textAlign"> {field} </th>)
+            res.push(<th class="textAlign"> {Dictionary[field]} </th>)
         })
     return (
         <thead>
@@ -184,10 +187,10 @@ export const BuildTableBody = (props) => {
     var tds = [];
 
     colls.forEach(col => {
-        tds.push(<td class = "textAlign"> {col} </td>);
+        tds.push(<td class="textAlign"> {col} </td>);
     });
     tds.push(
-        <td class ="deleteBtnTd" > <button class="btn-danger deleteBtn" onClick={askAndDelete(collect, id)} >{Dictionary.delete}</button></td>
+        <td class="deleteBtnTd" > <button class="btn-danger deleteBtn" onClick={askAndDelete(collect, id)} >{Dictionary.delete}</button></td>
     );
     return (
         <tr id={"tr" + id}>

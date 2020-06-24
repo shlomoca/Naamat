@@ -112,3 +112,7 @@ width: 80%;
 .textAlign {
   text-align: center;
 }
+
+.index{
+  display: contents;
+}
