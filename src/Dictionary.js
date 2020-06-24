@@ -71,10 +71,11 @@ export const Dictionary = new LocalizedStrings({
     action:`action`,
     deletedSuccessfully: "deleted successfully",
     addMore:"add more",
+    bibliography: "bibliography",
     
     //components
     
-    builders: `This site was built by: Shlomo Carmi, Daniel Raz, Sahar Cohen, Adiel Tsayag, Matan Yemin`,
+    builders: `This site was built by: Shlomo Carmi, Daniel Raz, Sahar Cohen, Adiel Tsayag, Matan Yamin`,
     managmentPlatform:'Managment Platform',
     NaamatInFacebook: 'Naamat in Facebook',
     NaamatInYoutube: 'Naamat in Youtube',
@@ -143,6 +144,7 @@ export const Dictionary = new LocalizedStrings({
     suggest: `הציעי אישה`,
     action:`פעולה`,
     deletedSuccessfully: "נמחק בהצלחה",
+    bibliography: "ביבליוגרפיה",
    
     //components
     builders: 'אתר זה נבנה על ידי: שלמה כרמי, דניאל רז, סהר כהן, עדיאל צייג, מתן ימין',
@@ -222,6 +224,8 @@ export const Dictionary = new LocalizedStrings({
     action:`عمل`,
     nothingToShow:"لا يوجد شيء لإظهاره",
     deletedSuccessfully: "حذف بنجاح",
+    bibliography: "فهرس",
+    
     //components
     
     builders: `تم بناء هذا الموقع من قبل: شلومو كرمي ، دانيال راز ، سحر كوهين ، أديل تساياج ، ماتان يمين `,
@@ -236,6 +240,7 @@ export const Dictionary = new LocalizedStrings({
     score:'أحرز هدفا',
     improvement:'تحسين',
     addMore:"أضف المزيد",
+    
 
     
     
