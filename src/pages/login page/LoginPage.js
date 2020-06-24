@@ -76,6 +76,7 @@ class LoginPage extends Component {
                                     defaultValue="" required
                                     onChange={this.handleChange}>
                                 </input>
+                                <a>‏ </a>
                                 < input type="password"
                                     id="password"
                                     name="password"
@@ -83,7 +84,6 @@ class LoginPage extends Component {
                                     defaultValue="" required
                                     onChange={this.handleChange}>
                                 </input>
-
                                 <button id="loginbtn"
                                     type="submit"
                                     text={Dictionary.login}
