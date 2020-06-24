@@ -248,7 +248,7 @@ export const GenralForm = (props) => {
                     <input class="regularInput" id={"description" + i} lang={props.lang} type="text" rows="4" cols="50" name="description" placeholder="description" />
                     <input class="regularInput" id={"link" + i} lang={props.lang} type="text" rows="4" cols="50" name="link" placeholder="link" />
                     <a id="fill1" ></a>
-                    <button onClick={(e) => {
+                    <button id="addBtn" onClick={(e) => {
                         e.preventDefault();
                         var fill = $("#fill1");
                         if ($("#description" + i).val())
@@ -257,11 +257,8 @@ export const GenralForm = (props) => {
                                 fill.append(`<input id=${"description" + i}  lang = ${props.lang} type="text" rows="4" class="regularInput" cols="50" name="description" placeholder="description" />
                         <input id=${"link" + i} lang = ${props.lang} type="text" rows="4" class="regularInput" cols="50" name="link" placeholder="link" />`)
                             }
-                    
-                    }}>{Dictionary.add}</button>
-               
+                    }}>{Dictionary.addMore}</button>
             </div>
-               
 
             <div class="form-group">
                 <label for={"reading" + props.lang}>
@@ -273,7 +270,7 @@ export const GenralForm = (props) => {
 
                         if ($("#reading" + j).val()) {
                             j++;
-                            fill.append(`<input id=${"reading" + j} lang=${props.lang} type="text" rows="4" cols="50" name="description" placeholder="further reading" />`)}}}>add</button>
+                            fill.append(`<input id=${"reading" + j} lang=${props.lang} type="text" rows="4" cols="50" name="description" placeholder="further reading" />`)}}}>{Dictionary.addMore}</button>
                 </label>
             </div>
         </div>

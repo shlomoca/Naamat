@@ -284,25 +284,7 @@ padding-bottom: 3%;
     /* padding-bottom: 20%; */
 
 }
-/* #fill20,#fill21{
-    display: none;
-} */
-/* #quotes{
-    position: absolute;
-    display: flex;
-    margin-top: 0%;
-    width: 20%;
-    left: 15%;
-    flex-flow: column;
-} */
 
-/* #link{
-    position: absolute;
-    margin-top: 0%;
-    width: 20%;
-    left: 60%;
-    
-} */
 
 #myAdd1{
     position: absolute;
@@ -310,19 +292,6 @@ padding-bottom: 3%;
     width: 10%;
     left: 45%;
 }
-
-/* .quotesClass{
-    padding-right: 10%;
-} */
-
- /* #fill20{
-    display: flex;
-    flex-wrap: unset;
-    flex-flow: column;
-    justify-content: space-around;
-}  */
-
-
 
 .detailsName{
 
@@ -340,7 +309,11 @@ padding-bottom: 3%;
     /* margin-left: 10%; */
 }
 
+#step2{
 
+display: none;
+
+}
 
 #feedLineName{
 
@@ -426,4 +399,12 @@ align-self: center;
 
     text-align: center;
 
+}
+
+#addBtn{
+
+width: 8%;
+align-self: center;
+/* justify-self: center; */
+/* place-self: center; */
 }
