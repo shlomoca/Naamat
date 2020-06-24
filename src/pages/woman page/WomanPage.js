@@ -14,6 +14,7 @@ const MainDetails = (props) => {
     return (
         <div id="main_details" >
             <img id="profilePic" className="roundImage" src={props.link} alt={props.display} />
+            {props.editBtn}
             <h1 id="dispName">{props.display} </h1>
         </div>
     );
@@ -63,10 +64,7 @@ export class WomenCard extends Component {
                     <img id={"roundImage" + this.state.id} className="roundImage" src={this.state.url} alt={this.state.display} />
                     <h1  >{this.state.display} </h1>
                     <p>{this.state.summary}  </p>
-                    <button onClick={(e) => {
-                        e.preventDefault();
-                        allreadyExist(this.state.id, true);
-                    }}>{Dictionary.edit}</button>
+                   {/* here we will put the woman card discription */}
                 </div>
             </a>
         )
@@ -130,7 +128,7 @@ export const WomanPage = (props) => {
         <div id="WPcover" className="cover">
             <div id="WomanPageWrapper" class="wrapper" >
             <NavBar AdminPage={false} Admin={Admin} />
-                <ShowWoman id={id} fields={["highlights", "biography", "histoy", "feminism", "facts", "quotes"]} />
+                <ShoWoman id={id} fields={["highlights", "biography", "histoy", "feminism", "facts", "quotes"]} Admin={Admin} />
             </div>
             <BottomBar />
         </div>
@@ -145,13 +143,14 @@ export const WomanPage = (props) => {
 
 
 //get women gets all women that their name is identical to the womenName atribute
-export class ShowWoman extends Component {
+export class ShoWoman extends Component {
     constructor(props) {
         super(props);
         this.state = {
             id: props.id,
             fields: props.fields,
-            womanData: []
+            womanData: [],
+            Admin: this.props.Admin
 
         }
 
@@ -159,13 +158,17 @@ export class ShowWoman extends Component {
 
     componentWillMount() {
         var info = [],
-            page = [];
+            page = [],
+            editBtn="";
+            if(this.state.Admin){
+                editBtn= <button className="btn" onClick={(e) => {e.preventDefault();allreadyExist(this.state.id, true);}}>{Dictionary.edit}</button>;
+            }
         db.collection('women').doc(this.state.id).collection('langs').doc(Dictionary.getLanguage()).get().then(snapshot => {
             const data = snapshot.data();
             info.push(data);
             var alldata = info[0];
             if (alldata) {
-                page.push(<MainDetails display={alldata["display"]} link={alldata["ProfilePic"]} />);
+                page.push(<MainDetails display={alldata["display"]} link={alldata["ProfilePic"]} editBtn={editBtn}/>);
                 (Object.values(this.state.fields)).forEach(key => {
                     if (alldata[key])
                         page.push(<p><b>{Dictionary[key]}:</b> {alldata[key]}</p>);
