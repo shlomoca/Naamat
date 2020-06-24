@@ -4,11 +4,9 @@ import ReactDOM from 'react-dom';
 import { NavBar, BottomBar } from '../../Components';
 import { db } from '../../config/Firebase'
 import { Dictionary, langs } from '../../Dictionary';
+import {allreadyExist} from '../../forms/Forms'
 import $ from 'jquery';
-import { storage } from '../../config/Firebase';
-import { render } from '@testing-library/react';
-import { Link } from 'react-router-dom';
-import { ShowHideFunc } from '../Admin Page/AdminPage';
+
 
 
 const MainDetails = (props) => {
@@ -42,7 +40,10 @@ export class WomenCard extends Component {
                     <img id={"roundImage" + this.state.id} className="roundImage" src={this.state.url} alt={this.state.display} />
                     <h1  >{this.state.display} </h1>
                     <p>{this.state.summary}  </p>
-                    <button onClick={editWoman(this.state.id)}>{Dictionary.edit}</button>
+                    <button onClick={(e) => {
+                        e.preventDefault();
+                        allreadyExist(this.state.id,true);
+                    }}>{Dictionary.edit}</button>
                 </div>
             </a>
             //    </Link>
@@ -290,6 +291,7 @@ export function editWoman(id) {
 
         $("#death").val(woman.death);
 
+
     })
 
     langs.forEach(lang => {
@@ -312,6 +314,8 @@ export function editWoman(id) {
             }
         })
     })
+
+    window.$("#staticBackdrop").modal('show');
 
 }
 
