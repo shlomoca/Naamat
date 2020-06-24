@@ -71,8 +71,6 @@ export const Dictionary = new LocalizedStrings({
     action:`action`,
     deletedSuccessfully: "deleted successfully",
     addMore:"add more",
-    addMore:"הוסיפי עוד",
-    addMore:"أضف المزيد",
     
     //components
     
@@ -161,6 +159,8 @@ export const Dictionary = new LocalizedStrings({
     editExistVal:'האם תרצה לערוך ערך קיים?',
     score:'דירוג',
     improvement:'הצעות לשיפור',
+    addMore:"הוסיפי עוד",
+
    
   },
   AR: {
@@ -235,6 +235,8 @@ export const Dictionary = new LocalizedStrings({
     uploadSuccess:'تم الرفع بنجاح',
     score:'أحرز هدفا',
     improvement:'تحسين',
+    addMore:"أضف المزيد",
+
     
     
     

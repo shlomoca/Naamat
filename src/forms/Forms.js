@@ -123,12 +123,12 @@ export const FeedbackModal = () => {
                     </div>
                     <div class="modal-body">
                         <form dir="RTL" id="feedback_form" name="feedback_form" onSubmit={handleFeedback}  >
-                            <div id="name-group" class="form-group">
-                                <label id="regularLabel" for="feed_name">{Dictionary.name}</label>
+                            <div  class="form-group">
+                                <label class="regularLabel" for="feed_name">{Dictionary.name}</label>
                             </div>
                             <input type="text" rows="1" class="regularInput" id="feed_name" cols="35" name="name" required />
                             <div id="email-group" class="form-group">
-                                <label id="regularLabel" for="feed_email">{Dictionary.enterMail}</label>
+                                <label class="regularLabel" for="feed_email">{Dictionary.enterMail}</label>
                             </div>
                             <input type="email" rows="1" class="regularInput" id="feed_email" cols="35" name="email" required />
                             {/* </div> */}
@@ -179,7 +179,7 @@ export const AddCategoryModal = () => {
                         <form dir="RTL" id="category_form" onSubmit={sub_cat} name="category_form"  >
                             <div id="name-group" class="form-group">
                                 <div id="name-group1" class="form-group">
-                                    <label for="category_name">{Dictionary.name}</label>
+                                    <label class="regularLabel" for="category_name">{Dictionary.name}</label>
                                     <input type="text" lang="HE" rows="1" class="details" cols="35" id="category_nameHE" name="category_name" placeholder="הכנס שם קטגוריה בעברית" required />
                                     <input type="text" lang="EN" rows="1" class="details" cols="35" id="category_nameEN" name="category_name" placeholder="הכנס שם קטגוריה באנגלית" required />
                                     <input type="text" lang="AR" rows="1" class="details" cols="35" id="category_nameAR" name="category_name" placeholder="הכנס שם קטגוריה בערבית" required />
@@ -244,24 +244,21 @@ export const GenralForm = (props) => {
 
             </div>
             <div class="form-group">
-                <label for={"link" + props.lang}> </label>
-                <input class="regularInput" id={"description" + i} lang={props.lang} type="text" rows="4" cols="50" name="description" placeholder="description" />
-                <input class="regularInput" id={"link" + i} lang={props.lang} type="text" rows="4" cols="50" name="link" placeholder="link" />
-                <a id="fill1" ></a>
-                <button onClick={(e) => {
-                    e.preventDefault();
-                    var fill = $("#fill1");
-                    if ($("#description" + i).val())
-                        if ($("#link" + i).val()) {
-                            i++;
-                            fill.append(`<input id=${"description" + i}  lang = ${props.lang} type="text" rows="4" class="regularInput" cols="50" name="description" placeholder="description" />
+                <label  for={"link" + props.lang}> </label>
+                    <input class="regularInput" id={"description" + i} lang={props.lang} type="text" rows="4" cols="50" name="description" placeholder="description" />
+                    <input class="regularInput" id={"link" + i} lang={props.lang} type="text" rows="4" cols="50" name="link" placeholder="link" />
+                    <a id="fill1" ></a>
+                    <button id="addBtn" onClick={(e) => {
+                        e.preventDefault();
+                        var fill = $("#fill1");
+                        if ($("#description" + i).val())
+                            if ($("#link" + i).val()) {
+                                i++;
+                                fill.append(`<input id=${"description" + i}  lang = ${props.lang} type="text" rows="4" class="regularInput" cols="50" name="description" placeholder="description" />
                         <input id=${"link" + i} lang = ${props.lang} type="text" rows="4" class="regularInput" cols="50" name="link" placeholder="link" />`)
-                        }
-
-                }}>{Dictionary.add}</button>
-
+                            }
+                    }}>{Dictionary.addMore}</button>
             </div>
-
 
             <div class="form-group">
                 <label for={"reading" + props.lang}>
@@ -273,9 +270,7 @@ export const GenralForm = (props) => {
 
                         if ($("#reading" + j).val()) {
                             j++;
-                            fill.append(`<input id=${"reading" + j} lang=${props.lang} type="text" rows="4" cols="50" name="description" placeholder="further reading" />`)
-                        }
-                    }}>add</button>
+                            fill.append(`<input id=${"reading" + j} lang=${props.lang} type="text" rows="4" cols="50" name="description" placeholder="further reading" />`)}}}>{Dictionary.addMore}</button>
                 </label>
             </div>
         </div>
