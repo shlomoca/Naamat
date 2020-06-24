@@ -11,40 +11,36 @@ import { db } from '../../config/Firebase';
 import ReactDOM from 'react-dom';
 
 class AdminPage extends Component {
-    render() {
-        return (
-            <div id="mainUPWrapper" className="wrapper">
-                <NavBar />
-                <EditWomanModal />
-                <AddCategoryModal />
-                <FeedbackModal />
-                <div class="backBtn">
-                    <Link to="/"><button id="backBtn" class="btn">{Dictionary.back}</button></Link>
-                </div>
-                <p id="adminTitle">{Dictionary.welcomeManager}</p>
-                <div id="allAdmin">
-                    <div class="adminButtons">
-                        <div id="rightButtons">
-                            <button class="btnhover" type="button" id="btn1" data-toggle="modal" data-target="#staticBackdrop"> {Dictionary.adminAddWoman} </button>
-                            <button class="btnhover" type="button" id="btn2" > {Dictionary.adminEditWoman} </button>
-                            <button class="btnhover" type="button" id="btn3" onClick={() => { getData("feedback", ["name", "email", "score", "improvement"]) }}> {Dictionary.adminFeedback} </button>
-                            {/* <button class="btnhover" type="button" id="btn4"> {Dictionary.adminEditAbout} </button> */}
-                            <button class="btnhover" type="button" id="btn8"> חסר שימוש כרגע </button>
-                        </div>
-                        <div id="leftButtons">
-                            <button class="btnhover" type="button" id="btn5" data-toggle="modal" data-target="#categoryForm"> {Dictionary.adminAddCategory} </button>
-                            <button class="btnhover" type="button" id="btn6" onClick={usersManager}> {Dictionary.adminUserManagement} </button>
-                            <button class="btnhover" type="button" id="btn7">  חסר שימוש כרגע  </button>
-                            <button class="btnhover" type="button" id="btn8"> חסר שימוש כרגע </button>
-                        </div>
-                    </div>
-                </div>
-                <div id="TableHolder"></div>
-            </div>
+  render() {
+    return (
+      <div id="APcover" className="cover">
+      <div id="mainAPWrapper" className="wrapper">
+        <NavBar />
+        <EditWomanModal />
+        <AddCategoryModal />
+        <FeedbackModal />
+        <div class="backBtn">
+          {/* <Link to="/"><button id="backBtn" class="btn">{Dictionary.back}</button></Link> */}
+        </div>
+        <p id="adminTitle">{Dictionary.welcomeManager}</p>
+        <div id="allAdmin">
+          <button class="btnhover" type="button" id="btn1" data-toggle="modal" data-target="#staticBackdrop"> {Dictionary.adminAddWoman} </button>
+          <button class="btnhover" type="button" id="btn2" > {Dictionary.adminEditWoman} </button>
+          <button class="btnhover" type="button" id="btn3" onClick={() => { getData("feedback",["name","email","improvement","score"]) }}> {Dictionary.adminFeedback} </button>
+          <button class="btnhover" type="button" id="btn5" data-toggle="modal" data-target="#categoryForm"> {Dictionary.adminAddCategory} </button>
+          <button class="btnhover" type="button" id="btn6" onClick={usersManager}> {Dictionary.adminUserManagement} </button>
+          {/* <button class="btnhover" type="button" id="btn4"> {Dictionary.adminEditAbout} </button> */}
 
-        );
+        </div>
+        <div id="TableHolder"></div>
+      </div>
+      <BottomBar/>
+      </div>
+      
 
-    }
+    );
+
+  }
 }
 export default AdminPage
 
@@ -76,7 +72,7 @@ export function getData(collect, fields) {
 
 }
 
-
+ 
 
 
 //DisplayData will enter the data in to the table 
@@ -136,7 +132,7 @@ export function removeItem(collect, id) {
     if (id) {
         db.collection(collect).doc(id).delete().then(() => {
             ReactDOM.render(<div></div>, document.getElementById("tr" + id));
-            alert(Dictionary[collect] + Dictionary.deletedSuccessfully);
+            alert(Dictionary[collect]+" " + Dictionary.deletedSuccessfully);
         });
     }
     else

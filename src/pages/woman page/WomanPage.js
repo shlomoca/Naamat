@@ -32,19 +32,19 @@ export class WomenCard extends Component {
         }
     }
 
-  
+
     render() {
         return (
             // <Link to={"/womanPage?"}>
-                <a href={"/womanPage/"+this.state.id}>
-            <div id="womanCardsContainer" >
+            <a href={"/womanPage/" + this.state.id}>
+                <div id="womanCardsContainer" >
 
-                <img id={"roundImage" + this.state.id} className="roundImage" src={this.state.url} alt={this.state.display} />
-                <h1  >{this.state.display} </h1>
-                <p>{this.state.summary}  </p>
-                <button onClick={editWoman(this.state.id)}>{Dictionary.edit}</button>
-            </div>
-                </a>
+                    <img id={"roundImage" + this.state.id} className="roundImage" src={this.state.url} alt={this.state.display} />
+                    <h1  >{this.state.display} </h1>
+                    <p>{this.state.summary}  </p>
+                    <button onClick={editWoman(this.state.id)}>{Dictionary.edit}</button>
+                </div>
+            </a>
             //    </Link>
         )
     }
@@ -115,7 +115,7 @@ export function deleteWoman(id) {
 }
 
 function deletePhoto(path) {
-    
+
 }
 
 
@@ -124,20 +124,22 @@ function deletePhoto(path) {
 export const WomanPage = (props) => {
     var id = props.match.params.id;
     // const userId = this.props.match.id;
-console.log(id);
+    console.log(id);
     //get woman by id
     // console.log()
     const woman = [];
     var obj;
 
     return (
-        <div id="WomanPageWrapper" class="wrapper" >
-
-            <NavBar />
-            <ShowWoman id={id}/>
-    
+        <div id="WPcover" className="cover">
+            <div id="WomanPageWrapper" class="wrapper" >
+                <NavBar />
+                <ShowWoman id={id} />
+            </div>
             <BottomBar />
-        </div>)
+        </div>
+
+    )
 
 
 
@@ -160,7 +162,7 @@ export class ShowWoman extends Component {
         this.state = {
             id: props.id,
             womanData: []
-        
+
         }
         
     }
@@ -169,40 +171,42 @@ export class ShowWoman extends Component {
        
         console.log(this.state.id)
         var info = [];
-        var display="",
-        ProfilePic=""
+        var display = "",
+            ProfilePic = ""
         db.collection('women').doc(this.state.id).collection('langs').doc(Dictionary.getLanguage()).get().then(snapshot => {
             const data = snapshot.data();
-                info.push(data);
-            var details=[];
-            var alldata=info[0];
+            info.push(data);
+            var details = [];
+            var alldata = info[0];
             (Object.keys(alldata)).forEach(key => {
                 if (alldata[key]) {
 
-                    if(key==="display")
-                     display=alldata[key]; 
-                    else if(key==="ProfilePic")
-                     ProfilePic= alldata[key];
+                    if (key === "display")
+                        display = alldata[key];
+                    else if (key === "ProfilePic")
+                        ProfilePic = alldata[key];
                     else
-                    details.push(<p><b>{Dictionary[key]}:</b> {alldata[key]}</p>);
+                        details.push(<p><b>{Dictionary[key]}:</b> {alldata[key]}</p>);
                 }
             })
-            var both=[]
-            both.push(<MainDetails display={display} link={ProfilePic}/>);
+            var both = []
+            both.push(<MainDetails display={display} link={ProfilePic} />);
             both.push(details);
-            this.setState({ womanData: both,
-            id:this.state.id });
-            
+            this.setState({
+                womanData: both,
+                id: this.state.id
+            });
+
         }
         );
         
     }
     render() {
         return (
-        <div id="shoWoman">
-            {this.state.womanData}
-        </div>
-            );
+            <div id="shoWoman">
+                {this.state.womanData}
+            </div>
+        );
     }
 }
 

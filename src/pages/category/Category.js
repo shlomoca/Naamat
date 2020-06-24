@@ -24,7 +24,8 @@ class Category extends Component {
 
     render() {
         return (
-            <div>
+            <div id="CPcover" className="cover">
+            <div id="CPWrapper" className="wrapper">
                 <NavBar />
                 <div id="category-container">
                 {this.state.categories &&
@@ -36,6 +37,7 @@ class Category extends Component {
                             </div>)
                     })}
                     </div>
+            </div>
                     <BottomBar />
             </div>
         )

@@ -10,6 +10,7 @@ import MainUserPage from '../Main user page/MainUserPage';
 import { WomanPage } from '../woman page/WomanPage';
 import Category from '../category/Category';
 import AdminPage from '../Admin Page/AdminPage';
+import { BottomBar } from '../../Components';
 
 
 
@@ -32,7 +33,7 @@ class LoginPage extends Component {
                 email: {
                     required: true,
                     minlength: 1,
-                    email:true,
+                    email: true,
                 },
                 password: {
                     required: true,
@@ -56,44 +57,48 @@ class LoginPage extends Component {
 
     render() {
         return (
-            <div id="loginWrapper" class="wrapper">
-                <div id="langBtnWeapper">
+            <div id="LPcover" className="cover">
 
-                    <LangBtn />
-                </div>
-                <div class="loginContainer">
-                    <a id="bigLogo"> <img src={logo} alt="logo" /></a>
+                <div id="loginWrapper" class="wrapper">
+                    <div id="langBtnWeapper">
 
-                    <div id="buttonWrapper123">
-                        <form dir="RTL" id="login_form" name="login_form_name" role="form">
-                            < input type="email"
-                                id="email"
-                                name="email"
-                                placeholder={Dictionary.enterMail}
-                                defaultValue="" required
-                                onChange={this.handleChange}>
-                            </input>
-                            < input type="password"
-                                id="password"
-                                name="password"
-                                placeholder={Dictionary.enterPass}
-                                defaultValue="" required
-                                onChange={this.handleChange}>
-                            </input>
+                        <LangBtn />
+                    </div>
+                    <div class="loginContainer">
+                        <a id="bigLogo"> <img src={logo} alt="logo" /></a>
+
+                        <div id="buttonWrapper123">
+                            <form dir="RTL" id="login_form" name="login_form_name" role="form">
+                                < input type="email"
+                                    id="email"
+                                    name="email"
+                                    placeholder={Dictionary.enterMail}
+                                    defaultValue="" required
+                                    onChange={this.handleChange}>
+                                </input>
+                                < input type="password"
+                                    id="password"
+                                    name="password"
+                                    placeholder={Dictionary.enterPass}
+                                    defaultValue="" required
+                                    onChange={this.handleChange}>
+                                </input>
 
 
-                            {/* <Link to="/mainUserPage"> */}
-                            <button id="loginbtn"
-                                type="submit"
-                                text={Dictionary.login}
-                                className="btn btn-success"
-                                onClick={this.login} >
-                                {Dictionary.login}
-                            </button>
-                            {/* </Link> */}
-                        </form>
+                                {/* <Link to="/mainUserPage"> */}
+                                <button id="loginbtn"
+                                    type="submit"
+                                    text={Dictionary.login}
+                                    className="btn btn-success"
+                                    onClick={this.login} >
+                                    {Dictionary.login}
+                                </button>
+                                {/* </Link> */}
+                            </form>
+                        </div>
                     </div>
                 </div>
+                <BottomBar/>
             </div>
         )
     }
@@ -133,7 +138,7 @@ export class LoginComponent extends Component {
             var userEmail = sessionStorage.getItem("userEmail");
 
             db.collection('users').doc(userEmail).get().then(res => {
-                this.setState({permission: res.data().admin});
+                this.setState({ permission: res.data().admin });
 
                 if (this.state.permission) {
                     // admin rout
@@ -156,8 +161,8 @@ export class LoginComponent extends Component {
     renderAdminDiv() {
         ReactDOM.render(
             <Router>
-                <Route exact path="/" component={props =><MainUserPage admin = {this.state.permission} />} />
-                <Route path="/WomanPage/:id" component={props => <WomanPage {...props} admin = {this.state.permission}  />} />
+                <Route exact path="/" component={props => <MainUserPage admin={this.state.permission} />} />
+                <Route path="/WomanPage/:id" component={props => <WomanPage {...props} admin={this.state.permission} />} />
                 <Route path="/Category" component={Category} />
                 <Route path="/AdminPage" component={AdminPage} />
             </Router>, document.getElementById('root')
