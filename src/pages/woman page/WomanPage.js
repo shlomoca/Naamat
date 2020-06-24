@@ -2,7 +2,7 @@ import './WomanPage.css';
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { NavBar, BottomBar } from '../../Components';
-import { db ,storage} from '../../config/Firebase'
+import { db, storage } from '../../config/Firebase'
 import { Dictionary, langs } from '../../Dictionary';
 import { allreadyExist } from '../../forms/Forms'
 import $ from 'jquery';
@@ -14,7 +14,7 @@ const MainDetails = (props) => {
     return (
         <div id="main_details" >
             <img id="profilePic" className="roundImage" src={props.link} alt={props.display} />
-            {props.editBtn}
+            {props.managerBtns}
             <h1 id="dispName">{props.display} </h1>
         </div>
     );
@@ -64,7 +64,7 @@ export class WomenCard extends Component {
                     <img id={"roundImage" + this.state.id} className="roundImage" src={this.state.url} alt={this.state.display} />
                     <h1  >{this.state.display} </h1>
                     <p>{this.state.summary}  </p>
-                   {/* here we will put the woman card discription */}
+                    {/* here we will put the woman card discription */}
                 </div>
             </a>
         )
@@ -94,24 +94,24 @@ export function deleteWoman(id) {
         else
             alert("woman not found");
     })
- }
+}
 
 function deleteBucket(id) {
     // Since you mentioned your images are in a folder,
     // we'll create a Reference to that folder:
     var storageRef = storage.ref(id);
     // Now we get the references of these images
-    storageRef.listAll().then(function(result) {
-      result.items.forEach(function(imageRef) {
-        // And finally display them
-        imageRef.delete();
-      });
-    }).catch(function(error) {
+    storageRef.listAll().then(function (result) {
+        result.items.forEach(function (imageRef) {
+            // And finally display them
+            imageRef.delete();
+        });
+    }).catch(function (error) {
         // Handle any errors
         console.log(error);
     });
 
-    
+
 
 }
 
@@ -120,14 +120,14 @@ function deleteBucket(id) {
 //shows a woman by id. gets a prop called id wich should corraspond with a woman id
 export const WomanPage = (props) => {
     var id = props.match.params.id,
-    Admin=props.Admin;
+        Admin = props.Admin;
     const woman = [];
     var obj;
 
     return (
         <div id="WPcover" className="cover">
             <div id="WomanPageWrapper" class="wrapper" >
-            <NavBar AdminPage={false} Admin={Admin} />
+                <NavBar AdminPage={false} Admin={Admin} />
                 <ShoWoman id={id} fields={["highlights", "biography", "histoy", "feminism", "facts", "quotes"]} Admin={Admin} />
             </div>
             <BottomBar />
@@ -159,16 +159,17 @@ export class ShoWoman extends Component {
     componentWillMount() {
         var info = [],
             page = [],
-            editBtn="";
-            if(this.state.Admin){
-                editBtn= <button className="btn" onClick={(e) => {e.preventDefault();allreadyExist(this.state.id, true);}}>{Dictionary.edit}</button>;
-            }
+            managerBtns = "";
+        if (this.state.Admin) {
+            managerBtns = <td class="deleteBtnTd" ><button className="btn" onClick={(e) => { e.preventDefault(); allreadyExist(this.state.id, true); }}>{Dictionary.edit}</button>
+                <button class="btn-danger deleteBtn" onClick={() => { }} >{Dictionary.delete}</button></td>;
+        }
         db.collection('women').doc(this.state.id).collection('langs').doc(Dictionary.getLanguage()).get().then(snapshot => {
             const data = snapshot.data();
             info.push(data);
             var alldata = info[0];
             if (alldata) {
-                page.push(<MainDetails display={alldata["display"]} link={alldata["ProfilePic"]} editBtn={editBtn}/>);
+                page.push(<MainDetails display={alldata["display"]} link={alldata["ProfilePic"]} managerBtns={managerBtns} />);
                 (Object.values(this.state.fields)).forEach(key => {
                     if (alldata[key])
                         page.push(<p><b>{Dictionary[key]}:</b> {alldata[key]}</p>);
@@ -304,9 +305,16 @@ export function editWoman(id) {
 
             if (info.length != 0) {
 
-                Object.values(info).map(fileds => {
-                    Object.keys(fileds).map(key => {
-                        $("#" + key + lang).val(fileds[key]);
+                Object.values(info).forEach(fileds => {
+                    Object.keys(fileds).forEach(key => {
+                        if (key != "ProfilePic")
+                            $("#" + key + lang).val(fileds[key]);
+                        else {
+                            // console.log(fileds[key])
+                            // console.log(key)
+                            // alert("hey")
+                            $("#" + key).val(fileds[key]);
+                        }
                     })
                 })
             }

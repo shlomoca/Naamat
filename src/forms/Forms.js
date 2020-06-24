@@ -21,52 +21,52 @@ export const AddNewUserForm = () => {
                     <h5 class="modal-title" id="staticBackdropLabel">{Dictionary.addUserBtn}</h5>
                 </div>
                 <div class="modal-content">
-                <div class="modal-body">
-                    <form dir="RTL" id="newUserForm" name="newUserForm" onSubmit={newUserHandler}  >
-                        <div class="form-group">
-                        <label class="regularLabel">{Dictionary.enterMail}</label>
-                        < input type="email"
-                            id="email"
-                            name="email"
-                            placeholder={Dictionary.enterMail}
-                            defaultValue="" required
-                        >
-                        </input>
-                        </div>
-                        <br></br>
-                        <div class="form-group">
-                        <label class="regularLabel">{Dictionary.enterPass}</label>
-                        < input type="password"
-                            id="password"
-                            name="password"
-                            placeholder={Dictionary.enterPass}
-                            defaultValue="" required
-                        >
-                        </input>
-                        </div>
-                        <br></br>
-
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <label class="input-group-text" for="inputGroupSelect01">Admin</label>
+                    <div class="modal-body">
+                        <form dir="RTL" id="newUserForm" name="newUserForm" onSubmit={newUserHandler}  >
+                            <div class="form-group">
+                                <label class="regularLabel">{Dictionary.enterMail}</label>
+                                < input type="email"
+                                    id="email"
+                                    name="email"
+                                    placeholder={Dictionary.enterMail}
+                                    defaultValue="" required
+                                >
+                                </input>
                             </div>
-                            <select class="custom-select" id="adminSelect" required>
-                                <option selected disabled="disabled">Choose...</option>
-                                <option value={true} >Yes</option>
-                                <option value={false}>No</option>
-                            </select>
-                        </div>
-                        <div class="modal-footer">
-                            <button id="addUserBtn"
-                                type="submit"
-                                text={Dictionary.addUserBtn}
-                                className="btn btn-success"
-                                onClick={newUserHandler} >
-                                {Dictionary.addUserBtn}
-                            </button>
-                        </div>
-                    </form>
-                </div>
+                            <br></br>
+                            <div class="form-group">
+                                <label class="regularLabel">{Dictionary.enterPass}</label>
+                                < input type="password"
+                                    id="password"
+                                    name="password"
+                                    placeholder={Dictionary.enterPass}
+                                    defaultValue="" required
+                                >
+                                </input>
+                            </div>
+                            <br></br>
+
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <label class="input-group-text" for="inputGroupSelect01">Admin</label>
+                                </div>
+                                <select class="custom-select" id="adminSelect" required>
+                                    <option selected disabled="disabled">Choose...</option>
+                                    <option value={true} >Yes</option>
+                                    <option value={false}>No</option>
+                                </select>
+                            </div>
+                            <div class="modal-footer">
+                                <button id="addUserBtn"
+                                    type="submit"
+                                    text={Dictionary.addUserBtn}
+                                    className="btn btn-success"
+                                    onClick={newUserHandler} >
+                                    {Dictionary.addUserBtn}
+                                </button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
@@ -95,8 +95,8 @@ function newUserHandler(e) {
 
     var email = $("#email").val();
     var password = $("#password").val();
-    var admin = $("#adminSelect").val()? true : false;
-   
+    var admin = $("#adminSelect").val() ? true : false;
+
     var obj = {};
     obj["email"] = email;
     obj["id"] = email;
@@ -129,7 +129,7 @@ export const FeedbackModal = () => {
                     </div>
                     <div class="modal-body">
                         <form dir="RTL" id="feedback_form" name="feedback_form" onSubmit={handleFeedback}  >
-                            <div  class="form-group">
+                            <div class="form-group">
                                 <label class="regularLabel" for="feed_name">{Dictionary.name}*</label>
                             </div>
                             <input type="text" rows="1" class="regularInput" id="feed_name" cols="35" name="name" required />
@@ -157,7 +157,7 @@ export const FeedbackModal = () => {
 
                             </div>
 
-                                <div class="requiredFooter">{Dictionary.mustfilled}</div>
+                            <div class="requiredFooter">{Dictionary.mustfilled}</div>
                             <div class="modal-footer">
                                 <button type="submit" class="btn btn-success">{Dictionary.submit} <span class="fa fa-arrow-right"></span></button>
                                 <button type="button" onClick={resetForm("feedback_form")} class="btn btn-secondary" data-dismiss="modal">{Dictionary.close}</button>
@@ -304,61 +304,61 @@ export const SuggestWoman = () => {
 
                         <div class="modal-body">
 
-                            <div  class="form-group">
+                            <div class="form-group">
                                 <label class="regularLabel" for="yourName">{Dictionary.name}*</label>
-                                    <input type="text" rows="1" class="regularInput" cols="35" id="yourName" name="yourName" required />
+                                <input type="text" rows="1" class="regularInput" cols="35" id="yourName" name="yourName" required />
                             </div>
 
                             <div class="form-group">
-                                <label class="regularLabel" for="yourEmail">{Dictionary.enterMail}*</label>    
-                                    <input type="text" rows="1" class="regularInput" cols="35" id="yourEmail" name="yourEmail" required />
-                            </div>
-
-                                <div class="form-group">
-                                    <label class="regularLabel" for="display">{Dictionary.displayname}</label>    
-                                        <input type="text" rows="1" class="regularInput" cols="35" id="display" name="display" />
-                                </div>
-
-                            <div class="form-group">
-                            <textarea rows="4" cols="50" name="highlights" id="highlights" placeholder={Dictionary.highlights}  ></textarea>
-                            </div>
-
-
-                            <div class="form-group">
-                            <textarea rows="4" cols="50" name="biography" id="biography" placeholder={Dictionary.biography} ></textarea>
+                                <label class="regularLabel" for="yourEmail">{Dictionary.enterMail}*</label>
+                                <input type="text" rows="1" class="regularInput" cols="35" id="yourEmail" name="yourEmail" required />
                             </div>
 
                             <div class="form-group">
-                            <textarea rows="4" cols="50" name="history" id="historical" placeholder={Dictionary.History} ></textarea>
+                                <label class="regularLabel" for="display">{Dictionary.displayname}</label>
+                                <input type="text" rows="1" class="regularInput" cols="35" id="display" name="display" />
                             </div>
 
                             <div class="form-group">
-                            <textarea rows="4" cols="50" name="feminism" id="contribution" placeholder={Dictionary.feminism}></textarea>
+                                <textarea rows="4" cols="50" name="highlights" id="highlights" placeholder={Dictionary.highlights}  ></textarea>
                             </div>
 
 
                             <div class="form-group">
-                            <textarea rows="4" cols="50" name="facts" id="facts" placeholder={Dictionary.facts}></textarea>
+                                <textarea rows="4" cols="50" name="biography" id="biography" placeholder={Dictionary.biography} ></textarea>
                             </div>
 
                             <div class="form-group">
-                            <textarea rows="4" cols="50" name="facts" id="facts" placeholder={Dictionary.quotes} ></textarea>
+                                <textarea rows="4" cols="50" name="history" id="historical" placeholder={Dictionary.History} ></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <textarea rows="4" cols="50" name="feminism" id="contribution" placeholder={Dictionary.feminism}></textarea>
+                            </div>
+
+
+                            <div class="form-group">
+                                <textarea rows="4" cols="50" name="facts" id="facts" placeholder={Dictionary.facts}></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <textarea rows="4" cols="50" name="facts" id="facts" placeholder={Dictionary.quotes} ></textarea>
                             </div>
                             <div class="form-group">
-                            <input type="text" rows="4" cols="50" name="quotes" id={"quotes" + j} placeholder={Dictionary.bibliography} />
+                                <input type="text" rows="4" cols="50" name="quotes" id={"quotes" + j} placeholder={Dictionary.bibliography} />
                             </div>
                             <div class="form-group">
-                            <a id="fill20"></a>                          
-                            <button id="addBtn" onClick={(e) => {
-                                e.preventDefault();
-                                var fill = $("#fill20");
+                                <a id="fill20"></a>
+                                <button id="addBtn" onClick={(e) => {
+                                    e.preventDefault();
+                                    var fill = $("#fill20");
 
-                                if ($("#quotes" + j).val()) {
-                                    j++;
-                                    fill.append(`<input id=${"quotes" + j}  type="text" rows="4" cols="50" name="quotes" />`)
-                                }
+                                    if ($("#quotes" + j).val()) {
+                                        j++;
+                                        fill.append(`<input id=${"quotes" + j}  type="text" rows="4" cols="50" name="quotes" />`)
+                                    }
 
-                            }}>{Dictionary.addMore}</button>
+                                }}>{Dictionary.addMore}</button>
                             </div>
 
                         </div>
@@ -413,7 +413,7 @@ export const EditWomanModal = () => {
                                     </div>
                                     {/* ///////////////////////////// */}
                                     <div class="form-group">
-                                <button id="submit1" type="button" class="btn btn-success" onClick={() => allreadyExist($("#name").val() + $("#birth").val())} >{Dictionary.next}</button>
+                                        <button id="submit1" type="button" class="btn btn-success" onClick={() => allreadyExist($("#name").val() + $("#birth").val())} >{Dictionary.next}</button>
                                     </div>
                                 </div>
                                 <div id="popup">
@@ -428,7 +428,7 @@ export const EditWomanModal = () => {
                                 </div>
                             </div>
                         </div>
-                            <div class="requiredFooter" > {Dictionary.mustfilled}  </div>
+                        <div class="requiredFooter" > {Dictionary.mustfilled}  </div>
                         <div class="modal-footer">
                             <button type="button" class="close" class="btn btn-secondary" onClick={resetForm("woman_form", "fill1", "fill2")} data-dismiss="modal">{Dictionary.close}</button>
                             <button type="submit" for="woman_form" class="btn btn-success" id="submit_form" >{Dictionary.submit} <span class="fa fa-arrow-right"></span></button>
@@ -532,7 +532,7 @@ function addWoman(e) {
     if (boolAr)
         db.collection('women').doc(id).collection("langs").doc("AR").set(ar);
     window.$("#staticBackdrop").modal('hide');
-
+    window.location.reload();
 }
 
 // add to suggest woman collection
