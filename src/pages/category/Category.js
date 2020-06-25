@@ -39,9 +39,11 @@ class Category extends Component {
                             this.state.categories.map(category => {
                                 if (category.link)
                                     return (
-                                        <div className="container">
-                                            <img src={category.link} alt={category.catagory} />
-                                            <button className="btn">{category.category}</button>
+                                        <div className="catagoryImgContainer" >
+                                            <button className="catagoryBtn" onClick={() => { alert(category.catagory) }}>
+                                                <img className="catagoryImg" src={category.link} alt={category.catagory} />
+                                                <div className="catagoryText">{category.category}</div>
+                                            </button>
                                         </div>);
                             })}
                     </div>
