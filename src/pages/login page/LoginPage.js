@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import './LoginPage.css';
 import $ from 'jquery';
-import  { auth, db } from '../../config/Firebase';
+import { auth, db } from '../../config/Firebase';
 import logo from '../../images/naamatlogo.png';
 import { Dictionary, LangBtn } from '../../Dictionary';
 import MainUserPage from '../Main user page/MainUserPage';
@@ -126,6 +126,19 @@ export class LoginComponent extends Component {
     signOutFun() {
         auth.signOut();
     }
+    componentWillMount() {
+        //reset page to main page if page is inactive for a half an hour
+        var time = new Date().getTime();
+        $(document.body).bind("mousemove keypress touchmove ", function () {
+            time = new Date().getTime();
+        });
+
+        setInterval(function () {
+            if (new Date().getTime() - time >= 1800000) {
+                window.location.href = "/";
+            }
+        }, 1000);
+    }
 
     componentDidMount() {
         window.addEventListener("beforeunload", this.signOutFun);
@@ -176,7 +189,7 @@ export class LoginComponent extends Component {
         ReactDOM.render(
             <Router>
                 <Route exact path="/" component={MainUserPage} />
-                <Route path="/WomanPage/:id" component={props => <WomanPage {...props}  />} />
+                <Route path="/WomanPage/:id" component={props => <WomanPage {...props} />} />
                 <Route path="/Category" component={Category} />
             </Router>, document.getElementById('root')
         );
