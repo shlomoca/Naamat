@@ -75,6 +75,7 @@
 #fblogo, #ytlogo {
     height: 50px;
     width: 50px;
+    margin-left: 6px;
 }
 
 #pictureCarousel {
@@ -184,11 +185,14 @@ background: rgb(191, 224, 232);
 #bottom {
     position: relative;
     display: table;
-    text-align: center;
+    /* text-align: center; */
     margin-bottom: 0%;
     width: 100%;
     background-color: #f8f9fa!important;
+    padding-left: 1%;
     
+
+
 }
 
 #feedbackTable{
