@@ -2,9 +2,9 @@ import './AdminPage.css';
 import $ from 'jquery';
 import React, { Component } from 'react';
 import { NavBar, PictursCarousel, DisplayModal, BottomBar, AfterMessage, usersManager } from '../../Components.js';
-import { getWoman, WomenCard } from '../woman page/WomanPage';
+import { getWoman, WomenCard, sugToReal } from '../woman page/WomanPage';
 import { Dictionary } from '../../Dictionary';
-import { EditWomanModal, AddCategoryModal, FeedbackModal, AddNewUserForm } from '../../forms/Forms';
+import { EditWomanModal, AddCategoryModal, FeedbackModal, AddNewUserForm, addWoman, GenralForm } from '../../forms/Forms';
 import { scryRenderedComponentsWithType } from 'react-dom/test-utils';
 import { Link } from 'react-router-dom';
 import { db } from '../../config/Firebase';
@@ -18,7 +18,7 @@ class AdminPage extends Component {
                     <NavBar AdminPage={true} Admin={true} />
                     <EditWomanModal />
                     <AddCategoryModal />
-                    <FeedbackModal />
+                    {/* <FeedbackModal /> */}
                     <AddNewUserForm />
                     <div className="backBtn">
                         {/* <Link to="/"><button id="backBtn" className="btn">{Dictionary.back}</button></Link> */}
@@ -31,7 +31,8 @@ class AdminPage extends Component {
                         <button className="btnhover" type="button" id="btn5" data-toggle="modal" data-target="#categoryForm"> {Dictionary.adminAddCategory} </button>
                         <button className="btnhover" type="button" id="categoriesBtn" onClick={() => { getData("categoriesBtn", "categories", ["category"]) }}> {Dictionary.manageCategory} </button>
                         <button className="btnhover" type="button" id="userMngBtn" onClick={() => { getData("userMngBtn", "users", ["email", "admin"]) }}> {Dictionary.adminUserManagement} </button>
-                        {/* <button className="btnhover" type="button" id="btn4"> {Dictionary.adminEditAbout} </button> */}
+                        <button className="btnhover" type="button" id="sugWomenMngBtn" onClick={() => { getData("sugWomenMngBtn", "suggest_women", ["yourName", "yourEmail", "display"]) }}> ניהול הצעות </button>
+                        {/* <button className="btnhover" type="button" id="btn4"> {Dictionary.adminEditAbout} </button>   data-toggle="modal" data-target="#suggestWomanModal"   */}
 
                     </div>
                     <div id="TableHolder"></div>
@@ -47,11 +48,12 @@ export default AdminPage
 //insert the collaction that you are looking to take data from and an array of the feilds that you are intrested in getting in your table
 //note that if not all feilds will be full the row will not be presented. 
 export function getData(btnId, collect, fields, unCheckedFields) {
-    ShowHideFunc(["TableHolder"], ["allAdmin"])
+
+    ShowHideFunc(["TableHolder"], ["allAdmin"]);
     db.collection(collect).get().then(snapshot => {
         const data = [];
         //extract data from snapshot
-        snapshot.forEach(doc => {
+        snapshot.forEach(doc => {//doc is an one woman suggested
             const info = doc.data();
             if (info) {
                 data.push(info);
@@ -65,6 +67,7 @@ export function getData(btnId, collect, fields, unCheckedFields) {
         else {
             //render the table
             ReactDOM.render(<DisplayData btnId={btnId} collect={collect} data={data} fields={fields} unCheckedFields={unCheckedFields} />, document.getElementById('TableHolder'));
+
         }
 
     }).catch(error => console.log(error))
@@ -76,7 +79,7 @@ export function getData(btnId, collect, fields, unCheckedFields) {
 //DisplayData will enter the data in to the table 
 const DisplayData = (props) => {
     var fields = props.fields,//fields to search for in data
-    unCheckedFields=props.unCheckedFields,//fields to search for in data that might not be full
+        unCheckedFields = props.unCheckedFields,//fields to search for in data that might not be full
         collect = props.collect,//the collection that the data was taken from
         data = props.data,//the array that the data was pushed in to
         btnId = props.btnId,// get button id from props 
@@ -89,19 +92,19 @@ const DisplayData = (props) => {
         col.push(<td className="textAlign index">{index++}</td>);
         //go through the data and take only the requierd feilds
         if(fields)
-        fields.forEach(field => {
-            if (singleRow[field] != undefined && singleRow[field] != "")
-                col.push(String(singleRow[field]));
-            else
-                allCollsFull = false;
-        })
-        if(unCheckedFields)
-        unCheckedFields.forEach(field => {
-            if (singleRow[field] != undefined && singleRow[field] != "")
-                col.push(String(singleRow[field]));
+            fields.forEach(field => {
+                if (singleRow[field] != undefined && singleRow[field] != "")
+                    col.push(String(singleRow[field]));
                 else
-                col.push(String("-"));
-        })
+                    allCollsFull = false;
+            })
+        if(unCheckedFields)
+            unCheckedFields.forEach(field => {
+                if (singleRow[field] != undefined && singleRow[field] != "")
+                    col.push(String(singleRow[field]));
+                else
+                    col.push(String("-"));
+            })
         //get id from the DB
         id = singleRow["id"];
         if (allCollsFull) {
@@ -173,7 +176,7 @@ export function ShowHideFunc(show, hide) {
 //gets all fuilds requierd and maks a table head
 export const BuildTableHead = (props) => {
     var fields = props.fields,
-    unCheckedFields = props.unCheckedFields;
+        unCheckedFields = props.unCheckedFields;
     const res = []
     res.push(<th className="textAlign">#</th>)
     if (fields)
@@ -215,7 +218,5 @@ export const BuildTableBody = (props) => {
 
 
 $(document).ready(() => {
-    //    deleteWoman("דניאל רז2020-06-10");
-
 
 });

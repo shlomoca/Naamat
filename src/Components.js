@@ -25,8 +25,8 @@ export const NavBar = (props) => {
 
   return (
     <div id="navbar">
-      <EditWomanModal />
-      <AddCategoryModal />
+      {/* <EditWomanModal /> */}
+      {/* <AddCategoryModal /> */}
       <SuggestWoman />
       <FeedbackModal />
       <ScrollUpButton />

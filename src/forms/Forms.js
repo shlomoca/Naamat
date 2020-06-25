@@ -219,7 +219,7 @@ export const GenralForm = (props) => {
 
             <div className="form-group">
                 <input type="text" lang={props.lang} rows="1" className="regularInput" cols="35" id={"display" + props.lang} name="display" placeholder={Dictionary.displayname} />
-                <ImageUpload  param1="name" param2="birth" pathEnd="/ProfilePic" param1Empty="name not enterd" param2Empty="date of birth not ented" />
+                <ImageUpload param1="name" param2="birth" pathEnd="/ProfilePic" param1Empty="name not enterd" param2Empty="date of birth not ented" />
             </div>
 
 
@@ -479,15 +479,15 @@ export function allreadyExist(id, wantToEdit) {
 }
 
 //add woman to database
-function addWoman(e) {
+export function addWoman(e) {
     e.preventDefault();
 
     var he = {}, en = {}, ar = {}, gen = {};
     var boolHe = false, boolEn = false, boolAr = false;
 
-    var id = $("#name").val() + $("#birth").val();
+        var id = $("#name").val() + $("#birth").val();
     $('#submit1').show();
-
+    //id="shlomoca@gmail.com";
     $($('#woman_form').prop('elements')).each(function () {
         if (this.value) {
             if (this.name === "highlights" || this.name === "display") {
@@ -525,12 +525,12 @@ function addWoman(e) {
 
 
     if (boolHe)
-    db.collection('women').doc(id).collection("langs").doc("HE").set(he);
+        db.collection('women').doc(id).collection("langs").doc("HE").set(he);
     if (boolEn)
-    db.collection('women').doc(id).collection("langs").doc("EN").set(en);
+        db.collection('women').doc(id).collection("langs").doc("EN").set(en);
     if (boolAr)
-    db.collection('women').doc(id).collection("langs").doc("AR").set(ar);
-    db.collection('women').doc(id).set(gen).then(()=>{
+        db.collection('women').doc(id).collection("langs").doc("AR").set(ar);
+    db.collection('women').doc(id).set(gen).then(() => {
         alert(Dictionary.uploadSuccess);
         window.$("#staticBackdrop").modal('hide');
         window.location.reload();
