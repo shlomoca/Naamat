@@ -98,7 +98,7 @@ export const EditWomanModal = () => {
                                 <div className="addWomanContainer">
                                     <div className="form-group">
                                         <label className="regularLabel" htmlFor="name">{Dictionary.name}*</label>
-                                        <input className="regularInput" type="text" rows="1" cols="35" id="name" name="name" required />
+                                        <input className="regularInput" autoComplete="off" type="text" rows="1" cols="35" id="name" name="name" required />
                                     </div>
                                     <div className="form-group">
                                         <label className="regularLabel" htmlFor="birth">{Dictionary.birth}*</label>
@@ -128,7 +128,7 @@ export const EditWomanModal = () => {
                         <div className="requiredFooter" > {Dictionary.mustfilled}  </div>
                         <div className="modal-footer">
                             <button type="button" className="close" className="btn btn-secondary" onClick={resetForm("woman_form", "fill1", "fill2")} data-dismiss="modal">{Dictionary.close}</button>
-                            <button type="submit" htmlFor="woman_form" className="btn btn-success" id="submit_form" >{Dictionary.submit} <span className="fa fa-arrow-right"></span></button>
+                            <button type="submit" htmlFor="woman_form" className="btn btn-success" id="submit_form" >{Dictionary.submit}{/*<span className="fa fa-arrow-right"></span>*/} </button>
                         </div>
                     </form>
 
@@ -158,17 +158,17 @@ export const SuggestWomanModal = () => {
 
                             <div className="form-group">
                                 <label className="regularLabel" htmlFor="yourName">{Dictionary.name}*</label>
-                                <input type="text" rows="1" className="regularInput" cols="35" id="yourName" name="yourName" required />
+                                <input type="text" rows="1" autoComplete="off" className="regularInput" cols="35" id="yourName" name="yourName" required />
                             </div>
 
                             <div className="form-group">
                                 <label className="regularLabel" htmlFor="yourEmail">{Dictionary.enterMail}*</label>
-                                <input type="text" rows="1" className="regularInput" cols="35" id="yourEmail" name="yourEmail" required />
+                                <input type="text" autoComplete="off" rows="1" className="regularInput" cols="35" id="yourEmail" name="yourEmail" required />
                             </div>
 
                             <div className="form-group">
                                 <label className="regularLabel" htmlFor="display">{Dictionary.displayname}</label>
-                                <input type="text" rows="1" className="regularInput" cols="35" id="display" name="display" />
+                                <input type="text" autoComplete="off" rows="1" className="regularInput" cols="35" id="display" name="display" />
                             </div>
 
                             <div className="form-group">
@@ -197,7 +197,7 @@ export const SuggestWomanModal = () => {
                                 <textarea rows="4" cols="50" name="facts" id="facts" placeholder={Dictionary.quotes} ></textarea>
                             </div>
                             <div className="form-group">
-                                <input type="text" rows="4" cols="50" name="quotes" id={"quotes" + j} placeholder={Dictionary.bibliography} />
+                                <input type="text" autoComplete="off" rows="4" cols="50" name="quotes" id={"quotes" + j} placeholder={Dictionary.bibliography} />
                             </div>
                             <div className="form-group">
                                 <a id="fill20"></a>
@@ -207,7 +207,7 @@ export const SuggestWomanModal = () => {
 
                                     if ($("#quotes" + j).val()) {
                                         j++;
-                                        fill.append(`<input id=${"quotes" + j}  type="text" rows="4" cols="50" name="quotes" />`)
+                                        fill.append(`<input id=${"quotes" + j} autoComplete="off"  type="text" rows="4" cols="50" name="quotes" />`)
                                     }
 
                                 }}>{Dictionary.addMore}</button>
@@ -217,7 +217,7 @@ export const SuggestWomanModal = () => {
                         <div className="requiredFooter">{Dictionary.mustfilled}</div>
                         <div className="modal-footer">
                             <button type="button" className="close" className="btn btn-secondary" onClick={resetForm("suggest_woman_form", "fill20")} data-dismiss="modal">{Dictionary.close}</button>
-                            <button type="submit" htmlFor="suggest_woman_form" className="btn btn-success" id="submit_form" > <span className="fa fa-arrow-right"></span>{Dictionary.submit}</button>
+                            <button type="submit" htmlFor="suggest_woman_form" className="btn btn-success" id="submit_form" > {/*<span className="fa fa-arrow-right"></span>*/}{Dictionary.submit}</button>
                         </div>
                     </form>
 
@@ -245,7 +245,7 @@ export const FeedbackModal = () => {
                             <div className="form-group">
                                 <label className="regularLabel" htmlFor="feed_name">{Dictionary.name}*</label>
                             </div>
-                            <input type="text" rows="1" className="regularInput" id="feed_name" cols="35" name="name" required />
+                            <input type="text" autoComplete="off" rows="1" className="regularInput" id="feed_name" cols="35" name="name" required />
                             <div id="email-group" className="form-group">
                                 <label className="regularLabel" htmlFor="feed_email">{Dictionary.enterMail}*</label>
                             </div>
@@ -272,7 +272,7 @@ export const FeedbackModal = () => {
 
                             <div className="requiredFooter">{Dictionary.mustfilled}</div>
                             <div className="modal-footer">
-                                <button type="submit" className="btn btn-success">{Dictionary.submit} <span className="fa fa-arrow-right"></span></button>
+                                <button type="submit" className="btn btn-success">{Dictionary.submit} {/*<span className="fa fa-arrow-right"></span>*/}</button>
                                 <button type="button" onClick={resetForm("feedback_form")} className="btn btn-secondary" data-dismiss="modal">{Dictionary.close}</button>
                             </div>
                         </form>
@@ -300,16 +300,16 @@ export const CategoryModal = () => {
                             <div id="name-group" className="form-group">
                                 <div id="name-group1" className="form-group">
                                     <label className="regularLabel" htmlFor="category_name">{Dictionary.name}</label>
-                                    <input type="text" lang="HE" rows="1" cols="35" id="category_nameHE" name="category_name" placeholder="הכנס שם קטגוריה בעברית" required />
-                                    <input type="text" lang="EN" rows="1" cols="35" id="category_nameEN" name="category_name" placeholder="הכנס שם קטגוריה באנגלית" required />
-                                    <input type="text" lang="AR" rows="1" cols="35" id="category_nameAR" name="category_name" placeholder="הכנס שם קטגוריה בערבית" required />
+                                    <input autoComplete="off" type="text" lang="HE" rows="1" cols="35" id="category_nameHE" name="category_name" placeholder="הכנס שם קטגוריה בעברית" required />
+                                    <input autoComplete="off" type="text" lang="EN" rows="1" cols="35" id="category_nameEN" name="category_name" placeholder="הכנס שם קטגוריה באנגלית" required />
+                                    <input autoComplete="off" type="text" lang="AR" rows="1" cols="35" id="category_nameAR" name="category_name" placeholder="הכנס שם קטגוריה בערבית" required />
                                 </div>
                             </div>
                             <div id="image-group" className="form-group">
                                 <ImageUpload required="required" param1="category_nameHE" param1Empty="category name not enterd" />
                             </div>
                             <div className="modal-footer">
-                                <button type="submit" id="submitCategory" htmlFor="category_form" className="btn btn-success">{Dictionary.submit} <span className="fa fa-arrow-right"></span></button>
+                                <button type="submit" id="submitCategory" htmlFor="category_form" className="btn btn-success">{Dictionary.submit} {/*<span className="fa fa-arrow-right"></span>*/}</button>
                                 <button type="button" onClick={resetForm("category_form")} className="btn btn-secondary" data-dismiss="modal">{Dictionary.close}</button>
                             </div>
                         </form>
@@ -332,8 +332,8 @@ export const GenralForm = (props) => {
         <div id={props.lang} className={classAttr}>
 
             <div className="form-group">
-                <input type="text" lang={props.lang} rows="1" className="regularInput" cols="35" id={"display" + props.lang} name="display" placeholder={Dictionary.displayname} />
-                <ImageUpload  param1="name" param2="birth" pathEnd="/ProfilePic" param1Empty="name not enterd" param2Empty="date of birth not ented" />
+                <input type="text" autoComplete="off" lang={props.lang} rows="1" className="regularInput" cols="35" id={"display" + props.lang} name="display" placeholder={Dictionary.displayname} />
+                <ImageUpload param1="name" param2="birth" pathEnd="/ProfilePic" param1Empty="name not enterd" param2Empty="date of birth not ented" />
             </div>
 
 
@@ -366,7 +366,7 @@ export const GenralForm = (props) => {
             </div>
             <div className="form-group">
                 <label htmlFor={"link" + props.lang}> </label>
-                <input className="regularInput" id={"description" + props.lang + i} lang={props.lang} type="text" rows="4" cols="50" name="description" placeholder={Dictionary.description} />
+                <input className="regularInput" id={"description" + props.lang + i} lang={props.lang} autoComplete="off" type="text" rows="4" cols="50" name="description" placeholder={Dictionary.description} />
                 <input className="regularInput" id={"link" + props.lang + i} lang={props.lang} type="text" rows="4" cols="50" name="link" placeholder={Dictionary.link} />
                 <a id={"fill1" + props.lang} ></a>
                 <button id="addBtn" onClick={(e) => {
@@ -375,15 +375,15 @@ export const GenralForm = (props) => {
                     if ($("#description" + props.lang + i).val())
                         if ($("#link" + props.lang + i).val()) {
                             i++;
-                            fill.append(`<input id=${"description" + props.lang + i}  lang = ${props.lang} type="text" rows="4" className="regularInput" cols="50" name="description" placeholder=${Dictionary.description} />
-                        <input id=${"link" + props.lang + i} lang = ${props.lang} type="text" rows="4" className="regularInput" cols="50" name="link" placeholder=${Dictionary.link} />`)
+                            fill.append(`<input id=${"description" + props.lang + i}  lang = ${props.lang} autoComplete="off" type="text" rows="4" className="regularInput" cols="50" name="description" placeholder=${Dictionary.description} />
+                        <input id=${"link" + props.lang + i} lang = ${props.lang} type="text" autoComplete="off" rows="4" className="regularInput" cols="50" name="link" placeholder=${Dictionary.link} />`)
                         }
                 }}>{Dictionary.addMore}</button>
             </div>
 
             <div className="form-group">
                 <label htmlFor={"reading" + props.lang}>
-                    <input id={"reading" + props.lang + j} lang={props.lang} type="text" rows="4" cols="50" name="reading" placeholder={Dictionary.bibliography} />
+                    <input id={"reading" + props.lang + j} lang={props.lang} type="text" autoComplete="off" rows="4" cols="50" name="reading" placeholder={Dictionary.bibliography} />
                     <a id={"fill2" + props.lang}></a>
                     <button onClick={(e) => {
                         e.preventDefault();
@@ -391,7 +391,7 @@ export const GenralForm = (props) => {
 
                         if ($("#reading" + props.lang + j).val()) {
                             j++;
-                            fill.append(`<input id=${"reading" + props.lang + j} lang=${props.lang} type="text" rows="4" cols="50" name="reading" placeholder=${Dictionary.bibliography} />`)
+                            fill.append(`<input id=${"reading" + props.lang + j} lang=${props.lang} type="text" autoComplete="off" rows="4" cols="50" name="reading" placeholder=${Dictionary.bibliography} />`)
                         }
                     }}>{Dictionary.addMore}</button>
                 </label>
@@ -493,12 +493,12 @@ function addWoman(e) {
 
 
     if (boolHe)
-    db.collection('women').doc(id).collection("langs").doc("HE").set(he);
+        db.collection('women').doc(id).collection("langs").doc("HE").set(he);
     if (boolEn)
-    db.collection('women').doc(id).collection("langs").doc("EN").set(en);
+        db.collection('women').doc(id).collection("langs").doc("EN").set(en);
     if (boolAr)
-    db.collection('women').doc(id).collection("langs").doc("AR").set(ar);
-    db.collection('women').doc(id).set(gen).then(()=>{
+        db.collection('women').doc(id).collection("langs").doc("AR").set(ar);
+    db.collection('women').doc(id).set(gen).then(() => {
         alert(Dictionary.uploadSuccess);
         window.$("#staticBackdrop").modal('hide');
         window.location.reload();
