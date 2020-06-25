@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import { NavBar, BottomBar } from '../../Components';
 import { db, storage } from '../../config/Firebase'
 import { Dictionary, langs } from '../../Dictionary';
-import { allreadyExist, addWoman } from '../../forms/Forms'
+import { allreadyExist, addWoman, EditWomanModal } from '../../forms/Forms'
 import $ from 'jquery';
 
 
@@ -128,6 +128,7 @@ export const WomanPage = (props) => {
         <div id="WPcover" className="cover">
             <div id="WomanPageWrapper" className="wrapper" >
                 <NavBar AdminPage={false} Admin={Admin} />
+                <EditWomanModal/>
                 <ShoWoman id={id} fields={["highlights", "biography", "histoy", "feminism", "facts", "quotes"]} Admin={Admin} />
             </div>
             <BottomBar />

@@ -10,7 +10,6 @@ import Firebase, { auth, storage, db } from '../../config/Firebase';
 import { Dictionary } from '../../Dictionary';
 import { Link } from 'react-router-dom';
 
-
 class MainUserPage extends Component {
 
     constructor(props) {
@@ -56,9 +55,9 @@ export class ShowPhotos extends Component {
         return (
 
             <div id="photoContainer" >
-
-                {/* <SimpleReactLightbox> */}
-                    {/* <SRLWrapper> */}
+{/* 
+                <SimpleReactLightbox>
+                    <SRLWrapper>
                         <div id="lightBox">
                         {this.state.photos.map(photo => {
                             return (<div>
@@ -67,8 +66,8 @@ export class ShowPhotos extends Component {
 
                         })}
                         </div>
-                    {/* </SRLWrapper> */}
-                {/* </SimpleReactLightbox> */}
+                    </SRLWrapper>
+                </SimpleReactLightbox> */}
 
             </div>
         );

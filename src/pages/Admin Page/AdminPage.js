@@ -91,14 +91,14 @@ const DisplayData = (props) => {
         var allCollsFull = true;
         col.push(<td className="textAlign index">{index++}</td>);
         //go through the data and take only the requierd feilds
-        if(fields)
+        if (fields)
             fields.forEach(field => {
                 if (singleRow[field] != undefined && singleRow[field] != "")
                     col.push(String(singleRow[field]));
                 else
                     allCollsFull = false;
             })
-        if(unCheckedFields)
+        if (unCheckedFields)
             unCheckedFields.forEach(field => {
                 if (singleRow[field] != undefined && singleRow[field] != "")
                     col.push(String(singleRow[field]));
@@ -127,7 +127,7 @@ const DisplayData = (props) => {
     return (
         <div id="feedbackTable">
             <table className="table table-dark">
-                <BuildTableHead fields={fields} unCheckedFields={unCheckedFields}/>
+                <BuildTableHead fields={fields} unCheckedFields={unCheckedFields} />
                 <tbody>
                     {body}
                 </tbody>
@@ -204,7 +204,10 @@ export const BuildTableBody = (props) => {
     var tds = [];
 
     colls.forEach(col => {
-        tds.push(<td className="textAlign"> {col} </td>);
+        if (ValidateEmail(col))
+            tds.push(<td className="textAlign">  <a href={"mailto:" + col}> {col}</a> </td>);
+        else
+            tds.push(<td className="textAlign"> {col} </td>);
     });
     tds.push(
         <td className="deleteBtnTd" > <button className="btn-danger deleteBtn" onClick={askAndDelete(collect, id)} >{Dictionary.delete}</button></td>
@@ -216,7 +219,9 @@ export const BuildTableBody = (props) => {
     )
 }
 
-
+function ValidateEmail(mail) {
+    return (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail))
+}
 $(document).ready(() => {
 
 });

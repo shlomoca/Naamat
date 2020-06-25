@@ -564,8 +564,7 @@ function addCatagory(event) {
     window.$("#categoryForm").modal('hide');
     $("#category_form").trigger("reset");
 
-    // $("#staticBackdrop").modal('hide');
-    // $("#afterMessage").modal('show');
+ 
     // stop the form from submitting the normal way and refreshing the page
     event.preventDefault();
 };
