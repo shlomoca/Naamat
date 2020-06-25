@@ -300,9 +300,9 @@ export const CategoryModal = () => {
                             <div id="name-group" className="form-group">
                                 <div id="name-group1" className="form-group">
                                     <label className="regularLabel" htmlFor="category_name">{Dictionary.name}</label>
-                                    <input type="text" lang="HE" rows="1" className="details" cols="35" id="category_nameHE" name="category_name" placeholder="הכנס שם קטגוריה בעברית" required />
-                                    <input type="text" lang="EN" rows="1" className="details" cols="35" id="category_nameEN" name="category_name" placeholder="הכנס שם קטגוריה באנגלית" required />
-                                    <input type="text" lang="AR" rows="1" className="details" cols="35" id="category_nameAR" name="category_name" placeholder="הכנס שם קטגוריה בערבית" required />
+                                    <input type="text" lang="HE" rows="1" cols="35" id="category_nameHE" name="category_name" placeholder="הכנס שם קטגוריה בעברית" required />
+                                    <input type="text" lang="EN" rows="1" cols="35" id="category_nameEN" name="category_name" placeholder="הכנס שם קטגוריה באנגלית" required />
+                                    <input type="text" lang="AR" rows="1" cols="35" id="category_nameAR" name="category_name" placeholder="הכנס שם קטגוריה בערבית" required />
                                 </div>
                             </div>
                             <div id="image-group" className="form-group">
@@ -340,28 +340,28 @@ export const GenralForm = (props) => {
             <div className="form-group">
 
                 {/* <div className="form-group"> */}
-                <textarea rows="4" className="detail" cols="50" name="highlights" lang={props.lang} id={"highlights" + props.lang} placeholder={Dictionary.highlights}  ></textarea>
+                <textarea rows="4" cols="50" name="highlights" lang={props.lang} id={"highlights" + props.lang} placeholder={Dictionary.highlights}  ></textarea>
                 {/* </div> */}
 
 
                 {/* <div className="form-group"> */}
-                <textarea rows="4" className="detail" cols="50" name="biography" lang={props.lang} id={"biography" + props.lang} placeholder={Dictionary.biography} ></textarea>
+                <textarea rows="4" cols="50" name="biography" lang={props.lang} id={"biography" + props.lang} placeholder={Dictionary.biography} ></textarea>
                 {/* </div> */}
 
                 {/* <div className="form-group"> */}
-                <textarea rows="4" className="detail" cols="50" name="history" lang={props.lang} id={"historical" + props.lang} placeholder={Dictionary.History} ></textarea>
+                <textarea rows="4" cols="50" name="history" lang={props.lang} id={"historical" + props.lang} placeholder={Dictionary.History} ></textarea>
                 {/* </div> */}
 
                 {/* <div className="form-group"> */}
-                <textarea rows="4" className="detail" cols="50" name="feminism" lang={props.lang} id={"contribution" + props.lang} placeholder={Dictionary.feminism} ></textarea>
+                <textarea rows="4" cols="50" name="feminism" lang={props.lang} id={"contribution" + props.lang} placeholder={Dictionary.feminism} ></textarea>
                 {/* </div> */}
 
 
                 {/* <div className="form-group"> */}
-                <textarea rows="4" className="detail" cols="50" name="facts" lang={props.lang} id={"facts" + props.lang} placeholder={Dictionary.facts} ></textarea>
+                <textarea rows="4" cols="50" name="facts" lang={props.lang} id={"facts" + props.lang} placeholder={Dictionary.facts} ></textarea>
                 {/* </div> */}
 
-                <textarea rows="4" className="detail" cols="50" name="quotes" lang={props.lang} id={"quotes" + props.lang} placeholder={Dictionary.quotes} ></textarea>
+                <textarea rows="4" cols="50" name="quotes" lang={props.lang} id={"quotes" + props.lang} placeholder={Dictionary.quotes} ></textarea>
 
             </div>
             <div className="form-group">
