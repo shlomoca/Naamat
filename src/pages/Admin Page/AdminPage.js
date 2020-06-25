@@ -20,18 +20,18 @@ class AdminPage extends Component {
                     <AddCategoryModal />
                     <FeedbackModal />
                     <AddNewUserForm />
-                    <div class="backBtn">
-                        {/* <Link to="/"><button id="backBtn" class="btn">{Dictionary.back}</button></Link> */}
+                    <div className="backBtn">
+                        {/* <Link to="/"><button id="backBtn" className="btn">{Dictionary.back}</button></Link> */}
                     </div>
                     <p id="adminTitle">{Dictionary.welcomeManager}</p>
                     <div id="allAdmin">
-                        <button class="btnhover" type="button" id="btn1" data-toggle="modal" data-target="#staticBackdrop"> {Dictionary.adminAddWoman} </button>
-                        <button class="btnhover" type="button" id="btn2" > {Dictionary.adminEditWoman} </button>
-                        <button class="btnhover" type="button" id="feedbackBtn" onClick={() => { getData("feedbackBtn", "feedback", ["name", "email", "improvement", "score"]) }}> {Dictionary.adminFeedback} </button>
-                        <button class="btnhover" type="button" id="btn5" data-toggle="modal" data-target="#categoryForm"> {Dictionary.adminAddCategory} </button>
-                        <button class="btnhover" type="button" id="categoriesBtn" onClick={() => { getData("categoriesBtn", "categories", ["category"]) }}> {Dictionary.manageCategory} </button>
-                        <button class="btnhover" type="button" id="userMngBtn" onClick={() => { getData("userMngBtn", "users", ["email", "admin"]) }}> {Dictionary.adminUserManagement} </button>
-                        {/* <button class="btnhover" type="button" id="btn4"> {Dictionary.adminEditAbout} </button> */}
+                        <button className="btnhover" type="button" id="btn1" data-toggle="modal" data-target="#staticBackdrop"> {Dictionary.adminAddWoman} </button>
+                        <button className="btnhover" type="button" id="btn2" > {Dictionary.adminEditWoman} </button>
+                        <button className="btnhover" type="button" id="feedbackBtn" onClick={() => { getData("feedbackBtn", "feedback", ["name", "email", "improvement", "score"]) }}> {Dictionary.adminFeedback} </button>
+                        <button className="btnhover" type="button" id="btn5" data-toggle="modal" data-target="#categoryForm"> {Dictionary.adminAddCategory} </button>
+                        <button className="btnhover" type="button" id="categoriesBtn" onClick={() => { getData("categoriesBtn", "categories", ["category"]) }}> {Dictionary.manageCategory} </button>
+                        <button className="btnhover" type="button" id="userMngBtn" onClick={() => { getData("userMngBtn", "users", ["email", "admin"]) }}> {Dictionary.adminUserManagement} </button>
+                        {/* <button className="btnhover" type="button" id="btn4"> {Dictionary.adminEditAbout} </button> */}
 
                     </div>
                     <div id="TableHolder"></div>
@@ -46,7 +46,7 @@ export default AdminPage
 
 //insert the collaction that you are looking to take data from and an array of the feilds that you are intrested in getting in your table
 //note that if not all feilds will be full the row will not be presented. 
-export function getData(btnId, collect, fields) {
+export function getData(btnId, collect, fields, unCheckedFields) {
     ShowHideFunc(["TableHolder"], ["allAdmin"])
     db.collection(collect).get().then(snapshot => {
         const data = [];
@@ -64,7 +64,7 @@ export function getData(btnId, collect, fields) {
             alert(Dictionary.nothingToShow);
         else {
             //render the table
-            ReactDOM.render(<DisplayData btnId={btnId} collect={collect} data={data} fields={fields} />, document.getElementById('TableHolder'));
+            ReactDOM.render(<DisplayData btnId={btnId} collect={collect} data={data} fields={fields} unCheckedFields={unCheckedFields} />, document.getElementById('TableHolder'));
         }
 
     }).catch(error => console.log(error))
@@ -76,6 +76,7 @@ export function getData(btnId, collect, fields) {
 //DisplayData will enter the data in to the table 
 const DisplayData = (props) => {
     var fields = props.fields,//fields to search for in data
+    unCheckedFields=props.unCheckedFields,//fields to search for in data that might not be full
         collect = props.collect,//the collection that the data was taken from
         data = props.data,//the array that the data was pushed in to
         btnId = props.btnId,// get button id from props 
@@ -85,13 +86,21 @@ const DisplayData = (props) => {
     data.forEach(singleRow => {
         var col = [];
         var allCollsFull = true;
-        col.push(<td class="textAlign index">{index++}</td>);
+        col.push(<td className="textAlign index">{index++}</td>);
         //go through the data and take only the requierd feilds
+        if(fields)
         fields.forEach(field => {
-            if (singleRow[field] != undefined || singleRow[field] != "")
+            if (singleRow[field] != undefined && singleRow[field] != "")
                 col.push(String(singleRow[field]));
             else
                 allCollsFull = false;
+        })
+        if(unCheckedFields)
+        unCheckedFields.forEach(field => {
+            if (singleRow[field] != undefined && singleRow[field] != "")
+                col.push(String(singleRow[field]));
+                else
+                col.push(String("-"));
         })
         //get id from the DB
         id = singleRow["id"];
@@ -99,7 +108,7 @@ const DisplayData = (props) => {
             body.push(<BuildTableBody collect={collect} id={id} colls={col} />);
         }
         else {
-            console.log("col no full so wasent added");
+            console.log("col not full so it was not added");
             console.log(col);
         }
 
@@ -107,15 +116,15 @@ const DisplayData = (props) => {
     })
 
     const serviceButtons = [];
-    serviceButtons.push(<button onClick={() => ShowHideFunc(["allAdmin"], ["TableHolder"])} id="backBtn" class="btn" >{Dictionary.back}</button>)
+    serviceButtons.push(<button onClick={() => ShowHideFunc(["allAdmin"], ["TableHolder"])} id="backBtn" className="btn" >{Dictionary.back}</button>)
     if (btnId == "userMngBtn") {
-        serviceButtons.push(<button class="btn" id="addUserBtn" data-toggle="modal" data-target="#newUserModal">{Dictionary.addUserBtn}</button>)
+        serviceButtons.push(<button className="btn" id="addUserBtn" data-toggle="modal" data-target="#newUserModal">{Dictionary.addUserBtn}</button>)
     }
 
     return (
         <div id="feedbackTable">
-            <table class="table table-dark">
-                <BuildTableHead fields={fields} />
+            <table className="table table-dark">
+                <BuildTableHead fields={fields} unCheckedFields={unCheckedFields}/>
                 <tbody>
                     {body}
                 </tbody>
@@ -163,12 +172,17 @@ export function ShowHideFunc(show, hide) {
 
 //gets all fuilds requierd and maks a table head
 export const BuildTableHead = (props) => {
-    var fields = props.fields;
+    var fields = props.fields,
+    unCheckedFields = props.unCheckedFields;
     const res = []
-    res.push(<th class="textAlign">#</th>)
+    res.push(<th className="textAlign">#</th>)
     if (fields)
         fields.forEach(field => {
-            res.push(<th class="textAlign"> {Dictionary[field]} </th>)
+            res.push(<th className="textAlign"> {Dictionary[field]} </th>)
+        })
+    if (unCheckedFields)
+        unCheckedFields.forEach(field => {
+            res.push(<th className="textAlign"> {Dictionary[field]} </th>)
         })
     return (
         <thead>
@@ -187,10 +201,10 @@ export const BuildTableBody = (props) => {
     var tds = [];
 
     colls.forEach(col => {
-        tds.push(<td class="textAlign"> {col} </td>);
+        tds.push(<td className="textAlign"> {col} </td>);
     });
     tds.push(
-        <td class="deleteBtnTd" > <button class="btn-danger deleteBtn" onClick={askAndDelete(collect, id)} >{Dictionary.delete}</button></td>
+        <td className="deleteBtnTd" > <button className="btn-danger deleteBtn" onClick={askAndDelete(collect, id)} >{Dictionary.delete}</button></td>
     );
     return (
         <tr id={"tr" + id}>
