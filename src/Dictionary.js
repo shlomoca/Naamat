@@ -30,6 +30,7 @@ export const Dictionary = new LocalizedStrings({
     addUserBtn: `Add User`,
     userAddedSuccefully: `New User Added Succefully`,
     homePageBack: `Home Page`,
+    signOut:`Sign out`,
     admin: `Admin`,
 
 
@@ -116,6 +117,7 @@ export const Dictionary = new LocalizedStrings({
     addUserBtn: `הוסיפי משתמש`,
     userAddedSuccefully: `משתמש חדש נוסף בהצלחה`,
     homePageBack: `עמוד הבית`,
+    signOut:`התנתקי`,
     admin: `מנהל`,
 
     //woman page
@@ -201,6 +203,7 @@ export const Dictionary = new LocalizedStrings({
     addUserBtn: `إضافة مستخدم`,
     userAddedSuccefully: `تمت إضافة مستخدم جديد بنجاح`,
     homePageBack: `الصفحة الرئيسية`,
+    signOut:`خروج`,
     admin: `مدير`,
 
     //woman page

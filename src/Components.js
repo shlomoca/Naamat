@@ -5,12 +5,13 @@ import logo from './images/naamatlogo.png';
 import fblogo from './images/fblogo.png';
 import ytlogo from './images/ytlogo.png';
 import { EditWomanModal, CategoryModal, FeedbackModal, SuggestWomanModal } from './forms/Forms';
-import { db } from './config/Firebase'
+import { db, auth } from './config/Firebase'
 import { Link } from 'react-router-dom';
 import { getWomen, WomenDeck } from '../src/pages/woman page/WomanPage'
 import ScrollUpButton from "react-scroll-up-button";
 import './Components.css';
 import ReactDOM from 'react-dom';
+import { LoginComponent } from './pages/login page/LoginPage';
 
 
 //set a navigation bar to the top of the site
@@ -18,11 +19,17 @@ import ReactDOM from 'react-dom';
 export const NavBar = (props) => {
   var AdminPage = props.AdminPage,
     Admin = props.Admin,
-    suggest = "";
-  if (!Admin)
+    logoHref = "/HomePage",
+    suggest = "",
+    logout = "";
+  if (!Admin) {
     suggest = <button type="button" className="btn btn-primary nav-link" data-toggle="modal" data-target="#suggestWomanModal">
       {Dictionary.suggest}</button>;
-
+    logoHref = "/"
+  }
+  else {
+    logout = <li className="nav-item"><button type="button" className="btn btn-primary nav-link" onClick={managerSignout} > {Dictionary.signOut}</button > </li>
+  }
   return (
     <div id="navbar">
       <SuggestWomanModal />
@@ -33,7 +40,7 @@ export const NavBar = (props) => {
         </button>
         <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
           <li className="nav-item">
-            <a id="smallLogo" href="/" dir="rtl"><img id="logo" src={logo} alt="logo"></img></a>
+            <a id="smallLogo" href={logoHref} dir="rtl"><img id="logo" src={logo} alt="logo"></img></a>
           </li>
           <li id="langItam" className="nav-item" >
             <LangBtn />
@@ -54,6 +61,7 @@ export const NavBar = (props) => {
             <Search />
             <div id="womenHolder"></div>
           </li>
+          {logout}
           <li className="nav-item">
             {<Buttons AdminPage={AdminPage} Admin={Admin} />}
           </li>
@@ -123,7 +131,7 @@ class Search extends Component {
           <i className="fa fa-search" id="search-icon"></i>
         </button>
         <div id="temp">
-        
+
         </div>
 
       </form>
@@ -248,14 +256,21 @@ const Buttons = (props) => {
 
   if (props.Admin) {
     if (props.AdminPage) {
-      obj = <Link to="/"><button type="button" className="btn btn-primary nav-link" >{Dictionary.homePageBack}</button></Link>
+      obj = <Link to="/HomePage"><button type="button" className="btn btn-primary nav-link" >{Dictionary.homePageBack}</button></Link>
     }
     else
-      obj = <Link to="/AdminPage"><button type="button" id="managerBtn" className="btn btn-primary nav-link" >{Dictionary.managmentPlatform}</button></Link>
+      obj = <Link to="/"><button type="button" id="managerBtn" className="btn btn-primary nav-link" >{Dictionary.managmentPlatform}</button></Link>
   }
   else
     obj = <button type="button" className="btn btn-primary nav-link" data-toggle="modal" data-target="#feedbackForm">{Dictionary.feedback}</button>
 
   return obj;
 
+}
+
+function managerSignout() {
+  auth.signOut();
+  sessionStorage.removeItem("userConnect");
+  sessionStorage.removeItem("userEmail");
+  ReactDOM.render(<LoginComponent />, document.getElementById('root'));
 }
