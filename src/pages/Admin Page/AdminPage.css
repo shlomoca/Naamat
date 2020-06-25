@@ -64,6 +64,11 @@ width: 80%;
   button:focus {
     outline: none;
   }
+
+  #signOutBtn:hover{
+    background-color: #f52e41;
+    color: white;
+  }
   
   @keyframes background {
     0% {
