@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import './LoginPage.css';
 import $ from 'jquery';
-import firebase, { auth, db } from '../../config/Firebase';
+import  { auth, db } from '../../config/Firebase';
 import logo from '../../images/naamatlogo.png';
 import { Dictionary, LangBtn } from '../../Dictionary';
 import MainUserPage from '../Main user page/MainUserPage';
@@ -59,12 +59,12 @@ class LoginPage extends Component {
         return (
             <div id="LPcover" className="cover">
 
-                <div id="loginWrapper" class="wrapper">
+                <div id="loginWrapper" className="wrapper">
                     <div id="langBtnWeapper">
 
                         <LangBtn />
                     </div>
-                    <div class="loginContainer">
+                    <div className="loginContainer">
                         <a id="bigLogo"> <img src={logo} alt="logo" /></a>
 
                         <div id="buttonWrapper123">

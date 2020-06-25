@@ -169,6 +169,7 @@ background: rgb(191, 224, 232);
     text-align: justify;
     text-justify: inter-word;
     width: 65%;
+    font-weight: bolder;
     margin: auto;
 }
 

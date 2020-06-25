@@ -15,41 +15,42 @@ class Category extends Component {
             Admin: props.Admin
         }
     }
-        
 
-        componentDidMount() {
-            db.collection('categories').get().then(snapshot => {
-                const categories = [];
-                snapshot.forEach(doc => {
-                    const data = doc.data();
-                    categories.push(data);
-                })
-                this.setState({ categories: categories })
 
-            }).catch(error => console.log(error))
-        }
+    componentDidMount() {
+        db.collection('categories').get().then(snapshot => {
+            const categories = [];
+            snapshot.forEach(doc => {
+                const data = doc.data();
+                categories.push(data);
+            })
+            this.setState({ categories: categories })
 
-        render() {
-            return (
-                <div id="CPcover" className="cover">
-                    <div id="CPWrapper" className="wrapper">
-                        <NavBar AdminPage={false} Admin={this.state.Admin} />
-                        <div id="category-container">
-                            {this.state.categories &&
-                                this.state.categories.map(category => {
-                                    return (
-                                        <div class="container">
-                                            <img src={category.link} alt="image not found" />
-                                            <button class="btn">{category.category}</button>
-                                        </div>)
-                                })}
-                        </div>
-                    </div>
-                    <BottomBar />
-                </div>
-            )
-        }
-
+        }).catch(error => console.log(error))
     }
-    export default Category;
+
+    render() {
+        return (
+            <div id="CPcover" className="cover">
+                <div id="CPWrapper" className="wrapper">
+                    <NavBar AdminPage={false} Admin={this.state.Admin} />
+                    <div id="category-container">
+                        {this.state.categories &&
+                            this.state.categories.map(category => {
+                                if (category.link)
+                                    return (
+                                        <div className="container">
+                                            <img src={category.link} alt={category.catagory} />
+                                            <button className="btn">{category.category}</button>
+                                        </div>);
+                            })}
+                    </div>
+                </div>
+                <BottomBar />
+            </div>
+        )
+    }
+
+}
+export default Category;
 
