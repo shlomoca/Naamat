@@ -302,7 +302,7 @@ export const LangBtn = () => {
     ARId = "";
 
   if (currentLng == "EN") ENId = "choosen";
-  else if (currentLng == "EN") ARId = "choosen";
+  else if (currentLng == "AR") ARId = "choosen";
   else HEId = "choosen";
 
 
