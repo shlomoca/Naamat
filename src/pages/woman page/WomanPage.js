@@ -59,7 +59,7 @@ export class WomenCard extends Component {
     render() {
         return (
             <a href={"/womanPage/" + this.state.id}>
-                <div id="womanCardsContainer" >
+                <div className="womanCardsContainer" >
 
                     <img id={"roundImage" + this.state.id} className="roundImage" src={this.state.url} alt={this.state.display} />
                     <h1  >{this.state.display} </h1>
