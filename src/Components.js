@@ -4,7 +4,7 @@ import { LangBtn, Dictionary } from './Dictionary';
 import logo from './images/naamatlogo.png';
 import fblogo from './images/fblogo.png';
 import ytlogo from './images/ytlogo.png';
-import { EditWomanModal, AddCategoryModal, FeedbackModal, SuggestWoman } from './forms/Forms';
+import { EditWomanModal, CategoryModal, FeedbackModal, SuggestWomanModal } from './forms/Forms';
 import { db } from './config/Firebase'
 import { Link } from 'react-router-dom';
 import { getWomen, WomenDeck } from '../src/pages/woman page/WomanPage'
@@ -25,11 +25,8 @@ export const NavBar = (props) => {
 
   return (
     <div id="navbar">
-      <EditWomanModal />
-      <AddCategoryModal />
-      <SuggestWoman />
+      <SuggestWomanModal />
       <FeedbackModal />
-      <ScrollUpButton />
       <nav className="navbar navbar-expand-lg navbar-light bg-light" id="navList">
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>

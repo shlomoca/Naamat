@@ -1,8 +1,12 @@
 import './MainUserPage.css';
 import $ from 'jquery';
 import React, { Component } from 'react';
-import { NavBar, BottomBar } from '../../Components.js';
-import  { db } from '../../config/Firebase';
+import { NavBar,  DisplayModal, BottomBar, AfterMessage } from '../../Components.js';
+import SimpleReactLightbox from "simple-react-lightbox";
+import { SRLWrapper } from "simple-react-lightbox";
+import { FeedbackButton } from '../../forms/Forms';
+import ReactDOM from 'react-dom';
+import Firebase, { auth, storage, db } from '../../config/Firebase';
 import { Dictionary } from '../../Dictionary';
 import { Link } from 'react-router-dom';
 
@@ -16,18 +20,19 @@ class MainUserPage extends Component {
             carouselSlids: 0,
             Admin: props.Admin
         }
-        
+
     }
 
-   
+
     render() {
         return (
             <div>
-            <div id="mainUPWrapper" className="wrapper">
-            <NavBar AdminPage={false} Admin={this.props.Admin} />
-                <PictursCarousel />
-            </div>
-                <BottomBar/>
+                <div id="mainUPWrapper" className="wrapper">
+                    <NavBar AdminPage={false} Admin={this.props.Admin} />
+                    <PictursCarousel />
+                    <ShowPhotos />
+                </div>
+                <BottomBar />
             </div>
         );
 
@@ -35,6 +40,41 @@ class MainUserPage extends Component {
 }
 export default MainUserPage
 
+export class ShowPhotos extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            photos: ["https://1pyiuo2cyzn53c8ors1kwg5l-wpengine.netdna-ssl.com/wp-content/uploads/2018/01/%D7%A4%D7%9E%D7%99%D7%A0%D7%99%D7%96%D7%9D-4.jpg", "https://image.shutterstock.com/z/stock-vector-we-can-do-it-iconic-woman-s-fist-symbol-of-female-power-and-industry-cartoon-woman-with-can-do-244865542.jpg"]
+
+        }
+
+    }
+
+
+    render() {
+        return (
+
+            <div id="photoContainer" >
+
+                {/* <SimpleReactLightbox> */}
+                    {/* <SRLWrapper> */}
+                        <div id="lightBox">
+                        {this.state.photos.map(photo => {
+                            return (<div>
+                                <img className="lightBoxImage" src={photo}></img>
+                            </div>)
+
+                        })}
+                        </div>
+                    {/* </SRLWrapper> */}
+                {/* </SimpleReactLightbox> */}
+
+            </div>
+        );
+
+    }
+}
 
 export class PictursCarousel extends Component {
     constructor(props) {
