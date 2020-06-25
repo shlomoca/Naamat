@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import { NavBar, BottomBar } from '../../Components';
 import { db, storage } from '../../config/Firebase'
 import { Dictionary, langs } from '../../Dictionary';
-import { allreadyExist } from '../../forms/Forms'
+import { allreadyExist, addWoman, EditWomanModal } from '../../forms/Forms'
 import $ from 'jquery';
 
 
@@ -50,7 +50,7 @@ export class WomenCard extends Component {
         this.state = {
             id: props.id,
             display: props.display,
-            summery: props.summery,
+            summary: props.summary,
             url: props.prof
         }
     }
@@ -58,15 +58,13 @@ export class WomenCard extends Component {
 
     render() {
         return (
-            <a href={"/womanPage/" + this.state.id}>
                 <div className="womanCardsContainer" >
-
-                    <img id={"roundImage" + this.state.id} className="roundImage" src={this.state.url} alt={this.state.display} />
-                    <h1  >{this.state.display} </h1>
-                    <p>{this.state.summary}  </p>
-                    {/* here we will put the woman card discription */}
-                </div>
+            <a href={"/womanPage/" + this.state.id}>
+                     <img id={"roundImage" + this.state.id} className="roundImageSerach" src={this.state.url} alt={this.state.display} />
+                     <h3 className="womanTitleSerach">{this.state.display}</h3>
             </a>
+                    <a id="summarySearch"> {this.state.summary} </a>
+                </div>
         )
     }
 
@@ -88,14 +86,14 @@ export function deleteWoman(id) {
                 db.collection('women').doc(id).delete().then(() => {
                     deleteBucket(id);
                     alert(`user ${id} was deleted`);
-                    window.location="/";
+                    window.location = "/";
                 })
             })
         }
         else
             alert("woman not found");
     }).catch(error => console.log(error));
-   
+
 }
 
 function deleteBucket(id) {
@@ -113,7 +111,7 @@ function deleteBucket(id) {
         console.log(error);
     });
 
-    
+
 
 }
 
@@ -130,6 +128,7 @@ export const WomanPage = (props) => {
         <div id="WPcover" className="cover">
             <div id="WomanPageWrapper" className="wrapper" >
                 <NavBar AdminPage={false} Admin={Admin} />
+                <EditWomanModal/>
                 <ShoWoman id={id} fields={["highlights", "biography", "histoy", "feminism", "facts", "quotes"]} Admin={Admin} />
             </div>
             <BottomBar />
@@ -164,7 +163,7 @@ export class ShoWoman extends Component {
             managerBtns = "";
         if (this.state.Admin) {
             managerBtns = <div className="editWomanBtn" ><button className="btn" onClick={(e) => { e.preventDefault(); allreadyExist(this.state.id, true); }}>{Dictionary.edit}</button>
-                <button className=" btn-danger deleteBtn" onClick={() => { if(window.confirm(Dictionary.areYouSure))deleteWoman(this.state.id)}} >{Dictionary.delete}</button></div>;
+                <button className=" btn-danger deleteBtn" onClick={() => { if (window.confirm(Dictionary.areYouSure)) deleteWoman(this.state.id) }} >{Dictionary.delete}</button></div>;
         }
         db.collection('women').doc(this.state.id).collection('langs').doc(Dictionary.getLanguage()).get().then(snapshot => {
             const data = snapshot.data();
@@ -279,7 +278,6 @@ function determineLang(str) {
 export function editWoman(id) {
     var woman;
 
-
     db.collection('women').doc(id).get().then(doc => {
         woman = doc.data();
 
@@ -323,6 +321,8 @@ export function editWoman(id) {
     window.$("#staticBackdrop").modal('show');
 
 }
+
+
 
 
 $(document).ready(() => {

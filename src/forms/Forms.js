@@ -332,41 +332,33 @@ export const GenralForm = (props) => {
         <div id={props.lang} className={classAttr}>
 
             <div className="form-group">
+
                 <input type="text" autoComplete="off" lang={props.lang} rows="1" className="regularInput" cols="35" id={"display" + props.lang} name="display" placeholder={Dictionary.displayname} />
+
                 <ImageUpload param1="name" param2="birth" pathEnd="/ProfilePic" param1Empty="name not enterd" param2Empty="date of birth not ented" />
             </div>
 
 
             <div className="form-group">
-
-                {/* <div className="form-group"> */}
                 <textarea rows="4" cols="50" name="highlights" lang={props.lang} id={"highlights" + props.lang} placeholder={Dictionary.highlights}  ></textarea>
-                {/* </div> */}
-
-
-                {/* <div className="form-group"> */}
+                <a>‏</a>
                 <textarea rows="4" cols="50" name="biography" lang={props.lang} id={"biography" + props.lang} placeholder={Dictionary.biography} ></textarea>
-                {/* </div> */}
-
-                {/* <div className="form-group"> */}
+                <a>‏</a>
                 <textarea rows="4" cols="50" name="history" lang={props.lang} id={"historical" + props.lang} placeholder={Dictionary.History} ></textarea>
-                {/* </div> */}
-
-                {/* <div className="form-group"> */}
+                <a>‏</a>
                 <textarea rows="4" cols="50" name="feminism" lang={props.lang} id={"contribution" + props.lang} placeholder={Dictionary.feminism} ></textarea>
-                {/* </div> */}
-
-
-                {/* <div className="form-group"> */}
+                <a>‏</a>
                 <textarea rows="4" cols="50" name="facts" lang={props.lang} id={"facts" + props.lang} placeholder={Dictionary.facts} ></textarea>
-                {/* </div> */}
-
+                <a>‏</a>
                 <textarea rows="4" cols="50" name="quotes" lang={props.lang} id={"quotes" + props.lang} placeholder={Dictionary.quotes} ></textarea>
-
             </div>
             <div className="form-group">
                 <label htmlFor={"link" + props.lang}> </label>
+
                 <input className="regularInput" id={"description" + props.lang + i} lang={props.lang} autoComplete="off" type="text" rows="4" cols="50" name="description" placeholder={Dictionary.description} />
+
+                <a>‏</a>
+
                 <input className="regularInput" id={"link" + props.lang + i} lang={props.lang} type="text" rows="4" cols="50" name="link" placeholder={Dictionary.link} />
                 <a id={"fill1" + props.lang} ></a>
                 <button id="addBtn" onClick={(e) => {
@@ -447,15 +439,15 @@ function addNewUser(e) {
 }
 
 //add woman to database
-function addWoman(e) {
+export function addWoman(e) {
     e.preventDefault();
 
     var he = {}, en = {}, ar = {}, gen = {};
     var boolHe = false, boolEn = false, boolAr = false;
 
-    var id = $("#name").val() + $("#birth").val();
+        var id = $("#name").val() + $("#birth").val();
     $('#submit1').show();
-
+   
     $($('#woman_form').prop('elements')).each(function () {
         if (this.value) {
             if (this.name === "highlights" || this.name === "display") {
@@ -577,8 +569,7 @@ function addCatagory(event) {
     window.$("#categoryForm").modal('hide');
     $("#category_form").trigger("reset");
 
-    // $("#staticBackdrop").modal('hide');
-    // $("#afterMessage").modal('show');
+ 
     // stop the form from submitting the normal way and refreshing the page
     event.preventDefault();
 };
