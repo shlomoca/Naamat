@@ -2,6 +2,7 @@ import './Category.css'
 import React, { Component } from 'react';
 import { NavBar, BottomBar } from '../../Components';
 import { db, storage } from '../../config/Firebase'
+import { Dictionary } from '../../Dictionary';
 
 
 class Category extends Component {
@@ -37,13 +38,13 @@ class Category extends Component {
                     <div id="category-container">
                         {this.state.categories &&
                             this.state.categories.map(category => {
-                                if (category.link)
+                                var cat =category["category_name"+Dictionary.getLanguage()],
+                                pic=category["ProfilePic"];
+                                if (pic)
                                     return (
-                                        <div className="catagoryImgContainer" >
-                                            <button className="catagoryBtn" onClick={() => { alert(category.catagory) }}>
-                                                <img className="catagoryImg" src={category.link} alt={category.catagory} />
-                                                <div className="catagoryText">{category.category}</div>
-                                            </button>
+                                        <div className="catagoryImgContainer" onClick={() => { alert(cat)}}>
+                                                <img className="catagoryImg" src={pic} alt={cat} />
+                                                <div className="catagoryText">{cat}</div>
                                         </div>);
                             })}
                     </div>
