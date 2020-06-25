@@ -58,13 +58,13 @@ export class WomenCard extends Component {
 
     render() {
         return (
-                <div className="womanCardsContainer" >
-            <a href={"/womanPage/" + this.state.id}>
-                     <img id={"roundImage" + this.state.id} className="roundImageSerach" src={this.state.url} alt={this.state.display} />
-                     <h3 className="womanTitleSerach">{this.state.display}</h3>
-            </a>
-                    <a id="summarySearch"> {this.state.summary} </a>
-                </div>
+            <div className="womanCardsContainer" >
+                <a href={"/womanPage/" + this.state.id}>
+                    <img id={"roundImage" + this.state.id} className="roundImageSerach" src={this.state.url} alt={this.state.display} />
+                    <h3 className="womanTitleSerach">{this.state.display}</h3>
+                </a>
+                <a id="summarySearch"> {this.state.summary} </a>
+            </div>
         )
     }
 
@@ -128,7 +128,7 @@ export const WomanPage = (props) => {
         <div id="WPcover" className="cover">
             <div id="WomanPageWrapper" className="wrapper" >
                 <NavBar AdminPage={false} Admin={Admin} />
-                <EditWomanModal/>
+                <EditWomanModal />
                 <ShoWoman id={id} fields={["highlights", "biography", "histoy", "feminism", "facts", "quotes"]} Admin={Admin} />
             </div>
             <BottomBar />
@@ -216,16 +216,14 @@ export function getWomen(womanName) {
                 else
                     console.log("no data");
             });
-            if (women.length === 0) {
-                var find = document.getElementById("womenHolder");
-                var deck = document.getElementById("deckContainer");
-                if (deck)
-                    ReactDOM.unmountComponentAtNode(deck);
-                if (find)
-                    ReactDOM.unmountComponentAtNode(find);
-            }
+            var find = document.getElementById("womenHolder");
+            var deck = document.getElementById("deckContainer");
+            if (deck)
+                ReactDOM.unmountComponentAtNode(deck);
+            if (find)
+                ReactDOM.unmountComponentAtNode(find);
 
-            else {
+            if (women.length != 0) {
                 ReactDOM.render(<WomenDeck cards={women} />, document.getElementById('womenHolder'));
             }
 

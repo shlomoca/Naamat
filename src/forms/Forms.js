@@ -51,7 +51,7 @@ export const NewUserModal = () => {
                                     <label className="input-group-text" htmlFor="inputGroupSelect01">Admin</label>
                                 </div>
                                 <select className="custom-select" id="adminSelect" required>
-                                    <option selected disabled="disabled">Choose...</option>
+                                    <option selected disabled="disabled">{Dictionary.isAdmin}</option>
                                     <option value={true} >Yes</option>
                                     <option value={false}>No</option>
                                 </select>
@@ -108,7 +108,8 @@ export const EditWomanModal = () => {
                                         <label className="regularLabel" htmlFor="death">{Dictionary.death}</label>
                                         <input className="regularInput" type="date" rows="1" cols="35" id="death" name="death" />
                                     </div>
-                                    {/* ///////////////////////////// */}
+                                    
+
                                     <div className="form-group">
                                         <button id="submit1" type="button" className="btn btn-success" onClick={() => allreadyExist($("#name").val() + $("#birth").val())} >{Dictionary.next}</button>
                                     </div>
@@ -128,7 +129,7 @@ export const EditWomanModal = () => {
                         <div className="requiredFooter" > {Dictionary.mustfilled}  </div>
                         <div className="modal-footer">
                             <button type="button" className="close" className="btn btn-secondary" onClick={resetForm("woman_form", "fill1", "fill2")} data-dismiss="modal">{Dictionary.close}</button>
-                            <button type="submit" htmlFor="woman_form" className="btn btn-success" id="submit_form" >{Dictionary.submit}{/*<span className="fa fa-arrow-right"></span>*/} </button>
+                            <button type="submit" htmlFor="woman_form" className="btn btn-success" id="submit_form" >{Dictionary.submit} </button>
                         </div>
                     </form>
 
@@ -171,33 +172,41 @@ export const SuggestWomanModal = () => {
                                 <input type="text" autoComplete="off" rows="1" className="regularInput" cols="35" id="display" name="display" />
                             </div>
 
+
+                            <label htmlFor="highlights">{Dictionary.highlights}</label>
                             <div className="form-group">
-                                <textarea rows="4" cols="50" name="highlights" id="highlights" placeholder={Dictionary.highlights}  ></textarea>
+                                <textarea rows="4" cols="50" name="highlights" id="highlights"  ></textarea>
+                            </div>
+
+                            <label htmlFor="biography">{Dictionary.biography}</label>
+                            <div className="form-group">
+                                <textarea rows="4" cols="50" name="biography" id="biography"  ></textarea>
+                            </div>
+
+                            <label htmlFor="history">{Dictionary.History}</label>
+                            <div className="form-group">
+                                <textarea rows="4" cols="50" name="history" id="historical"  ></textarea>
+                            </div>
+
+                            <label htmlFor="feminism">{Dictionary.feminism}</label>
+                            <div className="form-group">
+                                <textarea rows="4" cols="50" name="feminism" id="contribution" ></textarea>
+                            </div>
+
+                            <label htmlFor="facts">{Dictionary.facts}</label>
+                            <div className="form-group">
+                                <textarea rows="4" cols="50" name="facts" id="facts" ></textarea>
+                            </div>
+
+                            <label htmlFor="quotes">{Dictionary.quotes}</label>
+                            <div className="form-group">
+                                <textarea rows="4" cols="50" name="quotes" id="quotes"  ></textarea>
                             </div>
 
 
+                            <label htmlFor="bibliography">{Dictionary.bibliography}</label>
                             <div className="form-group">
-                                <textarea rows="4" cols="50" name="biography" id="biography" placeholder={Dictionary.biography} ></textarea>
-                            </div>
-
-                            <div className="form-group">
-                                <textarea rows="4" cols="50" name="history" id="historical" placeholder={Dictionary.History} ></textarea>
-                            </div>
-
-                            <div className="form-group">
-                                <textarea rows="4" cols="50" name="feminism" id="contribution" placeholder={Dictionary.feminism}></textarea>
-                            </div>
-
-
-                            <div className="form-group">
-                                <textarea rows="4" cols="50" name="facts" id="facts" placeholder={Dictionary.facts}></textarea>
-                            </div>
-
-                            <div className="form-group">
-                                <textarea rows="4" cols="50" name="facts" id="facts" placeholder={Dictionary.quotes} ></textarea>
-                            </div>
-                            <div className="form-group">
-                                <input type="text" autoComplete="off" rows="4" cols="50" name="quotes" id={"quotes" + j} placeholder={Dictionary.bibliography} />
+                                <input type="text" autoComplete="off" rows="4" cols="50" name="bibliography" id={"bibliography" + j}  />
                             </div>
                             <div className="form-group">
                                 <a id="fill20"></a>
@@ -205,10 +214,11 @@ export const SuggestWomanModal = () => {
                                     e.preventDefault();
                                     var fill = $("#fill20");
 
-                                    if ($("#quotes" + j).val()) {
+                                    if ($("#bibliography" + j).val()) {
                                         j++;
-                                        fill.append(`<input id=${"quotes" + j} autoComplete="off"  type="text" rows="4" cols="50" name="quotes" />`)
-                                    }
+                                        fill.append(`<input id=${"bibliography" + j} autoComplete="off"  type="text" rows="4" cols="50" name="quotes" />`)
+                                    } else
+                                        alert(Dictionary.addBibiloraphy);
 
                                 }}>{Dictionary.addMore}</button>
                             </div>
@@ -217,7 +227,7 @@ export const SuggestWomanModal = () => {
                         <div className="requiredFooter">{Dictionary.mustfilled}</div>
                         <div className="modal-footer">
                             <button type="button" className="close" className="btn btn-secondary" onClick={resetForm("suggest_woman_form", "fill20")} data-dismiss="modal">{Dictionary.close}</button>
-                            <button type="submit" htmlFor="suggest_woman_form" className="btn btn-success" id="submit_form" > {/*<span className="fa fa-arrow-right"></span>*/}{Dictionary.submit}</button>
+                            <button type="submit" htmlFor="suggest_woman_form" className="btn btn-success" id="submit_form" >{Dictionary.submit}</button>
                         </div>
                     </form>
 
@@ -241,15 +251,15 @@ export const FeedbackModal = () => {
                         <h5 className="modal-title" id="staticBackdropLabel">{Dictionary.feedback}</h5>
                     </div>
                     <div className="modal-body">
-                        <form dir="RTL" id="feedback_form" name="feedback_form" onSubmit={addFeedback}  >
+                        <form dir="RTL"  id="feedback_form" name="feedback_form" onSubmit={addFeedback}  >
                             <div className="form-group">
                                 <label className="regularLabel" htmlFor="feed_name">{Dictionary.name}*</label>
                             </div>
-                            <input type="text" autoComplete="off" rows="1" className="regularInput" id="feed_name" cols="35" name="name" required />
+                            <input type="text"  rows="1" className="regularInput" id="feed_name" cols="35" name="name"  required />
                             <div id="email-group" className="form-group">
                                 <label className="regularLabel" htmlFor="feed_email">{Dictionary.enterMail}*</label>
                             </div>
-                            <input type="email" rows="1" className="regularInput" id="feed_email" cols="35" name="email" required />
+                            <input type="email" autoComplete="false" rows="1" className="regularInput" id="feed_email" cols="35" name="email" required />
                             {/* </div> */}
                             <div id="howWas" className="form-group"> {Dictionary.HowWasVisit} </div>
                             <div className="starLocation">
@@ -265,14 +275,14 @@ export const FeedbackModal = () => {
                                 </div>
                             </div>
                             <div id="name-group" className="form-group">
-                                {/* <label htmlFor="profession"></label> */}
-                                <textarea rows="4" id="improvement" cols="35" name="improvement" placeholder={Dictionary.seggestions} ></textarea>
+                                <label htmlFor="improvement">{Dictionary.seggestions}</label>
+                                <textarea rows="4" id="improvement" cols="35" name="improvement" ></textarea>
 
                             </div>
 
                             <div className="requiredFooter">{Dictionary.mustfilled}</div>
                             <div className="modal-footer">
-                                <button type="submit" className="btn btn-success">{Dictionary.submit} {/*<span className="fa fa-arrow-right"></span>*/}</button>
+                                <button type="submit" className="btn btn-success">{Dictionary.submit} </button>
                                 <button type="button" onClick={resetForm("feedback_form")} className="btn btn-secondary" data-dismiss="modal">{Dictionary.close}</button>
                             </div>
                         </form>
@@ -309,7 +319,7 @@ export const CategoryModal = () => {
                                 <ImageUpload required="required" param1="category_nameHE" param1Empty="category name not enterd" />
                             </div>
                             <div className="modal-footer">
-                                <button type="submit" id="submitCategory" htmlFor="category_form" className="btn btn-success">{Dictionary.submit} {/*<span className="fa fa-arrow-right"></span>*/}</button>
+                                <button type="submit" id="submitCategory" htmlFor="category_form" className="btn btn-success">{Dictionary.submit} </button>
                                 <button type="button" onClick={resetForm("category_form")} className="btn btn-secondary" data-dismiss="modal">{Dictionary.close}</button>
                             </div>
                         </form>
@@ -332,7 +342,7 @@ export const GenralForm = (props) => {
         <div id={props.lang} className={classAttr}>
 
             <div className="form-group">
-
+                <label for="display">{Dictionary.displayname}</label>
                 <input type="text" autoComplete="off" lang={props.lang} rows="1" className="regularInput" cols="35" id={"display" + props.lang} name="display" placeholder={Dictionary.displayname} />
 
                 <ImageUpload param1="name" param2="birth" pathEnd="/ProfilePic" param1Empty="name not enterd" param2Empty="date of birth not ented" />
@@ -340,26 +350,40 @@ export const GenralForm = (props) => {
 
 
             <div className="form-group">
-                <textarea rows="4" cols="50" name="highlights" lang={props.lang} id={"highlights" + props.lang} placeholder={Dictionary.highlights}  ></textarea>
+                <lable for="highlights">{Dictionary.searchSummary}</lable>
+                <textarea type="text" rows="4" cols="50" maxlength="170" autoComplete="off" name="summary" lang={props.lang} id={"summary" + props.lang} placeholder={Dictionary.summary}  ></textarea>
                 <a>‏</a>
-                <textarea rows="4" cols="50" name="biography" lang={props.lang} id={"biography" + props.lang} placeholder={Dictionary.biography} ></textarea>
+
+
+                <lable for="highlights">{Dictionary.highlights}</lable>
+                <textarea rows="4" cols="50" name="highlights" lang={props.lang} id={"highlights" + props.lang}   ></textarea>
                 <a>‏</a>
-                <textarea rows="4" cols="50" name="history" lang={props.lang} id={"historical" + props.lang} placeholder={Dictionary.History} ></textarea>
+
+                <lable for="biography">{Dictionary.biography}</lable>
+                <textarea rows="4" cols="50" name="biography" lang={props.lang} id={"biography" + props.lang}  ></textarea>
                 <a>‏</a>
-                <textarea rows="4" cols="50" name="feminism" lang={props.lang} id={"contribution" + props.lang} placeholder={Dictionary.feminism} ></textarea>
+
+                <lable for="history">{Dictionary.History}</lable>
+                <textarea rows="4" cols="50" name="history" lang={props.lang} id={"historical" + props.lang}  ></textarea>
                 <a>‏</a>
-                <textarea rows="4" cols="50" name="facts" lang={props.lang} id={"facts" + props.lang} placeholder={Dictionary.facts} ></textarea>
+
+                <lable for="feminism">{Dictionary.feminism}</lable>
+                <textarea rows="4" cols="50" name="feminism" lang={props.lang} id={"contribution" + props.lang}  ></textarea>
                 <a>‏</a>
-                <textarea rows="4" cols="50" name="quotes" lang={props.lang} id={"quotes" + props.lang} placeholder={Dictionary.quotes} ></textarea>
+
+                <lable for="facts">{Dictionary.facts}</lable>
+                <textarea rows="4" cols="50" name="facts" lang={props.lang} id={"facts" + props.lang}  ></textarea>
+                <a>‏</a>
+
+                <lable for="quotes">{Dictionary.quotes}</lable>
+                <textarea rows="4" cols="50" name="quotes" lang={props.lang} id={"quotes" + props.lang}  ></textarea>
             </div>
             <div className="form-group">
-                <label htmlFor={"link" + props.lang}> </label>
-
+                <label htmlFor={"link" + props.lang}>{Dictionary.links} </label>
                 <input className="regularInput" id={"description" + props.lang + i} lang={props.lang} autoComplete="off" type="text" rows="4" cols="50" name="description" placeholder={Dictionary.description} />
-
                 <a>‏</a>
 
-                <input className="regularInput" id={"link" + props.lang + i} lang={props.lang} type="text" rows="4" cols="50" name="link" placeholder={Dictionary.link} />
+                <input className="regularInput" autoComplete="off" id={"link" + props.lang + i} lang={props.lang} type="text" name="link" placeholder={Dictionary.link} />
                 <a id={"fill1" + props.lang} ></a>
                 <button id="addBtn" onClick={(e) => {
                     e.preventDefault();
@@ -369,12 +393,13 @@ export const GenralForm = (props) => {
                             i++;
                             fill.append(`<input id=${"description" + props.lang + i}  lang = ${props.lang} autoComplete="off" type="text" rows="4" className="regularInput" cols="50" name="description" placeholder=${Dictionary.description} />
                         <input id=${"link" + props.lang + i} lang = ${props.lang} type="text" autoComplete="off" rows="4" className="regularInput" cols="50" name="link" placeholder=${Dictionary.link} />`)
-                        }
+                        } else
+                            alert(Dictionary.fillLinkDescription);
                 }}>{Dictionary.addMore}</button>
             </div>
 
             <div className="form-group">
-                <label htmlFor={"reading" + props.lang}>
+                <label htmlFor={"reading" + props.lang}>{Dictionary.bibliography}
                     <input id={"reading" + props.lang + j} lang={props.lang} type="text" autoComplete="off" rows="4" cols="50" name="reading" placeholder={Dictionary.bibliography} />
                     <a id={"fill2" + props.lang}></a>
                     <button onClick={(e) => {
@@ -385,6 +410,8 @@ export const GenralForm = (props) => {
                             j++;
                             fill.append(`<input id=${"reading" + props.lang + j} lang=${props.lang} type="text" autoComplete="off" rows="4" cols="50" name="reading" placeholder=${Dictionary.bibliography} />`)
                         }
+                        else
+                            alert(Dictionary.addBibiloraphy);
                     }}>{Dictionary.addMore}</button>
                 </label>
             </div>
@@ -445,9 +472,9 @@ export function addWoman(e) {
     var he = {}, en = {}, ar = {}, gen = {};
     var boolHe = false, boolEn = false, boolAr = false;
 
-        var id = $("#name").val() + $("#birth").val();
+    var id = $("#name").val() + $("#birth").val();
     $('#submit1').show();
-   
+
     $($('#woman_form').prop('elements')).each(function () {
         if (this.value) {
             if (this.name === "highlights" || this.name === "display") {
@@ -480,8 +507,6 @@ export function addWoman(e) {
             }
         }
     });
-
-
 
 
     if (boolHe)
@@ -521,8 +546,7 @@ function addFeedback(e) {
     var id = $("#feed_name").val() + $("#feed_email").val();
     var maxscoreSet = false;
     $($('#feedback_form').prop('elements')).each(function () {
-        console.log(this.name);
-        console.log(this.value);
+        
         if (this.value) {
             //if it is the stars rating
             if (this.type == "radio") {
@@ -535,12 +559,11 @@ function addFeedback(e) {
                 obj[this.name] = this.value;
         }
         else if (this.name === "improvement" && this.value == "") {
-            console.log("in else improv")
             obj[this.name] = "-";
         }
     });
     if (!maxscoreSet) {
-        alert("נא לבחור דירוג");
+        alert(Dictionary.enterScore);
         return;
     }
 
@@ -557,7 +580,6 @@ function addCatagory(event) {
     //confirm id not exeisting??
     var gen = {};
     var id = $("#category_nameHE").val();
-    //  $('#submitCategory').show();
 
     $($('#category_form').prop('elements')).each(function () {
         if (this.value) {
@@ -569,7 +591,7 @@ function addCatagory(event) {
     window.$("#categoryForm").modal('hide');
     $("#category_form").trigger("reset");
 
- 
+
     // stop the form from submitting the normal way and refreshing the page
     event.preventDefault();
 };
@@ -640,7 +662,7 @@ $("document").ready(function () {
     //make sure only step 1 is shown 
     $("#step2").hide();
     $("#popup").hide();
-    // $('feedbackTable').hide();
+    
     // show and hide link input from add woman form.
     $('#mylinks a').click(function () {
         $('#mylinks a').removeClass('highlight');
