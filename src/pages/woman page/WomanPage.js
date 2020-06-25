@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import { NavBar, BottomBar } from '../../Components';
 import { db, storage } from '../../config/Firebase'
 import { Dictionary, langs } from '../../Dictionary';
-import { allreadyExist } from '../../forms/Forms'
+import { allreadyExist, addWoman } from '../../forms/Forms'
 import $ from 'jquery';
 
 
@@ -86,14 +86,14 @@ export function deleteWoman(id) {
                 db.collection('women').doc(id).delete().then(() => {
                     deleteBucket(id);
                     alert(`user ${id} was deleted`);
-                    window.location="/";
+                    window.location = "/";
                 })
             })
         }
         else
             alert("woman not found");
     }).catch(error => console.log(error));
-   
+
 }
 
 function deleteBucket(id) {
@@ -111,7 +111,7 @@ function deleteBucket(id) {
         console.log(error);
     });
 
-    
+
 
 }
 
@@ -162,7 +162,7 @@ export class ShoWoman extends Component {
             managerBtns = "";
         if (this.state.Admin) {
             managerBtns = <div className="editWomanBtn" ><button className="btn" onClick={(e) => { e.preventDefault(); allreadyExist(this.state.id, true); }}>{Dictionary.edit}</button>
-                <button className=" btn-danger deleteBtn" onClick={() => { if(window.confirm(Dictionary.areYouSure))deleteWoman(this.state.id)}} >{Dictionary.delete}</button></div>;
+                <button className=" btn-danger deleteBtn" onClick={() => { if (window.confirm(Dictionary.areYouSure)) deleteWoman(this.state.id) }} >{Dictionary.delete}</button></div>;
         }
         db.collection('women').doc(this.state.id).collection('langs').doc(Dictionary.getLanguage()).get().then(snapshot => {
             const data = snapshot.data();
@@ -277,7 +277,6 @@ function determineLang(str) {
 export function editWoman(id) {
     var woman;
 
-
     db.collection('women').doc(id).get().then(doc => {
         woman = doc.data();
 
@@ -321,6 +320,8 @@ export function editWoman(id) {
     window.$("#staticBackdrop").modal('show');
 
 }
+
+
 
 
 $(document).ready(() => {
