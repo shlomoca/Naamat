@@ -1,7 +1,7 @@
 import './AdminPage.css';
 import $ from 'jquery';
 import React, { Component } from 'react';
-import { NavBar, PictursCarousel, DisplayModal, BottomBar, AfterMessage, usersManager } from '../../Components.js';
+import { NavBar, DisplayModal, BottomBar, AfterMessage, usersManager } from '../../Components.js';
 import { getWoman, WomenCard } from '../woman page/WomanPage';
 import { Dictionary } from '../../Dictionary';
 import { EditWomanModal, CategoryModal, FeedbackModal, NewUserModal } from '../../forms/Forms';
