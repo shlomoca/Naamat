@@ -134,7 +134,7 @@ export class LoginComponent extends Component {
         });
 
         setInterval(function () {
-            if (new Date().getTime() - time >= 1800000) {
+            if ((new Date().getTime() - time >= 1800000)&&!this.state.permission) {
                 window.location.href = "/";
             }
         }, 1000);
