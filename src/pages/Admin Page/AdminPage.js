@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import { NavBar, PictursCarousel, DisplayModal, BottomBar, AfterMessage, usersManager } from '../../Components.js';
 import { getWoman, WomenCard, sugToReal } from '../woman page/WomanPage';
 import { Dictionary } from '../../Dictionary';
-import { EditWomanModal, AddCategoryModal, FeedbackModal, AddNewUserForm, addWoman, GenralForm } from '../../forms/Forms';
+import { EditWomanModal, CategoryModal, FeedbackModal, NewUserModal } from '../../forms/Forms';
 import { scryRenderedComponentsWithType } from 'react-dom/test-utils';
 import { Link } from 'react-router-dom';
 import { db } from '../../config/Firebase';
@@ -17,9 +17,9 @@ class AdminPage extends Component {
                 <div id="mainAPWrapper" className="wrapper">
                     <NavBar AdminPage={true} Admin={true} />
                     <EditWomanModal />
-                    <AddCategoryModal />
-                    {/* <FeedbackModal /> */}
-                    <AddNewUserForm />
+                    <CategoryModal />
+                    <FeedbackModal />
+                    <NewUserModal />
                     <div className="backBtn">
                         {/* <Link to="/"><button id="backBtn" className="btn">{Dictionary.back}</button></Link> */}
                     </div>

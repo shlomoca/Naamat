@@ -4,7 +4,7 @@ import { LangBtn, Dictionary } from './Dictionary';
 import logo from './images/naamatlogo.png';
 import fblogo from './images/fblogo.png';
 import ytlogo from './images/ytlogo.png';
-import { EditWomanModal, AddCategoryModal, FeedbackModal, SuggestWoman } from './forms/Forms';
+import { EditWomanModal, CategoryModal, FeedbackModal, SuggestWomanModal } from './forms/Forms';
 import { db } from './config/Firebase'
 import { Link } from 'react-router-dom';
 import { getWomen, WomenDeck } from '../src/pages/woman page/WomanPage'
@@ -25,11 +25,8 @@ export const NavBar = (props) => {
 
   return (
     <div id="navbar">
-      {/* <EditWomanModal /> */}
-      {/* <AddCategoryModal /> */}
-      <SuggestWoman />
+      <SuggestWomanModal />
       <FeedbackModal />
-      <ScrollUpButton />
       <nav className="navbar navbar-expand-lg navbar-light bg-light" id="navList">
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
@@ -144,7 +141,7 @@ export const BottomBar = () => {
     <div id="bottom">
 
       <ScrollUpButton />
-      <span id="builder"><a>{Dictionary.builders} </a></span>
+      <span id="builder"><a>{Dictionary.builders}</a></span>
       <a id="facebook" href="https://www.facebook.com/womenatwork" data-target="#mymodal"><img id="fblogo" src={fblogo} alt="facebook" />{Dictionary.NaamatInFacebook}</a>
       <a id="youtube" href="https://www.youtube.com/embed/channel/UCdKKqQogmEQp7KNDRYCnV6A"> <img id="ytlogo" src={ytlogo} alt="youtube" />{Dictionary.NaamatInYoutube}</a>
       {/* <DisplayModal link='https://www.youtube.com/embed/watch?v=vg2gscdAQBo' details='Wikipedia' /> */}
@@ -254,7 +251,7 @@ const Buttons = (props) => {
       obj = <Link to="/"><button type="button" className="btn btn-primary nav-link" >{Dictionary.homePageBack}</button></Link>
     }
     else
-      obj = <Link to="/AdminPage"><button type="button" className="btn btn-primary nav-link" >{Dictionary.managmentPlatform}</button></Link>
+      obj = <Link to="/AdminPage"><button type="button" id="managerBtn" className="btn btn-primary nav-link" >{Dictionary.managmentPlatform}</button></Link>
   }
   else
     obj = <button type="button" className="btn btn-primary nav-link" data-toggle="modal" data-target="#feedbackForm">{Dictionary.feedback}</button>
@@ -262,6 +259,3 @@ const Buttons = (props) => {
   return obj;
 
 }
-
-
-

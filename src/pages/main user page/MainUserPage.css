@@ -1,1 +1,11 @@
+#lightBox
+{
+    display: inline-flex;
+    height: 250px;
+    overflow-x: auto;
+}
 
+.lightBoxImage
+{
+    max-height:100% ;
+}

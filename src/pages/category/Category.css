@@ -9,16 +9,19 @@
 
   #category-container
   {
-      display: flex;
-      /* flex-wrap: wrap; */
-      /* justify-content: center; */
-      width: 80%;
-      margin: auto;
-      /* align-content: center; */
-      
+    width: 80%;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    
   }
   .catagoryImgContainer{
-  
+    cursor: pointer;
+    position: relative;
+    text-align: center;
+    color: white;
+    margin-top: 2%;
 
   }
   .catagoryImg
@@ -31,12 +34,15 @@
   }
   .catagoryText{
     position: absolute;
-    top: 50%;
+    bottom: 0%;
     left: 50%;
+    font-weight: bolder;
+    font-size: larger;
+    transform: translate(-50%, -50%);
     color: white;
     z-index: 5;
     background: rgba(0, 0, 0, 0.411);
-    transform: translate(-50%, -50%);
+
   }
   .catagoryBtn
   {
