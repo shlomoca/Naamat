@@ -50,7 +50,7 @@ export class WomenCard extends Component {
         this.state = {
             id: props.id,
             display: props.display,
-            summery: props.summery,
+            summary: props.summary,
             url: props.prof
         }
     }
@@ -58,15 +58,13 @@ export class WomenCard extends Component {
 
     render() {
         return (
-            <a href={"/womanPage/" + this.state.id}>
                 <div className="womanCardsContainer" >
-
-                    <img id={"roundImage" + this.state.id} className="roundImage" src={this.state.url} alt={this.state.display} />
-                    <h1  >{this.state.display} </h1>
-                    <p>{this.state.summary}  </p>
-                    {/* here we will put the woman card discription */}
-                </div>
+            <a href={"/womanPage/" + this.state.id}>
+                     <img id={"roundImage" + this.state.id} className="roundImageSerach" src={this.state.url} alt={this.state.display} />
+                     <h3 className="womanTitleSerach">{this.state.display}</h3>
             </a>
+                    <a id="summarySearch"> {this.state.summary} </a>
+                </div>
         )
     }
 

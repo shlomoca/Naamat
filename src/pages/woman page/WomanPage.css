@@ -33,25 +33,60 @@ margin: auto;
 text-align: justify;
 text-justify: inter-word;
 }
-/* #womanContainer{
-  
-} */
+
 h1{
     text-align: center;
 }
 
 .womanCardsContainer{
-height: 300px;
-width: 250px;
-border: 3px groove orange ;
-text-align: center;
-text-justify: inter-word;
+
+    height: 120px;
+    width: 69%;
+    border: 3.5px groove purple ;
+    text-align: center;
+    text-justify: inter-word;
+    flex-wrap: wrap;
+    flex-direction: row;
+    overflow: hidden;  
+
 }
 
 .roundImage{
+
     border-radius: 50%;
     height: 130px;
     width: 130px;
     object-fit: cover;
 }
 
+
+.roundImageSerach{
+    
+    border-radius: 50%;
+    width: 100px;
+    height: 90px;
+    object-fit: cover;
+    display: flex;
+    float: right;
+    margin-top: 2%;
+    margin-right: 1%;  
+    
+}
+
+#summarySearch{
+
+    font-weight: bolder;
+}
+
+/* .searchTxtContainer{
+
+    margin-top: 10%;
+    margin-right: 17%;
+    width: 39%;
+    border: 3.5px groove purple ;
+    /* text-align: center; */
+    /* text-justify: inter-word; */
+    /* display: flex; 
+    flex-wrap:  wrap;
+
+} */

@@ -224,35 +224,22 @@ export const GenralForm = (props) => {
 
 
             <div className="form-group">
-
-                {/* <div className="form-group"> */}
                 <textarea rows="4" cols="50" name="highlights" lang={props.lang} id={"highlights" + props.lang} placeholder={Dictionary.highlights}  ></textarea>
-                {/* </div> */}
-
-
-                {/* <div className="form-group"> */}
+                <a>‏</a>
                 <textarea rows="4" cols="50" name="biography" lang={props.lang} id={"biography" + props.lang} placeholder={Dictionary.biography} ></textarea>
-                {/* </div> */}
-
-                {/* <div className="form-group"> */}
+                <a>‏</a>
                 <textarea rows="4" cols="50" name="history" lang={props.lang} id={"historical" + props.lang} placeholder={Dictionary.History} ></textarea>
-                {/* </div> */}
-
-                {/* <div className="form-group"> */}
+                <a>‏</a>
                 <textarea rows="4" cols="50" name="feminism" lang={props.lang} id={"contribution" + props.lang} placeholder={Dictionary.feminism} ></textarea>
-                {/* </div> */}
-
-
-                {/* <div className="form-group"> */}
+                <a>‏</a>
                 <textarea rows="4" cols="50" name="facts" lang={props.lang} id={"facts" + props.lang} placeholder={Dictionary.facts} ></textarea>
-                {/* </div> */}
-
+                <a>‏</a>
                 <textarea rows="4" cols="50" name="quotes" lang={props.lang} id={"quotes" + props.lang} placeholder={Dictionary.quotes} ></textarea>
-
             </div>
             <div className="form-group">
                 <label htmlFor={"link" + props.lang}> </label>
                 <input className="regularInput" id={"description" + props.lang + i} lang={props.lang} type="text" rows="4" cols="50" name="description" placeholder={Dictionary.description} />
+                <a>‏</a>
                 <input className="regularInput" id={"link" + props.lang + i} lang={props.lang} type="text" rows="4" cols="50" name="link" placeholder={Dictionary.link} />
                 <a id={"fill1" + props.lang} ></a>
                 <button id="addBtn" onClick={(e) => {
@@ -390,7 +377,6 @@ export const EditWomanModal = () => {
                             </button>
                             <h5 className="modal-title" id="staticBackdropLabel">{Dictionary.addWoman}</h5>
                         </div>
-
                         <div className="modal-body">
                             <div id="step1">
                                 <ul id="mylinks" className="nav nav-tabs">
