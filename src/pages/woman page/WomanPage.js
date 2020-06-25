@@ -59,7 +59,7 @@ export class WomenCard extends Component {
     render() {
         return (
             <a href={"/womanPage/" + this.state.id}>
-                <div id="womanCardsContainer" >
+                <div className="womanCardsContainer" >
 
                     <img id={"roundImage" + this.state.id} className="roundImage" src={this.state.url} alt={this.state.display} />
                     <h1  >{this.state.display} </h1>
@@ -128,7 +128,7 @@ export const WomanPage = (props) => {
 
     return (
         <div id="WPcover" className="cover">
-            <div id="WomanPageWrapper" class="wrapper" >
+            <div id="WomanPageWrapper" className="wrapper" >
                 <NavBar AdminPage={false} Admin={Admin} />
                 <ShoWoman id={id} fields={["highlights", "biography", "histoy", "feminism", "facts", "quotes"]} Admin={Admin} />
             </div>
@@ -163,8 +163,8 @@ export class ShoWoman extends Component {
             page = [],
             managerBtns = "";
         if (this.state.Admin) {
-            managerBtns = <div class="editWomanBtn" ><button className="btn" onClick={(e) => { e.preventDefault(); allreadyExist(this.state.id, true); }}>{Dictionary.edit}</button>
-                <button class=" btn-danger deleteBtn" onClick={() => { if(window.confirm(Dictionary.areYouSure))deleteWoman(this.state.id)}} >{Dictionary.delete}</button></div>;
+            managerBtns = <div className="editWomanBtn" ><button className="btn" onClick={(e) => { e.preventDefault(); allreadyExist(this.state.id, true); }}>{Dictionary.edit}</button>
+                <button className=" btn-danger deleteBtn" onClick={() => { if(window.confirm(Dictionary.areYouSure))deleteWoman(this.state.id)}} >{Dictionary.delete}</button></div>;
         }
         db.collection('women').doc(this.state.id).collection('langs').doc(Dictionary.getLanguage()).get().then(snapshot => {
             const data = snapshot.data();

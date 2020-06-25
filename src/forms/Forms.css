@@ -74,6 +74,7 @@ padding-bottom: 3%;
     justify-content: center;
     text-align: center;
     flex-direction: column;
+    
     /* display: inline-flex; */
     /* white-space: nowrap; */
     /* width: 90%; */
@@ -81,6 +82,10 @@ padding-bottom: 3%;
     /* flex-wrap: wrap; */
 
 }
+
+
+
+
 .langTabs{
  padding: 16px; 
 }
@@ -404,5 +409,4 @@ align-self: center;
     text-align: right;
     font-size: normal;
     font-weight:bold;
-
 }

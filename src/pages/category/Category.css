@@ -1,37 +1,56 @@
-.container 
+/* .container 
 {
     position: relative;
     width: 100%;
     max-width: 400px;
     display: inline-block;
     
-  }
+  } */
 
   #category-container
   {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      /* align-content: center; */
-      
+    width: 80%;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    
   }
-  
-  .container img 
+  .catagoryImgContainer{
+    cursor: pointer;
+    position: relative;
+    text-align: center;
+    color: white;
+    margin-top: 2%;
+
+  }
+  .catagoryImg
   {
+    
     width: 250px;
     height: 250px;
     object-fit: cover;
+    border-radius: 5%;
   }
-  
-  .container .btn 
+  .catagoryText{
+    position: absolute;
+    bottom: 0%;
+    left: 50%;
+    font-weight: bolder;
+    font-size: larger;
+    transform: translate(-50%, -50%);
+    color: white;
+    z-index: 5;
+    background: rgba(0, 0, 0, 0.411);
+
+  }
+  .catagoryBtn
   {
     position: absolute;
-    top: 13%;
-    left: 50%;
     transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
     background-color:transparent;
-    color: white;
+    color: black;
     font-size: 16px;
     padding: 12px 24px;
     border: none;
@@ -40,7 +59,7 @@
     text-align: center;
   }
   
-  .container .btn:hover 
+  .catagoryBtn:hover 
   {
     background-color:transparent;
   }
