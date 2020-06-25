@@ -8,6 +8,7 @@ import ImageUpload, { MultiImageUpload } from './ImageUpload';
 import { AfterMessage } from '../Components';
 import { editWoman } from '../pages/woman page/WomanPage';
 import ReactDOM from 'react-dom';
+import { ShowHideFunc } from '../pages/Admin Page/AdminPage';
 
 
 export const NewUserModal = () => {
@@ -476,7 +477,7 @@ export function addWoman(e) {
     $('#submit1').show();
 
     $($('#woman_form').prop('elements')).each(function () {
-        if (this.value) {
+        if (this.value && !this.skip) {
             if (this.name === "highlights" || this.name === "display") {
                 gen[this.id] = (this.value).toLowerCase();
             }
@@ -532,7 +533,7 @@ function addsuggest() {
             obj[this.id] = this.value;
         }
     });
-    console.log(obj);
+
 
     db.collection('suggest_women').doc(id).set(obj).then(function () {
         window.$("#suggestWomanModal").modal('hide');
@@ -546,7 +547,6 @@ function addFeedback(e) {
     var id = $("#feed_name").val() + $("#feed_email").val();
     var maxscoreSet = false;
     $($('#feedback_form').prop('elements')).each(function () {
-        
         if (this.value) {
             //if it is the stars rating
             if (this.type == "radio") {
@@ -577,14 +577,12 @@ function addFeedback(e) {
 function addCatagory(event) {
 
     if (!$("#category_form").valid()) return;
-    //confirm id not exeisting??
     var gen = {};
     var id = $("#category_nameHE").val();
 
     $($('#category_form').prop('elements')).each(function () {
-        if (this.value) {
+        if (this.value&&(this.type) !=("file")) {
             gen[this.id] = this.value;
-
         }
     });
     db.collection('categories').doc(id).set(gen);
@@ -610,10 +608,7 @@ function resetForm(reset, empty1, empty2) {
 
         $("#name").attr('readonly', false);
         $("#birth").attr('readonly', false);
-
-        $("#step1").show();
-        $("#step2").hide();
-        $('#submit1').show();
+        ShowHideFunc(["step1", "submit1"], ["step2"])
     }
 };
 

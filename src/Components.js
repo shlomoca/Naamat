@@ -28,7 +28,7 @@ export const NavBar = (props) => {
     logoHref = "/"
   }
   else {
-    logout = <li className="nav-item"><button type="button" className="btn btn-primary nav-link" onClick={managerSignout} > {Dictionary.signOut}</button > </li>
+    logout = <li className="nav-item"><button id="signOutBtn" type="button" className="btn btn-primary nav-link" onClick={managerSignout} > {Dictionary.signOut}</button > </li>
   }
   return (
     <div id="navbar">
@@ -61,10 +61,10 @@ export const NavBar = (props) => {
             <Search />
             <div id="womenHolder"></div>
           </li>
-          {logout}
           <li className="nav-item">
             {<Buttons AdminPage={AdminPage} Admin={Admin} />}
           </li>
+          {logout}
         </ul>
       </nav>
       <div id="about-drop" className="collapse">
@@ -273,4 +273,5 @@ function managerSignout() {
   sessionStorage.removeItem("userConnect");
   sessionStorage.removeItem("userEmail");
   ReactDOM.render(<LoginComponent />, document.getElementById('root'));
+  window.location.href = '/';
 }

@@ -30,14 +30,14 @@ export const Dictionary = new LocalizedStrings({
     addUserBtn: `Add User`,
     userAddedSuccefully: `New User Added Succefully`,
     homePageBack: `Home Page`,
-    signOut:`Sign out`,
+    signOut: `Sign out`,
     admin: `Admin`,
 
 
 
     //woman page
     edit: 'Edit',
-    Previous:`Previous`,
+    Previous: `Previous`,
     //main user page
     about: `Na'amat is a Movement for the advancement of the Status of Women and the Social Force for women in Israel. Na'amat’s top priority is to advance and strengthen the status of women in the family and in the work force. Na'amat is striving to achieve equality between the sexes and full participation of women in social, economic and political spheres. Na'amat, previously called Moetzet Hapoalot (Council of Working Women), was established in 1921 by young working women, pioneers who came to Palestine in the early 1920’s. Moetzet Hapoalot was organized as an autonomous movement with affiliation to the Histadrut (The General Federation of Labor). Today Na'amat is a non-profit organization, a socio-political, multi-party women’s movement comprised of women from diverse sectors of the population, communities, countries of origin and religious streams.`,
     aboutTitle: "About Na'amat",
@@ -96,7 +96,7 @@ export const Dictionary = new LocalizedStrings({
     managmentPlatform: 'Managment Platform',
     NaamatInFacebook: 'Naamat in Facebook',
     NaamatInYoutube: 'Naamat in Youtube',
-    email:'Email',
+    email: 'Email',
     back: 'Close',
     areYouSure: 'Are you sure?',
     error: 'Error',
@@ -125,12 +125,12 @@ export const Dictionary = new LocalizedStrings({
     addUserBtn: `הוסיפי משתמש`,
     userAddedSuccefully: `משתמש חדש נוסף בהצלחה`,
     homePageBack: `עמוד הבית`,
-    signOut:`התנתקי`,
+    signOut: `התנתקי`,
     admin: `מנהל`,
 
     //woman page
     edit: 'ערכי',
-    Previous:`הקודם`,
+    Previous: `הקודם`,
     //main user page
     about: `נעמת היא תנועה לקידום מעמד האישה והכוח החברתי לנשים. העדיפות העליונה של נעמת היא קידום וחיזוק מעמד האישה במשפחה ובכוח העבודה. נעמת שואפת להשיג שוויון בין המינים והשתתפות מלאה של נשים בתחומים חברתיים, כלכליים ופוליטיים. נעמת, שכונתה בעבר "מועצת הנשים העובדות", הוקמה בשנת 1921 על ידי נשים עובדות, חלוצות שהגיעו לארץ ישראל בראשית שנות העשרים. מוצת הפועלות הייתה מאורגנת כתנועה אוטונומית עם שיוך להסתדרות (הסתדרות העובדים הכללית). כיום נעמת היא ארגון ללא מטרות רווח, תנועת נשים סוציו-פוליטית ורב-מפלגתית המורכבת מנשים ממגזרים שונים באוכלוסייה, קהילות, ארצות מוצא וזרמים דתיים.`,
     aboutTitle: `אודות נעמת`,
@@ -189,7 +189,7 @@ export const Dictionary = new LocalizedStrings({
     NaamatInYoutube: 'נעמת ביוטיוב',
     email: 'דואר אלקטרוני',
     back: 'סגרי',
-    areYouSure:'האם את בטוחה?',
+    areYouSure: 'האם את בטוחה?',
     error: 'שגיאה',
     uploadSuccess: 'ההעלאה הסתיימה בהצלחה',
     popup: ' מלאי בבקשה את פרטי החובה',
@@ -219,12 +219,12 @@ export const Dictionary = new LocalizedStrings({
     addUserBtn: `إضافة مستخدم`,
     userAddedSuccefully: `تمت إضافة مستخدم جديد بنجاح`,
     homePageBack: `الصفحة الرئيسية`,
-    signOut:`خروج`,
+    signOut: `خروج`,
     admin: `مدير`,
 
     //woman page
     edit: 'تعديل',
-    Previous:`السابق`,
+    Previous: `السابق`,
     //main user page
     about: "نعمات هي حركة من أجل النهوض بوضع المرأة والقوة الاجتماعية للمرأة في إسرائيل. أولوية نعمة هي تعزيز وتعزيز مكانة المرأة في الأسرة وفي القوى العاملة. تسعى نعمة إلى تحقيق المساواة بين الجنسين والمشاركة الكاملة للمرأة في المجالات الاجتماعية والاقتصادية والسياسية. تم تأسيس نعمة ، التي كانت تسمى سابقًا Moetzet Hapoalot (مجلس النساء العاملات) ، في عام 1921 على يد شابات رائدات جاءن إلى فلسطين في أوائل عشرينيات القرن العشرين. تم تنظيم Moetzet Hapoalot كحركة مستقلة مع الانتماء إلى الهستدروت (الاتحاد العام للعمل). نعمة اليوم هي منظمة غير ربحية ، وهي حركة نسائية سياسية اجتماعية متعددة الأحزاب تتألف من نساء من قطاعات متنوعة من السكان والمجتمعات المحلية وبلدان الأصل والتيارات الدينية.",
     aboutTitle: "عن نعمة",
@@ -320,6 +320,15 @@ function changeLanguage(lang) {
 
 //sets a globe image with three language buttons 
 export const LangBtn = () => {
+  var currentLng = Dictionary.getLanguage();
+  var HEId = "",
+    ENId = "",
+    ARId = "";
+
+  if (currentLng == "EN") ENId = "choosen";
+  else if (currentLng == "AR") ARId = "choosen";
+  else HEId = "choosen";
+
 
   return (
     <div id="languages">
@@ -329,13 +338,13 @@ export const LangBtn = () => {
 
           <ul id="langlist">
             <li>
-              <button className="langButtons " onClick={changeLanguage("HE")}>עברית</button>
+              <button id={HEId} className="langButtons" onClick={changeLanguage("HE")}>עברית</button>
             </li>
             <li>
-              <button className="langButtons " onClick={changeLanguage("EN")} >English</button>
+              <button id={ENId} className="langButtons " onClick={changeLanguage("EN")} >English</button>
             </li>
             <li>
-              <button className="langButtons " onClick={changeLanguage("AR")}>عربيه</button>
+              <button id={ARId} className="langButtons " onClick={changeLanguage("AR")}>عربيه</button>
             </li>
           </ul>
         </DropdownContent>

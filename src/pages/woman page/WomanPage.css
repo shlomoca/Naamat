@@ -34,6 +34,9 @@ text-align: justify;
 text-justify: inter-word;
 }
 
+.editWomanBtn{
+    display: flex;
+}
 h1{
     text-align: center;
 }

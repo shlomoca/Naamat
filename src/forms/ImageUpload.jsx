@@ -87,7 +87,7 @@ class ImageUpload extends Component {
         <p>{Dictionary.profilepic}</p>
         <progress value={this.state.progress} max="100" />
         <div className="form-group"> 
-        <input type="file" name="file" id="inputGroupFile04" id="media" aria-describedby="inputGroupFileAddon04" accept="image/*,audio/*,video/*" onChange={this.handleChange} required={this.state.required}/>
+        <input type="file" name="file" id="inputGroupFile04 media"  aria-describedby="inputGroupFileAddon04" accept="image/*,audio/*,video/*" onChange={this.handleChange} required={this.state.required}/>
         </div>
         <input type="hidden" id="ProfilePic" name="ProfilePic" value={this.state.url} />
         <button type="button" onClick={this.handleUpload}>{Dictionary.upload}</button>
@@ -144,8 +144,7 @@ export class MultiImageUpload extends Component {
       else
         path += $("#" + param2).val();
 
-    console.log(path);
-    console.log(this.state.file);
+    
 
     const storageRef = storage.ref();
     this.state.file.forEach((file) => {
@@ -181,7 +180,7 @@ export class MultiImageUpload extends Component {
         <p>{Dictionary.media}</p>
         <progress value={this.state.progress} max="100" />
         <div className="form-group">
-          <input type="file" name="multi_media" id="multi_media" aria-describedby="inputGroupFileAddon04" accept="image/*,audio/*,video/*" multiple onChange={this.handleChange} required={this.state.required} />
+          <input type="file" name="multi_media" id="multi_media" skip={true} aria-describedby="inputGroupFileAddon04" accept="image/*,audio/*,video/*" multiple onChange={this.handleChange} required={this.state.required} />
         </div>
         <input type="hidden" id="linksMedia" name="linksMedia" value={this.state.links} />
         <button type="button" onClick={this.handleUpload}>{Dictionary.upload}</button>
