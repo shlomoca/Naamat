@@ -77,9 +77,11 @@ export const Dictionary = new LocalizedStrings({
     bibliography: "further reading",
     description: "description",
     link: "link",
-
+    categoryInputHE:"Enter a category name in Hebrew",
+    categoryInputEN:"Enter a category name in English",
+    categoryInputAR:"Enter a category name in Arabic",
+    
     //components
-
     builders: `This site was built by: Shlomo Carmi, Daniel Raz, Sahar Cohen, Adiel Tsayag, Matan Yamin`,
     managmentPlatform: 'Managment Platform',
     NaamatInFacebook: 'Naamat in Facebook',
@@ -155,6 +157,9 @@ export const Dictionary = new LocalizedStrings({
     bibliography: "ביבליוגרפיה",
     description: "תיאור",
     link: "קישור",
+    categoryInputHE:"הכנס שם קטגוריה בעברית",
+    categoryInputEN:"הכנס שם קטגוריה באנגלית",
+    categoryInputAR:"הכנס שם קטגוריה בערבית",
 
     //components
     builders: 'אתר זה נבנה על ידי: שלמה כרמי, דניאל רז, סהר כהן, עדיאל צייג, מתן ימין ©',
@@ -239,6 +244,9 @@ export const Dictionary = new LocalizedStrings({
     bibliography: "فهرس",
     description: "وصف",
     link: "حلقة الوصل",
+    categoryInputHE:"أدخل اسم فئة بالعبرية",
+    categoryInputEN:"أدخل اسم فئة باللغة الإنجليزية",
+    categoryInputAR:"أدخل اسم الفئة باللغة العربية",
 
     //components
 

@@ -24,6 +24,7 @@
     "react-scripts": "3.4.1",
     "react-scroll-up-button": "^1.6.4",
     "react-simple-dropdown": "^3.2.3",
+    "simple-react-lightbox": "^3.2.3-2",
     "validator": "^13.1.1"
   },
   "scripts": {

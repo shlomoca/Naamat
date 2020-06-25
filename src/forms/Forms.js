@@ -4,7 +4,7 @@ import 'jquery-validation';
 import React from 'react';
 import { db, auth } from '../config/Firebase'
 import { Dictionary, langs } from '../Dictionary';
-import ImageUpload from './ImageUpload';
+import ImageUpload, { MultiImageUpload } from './ImageUpload';
 import { AfterMessage } from '../Components';
 import { editWoman } from '../pages/woman page/WomanPage';
 import ReactDOM from 'react-dom';
@@ -187,9 +187,9 @@ export const AddCategoryModal = () => {
                             <div id="name-group" class="form-group">
                                 <div id="name-group1" class="form-group">
                                     <label class="regularLabel" for="category_name">{Dictionary.name}</label>
-                                    <input type="text" lang="HE" rows="1" class="details" cols="35" id="category_nameHE" name="category_name" placeholder="הכנס שם קטגוריה בעברית" required />
-                                    <input type="text" lang="EN" rows="1" class="details" cols="35" id="category_nameEN" name="category_name" placeholder="הכנס שם קטגוריה באנגלית" required />
-                                    <input type="text" lang="AR" rows="1" class="details" cols="35" id="category_nameAR" name="category_name" placeholder="הכנס שם קטגוריה בערבית" required />
+                                    <input type="text" lang="HE" rows="1" class="details" cols="35" id="category_nameHE" name="category_name" placeholder={Dictionary.categoryInputHE} required />
+                                    <input type="text" lang="EN" rows="1" class="details" cols="35" id="category_nameEN" name="category_name" placeholder={Dictionary.categoryInputEN} required />
+                                    <input type="text" lang="AR" rows="1" class="details" cols="35" id="category_nameAR" name="category_name" placeholder={Dictionary.categoryInputAR} required />
                                 </div>
                             </div>
                             <div id="image-group" class="form-group">
@@ -282,6 +282,8 @@ export const GenralForm = (props) => {
                     }}>{Dictionary.addMore}</button>
                 </label>
             </div>
+
+            <MultiImageUpload param1="name" param2="birth" param1Empty="name not enterd" param2Empty="date of birth not ented" />
         </div>
 
     )
