@@ -273,4 +273,5 @@ function managerSignout() {
   sessionStorage.removeItem("userConnect");
   sessionStorage.removeItem("userEmail");
   ReactDOM.render(<LoginComponent />, document.getElementById('root'));
+  window.location.href = '/';
 }
