@@ -10,7 +10,7 @@ import { editWoman } from '../pages/woman page/WomanPage';
 import ReactDOM from 'react-dom';
 
 
-export const AddNewUserForm = () => {
+export const NewUserModal = () => {
     return (
         <div className="modal fade" id="newUserModal">
             <div className="modal-dialog modal-lg" >
@@ -22,7 +22,7 @@ export const AddNewUserForm = () => {
                 </div>
                 <div className="modal-content">
                     <div className="modal-body">
-                        <form dir="RTL" id="newUserForm" name="newUserForm" onSubmit={newUserHandler}  >
+                        <form dir="RTL" id="newUserForm" name="newUserForm" onSubmit={addNewUser}  >
                             <div className="form-group">
                                 <label className="regularLabel">{Dictionary.enterMail}</label>
                                 < input type="email"
@@ -61,7 +61,7 @@ export const AddNewUserForm = () => {
                                     type="submit"
                                     text={Dictionary.addUserBtn}
                                     className="btn btn-success"
-                                    onClick={newUserHandler} >
+                                    onClick={addNewUser} >
                                     {Dictionary.addUserBtn}
                                 </button>
                             </div>
@@ -73,46 +73,159 @@ export const AddNewUserForm = () => {
     );
 };
 
-function newUserHandler(e) {
-    e.preventDefault();
-    $("#newUserForm").validate({
-        // Specify validation rules
-        rules: {
-            email: {
-                required: true,
-                minlength: 1,
-                email: true,
-            },
-            password: {
-                required: true,
-                minlength: 1,
-            },
-        },
-        messages: {}
-    });
+export const EditWomanModal = () => {
 
-    if (!$("#newUserForm").valid()) return;
+    return (
 
-    var email = $("#email").val();
-    var password = $("#password").val();
-    var admin = $("#adminSelect").val() ? true : false;
+        <div className="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabIndex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div className="modal-dialog modal-xl">
+                <div className="modal-content">
+                    <form dir="RTL" id="woman_form" name="woman_form" onSubmit={addWoman}  >
+                        <div className="modal-header">
+                            <button type="button" id="xClose" className="close" data-dismiss="modal" aria-label="Close" onClick={resetForm("woman_form", "fill1", "fill2")}>
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <h5 className="modal-title" id="staticBackdropLabel">{Dictionary.addWoman}</h5>
+                        </div>
 
-    var obj = {};
-    obj["email"] = email;
-    obj["id"] = email;
-    obj["superUser"] = false;
-    obj["admin"] = admin;
+                        <div className="modal-body">
+                            <div id="step1">
+                                <ul id="mylinks" className="nav nav-tabs">
+                                    <li id="mylinks" className="langTabs active"><a data-toggle="tab" href="#HE">עברית</a></li>
+                                    <li id="mylinks" className="langTabs"><a data-toggle="tab" href="#EN">English</a></li>
+                                    <li id="mylinks" className="langTabs"><a data-toggle="tab" href="#AR">عربى</a></li>
+                                </ul>
+                                <div className="addWomanContainer">
+                                    <div className="form-group">
+                                        <label className="regularLabel" htmlFor="name">{Dictionary.name}*</label>
+                                        <input className="regularInput" type="text" rows="1" cols="35" id="name" name="name" required />
+                                    </div>
+                                    <div className="form-group">
+                                        <label className="regularLabel" htmlFor="birth">{Dictionary.birth}*</label>
+                                        <input className="regularInput" type="date" rows="1" cols="35" id="birth" name="birth" required />
+                                    </div>
+                                    <div className="form-group">
+                                        <label className="regularLabel" htmlFor="death">{Dictionary.death}</label>
+                                        <input className="regularInput" type="date" rows="1" cols="35" id="death" name="death" />
+                                    </div>
+                                    {/* ///////////////////////////// */}
+                                    <div className="form-group">
+                                        <button id="submit1" type="button" className="btn btn-success" onClick={() => allreadyExist($("#name").val() + $("#birth").val())} >{Dictionary.next}</button>
+                                    </div>
+                                </div>
+                                <div id="popup">
+                                    <span className="popuptext" id="myPopup">{Dictionary.popup}</span>
+                                </div>
+                            </div>
+                            <div id="step2">
+                                <div className="tab-content">
+                                    <GenralForm lang={langs[0]} active={true} />
+                                    <GenralForm lang={langs[1]} />
+                                    <GenralForm lang={langs[2]} />
+                                </div>
+                            </div>
+                        </div>
+                        <div className="requiredFooter" > {Dictionary.mustfilled}  </div>
+                        <div className="modal-footer">
+                            <button type="button" className="close" className="btn btn-secondary" onClick={resetForm("woman_form", "fill1", "fill2")} data-dismiss="modal">{Dictionary.close}</button>
+                            <button type="submit" htmlFor="woman_form" className="btn btn-success" id="submit_form" >{Dictionary.submit} <span className="fa fa-arrow-right"></span></button>
+                        </div>
+                    </form>
 
-    db.collection('users').doc(email).set(obj).then(() => {
-        auth.createUserWithEmailAndPassword(email, password).then(() => {
-            alert(Dictionary.userAddedSuccefully);
-            window.location.reload();
-        }).catch(function (error) {
-            alert(error)
-        });
-    }).catch(function (error) {
-        alert(error)
-    });
+                </div>
+            </div>
+
+        </div>
+    );
+}
+
+export const SuggestWomanModal = () => {
+    var i = 0, j = 0;
+    return (
+
+        <div className="modal fade" id="suggestWomanModal" data-backdrop="static" data-keyboard="false" tabIndex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div className="modal-dialog modal-xl">
+                <div className="modal-content">
+                    <form dir="RTL" id="suggest_woman_form" name="suggest_woman_form" onSubmit={addsuggest}  >
+                        <div className="modal-header">
+                            <button type="button" id="xClose" className="close" data-dismiss="modal" aria-label="Close" onClick={resetForm("suggest_woman_form", "fill20")}>
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <h5 className="modal-title" id="staticBackdropLabel">{Dictionary.suggest}</h5>
+                        </div>
+
+                        <div className="modal-body">
+
+                            <div className="form-group">
+                                <label className="regularLabel" htmlFor="yourName">{Dictionary.name}*</label>
+                                <input type="text" rows="1" className="regularInput" cols="35" id="yourName" name="yourName" required />
+                            </div>
+
+                            <div className="form-group">
+                                <label className="regularLabel" htmlFor="yourEmail">{Dictionary.enterMail}*</label>
+                                <input type="text" rows="1" className="regularInput" cols="35" id="yourEmail" name="yourEmail" required />
+                            </div>
+
+                            <div className="form-group">
+                                <label className="regularLabel" htmlFor="display">{Dictionary.displayname}</label>
+                                <input type="text" rows="1" className="regularInput" cols="35" id="display" name="display" />
+                            </div>
+
+                            <div className="form-group">
+                                <textarea rows="4" cols="50" name="highlights" id="highlights" placeholder={Dictionary.highlights}  ></textarea>
+                            </div>
+
+
+                            <div className="form-group">
+                                <textarea rows="4" cols="50" name="biography" id="biography" placeholder={Dictionary.biography} ></textarea>
+                            </div>
+
+                            <div className="form-group">
+                                <textarea rows="4" cols="50" name="history" id="historical" placeholder={Dictionary.History} ></textarea>
+                            </div>
+
+                            <div className="form-group">
+                                <textarea rows="4" cols="50" name="feminism" id="contribution" placeholder={Dictionary.feminism}></textarea>
+                            </div>
+
+
+                            <div className="form-group">
+                                <textarea rows="4" cols="50" name="facts" id="facts" placeholder={Dictionary.facts}></textarea>
+                            </div>
+
+                            <div className="form-group">
+                                <textarea rows="4" cols="50" name="facts" id="facts" placeholder={Dictionary.quotes} ></textarea>
+                            </div>
+                            <div className="form-group">
+                                <input type="text" rows="4" cols="50" name="quotes" id={"quotes" + j} placeholder={Dictionary.bibliography} />
+                            </div>
+                            <div className="form-group">
+                                <a id="fill20"></a>
+                                <button id="addBtn" onClick={(e) => {
+                                    e.preventDefault();
+                                    var fill = $("#fill20");
+
+                                    if ($("#quotes" + j).val()) {
+                                        j++;
+                                        fill.append(`<input id=${"quotes" + j}  type="text" rows="4" cols="50" name="quotes" />`)
+                                    }
+
+                                }}>{Dictionary.addMore}</button>
+                            </div>
+
+                        </div>
+                        <div className="requiredFooter">{Dictionary.mustfilled}</div>
+                        <div className="modal-footer">
+                            <button type="button" className="close" className="btn btn-secondary" onClick={resetForm("suggest_woman_form", "fill20")} data-dismiss="modal">{Dictionary.close}</button>
+                            <button type="submit" htmlFor="suggest_woman_form" className="btn btn-success" id="submit_form" > <span className="fa fa-arrow-right"></span>{Dictionary.submit}</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+    )
 }
 
 export const FeedbackModal = () => {
@@ -128,7 +241,7 @@ export const FeedbackModal = () => {
                         <h5 className="modal-title" id="staticBackdropLabel">{Dictionary.feedback}</h5>
                     </div>
                     <div className="modal-body">
-                        <form dir="RTL" id="feedback_form" name="feedback_form" onSubmit={handleFeedback}  >
+                        <form dir="RTL" id="feedback_form" name="feedback_form" onSubmit={addFeedback}  >
                             <div className="form-group">
                                 <label className="regularLabel" htmlFor="feed_name">{Dictionary.name}*</label>
                             </div>
@@ -170,7 +283,7 @@ export const FeedbackModal = () => {
     );
 };
 
-export const AddCategoryModal = () => {
+export const CategoryModal = () => {
     return (
         <div className="modal fade" id="categoryForm" data-keyboard="false" tabIndex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <AfterMessage info='thank you' />
@@ -183,7 +296,7 @@ export const AddCategoryModal = () => {
                         <h5 className="modal-title" id="staticBackdropLabel">{Dictionary.addcategory}</h5>
                     </div>
                     <div className="modal-body">
-                        <form dir="RTL" id="category_form" onSubmit={sub_cat} name="category_form"  >
+                        <form dir="RTL" id="category_form" onSubmit={addCatagory} name="category_form"  >
                             <div id="name-group" className="form-group">
                                 <div id="name-group1" className="form-group">
                                     <label className="regularLabel" htmlFor="category_name">{Dictionary.name}</label>
@@ -207,6 +320,7 @@ export const AddCategoryModal = () => {
     );
 
 }
+
 
 export const GenralForm = (props) => {
     var classAttr = "tab-pane fade form_content";
@@ -287,195 +401,47 @@ export const GenralForm = (props) => {
     )
 }
 
-export const SuggestWoman = () => {
-    var i = 0, j = 0;
-    return (
 
-        <div className="modal fade" id="suggestWomanModal" data-backdrop="static" data-keyboard="false" tabIndex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div className="modal-dialog modal-xl">
-                <div className="modal-content">
-                    <form dir="RTL" id="suggest_woman_form" name="suggest_woman_form" onSubmit={suggestWoman}  >
-                        <div className="modal-header">
-                            <button type="button" id="xClose" className="close" data-dismiss="modal" aria-label="Close" onClick={resetForm("suggest_woman_form", "fill20")}>
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                            <h5 className="modal-title" id="staticBackdropLabel">{Dictionary.suggest}</h5>
-                        </div>
-
-                        <div className="modal-body">
-
-                            <div className="form-group">
-                                <label className="regularLabel" htmlFor="yourName">{Dictionary.name}*</label>
-                                <input type="text" rows="1" className="regularInput" cols="35" id="yourName" name="yourName" required />
-                            </div>
-
-                            <div className="form-group">
-                                <label className="regularLabel" htmlFor="yourEmail">{Dictionary.enterMail}*</label>
-                                <input type="text" rows="1" className="regularInput" cols="35" id="yourEmail" name="yourEmail" required />
-                            </div>
-
-                            <div className="form-group">
-                                <label className="regularLabel" htmlFor="display">{Dictionary.displayname}</label>
-                                <input type="text" rows="1" className="regularInput" cols="35" id="display" name="display" />
-                            </div>
-
-                            <div className="form-group">
-                                <textarea rows="4" cols="50" name="highlights" id="highlights" placeholder={Dictionary.highlights}  ></textarea>
-                            </div>
-
-
-                            <div className="form-group">
-                                <textarea rows="4" cols="50" name="biography" id="biography" placeholder={Dictionary.biography} ></textarea>
-                            </div>
-
-                            <div className="form-group">
-                                <textarea rows="4" cols="50" name="history" id="historical" placeholder={Dictionary.History} ></textarea>
-                            </div>
-
-                            <div className="form-group">
-                                <textarea rows="4" cols="50" name="feminism" id="contribution" placeholder={Dictionary.feminism}></textarea>
-                            </div>
-
-
-                            <div className="form-group">
-                                <textarea rows="4" cols="50" name="facts" id="facts" placeholder={Dictionary.facts}></textarea>
-                            </div>
-
-                            <div className="form-group">
-                                <textarea rows="4" cols="50" name="facts" id="facts" placeholder={Dictionary.quotes} ></textarea>
-                            </div>
-                            <div className="form-group">
-                                <input type="text" rows="4" cols="50" name="quotes" id={"quotes" + j} placeholder={Dictionary.bibliography} />
-                            </div>
-                            <div className="form-group">
-                                <a id="fill20"></a>
-                                <button id="addBtn" onClick={(e) => {
-                                    e.preventDefault();
-                                    var fill = $("#fill20");
-
-                                    if ($("#quotes" + j).val()) {
-                                        j++;
-                                        fill.append(`<input id=${"quotes" + j}  type="text" rows="4" cols="50" name="quotes" />`)
-                                    }
-
-                                }}>{Dictionary.addMore}</button>
-                            </div>
-
-                        </div>
-                        <div className="requiredFooter">{Dictionary.mustfilled}</div>
-                        <div className="modal-footer">
-                            <button type="button" className="close" className="btn btn-secondary" onClick={resetForm("suggest_woman_form", "fill20")} data-dismiss="modal">{Dictionary.close}</button>
-                            <button type="submit" htmlFor="suggest_woman_form" className="btn btn-success" id="submit_form" >{Dictionary.submit} <span className="fa fa-arrow-right"></span></button>
-                        </div>
-                    </form>
-
-                </div>
-            </div>
-
-        </div>
-    )
-}
-
-export const EditWomanModal = () => {
-
-    return (
-
-        <div className="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabIndex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div className="modal-dialog modal-xl">
-                <div className="modal-content">
-                    <form dir="RTL" id="woman_form" name="woman_form" onSubmit={addWoman}  >
-                        <div className="modal-header">
-                            <button type="button" id="xClose" className="close" data-dismiss="modal" aria-label="Close" onClick={resetForm("woman_form", "fill1", "fill2")}>
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                            <h5 className="modal-title" id="staticBackdropLabel">{Dictionary.addWoman}</h5>
-                        </div>
-
-                        <div className="modal-body">
-                            <div id="step1">
-                                <ul id="mylinks" className="nav nav-tabs">
-                                    <li id="mylinks" className="langTabs active"><a data-toggle="tab" href="#HE">עברית</a></li>
-                                    <li id="mylinks" className="langTabs"><a data-toggle="tab" href="#EN">English</a></li>
-                                    <li id="mylinks" className="langTabs"><a data-toggle="tab" href="#AR">عربى</a></li>
-                                </ul>
-                                <div className="addWomanContainer">
-                                    <div className="form-group">
-                                        <label className="regularLabel" htmlFor="name">{Dictionary.name}*</label>
-                                        <input className="regularInput" type="text" rows="1" cols="35" id="name" name="name" required />
-                                    </div>
-                                    <div className="form-group">
-                                        <label className="regularLabel" htmlFor="birth">{Dictionary.birth}*</label>
-                                        <input className="regularInput" type="date" rows="1" cols="35" id="birth" name="birth" required />
-                                    </div>
-                                    <div className="form-group">
-                                        <label className="regularLabel" htmlFor="death">{Dictionary.death}</label>
-                                        <input className="regularInput" type="date" rows="1" cols="35" id="death" name="death" />
-                                    </div>
-                                    {/* ///////////////////////////// */}
-                                    <div className="form-group">
-                                        <button id="submit1" type="button" className="btn btn-success" onClick={() => allreadyExist($("#name").val() + $("#birth").val())} >{Dictionary.next}</button>
-                                    </div>
-                                </div>
-                                <div id="popup">
-                                    <span className="popuptext" id="myPopup">{Dictionary.popup}</span>
-                                </div>
-                            </div>
-                            <div id="step2">
-                                <div className="tab-content">
-                                    <GenralForm lang={langs[0]} active={true} />
-                                    <GenralForm lang={langs[1]} />
-                                    <GenralForm lang={langs[2]} />
-                                </div>
-                            </div>
-                        </div>
-                        <div className="requiredFooter" > {Dictionary.mustfilled}  </div>
-                        <div className="modal-footer">
-                            <button type="button" className="close" className="btn btn-secondary" onClick={resetForm("woman_form", "fill1", "fill2")} data-dismiss="modal">{Dictionary.close}</button>
-                            <button type="submit" htmlFor="woman_form" className="btn btn-success" id="submit_form" >{Dictionary.submit} <span className="fa fa-arrow-right"></span></button>
-                        </div>
-                    </form>
-
-                </div>
-            </div>
-
-        </div>
-    );
-}
-
-$("document").ready(function () {
-    //make sure only step 1 is shown 
-    $("#step2").hide();
-    $("#popup").hide();
-    // $('feedbackTable').hide();
-    // show and hide link input from add woman form.
-    $('#mylinks a').click(function () {
-        $('#mylinks a').removeClass('highlight');
-        $(this).addClass('highlight');
+function addNewUser(e) {
+    e.preventDefault();
+    $("#newUserForm").validate({
+        // Specify validation rules
+        rules: {
+            email: {
+                required: true,
+                minlength: 1,
+                email: true,
+            },
+            password: {
+                required: true,
+                minlength: 1,
+            },
+        },
+        messages: {}
     });
 
-});
+    if (!$("#newUserForm").valid()) return;
 
-//check if woman allready exist when we want to add woman 
-export function allreadyExist(id, wantToEdit) {
+    var email = $("#email").val();
+    var password = $("#password").val();
+    var admin = $("#adminSelect").val() ? true : false;
 
-    if (id) {
-        var woman = db.collection('women').doc(id);
-        woman.get().then(doc => {
-            if (doc.exists) {
-                if (wantToEdit || window.confirm(Dictionary.editExistVal)) {
-                    showing("#step2", wantToEdit);
-                    editWoman(id);
-                }
+    var obj = {};
+    obj["email"] = email;
+    obj["id"] = email;
+    obj["superUser"] = false;
+    obj["admin"] = admin;
 
-            }
-            else
-                showing("#step2");
-        }).catch(error => console.log(error))
-    }
-    else
-        showing("#step2");
-
-
+    db.collection('users').doc(email).set(obj).then(() => {
+        auth.createUserWithEmailAndPassword(email, password).then(() => {
+            alert(Dictionary.userAddedSuccefully);
+            window.location.reload();
+        }).catch(function (error) {
+            alert(error)
+        });
+    }).catch(function (error) {
+        alert(error)
+    });
 }
 
 //add woman to database
@@ -538,7 +504,7 @@ function addWoman(e) {
 }
 
 // add to suggest woman collection
-function suggestWoman() {
+function addsuggest() {
     var obj = {}
     var id = $("#yourEmail").val();
 
@@ -554,45 +520,8 @@ function suggestWoman() {
     });
 }
 
-//reset the add woman form when close
-function resetForm(id, id2, id3) {
-    return () => {
-        $("#" + id).trigger("reset");
-
-        if (id2)
-            $(`#${id2}`).html("");
-
-        if (id3)
-            $(`#${id3}`).html("");
-
-        $("#name").attr('readonly', false);
-        $("#birth").attr('readonly', false);
-
-        $("#step1").show();
-        $("#step2").hide();
-        $('#submit1').show();
-    }
-};
-
-
-//make sure that the use enterd in step one the name and birth date
-export function showing(id, wantToEdit) {
-
-    if (($("#name").val() && $("#birth").val()) || wantToEdit) {
-        $(id).show();
-        $("#submit1").hide()
-    }
-    else {
-        $("#popup").show();
-        $("#popup").fadeOut(2000, function () {
-            // Animation complete.
-        });
-    }
-
-}
-
 //add feedback to database
-function handleFeedback(e) {
+function addFeedback(e) {
     e.preventDefault();
     var obj = {}
     var id = $("#feed_name").val() + $("#feed_email").val();
@@ -628,7 +557,7 @@ function handleFeedback(e) {
     });
 }
 
-function sub_cat(event) {
+function addCatagory(event) {
 
     if (!$("#category_form").valid()) return;
     //confirm id not exeisting??
@@ -642,14 +571,87 @@ function sub_cat(event) {
 
         }
     });
-    console.log(gen);
-    console.log(id);
-    alert("checkCategories");
     db.collection('categories').doc(id).set(gen);
     window.$("#categoryForm").modal('hide');
+    $("#category_form").trigger("reset");
+
     // $("#staticBackdrop").modal('hide');
     // $("#afterMessage").modal('show');
     // stop the form from submitting the normal way and refreshing the page
     event.preventDefault();
 };
 
+
+//reset the add woman form when close
+function resetForm(reset, empty1, empty2) {
+    return () => {
+        $("#" + reset).trigger("reset");
+
+        if (empty1)
+            $(`#${empty1}`).html("");
+
+        if (empty2)
+            $(`#${empty2}`).html("");
+
+        $("#name").attr('readonly', false);
+        $("#birth").attr('readonly', false);
+
+        $("#step1").show();
+        $("#step2").hide();
+        $('#submit1').show();
+    }
+};
+
+//check if woman allready exist when we want to add woman 
+export function allreadyExist(id, wantToEdit) {
+
+    if (id) {
+        var woman = db.collection('women').doc(id);
+        woman.get().then(doc => {
+            if (doc.exists) {
+                if (wantToEdit || window.confirm(Dictionary.editExistVal)) {
+                    showing("#step2", wantToEdit);
+                    editWoman(id);
+                }
+
+            }
+            else
+                showing("#step2");
+        }).catch(error => console.log(error))
+    }
+    else
+        showing("#step2");
+
+
+}
+
+
+//make sure that the use enterd in step one the name and birth date
+export function showing(id, wantToEdit) {
+
+    if (($("#name").val() && $("#birth").val()) || wantToEdit) {
+        $(id).show();
+        $("#submit1").hide()
+    }
+    else {
+        $("#popup").show();
+        $("#popup").fadeOut(2000, function () {
+            // Animation complete.
+        });
+    }
+
+}
+
+
+$("document").ready(function () {
+    //make sure only step 1 is shown 
+    $("#step2").hide();
+    $("#popup").hide();
+    // $('feedbackTable').hide();
+    // show and hide link input from add woman form.
+    $('#mylinks a').click(function () {
+        $('#mylinks a').removeClass('highlight');
+        $(this).addClass('highlight');
+    });
+
+});
