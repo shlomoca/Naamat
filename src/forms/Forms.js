@@ -74,6 +74,70 @@ export const NewUserModal = () => {
     );
 };
 
+export const DidYouKnowModal = () => {
+    return (
+        <div className="modal fade" id="DidYouKnowModal">
+            <div className="modal-dialog modal-lg" >
+                <div className="modal-header">
+                    <button type="button" onClick={resetForm("DidYouKnowForm")} className="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h5 className="modal-title" id="staticBackdropLabel">{Dictionary.DidYouKnow}</h5>
+                </div>
+                <div className="modal-content">
+                    <div className="modal-body">
+                        <form dir="RTL" id="DidYouKnowForm" name="DidYouKnowForm" onSubmit={AddNewFact}  >
+
+                            <div className="input-group mb-3">
+                            <label className="regularLabel">{Dictionary.AddNewFact}</label>
+                            </div>
+                            <br></br>
+
+                            <div className="form-group">
+                                
+                                <div id="name-group1" className="form-group">
+                                    <textarea autoComplete="off" type="text" lang="HE" type="text" rows="2" cols="35" id="DidYouKnowHE" name="DidYouKnow" placeholder="הוסיפי עובדה בעברית" defaultValue="" />
+                                    <textarea autoComplete="off" type="text" lang="EN" type="text" rows="2" cols="35" id="DidYouKnowEN" name="DidYouKnow" placeholder="הוסיפי עובדה באנגלית" defaultValue=""/>
+                                    <textarea autoComplete="off" type="text" lang="AR" type="text" rows="2" cols="35" id="DidYouKnowAR" name="DidYouKnow" placeholder="הוסיפי עובדה בערבית" defaultValue="" />
+                                </div>
+
+                                {/* < textarea lang={langs[0]} active={true} type="text"
+                                    id="DidYouKnow"
+                                    name="DidYouKnow"
+                                    placeholder={Dictionary.AddNewFact}
+                                    defaultValue="" required
+                                />
+                                < textarea lang={langs[1]} type="text"
+                                    id="DidYouKnow"
+                                    name="DidYouKnow"
+                                    placeholder={Dictionary.AddNewFact}
+                                    defaultValue="" required />
+
+                                <textarea lang={langs[2]} type="text"
+                                    id="DidYouKnow"
+                                    name="DidYouKnow"
+                                    placeholder={Dictionary.AddNewFact}
+                                    defaultValue="" required /> */}
+
+                            </div>
+
+                            <div className="modal-footer">
+                                <button id="addFactBtn"
+                                    type="submit"
+                                    text={Dictionary.AddNewFact}
+                                    className="btn btn-success"
+                                    onClick={AddNewFact} >
+                                    {Dictionary.AddNewFact}
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div >
+    );
+};
+
 export const EditWomanModal = () => {
 
     return (
@@ -109,7 +173,7 @@ export const EditWomanModal = () => {
                                         <label className="regularLabel" htmlFor="death">{Dictionary.death}</label>
                                         <input className="regularInput" type="date" rows="1" cols="35" id="death" name="death" />
                                     </div>
-                                    
+
 
                                     <div className="form-group">
                                         <button id="submit1" type="button" className="btn btn-success" onClick={() => allreadyExist($("#name").val() + $("#birth").val())} >{Dictionary.next}</button>
@@ -127,8 +191,8 @@ export const EditWomanModal = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="requiredFooter" > {Dictionary.mustfilled}  </div>
                         <div className="modal-footer">
+                            <div className="requiredFooter" > {Dictionary.mustfilled}  </div>
                             <button type="button" className="close" className="btn btn-secondary" onClick={resetForm("woman_form", "fill1", "fill2")} data-dismiss="modal">{Dictionary.close}</button>
                             <button type="submit" htmlFor="woman_form" className="btn btn-success" id="submit_form" >{Dictionary.submit} </button>
                         </div>
@@ -207,7 +271,7 @@ export const SuggestWomanModal = () => {
 
                             <label htmlFor="bibliography">{Dictionary.bibliography}</label>
                             <div className="form-group">
-                                <input type="text" autoComplete="off" rows="4" cols="50" name="bibliography" id={"bibliography" + j}  />
+                                <input type="text" autoComplete="off" rows="4" cols="50" name="bibliography" id={"bibliography" + j} />
                             </div>
                             <div className="form-group">
                                 <a id="fill20"></a>
@@ -225,8 +289,8 @@ export const SuggestWomanModal = () => {
                             </div>
 
                         </div>
-                        <div className="requiredFooter">{Dictionary.mustfilled}</div>
                         <div className="modal-footer">
+                            <div className="requiredFooter">{Dictionary.mustfilled}</div>
                             <button type="button" className="close" className="btn btn-secondary" onClick={resetForm("suggest_woman_form", "fill20")} data-dismiss="modal">{Dictionary.close}</button>
                             <button type="submit" htmlFor="suggest_woman_form" className="btn btn-success" id="submit_form" >{Dictionary.submit}</button>
                         </div>
@@ -252,11 +316,11 @@ export const FeedbackModal = () => {
                         <h5 className="modal-title" id="staticBackdropLabel">{Dictionary.feedback}</h5>
                     </div>
                     <div className="modal-body">
-                        <form dir="RTL"  id="feedback_form" name="feedback_form" onSubmit={addFeedback}  >
+                        <form dir="RTL" id="feedback_form" name="feedback_form" onSubmit={addFeedback}  >
                             <div className="form-group">
                                 <label className="regularLabel" htmlFor="feed_name">{Dictionary.name}*</label>
                             </div>
-                            <input type="text"  rows="1" className="regularInput" id="feed_name" cols="35" name="name"  required />
+                            <input type="text" rows="1" className="regularInput" id="feed_name" cols="35" name="name" required />
                             <div id="email-group" className="form-group">
                                 <label className="regularLabel" htmlFor="feed_email">{Dictionary.enterMail}*</label>
                             </div>
@@ -281,8 +345,8 @@ export const FeedbackModal = () => {
 
                             </div>
 
-                            <div className="requiredFooter">{Dictionary.mustfilled}</div>
                             <div className="modal-footer">
+                                <div className="requiredFooter">{Dictionary.mustfilled}</div>
                                 <button type="submit" className="btn btn-success">{Dictionary.submit} </button>
                                 <button type="button" onClick={resetForm("feedback_form")} className="btn btn-secondary" data-dismiss="modal">{Dictionary.close}</button>
                             </div>
@@ -311,15 +375,16 @@ export const CategoryModal = () => {
                             <div id="name-group" className="form-group">
                                 <div id="name-group1" className="form-group">
                                     <label className="regularLabel" htmlFor="category_name">{Dictionary.name}</label>
-                                    <input autoComplete="off" type="text" lang="HE" rows="1" cols="35" id="category_nameHE" name="category_name" placeholder="הכנס שם קטגוריה בעברית" required />
-                                    <input autoComplete="off" type="text" lang="EN" rows="1" cols="35" id="category_nameEN" name="category_name" placeholder="הכנס שם קטגוריה באנגלית" required />
-                                    <input autoComplete="off" type="text" lang="AR" rows="1" cols="35" id="category_nameAR" name="category_name" placeholder="הכנס שם קטגוריה בערבית" required />
+                                    <input autoComplete="off" type="text" lang="HE" rows="1" cols="35" id="category_nameHE" className="category_name" name="category_name" placeholder="הכנס שם קטגוריה בעברית" required />
+                                    <input autoComplete="off" type="text" lang="EN" rows="1" cols="35" id="category_nameEN" className="category_name" name="category_name" placeholder="הכנס שם קטגוריה באנגלית" required />
+                                    <input autoComplete="off" type="text" lang="AR" rows="1" cols="35" id="category_nameAR" className="category_name" name="category_name" placeholder="הכנס שם קטגוריה בערבית" required />
                                 </div>
                             </div>
                             <div id="image-group" className="form-group">
                                 <ImageUpload required="required" param1="category_nameHE" param1Empty="category name not enterd" />
                             </div>
                             <div className="modal-footer">
+                                <div className="requiredFooter" > {Dictionary.mustfilled}  </div>
                                 <button type="submit" id="submitCategory" htmlFor="category_form" className="btn btn-success">{Dictionary.submit} </button>
                                 <button type="button" onClick={resetForm("category_form")} className="btn btn-secondary" data-dismiss="modal">{Dictionary.close}</button>
                             </div>
@@ -466,6 +531,28 @@ function addNewUser(e) {
     });
 }
 
+function AddNewFact(e) {
+    e.preventDefault();
+
+    var didyouknowbox = $("#DidYouKnow").val();
+    var langs=[];
+    var obj = {};
+    obj["HE"] = $("#DidYouKnowHE").val();
+    obj["EN"] = $("#DidYouKnowEN").val();
+    obj["AR"] = $("#DidYouKnowAR").val();
+
+    langs.push(obj);
+
+
+    
+    db.collection('didYouKnow').add(obj).then(() => {
+        alert(Dictionary.FactAddedSuccefully)
+    }).catch(function (error) {
+        alert(error)
+    });
+}
+
+
 //add woman to database
 export function addWoman(e) {
     e.preventDefault();
@@ -581,7 +668,7 @@ function addCatagory(event) {
     var id = $("#category_nameHE").val();
 
     $($('#category_form').prop('elements')).each(function () {
-        if (this.value&&(this.type) !=("file")) {
+        if (this.value && (this.type) != ("file")) {
             gen[this.id] = this.value;
         }
     });
@@ -657,7 +744,7 @@ $("document").ready(function () {
     //make sure only step 1 is shown 
     $("#step2").hide();
     $("#popup").hide();
-    
+
     // show and hide link input from add woman form.
     $('#mylinks a').click(function () {
         $('#mylinks a').removeClass('highlight');

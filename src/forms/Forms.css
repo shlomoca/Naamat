@@ -84,6 +84,9 @@ padding-bottom: 3%;
 
 }
 
+.category_name{/*space between inputs in Add category form.*/
+    margin:inherit;
+}
 
 
 
@@ -406,8 +409,21 @@ align-self: center;
 }
 
 .requiredFooter{
-
+    float: right;
+    margin-left: 55%;
     text-align: right;
     font-size: normal;
     font-weight:bold;
+}
+
+.modal-footer{
+    background-color: rgb(216,191,216);;
+}
+
+#DidYouKnow{ /*space between text area in did you know form */
+    margin:inherit;
+}
+#addFactBtn{ /*design for submit button in did you know form*/
+    
+    width: auto;
 }
