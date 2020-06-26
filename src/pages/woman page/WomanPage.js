@@ -221,16 +221,14 @@ export function getWomen(womanName) {
                 else
                     console.log("no data");
             });
-            if (women.length === 0) {
-                var find = document.getElementById("womenHolder");
-                var deck = document.getElementById("deckContainer");
-                if (deck)
-                    ReactDOM.unmountComponentAtNode(deck);
-                if (find)
-                    ReactDOM.unmountComponentAtNode(find);
-            }
+            var find = document.getElementById("womenHolder");
+            var deck = document.getElementById("deckContainer");
+            if (deck)
+                ReactDOM.unmountComponentAtNode(deck);
+            if (find)
+                ReactDOM.unmountComponentAtNode(find);
 
-            else {
+            if (women.length != 0) {
                 ReactDOM.render(<WomenDeck cards={women} />, document.getElementById('womenHolder'));
             }
 
