@@ -86,10 +86,10 @@ class ImageUpload extends Component {
       <div >
         <p>{Dictionary.profilepic}</p>
         <progress value={this.state.progress} max="100" />
-        <div className="form-group"> 
-        <input type="file" name="file" id="inputGroupFile04 media"  aria-describedby="inputGroupFileAddon04" accept="image/*,audio/*,video/*" onChange={this.handleChange} required={this.state.required}/>
+        <div className="form-group">
+          <input type="file" name="file" id="inputGroupFile04 media" aria-describedby="inputGroupFileAddon04" accept="image/*,audio/*,video/*" onChange={this.handleChange} required={this.state.required} />
         </div>
-        <input type="hidden" id="ProfilePic" name="ProfilePic" value={this.state.url} required/>
+        <input type="hidden" id="ProfilePic" name="ProfilePic" value={this.state.url} required />
         <button type="button" onClick={this.handleUpload}>{Dictionary.upload}</button>
         <br />
       </div>
@@ -144,32 +144,33 @@ export class MultiImageUpload extends Component {
       else
         path += $("#" + param2).val();
 
-    
 
-    const storageRef = storage.ref();
-    this.state.file.forEach((file) => {
-      var filePath = path + '/' + file.name;
-      storageRef
-        .child(`${path}/${file.name}`)
-        .put(file).on('state_changed',
-          (snapshot) => {
-            // progrss function 
-            const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
-            this.setState({ progress });
-          },
-          (error) => {
-            // error function
-            console.log(error);
-          },
-          () => {
-            //get photo url function
-            const refer = storage.ref(filePath);
-            refer.getDownloadURL().then(url => {
-              links.push(url);
-              this.setState({ links: links });
+    if (this.state.file) {
+      const storageRef = storage.ref();
+      this.state.file.forEach((file) => {
+        var filePath = path + '/' + file.name;
+        storageRef
+          .child(`${path}/${file.name}`)
+          .put(file).on('state_changed',
+            (snapshot) => {
+              // progrss function 
+              const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+              this.setState({ progress });
+            },
+            (error) => {
+              // error function
+              console.log(error);
+            },
+            () => {
+              //get photo url function
+              const refer = storage.ref(filePath);
+              refer.getDownloadURL().then(url => {
+                links.push(url);
+                this.setState({ links: links });
+              })
             })
-          })
-    })
+      })
+    }
 
 
   }

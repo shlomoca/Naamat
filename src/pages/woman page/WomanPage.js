@@ -77,17 +77,16 @@ export class WomenCard extends Component {
 //delete woman by id.
 export function deleteWoman(id) {
 
-    // return () => {
     var woman = db.collection('women').doc(id);
-    woman.delete().then( () => {
-                    deleteBucket(id);
-                    alert(`user ${id} was deleted`);
-                    window.location = "/";
-                }
-            ).catch(error => {
-                console.log(error)
-                alert("woman not found");
-            });
+    woman.delete().then(() => {
+        deleteBucket(id);
+        alert(`user ${id} was deleted`);
+        
+    }
+    ).catch(error => {
+        console.log(error)
+        alert("woman not found");
+    });
 }
 
 function deleteBucket(id) {
@@ -99,8 +98,11 @@ function deleteBucket(id) {
     storageRef.listAll().then(function (result) {
         result.items.forEach(function (imageRef) {
             // And finally delete them
-            imageRef.delete();
-        });
+            imageRef.delete().then(()=>{
+
+                window.location = "/";
+            });
+        })
     }).catch(function (error) {
         // Handle any errors
         console.log(error);
@@ -164,7 +166,7 @@ export class ShoWoman extends Component {
             const data = snapshot.data();
             info.push(data);
             var alldata = info[0];
-            if (alldata&&alldata[Dictionary.getLanguage()]) {
+            if (alldata && alldata[Dictionary.getLanguage()]) {
                 page.push(<MainDetails display={alldata[Dictionary.getLanguage()]["display"]} link={alldata["ProfilePic"]} managerBtns={managerBtns} />);
                 (Object.values(this.state.fields)).forEach(key => {
                     if (alldata[Dictionary.getLanguage()][key])
@@ -276,17 +278,17 @@ export function loadWomanToModal(id) {
     db.collection('women').doc(id).get().then(doc => {
         woman = doc.data();
         if (woman.length != 0) {
-        $("#name").val(woman.name).attr('readonly', true);
-        $("#birth").val(woman.birth).attr('readonly', true);
-        $("#death").val(woman.death);
-        $("#ProfilePic").val(woman.ProfilePic);
+            $("#name").val(woman.name).attr('readonly', true);
+            $("#birth").val(woman.birth).attr('readonly', true);
+            $("#death").val(woman.death);
+            $("#ProfilePic").val(woman.ProfilePic);
 
             langs.forEach(lang => {
                 var arr = woman[lang];
-                if(arr)
-                Object.keys(arr).forEach(field => {
-                            $("#" + field + lang).val(arr[field]);
-                        })
+                if (arr)
+                    Object.keys(arr).forEach(field => {
+                        $("#" + field + lang).val(arr[field]);
+                    })
             })
         }
     })
