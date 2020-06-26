@@ -45,7 +45,7 @@ export const Dictionary = new LocalizedStrings({
     categories: `Categories`,
     search: `Search`,
     addWoman: `Add woman`,
-    addcategory: `add category`,
+    addcategory: `Add category`,
 
     //forms
     name: `Full Name`,
@@ -68,18 +68,18 @@ export const Dictionary = new LocalizedStrings({
     profilepic: 'Profile Picture',
     anotherpictures: 'Another Pictures',
     mustfilled: ' required field *',
-    delete: `delete`,
-    next: 'next',
-    suggest: `suggest woman`,
+    delete: `Delete`,
+    next: 'Next',
+    suggest: `Suggest woman`,
     popup: 'Please fill all details',
     editExistVal: 'Do you want to edit exist value?',
-    action: `action`,
-    deletedSuccessfully: "deleted successfully",
-    addMore: "add more",
-    bibliography: "further reading",
-    description: "description",
-    link: "link",
-    links: "links",
+    action: `Action`,
+    deletedSuccessfully: "Deleted successfully",
+    addMore: "Add more",
+    bibliography: "Further reading",
+    description: "Description",
+    link: "Link",
+    links: "Links",
     categoryInputHE:"Enter a category name in Hebrew",
     categoryInputEN:"Enter a category name in English",
     categoryInputAR:"Enter a category name in Arabic",
@@ -91,6 +91,11 @@ export const Dictionary = new LocalizedStrings({
     addBibiloraphy:"Please enter a bibliography",
     isAdmin:"Admin user",
     choseCategory:"Please mark the relevent categories",
+    DidYouKnow:'Did you know?',
+    AddNewFact:'Add new Fact',
+    language:'language',
+    FactAddedSuccefully:'Fact added succefully',
+    langs:'Here will be shown all the facts in system language',
     
     //components
     builders: `This site was built by: Shlomo Carmi, Daniel Raz, Sahar Cohen, Adiel Tsayag, Matan Yamin`,
@@ -183,6 +188,12 @@ export const Dictionary = new LocalizedStrings({
     isAdmin:"משתמש מנהל",
     choseCategory:"אנא סמני את הקטגוריות הרלוונטיות",
 
+    DidYouKnow:'הידעת ?',
+    AddNewFact:'הוסיפי עובדה חדשה',
+    language:'שפה',
+    FactAddedSuccefully:'עובדה הועלתה בהצלחה',
+    langs:'כאן יופיעו כל העובדות בשפת המערכת',
+    
     //components
     builders: 'אתר זה נבנה על ידי: שלמה כרמי, דניאל רז, סהר כהן, עדיאל צייג, מתן ימין ©',
     CategoryName: 'שם קטגוריה',
@@ -280,6 +291,11 @@ export const Dictionary = new LocalizedStrings({
     addBibiloraphy:"الرجاء إدخال قائمة مراجع",
     isAdmin:"مستخدم المشرف",
     choseCategory:"يرجى وضع علامة على الفئات ذات الصلة",
+    DidYouKnow:'هل كنت تعلم؟',
+    AddNewFact:'أضف حقيقة جديدة',
+    language:'لغة',
+    FactAddedSuccefully:'تمت إضافة الحقيقة بنجاح',
+    langs:'هنا سيتم عرض جميع الحقائق',
 
     //components
 

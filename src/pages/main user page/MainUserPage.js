@@ -19,10 +19,7 @@ class MainUserPage extends Component {
             carouselSlids: 0,
             Admin: props.Admin
         }
-
     }
-
-
     render() {
         return (
             <div>
@@ -81,7 +78,7 @@ export class PictursCarousel extends Component {
       super(props);
       this.state = {
         url: [],
-        ids: ["גולדה מאיר1898-03-03", "דניאל רז1992-03-31", "סהר כהן1995-09-21", "עדיאל צייג2020-06-01", "שלמה כרמי1993-06-09","אורנה ברביבאי1962-09-05", "עדה פישמן מימון1893-10-08"],
+        ids: ["גולדה מאיר1898-03-03", "דניאל רז1992-03-31", "סהר כהן1995-09-21", "עדיאל צייג2020-06-01", "שלמה כרמי1993-06-09","אורנה ברביבאי1962-09-05", "Ada Fishman Maimon1893-10-08"],
         indicators: [],
         items: [],
         dataslide: 0,
@@ -98,12 +95,12 @@ export class PictursCarousel extends Component {
           if (snapshot.data()) {
             var data = snapshot.data();
             if (data) {
-              // var id = data["id"];
-              if (data["ProfilePic"]) {
+              if (data["ProfilePic"]&&data[Dictionary.getLanguage()]) {
                 if (this.state.dataslide != 0)
                   active = false;
-                // indicators.push(<CarouselLi dataslide={this.state.dataslide} active={active} />);
-                // items.push(<CarouselSlide display={data[Dictionary.getLanguage()]["display"]} highlights={data[Dictionary.getLanguage()]["summary" ]} id={id} src={data["ProfilePic"]} active={active} />);
+                  if(data[Dictionary.getLanguage()]["display"]&&data[Dictionary.getLanguage()]["highlights" ])
+                indicators.push(<CarouselLi dataslide={this.state.dataslide} active={active} />);
+                items.push(<CarouselSlide display={data[Dictionary.getLanguage()]["display"]} highlights={data[Dictionary.getLanguage()]["highlights" ]} id={id} src={data["ProfilePic"]} active={active} />);
                 this.setState({ indicators: indicators });
                 this.setState({ items: items });
                 this.setState({ dataslide: this.state.dataslide + 1 });

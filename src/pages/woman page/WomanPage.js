@@ -79,34 +79,26 @@ export function deleteWoman(id) {
 
     // return () => {
     var woman = db.collection('women').doc(id);
-    woman.get().then(temp => {
-        if (temp.exists) {
-            db.collection('women').doc(id).collection('langs').get().then(res => {
-                res.forEach(doc => {
-                    // first delete sub-collection
-                    doc.ref.delete();
-                })
-                db.collection('women').doc(id).delete().then(() => {
+    woman.delete().then( () => {
                     deleteBucket(id);
                     alert(`user ${id} was deleted`);
                     window.location = "/";
-                })
-            })
-        }
-        else
-            alert("woman not found");
-    }).catch(error => console.log(error));
-
+                }
+            ).catch(error => {
+                console.log(error)
+                alert("woman not found");
+            });
 }
 
 function deleteBucket(id) {
+    console.log("deleting bucket")
     // Since you mentioned your images are in a folder,
     // we'll create a Reference to that folder:
     var storageRef = storage.ref(id);
     // Now we get the references of these images
     storageRef.listAll().then(function (result) {
         result.items.forEach(function (imageRef) {
-            // And finally display them
+            // And finally delete them
             imageRef.delete();
         });
     }).catch(function (error) {
@@ -202,7 +194,7 @@ export class ShoWoman extends Component {
 
 
 
-//searches for w
+//searches for woman and 
 export function getWomen(womanName) {
     if (womanName) {
         var nameattr = "display" + determineLang(womanName);
@@ -302,34 +294,7 @@ export function loadWomanToModal(id) {
     window.$("#staticBackdrop").modal('show');
 
 }
-// langs.forEach(lang => {
-
-//     db.collection('women').doc(id).collection('langs').doc(lang).get().then(doc => {
-
-//         const info = [];
-//         const data = doc.data();
-//         if (data) {
-//             info.push(data);
-//         }
-
-//         if (info.length != 0) {
-
-//             Object.values(info).forEach(fileds => {
-//                 Object.keys(fileds).forEach(key => {
-//                     if (key != "ProfilePic")
-//                         $("#" + key + lang).val(fileds[key]);
-//                     else {
-//                         $("#" + key).val(fileds[key]);
-//                     }
-//                 })
-//             })
-//         }
-//     })
-// })
-
-
 
 
 $(document).ready(() => {
-
 });

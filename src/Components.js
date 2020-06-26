@@ -4,7 +4,7 @@ import { LangBtn, Dictionary } from './Dictionary';
 import logo from './images/naamatlogo.png';
 import fblogo from './images/fblogo.png';
 import ytlogo from './images/ytlogo.png';
-import { EditWomanModal, CategoryModal, FeedbackModal, SuggestWomanModal } from './forms/Forms';
+import {  FeedbackModal, SuggestWomanModal } from './forms/Forms';
 import { db, auth } from './config/Firebase'
 import { Link } from 'react-router-dom';
 import { getWomen, WomenDeck } from '../src/pages/woman page/WomanPage'
@@ -73,6 +73,7 @@ export const NavBar = (props) => {
     </div>
   )
 }
+
 
 export function adminPageClick() {
   console.log("in onclick")
@@ -188,6 +189,9 @@ export const DisplayModal = (props) => {
     </div>
   )
 }
+
+
+
 
 
 export const AfterMessage = (props) => {

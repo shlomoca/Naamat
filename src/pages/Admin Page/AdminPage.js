@@ -3,8 +3,8 @@ import $ from 'jquery';
 import React, { Component } from 'react';
 import { NavBar, DisplayModal, BottomBar, AfterMessage, usersManager } from '../../Components.js';
 import { getWoman, WomenCard } from '../woman page/WomanPage';
-import { Dictionary } from '../../Dictionary';
-import { EditWomanModal, CategoryModal, FeedbackModal, NewUserModal } from '../../forms/Forms';
+import { Dictionary, langs } from '../../Dictionary';
+import { EditWomanModal, CategoryModal, FeedbackModal, NewUserModal, DidYouKnowModal } from '../../forms/Forms';
 import { scryRenderedComponentsWithType } from 'react-dom/test-utils';
 import { Link } from 'react-router-dom';
 import { db } from '../../config/Firebase';
@@ -20,6 +20,7 @@ class AdminPage extends Component {
                     <CategoryModal />
                     <FeedbackModal />
                     <NewUserModal />
+                    <DidYouKnowModal />
                     <div className="backBtn">
                         {/* <Link to="/"><button id="backBtn" className="btn">{Dictionary.back}</button></Link> */}
                     </div>
@@ -31,6 +32,7 @@ class AdminPage extends Component {
                         <button className="btnhover" type="button" id="sugWomenMngBtn" onClick={() => { getData("sugWomenMngBtn", "suggest_women", ["yourName", "yourEmail", "display"]) }}> ניהול הצעות להוספה </button>
                         <button className="btnhover" type="button" id="categoriesBtn" onClick={() => { getData("categoriesBtn", "categories", ["category"]) }}> {Dictionary.manageCategory} </button>
                         <button className="btnhover" type="button" id="userMngBtn" onClick={() => { getData("userMngBtn", "users", ["email", "admin"]) }}> {Dictionary.adminUserManagement} </button>
+                        <button className="btnhover" type="button" id="factMngBtn" onClick={() => { getData("factMngBtn", "didYouKnow", ["langs"]) }}> {Dictionary.DidYouKnow} </button>
                         {/* <button className="btnhover" type="button" id="btn2" > {Dictionary.adminEditWoman} </button> */}
                         {/* <button className="btnhover" type="button" id="btn4"> {Dictionary.adminEditAbout} </button>   data-toggle="modal" data-target="#suggestWomanModal"   */}
 
@@ -85,7 +87,7 @@ const DisplayData = (props) => {
         btnId = props.btnId,// get button id from props 
         id;//takes id from data
     const body = [];
-    var index = 1;
+    var index = 0;
     data.forEach(singleRow => {
         var col = [];
         var allCollsFull = true;
@@ -93,10 +95,15 @@ const DisplayData = (props) => {
         //go through the data and take only the requierd feilds
         if (fields)
             fields.forEach(field => {
-                if (singleRow[field] != undefined && singleRow[field] != "")
+                console.log(singleRow[Dictionary.getLanguage()]);
+                if (singleRow[field] != undefined && singleRow[field] != "") {
                     col.push(String(singleRow[field]));
+                }
+                else if (singleRow[Dictionary.getLanguage()])
+                    col.push(String(singleRow[Dictionary.getLanguage()]));
                 else
                     allCollsFull = false;
+
             })
         if (unCheckedFields)
             unCheckedFields.forEach(field => {
@@ -122,6 +129,9 @@ const DisplayData = (props) => {
     serviceButtons.push(<button onClick={() => ShowHideFunc(["allAdmin"], ["TableHolder"])} id="backBtn" className="btn" >{Dictionary.back}</button>)
     if (btnId == "userMngBtn") {
         serviceButtons.push(<button className="btn" id="addUserBtn" data-toggle="modal" data-target="#newUserModal">{Dictionary.addUserBtn}</button>)
+    }
+    if (btnId == "factMngBtn") {
+        serviceButtons.push(<button className="btn" id="addFactBtn" data-toggle="modal" data-target="#DidYouKnowModal">{Dictionary.AddNewFact}</button>)
     }
 
     return (
