@@ -34,7 +34,7 @@ export const WomenDeck = (props) => {
         var prof = woman["ProfilePic"];
         if (wName && sum)
             deck.push(
-                <WomenCard display={wName} summary={sum} id={id} prof={prof} />);
+                <WomenCard display={wName} summary={sum} id={id} prof={prof} woman={true} />);
     })
 
     return (
@@ -51,20 +51,25 @@ export class WomenCard extends Component {
             id: props.id,
             display: props.display,
             summary: props.summary,
-            url: props.prof
+            url: props.prof,
+            woman: props.woman
         }
     }
 
-
     render() {
+        var imgClas = (this.state.woman) ? "roundImageSerach" : "catImage",
+            containerCls = (this.state.woman) ? "womanCardsContainer" : "catCardsContainer",
+            nameCls = (this.state.woman) ? "womanTitleSerach" : "catTitle",
+            summaryCls = (this.state.woman) ? "summarySearch" : "catSummery"
         return (
-                <div className="womanCardsContainer" >
-            <a href={"/womanPage/" + this.state.id}>
-                     <img id={"roundImage" + this.state.id} className="roundImageSerach" src={this.state.url} alt={this.state.display} />
-                     <h3 className="womanTitleSerach">{this.state.display}</h3>
-            </a>
-                    <a id="summarySearch"> {this.state.summary} </a>
-                </div>
+            <div className={containerCls}>
+                <a href={"/womanPage/" + this.state.id}>
+                    {/* id={"roundImage" + this.state.id} */}
+                    <img className={imgClas} src={this.state.url} alt={this.state.display} />
+                    <h3 className={nameCls}>{this.state.display}</h3>
+                </a>
+                <a className={summaryCls}> {this.state.summary} </a>
+            </div>
         )
     }
 
@@ -128,7 +133,7 @@ export const WomanPage = (props) => {
         <div id="WPcover" className="cover">
             <div id="WomanPageWrapper" className="wrapper" >
                 <NavBar AdminPage={false} Admin={Admin} />
-                <EditWomanModal/>
+                <EditWomanModal />
                 <ShoWoman id={id} fields={["highlights", "biography", "histoy", "feminism", "facts", "quotes"]} Admin={Admin} />
             </div>
             <BottomBar />
