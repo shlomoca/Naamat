@@ -42,9 +42,9 @@ class Category extends Component {
                     <div id="category-container">
                         {this.state.categories &&
                             this.state.categories.map(category => {
-                                var cat = category["category_name" + Dictionary.getLanguage()],
+                                var cat = category[Dictionary.getLanguage()],
                                     pic = category["ProfilePic"];
-                                if (pic)
+                                if (pic && cat)
                                     return (
                                         <div className="catagoryImgContainer" onClick={() => { getWomanByCatagory(cat) }}>
                                             <img className="catagoryImg" src={pic} alt={cat} />
@@ -76,62 +76,62 @@ export class ShoWomanByCat extends Component {
         super(props);
         this.state = {
             cat: props.cat,
-            id: props.id,
             fields: props.fields,
             womanData: [],
-            Admin: this.props.Admin
 
         }
 
     }
 
     componentWillMount() {
-        var info = [],
-            page = [],
-            cat = this.state.cat,
-            managerBtns = "";
-        // if (this.state.Admin) {
-        //     managerBtns = <div className="editWomanBtn" ><button className="btn" onClick={(e) => { e.preventDefault(); allreadyExist(this.state.id, true); }}>{Dictionary.edit}</button>
-        //         <button className=" btn-danger deleteBtn" onClick={() => { if (window.confirm(Dictionary.areYouSure)) deleteWoman(this.state.id) }} >{Dictionary.delete}</button></div>;
-        // }
-
+        var page = [],
+            cat = this.state.cat;
         // .orderby().limit(20)
-
         var data = [], page = [];
-        db.collection("women").where('categories', 'array-contains-any', [cat]).get()
-            .then(querySnapshot => {
+        db.collection("women").where('categories', 'array-contains', [cat]).get()
+        .then(querySnapshot => {
+            console.log(querySnapshot)
                 querySnapshot.forEach(function (doc) {
                     data.push(doc.data())
-
                 });
                 data.forEach(woman => {
-                    
-                    var id = woman["id"],
-                    display = woman["display" + Dictionary.getLanguage()],
-                    summary = woman["highlights" + Dictionary.getLanguage()],
-                    url = woman["ProfilePic"],
-                    woman = false;
-                    
-                    if (id && display && summary && url) {
-                    
-                    page.push(
-                        
-                        <WomenCard id={id} display={display} prof={url} summary={summary} />
-                        );
+                    if (woman[Dictionary.getLanguage()]) {
+                        var id = woman["id"],
+                            display = woman[Dictionary.getLanguage()]["display"],
+                            summary = woman[Dictionary.getLanguage()]["highlights"],
+                            url = woman["ProfilePic"],
+                            woman = false;
+                        if (id && display && summary && url) {
+                            page.push(
+                                <WomenCard id={id} display={display} prof={url} summary={summary} />
+                            );
+                        }
+                        else {
+                            if (id)
+                                console.log("brokenID")
+                            else {
+
+                                if (display)
+                                    console.log("ID:" + id + "no display name")
+                                if (summary)
+                                    console.log("ID:" + id + "no summary")
+                                if (url)
+                                    console.log("ID:" + id + "no url")
+                            }
+
+
+                        }
                     }
                 })
-                
+
                 this.setState({
                     womanData: page
                 });
-                
+
             })
             .catch(function (error) {
                 console.log("Error getting documents: ", error);
             });
-
-        // }
-        // );
 
     }
     render() {

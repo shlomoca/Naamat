@@ -89,7 +89,7 @@ class ImageUpload extends Component {
         <div className="form-group"> 
         <input type="file" name="file" id="inputGroupFile04 media"  aria-describedby="inputGroupFileAddon04" accept="image/*,audio/*,video/*" onChange={this.handleChange} required={this.state.required}/>
         </div>
-        <input type="hidden" id="ProfilePic" name="ProfilePic" value={this.state.url} />
+        <input type="hidden" id="ProfilePic" name="ProfilePic" value={this.state.url} required/>
         <button type="button" onClick={this.handleUpload}>{Dictionary.upload}</button>
         <br />
       </div>
