@@ -654,36 +654,25 @@ function addFeedback(e) {
         window.$("#feedbackForm").modal('hide');
     });
 }
-
+//adds catagory to database
 function addCatagory(event) {
     if (!$("#category_form").valid()) return;
     var gen = {},up;
     var id = $("#category_nameHE").val();
-    
+   
     $($('#category_form').prop('elements')).each(function () {
         if (this.value && (this.type) != ("file")) {
             if(this.type=="hidden")
-            gen[this.id] = this.value;
+            gen[this.id]= this.value;
             else
             gen[this.lang] = this.value;
         }
     });
-    console.log(gen)
-    let myMap = new Map([
-        [1, 'one']
-      ])
-
-      myMap.set(0, 'zero')
-    up={ [id]:gen};
-    // temp.push(gen)
-    console.log(myMap)
-    alert("add")
-    db.collection('categories').doc('categories').set(up);
-    // alert("add")
+    
+    db.collection('categories').doc(id).set(gen)
+    .catch(error => console.log(error));
     window.$("#categoryForm").modal('hide');
     $("#category_form").trigger("reset");
-console.log("up")
-
     // stop the form from submitting the normal way and refreshing the page
     event.preventDefault();
 };
