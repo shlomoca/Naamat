@@ -420,7 +420,7 @@ align-self: center;
     background-color: rgb(216,191,216);;
 }
 
-#DidYouKnow{ /*space between text area in did you know form */
+.facts{ /*space between text area in did you know form */
     margin:inherit;
 }
 #addFactBtn{ /*design for submit button in did you know form*/

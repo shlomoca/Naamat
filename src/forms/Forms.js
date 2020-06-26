@@ -96,9 +96,9 @@ export const DidYouKnowModal = () => {
                             <div className="form-group">
                                 
                                 <div id="name-group1" className="form-group">
-                                    <textarea autoComplete="off" type="text" lang="HE" type="text" rows="2" cols="35" id="DidYouKnowHE" name="DidYouKnow" placeholder="הוסיפי עובדה בעברית" defaultValue="" />
-                                    <textarea autoComplete="off" type="text" lang="EN" type="text" rows="2" cols="35" id="DidYouKnowEN" name="DidYouKnow" placeholder="הוסיפי עובדה באנגלית" defaultValue=""/>
-                                    <textarea autoComplete="off" type="text" lang="AR" type="text" rows="2" cols="35" id="DidYouKnowAR" name="DidYouKnow" placeholder="הוסיפי עובדה בערבית" defaultValue="" />
+                                    <textarea className="facts" autoComplete="off" type="text" lang="HE" type="text" rows="2" cols="35" id="DidYouKnowHE" name="DidYouKnow" placeholder="הוסיפי עובדה בעברית" defaultValue="" />
+                                    <textarea className="facts" autoComplete="off" type="text" lang="EN" type="text" rows="2" cols="35" id="DidYouKnowEN" name="DidYouKnow" placeholder="הוסיפי עובדה באנגלית" defaultValue=""/>
+                                    <textarea className="facts" autoComplete="off" type="text" lang="AR" type="text" rows="2" cols="35" id="DidYouKnowAR" name="DidYouKnow" placeholder="הוסיפי עובדה בערבית" defaultValue="" />
                                 </div>
 
                                 {/* < textarea lang={langs[0]} active={true} type="text"
