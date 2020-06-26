@@ -28,7 +28,7 @@ class AdminPage extends Component {
                     <div id="allAdmin">
                         <button className="btnhover" type="button" id="btn1" data-toggle="modal" data-target="#staticBackdrop"> {Dictionary.adminAddWoman} </button>
                         <button className="btnhover" type="button" id="btn5" data-toggle="modal" data-target="#categoryForm"> {Dictionary.adminAddCategory} </button>
-                        <button className="btnhover" type="button" id="feedbackBtn" onClick={() => { getData("feedbackBtn", "feedback", ["name", "email",  "score"],["improvement"]) }}> {Dictionary.adminFeedback} </button>
+                        <button className="btnhover" type="button" id="feedbackBtn" onClick={() => { getData("feedbackBtn", "feedback", ["name", "email",  "score"],["improvement","date"]) }}> {Dictionary.adminFeedback} </button>
                         <button className="btnhover" type="button" id="sugWomenMngBtn" onClick={() => { getData("sugWomenMngBtn", "suggest_women", ["yourName", "yourEmail", "display"]) }}> ניהול הצעות להוספה </button>
                         <button className="btnhover" type="button" id="categoriesBtn" onClick={() => { getData("categoriesBtn", "categories", ["category"]) }}> {Dictionary.manageCategory} </button>
                         <button className="btnhover" type="button" id="userMngBtn" onClick={() => { getData("userMngBtn", "users", ["email", "admin"]) }}> {Dictionary.adminUserManagement} </button>
