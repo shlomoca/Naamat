@@ -605,62 +605,6 @@ export function addWoman(e) {
         window.location.reload();
     }).catch(error => console.log(error))
 }
-// //add woman to database
-// export function addWoman(e) {
-//     e.preventDefault();
-
-//     var he = {}, en = {}, ar = {}, gen = {};
-//     var boolHe = false, boolEn = false, boolAr = false;
-
-//     var id = $("#name").val() + $("#birth").val();
-//     $('#submit1').show();
-
-//     $($('#woman_form').prop('elements')).each(function () {
-//         if (this.value && !this.skip) {
-//             if (this.name === "highlights" || this.name === "display") {
-//                 gen[this.id] = (this.value).toLowerCase();
-//             }
-//             if (this.lang == "EN") {
-//                 boolEn = true;
-//                 en["id"] = id;
-//                 en[this.name] = this.value;
-
-//             }
-//             else if (this.lang == "HE") {
-//                 boolHe = true;
-//                 he["id"] = id;
-//                 he[this.name] = this.value;
-//             }
-//             else if (this.lang == "AR") {
-//                 boolAr = true;
-//                 ar["id"] = id;
-//                 ar[this.name] = this.value;
-//             }
-//             else {
-//                 if (this.name === "ProfilePic") {
-//                     ar[this.name] = this.value;
-//                     he[this.name] = this.value;
-//                     en[this.name] = this.value;
-//                 }
-//                 gen[this.name] = this.value;
-//                 gen["id"] = id;
-//             }
-//         }
-//     });
-
-
-//     if (boolHe)
-//         db.collection('women').doc(id).collection("langs").doc("HE").set(he);
-//     if (boolEn)
-//         db.collection('women').doc(id).collection("langs").doc("EN").set(en);
-//     if (boolAr)
-//         db.collection('women').doc(id).collection("langs").doc("AR").set(ar);
-//     db.collection('women').doc(id).set(gen).then(() => {
-//         alert(Dictionary.uploadSuccess);
-//         window.$("#staticBackdrop").modal('hide');
-//         window.location.reload();
-//     })
-// }
 
 // add to suggest woman collection
 function addsuggest() {
@@ -697,9 +641,6 @@ function addFeedback(e) {
             else
                 obj[this.name] = this.value;
         }
-        else if (this.name === "improvement" && this.value == "") {
-            obj[this.name] = "-";
-        }
     });
     if (!maxscoreSet) {
         alert(Dictionary.enterScore);
@@ -714,20 +655,26 @@ function addFeedback(e) {
 }
 
 function addCatagory(event) {
-
     if (!$("#category_form").valid()) return;
-    var gen = {};
+    var gen = {},up={};
     var id = $("#category_nameHE").val();
-
+    
+    alert("add")
     $($('#category_form').prop('elements')).each(function () {
         if (this.value && (this.type) != ("file")) {
+            if(this.type=="hidden")
             gen[this.id] = this.value;
+            else
+            gen[this.lang] = this.value;
         }
     });
-    db.collection('categories').doc(id).set(gen);
+    // console.log( up[id].push())
+    console.log(gen)
+    db.collection('categories').doc('categories').add(gen);
+    alert("add")
     window.$("#categoryForm").modal('hide');
     $("#category_form").trigger("reset");
-
+console.log("up")
 
     // stop the form from submitting the normal way and refreshing the page
     event.preventDefault();
