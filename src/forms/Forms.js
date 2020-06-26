@@ -9,6 +9,7 @@ import { AfterMessage, CategoryCheckBox, CollectionCheckBox } from '../Component
 import { loadWomanToModal } from '../pages/woman page/WomanPage';
 import ReactDOM from 'react-dom';
 import { ShowHideFunc } from '../pages/Admin Page/AdminPage';
+import moment from 'moment';
 
 
 export const NewUserModal = () => {
@@ -89,15 +90,15 @@ export const DidYouKnowModal = () => {
                         <form dir="RTL" id="DidYouKnowForm" name="DidYouKnowForm" onSubmit={AddNewFact}  >
 
                             <div className="input-group mb-3">
-                            <label className="regularLabel">{Dictionary.AddNewFact}</label>
+                                <label className="regularLabel">{Dictionary.AddNewFact}</label>
                             </div>
                             <br></br>
 
                             <div className="form-group">
-                                
+
                                 <div id="name-group1" className="form-group">
                                     <textarea className="facts" autoComplete="off" type="text" lang="HE" type="text" rows="2" cols="35" id="DidYouKnowHE" name="DidYouKnow" placeholder="הוסיפי עובדה בעברית" defaultValue="" />
-                                    <textarea className="facts" autoComplete="off" type="text" lang="EN" type="text" rows="2" cols="35" id="DidYouKnowEN" name="DidYouKnow" placeholder="הוסיפי עובדה באנגלית" defaultValue=""/>
+                                    <textarea className="facts" autoComplete="off" type="text" lang="EN" type="text" rows="2" cols="35" id="DidYouKnowEN" name="DidYouKnow" placeholder="הוסיפי עובדה באנגלית" defaultValue="" />
                                     <textarea className="facts" autoComplete="off" type="text" lang="AR" type="text" rows="2" cols="35" id="DidYouKnowAR" name="DidYouKnow" placeholder="הוסיפי עובדה בערבית" defaultValue="" />
                                 </div>
 
@@ -350,6 +351,7 @@ export const FeedbackModal = () => {
 
                             </div>
 
+
                             <div className="modal-footer">
                                 <div className="requiredFooter">{Dictionary.mustfilled}</div>
                                 <button type="submit" className="btn btn-success">{Dictionary.submit} </button>
@@ -538,7 +540,7 @@ function AddNewFact(e) {
     e.preventDefault();
 
     var didyouknowbox = $("#DidYouKnow").val();
-    var langs=[];
+    var langs = [];
     var obj = {};
     obj["HE"] = $("#DidYouKnowHE").val();
     obj["EN"] = $("#DidYouKnowEN").val();
@@ -547,7 +549,7 @@ function AddNewFact(e) {
     langs.push(obj);
 
 
-    
+
     db.collection('didYouKnow').add(obj).then(() => {
         alert(Dictionary.FactAddedSuccefully)
     }).catch(function (error) {
@@ -648,6 +650,7 @@ function addFeedback(e) {
     }
 
     obj["id"] = id;
+    obj["createdAt"] = moment().format('LLLL');
     if (id);
     db.collection('feedback').doc(id).set(obj).then(function () {
         window.$("#feedbackForm").modal('hide');
@@ -656,16 +659,16 @@ function addFeedback(e) {
 
 function addCatagory(event) {
     if (!$("#category_form").valid()) return;
-    var gen = {},up={};
+    var gen = {}, up = {};
     var id = $("#category_nameHE").val();
-    
+
     alert("add")
     $($('#category_form').prop('elements')).each(function () {
         if (this.value && (this.type) != ("file")) {
-            if(this.type=="hidden")
-            gen[this.id] = this.value;
+            if (this.type == "hidden")
+                gen[this.id] = this.value;
             else
-            gen[this.lang] = this.value;
+                gen[this.lang] = this.value;
         }
     });
     // console.log( up[id].push())
@@ -674,7 +677,7 @@ function addCatagory(event) {
     alert("add")
     window.$("#categoryForm").modal('hide');
     $("#category_form").trigger("reset");
-console.log("up")
+    console.log("up")
 
     // stop the form from submitting the normal way and refreshing the page
     event.preventDefault();
@@ -759,5 +762,9 @@ $("document").ready(function () {
         $('#mylinks a').removeClass('highlight');
         $(this).addClass('highlight');
     });
+
+   
+
+
 
 });
