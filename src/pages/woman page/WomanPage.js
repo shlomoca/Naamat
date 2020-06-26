@@ -29,9 +29,13 @@ export const WomenDeck = (props) => {
     const deck = [];
     vals.map(woman => {
         var wName = woman["display" + Dictionary.getLanguage()];
-        var sum = woman["highlights" + Dictionary.getLanguage()];
+        var sum = woman[Dictionary.getLanguage()]["summary"];
         var id = woman.id;
         var prof = woman["ProfilePic"];
+        console.log(wName)
+        console.log(sum)
+        console.log(id)
+        console.log(prof)
         if (wName && sum)
             deck.push(
                 <WomenCard display={wName} summary={sum} id={id} prof={prof} woman={true} />);
@@ -204,13 +208,15 @@ export class ShoWoman extends Component {
 
 
 
-
+//searches for w
 export function getWomen(womanName) {
     if (womanName) {
         var nameattr = "display" + determineLang(womanName);
+        // var nameattr = Dictionary.getLanguage();
         var MaxIndex = getMaxIndex(womanName);
         //get all the women that ae in the lexicografical area of the search term womanName
-        db.collection('women').where(nameattr, ">=", womanName).where(nameattr, "<", MaxIndex).get().then(snapshot => {
+        db.collection('women').where("display", "array-contains", womanName).get().then(snapshot => {
+        // db.collection('women').where(nameattr, ">=", womanName).where(nameattr, "<", MaxIndex).get().then(snapshot => {
             const women = [];
             //get a women arry with all women results for this search
             snapshot.forEach(doc => {
@@ -229,6 +235,7 @@ export function getWomen(womanName) {
                 ReactDOM.unmountComponentAtNode(find);
 
             if (women.length != 0) {
+                console.log(women)
                 ReactDOM.render(<WomenDeck cards={women} />, document.getElementById('womenHolder'));
             }
 
@@ -238,6 +245,8 @@ export function getWomen(womanName) {
     else
         console.log("women not found");
 }
+
+
 
 //get the next lexicographic index
 function getMaxIndex(str) {
@@ -277,53 +286,56 @@ function determineLang(str) {
     return "HE"
 }
 
-//editWoman adds the infomation of a woman to the add woman model
-export function editWoman(id) {
+//loadWomanToModal adds the infomation of a woman to the add woman model
+export function loadWomanToModal(id) {
     var woman;
-
     db.collection('women').doc(id).get().then(doc => {
         woman = doc.data();
-
-
-        $("#name").val(woman.name);
-        $("#name").attr('readonly', true);
-
-        $("#birth").val(woman.birth);
-        $("#birth").attr('readonly', true);
-
+        if (woman.length != 0) {
+        $("#name").val(woman.name).attr('readonly', true);
+        $("#birth").val(woman.birth).attr('readonly', true);
         $("#death").val(woman.death);
+        $("#ProfilePic").val(woman.ProfilePic);
 
-
-    })
-
-    langs.forEach(lang => {
-
-        db.collection('women').doc(id).collection('langs').doc(lang).get().then(doc => {
-
-            const info = [];
-            const data = doc.data();
-            if (data) {
-                info.push(data);
-            }
-
-            if (info.length != 0) {
-
-                Object.values(info).forEach(fileds => {
-                    Object.keys(fileds).forEach(key => {
-                        if (key != "ProfilePic")
-                            $("#" + key + lang).val(fileds[key]);
-                        else {
-                            $("#" + key).val(fileds[key]);
-                        }
-                    })
-                })
-            }
-        })
+            langs.forEach(lang => {
+                var arr = woman[lang];
+                Object.keys(arr).forEach(field => {
+                    // Object.keys(fileds).forEach(key => {
+                            $("#" + field + lang).val(woman[field]);
+                        })
+                        
+                    // })
+            })
+        }
     })
 
     window.$("#staticBackdrop").modal('show');
 
 }
+// langs.forEach(lang => {
+
+//     db.collection('women').doc(id).collection('langs').doc(lang).get().then(doc => {
+
+//         const info = [];
+//         const data = doc.data();
+//         if (data) {
+//             info.push(data);
+//         }
+
+//         if (info.length != 0) {
+
+//             Object.values(info).forEach(fileds => {
+//                 Object.keys(fileds).forEach(key => {
+//                     if (key != "ProfilePic")
+//                         $("#" + key + lang).val(fileds[key]);
+//                     else {
+//                         $("#" + key).val(fileds[key]);
+//                     }
+//                 })
+//             })
+//         }
+//     })
+// })
 
 
 

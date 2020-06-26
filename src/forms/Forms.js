@@ -6,7 +6,7 @@ import { db, auth } from '../config/Firebase'
 import { Dictionary, langs } from '../Dictionary';
 import ImageUpload, { MultiImageUpload } from './ImageUpload';
 import { AfterMessage } from '../Components';
-import { editWoman } from '../pages/woman page/WomanPage';
+import { loadWomanToModal } from '../pages/woman page/WomanPage';
 import ReactDOM from 'react-dom';
 import { ShowHideFunc } from '../pages/Admin Page/AdminPage';
 
@@ -109,7 +109,7 @@ export const EditWomanModal = () => {
                                         <label className="regularLabel" htmlFor="death">{Dictionary.death}</label>
                                         <input className="regularInput" type="date" rows="1" cols="35" id="death" name="death" />
                                     </div>
-                                    
+
 
                                     <div className="form-group">
                                         <button id="submit1" type="button" className="btn btn-success" onClick={() => allreadyExist($("#name").val() + $("#birth").val())} >{Dictionary.next}</button>
@@ -207,7 +207,7 @@ export const SuggestWomanModal = () => {
 
                             <label htmlFor="bibliography">{Dictionary.bibliography}</label>
                             <div className="form-group">
-                                <input type="text" autoComplete="off" rows="4" cols="50" name="bibliography" id={"bibliography" + j}  />
+                                <input type="text" autoComplete="off" rows="4" cols="50" name="bibliography" id={"bibliography" + j} />
                             </div>
                             <div className="form-group">
                                 <a id="fill20"></a>
@@ -252,11 +252,11 @@ export const FeedbackModal = () => {
                         <h5 className="modal-title" id="staticBackdropLabel">{Dictionary.feedback}</h5>
                     </div>
                     <div className="modal-body">
-                        <form dir="RTL"  id="feedback_form" name="feedback_form" onSubmit={addFeedback}  >
+                        <form dir="RTL" id="feedback_form" name="feedback_form" onSubmit={addFeedback}  >
                             <div className="form-group">
                                 <label className="regularLabel" htmlFor="feed_name">{Dictionary.name}*</label>
                             </div>
-                            <input type="text"  rows="1" className="regularInput" id="feed_name" cols="35" name="name"  required />
+                            <input type="text" rows="1" className="regularInput" id="feed_name" cols="35" name="name" required />
                             <div id="email-group" className="form-group">
                                 <label className="regularLabel" htmlFor="feed_email">{Dictionary.enterMail}*</label>
                             </div>
@@ -477,32 +477,25 @@ export function addWoman(e) {
     $('#submit1').show();
 
     $($('#woman_form').prop('elements')).each(function () {
-        if (this.value && !this.skip) {
-            if (this.name === "highlights" || this.name === "display") {
-                gen[this.id] = (this.value).toLowerCase();
+        if (this.value && this.type != "file") {
+            if (this.name === "display") {
+                gen[this.id] = breakName((this.value).toLowerCase());
             }
-            if (this.lang == "EN") {
+            if (this.name == "ProfilePic")
+                gen[this.name] = this.value;
+            else if (this.lang == "EN") {
                 boolEn = true;
-                en["id"] = id;
                 en[this.name] = this.value;
-
             }
             else if (this.lang == "HE") {
                 boolHe = true;
-                he["id"] = id;
                 he[this.name] = this.value;
             }
             else if (this.lang == "AR") {
                 boolAr = true;
-                ar["id"] = id;
                 ar[this.name] = this.value;
             }
             else {
-                if (this.name === "ProfilePic") {
-                    ar[this.name] = this.value;
-                    he[this.name] = this.value;
-                    en[this.name] = this.value;
-                }
                 gen[this.name] = this.value;
                 gen["id"] = id;
             }
@@ -511,17 +504,73 @@ export function addWoman(e) {
 
 
     if (boolHe)
-        db.collection('women').doc(id).collection("langs").doc("HE").set(he);
+        gen["HE"] = he
     if (boolEn)
-        db.collection('women').doc(id).collection("langs").doc("EN").set(en);
+        gen["EN"] = en
     if (boolAr)
-        db.collection('women').doc(id).collection("langs").doc("AR").set(ar);
+        gen["AR"] = ar
     db.collection('women').doc(id).set(gen).then(() => {
         alert(Dictionary.uploadSuccess);
         window.$("#staticBackdrop").modal('hide');
         window.location.reload();
-    })
+    }).catch(error => console.log(error))
 }
+// //add woman to database
+// export function addWoman(e) {
+//     e.preventDefault();
+
+//     var he = {}, en = {}, ar = {}, gen = {};
+//     var boolHe = false, boolEn = false, boolAr = false;
+
+//     var id = $("#name").val() + $("#birth").val();
+//     $('#submit1').show();
+
+//     $($('#woman_form').prop('elements')).each(function () {
+//         if (this.value && !this.skip) {
+//             if (this.name === "highlights" || this.name === "display") {
+//                 gen[this.id] = (this.value).toLowerCase();
+//             }
+//             if (this.lang == "EN") {
+//                 boolEn = true;
+//                 en["id"] = id;
+//                 en[this.name] = this.value;
+
+//             }
+//             else if (this.lang == "HE") {
+//                 boolHe = true;
+//                 he["id"] = id;
+//                 he[this.name] = this.value;
+//             }
+//             else if (this.lang == "AR") {
+//                 boolAr = true;
+//                 ar["id"] = id;
+//                 ar[this.name] = this.value;
+//             }
+//             else {
+//                 if (this.name === "ProfilePic") {
+//                     ar[this.name] = this.value;
+//                     he[this.name] = this.value;
+//                     en[this.name] = this.value;
+//                 }
+//                 gen[this.name] = this.value;
+//                 gen["id"] = id;
+//             }
+//         }
+//     });
+
+
+//     if (boolHe)
+//         db.collection('women').doc(id).collection("langs").doc("HE").set(he);
+//     if (boolEn)
+//         db.collection('women').doc(id).collection("langs").doc("EN").set(en);
+//     if (boolAr)
+//         db.collection('women').doc(id).collection("langs").doc("AR").set(ar);
+//     db.collection('women').doc(id).set(gen).then(() => {
+//         alert(Dictionary.uploadSuccess);
+//         window.$("#staticBackdrop").modal('hide');
+//         window.location.reload();
+//     })
+// }
 
 // add to suggest woman collection
 function addsuggest() {
@@ -581,7 +630,7 @@ function addCatagory(event) {
     var id = $("#category_nameHE").val();
 
     $($('#category_form').prop('elements')).each(function () {
-        if (this.value&&(this.type) !=("file")) {
+        if (this.value && (this.type) != ("file")) {
             gen[this.id] = this.value;
         }
     });
@@ -621,7 +670,7 @@ export function allreadyExist(id, wantToEdit) {
             if (doc.exists) {
                 if (wantToEdit || window.confirm(Dictionary.editExistVal)) {
                     showing("#step2", wantToEdit);
-                    editWoman(id);
+                    loadWomanToModal(id);
                 }
 
             }
@@ -652,12 +701,22 @@ export function showing(id, wantToEdit) {
 
 }
 
+function breakName(name) {
+    var len = name.length,
+        broken = [];
+    for (let i = 1; i <= len; i++) {
+        broken.push(name.substring(0, i))
+    }
+    console.log(broken);
+    return broken;
+}
+
 
 $("document").ready(function () {
     //make sure only step 1 is shown 
     $("#step2").hide();
     $("#popup").hide();
-    
+
     // show and hide link input from add woman form.
     $('#mylinks a').click(function () {
         $('#mylinks a').removeClass('highlight');
