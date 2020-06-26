@@ -102,7 +102,7 @@ export class PictursCarousel extends Component {
                 if (this.state.dataslide != 0)
                   active = false;
                 indicators.push(<CarouselLi dataslide={this.state.dataslide} active={active} />);
-                items.push(<CarouselSlide display={data["display" + Dictionary.getLanguage()]} highlights={data["highlights" + Dictionary.getLanguage()]} id={id} src={data["ProfilePic"]} active={active} />);
+                items.push(<CarouselSlide display={data[Dictionary.getLanguage()]["display"]} highlights={data[Dictionary.getLanguage()]["summary" ]} id={id} src={data["ProfilePic"]} active={active} />);
                 this.setState({ indicators: indicators });
                 this.setState({ items: items });
                 this.setState({ dataslide: this.state.dataslide + 1 });

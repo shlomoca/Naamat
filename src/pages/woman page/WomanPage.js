@@ -21,15 +21,13 @@ const MainDetails = (props) => {
 }
 
 
-
-
 //WomenDeck expots a list of women by a pop calld cadrs that is an array of fierebase docs
 export const WomenDeck = (props) => {
     const vals = Object.values(props.cards);
     const deck = [];
     vals.map(woman => {
-        var wName = woman["display" + Dictionary.getLanguage()];
-        var sum = woman["highlights" + Dictionary.getLanguage()];
+        var wName = woman[Dictionary.getLanguage()]["display"];
+        var sum = woman[Dictionary.getLanguage()]["summary"];
         var id = woman.id;
         var prof = woman["ProfilePic"];
         if (wName && sum)
@@ -170,15 +168,15 @@ export class ShoWoman extends Component {
             managerBtns = <div className="editWomanBtn" ><button className="btn" onClick={(e) => { e.preventDefault(); allreadyExist(this.state.id, true); }}>{Dictionary.edit}</button>
                 <button className=" btn-danger deleteBtn" onClick={() => { if (window.confirm(Dictionary.areYouSure)) deleteWoman(this.state.id) }} >{Dictionary.delete}</button></div>;
         }
-        db.collection('women').doc(this.state.id).collection('langs').doc(Dictionary.getLanguage()).get().then(snapshot => {
+        db.collection('women').doc(this.state.id).get().then(snapshot => {
             const data = snapshot.data();
             info.push(data);
             var alldata = info[0];
-            if (alldata) {
-                page.push(<MainDetails display={alldata["display"]} link={alldata["ProfilePic"]} managerBtns={managerBtns} />);
+            if (alldata&&alldata[Dictionary.getLanguage()]) {
+                page.push(<MainDetails display={alldata[Dictionary.getLanguage()]["display"]} link={alldata["ProfilePic"]} managerBtns={managerBtns} />);
                 (Object.values(this.state.fields)).forEach(key => {
-                    if (alldata[key])
-                        page.push(<p><b>{Dictionary[key]}:</b> {alldata[key]}</p>);
+                    if (alldata[Dictionary.getLanguage()][key])
+                        page.push(<p><b>{Dictionary[key]}:</b> {alldata[Dictionary.getLanguage()][key]}</p>);
                 })
             }
             else
@@ -204,13 +202,14 @@ export class ShoWoman extends Component {
 
 
 
-
+//searches for w
 export function getWomen(womanName) {
     if (womanName) {
         var nameattr = "display" + determineLang(womanName);
+        // var nameattr = Dictionary.getLanguage();
         var MaxIndex = getMaxIndex(womanName);
-        //get all the women that ae in the lexicografical area of the search term womanName
-        db.collection('women').where(nameattr, ">=", womanName).where(nameattr, "<", MaxIndex).get().then(snapshot => {
+        //get all the women that start with the term search
+        db.collection('women').where(nameattr, "array-contains", womanName).get().then(snapshot => {
             const women = [];
             //get a women arry with all women results for this search
             snapshot.forEach(doc => {
@@ -238,6 +237,8 @@ export function getWomen(womanName) {
     else
         console.log("women not found");
 }
+
+
 
 //get the next lexicographic index
 function getMaxIndex(str) {
@@ -277,53 +278,54 @@ function determineLang(str) {
     return "HE"
 }
 
-//editWoman adds the infomation of a woman to the add woman model
-export function editWoman(id) {
+//loadWomanToModal adds the infomation of a woman to the add woman model
+export function loadWomanToModal(id) {
     var woman;
-
     db.collection('women').doc(id).get().then(doc => {
         woman = doc.data();
-
-
-        $("#name").val(woman.name);
-        $("#name").attr('readonly', true);
-
-        $("#birth").val(woman.birth);
-        $("#birth").attr('readonly', true);
-
+        if (woman.length != 0) {
+        $("#name").val(woman.name).attr('readonly', true);
+        $("#birth").val(woman.birth).attr('readonly', true);
         $("#death").val(woman.death);
+        $("#ProfilePic").val(woman.ProfilePic);
 
-
-    })
-
-    langs.forEach(lang => {
-
-        db.collection('women').doc(id).collection('langs').doc(lang).get().then(doc => {
-
-            const info = [];
-            const data = doc.data();
-            if (data) {
-                info.push(data);
-            }
-
-            if (info.length != 0) {
-
-                Object.values(info).forEach(fileds => {
-                    Object.keys(fileds).forEach(key => {
-                        if (key != "ProfilePic")
-                            $("#" + key + lang).val(fileds[key]);
-                        else {
-                            $("#" + key).val(fileds[key]);
-                        }
-                    })
-                })
-            }
-        })
+            langs.forEach(lang => {
+                var arr = woman[lang];
+                if(arr)
+                Object.keys(arr).forEach(field => {
+                            $("#" + field + lang).val(arr[field]);
+                        })
+            })
+        }
     })
 
     window.$("#staticBackdrop").modal('show');
 
 }
+// langs.forEach(lang => {
+
+//     db.collection('women').doc(id).collection('langs').doc(lang).get().then(doc => {
+
+//         const info = [];
+//         const data = doc.data();
+//         if (data) {
+//             info.push(data);
+//         }
+
+//         if (info.length != 0) {
+
+//             Object.values(info).forEach(fileds => {
+//                 Object.keys(fileds).forEach(key => {
+//                     if (key != "ProfilePic")
+//                         $("#" + key + lang).val(fileds[key]);
+//                     else {
+//                         $("#" + key).val(fileds[key]);
+//                     }
+//                 })
+//             })
+//         }
+//     })
+// })
 
 
 
