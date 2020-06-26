@@ -293,19 +293,23 @@ export class CollectionCheckBox extends Component {
   componentWillMount() {
 
     var arr = [];
-    db.collection('categories').doc('catagories').get().then(snapshot => {
-      var data = snapshot.data();
-      console.log(data);
+    db.collection('categories').get().then(snapshot => {
+      console.log(snapshot)
+      snapshot.forEach(doc=>{
 
-      if (data) {
-        Object.keys(data).forEach(cat => {
-          console.log(Object.keys(data));
-          if (data[cat])
-            arr.push(data[cat][Dictionary.getLanguage()])
-        })
-        this.setState({ items: arr });
-      }
-
+        var data = doc.data();
+        console.log(data);
+        if (data) {
+            if (data[Dictionary.getLanguage()]){
+              
+              arr.push(data[Dictionary.getLanguage()])
+              this.setState({ items: arr });
+            }
+            
+          
+        }
+        
+      })
     })
   }
   render() {

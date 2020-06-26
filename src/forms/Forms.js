@@ -102,24 +102,6 @@ export const DidYouKnowModal = () => {
                                     <textarea className="facts" autoComplete="off" type="text" lang="AR" type="text" rows="2" cols="35" id="DidYouKnowAR" name="DidYouKnow" placeholder="הוסיפי עובדה בערבית" defaultValue="" />
                                 </div>
 
-                                {/* < textarea lang={langs[0]} active={true} type="text"
-                                    id="DidYouKnow"
-                                    name="DidYouKnow"
-                                    placeholder={Dictionary.AddNewFact}
-                                    defaultValue="" required
-                                />
-                                < textarea lang={langs[1]} type="text"
-                                    id="DidYouKnow"
-                                    name="DidYouKnow"
-                                    placeholder={Dictionary.AddNewFact}
-                                    defaultValue="" required />
-
-                                <textarea lang={langs[2]} type="text"
-                                    id="DidYouKnow"
-                                    name="DidYouKnow"
-                                    placeholder={Dictionary.AddNewFact}
-                                    defaultValue="" required /> */}
-
                             </div>
 
                             <div className="modal-footer">
