@@ -21,21 +21,15 @@ const MainDetails = (props) => {
 }
 
 
-
-
 //WomenDeck expots a list of women by a pop calld cadrs that is an array of fierebase docs
 export const WomenDeck = (props) => {
     const vals = Object.values(props.cards);
     const deck = [];
     vals.map(woman => {
-        var wName = woman["display" + Dictionary.getLanguage()];
+        var wName = woman[Dictionary.getLanguage()]["display"];
         var sum = woman[Dictionary.getLanguage()]["summary"];
         var id = woman.id;
         var prof = woman["ProfilePic"];
-        console.log(wName)
-        console.log(sum)
-        console.log(id)
-        console.log(prof)
         if (wName && sum)
             deck.push(
                 <WomenCard display={wName} summary={sum} id={id} prof={prof} woman={true} />);
@@ -174,15 +168,15 @@ export class ShoWoman extends Component {
             managerBtns = <div className="editWomanBtn" ><button className="btn" onClick={(e) => { e.preventDefault(); allreadyExist(this.state.id, true); }}>{Dictionary.edit}</button>
                 <button className=" btn-danger deleteBtn" onClick={() => { if (window.confirm(Dictionary.areYouSure)) deleteWoman(this.state.id) }} >{Dictionary.delete}</button></div>;
         }
-        db.collection('women').doc(this.state.id).collection('langs').doc(Dictionary.getLanguage()).get().then(snapshot => {
+        db.collection('women').doc(this.state.id).get().then(snapshot => {
             const data = snapshot.data();
             info.push(data);
             var alldata = info[0];
-            if (alldata) {
-                page.push(<MainDetails display={alldata["display"]} link={alldata["ProfilePic"]} managerBtns={managerBtns} />);
+            if (alldata&&alldata[Dictionary.getLanguage()]) {
+                page.push(<MainDetails display={alldata[Dictionary.getLanguage()]["display"]} link={alldata["ProfilePic"]} managerBtns={managerBtns} />);
                 (Object.values(this.state.fields)).forEach(key => {
-                    if (alldata[key])
-                        page.push(<p><b>{Dictionary[key]}:</b> {alldata[key]}</p>);
+                    if (alldata[Dictionary.getLanguage()][key])
+                        page.push(<p><b>{Dictionary[key]}:</b> {alldata[Dictionary.getLanguage()][key]}</p>);
                 })
             }
             else
@@ -214,9 +208,8 @@ export function getWomen(womanName) {
         var nameattr = "display" + determineLang(womanName);
         // var nameattr = Dictionary.getLanguage();
         var MaxIndex = getMaxIndex(womanName);
-        //get all the women that ae in the lexicografical area of the search term womanName
-        db.collection('women').where("display", "array-contains", womanName).get().then(snapshot => {
-        // db.collection('women').where(nameattr, ">=", womanName).where(nameattr, "<", MaxIndex).get().then(snapshot => {
+        //get all the women that start with the term search
+        db.collection('women').where(nameattr, "array-contains", womanName).get().then(snapshot => {
             const women = [];
             //get a women arry with all women results for this search
             snapshot.forEach(doc => {
@@ -235,7 +228,6 @@ export function getWomen(womanName) {
                 ReactDOM.unmountComponentAtNode(find);
 
             if (women.length != 0) {
-                console.log(women)
                 ReactDOM.render(<WomenDeck cards={women} />, document.getElementById('womenHolder'));
             }
 
@@ -299,12 +291,10 @@ export function loadWomanToModal(id) {
 
             langs.forEach(lang => {
                 var arr = woman[lang];
+                if(arr)
                 Object.keys(arr).forEach(field => {
-                    // Object.keys(fileds).forEach(key => {
-                            $("#" + field + lang).val(woman[field]);
+                            $("#" + field + lang).val(arr[field]);
                         })
-                        
-                    // })
             })
         }
     })
