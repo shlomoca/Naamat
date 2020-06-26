@@ -1,7 +1,7 @@
 import './MainUserPage.css';
 import $ from 'jquery';
 import React, { Component } from 'react';
-import { NavBar, DisplayModal, BottomBar, AfterMessage } from '../../Components.js';
+import { NavBar,   BottomBar, AfterMessage, CategoryCheckBox } from '../../Components.js';
 import SimpleReactLightbox from "simple-react-lightbox";
 import { SRLWrapper } from "simple-react-lightbox";
 import { FeedbackButton } from '../../forms/Forms';

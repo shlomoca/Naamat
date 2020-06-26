@@ -142,7 +142,6 @@ class Search extends Component {
 }
 
 
-
 //show bottom bar 
 export const BottomBar = () => {
 
@@ -264,6 +263,61 @@ const Buttons = (props) => {
   return obj;
 
 }
+
+export const CategoryCheckBox = (props) => {
+  var items = props.items;
+  var i = 0;
+
+  return (
+    <div className="category_Check_Box">
+      {items.map(cat => {
+        return (<div className="checkbox_conatainer">
+          <label className="lableCheckBox" for={"cat" + i}>{cat}</label>
+          <input className="checkbox" type="checkbox" id={"cat" + i} name={"cat" + i++} value={cat} />
+        </div>)
+      })}
+    </div>)
+}
+
+
+export class CollectionCheckBox extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      colc: props.colc,
+      doc: props.doc,
+      items: []
+    }
+  }
+
+  componentWillMount() {
+
+    var arr = [];
+    db.collection('categories').doc('catagories').get().then(snapshot => {
+      var data = snapshot.data();
+      console.log(data);
+
+      if (data) {
+        Object.keys(data).forEach(cat => {
+          console.log(Object.keys(data));
+          if (data[cat])
+            arr.push(data[cat][Dictionary.getLanguage()])
+        })
+        this.setState({ items: arr });
+      }
+
+    })
+  }
+  render() {
+    return (
+      <div id="CheckBoxes">
+        <CategoryCheckBox items={this.state.items} />
+      </div>
+    )
+  }
+}
+
+
 
 function managerSignout() {
   auth.signOut();
