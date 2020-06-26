@@ -90,6 +90,7 @@ export const Dictionary = new LocalizedStrings({
     enterScore:"Please rate your visit",
     addBibiloraphy:"Please enter a bibliography",
     isAdmin:"Admin user",
+    choseCategory:"Please mark the relevent categories",
     
     //components
     builders: `This site was built by: Shlomo Carmi, Daniel Raz, Sahar Cohen, Adiel Tsayag, Matan Yamin`,
@@ -180,6 +181,7 @@ export const Dictionary = new LocalizedStrings({
     enterScore:"אנא דרג את ביקורך",
     addBibiloraphy:"אנא הכניסי ביבילוגרפיה",
     isAdmin:"משתמש מנהל",
+    choseCategory:"אנא סמני את הקטגוריות הרלוונטיות",
 
     //components
     builders: 'אתר זה נבנה על ידי: שלמה כרמי, דניאל רז, סהר כהן, עדיאל צייג, מתן ימין ©',
@@ -277,6 +279,7 @@ export const Dictionary = new LocalizedStrings({
     enterScore:"يرجى تقييم زيارتك",
     addBibiloraphy:"الرجاء إدخال قائمة مراجع",
     isAdmin:"مستخدم المشرف",
+    choseCategory:"يرجى وضع علامة على الفئات ذات الصلة",
 
     //components
 

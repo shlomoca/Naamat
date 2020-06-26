@@ -9,3 +9,34 @@
 {
     max-height:100% ;
 }
+
+.category_Check_Box
+{
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;
+    /* align-content: space-evenly; */
+    justify-content: space-around;
+    width:80%;
+}
+
+
+.checkbox_conatainer{
+    display: flex;
+    text-align: center;
+    margin: 2%;
+    align-items: baseline;
+    
+}
+
+.checkbox
+{
+    /* margin: 0%;
+    width: 3%; */
+    width:15px;
+}
+
+.lableCheckBox
+{
+    margin: 0;
+}

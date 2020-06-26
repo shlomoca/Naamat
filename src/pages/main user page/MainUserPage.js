@@ -1,7 +1,7 @@
 import './MainUserPage.css';
 import $ from 'jquery';
 import React, { Component } from 'react';
-import { NavBar,  DisplayModal, BottomBar, AfterMessage } from '../../Components.js';
+import { NavBar,  DisplayModal, BottomBar, AfterMessage, CategoryCheckBox } from '../../Components.js';
 import SimpleReactLightbox from "simple-react-lightbox";
 import { SRLWrapper } from "simple-react-lightbox";
 import { FeedbackButton } from '../../forms/Forms';
@@ -30,6 +30,7 @@ class MainUserPage extends Component {
                     <NavBar AdminPage={false} Admin={this.props.Admin} />
                     <PictursCarousel />
                     <ShowPhotos />
+                    <CategoryCheckBox arr={["army","politics","sport","sciense","colture","economy"]} />
                 </div>
                 <BottomBar />
             </div>
@@ -101,8 +102,8 @@ export class PictursCarousel extends Component {
               if (data["ProfilePic"]) {
                 if (this.state.dataslide != 0)
                   active = false;
-                indicators.push(<CarouselLi dataslide={this.state.dataslide} active={active} />);
-                items.push(<CarouselSlide display={data[Dictionary.getLanguage()]["display"]} highlights={data[Dictionary.getLanguage()]["summary" ]} id={id} src={data["ProfilePic"]} active={active} />);
+                // indicators.push(<CarouselLi dataslide={this.state.dataslide} active={active} />);
+                // items.push(<CarouselSlide display={data[Dictionary.getLanguage()]["display"]} highlights={data[Dictionary.getLanguage()]["summary" ]} id={id} src={data["ProfilePic"]} active={active} />);
                 this.setState({ indicators: indicators });
                 this.setState({ items: items });
                 this.setState({ dataslide: this.state.dataslide + 1 });

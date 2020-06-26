@@ -5,7 +5,7 @@ import React from 'react';
 import { db, auth } from '../config/Firebase'
 import { Dictionary, langs } from '../Dictionary';
 import ImageUpload, { MultiImageUpload } from './ImageUpload';
-import { AfterMessage } from '../Components';
+import { AfterMessage, CategoryCheckBox, CollectionCheckBox } from '../Components';
 import { loadWomanToModal } from '../pages/woman page/WomanPage';
 import ReactDOM from 'react-dom';
 import { ShowHideFunc } from '../pages/Admin Page/AdminPage';
@@ -120,11 +120,16 @@ export const EditWomanModal = () => {
                                 </div>
                             </div>
                             <div id="step2">
+                                <ImageUpload param1="name" param2="birth" pathEnd="/ProfilePic" param1Empty="name not enterd" param2Empty="date of birth not ented" />
                                 <div className="tab-content">
                                     <GenralForm lang={langs[0]} active={true} />
                                     <GenralForm lang={langs[1]} />
                                     <GenralForm lang={langs[2]} />
                                 </div>
+                                <MultiImageUpload param1="name" param2="birth" param1Empty="name not enterd" param2Empty="date of birth not ented" />
+
+                                <label htmlFor={"categorySelect"}>{Dictionary.choseCategory} </label>
+                                <CollectionCheckBox colc={"categories"} doc={"categories"} />
                             </div>
                         </div>
                         <div className="requiredFooter" > {Dictionary.mustfilled}  </div>
@@ -345,8 +350,6 @@ export const GenralForm = (props) => {
             <div className="form-group">
                 <label for="display">{Dictionary.displayname}</label>
                 <input type="text" autoComplete="off" lang={props.lang} rows="1" className="regularInput" cols="35" id={"display" + props.lang} name="display" placeholder={Dictionary.displayname} />
-
-                <ImageUpload param1="name" param2="birth" pathEnd="/ProfilePic" param1Empty="name not enterd" param2Empty="date of birth not ented" />
             </div>
 
 
@@ -417,7 +420,7 @@ export const GenralForm = (props) => {
                 </label>
             </div>
 
-            <MultiImageUpload param1="name" param2="birth" param1Empty="name not enterd" param2Empty="date of birth not ented" />
+
         </div>
 
     )
