@@ -644,6 +644,7 @@ function addFeedback(e) {
                 obj[this.name] = this.value;
         }
     });
+    obj["date"]=new Date();
     if (!maxscoreSet) {
         alert(Dictionary.enterScore);
         return;
@@ -659,10 +660,9 @@ function addFeedback(e) {
 
 function addCatagory(event) {
     if (!$("#category_form").valid()) return;
-    var gen = {}, up = {};
+    var gen = {},up;
     var id = $("#category_nameHE").val();
-
-    alert("add")
+    
     $($('#category_form').prop('elements')).each(function () {
         if (this.value && (this.type) != ("file")) {
             if (this.type == "hidden")
@@ -671,10 +671,18 @@ function addCatagory(event) {
                 gen[this.lang] = this.value;
         }
     });
-    // console.log( up[id].push())
     console.log(gen)
-    db.collection('categories').doc('categories').add(gen);
+    let myMap = new Map([
+        [1, 'one']
+      ])
+
+      myMap.set(0, 'zero')
+    up={ [id]:gen};
+    // temp.push(gen)
+    console.log(myMap)
     alert("add")
+    db.collection('categories').doc('categories').set(up);
+    // alert("add")
     window.$("#categoryForm").modal('hide');
     $("#category_form").trigger("reset");
     console.log("up")
