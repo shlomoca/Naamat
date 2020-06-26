@@ -126,7 +126,7 @@ export class LoginComponent extends Component {
     signOutFun() {
         auth.signOut();
     }
-    componentWillMount() {
+   timeRefresh() {
         //reset page to main page if page is inactive for a half an hour
         var time = new Date().getTime();
         $(document.body).bind("mousemove keypress touchmove ", function () {
@@ -134,7 +134,7 @@ export class LoginComponent extends Component {
         });
 
         setInterval(function () {
-            if ((new Date().getTime() - time >= 1800000)&&!this.state.permission) {
+            if ((new Date().getTime() - time >= 180000)) {
                 window.location.href = "/";
             }
         }, 1000);
@@ -186,6 +186,7 @@ export class LoginComponent extends Component {
     }
 
     renderVisitorDiv() {
+        this.timeRefresh();
         ReactDOM.render(
             <Router>
                 <Route exact path="/" component={MainUserPage} />

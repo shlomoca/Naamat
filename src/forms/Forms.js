@@ -655,11 +655,11 @@ function addFeedback(e) {
 }
 
 function addCatagory(event) {
-
     if (!$("#category_form").valid()) return;
     var gen = {},up={};
     var id = $("#category_nameHE").val();
-
+    
+    alert("add")
     $($('#category_form').prop('elements')).each(function () {
         if (this.value && (this.type) != ("file")) {
             if(this.type=="hidden")
@@ -668,8 +668,10 @@ function addCatagory(event) {
             gen[this.lang] = this.value;
         }
     });
-    console.log( up[id].push(gen))
-    db.collection('categories').doc('categories').add(up);
+    // console.log( up[id].push())
+    console.log(gen)
+    db.collection('categories').doc('categories').add(gen);
+    alert("add")
     window.$("#categoryForm").modal('hide');
     $("#category_form").trigger("reset");
 console.log("up")
