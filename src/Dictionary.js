@@ -106,7 +106,7 @@ export const Dictionary = new LocalizedStrings({
     langs:'Here will be shown all the facts in system language',
     createdAt:"Date",
     imAgree:"I agree of receiving messages from naamat",
-    acceptFiles:"accept audio,image,video files",
+    acceptFiles:"accept only image files",
     
     
     //components
@@ -206,7 +206,7 @@ export const Dictionary = new LocalizedStrings({
     isAdmin:"משתמש מנהל",
     choseCategory:"אנא סמני את הקטגוריות הרלוונטיות",
     imAgree:"אני מאשר לקבל הודעות מאת נעמת",
-    acceptFiles:"מקבל קבצי אודיו,תמונות,וידאו",
+    acceptFiles:"מקבל קבצי תמונות בלבד",
     summeryHighlight: "תקציר זה יופיע בקרוסלת התמונות ובקטגוריות",
 
     DidYouKnow:'הידעת ?',
@@ -327,7 +327,7 @@ export const Dictionary = new LocalizedStrings({
     langs:'هنا سيتم عرض جميع الحقائق',
     createdAt:"تاريخ",
     imAgree:"أوافق على تلقي رسائل من نعمة",
-    acceptFiles:"قبول ملفات الصوت والصورة والفيديو",
+    acceptFiles:"يستقبل ملفات الصور فقط",
 
     //components
 

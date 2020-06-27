@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import { NavBar, BottomBar } from '../../Components';
 import { db, storage } from '../../config/Firebase'
 import { Dictionary, langs } from '../../Dictionary';
-import { allreadyExist, addWoman, EditWomanModal } from '../../forms/Forms'
+import { allreadyExist, EditWomanModal } from '../../forms/Forms'
 import $ from 'jquery';
 
 
@@ -26,13 +26,15 @@ export const WomenDeck = (props) => {
     const vals = Object.values(props.cards);
     const deck = [];
     vals.map(woman => {
-        var wName = woman[Dictionary.getLanguage()]["display"];
-        var sum = woman[Dictionary.getLanguage()]["summary"];
-        var id = woman.id;
-        var prof = woman["ProfilePic"];
-        if (wName && sum)
-            deck.push(
-                <WomenCard display={wName} summary={sum} id={id} prof={prof} woman={true} />);
+        if (woman[Dictionary.getLanguage()]) {
+            var wName = woman[Dictionary.getLanguage()]["display"];
+            var sum = woman[Dictionary.getLanguage()]["summary"];
+            var id = woman.id;
+            var prof = woman["ProfilePic"];
+            if (wName && sum)
+                deck.push(
+                    <WomenCard display={wName} summary={sum} id={id} prof={prof} woman={true} />);
+        }
     })
 
     return (
@@ -65,7 +67,7 @@ export class WomenCard extends Component {
                 <a className={aCont} href={"/womanPage/" + this.state.id}>
                     {/* id={"roundImage" + this.state.id} */}
                     <img className={imgClas} src={this.state.url} alt={this.state.display} />
-                    <h2 className={nameCls}>{this.state.display}</h2>
+                    <h3 className={nameCls}>{this.state.display}</h3>
                     <a className={summaryCls} > {this.state.summary} </a>
                 </a>
             </div>
@@ -82,7 +84,7 @@ export function deleteWoman(id) {
     woman.delete().then(() => {
         deleteBucket(id);
         alert(`user ${id} was deleted`);
-        
+
     }
     ).catch(error => {
         console.log(error)
@@ -99,7 +101,7 @@ function deleteBucket(id) {
     storageRef.listAll().then(function (result) {
         result.items.forEach(function (imageRef) {
             // And finally delete them
-            imageRef.delete().then(()=>{
+            imageRef.delete().then(() => {
 
                 window.location = "/";
             }).catch(error => console.log(error));
@@ -174,7 +176,7 @@ export class ShoWoman extends Component {
                         page.push(<p><b>{Dictionary[key]}:</b> {alldata[Dictionary.getLanguage()][key]}</p>);
                 })
             }
-            else{
+            else {
                 alert(Dictionary.nothingToShow)
                 window.location.href = '/';
             }
@@ -291,6 +293,20 @@ export function loadWomanToModal(id) {
                 if (arr)
                     Object.keys(arr).forEach(field => {
                         $("#" + field + lang).val(arr[field]);
+
+                        if (field == "reading") {
+                            let i = 0;
+                            console.log(arr[field]);
+                            Object.values(arr[field]).forEach(val => {
+                                $("#" + field + lang + i).val(val);
+                                if (i != 0) {
+                                    var fill = $("#fill2" + Dictionary.getLanguage());
+                                        fill.append(`<a>‏</a><input id=${"reading" + Dictionary.getLanguage() + i} lang=${Dictionary.getLanguage()} type="text" autoComplete="off" rows="4" cols="50" name="reading" placeholder=${Dictionary.bibliography} /><a>‏</a>`)
+                                        $("#" + field + lang + i).val(val);
+                                }
+                                i++;
+                            })
+                        }
                     })
             })
         }
