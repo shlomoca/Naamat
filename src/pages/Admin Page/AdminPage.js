@@ -26,7 +26,7 @@ class AdminPage extends Component {
                     <div className="backBtn">
                         {/* <Link to="/"><button id="backBtn" className="btn">{Dictionary.back}</button></Link> */}
                     </div>
-                    <p id="adminTitle">{Dictionary.welcomeManager}</p>
+                    <p id="adminTitle" className="titles">{Dictionary.welcomeManager}</p>
                     <div id="allAdmin">
                         <button className="btnhover" type="button" id="btn1" data-toggle="modal" data-target="#staticBackdrop"> {Dictionary.adminAddWoman} </button>
                         <button className="btnhover" type="button" id="btn5" data-toggle="modal" data-target="#categoryForm"> {Dictionary.adminAddCategory} </button>
@@ -126,13 +126,23 @@ const DisplayData = (props) => {
 
 
     })
-
-
+    var obj;
+    if (collect == "feedback")
+        obj = Dictionary.feedbackTitle;
+    else if (collect == "didYouKnow")
+        obj = Dictionary.didYouKnowTitle;
+    else if (collect == "users")
+        obj = Dictionary.usersTitle;
+    else if (collect == "categories")
+        obj = Dictionary.categoriesTitle;
+    else if (collect == "suggest_women")
+        obj = Dictionary.suggest_womenTitle;
 
 
     return (
 
         <div id="feedbackTable">
+            <p id="tableTitle" className="titles">{obj}</p>
             <table className="table table-dark">
                 <BuildTableHead fields={fields} unCheckedFields={unCheckedFields} />
                 <tbody>
@@ -242,6 +252,9 @@ export const ServiceButtons = (props) => {
         }
         if (btnId == "factMngBtn") {
             serviceButtons.push(<td><button className="btn" id="addFactBtn" data-toggle="modal" data-target="#DidYouKnowModal">{Dictionary.AddNewFact}</button></td>)
+        }
+        if (btnId == "categoriesBtn") {
+            serviceButtons.push(<td><button className="btn" id="addCategoryBtn" data-toggle="modal" data-target="#categoryForm">{Dictionary.adminAddCategory}</button></td>)
         }
 
     }

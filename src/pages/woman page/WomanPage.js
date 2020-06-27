@@ -65,8 +65,8 @@ export class WomenCard extends Component {
                 <a className={aCont} href={"/womanPage/" + this.state.id}>
                     {/* id={"roundImage" + this.state.id} */}
                     <img className={imgClas} src={this.state.url} alt={this.state.display} />
-                    <h3 className={nameCls}>{this.state.display}</h3>
-                <a className={summaryCls} > {this.state.summary} </a>
+                    <h2 className={nameCls}>{this.state.display}</h2>
+                    <a className={summaryCls} > {this.state.summary} </a>
                 </a>
             </div>
         )

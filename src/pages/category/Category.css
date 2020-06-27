@@ -17,6 +17,8 @@
     
   }
   .catagoryImgContainer{
+
+
     cursor: pointer;
     position: relative;
     text-align: center;
@@ -62,4 +64,17 @@
   .catagoryBtn:hover 
   {
     background-color:transparent;
+  }
+
+  #shoWoman2{
+
+    margin-right: 5%;
+    flex-direction: row;
+    width: 65%;
+    font-size: larger;
+    /* margin: auto; */
+    text-align: justify;
+    text-justify: inter-word;
+
+
   }
