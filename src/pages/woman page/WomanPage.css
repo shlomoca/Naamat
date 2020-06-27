@@ -31,7 +31,7 @@ margin-right: 5%;
 flex-direction: row;
 width: 65%;
 font-size: larger;
-/* margin: auto; */
+margin: auto;
 text-align: justify;
 text-justify: inter-word;
 }
@@ -45,7 +45,7 @@ h1{
 
 .womanCardsContainer{
 
-    height: 10px;
+    height: 125px;
     width: 69%;
     margin-right: 0.5%;
     border: 3.5px groove purple ;
@@ -87,8 +87,15 @@ a {
 
 }
 .summarySearch{
-color: black;
+    color: black;
     font-weight: bolder;
+    text-align: justify;
+    text-justify: inter-word;
+    /* justify-items: i; */
+    
+
+
+
 }
 .catCardsContainer{
 
