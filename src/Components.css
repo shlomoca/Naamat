@@ -109,7 +109,7 @@ background: rgb(191, 224, 232);
 
 .roundedImg {
     /* display: inline; */
-    display: none;
+    /* display: none; */
     object-fit: cover;
     margin-top: 4%;
     margin-left: 12%;
