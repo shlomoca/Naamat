@@ -32,6 +32,12 @@ export const Dictionary = new LocalizedStrings({
     homePageBack: `Home Page`,
     signOut: `Sign out`,
     admin: `Admin`,
+    feedbackTitle:'Feedbacks',
+    didYouKnowTitle:'Facts',
+    usersTitle:'Users',
+    categoriesTitle:'Categories',
+    suggest_womenTitle:'Suggest Women',
+
 
 
 
@@ -139,6 +145,11 @@ export const Dictionary = new LocalizedStrings({
     homePageBack: `עמוד הבית`,
     signOut: `התנתקי`,
     admin: `מנהל`,
+    feedbackTitle:'משובים',
+    didYouKnowTitle:'עובדות',
+    usersTitle:'משתמשים',
+    categoriesTitle:'קטגוריות',
+    suggest_womenTitle:'נשים מוצעות',
 
     //woman page
     edit: 'ערכי',
@@ -246,6 +257,11 @@ export const Dictionary = new LocalizedStrings({
     homePageBack: `الصفحة الرئيسية`,
     signOut: `خروج`,
     admin: `مدير`,
+    feedbackTitle:'التقيمات',
+    didYouKnowTitle:'حقائق',
+    usersTitle:'المستخدمين',
+    categoriesTitle:'التصنيفات',
+    suggest_womenTitle:'توحي النساء',
 
     //woman page
     edit: 'تعديل',

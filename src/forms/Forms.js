@@ -167,7 +167,7 @@ export const EditWomanModal = () => {
                                 </div>
                             </div>
                             <div id="step2">
-                                <ImageUpload param1="name" param2="birth" pathEnd="/ProfilePic" param1Empty="name not enterd" param2Empty="date of birth not ented" required={"required"} />
+                                <ImageUpload param1="name" param2="birth" pathEnd="/ProfilePic" param1Empty="name not enterd" param2Empty="date of birth not ented" />
                                 <div className="tab-content">
                                     <GenralForm lang={langs[0]} active={true} />
                                     <GenralForm lang={langs[1]} />
@@ -553,7 +553,7 @@ export function addWoman(e) {
         // Specify validation rules
         rules: {
             media: {
-                required: true,
+              
             }
         },
         messages: {}
