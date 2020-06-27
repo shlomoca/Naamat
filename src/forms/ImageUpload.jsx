@@ -184,7 +184,7 @@ export class MultiImageUpload extends Component {
         <p>{Dictionary.media+Dictionary.acceptFiles}</p>
         <progress value={this.state.progress} max="100" />
         <div className="form-group">
-          <input type="file" name="multi_media" id="multi_media" skip={true} aria-describedby="inputGroupFileAddon04" accept="image/*,audio/*,video/*" multiple onChange={this.handleChange} required={this.state.required} />
+          <input type="file" name="multi_media" id="multi_media" skip={true} aria-describedby="inputGroupFileAddon04" accept="image/*" multiple onChange={this.handleChange} required={this.state.required} />
         </div>
         <input type="hidden" id="linksMedia" name="linksMedia" value={this.state.links} />
         <button type="button" onClick={this.handleUpload}>{Dictionary.upload}</button>

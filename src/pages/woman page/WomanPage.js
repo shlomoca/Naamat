@@ -288,11 +288,37 @@ export function loadWomanToModal(id) {
             $("#death").val(woman.death);
             $("#ProfilePic").val(woman.ProfilePic);
 
+            
+
+            if (woman["categories"]) {
+                Object.values(woman["categories"]).forEach(cat => {
+                    console.log(cat);
+                    // document.getElementById(cat).checked = true;
+                    $("#" + cat).prop('checked', true);
+                })
+            }
+
             langs.forEach(lang => {
                 var arr = woman[lang];
                 if (arr)
                     Object.keys(arr).forEach(field => {
                         $("#" + field + lang).val(arr[field]);
+
+                        if (field == "reading") {
+                            let i = 0;
+                            console.log(arr[field]);
+                            Object.values(arr[field]).forEach(val => {
+                                if (i != 0) {
+                                    var fill = $("#fill2" + Dictionary.getLanguage());
+                                    fill.append(`<a>‏</a><input id=${"reading" + Dictionary.getLanguage() + i} lang=${Dictionary.getLanguage()} type="text" autoComplete="off" rows="4" cols="50" name="reading" placeholder=${Dictionary.bibliography} /><a>‏</a>`)
+                                    $("#" + field + lang + i).val(val);
+                                }
+                                else
+                                    $("#" + field + lang + i).val(val);
+                                i++;
+                            })
+                        }
+
                     })
             })
         }

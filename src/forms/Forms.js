@@ -138,11 +138,12 @@ export const EditWomanModal = () => {
                         </div>
                         <div className="modal-body">
                             <div id="step1">
-                                <ul id="mylinks" className="nav nav-tabs">
-                                    <li className="langTabs active"><a href="#HE">עברית</a></li>
-                                    <li id="mylinks" className="langTabs"><a data-toggle="tab" href="#EN">English</a></li>
-                                    <li id="mylinks" className="langTabs"><a data-toggle="tab" href="#AR">عربى</a></li>
+                                <ul className="nav nav-pills">
+                                    <li id="liHE" className="langTabs active"><a class="nav-link active" data-toggle="tab" href="#HE" >עברית</a></li>
+                                    <li id="liEN" className="langTabs"><a class="nav-link" data-toggle="tab" href="#EN" >English</a></li>
+                                    <li id="liAR" className="langTabs"><a class="nav-link" data-toggle="tab" href="#AR" >عربى</a></li>
                                 </ul>
+                                
                                 <div className="addWomanContainer">
                                     <div className="form-group">
                                         <label className="regularLabel" htmlFor="name">{Dictionary.name}*</label>
@@ -156,10 +157,10 @@ export const EditWomanModal = () => {
                                         <label className="regularLabel" htmlFor="death">{Dictionary.death}</label>
                                         <input className="regularInput" type="date" rows="1" cols="35" id="death" name="death" />
                                     </div>
-
+                                    <p id="ImportantMSG">{Dictionary.ImportantMSG}</p>
 
                                     <div className="form-group">
-                                        <button id="submit1" type="button" className="btn btn-success" onClick={() => allreadyExist($("#name").val() + $("#birth").val())} >{Dictionary.next}</button>
+                                        <button id="submit1" type="button" className="btn btn-success" onClick={() =>{allreadyExist($("#name").val() + $("#birth").val());lockInputs();}} >{Dictionary.next}</button>
                                     </div>
                                     <div id="popup">
                                         <span className="popuptext" id="myPopup">{Dictionary.popup}</span>
@@ -260,7 +261,7 @@ export const SuggestWomanModal = () => {
 
                             <label htmlFor="bibliography">{Dictionary.bibliography}</label>
                             <div className="form-group">
-                                <input type="text" autoComplete="off" rows="4" cols="50" name="bibliography" id={"bibliography" + j} />
+                                <input type="text" autoComplete="off" rows="4" cols="50" name="reading" id={"reading" + j} />
                             </div>
                             <div className="form-group">
                                 <a id="fill20"></a>
@@ -268,9 +269,9 @@ export const SuggestWomanModal = () => {
                                     e.preventDefault();
                                     var fill = $("#fill20");
 
-                                    if ($("#bibliography" + j).val()) {
+                                    if ($("#reading" + j).val()) {
                                         j++;
-                                        fill.append(`<input id=${"bibliography" + j} autoComplete="off"  type="text" rows="4" cols="50" name="quotes" />`)
+                                        fill.append(`<input id=${"reading" + j} autoComplete="off"  type="text" rows="4" cols="50" name="reading" />`)
                                     } else
                                         alert(Dictionary.addBibiloraphy);
 
@@ -481,6 +482,11 @@ export const GenralForm = (props) => {
     )
 }
 
+function lockInputs(){//lock inputs for edit. using in EditWomanModal when we add new woman
+    $("#name").attr('readonly', true);
+    $("#birth").attr('readonly', true);
+}
+
 
 function addNewUser(e) {
     e.preventDefault();
@@ -524,7 +530,7 @@ function addNewUser(e) {
     });
 }
 
-function AddNewFact(e) {
+function AddNewFact(e) {//add new fact in three languages
     e.preventDefault();
     var obj = {};
     if ($("#DidYouKnowHE").val())
@@ -536,8 +542,8 @@ function AddNewFact(e) {
     obj["id"] = String(new Date());
     db.collection('didYouKnow').doc(obj["id"]).set(obj).then(() => {
         alert(Dictionary.FactAddedSuccefully)
-        window.$("#DidYouKnowModal").modal('hide');
-        window.location.reload();
+        window.$("#DidYouKnowModal").modal('hide');//close adding form
+        window.location.reload();//show up to date table
 
     }).catch(function (error) {
         alert(error)
@@ -548,20 +554,7 @@ function AddNewFact(e) {
 //add woman to database
 export function addWoman(e) {
     e.preventDefault();
-
-    $("#woman_form").validate({
-        // Specify validation rules
-        rules: {
-            media: {
-
-            }
-        },
-        messages: {}
-    });
-
-    if (!$("#woman_form").valid()) return;
-
-    if ($("#mustUpload").data('clicked')) {//צריך לבדוק איך לטפל במקרה הקצה כאשר סדר הלחיצות שונה ואם זה נחוץ
+    if ($("#ProfilePic").val()) {
 
         var HE = {}, EN = {}, AR = {}, gen = {};
         var boolHe = false, boolEn = false, boolAr = false;
@@ -682,7 +675,7 @@ export function addWoman(e) {
         }).catch(error => console.log(error))
     }
     else
-        alert("please upload profile picture");
+        alert(Dictionary.mustUpload);
 }
 
 function mergelinks(links, discription) {
@@ -799,7 +792,7 @@ function addCatagory(event) {
         window.$("#categoryForm").modal('hide');
         $("#category_form").trigger("reset");
     } else
-        alert("please upload pic");
+        alert(Dictionary.mustUpload);
     // stop the form from submitting the normal way and refreshing the page
     event.preventDefault();
 };
@@ -809,6 +802,7 @@ function addCatagory(event) {
 function resetForm(reset, empty1, empty2) {
     console.log(empty2);
     return () => {
+        
         $("#" + reset).trigger("reset");
 
         if (empty1)
