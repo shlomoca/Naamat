@@ -223,8 +223,8 @@ export const SuggestWomanModal = () => {
                             </div>
 
                             <div className="form-group">
-                                <label className="regularLabel" htmlFor="display">{Dictionary.displayname}</label>
-                                <input type="text" autoComplete="off" rows="1" className="regularInput" cols="35" id="display" name="display" />
+                                <label className="regularLabel" htmlFor="display">{Dictionary.displayname}*</label>
+                                <input type="text" autoComplete="off" rows="1" className="regularInput" cols="35" id="display" name="display" required />
                             </div>
 
 
@@ -261,7 +261,7 @@ export const SuggestWomanModal = () => {
 
                             <label htmlFor="bibliography">{Dictionary.bibliography}</label>
                             <div className="form-group">
-                                <input type="text" autoComplete="off" rows="4" cols="50" name="bibliography" id={"bibliography" + j} />
+                                <input type="text" autoComplete="off" rows="4" cols="50" name="reading" id={"reading" + j} />
                             </div>
                             <div className="form-group">
                                 <a id="fill20"></a>
@@ -269,9 +269,9 @@ export const SuggestWomanModal = () => {
                                     e.preventDefault();
                                     var fill = $("#fill20");
 
-                                    if ($("#bibliography" + j).val()) {
+                                    if ($("#reading" + j).val()) {
                                         j++;
-                                        fill.append(`<input id=${"bibliography" + j} autoComplete="off"  type="text" rows="4" cols="50" name="quotes" />`)
+                                        fill.append(`<input id=${"reading" + j} autoComplete="off"  type="text" rows="4" cols="50" name="reading" />`)
                                     } else
                                         alert(Dictionary.addBibiloraphy);
 
@@ -573,9 +573,10 @@ export function addWoman(e) {
         var boolHe = false, boolEn = false, boolAr = false;
 
         var id = $("#name").val() + $("#birth").val();
-        var categories = [], descriptionHE = [], linkHE = [], readingHE = [];
-        var descriptionEN = [], linkEN = [], readingEN = [];
-        var descriptionAR = [], linkAR = [], readingAR = [];
+        var categories = [], descriptionHE = {}, linkHE = {}, readingHE = {};
+        var descriptionEN = {}, linkEN = {}, readingEN = {};
+        var descriptionAR = {}, linkAR = {}, readingAR = {};
+
         $('#submit1').show();
 
         $($('#woman_form').prop('elements')).each(function () {
@@ -590,18 +591,35 @@ export function addWoman(e) {
                         break;
                     case "description":
                         let i = (this.id).replace(/[^0-9]/g, '');
-                        if (i)
-                            ["description" + this.lang][i] = this.value;
+                        if (i) {
+                            if (this.lang === "AR")
+                                descriptionAR[i] = this.value;
+                            else if (this.lang === "EN")
+                                descriptionEN[i] = this.value;
+                            else if (this.lang === "HE")
+                                descriptionHE[i] = this.value;
+                        }
                         break;
                     case "link":
                         let j = (this.id).replace(/[^0-9]/g, '');
-                        if (j)
-                            ["link" + this.lang][j] = this.value;
+                        if (j) {
+                            if (this.lang === "AR")
+                                linkAR[j] = this.value;
+                            else if (this.lang === "EN")
+                                linkEN[j] = this.value;
+                            else if (this.lang === "HE")
+                                linkHE[j] = this.value;
+                        }
                         break;
                     case "reading":
                         let k = (this.id).replace(/[^0-9]/g, '');
                         if (k)
-                            ["reading" + this.lang][k] = this.value;
+                            if (this.lang === "AR")
+                                readingAR[k] = this.value;
+                            else if (this.lang === "EN")
+                                readingEN[k] = this.value;
+                            else if (this.lang === "HE")
+                                readingHE[k] = this.value;
                         break;
                     case "display":
                         gen[this.id] = breakName((this.value).toLowerCase());
@@ -629,20 +647,31 @@ export function addWoman(e) {
 
             }
         });
-        // if (categories)
-        //     gen["categories"] = categories;
-        // langs.forEach(lang => {
-
-        //     if (["description" + lang])
-        //         [lang]["description"] = ["description" + lang];
-        //     if (["link" + lang])
-        //         [lang]["link"] = ["link" + lang];
-        //     if (["reading" + lang])
-        //         [lang]["reading"] = ["reading" + lang];
-        // }
-        // );
 
 
+
+        if (categories)
+            gen["categories"] = categories;
+            
+    
+if(descriptionHE)
+        HE["description"] = descriptionHE;
+if(linkHE)
+        HE["link"] = linkHE;
+if(readingHE)
+        HE["reading"] = readingHE;
+if(descriptionEN)
+        EN["description"] = descriptionEN;
+if(linkEN)
+       EN["link"] = linkEN;
+if(readingEN)
+        EN["reading"] = readingEN;
+if(descriptionAR)
+        AR["description"] = descriptionAR;
+if(linkAR)
+       AR["link"] = linkAR;
+if(readingAR)
+        AR["reading"] = readingAR;
 
         if (boolHe)
             gen["HE"] = HE
@@ -653,7 +682,8 @@ export function addWoman(e) {
         db.collection('women').doc(id).set(gen).then(() => {
             alert(Dictionary.uploadSuccess);
             window.$("#staticBackdrop").modal('hide');
-            window.location.reload();
+            // window.location.reload();
+
         }).catch(error => console.log(error))
     }
     else
@@ -663,13 +693,14 @@ export function addWoman(e) {
 // add to suggest woman collection
 function addsuggest() {
     var obj = {}
-    var id = $("#yourEmail").val();
+    var id = $("#yourEmail").val()+$("#display").val();
 
     $($('#suggest_woman_form').prop('elements')).each(function () {
         if (this.value) {
             obj[this.id] = this.value;
         }
     });
+    obj["id"] = id;
     obj["date"] = moment().local('he').format('L');
 
     db.collection('suggest_women').doc(id).set(obj).then(function () {
@@ -706,6 +737,7 @@ function addFeedback(e) {
     if (id);
     db.collection('feedback').doc(id).set(obj).then(function () {
         window.$("#feedbackForm").modal('hide');
+        window.location.reload();
     }).catch(error => console.log(error));
 }
 //adds catagory to database
@@ -751,7 +783,7 @@ function addCatagory(event) {
         window.$("#categoryForm").modal('hide');
         $("#category_form").trigger("reset");
     } else
-        alert("please upload pic");
+        alert(Dictionary.mustUpload);
     // stop the form from submitting the normal way and refreshing the page
     event.preventDefault();
 };

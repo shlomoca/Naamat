@@ -97,7 +97,8 @@ const DisplayData = (props) => {
         if (fields)
             fields.forEach(field => {
                 console.log(singleRow[Dictionary.getLanguage()]);
-                if (singleRow[field] != undefined && singleRow[field] != "") {
+                console.log(singleRow[field]);
+                if (singleRow[field] || singleRow[field] === false) {
                     col.push(String(singleRow[field]));
                 }
                 else if (singleRow[Dictionary.getLanguage()])
@@ -227,8 +228,10 @@ export const BuildTableBody = (props) => {
         else
             tds.push(<td className="textAlign"> {col} </td>);
     });
-
+    if (collect == "suggest_women")
+        tds.push(<td className="editSuggest" > <button className="btn" onClick={() => editSuggestWomen(id)} >{Dictionary.edit}</button></td>)
     tds.push(
+
         <td className="deleteBtnTd" > <button className="btn-danger deleteBtn" onClick={askAndDelete(collect, id)} >{Dictionary.delete}</button></td>
     );
     return (
@@ -259,10 +262,26 @@ export const ServiceButtons = (props) => {
 
 }
 
+function editSuggestWomen(id) {
+    var woman;
+    db.collection('suggest_women').doc(id).get().then(doc => {
+        woman = doc.data();
+
+        $("#name").val(woman.display);
+
+        Object.keys(woman).forEach(field => {
+            $("#" + field + Dictionary.getLanguage()).val(woman[field]);
+        })
+
+    }).catch(error => console.log(error));
+
+    window.$("#staticBackdrop").modal('show');
+}
+
 
 function ValidateEmail(mail) {
     return (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail))
 }
 $(document).ready(() => {
-    
+
 });

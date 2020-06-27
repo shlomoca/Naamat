@@ -107,8 +107,10 @@ export const Dictionary = new LocalizedStrings({
     langs:'Here will be shown all the facts in system language',
     createdAt:"Date",
     imAgree:"I agree of receiving messages from naamat",
-    acceptFiles:"accept audio,image,video files",
+    
     ImportantMSG:'Note that after pressing the "Next" button you will not be able to change the required fields',
+    acceptFiles:"accept only image files",
+    mustUpload:"please upload picture",
     
     
     //components
@@ -209,8 +211,9 @@ export const Dictionary = new LocalizedStrings({
     isAdmin:"משתמש מנהל",
     choseCategory:"אנא סמני את הקטגוריות הרלוונטיות",
     imAgree:"אני מאשר לקבל הודעות מאת נעמת",
-    acceptFiles:"מקבל קבצי אודיו,תמונות,וידאו",
+    acceptFiles:"מקבל קבצי תמונות בלבד",
     summeryHighlight: "תקציר זה יופיע בקרוסלת התמונות ובקטגוריות",
+    mustUpload:"בבקשה העלי תמונה",
 
     DidYouKnow:'הידעת ?',
     AddNewFact:'הוסיפי עובדה חדשה',
@@ -333,8 +336,11 @@ export const Dictionary = new LocalizedStrings({
     langs:'هنا سيتم عرض جميع الحقائق',
     createdAt:"تاريخ",
     imAgree:"أوافق على تلقي رسائل من نعمة",
-    acceptFiles:"قبول ملفات الصوت والصورة والفيديو",
+    
     ImportantMSG:'لاحظ أنه بعد الضغط على زر "التالي" لن تتمكن من تغيير الحقول المطلوبة',
+    acceptFiles:"يستقبل ملفات الصور فقط",
+    mustUpload:"يرجى تحميل صورة",
+
 
     //components
 
