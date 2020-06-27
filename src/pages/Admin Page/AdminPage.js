@@ -29,7 +29,6 @@ class AdminPage extends Component {
                     <p id="adminTitle" className="titles">{Dictionary.welcomeManager}</p>
                     <div id="allAdmin">
                         <button className="btnhover" type="button" id="btn1" data-toggle="modal" data-target="#staticBackdrop"> {Dictionary.adminAddWoman} </button>
-                        <button className="btnhover" type="button" id="btn5" data-toggle="modal" data-target="#categoryForm"> {Dictionary.adminAddCategory} </button>
                         <button className="btnhover" type="button" id="feedbackBtn" onClick={() => { getData("feedbackBtn", "feedback", ["name", "email", "score"], ["improvement", "createdAt"]) }}> {Dictionary.adminFeedback} </button>
                         <button className="btnhover" type="button" id="sugWomenMngBtn" onClick={() => { getData("sugWomenMngBtn", "suggest_women", ["yourName", "yourEmail", "display"]) }}> ניהול הצעות להוספה </button>
                         <button className="btnhover" type="button" id="categoriesBtn" onClick={() => { getData("categoriesBtn", "categories", ["category"]) }}> {Dictionary.manageCategory} </button>
@@ -228,8 +227,8 @@ export const BuildTableBody = (props) => {
         else
             tds.push(<td className="textAlign"> {col} </td>);
     });
-    tds.push(
 
+    tds.push(
         <td className="deleteBtnTd" > <button className="btn-danger deleteBtn" onClick={askAndDelete(collect, id)} >{Dictionary.delete}</button></td>
     );
     return (
@@ -250,6 +249,9 @@ export const ServiceButtons = (props) => {
         }
         if (btnId == "factMngBtn") {
             serviceButtons.push(<td><button className="btn" id="addFactBtn" data-toggle="modal" data-target="#DidYouKnowModal">{Dictionary.AddNewFact}</button></td>)
+        }
+        if (btnId == "categoriesBtn") {
+            serviceButtons.push(<td><button className="btn" id="addCategoryBtn" data-toggle="modal" data-target="#categoryForm">{Dictionary.adminAddCategory}</button></td>)
         }
 
     }
