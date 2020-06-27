@@ -435,3 +435,8 @@ align-self: center;
     
     width: auto;
 }
+
+#ImportantMSG{ /*warning message for woman id*/
+    font-weight: bold;
+    color: red;
+}
