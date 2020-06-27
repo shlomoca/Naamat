@@ -89,18 +89,26 @@ color: black;
 }
 .catCardsContainer{
     height: 1%;
+    width: 400%;
+    flex-direction: row ;
+    /* flex-direction: flex; */
+    /* justify-content: flex-end; */
+    
     
 }
 .catContainCard{
     
+
     display: flex;
-    flex-wrap: wrap;
-    height: 300px;
+    /* flex-wrap: nowrap; */
+    /* height: 300px; */
     width:30%;
-    flex-direction: column ;
+    flex-direction: row ;
     margin-bottom: 2%;
-   
+    
 }
+
+
 
 .catImage{
 
@@ -112,11 +120,22 @@ color: black;
    width: 30vh;
 }
 .catSummery{
-
     
+    /* align-self: center; */
+    height: auto;
+    /* padding-left: 15%; */
     /* max-width: 80%; */
     /* display: flex; */
-    /* background-color: gray; */
-    
+    /* width: auto; */
+    /* display: inline; */
+
 }
 
+.catTitle{
+
+
+    /* margin-right: 20%; */
+
+
+
+}
