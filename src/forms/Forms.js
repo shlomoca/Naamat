@@ -131,18 +131,19 @@ export const EditWomanModal = () => {
                 <div className="modal-content">
                     <form dir="RTL" id="woman_form" name="woman_form" onSubmit={addWoman}  >
                         <div className="modal-header">
-                            <button type="button" id="xClose" className="close" data-dismiss="modal" aria-label="Close" onClick={resetForm("woman_form", "fill1"+Dictionary.getLanguage(), "fill2"+Dictionary.getLanguage())}>
+                            <button type="button" id="xClose" className="close" data-dismiss="modal" aria-label="Close" onClick={resetForm("woman_form", "fill1" + Dictionary.getLanguage(), "fill2" + Dictionary.getLanguage())}>
                                 <span aria-hidden="true">&times;</span>
                             </button>
                             <h5 className="modal-title" id="staticBackdropLabel">{Dictionary.addWoman}</h5>
                         </div>
                         <div className="modal-body">
                             <div id="step1">
-                                <ul id="mylinks" className="nav nav-tabs">
-                                    <li className="langTabs active"><a href="#HE">עברית</a></li>
-                                    <li id="mylinks" className="langTabs"><a data-toggle="tab" href="#EN">English</a></li>
-                                    <li id="mylinks" className="langTabs"><a  data-toggle="tab" href="#AR">عربى</a></li>
+                                <ul className="nav nav-pills">
+                                    <li id="liHE" className="langTabs active"><a class="nav-link active" data-toggle="tab" href="#HE" >עברית</a></li>
+                                    <li id="liEN" className="langTabs"><a class="nav-link" data-toggle="tab" href="#EN" >English</a></li>
+                                    <li id="liAR" className="langTabs"><a class="nav-link" data-toggle="tab" href="#AR" >عربى</a></li>
                                 </ul>
+                                
                                 <div className="addWomanContainer">
                                     <div className="form-group">
                                         <label className="regularLabel" htmlFor="name">{Dictionary.name}*</label>
@@ -156,10 +157,10 @@ export const EditWomanModal = () => {
                                         <label className="regularLabel" htmlFor="death">{Dictionary.death}</label>
                                         <input className="regularInput" type="date" rows="1" cols="35" id="death" name="death" />
                                     </div>
-
+                                    <p id="ImportantMSG">{Dictionary.ImportantMSG}</p>
 
                                     <div className="form-group">
-                                        <button id="submit1" type="button" className="btn btn-success" onClick={() => allreadyExist($("#name").val() + $("#birth").val())} >{Dictionary.next}</button>
+                                        <button id="submit1" type="button" className="btn btn-success" onClick={() =>{allreadyExist($("#name").val() + $("#birth").val());lockInputs();}} >{Dictionary.next}</button>
                                     </div>
                                     <div id="popup">
                                         <span className="popuptext" id="myPopup">{Dictionary.popup}</span>
@@ -182,7 +183,7 @@ export const EditWomanModal = () => {
                         </div>
                         <div className="modal-footer">
                             <div className="requiredFooter" > {Dictionary.mustfilled}  </div>
-                            <button type="button" className="close" className="btn btn-secondary" onClick={resetForm("woman_form", "fill1"+Dictionary.getLanguage(), "fill2"+Dictionary.getLanguage())} data-dismiss="modal">{Dictionary.close}</button>
+                            <button type="button" className="close" className="btn btn-secondary" onClick={resetForm("woman_form", "fill1" + Dictionary.getLanguage(), "fill2" + Dictionary.getLanguage())} data-dismiss="modal">{Dictionary.close}</button>
                             <button type="submit" htmlFor="woman_form" className="btn btn-success" id="submit_form" >{Dictionary.submit} </button>
                         </div>
                     </form>
@@ -435,50 +436,55 @@ export const GenralForm = (props) => {
                 <textarea rows="4" cols="50" name="quotes" lang={props.lang} id={"quotes" + props.lang}  ></textarea>
             </div>
             <div className="makbil">
-            <div className="form-group ">
-                <label htmlFor={"link" + props.lang}>{Dictionary.links} </label>
-                <input className="regularInput" id={"description" + props.lang + i} lang={props.lang} autoComplete="off" type="text" rows="4" cols="50" name="description" placeholder={Dictionary.description} />
-                <a>‏</a>
+                <div className="form-group ">
+                    <label htmlFor={"link" + props.lang}>{Dictionary.links} </label>
+                    <input className="regularInput" id={"description" + props.lang + i} lang={props.lang} autoComplete="off" type="text" rows="4" cols="50" name="description" placeholder={Dictionary.description} />
+                    <a>‏</a>
 
-                <input className="regularInput" autoComplete="off" id={"link" + props.lang + i} lang={props.lang} type="text" name="link" placeholder={Dictionary.link} />
-                <a id={"fill1" + props.lang} ></a>
-                <button id="addBtn" onClick={(e) => {
-                    e.preventDefault();
-                    var fill = $("#fill1" + props.lang);
-                    if ($("#description" + props.lang + i).val())
-                        if ($("#link" + props.lang + i).val()) {
-                            i++;
-                            fill.append(`<a>‏</a><input id=${"description" + props.lang + i}  lang = ${props.lang} autoComplete="off" type="text" rows="4" className="regularInput" cols="50" name="description" placeholder=${Dictionary.description} />
+                    <input className="regularInput" autoComplete="off" id={"link" + props.lang + i} lang={props.lang} type="text" name="link" placeholder={Dictionary.link} />
+                    <a id={"fill1" + props.lang} ></a>
+                    <button id="addBtn" onClick={(e) => {
+                        e.preventDefault();
+                        var fill = $("#fill1" + props.lang);
+                        if ($("#description" + props.lang + i).val())
+                            if ($("#link" + props.lang + i).val()) {
+                                i++;
+                                fill.append(`<a>‏</a><input id=${"description" + props.lang + i}  lang = ${props.lang} autoComplete="off" type="text" rows="4" className="regularInput" cols="50" name="description" placeholder=${Dictionary.description} />
                             <a>‏</a>
                         <input id=${"link" + props.lang + i} lang = ${props.lang} type="text" autoComplete="off" rows="4" className="regularInput" cols="50" name="link" placeholder=${Dictionary.link} />`)
-                        } else
-                            alert(Dictionary.fillLinkDescription);
-                }}>{Dictionary.addMore}</button>
-            </div>
-
-            <div className="form-group ">
-                <label htmlFor={"reading" + props.lang}>{Dictionary.bibliography}
-                    <input id={"reading" + props.lang + j} lang={props.lang} type="text" autoComplete="off" rows="4" cols="50" name="reading" placeholder={Dictionary.bibliography} />
-                    <a id={"fill2" + props.lang}></a>
-                    <button onClick={(e) => {
-                        e.preventDefault();
-                        var fill = $("#fill2" + props.lang);
-
-                        if ($("#reading" + props.lang + j).val()) {
-                            j++;
-                            fill.append(`<a>‏</a><input id=${"reading" + props.lang + j} lang=${props.lang} type="text" autoComplete="off" rows="4" cols="50" name="reading" placeholder=${Dictionary.bibliography} /><a>‏</a>`)
-                        }
-                        else
-                            alert(Dictionary.addBibiloraphy);
+                            } else
+                                alert(Dictionary.fillLinkDescription);
                     }}>{Dictionary.addMore}</button>
-                </label>
-            </div>
+                </div>
+
+                <div className="form-group ">
+                    <label htmlFor={"reading" + props.lang}>{Dictionary.bibliography}
+                        <input id={"reading" + props.lang + j} lang={props.lang} type="text" autoComplete="off" rows="4" cols="50" name="reading" placeholder={Dictionary.bibliography} />
+                        <a id={"fill2" + props.lang}></a>
+                        <button onClick={(e) => {
+                            e.preventDefault();
+                            var fill = $("#fill2" + props.lang);
+
+                            if ($("#reading" + props.lang + j).val()) {
+                                j++;
+                                fill.append(`<a>‏</a><input id=${"reading" + props.lang + j} lang=${props.lang} type="text" autoComplete="off" rows="4" cols="50" name="reading" placeholder=${Dictionary.bibliography} /><a>‏</a>`)
+                            }
+                            else
+                                alert(Dictionary.addBibiloraphy);
+                        }}>{Dictionary.addMore}</button>
+                    </label>
+                </div>
             </div>
 
 
         </div>
 
     )
+}
+
+function lockInputs(){//lock inputs for edit. using in EditWomanModal when we add new woman
+    $("#name").attr('readonly', true);
+    $("#birth").attr('readonly', true);
 }
 
 
@@ -524,7 +530,7 @@ function addNewUser(e) {
     });
 }
 
-function AddNewFact(e) {
+function AddNewFact(e) {//add new fact in three languages
     e.preventDefault();
     var obj = {};
     if ($("#DidYouKnowHE").val())
@@ -536,8 +542,8 @@ function AddNewFact(e) {
     obj["id"] = String(new Date());
     db.collection('didYouKnow').doc(obj["id"]).set(obj).then(() => {
         alert(Dictionary.FactAddedSuccefully)
-        window.$("#DidYouKnowModal").modal('hide');
-        window.location.reload();
+        window.$("#DidYouKnowModal").modal('hide');//close adding form
+        window.location.reload();//show up to date table
 
     }).catch(function (error) {
         alert(error)
@@ -553,7 +559,7 @@ export function addWoman(e) {
         // Specify validation rules
         rules: {
             media: {
-              
+
             }
         },
         messages: {}
@@ -755,6 +761,7 @@ function addCatagory(event) {
 function resetForm(reset, empty1, empty2) {
     console.log(empty2);
     return () => {
+        
         $("#" + reset).trigger("reset");
 
         if (empty1)
@@ -819,18 +826,18 @@ function breakName(name) {
     return broken;
 }
 
-(function() {
+(function () {
     var aList = document.getElementsByClassName("link"); // list of elements
-    for(var i = 0; i < aList.length; i++) {
-      aList[i].addEventListener("click", function(element) {
-        for(var i = 0; i < aList.length; i++) {   // loop through elements
-          aList[i].classList.remove("show_team"); // and remove the class "show_team"
-        }
-        // add class "show_team" to the clicked element
-        element.target.classList.add("show_team");
-      });
+    for (var i = 0; i < aList.length; i++) {
+        aList[i].addEventListener("click", function (element) {
+            for (var i = 0; i < aList.length; i++) {   // loop through elements
+                aList[i].classList.remove("show_team"); // and remove the class "show_team"
+            }
+            // add class "show_team" to the clicked element
+            element.target.classList.add("show_team");
+        });
     }
-  })();
+})();
 
 
 $("document").ready(function () {
