@@ -129,6 +129,7 @@ const DisplayData = (props) => {
   
 
     return (
+    
         <div id="feedbackTable">
             <table className="table table-dark">
                 <BuildTableHead fields={fields} unCheckedFields={unCheckedFields} />
@@ -216,6 +217,7 @@ export const BuildTableBody = (props) => {
             tds.push(<td className="textAlign"> {col} </td>);
     });
     tds.push(
+        
         <td className="deleteBtnTd" > <button className="btn-danger deleteBtn" onClick={askAndDelete(collect, id)} >{Dictionary.delete}</button></td>
     );
     return (

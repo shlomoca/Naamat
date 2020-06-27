@@ -213,9 +213,11 @@ padding-bottom: 3%;
 
 /* style the Englsh Arabic עברית on the edit woman form */
 .highlight{     
+    background-color: rebeccapurple;
     font-weight:bold;
     /* background: rgba(213, 30, 250, 0.603); */
     font-size: 21px;
+    color: red;
    }
 
    #line{
