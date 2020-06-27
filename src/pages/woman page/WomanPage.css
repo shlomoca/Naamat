@@ -26,10 +26,12 @@
     /* width: 100%; */
 }
 #shoWoman{
-margin: auto;
+/* margin: auto; */
+margin-right: 5%;
+flex-direction: row;
 width: 65%;
 font-size: larger;
-margin: auto;
+/* margin: auto; */
 text-align: justify;
 text-justify: inter-word;
 }
@@ -43,11 +45,12 @@ h1{
 
 .womanCardsContainer{
 
-    height: 120px;
+    height: 10px;
     width: 69%;
     margin-right: 0.5%;
     border: 3.5px groove purple ;
-    border-radius: 3%;
+    /* border-radius: 10%; */
+    /* border-radius: 3%; */
     margin-bottom: 0.09%;
     text-align: center;
     text-justify: inter-word;
@@ -88,27 +91,28 @@ color: black;
     font-weight: bolder;
 }
 .catCardsContainer{
+
     height: 1%;
-    width: 400%;
-    flex-direction: row ;
+    width: 420%;
+    margin-bottom: -60px;
+    /* flex-direction: row ; */
+    background-color: thistle;
+    flex-direction: column;
     /* flex-direction: flex; */
     /* justify-content: flex-end; */
-    
     
 }
 .catContainCard{
     
-
     display: flex;
     /* flex-wrap: nowrap; */
     /* height: 300px; */
     width:30%;
-    flex-direction: row ;
+    flex-direction: row;
+    /* flex-direction: row; */
     margin-bottom: 2%;
     
 }
-
-
 
 .catImage{
 
@@ -121,21 +125,13 @@ color: black;
 }
 .catSummery{
     
-    /* align-self: center; */
     height: auto;
-    /* padding-left: 15%; */
-    /* max-width: 80%; */
-    /* display: flex; */
-    /* width: auto; */
-    /* display: inline; */
+    margin-right: 10%;
+    width: 100%;
 
 }
 
 .catTitle{
 
-
-    /* margin-right: 20%; */
-
-
-
+    margin-right: 2%;
 }
