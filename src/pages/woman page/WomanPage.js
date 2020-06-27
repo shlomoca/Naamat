@@ -288,6 +288,7 @@ export function loadWomanToModal(id) {
             $("#death").val(woman.death);
             $("#ProfilePic").val(woman.ProfilePic);
 
+            
 
             if (woman["categories"]) {
                 Object.values(woman["categories"]).forEach(cat => {

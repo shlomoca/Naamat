@@ -549,19 +549,9 @@ function AddNewFact(e) {
 export function addWoman(e) {
     e.preventDefault();
 
-    $("#woman_form").validate({
-        // Specify validation rules
-        rules: {
-            media: {
-              
-            }
-        },
-        messages: {}
-    });
 
-    if (!$("#woman_form").valid()) return;
 
-    if ($("#mustUpload").data('clicked')) {//צריך לבדוק איך לטפל במקרה הקצה כאשר סדר הלחיצות שונה ואם זה נחוץ
+    if ($("#ProfilePic").val()) {
 
         var HE = {}, EN = {}, AR = {}, gen = {};
         var boolHe = false, boolEn = false, boolAr = false;
@@ -646,26 +636,26 @@ export function addWoman(e) {
 
         if (categories)
             gen["categories"] = categories;
-            
-    
-if(descriptionHE)
-        HE["description"] = descriptionHE;
-if(linkHE)
-        HE["link"] = linkHE;
-if(readingHE)
-        HE["reading"] = readingHE;
-if(descriptionEN)
-        EN["description"] = descriptionEN;
-if(linkEN)
-       EN["link"] = linkEN;
-if(readingEN)
-        EN["reading"] = readingEN;
-if(descriptionAR)
-        AR["description"] = descriptionAR;
-if(linkAR)
-       AR["link"] = linkAR;
-if(readingAR)
-        AR["reading"] = readingAR;
+
+
+        if (descriptionHE)
+            HE["description"] = descriptionHE;
+        if (linkHE)
+            HE["link"] = linkHE;
+        if (readingHE)
+            HE["reading"] = readingHE;
+        if (descriptionEN)
+            EN["description"] = descriptionEN;
+        if (linkEN)
+            EN["link"] = linkEN;
+        if (readingEN)
+            EN["reading"] = readingEN;
+        if (descriptionAR)
+            AR["description"] = descriptionAR;
+        if (linkAR)
+            AR["link"] = linkAR;
+        if (readingAR)
+            AR["reading"] = readingAR;
 
         if (boolHe)
             gen["HE"] = HE
@@ -681,13 +671,13 @@ if(readingAR)
         }).catch(error => console.log(error))
     }
     else
-        alert("please upload profile picture");
+        alert(Dictionary.mustUpload);
 }
 
 // add to suggest woman collection
 function addsuggest() {
     var obj = {}
-    var id = $("#yourEmail").val()+$("#display").val();
+    var id = $("#yourEmail").val() + $("#display").val();
 
     $($('#suggest_woman_form').prop('elements')).each(function () {
         if (this.value) {
