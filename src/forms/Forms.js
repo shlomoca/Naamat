@@ -653,7 +653,7 @@ function addCatagory(event) {
                 gen[this.lang] = this.value;
         }
     });
-    
+    gen["id"]=id;
     db.collection('categories').doc(id).set(gen)
     .catch(error => console.log(error));
     window.$("#categoryForm").modal('hide');

@@ -174,8 +174,10 @@ export class ShoWoman extends Component {
                         page.push(<p><b>{Dictionary[key]}:</b> {alldata[Dictionary.getLanguage()][key]}</p>);
                 })
             }
-            else
+            else{
                 alert(Dictionary.nothingToShow)
+                window.location.href = '/';
+            }
             this.setState({
                 womanData: page,
                 id: this.state.id
