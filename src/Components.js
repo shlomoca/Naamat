@@ -32,8 +32,10 @@ export const NavBar = (props) => {
   else {
     logout = <li className="nav-item"><button id="signOutBtn" type="button" className="btn btn-primary nav-link" onClick={managerSignout} > {Dictionary.signOut}</button > </li>
   }
-  if (categoryPage)
-    back = <Link to='/'><button  type="button" className="btn btn-primary nav-link" >{Dictionary.back}</button ></Link>
+  if (categoryPage) {
+    back = <Link to='/'><button type="button" className="btn btn-primary nav-link" >{Dictionary.back}</button ></Link>
+    $("#catBtn").click(() => window.location.reload());
+  }
   return (
     <div id="navbar">
       <SuggestWomanModal />
@@ -51,7 +53,7 @@ export const NavBar = (props) => {
           </li>
           <li className="nav-item" >
             <Link to="/Category">
-              <button type="button" className="btn btn-primary nav-link" >
+              <button type="button" id="catBtn" className="btn btn-primary nav-link" >
                 {Dictionary.categories}</button>
             </Link>
           </li>
@@ -69,7 +71,7 @@ export const NavBar = (props) => {
             {<Buttons AdminPage={AdminPage} Admin={Admin} />}
           </li>
           <li className="nav-item">{back}</li>
-          
+
           {logout}
         </ul>
       </nav>
