@@ -777,7 +777,7 @@ function addCatagory(event) {
         window.$("#categoryForm").modal('hide');
         $("#category_form").trigger("reset");
     } else
-        alert("please upload pic");
+        alert(Dictionary.mustUpload);
     // stop the form from submitting the normal way and refreshing the page
     event.preventDefault();
 };

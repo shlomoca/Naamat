@@ -107,6 +107,7 @@ export const Dictionary = new LocalizedStrings({
     createdAt:"Date",
     imAgree:"I agree of receiving messages from naamat",
     acceptFiles:"accept only image files",
+    mustUpload:"please upload picture",
     
     
     //components
@@ -208,6 +209,7 @@ export const Dictionary = new LocalizedStrings({
     imAgree:"אני מאשר לקבל הודעות מאת נעמת",
     acceptFiles:"מקבל קבצי תמונות בלבד",
     summeryHighlight: "תקציר זה יופיע בקרוסלת התמונות ובקטגוריות",
+    mustUpload:"בבקשה העלי תמונה",
 
     DidYouKnow:'הידעת ?',
     AddNewFact:'הוסיפי עובדה חדשה',
@@ -328,6 +330,8 @@ export const Dictionary = new LocalizedStrings({
     createdAt:"تاريخ",
     imAgree:"أوافق على تلقي رسائل من نعمة",
     acceptFiles:"يستقبل ملفات الصور فقط",
+    mustUpload:"يرجى تحميل صورة",
+
 
     //components
 
