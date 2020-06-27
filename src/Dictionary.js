@@ -26,7 +26,7 @@ export const Dictionary = new LocalizedStrings({
     adminAddCategory: 'Add Category',
     adminUserManagement: 'Users Management',
     welcomeManager: `Welcome to the management platform`,
-    manageCategory: `manage Category`,
+    manageCategory: `Manage Category`,
     addUserBtn: `Add User`,
     userAddedSuccefully: `New User Added Succefully`,
     homePageBack: `Home Page`,
@@ -37,6 +37,7 @@ export const Dictionary = new LocalizedStrings({
     usersTitle:'Users',
     categoriesTitle:'Categories',
     suggest_womenTitle:'Suggest Women',
+    manageOffers:'Manage Suggestions',
 
 
 
@@ -99,13 +100,15 @@ export const Dictionary = new LocalizedStrings({
     isAdmin:"Admin user",
     choseCategory:"Please mark the relevent categories",
     summeryHighlight: "This summary will appear in photo carousel and categories",
-    DidYouKnow:'Did you know?',
+    DidYouKnow:'Did You Know?',
     AddNewFact:'Add new Fact',
     language:'language',
     FactAddedSuccefully:'Fact added succefully',
     langs:'Here will be shown all the facts in system language',
     createdAt:"Date",
     imAgree:"I agree of receiving messages from naamat",
+    
+    ImportantMSG:'Note that after pressing the "Next" button you will not be able to change the required fields',
     acceptFiles:"accept only image files",
     mustUpload:"please upload picture",
     
@@ -151,6 +154,7 @@ export const Dictionary = new LocalizedStrings({
     usersTitle:'משתמשים',
     categoriesTitle:'קטגוריות',
     suggest_womenTitle:'נשים מוצעות',
+    manageOffers:'ניהול הצעות להוספה',
 
     //woman page
     edit: 'ערכי',
@@ -235,6 +239,8 @@ export const Dictionary = new LocalizedStrings({
     score: 'דירוג',
     improvement: 'הצעות לשיפור',
     addMore: "הוסיפי עוד",
+    ImportantMSG:'שימי לב, לאחר לחיצה על כפתור "הבא" לא תוכלי לשנות את שדות החובה',
+    
 
 
   },
@@ -264,6 +270,7 @@ export const Dictionary = new LocalizedStrings({
     usersTitle:'المستخدمين',
     categoriesTitle:'التصنيفات',
     suggest_womenTitle:'توحي النساء',
+    manageOffers:'إدارة الاقتراحات',
 
     //woman page
     edit: 'تعديل',
@@ -329,6 +336,8 @@ export const Dictionary = new LocalizedStrings({
     langs:'هنا سيتم عرض جميع الحقائق',
     createdAt:"تاريخ",
     imAgree:"أوافق على تلقي رسائل من نعمة",
+    
+    ImportantMSG:'لاحظ أنه بعد الضغط على زر "التالي" لن تتمكن من تغيير الحقول المطلوبة',
     acceptFiles:"يستقبل ملفات الصور فقط",
     mustUpload:"يرجى تحميل صورة",
 
@@ -347,6 +356,7 @@ export const Dictionary = new LocalizedStrings({
     score: 'أحرز هدفا',
     improvement: 'تحسين',
     addMore: "أضف المزيد",
+    
 
 
 
