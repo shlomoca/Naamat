@@ -92,6 +92,7 @@ export const Dictionary = new LocalizedStrings({
     addBibiloraphy:"Please enter a bibliography",
     isAdmin:"Admin user",
     choseCategory:"Please mark the relevent categories",
+    summeryHighlight: "This summary will appear in photo carousel and categories",
     DidYouKnow:'Did you know?',
     AddNewFact:'Add new Fact',
     language:'language',
@@ -191,6 +192,7 @@ export const Dictionary = new LocalizedStrings({
     addBibiloraphy:"אנא הכניסי ביבילוגרפיה",
     isAdmin:"משתמש מנהל",
     choseCategory:"אנא סמני את הקטגוריות הרלוונטיות",
+    summeryHighlight: "תקציר זה יופיע בקרוסלת התמונות ובקטגוריות",
 
     DidYouKnow:'הידעת ?',
     AddNewFact:'הוסיפי עובדה חדשה',
@@ -297,6 +299,7 @@ export const Dictionary = new LocalizedStrings({
     addBibiloraphy:"الرجاء إدخال قائمة مراجع",
     isAdmin:"مستخدم المشرف",
     choseCategory:"يرجى وضع علامة على الفئات ذات الصلة",
+    summeryHighlight: "سيظهر هذا الملخص في مكتبة الصور والفئات",
     DidYouKnow:'هل كنت تعلم؟',
     AddNewFact:'أضف حقيقة جديدة',
     language:'لغة',

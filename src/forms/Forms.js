@@ -135,13 +135,12 @@ export const EditWomanModal = () => {
                             </button>
                             <h5 className="modal-title" id="staticBackdropLabel">{Dictionary.addWoman}</h5>
                         </div>
-
                         <div className="modal-body">
                             <div id="step1">
                                 <ul id="mylinks" className="nav nav-tabs">
-                                    <li id="mylinks" className="langTabs active"><a data-toggle="tab" href="#HE">עברית</a></li>
+                                    <li className="langTabs active"><a href="#HE">עברית</a></li>
                                     <li id="mylinks" className="langTabs"><a data-toggle="tab" href="#EN">English</a></li>
-                                    <li id="mylinks" className="langTabs"><a data-toggle="tab" href="#AR">عربى</a></li>
+                                    <li id="mylinks" className="langTabs"><a  data-toggle="tab" href="#AR">عربى</a></li>
                                 </ul>
                                 <div className="addWomanContainer">
                                     <div className="form-group">
@@ -403,12 +402,12 @@ export const GenralForm = (props) => {
 
             <div className="form-group">
                 <lable for="highlights">{Dictionary.searchSummary}</lable>
-                <textarea type="text" rows="4" cols="50" maxlength="170" autoComplete="off" name="summary" lang={props.lang} id={"summary" + props.lang} placeholder={Dictionary.summary}  ></textarea>
+                <textarea type="text" rows="4" cols="50" maxlength="100" autoComplete="off" name="summary" lang={props.lang} id={"summary" + props.lang} placeholder={Dictionary.summary}  ></textarea>
                 <a>‏</a>
 
 
                 <lable for="highlights">{Dictionary.highlights}</lable>
-                <textarea rows="4" cols="50" name="highlights" lang={props.lang} id={"highlights" + props.lang}   ></textarea>
+                <textarea rows="4" cols="50" maxLength="290" name="highlights" lang={props.lang} id={"highlights" + props.lang} placeholder={Dictionary.summeryHighlight}   ></textarea>
                 <a>‏</a>
 
                 <lable for="biography">{Dictionary.biography}</lable>
@@ -768,6 +767,19 @@ function breakName(name) {
     return broken;
 }
 
+(function() {
+    var aList = document.getElementsByClassName("link"); // list of elements
+    for(var i = 0; i < aList.length; i++) {
+      aList[i].addEventListener("click", function(element) {
+        for(var i = 0; i < aList.length; i++) {   // loop through elements
+          aList[i].classList.remove("show_team"); // and remove the class "show_team"
+        }
+        // add class "show_team" to the clicked element
+        element.target.classList.add("show_team");
+      });
+    }
+  })();
+
 
 $("document").ready(function () {
     //make sure only step 1 is shown 
@@ -775,13 +787,19 @@ $("document").ready(function () {
     $("#popup").hide();
 
     // show and hide link input from add woman form.
-    $('#mylinks a').click(function () {
-        $('#mylinks a').removeClass('highlight');
+    // $('#mylinks a').click(function () {
+    //     $('#mylinks a').removeClass('highlight');
+    //     $(this).addClass('highlight');
+    // });
+
+    $('li').click(function () {
+        $('li.selected').removeClass('highlight');
         $(this).addClass('highlight');
     });
 
-
-
-
+    // $('li').click(function () {
+    //     $('li.selected').removeClass('highlight');
+    //     $(this).addClass('highlight');
+    // });​
 
 });

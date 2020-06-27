@@ -79,7 +79,9 @@ h1{
     
 }
 a {
-    all: unset;
+    /* all: unset; */
+    
+
 }
 .summarySearch{
 color: black;
@@ -91,6 +93,7 @@ color: black;
     
 }
 .catContainCard{
+    
     display: flex;
     flex-wrap: wrap;
     height: 300px;
@@ -98,13 +101,18 @@ color: black;
     margin-bottom: 2%;
 
 }
+
 .catImage{
+
+    border-radius: 30%;
     /* height: 20vh; */
    max-height:100% ;
    /* width: auto; */
    object-fit: cover;
+   width: 25%;
 }
 .catSummery{
     max-width: 80%;
     
 }
+
