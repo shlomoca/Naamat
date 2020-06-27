@@ -161,13 +161,13 @@ export const EditWomanModal = () => {
                                     <div className="form-group">
                                         <button id="submit1" type="button" className="btn btn-success" onClick={() => allreadyExist($("#name").val() + $("#birth").val())} >{Dictionary.next}</button>
                                     </div>
-                                </div>
-                                <div id="popup">
-                                    <span className="popuptext" id="myPopup">{Dictionary.popup}</span>
+                                    <div id="popup">
+                                        <span className="popuptext" id="myPopup">{Dictionary.popup}</span>
+                                    </div>
                                 </div>
                             </div>
                             <div id="step2">
-                                <ImageUpload param1="name" param2="birth" pathEnd="/ProfilePic" param1Empty="name not enterd" param2Empty="date of birth not ented" />
+                                <ImageUpload param1="name" param2="birth" pathEnd="/ProfilePic" param1Empty="name not enterd" param2Empty="date of birth not ented" required={"required"} />
                                 <div className="tab-content">
                                     <GenralForm lang={langs[0]} active={true} />
                                     <GenralForm lang={langs[1]} />
@@ -529,7 +529,7 @@ function AddNewFact(e) {
     obj["id"] = String(new Date());
     db.collection('didYouKnow').doc(obj["id"]).set(obj).then(() => {
         alert(Dictionary.FactAddedSuccefully)
-        
+
     }).catch(function (error) {
         alert(error)
     });
@@ -540,45 +540,87 @@ function AddNewFact(e) {
 export function addWoman(e) {
     e.preventDefault();
 
-    var he = {}, en = {}, ar = {}, gen = {};
+    var HE = {}, EN = {}, AR = {}, gen = {};
     var boolHe = false, boolEn = false, boolAr = false;
 
     var id = $("#name").val() + $("#birth").val();
+    var categories = [], descriptionHE = [], linkHE = [], readingHE = [];
+    var descriptionEN = [], linkEN = [], readingEN = [];
+    var descriptionAR = [], linkAR = [], readingAR = [];
     $('#submit1').show();
 
     $($('#woman_form').prop('elements')).each(function () {
         if (this.value && this.type != "file") {
-            if (this.name === "display") {
-                gen[this.id] = breakName((this.value).toLowerCase());
+            switch (this.name) {
+                case "linksMedia":
+                    gen[this.name] = JSON.parse(this.value);
+                    break;
+                case "cat":
+                    if (this.checked == 1)
+                        categories.push(this.id);
+                    break;
+                case "description":
+                    let i = (this.id).replace(/[^0-9]/g, '');
+                    if (i)
+                        ["description" + this.lang][i] = this.value;
+                    break;
+                case "link":
+                    let j = (this.id).replace(/[^0-9]/g, '');
+                    if (j)
+                        ["link" + this.lang][j] = this.value;
+                    break;
+                case "reading":
+                    let k = (this.id).replace(/[^0-9]/g, '');
+                    if (k)
+                        ["reading" + this.lang][k] = this.value;
+                    break;
+                case "display":
+                    gen[this.id] = breakName((this.value).toLowerCase());
+                //display is saved broken as well as full so no break
+                default:
+
+                    if (this.lang == "EN") {
+                        boolEn = true;
+                        EN[this.name] = this.value;
+                    }
+                    else if (this.lang == "HE") {
+                        boolHe = true;
+                        HE[this.name] = this.value;
+                    }
+                    else if (this.lang == "AR") {
+                        boolAr = true;
+                        AR[this.name] = this.value;
+                    }
+                    else {
+                        gen[this.name] = this.value;
+                        gen["id"] = id;
+                    }
+                    break;
             }
-            if (this.name == "ProfilePic")
-                gen[this.name] = this.value;
-            else if (this.lang == "EN") {
-                boolEn = true;
-                en[this.name] = this.value;
-            }
-            else if (this.lang == "HE") {
-                boolHe = true;
-                he[this.name] = this.value;
-            }
-            else if (this.lang == "AR") {
-                boolAr = true;
-                ar[this.name] = this.value;
-            }
-            else {
-                gen[this.name] = this.value;
-                gen["id"] = id;
-            }
+
         }
     });
+    // if (categories)
+    //     gen["categories"] = categories;
+    // langs.forEach(lang => {
+
+    //     if (["description" + lang])
+    //         [lang]["description"] = ["description" + lang];
+    //     if (["link" + lang])
+    //         [lang]["link"] = ["link" + lang];
+    //     if (["reading" + lang])
+    //         [lang]["reading"] = ["reading" + lang];
+    // }
+    // );
+
 
 
     if (boolHe)
-        gen["HE"] = he
+        gen["HE"] = HE
     if (boolEn)
-        gen["EN"] = en
+        gen["EN"] = EN
     if (boolAr)
-        gen["AR"] = ar
+        gen["AR"] = AR
     db.collection('women').doc(id).set(gen).then(() => {
         alert(Dictionary.uploadSuccess);
         window.$("#staticBackdrop").modal('hide');

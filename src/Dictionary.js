@@ -97,6 +97,8 @@ export const Dictionary = new LocalizedStrings({
     language:'language',
     FactAddedSuccefully:'Fact added succefully',
     langs:'Here will be shown all the facts in system language',
+    createdAt:"Date",
+    
     
     //components
     builders: `This site was built by: Shlomo Carmi, Daniel Raz, Sahar Cohen, Adiel Tsayag, Matan Yamin`,
@@ -195,6 +197,8 @@ export const Dictionary = new LocalizedStrings({
     language:'שפה',
     FactAddedSuccefully:'עובדה הועלתה בהצלחה',
     langs:'כאן יופיעו כל העובדות בשפת המערכת',
+    createdAt:"תאריך",
+   
     
     //components
     builders: 'אתר זה נבנה על ידי: שלמה כרמי, דניאל רז, סהר כהן, עדיאל צייג, מתן ימין ©',
@@ -298,6 +302,7 @@ export const Dictionary = new LocalizedStrings({
     language:'لغة',
     FactAddedSuccefully:'تمت إضافة الحقيقة بنجاح',
     langs:'هنا سيتم عرض جميع الحقائق',
+    createdAt:"تاريخ",
 
     //components
 

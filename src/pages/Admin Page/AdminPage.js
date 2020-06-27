@@ -51,7 +51,7 @@ export default AdminPage
 //note that if not all feilds will be full the row will not be presented. 
 export function getData(btnId, collect, fields, unCheckedFields) {
 
-    ShowHideFunc(["TableHolder"], ["allAdmin"]);
+    ShowHideFunc(["TableHolder"], ["allAdmin","adminTitle"]);
     db.collection(collect).get().then(snapshot => {
         const data = [];
         //extract data from snapshot
@@ -125,14 +125,8 @@ const DisplayData = (props) => {
 
     })
 
-    const serviceButtons = [];
-    serviceButtons.push(<button onClick={() => ShowHideFunc(["allAdmin"], ["TableHolder"])} id="backBtn" className="btn" >{Dictionary.back}</button>)
-    if (btnId == "userMngBtn") {
-        serviceButtons.push(<button className="btn" id="addUserBtn" data-toggle="modal" data-target="#newUserModal">{Dictionary.addUserBtn}</button>)
-    }
-    if (btnId == "factMngBtn") {
-        serviceButtons.push(<button className="btn" id="addFactBtn" data-toggle="modal" data-target="#DidYouKnowModal">{Dictionary.AddNewFact}</button>)
-    }
+    
+  
 
     return (
         <div id="feedbackTable">
@@ -141,9 +135,11 @@ const DisplayData = (props) => {
                 <tbody>
                     {body}
                 </tbody>
+                <tr>
                 <div id="buttonsTable">
-                    {serviceButtons}
+                    <ServiceButtons btnId={btnId}/>
                 </div>
+                </tr>
             </table>
         </div>
     )
@@ -228,6 +224,25 @@ export const BuildTableBody = (props) => {
         </tr>
     )
 }
+
+export const ServiceButtons = (props) => {
+    var btnId = props.btnId;
+
+        const serviceButtons = [];
+    if(btnId){
+        serviceButtons.push(<td><button onClick={() => ShowHideFunc(["allAdmin","adminTitle"], ["TableHolder"])} id="backBtn" className="btn" >{Dictionary.back}</button></td>)
+        if (btnId == "userMngBtn") {
+            serviceButtons.push(<td><button className="btn" id="addUserBtn" data-toggle="modal" data-target="#newUserModal">{Dictionary.addUserBtn}</button></td>)
+        }
+        if (btnId == "factMngBtn") {
+            serviceButtons.push(<td><button className="btn" id="addFactBtn" data-toggle="modal" data-target="#DidYouKnowModal">{Dictionary.AddNewFact}</button></td>)
+        }
+
+    }
+return (<tr id="lastrow">{serviceButtons}</tr>)
+
+}
+
 
 function ValidateEmail(mail) {
     return (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail))

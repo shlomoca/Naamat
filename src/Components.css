@@ -98,6 +98,9 @@ background: rgb(191, 224, 232);
 
 #carouselInner {
     height: 100%;
+    margin-top: 0.5%;
+    margin-bottom: 1%;
+
 }
 
 .details {
@@ -164,6 +167,7 @@ background: rgb(191, 224, 232);
 
 .modal-body {
     height: 93%;
+    overflow: visible;
 }
 
 #about-drop {
@@ -193,10 +197,13 @@ background: rgb(191, 224, 232);
 }
 
 #feedbackTable{
-    padding-top: 5%;
-    padding-right: 5%;
-    padding-left: 5%;
+    padding-top: 2%;
+    
+    width: 90%;
+    margin: auto;
     text-align: right;
+    /* height: 70vh;
+    overflow: auto; */
 }
 
 

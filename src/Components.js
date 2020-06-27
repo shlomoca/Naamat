@@ -266,14 +266,15 @@ const Buttons = (props) => {
 
 export const CategoryCheckBox = (props) => {
   var items = props.items;
-  var i = 0;
-
   return (
     <div className="category_Check_Box">
       {items.map(cat => {
+        var displayCat=cat[Dictionary.getLanguage()],
+        idCat=cat["HE"];
+        if(displayCat&&idCat)
         return (<div className="checkbox_conatainer">
-          <label className="lableCheckBox" for={"cat" + i}>{cat}</label>
-          <input className="checkbox" type="checkbox" id={"cat" + i} name={"cat" + i++} value={cat} />
+          <label className="lableCheckBox" for={idCat}>{displayCat}</label>
+          <input className="checkbox" type="checkbox" id={idCat} name={"cat"} value={displayCat} />
         </div>)
       })}
     </div>)
@@ -285,7 +286,6 @@ export class CollectionCheckBox extends Component {
     super(props);
     this.state = {
       colc: props.colc,
-      doc: props.doc,
       items: []
     }
   }
@@ -302,7 +302,7 @@ export class CollectionCheckBox extends Component {
         if (data) {
             if (data[Dictionary.getLanguage()]){
               
-              arr.push(data[Dictionary.getLanguage()])
+              arr.push(data)
               this.setState({ items: arr });
             }
             

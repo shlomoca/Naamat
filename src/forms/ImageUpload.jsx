@@ -166,8 +166,9 @@ export class MultiImageUpload extends Component {
               const refer = storage.ref(filePath);
               refer.getDownloadURL().then(url => {
                 links.push(url);
-                this.setState({ links: links });
+                this.setState({ links: JSON.stringify(links) });
               })
+              alert(Dictionary.uploadSuccess);
             })
       })
     }

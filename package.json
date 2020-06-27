@@ -12,6 +12,7 @@
     "elegant-spinner": "^2.0.0",
     "firebase": "^7.15.1",
     "fs-extra": "^9.0.1",
+    "image-preview-react": "^1.0.1",
     "jquery": "^3.5.1",
     "jquery-validation": "^1.19.2",
     "moment": "^2.27.0",
