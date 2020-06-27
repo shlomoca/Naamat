@@ -10,6 +10,8 @@ import { Link } from 'react-router-dom';
 import { db } from '../../config/Firebase';
 import ReactDOM from 'react-dom';
 
+
+
 class AdminPage extends Component {
     render() {
         return (
@@ -260,5 +262,5 @@ function ValidateEmail(mail) {
     return (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail))
 }
 $(document).ready(() => {
-
+    
 });

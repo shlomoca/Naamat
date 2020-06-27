@@ -9,7 +9,8 @@ import { AfterMessage, CategoryCheckBox, CollectionCheckBox } from '../Component
 import { loadWomanToModal } from '../pages/woman page/WomanPage';
 import ReactDOM from 'react-dom';
 import { ShowHideFunc } from '../pages/Admin Page/AdminPage';
-import moment from 'moment';
+import * as moment from 'moment';
+import 'moment/locale/he'
 
 
 export const NewUserModal = () => {
@@ -663,7 +664,7 @@ function addsuggest() {
             obj[this.id] = this.value;
         }
     });
-    obj["date"] = moment().format('LLLL');
+    obj["date"] = moment().local('he').format('L');
 
     db.collection('suggest_women').doc(id).set(obj).then(function () {
         window.$("#suggestWomanModal").modal('hide');
@@ -695,9 +696,7 @@ function addFeedback(e) {
     }
 
     obj["id"] = id;
-    moment().local();
-    moment().format("Do MM  YY"); 
-    obj["date"] = moment().format('L');
+    obj["createdAt"] = moment().local('he').format('L');
     if (id);
     db.collection('feedback').doc(id).set(obj).then(function () {
         window.$("#feedbackForm").modal('hide');
