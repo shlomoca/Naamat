@@ -386,7 +386,6 @@ export const CategoryModal = () => {
 
 }
 
-
 export const GenralForm = (props) => {
     var classAttr = "tab-pane fade form_content";
     if (props.active)
@@ -520,20 +519,17 @@ function addNewUser(e) {
 
 function AddNewFact(e) {
     e.preventDefault();
-
-    var didyouknowbox = $("#DidYouKnow").val();
-    var langs = [];
     var obj = {};
-    obj["HE"] = $("#DidYouKnowHE").val();
-    obj["EN"] = $("#DidYouKnowEN").val();
-    obj["AR"] = $("#DidYouKnowAR").val();
-
-    langs.push(obj);
-
-
-
-    db.collection('didYouKnow').add(obj).then(() => {
+    if ($("#DidYouKnowHE").val())
+        obj["HE"] = $("#DidYouKnowHE").val();
+    if ($("#DidYouKnowEN").val())
+        obj["EN"] = $("#DidYouKnowEN").val();
+    if ($("#DidYouKnowAR").val())
+        obj["AR"] = $("#DidYouKnowAR").val();
+    obj["id"] = String(new Date());
+    db.collection('didYouKnow').doc(obj["id"]).set(obj).then(() => {
         alert(Dictionary.FactAddedSuccefully)
+        
     }).catch(function (error) {
         alert(error)
     });
@@ -626,7 +622,7 @@ function addFeedback(e) {
                 obj[this.name] = this.value;
         }
     });
-    obj["date"]=new Date();
+    obj["date"] = new Date();
     if (!maxscoreSet) {
         alert(Dictionary.enterScore);
         return;
@@ -642,9 +638,9 @@ function addFeedback(e) {
 //adds catagory to database
 function addCatagory(event) {
     if (!$("#category_form").valid()) return;
-    var gen = {},up;
+    var gen = {}, up;
     var id = $("#category_nameHE").val();
-   
+
     $($('#category_form').prop('elements')).each(function () {
         if (this.value && (this.type) != ("file")) {
             if (this.type == "hidden")
@@ -653,9 +649,9 @@ function addCatagory(event) {
                 gen[this.lang] = this.value;
         }
     });
-    gen["id"]=id;
+    gen["id"] = id;
     db.collection('categories').doc(id).set(gen)
-    .catch(error => console.log(error));
+        .catch(error => console.log(error));
     window.$("#categoryForm").modal('hide');
     $("#category_form").trigger("reset");
     // stop the form from submitting the normal way and refreshing the page
@@ -742,7 +738,7 @@ $("document").ready(function () {
         $(this).addClass('highlight');
     });
 
-   
+
 
 
 
