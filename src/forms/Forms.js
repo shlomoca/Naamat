@@ -222,8 +222,8 @@ export const SuggestWomanModal = () => {
                             </div>
 
                             <div className="form-group">
-                                <label className="regularLabel" htmlFor="display">{Dictionary.displayname}</label>
-                                <input type="text" autoComplete="off" rows="1" className="regularInput" cols="35" id="display" name="display" />
+                                <label className="regularLabel" htmlFor="display">{Dictionary.displayname}*</label>
+                                <input type="text" autoComplete="off" rows="1" className="regularInput" cols="35" id="display" name="display" required />
                             </div>
 
 
@@ -657,13 +657,14 @@ export function addWoman(e) {
 // add to suggest woman collection
 function addsuggest() {
     var obj = {}
-    var id = $("#yourEmail").val();
+    var id = $("#yourEmail").val()+$("#display").val();
 
     $($('#suggest_woman_form').prop('elements')).each(function () {
         if (this.value) {
             obj[this.id] = this.value;
         }
     });
+    obj["id"] = id;
     obj["date"] = moment().local('he').format('L');
 
     db.collection('suggest_women').doc(id).set(obj).then(function () {
@@ -700,6 +701,7 @@ function addFeedback(e) {
     if (id);
     db.collection('feedback').doc(id).set(obj).then(function () {
         window.$("#feedbackForm").modal('hide');
+        window.location.reload();
     }).catch(error => console.log(error));
 }
 //adds catagory to database

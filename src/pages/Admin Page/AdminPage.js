@@ -30,7 +30,7 @@ class AdminPage extends Component {
                     <div id="allAdmin">
                         <button className="btnhover" type="button" id="btn1" data-toggle="modal" data-target="#staticBackdrop"> {Dictionary.adminAddWoman} </button>
                         <button className="btnhover" type="button" id="btn5" data-toggle="modal" data-target="#categoryForm"> {Dictionary.adminAddCategory} </button>
-                        <button className="btnhover" type="button" id="feedbackBtn" onClick={() => { getData("feedbackBtn", "feedback", ["name", "email",  "score"],["improvement","createdAt"]) }}> {Dictionary.adminFeedback} </button>
+                        <button className="btnhover" type="button" id="feedbackBtn" onClick={() => { getData("feedbackBtn", "feedback", ["name", "email", "score"], ["improvement", "createdAt"]) }}> {Dictionary.adminFeedback} </button>
                         <button className="btnhover" type="button" id="sugWomenMngBtn" onClick={() => { getData("sugWomenMngBtn", "suggest_women", ["yourName", "yourEmail", "display"]) }}> ניהול הצעות להוספה </button>
                         <button className="btnhover" type="button" id="categoriesBtn" onClick={() => { getData("categoriesBtn", "categories", ["category"]) }}> {Dictionary.manageCategory} </button>
                         <button className="btnhover" type="button" id="userMngBtn" onClick={() => { getData("userMngBtn", "users", ["email", "admin"]) }}> {Dictionary.adminUserManagement} </button>
@@ -53,7 +53,7 @@ export default AdminPage
 //note that if not all feilds will be full the row will not be presented. 
 export function getData(btnId, collect, fields, unCheckedFields) {
 
-    ShowHideFunc(["TableHolder"], ["allAdmin","adminTitle"]);
+    ShowHideFunc(["TableHolder"], ["allAdmin", "adminTitle"]);
     db.collection(collect).get().then(snapshot => {
         const data = [];
         //extract data from snapshot
@@ -127,11 +127,11 @@ const DisplayData = (props) => {
 
     })
 
-    
-  
+
+
 
     return (
-    
+
         <div id="feedbackTable">
             <table className="table table-dark">
                 <BuildTableHead fields={fields} unCheckedFields={unCheckedFields} />
@@ -139,9 +139,9 @@ const DisplayData = (props) => {
                     {body}
                 </tbody>
                 <tr>
-                <div id="buttonsTable">
-                    <ServiceButtons btnId={btnId}/>
-                </div>
+                    <div id="buttonsTable">
+                        <ServiceButtons btnId={btnId} />
+                    </div>
                 </tr>
             </table>
         </div>
@@ -218,8 +218,10 @@ export const BuildTableBody = (props) => {
         else
             tds.push(<td className="textAlign"> {col} </td>);
     });
+    if (collect == "suggest_women")
+        tds.push(<td className="editSuggest" > <button className="btn" onClick={() => editSuggestWomen(id)} >{Dictionary.edit}</button></td>)
     tds.push(
-        
+
         <td className="deleteBtnTd" > <button className="btn-danger deleteBtn" onClick={askAndDelete(collect, id)} >{Dictionary.delete}</button></td>
     );
     return (
@@ -232,9 +234,9 @@ export const BuildTableBody = (props) => {
 export const ServiceButtons = (props) => {
     var btnId = props.btnId;
 
-        const serviceButtons = [];
-    if(btnId){
-        serviceButtons.push(<td><button onClick={() => ShowHideFunc(["allAdmin","adminTitle"], ["TableHolder"])} id="backBtn" className="btn" >{Dictionary.back}</button></td>)
+    const serviceButtons = [];
+    if (btnId) {
+        serviceButtons.push(<td><button onClick={() => ShowHideFunc(["allAdmin", "adminTitle"], ["TableHolder"])} id="backBtn" className="btn" >{Dictionary.back}</button></td>)
         if (btnId == "userMngBtn") {
             serviceButtons.push(<td><button className="btn" id="addUserBtn" data-toggle="modal" data-target="#newUserModal">{Dictionary.addUserBtn}</button></td>)
         }
@@ -243,8 +245,25 @@ export const ServiceButtons = (props) => {
         }
 
     }
-return (<tr id="lastrow">{serviceButtons}</tr>)
+    return (<tr id="lastrow">{serviceButtons}</tr>)
 
+}
+
+function editSuggestWomen(id)
+{console.log(id);
+    var woman;
+    db.collection('suggest_women').doc(id).get().then(doc=>{
+        woman = doc.data();
+        
+        $("#name").val(woman.display);
+
+        Object.keys(woman).forEach(field =>{
+            $("#"+field+Dictionary.getLanguage()).val(woman[field]);
+        })
+
+    }).catch(error=>console.log(error));
+
+    window.$("#staticBackdrop").modal('show');
 }
 
 
@@ -252,5 +271,5 @@ function ValidateEmail(mail) {
     return (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail))
 }
 $(document).ready(() => {
-    
+
 });
