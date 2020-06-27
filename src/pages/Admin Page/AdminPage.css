@@ -6,7 +6,7 @@
   --dark: rgb(186, 85, 211);
   }
 
-#adminTitle {
+.titles {
     justify-self: center;
     text-align: center;
     color: purple;

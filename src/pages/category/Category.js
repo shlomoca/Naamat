@@ -142,7 +142,7 @@ export class ShoWomanByCat extends Component {
     }
     render() {
         return (
-            <div id="shoWoman">
+            <div id="shoWoman2">
                 {this.state.womanData}
             </div>
         );

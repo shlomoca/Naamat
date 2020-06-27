@@ -26,7 +26,9 @@
     /* width: 100%; */
 }
 #shoWoman{
-margin: auto;
+/* margin: auto; */
+margin-right: 5%;
+flex-direction: row;
 width: 65%;
 font-size: larger;
 margin: auto;
@@ -43,11 +45,12 @@ h1{
 
 .womanCardsContainer{
 
-    height: 120px;
+    height: 125px;
     width: 69%;
     margin-right: 0.5%;
     border: 3.5px groove purple ;
-    border-radius: 3%;
+    /* border-radius: 10%; */
+    /* border-radius: 3%; */
     margin-bottom: 0.09%;
     text-align: center;
     text-justify: inter-word;
@@ -84,22 +87,38 @@ a {
 
 }
 .summarySearch{
-color: black;
+    color: black;
     font-weight: bolder;
+    text-align: justify;
+    text-justify: inter-word;
+    /* justify-items: i; */
+    
+
+
+
 }
 .catCardsContainer{
+
     height: 1%;
+    width: 420%;
+    margin-bottom: -60px;
+    /* flex-direction: row ; */
+    background-color: thistle;
+    flex-direction: column;
+    /* flex-direction: flex; */
+    /* justify-content: flex-end; */
     
 }
 .catContainCard{
     
     display: flex;
-    flex-wrap: wrap;
-    height: 300px;
+    /* flex-wrap: nowrap; */
+    /* height: 300px; */
     width:30%;
-    flex-direction: column ;
+    flex-direction: row;
+    /* flex-direction: row; */
     margin-bottom: 2%;
-   
+    
 }
 
 .catImage{
@@ -112,11 +131,16 @@ color: black;
    width: 30vh;
 }
 .catSummery{
+    
+    height: auto;
+    margin-right: 10%;
+    width: 100%;
 
-    
-    /* max-width: 80%; */
-    /* display: flex; */
-    /* background-color: gray; */
-    
 }
 
+.catTitle{
+
+    margin-right: 2%;
+    color: black;
+    margin-top: 5%;
+}

@@ -198,14 +198,16 @@ background: rgb(191, 224, 232);
 
 #feedbackTable{
     
-    overflow-y:scroll;
+
+    /* overflow-y:scroll; */
     padding-top: 2%;
     width: 90%;
     margin: auto;
     text-align: right;
-    height: 500px;
+    height: auto;
     /* height: 70vh; */
     /* overflow: auto; */
+    
 }
 
 
