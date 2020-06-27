@@ -4,7 +4,7 @@ import { LangBtn, Dictionary } from './Dictionary';
 import logo from './images/naamatlogo.png';
 import fblogo from './images/fblogo.png';
 import ytlogo from './images/ytlogo.png';
-import {  FeedbackModal, SuggestWomanModal } from './forms/Forms';
+import { FeedbackModal, SuggestWomanModal } from './forms/Forms';
 import { db, auth } from './config/Firebase'
 import { Link } from 'react-router-dom';
 import { getWomen, WomenDeck } from '../src/pages/woman page/WomanPage'
@@ -19,8 +19,10 @@ import { LoginComponent } from './pages/login page/LoginPage';
 export const NavBar = (props) => {
   var AdminPage = props.AdminPage,
     Admin = props.Admin,
+    categoryPage = props.categoryPage,
     logoHref = "/HomePage",
     suggest = "",
+    back = "",
     logout = "";
   if (!Admin) {
     suggest = <button type="button" className="btn btn-primary nav-link" data-toggle="modal" data-target="#suggestWomanModal">
@@ -30,6 +32,8 @@ export const NavBar = (props) => {
   else {
     logout = <li className="nav-item"><button id="signOutBtn" type="button" className="btn btn-primary nav-link" onClick={managerSignout} > {Dictionary.signOut}</button > </li>
   }
+  if (categoryPage)
+    back = <Link to='/'><button  type="button" className="btn btn-primary nav-link" >{Dictionary.back}</button ></Link>
   return (
     <div id="navbar">
       <SuggestWomanModal />
@@ -64,6 +68,8 @@ export const NavBar = (props) => {
           <li className="nav-item">
             {<Buttons AdminPage={AdminPage} Admin={Admin} />}
           </li>
+          <li className="nav-item">{back}</li>
+          
           {logout}
         </ul>
       </nav>
@@ -86,7 +92,7 @@ export function adminPageClick() {
     permission = res.data().admin;
     console.log(permission);
     if (permission) alert("manager")
-  });
+  }).catch(error => console.log(error));
 }
 
 class Search extends Component {
@@ -269,13 +275,13 @@ export const CategoryCheckBox = (props) => {
   return (
     <div className="category_Check_Box">
       {items.map(cat => {
-        var displayCat=cat[Dictionary.getLanguage()],
-        idCat=cat["HE"];
-        if(displayCat&&idCat)
-        return (<div className="checkbox_conatainer">
-          <label className="lableCheckBox" for={idCat}>{displayCat}</label>
-          <input className="checkbox" type="checkbox" id={idCat} name={"cat"} value={displayCat} />
-        </div>)
+        var displayCat = cat[Dictionary.getLanguage()],
+          idCat = cat["HE"];
+        if (displayCat && idCat)
+          return (<div className="checkbox_conatainer">
+            <label className="lableCheckBox" for={idCat}>{displayCat}</label>
+            <input className="checkbox" type="checkbox" id={idCat} name={"cat"} value={displayCat} />
+          </div>)
       })}
     </div>)
 }
@@ -295,22 +301,22 @@ export class CollectionCheckBox extends Component {
     var arr = [];
     db.collection('categories').get().then(snapshot => {
       console.log(snapshot)
-      snapshot.forEach(doc=>{
+      snapshot.forEach(doc => {
 
         var data = doc.data();
         console.log(data);
         if (data) {
-            if (data[Dictionary.getLanguage()]){
-              
-              arr.push(data)
-              this.setState({ items: arr });
-            }
-            
-          
+          if (data[Dictionary.getLanguage()]) {
+
+            arr.push(data)
+            this.setState({ items: arr });
+          }
+
+
         }
-        
+
       })
-    })
+    }).catch(error => console.log(error));
   }
   render() {
     return (

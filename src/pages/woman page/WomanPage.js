@@ -102,7 +102,7 @@ function deleteBucket(id) {
             imageRef.delete().then(()=>{
 
                 window.location = "/";
-            });
+            }).catch(error => console.log(error));
         })
     }).catch(function (error) {
         // Handle any errors
@@ -184,7 +184,7 @@ export class ShoWoman extends Component {
             });
 
         }
-        );
+        ).catch(error => console.log(error));
 
     }
     render() {
@@ -294,7 +294,7 @@ export function loadWomanToModal(id) {
                     })
             })
         }
-    })
+    }).catch(error => console.log(error));
 
     window.$("#staticBackdrop").modal('show');
 

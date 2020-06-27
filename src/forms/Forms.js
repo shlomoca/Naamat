@@ -130,7 +130,7 @@ export const EditWomanModal = () => {
                 <div className="modal-content">
                     <form dir="RTL" id="woman_form" name="woman_form" onSubmit={addWoman}  >
                         <div className="modal-header">
-                            <button type="button" id="xClose" className="close" data-dismiss="modal" aria-label="Close" onClick={resetForm("woman_form", "fill1", "fill2")}>
+                            <button type="button" id="xClose" className="close" data-dismiss="modal" aria-label="Close" onClick={resetForm("woman_form", "fill1"+Dictionary.getLanguage(), "fill2"+Dictionary.getLanguage())}>
                                 <span aria-hidden="true">&times;</span>
                             </button>
                             <h5 className="modal-title" id="staticBackdropLabel">{Dictionary.addWoman}</h5>
@@ -173,15 +173,16 @@ export const EditWomanModal = () => {
                                     <GenralForm lang={langs[1]} />
                                     <GenralForm lang={langs[2]} />
                                 </div>
+                                {/* <label htmlFor="acceptFiles">{Dictionary.acceptFiles} </label> */}
                                 <MultiImageUpload param1="name" param2="birth" param1Empty="name not enterd" param2Empty="date of birth not ented" />
 
-                                <label htmlFor={"categorySelect"}>{Dictionary.choseCategory} </label>
+                                <label htmlFor="categorySelect">{Dictionary.choseCategory} </label>
                                 <CollectionCheckBox colc={"categories"} doc={"categories"} />
                             </div>
                         </div>
                         <div className="modal-footer">
                             <div className="requiredFooter" > {Dictionary.mustfilled}  </div>
-                            <button type="button" className="close" className="btn btn-secondary" onClick={resetForm("woman_form", "fill1", "fill2")} data-dismiss="modal">{Dictionary.close}</button>
+                            <button type="button" className="close" className="btn btn-secondary" onClick={resetForm("woman_form", "fill1"+Dictionary.getLanguage(), "fill2"+Dictionary.getLanguage())} data-dismiss="modal">{Dictionary.close}</button>
                             <button type="submit" htmlFor="woman_form" className="btn btn-success" id="submit_form" >{Dictionary.submit} </button>
                         </div>
                     </form>
@@ -333,6 +334,9 @@ export const FeedbackModal = () => {
 
                             </div>
 
+                            <lable htmlFor="agree">{Dictionary.imAgree}</lable>
+                            <input id="agree" name="agree" type="checkbox"></input>
+
 
                             <div className="modal-footer">
                                 <div className="requiredFooter">{Dictionary.mustfilled}</div>
@@ -364,9 +368,9 @@ export const CategoryModal = () => {
                             <div id="name-group" className="form-group">
                                 <div id="name-group1" className="form-group">
                                     <label className="regularLabel" htmlFor="category_name">{Dictionary.name}</label>
-                                    <input autoComplete="off" type="text" lang="HE" rows="1" cols="35" id="category_nameHE" className="category_name" name="category_name" placeholder="הכנס שם קטגוריה בעברית" required />
-                                    <input autoComplete="off" type="text" lang="EN" rows="1" cols="35" id="category_nameEN" className="category_name" name="category_name" placeholder="הכנס שם קטגוריה באנגלית" required />
-                                    <input autoComplete="off" type="text" lang="AR" rows="1" cols="35" id="category_nameAR" className="category_name" name="category_name" placeholder="הכנס שם קטגוריה בערבית" required />
+                                    <input autoComplete="off" type="text" lang="HE" rows="1" cols="35" id="category_nameHE" className="category_name" name="category_name" placeholder={Dictionary.categoryInputHE} required />
+                                    <input autoComplete="off" type="text" lang="EN" rows="1" cols="35" id="category_nameEN" className="category_name" name="category_name" placeholder={Dictionary.categoryInputEN} required />
+                                    <input autoComplete="off" type="text" lang="AR" rows="1" cols="35" id="category_nameAR" className="category_name" name="category_name" placeholder={Dictionary.categoryInputAR} required />
                                 </div>
                             </div>
                             <div id="image-group" className="form-group">
@@ -430,7 +434,8 @@ export const GenralForm = (props) => {
                 <lable for="quotes">{Dictionary.quotes}</lable>
                 <textarea rows="4" cols="50" name="quotes" lang={props.lang} id={"quotes" + props.lang}  ></textarea>
             </div>
-            <div className="form-group">
+            <div className="makbil">
+            <div className="form-group ">
                 <label htmlFor={"link" + props.lang}>{Dictionary.links} </label>
                 <input className="regularInput" id={"description" + props.lang + i} lang={props.lang} autoComplete="off" type="text" rows="4" cols="50" name="description" placeholder={Dictionary.description} />
                 <a>‏</a>
@@ -443,14 +448,15 @@ export const GenralForm = (props) => {
                     if ($("#description" + props.lang + i).val())
                         if ($("#link" + props.lang + i).val()) {
                             i++;
-                            fill.append(`<input id=${"description" + props.lang + i}  lang = ${props.lang} autoComplete="off" type="text" rows="4" className="regularInput" cols="50" name="description" placeholder=${Dictionary.description} />
+                            fill.append(`<a>‏</a><input id=${"description" + props.lang + i}  lang = ${props.lang} autoComplete="off" type="text" rows="4" className="regularInput" cols="50" name="description" placeholder=${Dictionary.description} />
+                            <a>‏</a>
                         <input id=${"link" + props.lang + i} lang = ${props.lang} type="text" autoComplete="off" rows="4" className="regularInput" cols="50" name="link" placeholder=${Dictionary.link} />`)
                         } else
                             alert(Dictionary.fillLinkDescription);
                 }}>{Dictionary.addMore}</button>
             </div>
 
-            <div className="form-group">
+            <div className="form-group ">
                 <label htmlFor={"reading" + props.lang}>{Dictionary.bibliography}
                     <input id={"reading" + props.lang + j} lang={props.lang} type="text" autoComplete="off" rows="4" cols="50" name="reading" placeholder={Dictionary.bibliography} />
                     <a id={"fill2" + props.lang}></a>
@@ -460,12 +466,13 @@ export const GenralForm = (props) => {
 
                         if ($("#reading" + props.lang + j).val()) {
                             j++;
-                            fill.append(`<input id=${"reading" + props.lang + j} lang=${props.lang} type="text" autoComplete="off" rows="4" cols="50" name="reading" placeholder=${Dictionary.bibliography} />`)
+                            fill.append(`<a>‏</a><input id=${"reading" + props.lang + j} lang=${props.lang} type="text" autoComplete="off" rows="4" cols="50" name="reading" placeholder=${Dictionary.bibliography} /><a>‏</a>`)
                         }
                         else
                             alert(Dictionary.addBibiloraphy);
                     }}>{Dictionary.addMore}</button>
                 </label>
+            </div>
             </div>
 
 
@@ -529,6 +536,8 @@ function AddNewFact(e) {
     obj["id"] = String(new Date());
     db.collection('didYouKnow').doc(obj["id"]).set(obj).then(() => {
         alert(Dictionary.FactAddedSuccefully)
+        window.$("#DidYouKnowModal").modal('hide');
+        window.location.reload();
 
     }).catch(function (error) {
         alert(error)
@@ -540,92 +549,109 @@ function AddNewFact(e) {
 export function addWoman(e) {
     e.preventDefault();
 
-    var HE = {}, EN = {}, AR = {}, gen = {};
-    var boolHe = false, boolEn = false, boolAr = false;
-
-    var id = $("#name").val() + $("#birth").val();
-    var categories = [], descriptionHE = [], linkHE = [], readingHE = [];
-    var descriptionEN = [], linkEN = [], readingEN = [];
-    var descriptionAR = [], linkAR = [], readingAR = [];
-    $('#submit1').show();
-
-    $($('#woman_form').prop('elements')).each(function () {
-        if (this.value && this.type != "file") {
-            switch (this.name) {
-                case "linksMedia":
-                    gen[this.name] = JSON.parse(this.value);
-                    break;
-                case "cat":
-                    if (this.checked == 1)
-                        categories.push(this.id);
-                    break;
-                case "description":
-                    let i = (this.id).replace(/[^0-9]/g, '');
-                    if (i)
-                        ["description" + this.lang][i] = this.value;
-                    break;
-                case "link":
-                    let j = (this.id).replace(/[^0-9]/g, '');
-                    if (j)
-                        ["link" + this.lang][j] = this.value;
-                    break;
-                case "reading":
-                    let k = (this.id).replace(/[^0-9]/g, '');
-                    if (k)
-                        ["reading" + this.lang][k] = this.value;
-                    break;
-                case "display":
-                    gen[this.id] = breakName((this.value).toLowerCase());
-                //display is saved broken as well as full so no break
-                default:
-
-                    if (this.lang == "EN") {
-                        boolEn = true;
-                        EN[this.name] = this.value;
-                    }
-                    else if (this.lang == "HE") {
-                        boolHe = true;
-                        HE[this.name] = this.value;
-                    }
-                    else if (this.lang == "AR") {
-                        boolAr = true;
-                        AR[this.name] = this.value;
-                    }
-                    else {
-                        gen[this.name] = this.value;
-                        gen["id"] = id;
-                    }
-                    break;
+    $("#woman_form").validate({
+        // Specify validation rules
+        rules: {
+            media: {
+                required: true,
             }
-
-        }
+        },
+        messages: {}
     });
-    // if (categories)
-    //     gen["categories"] = categories;
-    // langs.forEach(lang => {
 
-    //     if (["description" + lang])
-    //         [lang]["description"] = ["description" + lang];
-    //     if (["link" + lang])
-    //         [lang]["link"] = ["link" + lang];
-    //     if (["reading" + lang])
-    //         [lang]["reading"] = ["reading" + lang];
-    // }
-    // );
+    if (!$("#woman_form").valid()) return;
+
+    if ($("#mustUpload").data('clicked')) {//צריך לבדוק איך לטפל במקרה הקצה כאשר סדר הלחיצות שונה ואם זה נחוץ
+
+        var HE = {}, EN = {}, AR = {}, gen = {};
+        var boolHe = false, boolEn = false, boolAr = false;
+
+        var id = $("#name").val() + $("#birth").val();
+        var categories = [], descriptionHE = [], linkHE = [], readingHE = [];
+        var descriptionEN = [], linkEN = [], readingEN = [];
+        var descriptionAR = [], linkAR = [], readingAR = [];
+        $('#submit1').show();
+
+        $($('#woman_form').prop('elements')).each(function () {
+            if (this.value && this.type != "file") {
+                switch (this.name) {
+                    case "linksMedia":
+                        gen[this.name] = JSON.parse(this.value);
+                        break;
+                    case "cat":
+                        if (this.checked == 1)
+                            categories.push(this.id);
+                        break;
+                    case "description":
+                        let i = (this.id).replace(/[^0-9]/g, '');
+                        if (i)
+                            ["description" + this.lang][i] = this.value;
+                        break;
+                    case "link":
+                        let j = (this.id).replace(/[^0-9]/g, '');
+                        if (j)
+                            ["link" + this.lang][j] = this.value;
+                        break;
+                    case "reading":
+                        let k = (this.id).replace(/[^0-9]/g, '');
+                        if (k)
+                            ["reading" + this.lang][k] = this.value;
+                        break;
+                    case "display":
+                        gen[this.id] = breakName((this.value).toLowerCase());
+                    //display is saved broken as well as full so no break
+                    default:
+
+                        if (this.lang == "EN") {
+                            boolEn = true;
+                            EN[this.name] = this.value;
+                        }
+                        else if (this.lang == "HE") {
+                            boolHe = true;
+                            HE[this.name] = this.value;
+                        }
+                        else if (this.lang == "AR") {
+                            boolAr = true;
+                            AR[this.name] = this.value;
+                        }
+                        else {
+                            gen[this.name] = this.value;
+                            gen["id"] = id;
+                        }
+                        break;
+                }
+
+            }
+        });
+        // if (categories)
+        //     gen["categories"] = categories;
+        // langs.forEach(lang => {
+
+        //     if (["description" + lang])
+        //         [lang]["description"] = ["description" + lang];
+        //     if (["link" + lang])
+        //         [lang]["link"] = ["link" + lang];
+        //     if (["reading" + lang])
+        //         [lang]["reading"] = ["reading" + lang];
+        // }
+        // );
 
 
 
-    if (boolHe)
-        gen["HE"] = HE
-    if (boolEn)
-        gen["EN"] = EN
-    if (boolAr)
-        gen["AR"] = AR
-    db.collection('women').doc(id).set(gen).then(() => {
-        alert(Dictionary.uploadSuccess);
-        window.$("#staticBackdrop").modal('hide');
-        window.location.reload();
-    }).catch(error => console.log(error))
+        if (boolHe)
+            gen["HE"] = HE
+        if (boolEn)
+            gen["EN"] = EN
+        if (boolAr)
+            gen["AR"] = AR
+        db.collection('women').doc(id).set(gen).then(() => {
+            alert(Dictionary.uploadSuccess);
+            window.$("#staticBackdrop").modal('hide');
+            window.location.reload();
+        }).catch(error => console.log(error))
+    }
+    else
+        alert("please upload profile picture");
 }
 
 // add to suggest woman collection
@@ -638,11 +664,11 @@ function addsuggest() {
             obj[this.id] = this.value;
         }
     });
-
+    obj["date"] = moment().format('LLLL');
 
     db.collection('suggest_women').doc(id).set(obj).then(function () {
         window.$("#suggestWomanModal").modal('hide');
-    });
+    }).catch(error => console.log(error));
 }
 
 //add feedback to database
@@ -664,38 +690,64 @@ function addFeedback(e) {
                 obj[this.name] = this.value;
         }
     });
-    obj["date"] = new Date();
     if (!maxscoreSet) {
         alert(Dictionary.enterScore);
         return;
     }
 
     obj["id"] = id;
-    obj["createdAt"] = moment().format('LLLL');
+    moment().local();
+    moment().format("Do MM  YY"); 
+    obj["date"] = moment().format('L');
     if (id);
     db.collection('feedback').doc(id).set(obj).then(function () {
         window.$("#feedbackForm").modal('hide');
-    });
+    }).catch(error => console.log(error));
 }
 //adds catagory to database
 function addCatagory(event) {
-    if (!$("#category_form").valid()) return;
-    var gen = {}, up;
-    var id = $("#category_nameHE").val();
 
-    $($('#category_form').prop('elements')).each(function () {
-        if (this.value && (this.type) != ("file")) {
-            if (this.type == "hidden")
-                gen[this.id] = this.value;
-            else
-                gen[this.lang] = this.value;
-        }
+    $("#category_form").validate({
+        // Specify validation rules
+        rules: {
+            ProfilePic: {
+                required: true,
+            },
+            category_nameHE: {
+                required: true
+            },
+            category_nameAN: {
+                required: true
+            },
+            category_nameAR: {
+                required: true
+            }
+        },
+        messages: {}
     });
-    gen["id"] = id;
-    db.collection('categories').doc(id).set(gen)
-        .catch(error => console.log(error));
-    window.$("#categoryForm").modal('hide');
-    $("#category_form").trigger("reset");
+
+    if (!$("#category_form").valid()) return;
+
+    if ($('#mustUpload').data('clicked')) {
+
+        var gen = {}, up;
+        var id = $("#category_nameHE").val();
+
+        $($('#category_form').prop('elements')).each(function () {
+            if (this.value && (this.type) != ("file")) {
+                if (this.type == "hidden")
+                    gen[this.id] = this.value;
+                else
+                    gen[this.lang] = this.value;
+            }
+        });
+        gen["id"] = id;
+        db.collection('categories').doc(id).set(gen)
+            .catch(error => console.log(error));
+        window.$("#categoryForm").modal('hide');
+        $("#category_form").trigger("reset");
+    } else
+        alert("please upload pic");
     // stop the form from submitting the normal way and refreshing the page
     event.preventDefault();
 };
@@ -703,6 +755,7 @@ function addCatagory(event) {
 
 //reset the add woman form when close
 function resetForm(reset, empty1, empty2) {
+    console.log(empty2);
     return () => {
         $("#" + reset).trigger("reset");
 
@@ -779,9 +832,5 @@ $("document").ready(function () {
         $('#mylinks a').removeClass('highlight');
         $(this).addClass('highlight');
     });
-
-
-
-
 
 });

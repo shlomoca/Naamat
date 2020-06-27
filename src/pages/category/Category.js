@@ -37,7 +37,7 @@ class Category extends Component {
         return (
             <div id="CPcover" className="cover">
                 <div id="CPWrapper" className="wrapper">
-                    <NavBar AdminPage={false} Admin={this.state.Admin} />
+                    <NavBar AdminPage={false} Admin={this.state.Admin} categoryPage={true} />
                     <div id="CatWomen"></div>
                     <div id="category-container">
                         {this.state.categories &&

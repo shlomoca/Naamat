@@ -160,7 +160,7 @@ export function removeItem(collect, id) {
             ReactDOM.render(<a></a>, document.getElementById("tr" + id));
             console.log(collect, id);
             alert(Dictionary.collect + " " + Dictionary.deletedSuccessfully);//see how to make collect readable
-        });
+        }).catch(error => console.log(error));
     }
     else
         alert(Dictionary.error);

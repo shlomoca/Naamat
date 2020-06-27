@@ -59,7 +59,7 @@ export const Dictionary = new LocalizedStrings({
     History: `History`,
     feminism: `Contribution to feminism`,
     facts: `Interesting facts / stories`,
-    media: `Media`,
+    media: `Media:`,
     upload: `Upload`,
     chooseFile: `Choose file`,
     HowWasVisit: `How was your visit?`,
@@ -98,6 +98,8 @@ export const Dictionary = new LocalizedStrings({
     FactAddedSuccefully:'Fact added succefully',
     langs:'Here will be shown all the facts in system language',
     createdAt:"Date",
+    imAgree:"I agree of receiving messages from naamat",
+    acceptFiles:"accept audio,image,video files",
     
     
     //components
@@ -106,7 +108,7 @@ export const Dictionary = new LocalizedStrings({
     NaamatInFacebook: 'Naamat in Facebook',
     NaamatInYoutube: 'Naamat in Youtube',
     email: 'Email',
-    back: 'Close',
+    back: 'back',
     areYouSure: 'Are you sure?',
     error: 'Error',
     uploadSuccess: 'File Uploaded successfully',
@@ -161,7 +163,7 @@ export const Dictionary = new LocalizedStrings({
     History: `היסטוריה`,
     feminism: `תרומה לפמיניזם`,
     facts: `עובדות / סיפורים מעניינים`,
-    media: `מדיה`,
+    media: `מדיה: `,
     upload: `העלי`,
     chooseFile: `בחרי קובץ`,
     HowWasVisit: `איך היה הביקור שלך?`,
@@ -191,6 +193,8 @@ export const Dictionary = new LocalizedStrings({
     addBibiloraphy:"אנא הכניסי ביבילוגרפיה",
     isAdmin:"משתמש מנהל",
     choseCategory:"אנא סמני את הקטגוריות הרלוונטיות",
+    imAgree:"אני מאשר לקבל הודעות מאת נעמת",
+    acceptFiles:"מקבל קבצי אודיו,תמונות,וידאו",
 
     DidYouKnow:'הידעת ?',
     AddNewFact:'הוסיפי עובדה חדשה',
@@ -207,7 +211,7 @@ export const Dictionary = new LocalizedStrings({
     NaamatInFacebook: 'נעמת בפייסבוק',
     NaamatInYoutube: 'נעמת ביוטיוב',
     email: 'דואר אלקטרוני',
-    back: 'סגרי',
+    back: 'חזרי',
     areYouSure: 'האם את בטוחה?',
     error: 'שגיאה',
     uploadSuccess: 'ההעלאה הסתיימה בהצלחה',
@@ -264,7 +268,7 @@ export const Dictionary = new LocalizedStrings({
     History: `التاريخ`,
     feminism: `المساهمة في الحركة النسائية`,
     facts: `حقائق / قصص مثيرة للاهتمام`,
-    media: `وسائل الإعلام`,
+    media: `وسائل الإعلام: `,
     upload: `رفع`,
     chooseFile: `اختر ملف`,
     HowWasVisit: `كيف كانت زيارتك؟`,
@@ -303,6 +307,8 @@ export const Dictionary = new LocalizedStrings({
     FactAddedSuccefully:'تمت إضافة الحقيقة بنجاح',
     langs:'هنا سيتم عرض جميع الحقائق',
     createdAt:"تاريخ",
+    imAgree:"أوافق على تلقي رسائل من نعمة",
+    acceptFiles:"قبول ملفات الصوت والصورة والفيديو",
 
     //components
 

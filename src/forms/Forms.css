@@ -83,6 +83,12 @@ padding-bottom: 3%;
     /* flex-wrap: wrap; */
 
 }
+.makbil{
+    display: flex;
+    align-items: baseline;
+    justify-content: space-evenly;
+    width:100%;
+}
 
 .category_name{/*space between inputs in Add category form.*/
     margin:inherit;
@@ -402,7 +408,7 @@ align-self: center;
 
 #addBtn{
 
-width: 8%;
+/* width: 8%; */
 align-self: center;
 /* justify-self: center; */
 /* place-self: center; */

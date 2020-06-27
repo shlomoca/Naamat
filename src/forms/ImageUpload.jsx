@@ -27,6 +27,8 @@ class ImageUpload extends Component {
   }
 
   handleUpload = () => {
+
+    $("#mustUpload").data('clicked',true);//set clicked of the cutton to true
     var param1 = this.props.param1;
     var param2 = this.props.param2;
     var pathEnd = this.props.pathEnd;
@@ -73,7 +75,7 @@ class ImageUpload extends Component {
               image: image,
               url: url
             });
-          });
+          }).catch(error => console.log(error));
           // console.log(url);
           // this.setState({ url });
           //})
@@ -87,10 +89,10 @@ class ImageUpload extends Component {
         <p>{Dictionary.profilepic}</p>
         <progress value={this.state.progress} max="100" />
         <div className="form-group">
-          <input type="file" name="file" id="inputGroupFile04 media" aria-describedby="inputGroupFileAddon04" accept="image/*,audio/*,video/*" onChange={this.handleChange} required={this.state.required} />
+          <input type="file" name="file" id="inputGroupFile04 media" aria-describedby="inputGroupFileAddon04" accept="image/*" onChange={this.handleChange} required={this.state.required} />
         </div>
         <input type="hidden" id="ProfilePic" name="ProfilePic" value={this.state.url} required />
-        <button type="button" onClick={this.handleUpload}>{Dictionary.upload}</button>
+        <button type="button" id="mustUpload" onClick={this.handleUpload}>{Dictionary.upload}</button>
         <br />
       </div>
     )
@@ -167,7 +169,7 @@ export class MultiImageUpload extends Component {
               refer.getDownloadURL().then(url => {
                 links.push(url);
                 this.setState({ links: JSON.stringify(links) });
-              })
+              }).catch(error => console.log(error));
               alert(Dictionary.uploadSuccess);
             })
       })
@@ -179,7 +181,7 @@ export class MultiImageUpload extends Component {
 
     return (
       <div >
-        <p>{Dictionary.media}</p>
+        <p>{Dictionary.media+Dictionary.acceptFiles}</p>
         <progress value={this.state.progress} max="100" />
         <div className="form-group">
           <input type="file" name="multi_media" id="multi_media" skip={true} aria-describedby="inputGroupFileAddon04" accept="image/*,audio/*,video/*" multiple onChange={this.handleChange} required={this.state.required} />

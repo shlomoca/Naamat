@@ -88,15 +88,15 @@ color: black;
 .catCardsContainer{
     height: 1%;
     
-    
 }
 .catContainCard{
     display: flex;
     flex-wrap: wrap;
     height: 300px;
+    width:30%;
     flex-direction: column ;
     margin-bottom: 2%;
-
+   
 }
 .catImage{
     /* height: 20vh; */

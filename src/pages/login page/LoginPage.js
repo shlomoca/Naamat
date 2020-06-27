@@ -165,7 +165,7 @@ export class LoginComponent extends Component {
                     alert(Dictionary.userDoesntExists)
                     this.setState({ page: <LoginPage /> })
                 };
-            });
+            }).catch(error => console.log(error));
         }
         else {
             // alert("in null else if");
