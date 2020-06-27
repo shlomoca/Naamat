@@ -260,7 +260,7 @@ export const SuggestWomanModal = () => {
 
                             <label htmlFor="bibliography">{Dictionary.bibliography}</label>
                             <div className="form-group">
-                                <input type="text" autoComplete="off" rows="4" cols="50" name="bibliography" id={"bibliography" + j} />
+                                <input type="text" autoComplete="off" rows="4" cols="50" name="reading" id={"reading" + j} />
                             </div>
                             <div className="form-group">
                                 <a id="fill20"></a>
@@ -268,9 +268,9 @@ export const SuggestWomanModal = () => {
                                     e.preventDefault();
                                     var fill = $("#fill20");
 
-                                    if ($("#bibliography" + j).val()) {
+                                    if ($("#reading" + j).val()) {
                                         j++;
-                                        fill.append(`<input id=${"bibliography" + j} autoComplete="off"  type="text" rows="4" cols="50" name="quotes" />`)
+                                        fill.append(`<input id=${"reading" + j} autoComplete="off"  type="text" rows="4" cols="50" name="reading" />`)
                                     } else
                                         alert(Dictionary.addBibiloraphy);
 

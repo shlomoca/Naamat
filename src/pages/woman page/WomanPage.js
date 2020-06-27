@@ -82,7 +82,7 @@ export function deleteWoman(id) {
     woman.delete().then(() => {
         deleteBucket(id);
         alert(`user ${id} was deleted`);
-        
+
     }
     ).catch(error => {
         console.log(error)
@@ -99,7 +99,7 @@ function deleteBucket(id) {
     storageRef.listAll().then(function (result) {
         result.items.forEach(function (imageRef) {
             // And finally delete them
-            imageRef.delete().then(()=>{
+            imageRef.delete().then(() => {
 
                 window.location = "/";
             }).catch(error => console.log(error));
@@ -174,7 +174,7 @@ export class ShoWoman extends Component {
                         page.push(<p><b>{Dictionary[key]}:</b> {alldata[Dictionary.getLanguage()][key]}</p>);
                 })
             }
-            else{
+            else {
                 alert(Dictionary.nothingToShow)
                 window.location.href = '/';
             }
@@ -291,6 +291,20 @@ export function loadWomanToModal(id) {
                 if (arr)
                     Object.keys(arr).forEach(field => {
                         $("#" + field + lang).val(arr[field]);
+
+                        if (field == "reading") {
+                            let i = 0;
+                            console.log(arr[field]);
+                            Object.values(arr[field]).forEach(val => {
+                                $("#" + field + lang + i).val(val);
+                                if (i != 0) {
+                                    var fill = $("#fill2" + Dictionary.getLanguage());
+                                        fill.append(`<a>‏</a><input id=${"reading" + Dictionary.getLanguage() + i} lang=${Dictionary.getLanguage()} type="text" autoComplete="off" rows="4" cols="50" name="reading" placeholder=${Dictionary.bibliography} /><a>‏</a>`)
+                                        $("#" + field + lang + i).val(val);
+                                }
+                                i++;
+                            })
+                        }
                     })
             })
         }
