@@ -553,7 +553,7 @@ export function addWoman(e) {
         // Specify validation rules
         rules: {
             media: {
-              
+
             }
         },
         messages: {}
@@ -641,31 +641,32 @@ export function addWoman(e) {
 
             }
         });
-
-
-
         if (categories)
             gen["categories"] = categories;
-            
-    
-if(descriptionHE)
-        HE["description"] = descriptionHE;
-if(linkHE)
-        HE["link"] = linkHE;
-if(readingHE)
-        HE["reading"] = readingHE;
-if(descriptionEN)
-        EN["description"] = descriptionEN;
-if(linkEN)
-       EN["link"] = linkEN;
-if(readingEN)
-        EN["reading"] = readingEN;
-if(descriptionAR)
-        AR["description"] = descriptionAR;
-if(linkAR)
-       AR["link"] = linkAR;
-if(readingAR)
-        AR["reading"] = readingAR;
+
+        var linksHE = mergelinks(linkHE, descriptionHE);
+        if (linksHE)
+            HE["links"] = linksHE;
+        var linksEN = mergelinks(linkEN, descriptionEN);
+        if (linksEN)
+            EN["links"] = linksEN;
+        var linksAR = mergelinks(linkAR, descriptionAR);
+        if (linksAR)
+            AR["links"] = linksAR;
+        if (readingHE)
+            HE["reading"] = readingHE;
+        if (descriptionEN)
+            EN["description"] = descriptionEN;
+        if (linkEN)
+            EN["link"] = linkEN;
+        if (readingEN)
+            EN["reading"] = readingEN;
+        if (descriptionAR)
+            AR["description"] = descriptionAR;
+        if (linkAR)
+            AR["link"] = linkAR;
+        if (readingAR)
+            AR["reading"] = readingAR;
 
         if (boolHe)
             gen["HE"] = HE
@@ -684,10 +685,31 @@ if(readingAR)
         alert("please upload profile picture");
 }
 
+function mergelinks(links, discription) {
+    if (!links || !discription)
+        return;
+    var entries=[]
+     Object.keys(links).forEach(key => {
+        if (links[key] && discription[key]) {
+            entries.push( 
+                links[key], discription[key]
+            )
+           
+            
+        }
+
+    });
+    
+    return  Object.fromEntries([entries]);
+}
+
+
+
+
 // add to suggest woman collection
 function addsuggest() {
     var obj = {}
-    var id = $("#yourEmail").val()+$("#display").val();
+    var id = $("#yourEmail").val() + $("#display").val();
 
     $($('#suggest_woman_form').prop('elements')).each(function () {
         if (this.value) {
