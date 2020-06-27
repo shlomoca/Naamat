@@ -262,7 +262,7 @@ export const ServiceButtons = (props) => {
 }
 
 function editSuggestWomen(id)
-{console.log(id);
+{
     var woman;
     db.collection('suggest_women').doc(id).get().then(doc=>{
         woman = doc.data();
