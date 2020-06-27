@@ -97,7 +97,8 @@ const DisplayData = (props) => {
         if (fields)
             fields.forEach(field => {
                 console.log(singleRow[Dictionary.getLanguage()]);
-                if (singleRow[field] != undefined && singleRow[field] != "") {
+                console.log(singleRow[field]);
+                if (singleRow[field] || singleRow[field] === false) {
                     col.push(String(singleRow[field]));
                 }
                 else if (singleRow[Dictionary.getLanguage()])
@@ -261,19 +262,18 @@ export const ServiceButtons = (props) => {
 
 }
 
-function editSuggestWomen(id)
-{
+function editSuggestWomen(id) {
     var woman;
-    db.collection('suggest_women').doc(id).get().then(doc=>{
+    db.collection('suggest_women').doc(id).get().then(doc => {
         woman = doc.data();
-        
+
         $("#name").val(woman.display);
 
-        Object.keys(woman).forEach(field =>{
-            $("#"+field+Dictionary.getLanguage()).val(woman[field]);
+        Object.keys(woman).forEach(field => {
+            $("#" + field + Dictionary.getLanguage()).val(woman[field]);
         })
 
-    }).catch(error=>console.log(error));
+    }).catch(error => console.log(error));
 
     window.$("#staticBackdrop").modal('show');
 }
