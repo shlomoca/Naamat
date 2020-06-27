@@ -58,15 +58,16 @@ export class WomenCard extends Component {
         var imgClas = (this.state.woman) ? "roundImageSerach" : "catImage",
             containerCls = (this.state.woman) ? "womanCardsContainer" : "catCardsContainer",
             nameCls = (this.state.woman) ? "womanTitleSerach" : "catTitle",
-            summaryCls = (this.state.woman) ? "summarySearch" : "catSummery"
+            summaryCls = (this.state.woman) ? "summarySearch" : "catSummery",
+            aCont = (this.state.woman) ? "" : "catContainCard"
         return (
             <div className={containerCls}>
-                <a href={"/womanPage/" + this.state.id}>
+                <a className={aCont} href={"/womanPage/" + this.state.id}>
                     {/* id={"roundImage" + this.state.id} */}
                     <img className={imgClas} src={this.state.url} alt={this.state.display} />
                     <h3 className={nameCls}>{this.state.display}</h3>
+                <a className={summaryCls} > {this.state.summary} </a>
                 </a>
-                <a className={summaryCls}> {this.state.summary} </a>
             </div>
         )
     }

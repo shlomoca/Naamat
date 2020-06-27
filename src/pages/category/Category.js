@@ -88,19 +88,25 @@ export class ShoWomanByCat extends Component {
             cat = this.state.cat;
         // .orderby().limit(20)
         var data = [], page = [];
-        db.collection("women").where('categories', 'array-contains', [cat]).get()
+        db.collection("women").where('categories', 'array-contains', cat).get()
         .then(querySnapshot => {
             console.log(querySnapshot)
                 querySnapshot.forEach(function (doc) {
+                    console.log("in snap")
                     data.push(doc.data())
                 });
                 data.forEach(woman => {
+                    console.log("in data")
                     if (woman[Dictionary.getLanguage()]) {
                         var id = woman["id"],
                             display = woman[Dictionary.getLanguage()]["display"],
                             summary = woman[Dictionary.getLanguage()]["highlights"],
                             url = woman["ProfilePic"],
                             woman = false;
+                            console.log(id)
+                            console.log(display)
+                            console.log(summary)
+                            console.log(url)
                         if (id && display && summary && url) {
                             page.push(
                                 <WomenCard id={id} display={display} prof={url} summary={summary} />

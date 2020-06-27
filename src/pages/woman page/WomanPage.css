@@ -78,8 +78,33 @@ h1{
     margin-right: 1%;  
     
 }
-
+a {
+    all: unset;
+}
 .summarySearch{
-
+color: black;
     font-weight: bolder;
+}
+.catCardsContainer{
+    height: 1%;
+    
+    
+}
+.catContainCard{
+    display: flex;
+    flex-wrap: wrap;
+    height: 300px;
+    flex-direction: column ;
+    margin-bottom: 2%;
+
+}
+.catImage{
+    /* height: 20vh; */
+   max-height:100% ;
+   /* width: auto; */
+   object-fit: cover;
+}
+.catSummery{
+    max-width: 80%;
+    
 }
