@@ -288,7 +288,7 @@ export function loadWomanToModal(id) {
             $("#death").val(woman.death);
             $("#ProfilePic").val(woman.ProfilePic);
 
-            
+
 
             if (woman["categories"]) {
                 Object.values(woman["categories"]).forEach(cat => {
@@ -304,9 +304,8 @@ export function loadWomanToModal(id) {
                     Object.keys(arr).forEach(field => {
                         $("#" + field + lang).val(arr[field]);
 
-                        if (field == "reading") {
+                        if (field === "reading") {
                             let i = 0;
-                            console.log(arr[field]);
                             Object.values(arr[field]).forEach(val => {
                                 if (i != 0) {
                                     var fill = $("#fill2" + Dictionary.getLanguage());
@@ -315,6 +314,27 @@ export function loadWomanToModal(id) {
                                 }
                                 else
                                     $("#" + field + lang + i).val(val);
+                                i++;
+                            })
+                        }
+
+                        if (field === "links") {
+                            let i = 0;
+                            var array = arr[field];
+                            Object.keys(array).forEach(key => {
+                                if (i != 0) {
+                                    var fill = $("#fill1" + Dictionary.getLanguage());
+                                    fill.append(`<a>‏</a><input id=${"description" + Dictionary.getLanguage() + i}  lang = ${Dictionary.getLanguage()} autoComplete="off" type="text" rows="4" className="regularInput" cols="50" name="description" placeholder=${Dictionary.description} />
+                                    <a>‏</a>
+                                <input id=${"link" + lang + i} lang = ${Dictionary.getLanguage()} type="text" autoComplete="off" rows="4" className="regularInput" cols="50" name="link" placeholder=${Dictionary.link} />`)
+                                    $("#description" + lang + i).val(key);
+                                    $("#link" + lang + i).val(array[key]);
+                                }
+                                else 
+                                {
+                                    $("#description" + lang + i).val(key);
+                                    $("#link" + lang + i).val(array[key]);
+                                }
                                 i++;
                             })
                         }
