@@ -17,6 +17,7 @@ export const Dictionary = new LocalizedStrings({
     enterPass: `Password`,
     login: `Log in`,
     userDoesntExists: `Permission denied`,
+  
 
     //admin page
     adminAddWoman: 'Add Woman',
