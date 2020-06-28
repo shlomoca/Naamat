@@ -266,7 +266,7 @@ function editSuggestWomen(id) {
         woman = doc.data();
         $("#name").val(woman.display);
         Object.keys(woman).forEach(field => {
-            $("#" + field + Dictionary.getLanguage()).val(woman[field]);
+            $("#" + field + determineLang(woman.display)).val(woman[field]);
         })
 
     }).catch(error => console.log(error));

@@ -143,7 +143,7 @@ export const EditWomanModal = () => {
                                     <li id="liEN" className="langTabs"><a class="nav-link" data-toggle="tab" href="#EN" >English</a></li>
                                     <li id="liAR" className="langTabs"><a class="nav-link" data-toggle="tab" href="#AR" >عربى</a></li>
                                 </ul>
-                                
+
                                 <div className="addWomanContainer">
                                     <div className="form-group">
                                         <label className="regularLabel" htmlFor="name">{Dictionary.name}*</label>
@@ -160,7 +160,7 @@ export const EditWomanModal = () => {
                                     <p id="ImportantMSG">{Dictionary.ImportantMSG}</p>
 
                                     <div className="form-group">
-                                        <button id="submit1" type="button" className="btn btn-success" onClick={() =>{allreadyExist($("#name").val() + $("#birth").val());lockInputs();}} >{Dictionary.next}</button>
+                                        <button id="submit1" type="button" className="btn btn-success" onClick={() => { allreadyExist($("#name").val() + $("#birth").val()); lockInputs(); }} >{Dictionary.next}</button>
                                     </div>
                                     <div id="popup">
                                         <span className="popuptext" id="myPopup">{Dictionary.popup}</span>
@@ -223,8 +223,13 @@ export const SuggestWomanModal = () => {
                             </div>
 
                             <div className="form-group">
-                                <label className="regularLabel" htmlFor="display">{Dictionary.displayname}*</label>
+                                <label className="regularLabel" htmlFor="display">{Dictionary.name}*</label>
                                 <input type="text" autoComplete="off" rows="1" className="regularInput" cols="35" id="display" name="display" required />
+                            </div>
+
+                            <div className="form-group">
+                                <label className="regularLabel" htmlFor="birth">{Dictionary.birth}</label>
+                                <input className="regularInput" type="date" rows="1" cols="35" id="birth" name="birth" required />
                             </div>
 
 
@@ -482,7 +487,7 @@ export const GenralForm = (props) => {
     )
 }
 
-function lockInputs(){//lock inputs for edit. using in EditWomanModal when we add new woman
+function lockInputs() {//lock inputs for edit. using in EditWomanModal when we add new woman
     $("#name").attr('readonly', true);
     $("#birth").attr('readonly', true);
 }
@@ -636,13 +641,13 @@ export function addWoman(e) {
         });
         if (categories)
             gen["categories"] = categories;
-        var linksHE = mergelinks( descriptionHE,linkHE);
+        var linksHE = mergelinks(descriptionHE, linkHE);
         if (linksHE)
             HE["links"] = linksHE;
-        var linksEN = mergelinks( descriptionEN, linkEN);
+        var linksEN = mergelinks(descriptionEN, linkEN);
         if (linksEN)
             EN["links"] = linksEN;
-        var linksAR = mergelinks( descriptionAR,linkAR);
+        var linksAR = mergelinks(descriptionAR, linkAR);
         if (linksAR)
             AR["links"] = linksAR;
         if (readingHE)
@@ -677,23 +682,23 @@ export function addWoman(e) {
         alert(Dictionary.mustUpload);
 }
 
-function mergelinks(discription,links) {
+function mergelinks(discription, links) {
     if (!discription || !links)
         return;
-    var entries=[]
+    var entries = []
     Object.keys(discription).forEach(key => {
         if (links[key] && discription[key]) {
-            entries.push( 
-                [discription[key] ,links[key]]
-                )
-                
-                
-            }
-            
-        });
-        
-        console.log(entries)
-    return  Object.fromEntries(entries);
+            entries.push(
+                [discription[key], links[key]]
+            )
+
+
+        }
+
+    });
+
+    console.log(entries)
+    return Object.fromEntries(entries);
 }
 
 
@@ -802,7 +807,7 @@ function addCatagory(event) {
 function resetForm(reset, empty1, empty2) {
     console.log(empty2);
     return () => {
-        
+
         $("#" + reset).trigger("reset");
 
         if (empty1)
