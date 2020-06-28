@@ -1,7 +1,7 @@
 import './WomanPage.css';
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import { NavBar, BottomBar } from '../../Components';
+import { NavBar, BottomBar, DisplayModal } from '../../Components';
 import { db, storage } from '../../config/Firebase'
 import { Dictionary, langs } from '../../Dictionary';
 import { allreadyExist, EditWomanModal } from '../../forms/Forms'
@@ -171,12 +171,18 @@ export class ShoWoman extends Component {
             var alldata = info[0];
             if (alldata && alldata[Dictionary.getLanguage()]) {
                 page.push(<MainDetails display={alldata[Dictionary.getLanguage()]["display"]} link={alldata["ProfilePic"]} managerBtns={managerBtns} />);
+                if(alldata["birth"])
+                    page.push(<p><b >{Dictionary.birth}:</b> {formatDate(alldata["birth"])}</p>);
+                if(alldata["deth"])
+                page.push(<p><b>{Dictionary.birth}:</b> {formatDate(alldata["deth"])}</p>);
                 (Object.values(this.state.fields)).forEach(key => {
                     if (alldata[Dictionary.getLanguage()][key])
                         page.push(<p><b>{Dictionary[key]}:</b> {alldata[Dictionary.getLanguage()][key]}</p>);
                 })
+                console.log(alldata[Dictionary.getLanguage()])
+                page.push( <FurtherReading links={alldata[Dictionary.getLanguage()]["links"]} bibliography={alldata[Dictionary.getLanguage()]["reading"]}/>)
             }
-            else {
+                else {
                 alert(Dictionary.nothingToShow)
                 window.location.href = '/';
             }
@@ -198,7 +204,33 @@ export class ShoWoman extends Component {
     }
 }
 
+function formatDate(date){
+    let info = new Date(date);
+    let d=info.getDate()+'-' + (info.getMonth()+1) + '-'+info.getFullYear();
+    return d;
+}
+const FurtherReading= (props)=>{
+var links = props.links,
+bibliography=props.bibliography;
+var obj =[],linkObj=[];
+console.log(bibliography)
+if(bibliography){
+    Object.values(bibliography).forEach(value=>{
+        obj.push(<p><b>{value}</b></p>);
+    })
+}
+if(links){
+    Object.keys(links).forEach(key=>{
+        if(key&&links[key])
+        obj.push(<p><b><DisplayModal link={links[key]} details={key} /></b></p>);
+    })
+}
 
+if(obj.length>0)
+return(<div><b>{Dictionary.furtherReading}:</b><p></p>{obj}</div>);
+else 
+return(<div></div>)
+}
 
 
 //searches for woman and 

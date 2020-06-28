@@ -34,8 +34,6 @@ class AdminPage extends Component {
                         <button className="btnhover" type="button" id="categoriesBtn" onClick={() => { getData("categoriesBtn", "categories", ["category"]) }}> {Dictionary.manageCategory} </button>
                         <button className="btnhover" type="button" id="userMngBtn" onClick={() => { getData("userMngBtn", "users", ["email", "admin"]) }}> {Dictionary.adminUserManagement} </button>
                         <button className="btnhover" type="button" id="factMngBtn" onClick={() => { getData("factMngBtn", "didYouKnow", ["langs"]) }}> {Dictionary.DidYouKnow} </button>
-                        {/* <button className="btnhover" type="button" id="btn2" > {Dictionary.adminEditWoman} </button> */}
-                        {/* <button className="btnhover" type="button" id="btn4"> {Dictionary.adminEditAbout} </button>   data-toggle="modal" data-target="#suggestWomanModal"   */}
 
                     </div>
                     <div id="TableHolder"></div>
@@ -172,7 +170,7 @@ export function removeItem(collect, id) {
         db.collection(collect).doc(id).delete().then(() => {
             ReactDOM.render(<a></a>, document.getElementById("tr" + id));
             console.log(collect, id);
-            alert(Dictionary.collect + " " + Dictionary.deletedSuccessfully);//see how to make collect readable
+            alert(Dictionary[collect] + " " + Dictionary.deletedSuccessfully);//see how to make collect readable
         }).catch(error => console.log(error));
     }
     else
@@ -246,7 +244,7 @@ export const ServiceButtons = (props) => {
 
     const serviceButtons = [];
     if (btnId) {
-        serviceButtons.push(<td><button onClick={() => ShowHideFunc(["allAdmin", "adminTitle"], ["TableHolder"])} id="backBtn" className="btn" >{Dictionary.back}</button></td>)
+        serviceButtons.push(<td><button onClick={() => {ShowHideFunc(["allAdmin", "adminTitle"], ["TableHolder"]); window.location.reload();}} id="backBtn" className="btn" >{Dictionary.back}</button></td>)
         if (btnId == "userMngBtn") {
             serviceButtons.push(<td><button className="btn" id="addUserBtn" data-toggle="modal" data-target="#newUserModal">{Dictionary.addUserBtn}</button></td>)
         }
@@ -266,9 +264,7 @@ function editSuggestWomen(id) {
     var woman;
     db.collection('suggest_women').doc(id).get().then(doc => {
         woman = doc.data();
-
         $("#name").val(woman.display);
-
         Object.keys(woman).forEach(field => {
             $("#" + field + Dictionary.getLanguage()).val(woman[field]);
         })

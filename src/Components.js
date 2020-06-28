@@ -158,8 +158,8 @@ export const BottomBar = () => {
 
       <ScrollUpButton />
       <span id="builder"><a>{Dictionary.builders}</a></span>
-      <a id="facebook" href="https://www.facebook.com/womenatwork" data-target="#mymodal"><img id="fblogo" src={fblogo} alt="facebook" />{Dictionary.NaamatInFacebook}</a>
-      <a id="youtube" href="https://www.youtube.com/embed/channel/UCdKKqQogmEQp7KNDRYCnV6A"> <img id="ytlogo" src={ytlogo} alt="youtube" />{Dictionary.NaamatInYoutube}</a>
+      {/* <a id="facebook" href="https://www.facebook.com/womenatwork" data-target="#mymodal"><img id="fblogo" src={fblogo} alt="facebook" />{Dictionary.NaamatInFacebook}</a>
+      <a id="youtube" href="https://www.youtube.com/embed/channel/UCdKKqQogmEQp7KNDRYCnV6A"> <img id="ytlogo" src={ytlogo} alt="youtube" />{Dictionary.NaamatInYoutube}</a> */}
       {/* <DisplayModal link='https://www.youtube.com/embed/watch?v=vg2gscdAQBo' details='Wikipedia' /> */}
 
     </div>
@@ -175,7 +175,7 @@ export const DisplayModal = (props) => {
       <button className="clearBtn" data-toggle="modal" data-target="#displayModal"> <a href="#">{props.details}</a></button>
       <div className="modal fade" id="displayModal" data-keyboard="false" tabIndex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div className="modal-dialog modal-xl">
-          <div className="modal-content">
+          <div className="modal-content" >
             <div className="modal-header ">
               <h5 className="modal-title" id="staticBackdropLabel">{props.details}</h5>
               <button type="button" className="close" data-dismiss="modal" aria-label="Close">
@@ -306,7 +306,6 @@ export class CollectionCheckBox extends Component {
       snapshot.forEach(doc => {
 
         var data = doc.data();
-        console.log(data);
         if (data) {
           if (data[Dictionary.getLanguage()]) {
 

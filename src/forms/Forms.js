@@ -636,7 +636,6 @@ export function addWoman(e) {
         });
         if (categories)
             gen["categories"] = categories;
-
         var linksHE = mergelinks( descriptionHE,linkHE);
         if (linksHE)
             HE["links"] = linksHE;
@@ -670,7 +669,7 @@ export function addWoman(e) {
         db.collection('women').doc(id).set(gen).then(() => {
             alert(Dictionary.uploadSuccess);
             window.$("#staticBackdrop").modal('hide');
-            // window.location.reload();
+            window.location.reload();
 
         }).catch(error => console.log(error))
     }

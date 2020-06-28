@@ -38,7 +38,9 @@ export const Dictionary = new LocalizedStrings({
     categoriesTitle:'Categories',
     suggest_womenTitle:'Suggest Women',
     manageOffers:'Manage Suggestions',
-
+    HE:`The form was uploaded to the Hebrew tab`,
+    AR:`The form went to Arabic tab`,
+    EN:`The form came up in English`,
 
 
 
@@ -111,7 +113,7 @@ export const Dictionary = new LocalizedStrings({
     ImportantMSG:'Note that after pressing the "Next" button you will not be able to change the required fields',
     acceptFiles:"accept only image files",
     mustUpload:"please upload picture",
-    
+    furtherReading:"further reading",
     
     //components
     builders: `This site was built by: Shlomo Carmi, Daniel Raz, Sahar Cohen, Adiel Tsayag, Matan Yamin`,
@@ -167,7 +169,10 @@ export const Dictionary = new LocalizedStrings({
     search: `חיפוש`,
     addWoman: `הוסיפי אישה`,
     addcategory: `הוסיפי קטגוריה`,
-
+    HE:`הטופס עלה ללשונית עברית`,
+    AR:`הטופס עלה ללשונית ערבית`,
+    EN:`הטופס עלה ללשונית אנגלית`,
+    
     //forms
     name: `שם מלא`,
     displayname: "שם תצוגה",
@@ -214,13 +219,15 @@ export const Dictionary = new LocalizedStrings({
     acceptFiles:"מקבל קבצי תמונות בלבד",
     summeryHighlight: "תקציר זה יופיע בקרוסלת התמונות ובקטגוריות",
     mustUpload:"בבקשה העלי תמונה",
-
     DidYouKnow:'הידעת ?',
     AddNewFact:'הוסיפי עובדה חדשה',
     language:'שפה',
     FactAddedSuccefully:'עובדה הועלתה בהצלחה',
     langs:'כאן יופיעו כל העובדות בשפת המערכת',
     createdAt:"תאריך",
+    furtherReading:"לקריאה נוספת",
+    
+    
    
     
     //components
@@ -283,6 +290,10 @@ export const Dictionary = new LocalizedStrings({
     search: `بحث`,
     addWoman: `أضف امرأة`,
     addcategory: `إضافة فئة`,
+    HE:`تم تحميل النموذج إلى علامة التبويب العبرية`,
+    AR:`ذهب النموذج إلى علامة التبويب العربية`,
+    EN:`جاء النموذج باللغة الإنجليزية`,
+
 
     //forms
     name: `اسم`,
@@ -340,7 +351,7 @@ export const Dictionary = new LocalizedStrings({
     ImportantMSG:'لاحظ أنه بعد الضغط على زر "التالي" لن تتمكن من تغيير الحقول المطلوبة',
     acceptFiles:"يستقبل ملفات الصور فقط",
     mustUpload:"يرجى تحميل صورة",
-
+    furtherReading:"قراءة متعمقة",
 
     //components
 
