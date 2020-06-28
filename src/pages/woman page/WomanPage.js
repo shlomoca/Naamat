@@ -303,10 +303,8 @@ export function loadWomanToModal(id) {
                 if (arr)
                     Object.keys(arr).forEach(field => {
                         $("#" + field + lang).val(arr[field]);
-
-                        if (field == "reading") {
+                        if (field === "reading") {
                             let i = 0;
-                            console.log(arr[field]);
                             Object.values(arr[field]).forEach(val => {
                                 if (i != 0) {
                                     var fill = $("#fill2" + Dictionary.getLanguage());
