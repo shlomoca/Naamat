@@ -2,7 +2,7 @@ import './AdminPage.css';
 import $ from 'jquery';
 import React, { Component } from 'react';
 import { NavBar, DisplayModal, BottomBar, AfterMessage, usersManager } from '../../Components.js';
-import { getWoman, WomenCard } from '../woman page/WomanPage';
+import { getWoman, determineLang } from '../woman page/WomanPage';
 import { Dictionary, langs } from '../../Dictionary';
 import { EditWomanModal, CategoryModal, FeedbackModal, NewUserModal, DidYouKnowModal } from '../../forms/Forms';
 import { scryRenderedComponentsWithType } from 'react-dom/test-utils';
@@ -268,7 +268,7 @@ function editSuggestWomen(id) {
         Object.keys(woman).forEach(field => {
             $("#" + field + determineLang(woman.display)).val(woman[field]);
         })
-
+alert(Dictionary[determineLang(woman.display)]);
     }).catch(error => console.log(error));
 
     window.$("#staticBackdrop").modal('show');

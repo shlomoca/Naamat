@@ -237,8 +237,6 @@ return(<div></div>)
 export function getWomen(womanName) {
     if (womanName) {
         var nameattr = "display" + determineLang(womanName);
-        // var nameattr = Dictionary.getLanguage();
-        var MaxIndex = getMaxIndex(womanName);
         //get all the women that start with the term search
         db.collection('women').where(nameattr, "array-contains", womanName).get().then(snapshot => {
             const women = [];
@@ -296,7 +294,7 @@ function getMaxIndex(str) {
 
 }
 //deteminLang determins what is the lang first letter in str
-function determineLang(str) {
+export function determineLang(str) {
     if (str[0].match(/[\u0600-\u06FF]/i)) {
         return "AR";
     }
@@ -324,8 +322,6 @@ export function loadWomanToModal(id) {
 
             if (woman["categories"]) {
                 Object.values(woman["categories"]).forEach(cat => {
-                    console.log(cat);
-                    // document.getElementById(cat).checked = true;
                     $("#" + cat).prop('checked', true);
                 })
             }
