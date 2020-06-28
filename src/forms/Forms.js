@@ -685,7 +685,7 @@ function mergelinks(discription,links) {
     Object.keys(discription).forEach(key => {
         if (links[key] && discription[key]) {
             entries.push( 
-                discription[key] ,links[key]
+                [discription[key] ,links[key]]
                 )
                 
                 
@@ -694,7 +694,7 @@ function mergelinks(discription,links) {
         });
         
         console.log(entries)
-    return  Object.fromEntries([entries]);
+    return  Object.fromEntries(entries);
 }
 
 
