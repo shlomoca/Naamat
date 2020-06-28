@@ -637,13 +637,13 @@ export function addWoman(e) {
         if (categories)
             gen["categories"] = categories;
 
-        var linksHE = mergelinks(linkHE, descriptionHE);
+        var linksHE = mergelinks( descriptionHE,linkHE);
         if (linksHE)
             HE["links"] = linksHE;
-        var linksEN = mergelinks(linkEN, descriptionEN);
+        var linksEN = mergelinks( descriptionEN, linkEN);
         if (linksEN)
             EN["links"] = linksEN;
-        var linksAR = mergelinks(linkAR, descriptionAR);
+        var linksAR = mergelinks( descriptionAR,linkAR);
         if (linksAR)
             AR["links"] = linksAR;
         if (readingHE)
@@ -678,21 +678,22 @@ export function addWoman(e) {
         alert(Dictionary.mustUpload);
 }
 
-function mergelinks(links, discription) {
-    if (!links || !discription)
+function mergelinks(discription,links) {
+    if (!discription || !links)
         return;
     var entries=[]
-     Object.keys(links).forEach(key => {
+    Object.keys(discription).forEach(key => {
         if (links[key] && discription[key]) {
             entries.push( 
-                links[key], discription[key]
-            )
-           
+                discription[key] ,links[key]
+                )
+                
+                
+            }
             
-        }
-
-    });
-    
+        });
+        
+        console.log(entries)
     return  Object.fromEntries([entries]);
 }
 
