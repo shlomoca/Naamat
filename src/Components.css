@@ -242,3 +242,10 @@ vertical-align: middle;
     width: 100%;
 
 }
+.higher{
+    max-height: 100%;
+}
+
+.higest{
+    height: 100%;
+}

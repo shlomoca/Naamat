@@ -150,8 +150,8 @@ export const EditWomanModal = () => {
                                         <input className="regularInput" autoComplete="off" type="text" rows="1" cols="35" id="name" name="name" required />
                                     </div>
                                     <div className="form-group">
-                                        <label className="regularLabel" htmlFor="birth">{Dictionary.birth}*</label>
-                                        <input className="regularInput" type="date" rows="1" cols="35" id="birth" name="birth" required />
+                                        <label className="regularLabel" htmlFor="birth" >{Dictionary.birth}*</label>
+                                        <input className="regularInput" type="date" rows="1" cols="35" id="birth" name="birth"  required />
                                     </div>
                                     <div className="form-group">
                                         <label className="regularLabel" htmlFor="death">{Dictionary.death}</label>
@@ -160,7 +160,7 @@ export const EditWomanModal = () => {
                                     <p id="ImportantMSG">{Dictionary.ImportantMSG}</p>
 
                                     <div className="form-group">
-                                        <button id="submit1" type="button" className="btn btn-success" onClick={() => { allreadyExist($("#name").val() + $("#birth").val()); lockInputs(); }} >{Dictionary.next}</button>
+                                        <button id="submit1" type="button" className="btn btn-success" onClick={() => { allreadyExist($("#name").val() + $("#birth").val());  }} >{Dictionary.next}</button>
                                     </div>
                                     <div id="popup">
                                         <span className="popuptext" id="myPopup">{Dictionary.popup}</span>
@@ -227,9 +227,10 @@ export const SuggestWomanModal = () => {
                                 <input type="text" autoComplete="off" rows="1" className="regularInput" cols="35" id="display" name="display" required />
                             </div>
 
+
                             <div className="form-group">
-                                <label className="regularLabel" htmlFor="birth">{Dictionary.birth}</label>
-                                <input className="regularInput" type="date" rows="1" cols="35" id="birth" name="birth" required />
+                                <label className="regularLabel" htmlFor="birthday">{Dictionary.birth}</label>
+                                <input type="date" className="regularInput"  rows="1" cols="35" id="birthday" name="birth" required />
                             </div>
 
 
@@ -682,6 +683,7 @@ export function addWoman(e) {
         alert(Dictionary.mustUpload);
 }
 
+//gets multiple links and discriptions and makes them a json
 function mergelinks(discription, links) {
     if (!discription || !links)
         return;
@@ -691,13 +693,9 @@ function mergelinks(discription, links) {
             entries.push(
                 [discription[key], links[key]]
             )
-
-
         }
 
     });
-
-    console.log(entries)
     return Object.fromEntries(entries);
 }
 
@@ -824,7 +822,7 @@ function resetForm(reset, empty1, empty2) {
 
 //check if woman allready exist when we want to add woman 
 export function allreadyExist(id, wantToEdit) {
-
+console.log(id)
     if (id) {
         var woman = db.collection('women').doc(id);
         woman.get().then(doc => {
@@ -848,10 +846,10 @@ export function allreadyExist(id, wantToEdit) {
 
 //make sure that the use enterd in step one the name and birth date
 export function showing(id, wantToEdit) {
-
     if (($("#name").val() && $("#birth").val()) || wantToEdit) {
         $(id).show();
         $("#submit1").hide()
+        lockInputs();
     }
     else {
         $("#popup").show();
@@ -891,20 +889,12 @@ $("document").ready(function () {
     $("#step2").hide();
     $("#popup").hide();
 
-    // show and hide link input from add woman form.
-    // $('#mylinks a').click(function () {
-    //     $('#mylinks a').removeClass('highlight');
-    //     $(this).addClass('highlight');
-    // });
+    
 
     $('li').click(function () {
         $('li.selected').removeClass('highlight');
         $(this).addClass('highlight');
     });
 
-    // $('li').click(function () {
-    //     $('li.selected').removeClass('highlight');
-    //     $(this).addClass('highlight');
-    // });​
-
+ 
 });

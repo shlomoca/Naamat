@@ -175,14 +175,14 @@ export const DisplayModal = (props) => {
       <button className="clearBtn" data-toggle="modal" data-target="#displayModal"> <a href="#">{props.details}</a></button>
       <div className="modal fade" id="displayModal" data-keyboard="false" tabIndex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div className="modal-dialog modal-xl">
-          <div className="modal-content" >
+          <div className="modal-content higest" >
             <div className="modal-header ">
               <h5 className="modal-title" id="staticBackdropLabel">{props.details}</h5>
               <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <div className="modal-body">
+            <div className="modal-body higher" >
               <iframe src={props.link}
                 width="100%"
                 height="100%"

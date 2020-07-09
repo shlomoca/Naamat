@@ -244,7 +244,7 @@ export const ServiceButtons = (props) => {
 
     const serviceButtons = [];
     if (btnId) {
-        serviceButtons.push(<td><button onClick={() => {ShowHideFunc(["allAdmin", "adminTitle"], ["TableHolder"]); window.location.reload();}} id="backBtn" className="btn" >{Dictionary.back}</button></td>)
+        serviceButtons.push(<td><button onClick={() => { ShowHideFunc(["allAdmin", "adminTitle"], ["TableHolder"]); window.location.reload(); }} id="backBtn" className="btn" >{Dictionary.back}</button></td>)
         if (btnId == "userMngBtn") {
             serviceButtons.push(<td><button className="btn" id="addUserBtn" data-toggle="modal" data-target="#newUserModal">{Dictionary.addUserBtn}</button></td>)
         }
@@ -268,7 +268,7 @@ function editSuggestWomen(id) {
         Object.keys(woman).forEach(field => {
             $("#" + field + determineLang(woman.display)).val(woman[field]);
         })
-alert(Dictionary[determineLang(woman.display)]);
+        alert(Dictionary[determineLang(woman.display)]);
     }).catch(error => console.log(error));
 
     window.$("#staticBackdrop").modal('show');

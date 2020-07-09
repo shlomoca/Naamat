@@ -1,11 +1,10 @@
 import './Category.css'
 import React, { Component } from 'react';
 import { NavBar, BottomBar } from '../../Components';
-import { db, storage } from '../../config/Firebase'
+import { db } from '../../config/Firebase'
 import { Dictionary } from '../../Dictionary';
 import { ShowHideFunc } from '../Admin Page/AdminPage';
 import ReactDOM from 'react-dom';
-import { render } from '@testing-library/react';
 import { WomenCard } from '../woman page/WomanPage';
 
 class Category extends Component {

@@ -162,7 +162,7 @@ export class ShoWoman extends Component {
             page = [],
             managerBtns = "";
         if (this.state.Admin) {
-            managerBtns = <div className="editWomanBtn" ><button className="btn" onClick={(e) => { e.preventDefault(); allreadyExist(this.state.id, true); }}>{Dictionary.edit}</button>
+            managerBtns = <div className="editWomanBtn" ><button className="btn" onClick={(e) => { allreadyExist(this.state.id, true); }}>{Dictionary.edit}</button>
                 <button className=" btn-danger deleteBtn" onClick={() => { if (window.confirm(Dictionary.areYouSure)) deleteWoman(this.state.id) }} >{Dictionary.delete}</button></div>;
         }
         db.collection('women').doc(this.state.id).get().then(snapshot => {
