@@ -77,7 +77,7 @@ export class PictursCarousel extends Component {
     super(props);
     this.state = {
       url: [],
-      ids: ["גולדה מאיר1898-03-03", "דניאל רז1992-03-31", "סהר כהן1995-09-21", "עדיאל צייג2020-06-01", "שלמה כרמי1993-06-09", "אורנה ברביבאי1962-09-05", "Ada Fishman Maimon1893-10-08"],
+      ids: ["גולדה מאיר1898-03-03","יעל ארד1967-05-01","אורנה ברביבאי1962-09-05", "Ada Fishman Maimon1893-10-08"],
       indicators: [],
       items: [],
       dataslide: 0,

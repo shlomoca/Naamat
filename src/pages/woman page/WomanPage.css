@@ -87,8 +87,8 @@ h1 {
 
 .catCardsContainer {
     height: 1%;
-    width: 420%;
-    margin-bottom: -60px;
+    width: 100%;
+    
     /* flex-direction: row ; */
     background-color: thistle;
     flex-direction: column;
@@ -98,31 +98,28 @@ h1 {
 
 .catContainCard {
     display: flex;
-    /* flex-wrap: nowrap; */
-    /* height: 300px; */
-    width: 30%;
+    width: 100%;
     flex-direction: row;
-    /* flex-direction: row; */
     margin-bottom: 2%;
 }
 
 .catImage {
     border-radius: 30%;
-    height: 30vh;
-    /* max-height:100% ; */
-    /* width: auto; */
+    height: 150px;
     object-fit: cover;
-    width: 30vh;
+    width: 150px;
 }
 
 .catSummery {
     height: auto;
-    margin-right: 10%;
     width: 100%;
 }
 
 .catTitle {
-    margin-right: 2%;
+    /* margin-right: 2%; */
+    width: 15%;
+    text-align: center;
+    margin:auto;
     color: black;
-    margin-top: 5%;
+    /* margin-top: 5%; */
 }

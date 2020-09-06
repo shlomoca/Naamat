@@ -21,6 +21,7 @@ class Category extends Component {
 
 
     componentDidMount() {
+        //when the component will mount, call of the catagories to the components 
         db.collection('categories').get().then(snapshot => {
             const categories = [];
             snapshot.forEach(doc => {
@@ -89,9 +90,7 @@ export class ShoWomanByCat extends Component {
         var data = [], page = [];
         db.collection("women").where('categories', 'array-contains', cat).get()
         .then(querySnapshot => {
-            console.log(querySnapshot)
                 querySnapshot.forEach(function (doc) {
-                    console.log("in snap")
                     data.push(doc.data())
                 });
                 data.forEach(woman => {
@@ -102,10 +101,6 @@ export class ShoWomanByCat extends Component {
                             summary = woman[Dictionary.getLanguage()]["highlights"],
                             url = woman["ProfilePic"],
                             woman = false;
-                            console.log(id)
-                            console.log(display)
-                            console.log(summary)
-                            console.log(url)
                         if (id && display && summary && url) {
                             page.push(
                                 <WomenCard id={id} display={display} prof={url} summary={summary} />

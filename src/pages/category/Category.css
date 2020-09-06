@@ -68,13 +68,15 @@
 
   #shoWoman2{
 
-    margin-right: 5%;
+    
     flex-direction: row;
-    width: 65%;
+    width: 100%;
     font-size: larger;
-    /* margin: auto; */
+    margin: auto; 
     text-align: justify;
     text-justify: inter-word;
-
-
+  }
+  #CatWomen{
+    width: 90%;
+    margin: auto;
   }
