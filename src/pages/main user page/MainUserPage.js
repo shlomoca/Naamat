@@ -24,7 +24,7 @@ class MainUserPage extends Component {
     return (
       <div>
         <div id="mainUPWrapper" className="wrapper">
-          <NavBar AdminPage={false} Admin={this.props.Admin} />
+          <NavBar AdminPage={false} Admin={this.props.Admin} mainUserPage={true} />
           <PictursCarousel />
           <ShowPhotos />
         </div>

@@ -20,6 +20,7 @@ export const NavBar = (props) => {
   var AdminPage = props.AdminPage,
     Admin = props.Admin,
     categoryPage = props.categoryPage,
+    mainUserPage= props.mainUserPage,
     logoHref = "/HomePage",
     suggest = "",
     back = "",
@@ -32,7 +33,7 @@ export const NavBar = (props) => {
   else {
     logout = <li className="nav-item"><button id="signOutBtn" type="button" className="btn btn-primary nav-link" onClick={managerSignout} > {Dictionary.signOut}</button > </li>
   }
-  if (categoryPage) {
+  if (categoryPage||(!Admin&&!mainUserPage)) {
     back = <Link to='/'><button type="button" className="btn btn-primary nav-link" >{Dictionary.back}</button ></Link>
     $("#catBtn").click(() => window.location.reload());
   }
@@ -67,10 +68,10 @@ export const NavBar = (props) => {
             <Search />
             <div id="womenHolder"></div>
           </li>
+          <li className="nav-item">{back}</li>
           <li className="nav-item">
             {<Buttons AdminPage={AdminPage} Admin={Admin} />}
           </li>
-          <li className="nav-item">{back}</li>
 
           {logout}
         </ul>

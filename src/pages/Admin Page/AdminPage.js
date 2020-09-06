@@ -17,7 +17,7 @@ class AdminPage extends Component {
         return (
             <div id="APcover" className="cover">
                 <div id="mainAPWrapper" className="wrapper">
-                    <NavBar AdminPage={true} Admin={true} />
+                    <NavBar AdminPage={true} Admin={true}  />
                     <EditWomanModal />
                     <CategoryModal />
                     <FeedbackModal />

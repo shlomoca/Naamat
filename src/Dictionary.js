@@ -410,7 +410,13 @@ export const LangBtn = () => {
   return (
     <div id="languages">
       <Dropdown >
-        <DropdownTrigger><img src={globe} id="globus" alt="lang" /></DropdownTrigger>
+        
+        <DropdownTrigger><div id= "displayAndGlobe">
+                         <img src={globe} id="globus" alt="lang" />
+                         <a id= "currentLangDisplay">{Dictionary.getLanguage()}</a>
+                         </div>
+        </DropdownTrigger>
+        
         <DropdownContent>
 
           <ul id="langlist">
