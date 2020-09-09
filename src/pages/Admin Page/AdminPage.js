@@ -1,12 +1,10 @@
 import './AdminPage.css';
 import $ from 'jquery';
 import React, { Component } from 'react';
-import { NavBar, DisplayModal, BottomBar, AfterMessage, usersManager } from '../../Components.js';
-import { getWoman, determineLang } from '../woman page/WomanPage';
-import { Dictionary, langs } from '../../Dictionary';
+import { NavBar,  BottomBar } from '../../Components.js';
+import {  determineLang } from '../woman page/WomanPage';
+import { Dictionary } from '../../Dictionary';
 import { EditWomanModal, CategoryModal, FeedbackModal, NewUserModal, DidYouKnowModal } from '../../forms/Forms';
-import { scryRenderedComponentsWithType } from 'react-dom/test-utils';
-import { Link } from 'react-router-dom';
 import { db } from '../../config/Firebase';
 import ReactDOM from 'react-dom';
 

@@ -5,9 +5,9 @@ import React from 'react';
 import { db, auth } from '../config/Firebase'
 import { Dictionary, langs } from '../Dictionary';
 import ImageUpload, { MultiImageUpload } from './ImageUpload';
-import { AfterMessage, CategoryCheckBox, CollectionCheckBox } from '../Components';
+import { AfterMessage, CollectionCheckBox } from '../Components';
 import { loadWomanToModal } from '../pages/woman page/WomanPage';
-import ReactDOM from 'react-dom';
+
 import { ShowHideFunc } from '../pages/Admin Page/AdminPage';
 import * as moment from 'moment';
 import 'moment/locale/he'
@@ -98,9 +98,9 @@ export const DidYouKnowModal = () => {
                             <div className="form-group">
 
                                 <div id="name-group1" className="form-group">
-                                    <textarea className="facts" autoComplete="off" type="text" lang="HE" type="text" rows="2" cols="35" id="DidYouKnowHE" name="DidYouKnow" placeholder="הוסיפי עובדה בעברית" defaultValue="" />
-                                    <textarea className="facts" autoComplete="off" type="text" lang="EN" type="text" rows="2" cols="35" id="DidYouKnowEN" name="DidYouKnow" placeholder="הוסיפי עובדה באנגלית" defaultValue="" />
-                                    <textarea className="facts" autoComplete="off" type="text" lang="AR" type="text" rows="2" cols="35" id="DidYouKnowAR" name="DidYouKnow" placeholder="הוסיפי עובדה בערבית" defaultValue="" />
+                                    <textarea className="facts" autoComplete="off" type="text" lang="HE" type="text" rows="2" cols="35" id="DidYouKnowHE" name="DidYouKnow" placeholder={Dictionary.addHebFact} defaultValue="" />
+                                    <textarea className="facts" autoComplete="off" type="text" lang="EN" type="text" rows="2" cols="35" id="DidYouKnowEN" name="DidYouKnow" placeholder={Dictionary.addEngFact} defaultValue="" />
+                                    <textarea className="facts" autoComplete="off" type="text" lang="AR" type="text" rows="2" cols="35" id="DidYouKnowAR" name="DidYouKnow" placeholder={Dictionary.addArFact} defaultValue="" />
                                 </div>
 
                             </div>
@@ -341,7 +341,7 @@ export const FeedbackModal = () => {
 
                             </div>
 
-                            <lable htmlFor="agree">{Dictionary.imAgree}</lable>
+                            <lable htmlFor="agree">{Dictionary.iAgree}</lable>
                             <input id="agree" name="agree" type="checkbox"></input>
 
 

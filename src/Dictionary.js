@@ -109,7 +109,13 @@ export const Dictionary = new LocalizedStrings({
     FactAddedSuccefully:'Fact added succefully',
     langs:'Here will be shown all the facts in system language',
     createdAt:"Date",
-    imAgree:"I agree of receiving messages from naamat",
+    iAgree:"I agree of receiving messages from naamat",
+    addEngFact:"Add a fact in English",
+    addHebFact:"Add a fact in Hebrew",
+    addArFact:"Add a fact in Arabic",
+    
+    
+
     
     ImportantMSG:'Note that after pressing the "Next" button you will not be able to change the required fields',
     acceptFiles:"accept only image files",
@@ -216,7 +222,12 @@ export const Dictionary = new LocalizedStrings({
     addBibiloraphy:"אנא הכניסי ביבילוגרפיה",
     isAdmin:"משתמש מנהל",
     choseCategory:"אנא סמני את הקטגוריות הרלוונטיות",
-    imAgree:"אני מאשר לקבל הודעות מאת נעמת",
+    iAgree:"אני מאשר לקבל הודעות מאת נעמת",
+    addEngFact:"הוסיפי עובדה באנגלית",
+    addHebFact:"הוסיפי עובדה בעברית",
+    addArFact:"הוסיפי עובדה בערבית",
+
+
     acceptFiles:"מקבל קבצי תמונות בלבד",
     summeryHighlight: "תקציר זה יופיע בקרוסלת התמונות ובקטגוריות",
     mustUpload:"בבקשה העלי תמונה",
@@ -227,8 +238,6 @@ export const Dictionary = new LocalizedStrings({
     langs:'כאן יופיעו כל העובדות בשפת המערכת',
     createdAt:"תאריך",
     furtherReading:"לקריאה נוספת",
-    
-    
    
     
     //components
@@ -347,7 +356,11 @@ export const Dictionary = new LocalizedStrings({
     FactAddedSuccefully:'تمت إضافة الحقيقة بنجاح',
     langs:'هنا سيتم عرض جميع الحقائق',
     createdAt:"تاريخ",
-    imAgree:"أوافق على تلقي رسائل من نعمة",
+    iAgree:"أوافق على تلقي رسائل من نعمة",
+    addEngFact:"أضف حقيقة في اللغة الإنجليزية",
+    addHebFact:"أضف حقيقة بالعبرية",
+    addArFact:"أضف حقيقة باللغة العربية",
+
     
     ImportantMSG:'لاحظ أنه بعد الضغط على زر "التالي" لن تتمكن من تغيير الحقول المطلوبة',
     acceptFiles:"يستقبل ملفات الصور فقط",
