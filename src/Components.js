@@ -2,12 +2,10 @@ import React, { Component } from 'react';
 import $ from 'jquery';
 import { LangBtn, Dictionary } from './Dictionary';
 import logo from './images/naamatlogo.png';
-import fblogo from './images/fblogo.png';
-import ytlogo from './images/ytlogo.png';
 import { FeedbackModal, SuggestWomanModal } from './forms/Forms';
 import { db, auth } from './config/Firebase'
 import { Link } from 'react-router-dom';
-import { getWomen, WomenDeck } from '../src/pages/woman page/WomanPage'
+import { getWomen } from '../src/pages/woman page/WomanPage'
 import ScrollUpButton from "react-scroll-up-button";
 import './Components.css';
 import ReactDOM from 'react-dom';
@@ -22,12 +20,10 @@ export const NavBar = (props) => {
     categoryPage = props.categoryPage,
     mainUserPage= props.mainUserPage,
     logoHref = "/HomePage",
-    suggest = "",
     back = "",
     logout = "";
   if (!Admin) {
-    suggest = <button type="button" className="btn btn-primary nav-link" data-toggle="modal" data-target="#suggestWomanModal">
-      {Dictionary.suggest}</button>;
+    
     logoHref = "/"
   }
   else {
@@ -39,7 +35,7 @@ export const NavBar = (props) => {
   }
   return (
     <div id="navbar">
-      <SuggestWomanModal />
+     
       <FeedbackModal />
       <nav className="navbar navbar-expand-lg navbar-light bg-light" id="navList">
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
@@ -58,14 +54,12 @@ export const NavBar = (props) => {
                 {Dictionary.categories}</button>
             </Link>
           </li>
-          <li className="nav-item">
-            {suggest}
-          </li>
+         
           <li className="nav-item">
             <button type="button" className="btn btn-primary nav-link" data-toggle="collapse" data-target="#about-drop">{Dictionary.aboutTitle}</button>
           </li>
           <li className="nav-item" id="stretcher">
-            <Search />
+            <Search  admin ={Admin}/>
             <div id="womenHolder"></div>
           </li>
           <li className="nav-item">{back}</li>
@@ -116,7 +110,7 @@ class Search extends Component {
     this.setState({ term: term })
     if (term.length > 1) {
       term = (term).toLowerCase();
-      getWomen(term);
+      getWomen(term,this.props.admin);
     }
     else {
       var find = document.getElementById("womenHolder");

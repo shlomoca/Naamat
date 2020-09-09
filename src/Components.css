@@ -138,17 +138,26 @@ background: rgb(191, 224, 232);
     /* -webkit-text-stroke-width: 0.5px; */
     /* text-shadow: 0 0 20px rgb(193, 166, 206); */
 }
-
+#highlightsContainer{
+height: 100%;
+position: static;
+    text-overflow: ellipsis;
+    margin-bottom: 10%;
+    overflow: hidden;
+}
 .highlights {
-    position: absolute;
-    margin-top: 4%;
-    margin-left: 15%;
-    margin-right: 15%;
+    margin-top: 3%;
+   margin-left: 12%;
+    margin-right: 12%;
+    
     color: rgb(49, 49, 49);
+    
     z-index: 5;
-    /* text-align: justify ; */
+    text-align: justify ;
     text-align: center;
     text-justify: inter-word;
+    
+    
 }
 
 .pictureDiscription {

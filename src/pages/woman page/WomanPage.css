@@ -123,3 +123,10 @@ h1 {
     color: black;
     /* margin-top: 5%; */
 }
+#suggest{
+    width: 65%;
+    float: right;
+    margin-right: 3%;
+    border-radius: 3%;
+    margin-top:1%;
+}

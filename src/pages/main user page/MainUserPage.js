@@ -154,7 +154,7 @@ export const CarouselSlide = props => {
           <img src={props.src} className="roundedImg" alt="example 1" height="150px" width="150px" />
           </div>
         {/* <div className="carousel-caption d-none d-md-block pictureDiscription"> */}
-          <a><h3 className="highlights">{props.highlights}</h3></a>
+          <a id="highlightsContainer"><h3 className="highlights">{props.highlights}</h3></a>
             {/* </div> */}
         </div>
       </Link>

@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import { NavBar, BottomBar, DisplayModal } from '../../Components';
 import { db, storage } from '../../config/Firebase'
 import { Dictionary, langs } from '../../Dictionary';
-import { allreadyExist, EditWomanModal } from '../../forms/Forms'
+import { allreadyExist, EditWomanModal, SuggestWomanModal } from '../../forms/Forms'
 import $ from 'jquery';
 
 
@@ -234,7 +234,7 @@ return(<div></div>)
 
 
 //searches for woman and 
-export function getWomen(womanName) {
+export function getWomen(womanName,admin) {
     if (womanName) {
         var nameattr = "display" + determineLang(womanName);
         //get all the women that start with the term search
@@ -249,6 +249,7 @@ export function getWomen(womanName) {
                 else
                     console.log("no data");
             });
+             
             var find = document.getElementById("womenHolder");
             var deck = document.getElementById("deckContainer");
             if (deck)
@@ -259,6 +260,8 @@ export function getWomen(womanName) {
             if (women.length != 0) {
                 ReactDOM.render(<WomenDeck cards={women} />, document.getElementById('womenHolder'));
             }
+            else if(!admin)
+            ReactDOM.render(<Suggest/>, document.getElementById('womenHolder'));
 
 
         }).catch(error => console.log(error))
@@ -267,6 +270,23 @@ export function getWomen(womanName) {
         console.log("women not found");
 }
 
+
+
+export class Suggest extends Component {
+    
+
+    render() {
+        return (
+            <div className="suggest">
+            <button type="button" id="suggest" className="btn " data-toggle="modal" data-target="#suggestWomanModal">
+            {Dictionary.suggest}</button>;
+            <SuggestWomanModal />
+            </div>
+        )
+        }
+
+
+}
 
 
 //get the next lexicographic index
