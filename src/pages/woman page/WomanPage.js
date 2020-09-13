@@ -9,6 +9,7 @@ import $ from 'jquery';
 
 
 
+
 const MainDetails = (props) => {
 
     return (

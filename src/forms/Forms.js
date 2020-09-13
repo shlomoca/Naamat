@@ -4,6 +4,7 @@ import 'jquery-validation';
 import React from 'react';
 import { db, auth } from '../config/Firebase'
 import { Dictionary, langs } from '../Dictionary';
+import App from './PicUpload';
 import ImageUpload, { MultiImageUpload } from './ImageUpload';
 import { AfterMessage, CollectionCheckBox } from '../Components';
 import { loadWomanToModal } from '../pages/woman page/WomanPage';
@@ -102,7 +103,7 @@ export const DidYouKnowModal = () => {
                                     <textarea className="facts" autoComplete="off" type="text" lang="EN" type="text" rows="2" cols="35" id="DidYouKnowEN" name="DidYouKnow" placeholder={Dictionary.addEngFact} defaultValue="" />
                                     <textarea className="facts" autoComplete="off" type="text" lang="AR" type="text" rows="2" cols="35" id="DidYouKnowAR" name="DidYouKnow" placeholder={Dictionary.addArFact} defaultValue="" />
                                 </div>
-
+                         
                             </div>
 
                             <div className="modal-footer">
@@ -129,7 +130,7 @@ export const EditWomanModal = () => {
         <div className="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabIndex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div className="modal-dialog modal-xl">
                 <div className="modal-content">
-                    <form dir="RTL" id="woman_form" name="woman_form" onSubmit={addWoman}  >
+                    <form  id="woman_form" name="woman_form" onSubmit={addWoman}  >
                         <div className="modal-header">
                             <button type="button" id="xClose" className="close" data-dismiss="modal" aria-label="Close" onClick={resetForm("woman_form", "fill1" + Dictionary.getLanguage(), "fill2" + Dictionary.getLanguage())}>
                                 <span aria-hidden="true">&times;</span>
@@ -149,6 +150,7 @@ export const EditWomanModal = () => {
                                         <label className="regularLabel" htmlFor="name">{Dictionary.name}*</label>
                                         <input className="regularInput" autoComplete="off" type="text" rows="1" cols="35" id="name" name="name" required />
                                     </div>
+                                    
                                     <div className="form-group">
                                         <label className="regularLabel" htmlFor="birth" >{Dictionary.birth}*</label>
                                         <input className="regularInput" type="date" rows="1" cols="35" id="birth" name="birth"  required />
@@ -283,7 +285,8 @@ export const SuggestWomanModal = () => {
 
                                 }}>{Dictionary.addMore}</button>
                             </div>
-
+                            <lable htmlFor="agree">{Dictionary.iAgree}</lable>
+                            <input id="agree" name="agree" type="checkbox"></input>
                         </div>
                         <div className="modal-footer">
                             <div className="requiredFooter">{Dictionary.mustfilled}</div>
