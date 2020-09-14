@@ -10,14 +10,12 @@ class ImageUpload extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      abc:"",
         src: null,
         crop: {
           unit: '%',
           width: 60,
           aspect: 1/1,
         },
-      image: null,
       progress: 0,
       url: "",
       required: props.required
@@ -85,8 +83,6 @@ onSelectFile = e => {
       this.setState({ src: reader.result })
     );
     reader.readAsDataURL(e.target.files[0]);
-    // const src = e.target.files[0];
-    // this.setState(() => ({src} ));
   }
 };
 
@@ -96,8 +92,7 @@ onImageLoaded = image => {
 };
 
 onCropComplete = crop => {
-  const abc =this.makeClientCrop(crop);
-  this.setState({ abc });
+  this.makeClientCrop(crop);
 };
 
 onCropChange = (crop, percentCrop) => {
@@ -158,7 +153,7 @@ getCroppedImg(image, crop, fileName) {
       <div className="center" >
         <p>{Dictionary.profilepic}</p>
         <progress value={this.state.progress} max="100" />
-        <div className="form-group">
+        <div className="form-group" id="imgUp">
          
          
         {src && (

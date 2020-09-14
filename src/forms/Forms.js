@@ -26,7 +26,7 @@ export const NewUserModal = () => {
                 </div>
                 <div className="modal-content">
                     <div className="modal-body">
-                        <form dir="RTL" id="newUserForm" name="newUserForm" onSubmit={addNewUser}  >
+                        <form  id="newUserForm" name="newUserForm" onSubmit={addNewUser}  >
                             <div className="form-group">
                                 <label className="regularLabel">{Dictionary.enterMail}</label>
                                 < input type="email"
@@ -89,7 +89,7 @@ export const DidYouKnowModal = () => {
                 </div>
                 <div className="modal-content">
                     <div className="modal-body">
-                        <form dir="RTL" id="DidYouKnowForm" name="DidYouKnowForm" onSubmit={AddNewFact}  >
+                        <form  id="DidYouKnowForm" name="DidYouKnowForm" onSubmit={AddNewFact}  >
 
                             <div className="input-group mb-3">
                                 <label className="regularLabel">{Dictionary.AddNewFact}</label>
@@ -139,7 +139,7 @@ export const EditWomanModal = () => {
                         </div>
                         <div className="modal-body">
                             <div id="step1">
-                                <ul className="nav nav-pills">
+                                <ul className="nav nav-pills sticky">
                                     <li id="liHE" className="langTabs active"><a class="nav-link active" data-toggle="tab" href="#HE" >עברית</a></li>
                                     <li id="liEN" className="langTabs"><a class="nav-link" data-toggle="tab" href="#EN" >English</a></li>
                                     <li id="liAR" className="langTabs"><a class="nav-link" data-toggle="tab" href="#AR" >عربى</a></li>
@@ -207,7 +207,7 @@ export const SuggestWomanModal = () => {
         <div className="modal fade" id="suggestWomanModal" data-backdrop="static" data-keyboard="false" tabIndex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div className="modal-dialog modal-xl">
                 <div className="modal-content">
-                    <form dir="RTL" id="suggest_woman_form" name="suggest_woman_form" onSubmit={addsuggest}  >
+                    <form  id="suggest_woman_form" name="suggest_woman_form" onSubmit={addsuggest}  >
                         <div className="modal-header">
                             <button type="button" id="xClose" className="close" data-dismiss="modal" aria-label="Close" onClick={resetForm("suggest_woman_form", "fill20")}>
                                 <span aria-hidden="true">&times;</span>
@@ -318,7 +318,7 @@ export const FeedbackModal = () => {
                         <h5 className="modal-title" id="staticBackdropLabel">{Dictionary.feedback}</h5>
                     </div>
                     <div className="modal-body">
-                        <form dir="RTL" id="feedback_form" name="feedback_form" onSubmit={addFeedback}  >
+                        <form  id="feedback_form" name="feedback_form" onSubmit={addFeedback}  >
                             <div className="form-group">
                                 <label className="regularLabel" htmlFor="feed_name">{Dictionary.name}*</label>
                             </div>
@@ -377,7 +377,7 @@ export const CategoryModal = () => {
                         <h5 className="modal-title" id="staticBackdropLabel">{Dictionary.addcategory}</h5>
                     </div>
                     <div className="modal-body">
-                        <form dir="RTL" id="category_form" onSubmit={addCatagory} name="category_form"  >
+                        <form id="category_form" onSubmit={addCatagory} name="category_form"  >
                             <div id="name-group" className="form-group">
                                 <div id="name-group1" className="form-group">
                                     <label className="regularLabel" htmlFor="category_name">{Dictionary.name}</label>

@@ -68,7 +68,7 @@ class LoginPage extends Component {
                         <a id="bigLogo"> <img src={logo} alt="logo" /></a>
 
                         <div id="buttonWrapper123">
-                            <form dir="RTL" id="login_form" name="login_form_name" role="form">
+                            <form  id="login_form" name="login_form_name" role="form">
                                 < input type="email"
                                     id="email"
                                     name="email"
@@ -126,8 +126,8 @@ export class LoginComponent extends Component {
     signOutFun() {
         auth.signOut();
     }
+    //reset page to main page if page is inactive for a half an hour
    timeRefresh() {
-        //reset page to main page if page is inactive for a half an hour
         var time = new Date().getTime();
         $(document.body).bind("mousemove keypress touchmove ", function () {
             time = new Date().getTime();
@@ -141,6 +141,9 @@ export class LoginComponent extends Component {
     }
 
     componentDidMount() {
+        var lang = Dictionary.getLanguage()=="EN" ? "ltr" : "rtl";
+        document.body.setAttribute('dir', lang);//set page lang by chosen language
+
         window.addEventListener("beforeunload", this.signOutFun);
         this.authListener();
 

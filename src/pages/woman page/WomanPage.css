@@ -38,6 +38,7 @@
 
 .editWomanBtn {
     display: flex;
+    float: right;
 }
 
 h1 {
