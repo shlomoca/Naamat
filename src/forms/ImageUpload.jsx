@@ -3,27 +3,27 @@ import { storage } from '../config/Firebase';
 import { Dictionary } from '../Dictionary';
 import $ from 'jquery';
 
+// import React, { PureComponent } from 'react';
+import ReactCrop from 'react-image-crop';
+import 'react-image-crop/dist/ReactCrop.css';
 class ImageUpload extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      abc:"",
+        src: null,
+        crop: {
+          unit: '%',
+          width: 60,
+          aspect: 1/1,
+        },
       image: null,
       progress: 0,
       url: "",
       required: props.required
     }
-    this.handleChange = this
-      .handleChange
-      .bind(this);
+    
     this.handleUpload = this.handleUpload.bind(this);
-  }
-
-
-  handleChange = e => {
-    if (e.target.files[0]) {
-      const image = e.target.files[0];
-      this.setState(() => ({ image }));
-    }
   }
 
   handleUpload = () => {
@@ -51,8 +51,8 @@ class ImageUpload extends Component {
       path += pathEnd;
     {
 
-      const { image } = this.state;
-      const uploadTask = storage.ref(path).put(image);
+      const { blob } = this.state;
+      const uploadTask = storage.ref(path).put(blob);//upload cropped photo to firabse storage
       console.log(path);
       uploadTask.on('state_changed',
         (snapshot) => {
@@ -69,27 +69,113 @@ class ImageUpload extends Component {
           // complete function ....
           storage.ref().child(path).getDownloadURL().then(url => {
             alert(Dictionary.uploadSuccess);
-            $("#insertdata").val(url);
             this.setState({
               progress: 0,
-              image: image,
-              url: url
+              url:url
             });
           }).catch(error => console.log(error));
-          // console.log(url);
-          // this.setState({ url });
-          //})
         });
     }
   }
-  render() {
 
+onSelectFile = e => {
+  if (e.target.files && e.target.files.length > 0) {
+    const reader = new FileReader();
+    reader.addEventListener('load', () =>
+      this.setState({ src: reader.result })
+    );
+    reader.readAsDataURL(e.target.files[0]);
+    // const src = e.target.files[0];
+    // this.setState(() => ({src} ));
+  }
+};
+
+// If you setState the crop in here you should return false.
+onImageLoaded = image => {
+  this.imageRef = image;
+};
+
+onCropComplete = crop => {
+  const abc =this.makeClientCrop(crop);
+  this.setState({ abc });
+};
+
+onCropChange = (crop, percentCrop) => {
+  this.setState({ crop });
+};
+
+async makeClientCrop(crop) {
+  if (this.imageRef && crop.width && crop.height) {
+    const croppedImageUrl = await this.getCroppedImg(
+      this.imageRef,
+      crop,
+      'newFile.jpeg'
+    );
+    this.setState({ croppedImageUrl });
+  }
+}
+
+getCroppedImg(image, crop, fileName) {
+  const canvas = document.createElement('canvas');
+  const scaleX = image.naturalWidth / image.width;
+  const scaleY = image.naturalHeight / image.height;
+  canvas.width = crop.width;
+  canvas.height = crop.height;
+  const ctx = canvas.getContext('2d');
+
+  ctx.drawImage(
+    image,
+    crop.x * scaleX,
+    crop.y * scaleY,
+    crop.width * scaleX,
+    crop.height * scaleY,
+    0,
+    0,
+    crop.width,
+    crop.height
+  );
+
+  return new Promise((resolve, reject) => {
+    canvas.toBlob(blob => {
+      if (!blob) {
+        //reject(new Error('Canvas is empty'));
+        console.error('Canvas is empty');
+        return;
+      }
+      blob.name = fileName;
+      this.setState({blob});//save tha blob in the state in order to send it to storage
+      window.URL.revokeObjectURL(this.fileUrl);
+      this.fileUrl = window.URL.createObjectURL(blob);
+      resolve(this.fileUrl);
+    }, 'image/jpeg');
+  });
+}
+
+
+  render() {
+    const { crop, croppedImageUrl, src } = this.state;
     return (
-      <div >
+      <div className="center" >
         <p>{Dictionary.profilepic}</p>
         <progress value={this.state.progress} max="100" />
         <div className="form-group">
-          <input type="file" name="file" id="inputGroupFile04 media" aria-describedby="inputGroupFileAddon04" accept="image/*" onChange={this.handleChange} required={this.state.required} />
+         
+         
+        {src && (
+          <ReactCrop
+          src={src}
+          crop={crop}
+          ruleOfThirds
+          onImageLoaded={this.onImageLoaded}
+          onComplete={this.onCropComplete}
+          onChange={this.onCropChange}
+          />
+        )}
+        {croppedImageUrl && (
+          <img id="croppedUrl"  alt="Crop" style={{ maxWidth: '20%', maxHeight: '20%' }} src={croppedImageUrl} />
+        )}
+          
+          <input type="file" name="file" id="inputGroupFile04 media" aria-describedby="inputGroupFileAddon04" accept="image/*" onChange={this.onSelectFile} required={this.state.required} />
         </div>
         <input type="hidden" id="ProfilePic" name="ProfilePic" value={this.state.url} required />
         <button type="button" id="mustUpload" onClick={this.handleUpload}>{Dictionary.upload}</button>
@@ -181,7 +267,7 @@ export class MultiImageUpload extends Component {
 
     return (
       <div >
-        <p>{Dictionary.media+Dictionary.acceptFiles}</p>
+        <p >{Dictionary.media + Dictionary.acceptFiles}</p>
         <progress value={this.state.progress} max="100" />
         <div className="form-group">
           רכיב בפיתוח. כרגע התמונות עולות אבל אין הצגה שלהן

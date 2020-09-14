@@ -1,6 +1,5 @@
 label {
     vertical-align: top;
-  
 }
 #modal-header
 {
@@ -15,12 +14,10 @@ padding-bottom: 3%;
 {
     overflow-x: none;
     overflow-y: auto;
-    /* min-height: 50vh; */
     max-height: fit-content;
     height: auto;
     background-color: rgb(216,191,216);
     text-align: center;
-    /* height: 100%; */
 }
 
 .modal-content
@@ -35,7 +32,6 @@ padding-bottom: 3%;
     display: flex;
     border:1px;
     border-color: #222222;
-    /* display: inline-block; */
     flex-wrap: wrap;
     border-collapse:collapse;
     width:100%;
@@ -43,46 +39,22 @@ padding-bottom: 3%;
     justify-items: center;
     text-align: center;
     overflow-x: none;
-    /* max-height: 100%; */
     overflow-y: auto;
 
 }
 
 .feedbacLine{
-
-    /* padding-top: 20%; */
-    /* padding-left: 0%; */
-    /* position: 0%; */
-    /* width: 25%; */
-    /* width: 43%; */
-    /* margin-left: 20%; */
-    /* margin-top: 10%; */
-
-    /* margin-left: 60%; */
     margin-bottom: 5%;
     border-color: purple;
-    
-   
-
-
 }
 
 
 .form-group
 {
-    /* padding: 0vh; */
-    /* flex-grow: 1; */
     display: flex;
     justify-content: center;
     text-align: center;
     flex-direction: column;
-    
-    /* display: inline-flex; */
-    /* white-space: nowrap; */
-    /* width: 90%; */
-    /* justify-content: right; */
-    /* flex-wrap: wrap; */
-
 }
 .makbil{
     display: flex;
@@ -129,41 +101,26 @@ padding-bottom: 3%;
 .starrating > input:hover ~ label
 { color: #ffca08 ;  } /* Set yellow color when star hover */
 .starrating{
-    /* overflow: auto; */
     max-width: 100%;
 }
-/* --------------------------- */
 
 .input-group
 {
     padding: 1px;
+    border-radius: 1%;
 }
 
 .details2{
-    
-    /* width: 180%; */
-    /* margin-top: 10%; */
     margin-right: 58%;
-
-    /* padding-top: 0%; */
-    /* padding-left: 3%; */
     border-color: purple;
-    /* border-radius: 5%; */
-
 }
 
 .addWomanName{
-
-    /* width: 180%; */
-    /* margin-left: 27.5%; */
     border-color: purple;
 }
 
 .details{
-    /* padding-top: %; */
     padding-left: 0%;
-    /* position: 0%; */
-    /* width: 25%; */
     width: 100%;
     border-color: purple;
    
@@ -172,13 +129,9 @@ padding-bottom: 3%;
 .detailsL{
 
     border-color: purple;
-    /* padding-left: 20%; */
-    /* inline-size: 50%; */
-
 }
 
 .detail{
-    /* padding-top: 4%; */
     border-radius: 15%;
     text-align: center;
     border-color: purple;
@@ -211,12 +164,27 @@ padding-bottom: 3%;
     margin-left: -80px;
     
   }
+#profPicArea{
+    width: 50%;
+    display: flex;
+    margin: auto;
+}
+.center{
+    margin: auto;
+    align-self: center;
+    
+}
+.ReactCrop__image{
+    max-width: 100%;
+}
+img {
+    max-width: 100%;
+  }
 
 /* style the Englsh Arabic עברית on the edit woman form */
 .highlight{     
     background-color: rebeccapurple;
     font-weight:bold;
-    /* background: rgba(213, 30, 250, 0.603); */
     font-size: 21px;
     color: red;
    }
@@ -226,56 +194,32 @@ padding-bottom: 3%;
     padding-right: 10%;
     color: purple;
     font-size: larger;
-       /* padding-right: 10%; */
    }
 
    #line2{
     font-weight:bold;
     font-size: larger;
-    /* padding-top: 3%; */
-    /* margin-right: 55%; */
-    /* padding-left: 11.5%; */
     font-size: xx-large;
-    /* padding-left: 40%; */
     color: purple;
-    /* font-size: xx-large; */
-
-    /* padding-right: 10%; */
 }
 
 #line3{
-
     font-weight:bold;
     font-size: xx-large;
-    /* margin-left: 10%; */
-    /* padding-top: 5%; */
-    /* margin-top: 2%; */
     border-color: purple;
-    /* padding-left: 33%; */
     color: purple;
-    /* padding-right: 30%; */
 }
 
 .bdayclass{
-    /* position: absolute; */
-    /* padding-left: 0%; */
-    /* padding-right: 39%; */
     font-size: x-large;
     margin-left: 30%;
-    /* padding-right: 10%; */
-    /* width: 73.5%; */
-    /* padding-right: 10%; */
 }
 
 
 #lineName{
-
   font-weight:bold;
-  /* padding-left: 48%;  */
-  /* padding-top: 4%;  */
   font-size: xx-large;
   color: purple;
-  /* margin-left: 40%; */
 }
 
 .detailsNew{
@@ -285,7 +229,6 @@ padding-bottom: 3%;
 }
 
 .boxDetail{
-
     padding-left: 46%;
     padding-right: 5%;
     text-align: right;
@@ -306,10 +249,6 @@ padding-bottom: 3%;
 }
 
 .detailsName{
-
-    /* padding-left: 0%; */
-    /* margin-right: 40%; */
-    /* width: 33%; */
     margin-top: 8%;
     margin-left: 12%;
     border-color: purple;
@@ -319,17 +258,11 @@ padding-bottom: 3%;
 
 
 #step2{
-
 display: none;
-
 }
 
 #feedLineName{
-
-  /* margin-right: 28%; */
   font-weight:bold;
-  /* padding-left: 48%;  */
-  /* padding-top: 4%;  */
   padding-left: 57%;
   font-size: xx-large;
   color: purple;
@@ -337,35 +270,19 @@ display: none;
 }
 
 #feedLineName2{
-
-
- /* margin-right: 28%; */
  font-weight:bold;
- /* padding-left: 48%;  */
- /* padding-top: 4%;  */
  padding-left: 43%;
  font-size: xx-large;
  color: purple;
-
-
 }
 
 
 #howWasVisit{
-
     font-size: xx-large;
-    /* font-weight:bold; */
-
-
 }
 
 .displayBox{
-
-/* padding-top: %; */
 padding-left: 0%;
-/* position: 0%; */
-/* width: 25%; */
-/* width: 100%; */
 margin-left: 29%;
 border-color: purple;
 
@@ -373,10 +290,7 @@ border-color: purple;
 
 .descAndLink{
 
- /* padding-top: %; */
- /* padding-left: 0%; */
- /* position: 0%; */
- /* width: 25%; */
+ 
  width: 110%;
  padding-left: 40%;
  margin-left: 10%;
@@ -410,11 +324,7 @@ align-self: center;
 }
 
 #addBtn{
-
-/* width: 8%; */
 align-self: center;
-/* justify-self: center; */
-/* place-self: center; */
 }
 
 .requiredFooter{
@@ -440,4 +350,9 @@ align-self: center;
 #ImportantMSG{ /*warning message for woman id*/
     font-weight: bold;
     color: red;
+}
+#croppedUrl{
+    margin: auto;
+    margin-top: 3%;
+    margin-bottom: 3%;
 }

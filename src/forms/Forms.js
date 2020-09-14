@@ -4,7 +4,7 @@ import 'jquery-validation';
 import React from 'react';
 import { db, auth } from '../config/Firebase'
 import { Dictionary, langs } from '../Dictionary';
-import App from './PicUpload';
+// import App from './PicUpload';
 import ImageUpload, { MultiImageUpload } from './ImageUpload';
 import { AfterMessage, CollectionCheckBox } from '../Components';
 import { loadWomanToModal } from '../pages/woman page/WomanPage';
@@ -170,11 +170,14 @@ export const EditWomanModal = () => {
                                 </div>
                             </div>
                             <div id="step2">
+                                <div id="profPicArea"> 
+
                                 <ImageUpload param1="name" param2="birth" pathEnd="/ProfilePic" param1Empty="name not enterd" param2Empty="date of birth not ented" />
+                                </div>
                                 <div className="tab-content">
-                                    <GenralForm lang={langs[0]} active={true} />
-                                    <GenralForm lang={langs[1]} />
-                                    <GenralForm lang={langs[2]} />
+                                    <GenralForm lang={langs[0]} active={Dictionary.getLanguage()==langs[0]} />
+                                    <GenralForm lang={langs[1]} active={Dictionary.getLanguage()==langs[1]} />
+                                    <GenralForm lang={langs[2]} active={Dictionary.getLanguage()==langs[2]} />
                                 </div>
                                 {/* <label htmlFor="acceptFiles">{Dictionary.acceptFiles} </label> */}
                                 <MultiImageUpload param1="name" param2="birth" param1Empty="name not enterd" param2Empty="date of birth not ented" />
