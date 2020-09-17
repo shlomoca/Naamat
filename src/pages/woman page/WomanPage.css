@@ -19,14 +19,10 @@
     top: 0;
     background-color: white;
     height: 200px;
-    /* justify-content: baseline; */
     align-items: baseline;
-    /* max-height: fit-content */
-    /* width: 100%; */
 }
 
 #shoWoman {
-    /* margin: auto; */
     margin-right: 5%;
     flex-direction: row;
     width: 65%;
@@ -50,8 +46,6 @@ h1 {
     width: 69%;
     margin-right: 0.5%;
     border: 3.5px groove purple;
-    /* border-radius: 10%; */
-    /* border-radius: 3%; */
     margin-bottom: 0.09%;
     text-align: center;
     text-justify: inter-word;
@@ -83,18 +77,13 @@ h1 {
     font-weight: bolder;
     text-align: justify;
     text-justify: inter-word;
-    /* justify-items: i; */
 }
 
 .catCardsContainer {
     height: 1%;
     width: 100%;
-    
-    /* flex-direction: row ; */
     background-color: thistle;
     flex-direction: column;
-    /* flex-direction: flex; */
-    /* justify-content: flex-end; */
 }
 
 .catContainCard {
@@ -117,12 +106,10 @@ h1 {
 }
 
 .catTitle {
-    /* margin-right: 2%; */
     width: 15%;
     text-align: center;
     margin:auto;
     color: black;
-    /* margin-top: 5%; */
 }
 #suggest{
     width: 65%;

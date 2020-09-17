@@ -40,14 +40,17 @@ export const Dictionary = new LocalizedStrings({
     suggest_womenTitle:'Suggest Women',
     manageOffers:'Manage Suggestions',
     HE:`The form was uploaded to the Hebrew tab`,
-    AR:`The form went to Arabic tab`,
-    EN:`The form came up in English`,
-
+    AR:`The form was uploaded to the Arabic tab`,
+    EN:`The form was uploaded to the English tab`,
+    backedUpSuccessfully:"was backed up successfully",
+    women:"Women",
+    
 
 
     //woman page
     edit: 'Edit',
     Previous: `Previous`,
+
     //main user page
     about: `Na'amat is a Movement for the advancement of the Status of Women and the Social Force for women in Israel. Na'amat’s top priority is to advance and strengthen the status of women in the family and in the work force. Na'amat is striving to achieve equality between the sexes and full participation of women in social, economic and political spheres. Na'amat, previously called Moetzet Hapoalot (Council of Working Women), was established in 1921 by young working women, pioneers who came to Palestine in the early 1920’s. Moetzet Hapoalot was organized as an autonomous movement with affiliation to the Histadrut (The General Federation of Labor). Today Na'amat is a non-profit organization, a socio-political, multi-party women’s movement comprised of women from diverse sectors of the population, communities, countries of origin and religious streams.`,
     aboutTitle: "About Na'amat",
@@ -103,7 +106,7 @@ export const Dictionary = new LocalizedStrings({
     isAdmin:"Admin user",
     choseCategory:"Please mark the relevent categories",
     summeryHighlight: "This summary will appear in photo carousel and categories",
-    DidYouKnow:'Did You Know?',
+    didYouKnow:'Did You Know?',
     AddNewFact:'Add new Fact',
     language:'language',
     FactAddedSuccefully:'Fact added succefully',
@@ -164,6 +167,10 @@ export const Dictionary = new LocalizedStrings({
     categoriesTitle:'קטגוריות',
     suggest_womenTitle:'נשים מוצעות',
     manageOffers:'ניהול הצעות להוספה',
+    backedUpSuccessfully:"גובה בהצלחה",
+    women:"נשים",
+   
+
 
     //woman page
     edit: 'ערכי',
@@ -231,7 +238,7 @@ export const Dictionary = new LocalizedStrings({
     acceptFiles:"מקבל קבצי תמונות בלבד",
     summeryHighlight: "תקציר זה יופיע בקרוסלת התמונות ובקטגוריות",
     mustUpload:"בבקשה העלי תמונה",
-    DidYouKnow:'הידעת ?',
+    didYouKnow:'הידעת ?',
     AddNewFact:'הוסיפי עובדה חדשה',
     language:'שפה',
     FactAddedSuccefully:'עובדה הועלתה בהצלחה',
@@ -288,6 +295,8 @@ export const Dictionary = new LocalizedStrings({
     categoriesTitle:'التصنيفات',
     suggest_womenTitle:'توحي النساء',
     manageOffers:'إدارة الاقتراحات',
+    backedUpSuccessfully:"تم نسخه احتياطيًا بنجاح",
+    women:"نساء",
 
     //woman page
     edit: 'تعديل',
@@ -350,7 +359,7 @@ export const Dictionary = new LocalizedStrings({
     isAdmin:"مستخدم المشرف",
     choseCategory:"يرجى وضع علامة على الفئات ذات الصلة",
     summeryHighlight: "سيظهر هذا الملخص في مكتبة الصور والفئات",
-    DidYouKnow:'هل كنت تعلم؟',
+    didYouKnow:'هل كنت تعلم؟',
     AddNewFact:'أضف حقيقة جديدة',
     language:'لغة',
     FactAddedSuccefully:'تمت إضافة الحقيقة بنجاح',

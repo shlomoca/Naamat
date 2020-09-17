@@ -15,6 +15,7 @@
     "image-preview-react": "^1.0.1",
     "jquery": "^3.5.1",
     "jquery-validation": "^1.19.2",
+    "json-to-csv-export": "^1.0.2",
     "moment": "^2.27.0",
     "ora": "^4.0.4",
     "react": "^16.13.1",

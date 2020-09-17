@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { storage } from '../config/Firebase';
 import { Dictionary } from '../Dictionary';
 import $ from 'jquery';
-
-// import React, { PureComponent } from 'react';
 import ReactCrop from 'react-image-crop';
 import 'react-image-crop/dist/ReactCrop.css';
 class ImageUpload extends Component {
@@ -209,7 +207,7 @@ export class MultiImageUpload extends Component {
   handleUpload = () => {
     var param1 = this.props.param1;
     var param2 = this.props.param2;
-    var pathEnd = this.props.pathEnd;
+
     var path;
     var links = [];
     if (!param1)

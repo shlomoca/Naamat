@@ -214,7 +214,6 @@ const FurtherReading= (props)=>{
 var links = props.links,
 bibliography=props.bibliography;
 var obj =[],linkObj=[];
-console.log(bibliography)
 if(bibliography){
     Object.values(bibliography).forEach(value=>{
         obj.push(<p><b>{value}</b></p>);

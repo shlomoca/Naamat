@@ -6,7 +6,6 @@ code {
  
  body {
   margin: 0;
-    /* font-family: 13px/20px PTSansRegular,Arial,Helvetica,sans-serif; */
 }
 .modal-header{
   background-color: rgb(165, 4, 165);
@@ -18,8 +17,6 @@ code {
 .btn{
   background-color: rgb(165, 4, 165);
   color: white;
-  /* padding: 2px; */
-  /* margin: 2px; */
   font-weight: bold;
   margin-left: 3px;
   width: 100px;

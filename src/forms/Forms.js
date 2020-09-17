@@ -85,7 +85,7 @@ export const DidYouKnowModal = () => {
                     <button type="button" onClick={resetForm("DidYouKnowForm")} className="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                    <h5 className="modal-title" id="staticBackdropLabel">{Dictionary.DidYouKnow}</h5>
+                    <h5 className="modal-title" id="staticBackdropLabel">{Dictionary.didYouKnow}</h5>
                 </div>
                 <div className="modal-content">
                     <div className="modal-body">
@@ -99,9 +99,9 @@ export const DidYouKnowModal = () => {
                             <div className="form-group">
 
                                 <div id="name-group1" className="form-group">
-                                    <textarea className="facts" autoComplete="off" type="text" lang="HE" type="text" rows="2" cols="35" id="DidYouKnowHE" name="DidYouKnow" placeholder={Dictionary.addHebFact} defaultValue="" />
-                                    <textarea className="facts" autoComplete="off" type="text" lang="EN" type="text" rows="2" cols="35" id="DidYouKnowEN" name="DidYouKnow" placeholder={Dictionary.addEngFact} defaultValue="" />
-                                    <textarea className="facts" autoComplete="off" type="text" lang="AR" type="text" rows="2" cols="35" id="DidYouKnowAR" name="DidYouKnow" placeholder={Dictionary.addArFact} defaultValue="" />
+                                    <textarea className="facts" autoComplete="off" type="text" lang="HE" type="text" rows="2" cols="35" id="DidYouKnowHE" name="didYouKnow" placeholder={Dictionary.addHebFact} defaultValue="" />
+                                    <textarea className="facts" autoComplete="off" type="text" lang="EN" type="text" rows="2" cols="35" id="DidYouKnowEN" name="didYouKnow" placeholder={Dictionary.addEngFact} defaultValue="" />
+                                    <textarea className="facts" autoComplete="off" type="text" lang="AR" type="text" rows="2" cols="35" id="DidYouKnowAR" name="didYouKnow" placeholder={Dictionary.addArFact} defaultValue="" />
                                 </div>
                          
                             </div>

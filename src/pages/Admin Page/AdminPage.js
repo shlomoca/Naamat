@@ -7,8 +7,8 @@ import { Dictionary } from '../../Dictionary';
 import { EditWomanModal, CategoryModal, FeedbackModal, NewUserModal, DidYouKnowModal } from '../../forms/Forms';
 import { db } from '../../config/Firebase';
 import ReactDOM from 'react-dom';
-
-
+import csvDownload from 'json-to-csv-export'
+import {download,jsonToSsXml } from './JSONtoExel'
 
 class AdminPage extends Component {
     render() {
@@ -31,8 +31,9 @@ class AdminPage extends Component {
                         <button className="btnhover" type="button" id="sugWomenMngBtn" onClick={() => { getData("sugWomenMngBtn", "suggest_women", ["yourName", "yourEmail", "display"]) }}> {Dictionary.manageOffers}</button>
                         <button className="btnhover" type="button" id="categoriesBtn" onClick={() => { getData("categoriesBtn", "categories", ["category"]) }}> {Dictionary.manageCategory} </button>
                         <button className="btnhover" type="button" id="userMngBtn" onClick={() => { getData("userMngBtn", "users", ["email", "admin"]) }}> {Dictionary.adminUserManagement} </button>
-                        <button className="btnhover" type="button" id="factMngBtn" onClick={() => { getData("factMngBtn", "didYouKnow", ["langs"]) }}> {Dictionary.DidYouKnow} </button>
-
+                        <button className="btnhover" type="button" id="factMngBtn" onClick={() => { getData("factMngBtn", "didYouKnow", ["langs"]) }}> {Dictionary.didYouKnow} </button>
+                        <button className="btnhover" type="button" id="backupWomen" onClick={() => { IndexDataByCollaction("women") }}>  צרי גיבוי לנשים </button>
+                        <button className="btnhover" type="button" id="backupDidYouKnow" onClick={() => { IndexDataByCollaction("didYouKnow") }}>  צרי גיבוי להידעת</button>
                     </div>
                     <div id="TableHolder"></div>
                 </div>
@@ -43,6 +44,67 @@ class AdminPage extends Component {
     }
 }
 export default AdminPage
+function IndexDataByCollaction(collect){
+    
+    db.collection(collect).get().then(snapshot => {
+        const data = [];
+        //extract data from snapshot
+        
+        snapshot.forEach(doc => {//doc is an one woman suggested
+            const info = doc.data();
+            
+            if (info) {
+                data.push(info);
+            }
+            else
+                console.log("no data");
+
+        });
+        if (data.length === 0)
+            alert("Error, no data in database");
+        else {
+            //render the table
+            indexCollaction(data,collect);
+
+        }
+
+    }).catch(error => console.log(error));
+}
+
+
+
+
+function indexCollaction(data,collect){
+    let newDocumentName= collect+" Index";
+    let IDs=[];
+    let backup={};
+    data.forEach(singleRow => {
+        IDs.push(singleRow.id);
+        backup[singleRow.id] = singleRow;
+    })
+    console.log(IDs);
+    console.log(backup);
+
+    db.collection('indexes').doc(newDocumentName).set({IDs}).then(() => {
+       
+            alert(Dictionary[collect]+" "+ Dictionary.backedUpSuccessfully);
+           
+       
+    }).catch(function (error) {
+        alert(error)
+    });
+
+
+    // var data = "text/json;charset=utf-8," + encodeURIComponent(backup);
+    // csvDownload([JSON.stringify(backup)]);
+    // download(jsonToSsXml(backup), 'test.xls', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+
+// var toDownload=new Blob([JSON.stringify(backup)],{type:"application/json"});
+// var link=window.URL.createObjectURL(toDownload);
+// window.location=link;
+
+}
+
 
 //insert the collaction that you are looking to take data from and an array of the feilds that you are intrested in getting in your table
 //note that if not all feilds will be full the row will not be presented. 
