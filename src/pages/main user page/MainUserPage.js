@@ -185,7 +185,6 @@ export class PictursCarousel extends Component {
   mixSlides() {
     let items = this.state.items;
     let len = this.state.dataslide;
-    let first = items[0];
     let indicators = [];
     items = this.randomizeArr(items, len);
 
@@ -243,11 +242,9 @@ export class PictursCarousel extends Component {
 
 }
 export const CarouselSlide = props => {
-
   let clas = props.active ? "carousel-item active" : "carousel-item";
   let img = props.src ? <img src={props.src} className="roundedImg" alt={props.display} height="150px" width="150px" /> : "";
   let id = props.id ? `/womanPage/${props.id}` : "";
-
   return (
     <div className={clas} >
       <Link to={id}>

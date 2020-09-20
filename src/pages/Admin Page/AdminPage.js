@@ -72,6 +72,18 @@ function IndexDataByCollaction(collect){
 }
 
 
+function downloadObject(obj, filename){
+    // obj =String.fromCharCode(0xFEFF)+obj
+    var blob = new Blob([JSON.stringify(obj, null, 2)], {type: "application/json;charset=utf-8"}).slice(2,-1);
+    var url = URL.createObjectURL(blob);
+    var elem = document.createElement("a");
+    elem.href = url;
+    elem.download = filename;
+    document.body.appendChild(elem);
+    elem.click();
+    document.body.removeChild(elem);
+  }
+
 
 
 function indexCollaction(data,collect){
@@ -95,13 +107,10 @@ function indexCollaction(data,collect){
     });
 
 
-    // var data = "text/json;charset=utf-8," + encodeURIComponent(backup);
-    // csvDownload([JSON.stringify(backup)]);
-    // download(jsonToSsXml(backup), 'test.xls', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
 
-// var toDownload=new Blob([JSON.stringify(backup)],{type:"application/json"});
-// var link=window.URL.createObjectURL(toDownload);
-// window.location=link;
+let date = new Date();
+downloadObject(backup,date+".csv")
+
 
 }
 
