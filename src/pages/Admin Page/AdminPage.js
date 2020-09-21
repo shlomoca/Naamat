@@ -73,7 +73,6 @@ function IndexDataByCollaction(collect){
 
 
 function downloadObject(obj, filename){
-    // obj =String.fromCharCode(0xFEFF)+obj
     var blob = new Blob([JSON.stringify(obj, null, 2)], {type: "application/json;charset=utf-8"}).slice(2,-1);
     var url = URL.createObjectURL(blob);
     var elem = document.createElement("a");
@@ -109,7 +108,7 @@ function indexCollaction(data,collect){
 
 
 let date = new Date();
-downloadObject(backup,date+".csv")
+downloadObject(backup,date+".json")
 
 
 }
