@@ -7,8 +7,6 @@ import { Dictionary } from '../../Dictionary';
 import { EditWomanModal, CategoryModal, FeedbackModal, NewUserModal, DidYouKnowModal } from '../../forms/Forms';
 import { db } from '../../config/Firebase';
 import ReactDOM from 'react-dom';
-import csvDownload from 'json-to-csv-export'
-import {download,jsonToSsXml } from './JSONtoExel'
 
 class AdminPage extends Component {
     render() {
@@ -73,7 +71,7 @@ function IndexDataByCollaction(collect){
 
 
 function downloadObject(obj, filename){
-    var blob = new Blob([JSON.stringify(obj, null, 2)], {type: "application/json;charset=utf-8"}).slice(2,-1);
+    var blob = new Blob([JSON.stringify(obj, null, 2)], {type: "application/json;charset=utf-8"});
     var url = URL.createObjectURL(blob);
     var elem = document.createElement("a");
     elem.href = url;
@@ -108,7 +106,7 @@ function indexCollaction(data,collect){
 
 
 let date = new Date();
-downloadObject(backup,date+".json")
+downloadObject(backup,collect+" backup "+date+".json")
 
 
 }
