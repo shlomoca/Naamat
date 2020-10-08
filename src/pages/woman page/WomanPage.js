@@ -4,7 +4,8 @@ import ReactDOM from 'react-dom';
 import { NavBar, BottomBar, DisplayModal } from '../../Components';
 import { db, storage } from '../../config/Firebase'
 import { Dictionary, langs } from '../../Dictionary';
-import { allreadyExist, EditWomanModal, SuggestWomanModal } from '../../forms/Forms'
+import { allreadyExist, EditWomanModal, SuggestWomanModal } from '../../forms/Forms';
+import SimpleReactLightbox, { SRLWrapper, useLightbox } from "simple-react-lightbox";
 import $ from 'jquery';
 
 
@@ -162,28 +163,40 @@ export class ShoWoman extends Component {
         var info = [],
             page = [],
             managerBtns = "";
-        if (this.state.Admin) {
+        if (this.state.Admin) {//add edit and delete button for admin users
             managerBtns = <div className="editWomanBtn" ><button className="btn" onClick={(e) => { allreadyExist(this.state.id, true); }}>{Dictionary.edit}</button>
                 <button className=" btn-danger deleteBtn" onClick={() => { if (window.confirm(Dictionary.areYouSure)) deleteWoman(this.state.id) }} >{Dictionary.delete}</button></div>;
         }
+        //get the data of a specific woman from the woman collaction 
         db.collection('women').doc(this.state.id).get().then(snapshot => {
             const data = snapshot.data();
             info.push(data);
             var alldata = info[0];
-            if (alldata && alldata[Dictionary.getLanguage()]) {
+            console.log(alldata)
+            if (alldata && alldata[Dictionary.getLanguage()]) {//if there is a value in the system language
+
+                //main details is the part of the page that will stay sticky
                 page.push(<MainDetails display={alldata[Dictionary.getLanguage()]["display"]} link={alldata["ProfilePic"]} managerBtns={managerBtns} />);
-                if(alldata["birth"])
+                if (alldata["birth"])
                     page.push(<p><b >{Dictionary.birth}:</b> {formatDate(alldata["birth"])}</p>);
-                if(alldata["deth"])
-                page.push(<p><b>{Dictionary.birth}:</b> {formatDate(alldata["deth"])}</p>);
+                if (alldata["death"])
+                    page.push(<p><b>{Dictionary.death}:</b> {formatDate(alldata["death"])}</p>);
+
+                    //add all full fields to the page
                 (Object.values(this.state.fields)).forEach(key => {
                     if (alldata[Dictionary.getLanguage()][key])
                         page.push(<p><b>{Dictionary[key]}:</b> {alldata[Dictionary.getLanguage()][key]}</p>);
                 })
                 console.log(alldata[Dictionary.getLanguage()])
-                page.push( <FurtherReading links={alldata[Dictionary.getLanguage()]["links"]} bibliography={alldata[Dictionary.getLanguage()]["reading"]}/>)
+
+                //add the further reading links and bibliography 
+                page.push(<FurtherReading links={alldata[Dictionary.getLanguage()]["links"]} bibliography={alldata[Dictionary.getLanguage()]["reading"]} />)
+                
+                //add photo strip to the buttom of the page
+                page.push(<ShowPhotos photos={alldata["linksMedia"]} />)
+
             }
-                else {
+            else {
                 alert(Dictionary.nothingToShow)
                 window.location.href = '/';
             }
@@ -205,36 +218,36 @@ export class ShoWoman extends Component {
     }
 }
 
-function formatDate(date){
+function formatDate(date) {
     let info = new Date(date);
-    let d=info.getDate()+'-' + (info.getMonth()+1) + '-'+info.getFullYear();
+    let d = info.getDate() + ' - ' + (info.getMonth() + 1) + ' - ' + info.getFullYear();
     return d;
 }
-const FurtherReading= (props)=>{
-var links = props.links,
-bibliography=props.bibliography;
-var obj =[],linkObj=[];
-if(bibliography){
-    Object.values(bibliography).forEach(value=>{
-        obj.push(<p><b>{value}</b></p>);
-    })
-}
-if(links){
-    Object.keys(links).forEach(key=>{
-        if(key&&links[key])
-        obj.push(<p><b><DisplayModal link={links[key]} details={key} /></b></p>);
-    })
-}
+const FurtherReading = (props) => {
+    var links = props.links,
+        bibliography = props.bibliography;
+    var obj = [], linkObj = [];
+    if (bibliography) {
+        Object.values(bibliography).forEach(value => {
+            obj.push(<p><b>{value}</b></p>);
+        })
+    }
+    if (links) {
+        Object.keys(links).forEach(key => {
+            if (key && links[key])
+                obj.push(<p><b><DisplayModal link={links[key]} details={key} /></b></p>);
+        })
+    }
 
-if(obj.length>0)
-return(<div><b>{Dictionary.furtherReading}:</b><p></p>{obj}</div>);
-else 
-return(<div></div>)
+    if (obj.length > 0)
+        return (<div><b>{Dictionary.furtherReading}:</b><p></p>{obj}</div>);
+    else
+        return (<div></div>)
 }
 
 
 //searches for woman and 
-export function getWomen(womanName,admin) {
+export function getWomen(womanName, admin) {
     if (womanName) {
         var nameattr = "display" + determineLang(womanName);
         //get all the women that start with the term search
@@ -249,7 +262,7 @@ export function getWomen(womanName,admin) {
                 else
                     console.log("no data");
             });
-             
+
             var find = document.getElementById("womenHolder");
             var deck = document.getElementById("deckContainer");
             if (deck)
@@ -260,8 +273,8 @@ export function getWomen(womanName,admin) {
             if (women.length != 0) {
                 ReactDOM.render(<WomenDeck cards={women} />, document.getElementById('womenHolder'));
             }
-            else if(!admin)
-            ReactDOM.render(<Suggest/>, document.getElementById('womenHolder'));
+            else if (!admin)
+                ReactDOM.render(<Suggest />, document.getElementById('womenHolder'));
 
 
         }).catch(error => console.log(error))
@@ -273,17 +286,17 @@ export function getWomen(womanName,admin) {
 
 
 export class Suggest extends Component {
-    
+
 
     render() {
         return (
             <div className="suggest">
-            <button type="button" id="suggest" className="btn " data-toggle="modal" data-target="#suggestWomanModal">
-            {Dictionary.suggest}</button>;
-            <SuggestWomanModal />
+                <button type="button" id="suggest" className="btn " data-toggle="modal" data-target="#suggestWomanModal">
+                    {Dictionary.suggest}</button>;
+                <SuggestWomanModal />
             </div>
         )
-        }
+    }
 
 
 }
@@ -337,14 +350,19 @@ export function loadWomanToModal(id) {
             $("#birth").val(woman.birth).attr('readonly', true);
             $("#death").val(woman.death);
             $("#ProfilePic").val(woman.ProfilePic);
-
-
-
+            
+            
+            
             if (woman["categories"]) {
                 Object.values(woman["categories"]).forEach(cat => {
                     $("#" + cat).prop('checked', true);
                 })
             }
+            
+            // if(woman["linksMedia"]){
+            //     $("#linksMedia").val(woman.linksMedia);
+                
+            // }
 
             langs.forEach(lang => {
                 var arr = woman[lang];
@@ -378,8 +396,7 @@ export function loadWomanToModal(id) {
                                     $("#description" + lang + i).val(key);
                                     $("#link" + lang + i).val(array[key]);
                                 }
-                                else 
-                                {
+                                else {
                                     $("#description" + lang + i).val(key);
                                     $("#link" + lang + i).val(array[key]);
                                 }
@@ -397,5 +414,119 @@ export function loadWomanToModal(id) {
 }
 
 
+export class ShowPhotos extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            photos: this.props.photos,
+             pos : { top: 0, left: 0, x: 0, y: 0 }
+        }
+
+
+    }
+
+    componentDidMount() {
+        const ele = document.getElementById('photoContainer');
+        // console.log(ele)
+        if(this.props.photos)
+        ele.addEventListener('mousedown', this.mouseDownHandler);
+    }
+
+    mouseMoveHandler = function (e) {
+        const ele = document.getElementById('photoContainer');
+        // How far the mouse has been moved
+        const dx = e.clientX - this.state.pos.x;
+        const dy = e.clientY - this.state.pos.y;
+    
+        // Scroll the element
+        ele.scrollTop = this.state.pos.top - dy;
+        ele.scrollLeft = this.state.pos.left - dx;
+        //if the user wants to open the light box and is not trying to drag it
+        // console.log("dx: " + dx+ " dy: "+ dy)
+        // if(ele.scrollTop===0&&ele.scrollLeft===0){
+            // const { closeLightbox } = useLightbox()
+            // ele.addEventListener('mouseup', () => closeLightbox());
+        // }
+        
+        
+    }.bind(this);
+
+
+    mouseDownHandler = function (e) {
+        e.preventDefault();//remove photo defult drag
+    
+        const ele = document.getElementById('photoContainer');
+        // ele.scrollTop = 100;
+        // ele.scrollLeft = 150;
+        this.setState({ pos : {
+            // The current scroll 
+            left: ele.scrollLeft,
+            top: ele.scrollTop,
+            // Get the current mouse position
+            x: e.clientX,
+            y: e.clientY,
+        } })
+        
+        // Change the cursor and prevent user from selecting the text
+        ele.style.cursor = 'grabbing';
+        ele.style.userSelect = 'none';
+    
+        document.addEventListener('mousemove', this.mouseMoveHandler);
+        document.addEventListener('mouseup', this.mouseUpHandler);
+    }.bind(this);
+
+    mouseUpHandler = function (e) {
+        const ele = document.getElementById('photoContainer');
+        ele.style.cursor = 'grab';
+        ele.style.removeProperty('user-select');
+        document.removeEventListener('mousemove', this.mouseMoveHandler);
+    }.bind(this);
+
+
+
+
+    render() {
+        //remove the download and hide thumbnails buttons
+        const options = {
+            buttons: {
+                showDownloadButton: false,
+                showThumbnailsButton: false,
+            }
+        }
+
+        if(!this.props.photos)
+            return( <div  ></div>);
+        return (
+
+            <div id="photoContainer" >
+
+                <SimpleReactLightbox>
+                    <SRLWrapper options={options}>
+                        <div id="lightBox">
+                            {this.props.photos.map(photo => {
+                                return (
+                                    <img className="lightBoxImage" src={photo} alt={"test"}></img>
+                                )
+
+                            })}
+                        </div>
+                    </SRLWrapper>
+                </SimpleReactLightbox>
+
+            </div>
+        );
+
+    }
+}
+
+
+ 
+
+
+
+
+
 $(document).ready(() => {
+
 });

@@ -44,6 +44,9 @@ export const Dictionary = new LocalizedStrings({
     EN:`The form was uploaded to the English tab`,
     backedUpSuccessfully:"was backed up successfully",
     women:"Women",
+    backupWomen: "Create Backup for women",
+    backupdidYouKnow: "Create Backup for did you know",
+    
     
 
 
@@ -124,6 +127,7 @@ export const Dictionary = new LocalizedStrings({
     acceptFiles:"accept only image files",
     mustUpload:"please upload picture",
     furtherReading:"further reading",
+    enterDescription:"Enter a description",
     
     //components
     builders: `This site was built by: Shlomo Carmi, Daniel Raz, Sahar Cohen, Adiel Tsayag, Matan Yamin`,
@@ -169,8 +173,9 @@ export const Dictionary = new LocalizedStrings({
     manageOffers:'ניהול הצעות להוספה',
     backedUpSuccessfully:"גובה בהצלחה",
     women:"נשים",
-   
-
+    backupWomen: "צרי גיבוי לנשים",
+    backupdidYouKnow: "צרי גיבוי להידעת",
+  
 
     //woman page
     edit: 'ערכי',
@@ -245,7 +250,7 @@ export const Dictionary = new LocalizedStrings({
     langs:'כאן יופיעו כל העובדות בשפת המערכת',
     createdAt:"תאריך",
     furtherReading:"לקריאה נוספת",
-   
+    enterDescription:"הזיני תיאור",
     
     //components
     builders: 'אתר זה נבנה על ידי: שלמה כרמי, דניאל רז, סהר כהן, עדיאל צייג, מתן ימין ©',
@@ -297,6 +302,9 @@ export const Dictionary = new LocalizedStrings({
     manageOffers:'إدارة الاقتراحات',
     backedUpSuccessfully:"تم نسخه احتياطيًا بنجاح",
     women:"نساء",
+    backupWomen: "ضيق النسخ الاحتياطي للمرأة",
+    backupdidYouKnow: "بحاجة الى نسخة احتياطية لمعرفة",
+
 
     //woman page
     edit: 'تعديل',
@@ -375,6 +383,7 @@ export const Dictionary = new LocalizedStrings({
     acceptFiles:"يستقبل ملفات الصور فقط",
     mustUpload:"يرجى تحميل صورة",
     furtherReading:"قراءة متعمقة",
+    enterDescription:"أدخل وصفًا",
 
     //components
 
@@ -424,8 +433,8 @@ export const LangBtn = () => {
     ENId = "",
     ARId = "";
 
-  if (currentLng == "EN") ENId = "choosen";
-  else if (currentLng == "AR") ARId = "choosen";
+  if (currentLng === "EN") ENId = "choosen";
+  else if (currentLng === "AR") ARId = "choosen";
   else HEId = "choosen";
 
 

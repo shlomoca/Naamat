@@ -7,6 +7,7 @@ import { Dictionary } from '../../Dictionary';
 import { EditWomanModal, CategoryModal, FeedbackModal, NewUserModal, DidYouKnowModal } from '../../forms/Forms';
 import { db } from '../../config/Firebase';
 import ReactDOM from 'react-dom';
+import { Link } from 'react-router-dom';
 
 class AdminPage extends Component {
     render() {
@@ -19,9 +20,6 @@ class AdminPage extends Component {
                     <FeedbackModal />
                     <NewUserModal />
                     <DidYouKnowModal />
-                    <div className="backBtn">
-                        {/* <Link to="/"><button id="backBtn" className="btn">{Dictionary.back}</button></Link> */}
-                    </div>
                     <p id="adminTitle" className="titles">{Dictionary.welcomeManager}</p>
                     <div id="allAdmin">
                         <button className="btnhover" type="button" id="btn1" data-toggle="modal" data-target="#staticBackdrop"> {Dictionary.adminAddWoman} </button>
@@ -30,8 +28,8 @@ class AdminPage extends Component {
                         <button className="btnhover" type="button" id="categoriesBtn" onClick={() => { getData("categoriesBtn", "categories", ["category"]) }}> {Dictionary.manageCategory} </button>
                         <button className="btnhover" type="button" id="userMngBtn" onClick={() => { getData("userMngBtn", "users", ["email", "admin"]) }}> {Dictionary.adminUserManagement} </button>
                         <button className="btnhover" type="button" id="factMngBtn" onClick={() => { getData("factMngBtn", "didYouKnow", ["langs"]) }}> {Dictionary.didYouKnow} </button>
-                        <button className="btnhover" type="button" id="backupWomen" onClick={() => { IndexDataByCollaction("women") }}>  צרי גיבוי לנשים </button>
-                        <button className="btnhover" type="button" id="backupDidYouKnow" onClick={() => { IndexDataByCollaction("didYouKnow") }}>  צרי גיבוי להידעת</button>
+                        <button className="btnhover" type="button" id="backupWomen" onClick={() => { IndexDataByCollaction("women") }}>  {Dictionary.backupWomen} </button>
+                        <button className="btnhover" type="button" id="backupDidYouKnow" onClick={() => { IndexDataByCollaction("didYouKnow") }}>  {Dictionary.backupdidYouKnow} </button>
                     </div>
                     <div id="TableHolder"></div>
                 </div>
@@ -42,85 +40,71 @@ class AdminPage extends Component {
     }
 }
 export default AdminPage
+
+
+// calls the collaction from the DB and sends it to the indexing method
 function IndexDataByCollaction(collect){
-    
     db.collection(collect).get().then(snapshot => {
         const data = [];
         //extract data from snapshot
-        
-        snapshot.forEach(doc => {//doc is an one woman suggested
+        snapshot.forEach(doc => {
             const info = doc.data();
-            
             if (info) {
                 data.push(info);
             }
             else
                 console.log("no data");
-
         });
         if (data.length === 0)
             alert("Error, no data in database");
         else {
-            //render the table
-            indexCollaction(data,collect);
-
+            // send the index method the data
+            indexAndBackup(data,collect);
         }
 
     }).catch(error => console.log(error));
 }
 
-
+//download a json object
 function downloadObject(obj, filename){
     var blob = new Blob([JSON.stringify(obj, null, 2)], {type: "application/json;charset=utf-8"});
     var url = URL.createObjectURL(blob);
-    var elem = document.createElement("a");
+    var elem = document.createElement("a");//make an element pointing to the blob
     elem.href = url;
     elem.download = filename;
     document.body.appendChild(elem);
-    elem.click();
+    elem.click();//download the data
     document.body.removeChild(elem);
   }
 
-
-
-function indexCollaction(data,collect){
-    let newDocumentName= collect+" Index";
+//index a collaction and download a backup of the collaction
+function indexAndBackup(data,collect){
+    let newDocumentName= collect + " Index";
     let IDs=[];
     let backup={};
     data.forEach(singleRow => {
         IDs.push(singleRow.id);
         backup[singleRow.id] = singleRow;
     })
-    console.log(IDs);
-    console.log(backup);
-
-    db.collection('indexes').doc(newDocumentName).set({IDs}).then(() => {
-       
+    //update the index collaction with the correct index
+    db.collection('indexes').doc(newDocumentName).set({IDs}).then(() => {//save the index in the index collaction
             alert(Dictionary[collect]+" "+ Dictionary.backedUpSuccessfully);
-           
-       
     }).catch(function (error) {
         alert(error)
     });
 
-
-
-let date = new Date();
-downloadObject(backup,collect+" backup "+date+".json")
-
-
+downloadObject(backup, collect + " backup: "+ new Date()+".json");
 }
 
 
 //insert the collaction that you are looking to take data from and an array of the feilds that you are intrested in getting in your table
 //note that if not all feilds will be full the row will not be presented. 
 export function getData(btnId, collect, fields, unCheckedFields) {
-
     ShowHideFunc(["TableHolder"], ["allAdmin", "adminTitle"]);
     db.collection(collect).get().then(snapshot => {
         const data = [];
         //extract data from snapshot
-        snapshot.forEach(doc => {//doc is an one woman suggested
+        snapshot.forEach(doc => {//doc is a woman suggested
             const info = doc.data();
             if (info) {
                 data.push(info);
@@ -190,23 +174,11 @@ const DisplayData = (props) => {
 
 
     })
-    var obj;
-    if (collect == "feedback")
-        obj = Dictionary.feedbackTitle;
-    else if (collect == "didYouKnow")
-        obj = Dictionary.didYouKnowTitle;
-    else if (collect == "users")
-        obj = Dictionary.usersTitle;
-    else if (collect == "categories")
-        obj = Dictionary.categoriesTitle;
-    else if (collect == "suggest_women")
-        obj = Dictionary.suggest_womenTitle;
-
-
+    
     return (
 
         <div id="feedbackTable">
-            <p id="tableTitle" className="titles">{obj}</p>
+            <p id="tableTitle" className="titles">{Dictionary[collect]}</p>
             <table className="table table-dark">
                 <BuildTableHead fields={fields} unCheckedFields={unCheckedFields} />
                 <tbody>

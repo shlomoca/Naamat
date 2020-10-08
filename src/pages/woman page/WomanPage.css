@@ -118,3 +118,21 @@ h1 {
     border-radius: 3%;
     margin-top:1%;
 }
+#photoContainer{
+    overflow-x:auto;
+    height: 50vh;
+    overflow-y: hidden;
+}
+
+#lightBox
+{
+    display: inline-flex;
+    align-items: stretch;
+    height: 43vh;
+}
+
+.lightBoxImage
+{
+    height:100% ;
+    max-width: 250vh;
+}

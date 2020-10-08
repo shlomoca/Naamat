@@ -1,14 +1,3 @@
-#lightBox
-{
-    display: inline-flex;
-    height: 250px;
-    overflow-x: auto;
-}
-
-.lightBoxImage
-{
-    max-height:100% ;
-}
 
 .category_Check_Box
 {
@@ -39,4 +28,11 @@
 .lableCheckBox
 {
     margin: 0;
+}
+#photoContainer{
+    /* border-block: 5vh,groove,black; */
+    border-style: solid;
+    border-color: black;
+    border-width: 1vh;
+    
 }

@@ -4,27 +4,29 @@ import { Dictionary } from '../Dictionary';
 import $ from 'jquery';
 import ReactCrop from 'react-image-crop';
 import 'react-image-crop/dist/ReactCrop.css';
+import ReactDOM from 'react-dom';
+import './ImageUpload.css';
 class ImageUpload extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        src: null,
-        crop: {
-          unit: '%',
-          width: 60,
-          aspect: 1/1,
-        },
+      src: null,
+      crop: {
+        unit: '%',
+        width: 60,
+        aspect: 1 / 1,
+      },
       progress: 0,
       url: "",
       required: props.required
     }
-    
+
     this.handleUpload = this.handleUpload.bind(this);
   }
 
   handleUpload = () => {
 
-    $("#mustUpload").data('clicked',true);//set clicked of the cutton to true
+    $("#mustUpload").data('clicked', true);//set clicked of the cutton to true
     var param1 = this.props.param1;
     var param2 = this.props.param2;
     var pathEnd = this.props.pathEnd;
@@ -67,82 +69,82 @@ class ImageUpload extends Component {
             alert(Dictionary.uploadSuccess);
             this.setState({
               progress: 0,
-              url:url
+              url: url
             });
           }).catch(error => console.log(error));
         });
     }
   }
 
-onSelectFile = e => {
-  if (e.target.files && e.target.files.length > 0) {
-    const reader = new FileReader();
-    reader.addEventListener('load', () =>
-      this.setState({ src: reader.result })
-    );
-    reader.readAsDataURL(e.target.files[0]);
+  onSelectFile = e => {
+    if (e.target.files && e.target.files.length > 0) {
+      const reader = new FileReader();
+      reader.addEventListener('load', () =>
+        this.setState({ src: reader.result })
+      );
+      reader.readAsDataURL(e.target.files[0]);
+    }
+  };
+
+  // If you setState the crop in here you should return false.
+  onImageLoaded = image => {
+    this.imageRef = image;
+  };
+
+  onCropComplete = crop => {
+    this.makeClientCrop(crop);
+  };
+
+  onCropChange = (crop, percentCrop) => {
+    this.setState({ crop });
+  };
+
+  async makeClientCrop(crop) {
+    if (this.imageRef && crop.width && crop.height) {
+      const croppedImageUrl = await this.getCroppedImg(
+        this.imageRef,
+        crop,
+        'newFile.jpeg'
+      );
+      this.setState({ croppedImageUrl });
+    }
   }
-};
 
-// If you setState the crop in here you should return false.
-onImageLoaded = image => {
-  this.imageRef = image;
-};
+  getCroppedImg(image, crop, fileName) {
+    const canvas = document.createElement('canvas');
+    const scaleX = image.naturalWidth / image.width;
+    const scaleY = image.naturalHeight / image.height;
+    canvas.width = crop.width;
+    canvas.height = crop.height;
+    const ctx = canvas.getContext('2d');
 
-onCropComplete = crop => {
-  this.makeClientCrop(crop);
-};
-
-onCropChange = (crop, percentCrop) => {
-  this.setState({ crop });
-};
-
-async makeClientCrop(crop) {
-  if (this.imageRef && crop.width && crop.height) {
-    const croppedImageUrl = await this.getCroppedImg(
-      this.imageRef,
-      crop,
-      'newFile.jpeg'
+    ctx.drawImage(
+      image,
+      crop.x * scaleX,
+      crop.y * scaleY,
+      crop.width * scaleX,
+      crop.height * scaleY,
+      0,
+      0,
+      crop.width,
+      crop.height
     );
-    this.setState({ croppedImageUrl });
+
+    return new Promise((resolve, reject) => {
+      canvas.toBlob(blob => {
+        if (!blob) {
+          //reject(new Error('Canvas is empty'));
+          console.error('Canvas is empty');
+          return;
+        }
+        blob.name = fileName;
+        this.setState({ blob });//save tha blob in the state in order to send it to storage
+        window.URL.revokeObjectURL(this.fileUrl);
+        this.fileUrl = window.URL.createObjectURL(blob);
+        resolve(this.fileUrl);
+      }, 'image/jpeg');
+    });
   }
-}
-
-getCroppedImg(image, crop, fileName) {
-  const canvas = document.createElement('canvas');
-  const scaleX = image.naturalWidth / image.width;
-  const scaleY = image.naturalHeight / image.height;
-  canvas.width = crop.width;
-  canvas.height = crop.height;
-  const ctx = canvas.getContext('2d');
-
-  ctx.drawImage(
-    image,
-    crop.x * scaleX,
-    crop.y * scaleY,
-    crop.width * scaleX,
-    crop.height * scaleY,
-    0,
-    0,
-    crop.width,
-    crop.height
-  );
-
-  return new Promise((resolve, reject) => {
-    canvas.toBlob(blob => {
-      if (!blob) {
-        //reject(new Error('Canvas is empty'));
-        console.error('Canvas is empty');
-        return;
-      }
-      blob.name = fileName;
-      this.setState({blob});//save tha blob in the state in order to send it to storage
-      window.URL.revokeObjectURL(this.fileUrl);
-      this.fileUrl = window.URL.createObjectURL(blob);
-      resolve(this.fileUrl);
-    }, 'image/jpeg');
-  });
-}
 
 
   render() {
@@ -152,22 +154,22 @@ getCroppedImg(image, crop, fileName) {
         <p>{Dictionary.profilepic}</p>
         <progress value={this.state.progress} max="100" />
         <div className="form-group" id="imgUp">
-         
-         
-        {src && (
-          <ReactCrop
-          src={src}
-          crop={crop}
-          ruleOfThirds
-          onImageLoaded={this.onImageLoaded}
-          onComplete={this.onCropComplete}
-          onChange={this.onCropChange}
-          />
-        )}
-        {croppedImageUrl && (
-          <img id="croppedUrl"  alt="Crop" style={{ maxWidth: '20%', maxHeight: '20%' }} src={croppedImageUrl} />
-        )}
-          
+
+
+          {src && (
+            <ReactCrop
+              src={src}
+              crop={crop}
+              ruleOfThirds
+              onImageLoaded={this.onImageLoaded}
+              onComplete={this.onCropComplete}
+              onChange={this.onCropChange}
+            />
+          )}
+          {croppedImageUrl && (
+            <img id="croppedUrl" alt="Crop" style={{ maxWidth: '20%', maxHeight: '20%' }} src={croppedImageUrl} />
+          )}
+
           <input type="file" name="file" id="inputGroupFile04 media" aria-describedby="inputGroupFileAddon04" accept="image/*" onChange={this.onSelectFile} required={this.state.required} />
         </div>
         <input type="hidden" id="ProfilePic" name="ProfilePic" value={this.state.url} required />
@@ -199,10 +201,25 @@ export class MultiImageUpload extends Component {
 
 
   handleChange = e => {
-
     const file = Array.from(e.target.files);
     this.setState({ file });
   }
+
+  addPreview(url, id) {
+
+
+
+    var node = document.createElement('div')
+    node.setAttribute("id", "renderPreview"+id);
+    node.setAttribute("class", "SingleRenderBox");
+    document.getElementById("presentImages").appendChild(node);
+    ReactDOM.render(<ImagePreview src={url} id={id} /> , node);
+  }
+
+
+
+
+
 
   handleUpload = () => {
     var param1 = this.props.param1;
@@ -243,15 +260,18 @@ export class MultiImageUpload extends Component {
               console.log(error);
             },
             () => {
-              //get photo url function
+              //get photo url function and add an Image preview of it
               const refer = storage.ref(filePath);
               refer.getDownloadURL().then(url => {
                 links.push(url);
+                var id=this.state.links.length;
+                this.addPreview(url,id);
                 this.setState({ links: JSON.stringify(links) });
               }).catch(error => console.log(error));
-              alert(Dictionary.uploadSuccess);
+
             })
       })
+      alert(Dictionary.uploadSuccess);
     }
 
 
@@ -263,13 +283,27 @@ export class MultiImageUpload extends Component {
         <p >{Dictionary.media + Dictionary.acceptFiles}</p>
         <progress value={this.state.progress} max="100" />
         <div className="form-group">
-          רכיב בפיתוח. כרגע התמונות עולות אבל אין הצגה שלהן
           <input type="file" name="multi_media" id="multi_media" skip={true} aria-describedby="inputGroupFileAddon04" accept="image/*" multiple onChange={this.handleChange} required={this.state.required} />
         </div>
-        <input type="hidden" id="linksMedia" name="linksMedia" value={this.state.links} />
         <button type="button" onClick={this.handleUpload}>{Dictionary.upload}</button>
+        <div id="presentImages"></div>
+        <input type="hidden" id="linksMedia" name="linksMedia" value={this.state.links} />
         <br />
       </div>
     )
   }
+}
+
+
+//Image element that with three discriptions
+export const ImagePreview = (props) => {
+  var src = props.src, id = props.id;
+  return (<div className="photoPrevContainer" id={"pic" + id}>
+    <img className="photoPrev" src={src}/> 
+    <div id= "descriptionContainer">
+    <input type="text" lang={props.lang} placeholder={Dictionary.enterDescription} />
+    <input type="text" lang={props.lang} placeholder={Dictionary.enterDescription} />
+    <input type="text" lang={props.lang} placeholder={Dictionary.enterDescription} />
+    </div>
+  </div>);
 }

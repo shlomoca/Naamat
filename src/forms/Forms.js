@@ -175,9 +175,9 @@ export const EditWomanModal = () => {
                                 <ImageUpload param1="name" param2="birth" pathEnd="/ProfilePic" param1Empty="name not enterd" param2Empty="date of birth not ented" />
                                 </div>
                                 <div className="tab-content">
-                                    <GenralForm lang={langs[0]} active={Dictionary.getLanguage()==langs[0]} />
-                                    <GenralForm lang={langs[1]} active={Dictionary.getLanguage()==langs[1]} />
-                                    <GenralForm lang={langs[2]} active={Dictionary.getLanguage()==langs[2]} />
+                                    <GenralForm lang={langs[0]} active={Dictionary.getLanguage()===langs[0]} />
+                                    <GenralForm lang={langs[1]} active={Dictionary.getLanguage()===langs[1]} />
+                                    <GenralForm lang={langs[2]} active={Dictionary.getLanguage()===langs[2]} />
                                 </div>
                                 {/* <label htmlFor="acceptFiles">{Dictionary.acceptFiles} </label> */}
                                 <MultiImageUpload param1="name" param2="birth" param1Empty="name not enterd" param2Empty="date of birth not ented" />
@@ -585,7 +585,7 @@ export function addWoman(e) {
                         gen[this.name] = JSON.parse(this.value);
                         break;
                     case "cat":
-                        if (this.checked == 1)
+                        if (this.checked === 1)
                             categories.push(this.id);
                         break;
                     case "description":
@@ -625,15 +625,15 @@ export function addWoman(e) {
                     //display is saved broken as well as full so no break
                     default:
 
-                        if (this.lang == "EN") {
+                        if (this.lang === "EN") {
                             boolEn = true;
                             EN[this.name] = this.value;
                         }
-                        else if (this.lang == "HE") {
+                        else if (this.lang === "HE") {
                             boolHe = true;
                             HE[this.name] = this.value;
                         }
-                        else if (this.lang == "AR") {
+                        else if (this.lang === "AR") {
                             boolAr = true;
                             AR[this.name] = this.value;
                         }
@@ -735,7 +735,7 @@ function addFeedback(e) {
     $($('#feedback_form').prop('elements')).each(function () {
         if (this.value) {
             //if it is the stars rating
-            if (this.type == "radio") {
+            if (this.type ==="radio") {
                 if ($(this).is(':checked') && !maxscoreSet) {
                     maxscoreSet = true;
                     obj["score"] = this.value;
@@ -789,7 +789,7 @@ function addCatagory(event) {
 
         $($('#category_form').prop('elements')).each(function () {
             if (this.value && (this.type) != ("file")) {
-                if (this.type == "hidden")
+                if (this.type === "hidden")
                     gen[this.id] = this.value;
                 else
                     gen[this.lang] = this.value;
@@ -850,7 +850,7 @@ console.log(id)
 }
 
 
-//make sure that the use enterd in step one the name and birth date
+//make sure that the user enterd in step one the name and birth date
 export function showing(id, wantToEdit) {
     if (($("#name").val() && $("#birth").val()) || wantToEdit) {
         $(id).show();

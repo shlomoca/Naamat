@@ -1,0 +1,19 @@
+.photoPrev{
+    height: 100%;
+    max-width: 300px;
+}
+.photoPrevContainer{
+    height: 30vh;
+   
+    display: inline-flex;
+}
+.presentImages{
+    display: inline-flex;
+    overflow-x: auto;
+    overflow-y: none;
+}
+.SingleRenderBox{
+    width: 40%;
+    /* margin: auto; */
+    display: inline-flex;
+}
