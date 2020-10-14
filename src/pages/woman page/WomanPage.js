@@ -7,6 +7,7 @@ import { Dictionary, langs } from '../../Dictionary';
 import { allreadyExist, EditWomanModal, SuggestWomanModal } from '../../forms/Forms';
 import SimpleReactLightbox, { SRLWrapper, useLightbox } from "simple-react-lightbox";
 import $ from 'jquery';
+import { addPreview } from '../../forms/ImageUpload.jsx';
 
 
 
@@ -131,7 +132,7 @@ export const WomanPage = (props) => {
             <div id="WomanPageWrapper" className="wrapper" >
                 <NavBar AdminPage={false} Admin={Admin} />
                 <EditWomanModal />
-                <ShoWoman id={id} fields={["highlights", "biography", "histoy", "feminism", "facts", "quotes"]} Admin={Admin} />
+                <ShoWoman id={id} fields={["highlights", "biography", "history", "feminism", "facts", "quotes"]} Admin={Admin} />
             </div>
             <BottomBar />
         </div>
@@ -172,7 +173,6 @@ export class ShoWoman extends Component {
             const data = snapshot.data();
             info.push(data);
             var alldata = info[0];
-            console.log(alldata)
             if (alldata && alldata[Dictionary.getLanguage()]) {//if there is a value in the system language
 
                 //main details is the part of the page that will stay sticky
@@ -182,7 +182,7 @@ export class ShoWoman extends Component {
                 if (alldata["death"])
                     page.push(<p><b>{Dictionary.death}:</b> {formatDate(alldata["death"])}</p>);
 
-                    //add all full fields to the page
+                //add all full fields to the page
                 (Object.values(this.state.fields)).forEach(key => {
                     if (alldata[Dictionary.getLanguage()][key])
                         page.push(<p><b>{Dictionary[key]}:</b> {alldata[Dictionary.getLanguage()][key]}</p>);
@@ -191,9 +191,9 @@ export class ShoWoman extends Component {
 
                 //add the further reading links and bibliography 
                 page.push(<FurtherReading links={alldata[Dictionary.getLanguage()]["links"]} bibliography={alldata[Dictionary.getLanguage()]["reading"]} />)
-                
+
                 //add photo strip to the buttom of the page
-                page.push(<ShowPhotos photos={alldata["linksMedia"]} />)
+                page.push(<ShowPhotos photos={alldata["photos"]} />)
 
             }
             else {
@@ -350,20 +350,14 @@ export function loadWomanToModal(id) {
             $("#birth").val(woman.birth).attr('readonly', true);
             $("#death").val(woman.death);
             $("#ProfilePic").val(woman.ProfilePic);
-            
-            
-            
+
+
             if (woman["categories"]) {
                 Object.values(woman["categories"]).forEach(cat => {
                     $("#" + cat).prop('checked', true);
                 })
             }
-            
-            // if(woman["linksMedia"]){
-            //     $("#linksMedia").val(woman.linksMedia);
-                
-            // }
-
+            console.log(woman)
             langs.forEach(lang => {
                 var arr = woman[lang];
                 if (arr)
@@ -406,6 +400,20 @@ export function loadWomanToModal(id) {
 
                     })
             })
+
+
+            //add  photo previews to the page
+            let pics = woman.photos
+            if (pics) {
+                var links = [];
+                Object.keys(pics).forEach(key => {
+                    let i = pics[key]
+                    if (i.pic) {
+                        links.push(i.pic);
+                        addPreview(i.pic, key, i.HE, i.EN, i.AR);
+                    }
+                })
+            }
         }
     }).catch(error => console.log(error));
 
@@ -420,61 +428,63 @@ export class ShowPhotos extends Component {
         super(props);
         this.state = {
             photos: this.props.photos,
-             pos : { top: 0, left: 0, x: 0, y: 0 }
+            pos: { top: 0, left: 0, x: 0, y: 0 }
         }
-
-
     }
 
+    mouseDownHandler = function (e) {
+        e.preventDefault();//remove photo defult drag
+
+        const ele = document.getElementById('photoContainer');
+        // ele.scrollTop = 100;
+        // ele.scrollLeft = 150;
+        this.setState({
+            pos: {
+                // The current scroll 
+                left: ele.scrollLeft,
+                top: ele.scrollTop,
+                // Get the current mouse position
+                x: e.clientX,
+                y: e.clientY,
+            }
+        })
+
+        // Change the cursor and prevent user from selecting the text
+        ele.style.cursor = 'grabbing';
+        ele.style.userSelect = 'none';
+
+        document.addEventListener('mousemove', this.mouseMoveHandler);
+        document.addEventListener('mouseup', this.mouseUpHandler);
+    }.bind(this);
     componentDidMount() {
         const ele = document.getElementById('photoContainer');
         // console.log(ele)
-        if(this.props.photos)
-        ele.addEventListener('mousedown', this.mouseDownHandler);
+        if (this.props.photos)
+            ele.addEventListener('mousedown', this.mouseDownHandler);
     }
+
 
     mouseMoveHandler = function (e) {
         const ele = document.getElementById('photoContainer');
         // How far the mouse has been moved
         const dx = e.clientX - this.state.pos.x;
         const dy = e.clientY - this.state.pos.y;
-    
+
         // Scroll the element
         ele.scrollTop = this.state.pos.top - dy;
         ele.scrollLeft = this.state.pos.left - dx;
         //if the user wants to open the light box and is not trying to drag it
         // console.log("dx: " + dx+ " dy: "+ dy)
         // if(ele.scrollTop===0&&ele.scrollLeft===0){
-            // const { closeLightbox } = useLightbox()
-            // ele.addEventListener('mouseup', () => closeLightbox());
+        // const { closeLightbox } = useLightbox()
+        // ele.addEventListener('mouseup', () => closeLightbox());
         // }
-        
-        
+
+
     }.bind(this);
 
 
-    mouseDownHandler = function (e) {
-        e.preventDefault();//remove photo defult drag
-    
-        const ele = document.getElementById('photoContainer');
-        // ele.scrollTop = 100;
-        // ele.scrollLeft = 150;
-        this.setState({ pos : {
-            // The current scroll 
-            left: ele.scrollLeft,
-            top: ele.scrollTop,
-            // Get the current mouse position
-            x: e.clientX,
-            y: e.clientY,
-        } })
-        
-        // Change the cursor and prevent user from selecting the text
-        ele.style.cursor = 'grabbing';
-        ele.style.userSelect = 'none';
-    
-        document.addEventListener('mousemove', this.mouseMoveHandler);
-        document.addEventListener('mouseup', this.mouseUpHandler);
-    }.bind(this);
+
 
     mouseUpHandler = function (e) {
         const ele = document.getElementById('photoContainer');
@@ -495,8 +505,8 @@ export class ShowPhotos extends Component {
             }
         }
 
-        if(!this.props.photos)
-            return( <div  ></div>);
+        if (!this.props.photos)
+            return (<div  ></div>);
         return (
 
             <div id="photoContainer" >
@@ -504,9 +514,10 @@ export class ShowPhotos extends Component {
                 <SimpleReactLightbox>
                     <SRLWrapper options={options}>
                         <div id="lightBox">
-                            {this.props.photos.map(photo => {
+                            {Object.keys(this.props.photos).map(key => {
+
                                 return (
-                                    <img className="lightBoxImage" src={photo} alt={"test"}></img>
+                                    <img className="lightBoxImage" src={this.props.photos[key].pic} alt={this.props.photos[key][Dictionary.getLanguage()]}></img>
                                 )
 
                             })}
@@ -521,7 +532,7 @@ export class ShowPhotos extends Component {
 }
 
 
- 
+
 
 
 

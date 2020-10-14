@@ -72,7 +72,7 @@ export const Dictionary = new LocalizedStrings({
     highlights: `Highlights`,
     biography: `Biography`,
     quotes: `Quotes and notable works`,
-    History: `History`,
+    history: `History`,
     feminism: `Contribution to feminism`,
     facts: `Interesting facts / stories`,
     media: `Media:`,
@@ -119,13 +119,18 @@ export const Dictionary = new LocalizedStrings({
     addEngFact:"Add a fact in English",
     addHebFact:"Add a fact in Hebrew",
     addArFact:"Add a fact in Arabic",
+    addEngDesc:"Add a description in English",
+    addHebDesc:"Add a description in Hebrew",
+    addArDesc:"Add a description in Arabic",
+    
+    
     
     
 
     
     ImportantMSG:'Note that after pressing the "Next" button you will not be able to change the required fields',
     acceptFiles:"accept only image files",
-    mustUpload:"please upload picture",
+    mustUpload:"please upload profile picture",
     furtherReading:"further reading",
     enterDescription:"Enter a description",
     
@@ -201,7 +206,7 @@ export const Dictionary = new LocalizedStrings({
     highlights: `תקציר`,
     biography: `ביוגרפיה`,
     quotes: `ציטוטים ויצירות בולטות`,
-    History: `היסטוריה`,
+    history: `היסטוריה`,
     feminism: `תרומה לפמיניזם`,
     facts: `עובדות / סיפורים מעניינים`,
     media: `מדיה: `,
@@ -238,11 +243,15 @@ export const Dictionary = new LocalizedStrings({
     addEngFact:"הוסיפי עובדה באנגלית",
     addHebFact:"הוסיפי עובדה בעברית",
     addArFact:"הוסיפי עובדה בערבית",
-
+    addEngDesc:"הוסיפי תיאור באנגלית",
+    addHebDesc:"הוסיפי תיאור בעברית",
+    addArDesc:"הוסיפי תיאור בערבית",
+    
+    
 
     acceptFiles:"מקבל קבצי תמונות בלבד",
     summeryHighlight: "תקציר זה יופיע בקרוסלת התמונות ובקטגוריות",
-    mustUpload:"בבקשה העלי תמונה",
+    mustUpload:"אנא העלי תמונת פרופיל",
     didYouKnow:'הידעת ?',
     AddNewFact:'הוסיפי עובדה חדשה',
     language:'שפה',
@@ -330,7 +339,7 @@ export const Dictionary = new LocalizedStrings({
     highlights: `تسليط الضوء`,
     biography: `سيرة شخصية`,
     quotes: `اقتباسات وأعمال بارزة`,
-    History: `التاريخ`,
+    history: `التاريخ`,
     feminism: `المساهمة في الحركة النسائية`,
     facts: `حقائق / قصص مثيرة للاهتمام`,
     media: `وسائل الإعلام: `,
@@ -377,16 +386,17 @@ export const Dictionary = new LocalizedStrings({
     addEngFact:"أضف حقيقة في اللغة الإنجليزية",
     addHebFact:"أضف حقيقة بالعبرية",
     addArFact:"أضف حقيقة باللغة العربية",
-
+    addEngDesc:"أضف وصفًا باللغة الإنجليزية",
+    addHebDesc:"أضف وصفًا باللغة العبرية",
+    addArDesc:"أضف وصفا باللغة العربية",
     
     ImportantMSG:'لاحظ أنه بعد الضغط على زر "التالي" لن تتمكن من تغيير الحقول المطلوبة',
     acceptFiles:"يستقبل ملفات الصور فقط",
-    mustUpload:"يرجى تحميل صورة",
+    mustUpload:"الرجاء تحميل صورة الملف الشخصي",
     furtherReading:"قراءة متعمقة",
     enterDescription:"أدخل وصفًا",
 
     //components
-
     builders: `تم بناء هذا الموقع من قبل: شلومو كرمي ، دانيال راز ، سحر كوهين ، أديل تساياج ، ماتان يمين © `,
     managmentPlatform: 'منصة الإدارة',
     NaamatInFacebook: 'نعمات في الفيسبك',

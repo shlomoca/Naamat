@@ -1,11 +1,12 @@
 .photoPrev{
     height: 100%;
-    max-width: 300px;
+    max-width: 30%;
 }
 .photoPrevContainer{
-    height: 30vh;
-   
+    height: 20vh;
+    width: 100%;
     display: inline-flex;
+    position: relative;
 }
 .presentImages{
     display: inline-flex;
@@ -13,7 +14,15 @@
     overflow-y: none;
 }
 .SingleRenderBox{
-    width: 40%;
+    width: 50%;
     /* margin: auto; */
     display: inline-flex;
+}
+.deleteImage{
+    float: right;
+    position: relative;
+    left: 0px;
+    top: 0px;
+    height: 30px;
+border-radius: 50%;
 }
