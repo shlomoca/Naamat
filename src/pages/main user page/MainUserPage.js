@@ -1,11 +1,9 @@
 import './MainUserPage.css';
 import $ from 'jquery';
 import React, { Component } from 'react';
-import { NavBar, BottomBar, AfterMessage, CategoryCheckBox } from '../../Components.js';
+import { NavBar, BottomBar } from '../../Components.js';
 
-import { FeedbackButton } from '../../forms/Forms';
-import ReactDOM from 'react-dom';
-import Firebase, { auth, storage, db } from '../../config/Firebase';
+import  { db } from '../../config/Firebase';
 import { Dictionary } from '../../Dictionary';
 import { Link } from 'react-router-dom';
 
@@ -207,20 +205,35 @@ export class PictursCarousel extends Component {
 export const CarouselSlide = props => {
   let clas = props.active ? "carousel-item active" : "carousel-item";
   let img = props.src ? <img src={props.src} className="roundedImg" alt={props.display} height="150px" width="150px" /> : "";
-  let id = props.id ? `/womanPage/${props.id}` : "";
+  let id =`/womanPage/${props.id}`;
+  if(props.id){//if it is a women slide
+    return (
+      <div className={clas} >
+        <Link to={id}>
+          <div className="d-block w-100 " height="500px" width="200px">
+            <div className="details">
+              <h1 className="displayName">{props.display}</h1>
+              {img}
+            </div>
+            <div id="highlightsContainer"><h3 className="highlights">{props.highlights}</h3></div>
+          </div>
+        </Link>
+      </div>
+    )
+  }
+  else{//if it is a fact slide
+   
   return (
     <div className={clas} >
-      <Link to={id}>
         <div className="d-block w-100 " height="500px" width="200px">
           <div className="details">
             <h1 className="displayName">{props.display}</h1>
-            {img}
           </div>
           <div id="highlightsContainer"><h3 className="highlights">{props.highlights}</h3></div>
         </div>
-      </Link>
     </div>
   )
+  }
 }
 
 export const CarouselLi = props => {

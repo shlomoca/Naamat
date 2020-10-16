@@ -44,12 +44,16 @@ class Category extends Component {
                             this.state.categories.map(category => {
                                 var cat = category[Dictionary.getLanguage()],
                                     pic = category["ProfilePic"];
-                                if (pic && cat)
+                                if (pic && cat) {
+
                                     return (
                                         <div className="catagoryImgContainer" onClick={() => { getWomanByCatagory(cat) }}>
                                             <img className="catagoryImg" src={pic} alt={cat} />
                                             <div className="catagoryText">{cat}</div>
                                         </div>);
+                                }
+                                else
+                                    return <div></div>
                             })}
                     </div>
                 </div>
@@ -86,48 +90,52 @@ export class ShoWomanByCat extends Component {
     componentWillMount() {
         var page = [],
             cat = this.state.cat;
-        // .orderby().limit(20)
-        var data = [], page = [];
-        db.collection("women").where('categories', 'array-contains', cat).get()
-        .then(querySnapshot => {
-                querySnapshot.forEach(function (doc) {
+        var data = [];
+        const numberOfWomen = 20;//limit number of women loaded this way to 20
+        db.collection("women").where('categories', 'array-contains', cat).limit(numberOfWomen).get()
+            .then(Snapshot => {
+                Snapshot.forEach(function (doc) {
                     data.push(doc.data())
                 });
-                data.forEach(woman => {
-                    console.log("in data")
-                    if (woman[Dictionary.getLanguage()]) {
-                        var id = woman["id"],
-                            display = woman[Dictionary.getLanguage()]["display"],
-                            summary = woman[Dictionary.getLanguage()]["highlights"],
-                            url = woman["ProfilePic"],
-                            woman = false;
-                        if (id && display && summary && url) {
-                            page.push(
-                                <WomenCard id={id} display={display} prof={url} summary={summary} />
-                            );
-                        }
-                        else {
-                            if (id)
-                                console.log("brokenID")
-                            else {
+                if (data.length === 0){
+                    page.push(<div>{Dictionary.nothingToShow}</div>)
+                    this.setState({ womanData: page });
+                }
 
-                                if (display)
-                                    console.log("ID:" + id + "no display name")
-                                if (summary)
-                                    console.log("ID:" + id + "no summary")
-                                if (url)
-                                    console.log("ID:" + id + "no url")
+                else {
+                    data.forEach(woman => {
+                        if (woman[Dictionary.getLanguage()]) {
+                            var id = woman["id"],
+                                display = woman[Dictionary.getLanguage()]["display"],
+                                summary = woman[Dictionary.getLanguage()]["highlights"],
+                                url = woman["ProfilePic"];
+                            if (id && display && summary && url) {
+                                page.push(
+                                    <WomenCard id={id} display={display} prof={url} summary={summary} />
+                                );
                             }
+                            else {
+                                if (id)
+                                    console.log("brokenID")
+                                else {
+
+                                    if (display)
+                                        console.log("ID:" + id + "no display name")
+                                    if (summary)
+                                        console.log("ID:" + id + "no summary")
+                                    if (url)
+                                        console.log("ID:" + id + "no url")
+                                }
 
 
+                            }
                         }
-                    }
-                })
+                    })
 
-                this.setState({
-                    womanData: page
-                });
-
+                    this.setState({
+                        womanData: page
+                    });
+                }
             })
             .catch(function (error) {
                 console.log("Error getting documents: ", error);

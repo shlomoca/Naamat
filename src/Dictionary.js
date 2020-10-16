@@ -17,7 +17,8 @@ export const Dictionary = new LocalizedStrings({
     enterPass: `Password`,
     login: `Log in`,
     userDoesntExists: `Permission denied`,
-  
+    logOutSuccessful: `User successfully logged out`,
+    
 
     //admin page
     adminAddWoman: 'Add Woman',
@@ -154,8 +155,9 @@ export const Dictionary = new LocalizedStrings({
     enterPass: `סיסמא`,
     login: `התחברי`,
     userDoesntExists: `גישה נדחתה`,
-
-
+    logOutSuccessful: `משתמשת התנתקה בהצלחה`,
+    
+  
     //admin page
     adminAddWoman: 'הוסיפי אישה',
     adminEditWoman: 'ערכי אישה',
@@ -288,6 +290,9 @@ export const Dictionary = new LocalizedStrings({
     enterPass: "كلمه السر",
     login: "تسجيل الدخول",
     userDoesntExists: `طلب الاذن مرفوض`,
+    logOutSuccessful: `تم تسجيل خروج المستخدم بنجاح`,
+
+
 
     //admin page
     adminAddWoman: 'أضف امرأة',

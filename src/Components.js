@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import $ from 'jquery';
 import { LangBtn, Dictionary } from './Dictionary';
 import logo from './images/naamatlogo.png';
-import { FeedbackModal, SuggestWomanModal } from './forms/Forms';
+import { FeedbackModal } from './forms/Forms';
 import { db, auth } from './config/Firebase'
 import { Link } from 'react-router-dom';
 import { getWomen } from '../src/pages/woman page/WomanPage'
@@ -325,8 +325,6 @@ export class CollectionCheckBox extends Component {
 
 function managerSignout() {
   auth.signOut();
-  sessionStorage.removeItem("userConnect");
-  sessionStorage.removeItem("userEmail");
+  alert(Dictionary.logOutSuccessful)
   ReactDOM.render(<LoginComponent />, document.getElementById('root'));
-  window.location.href = '/';
 }

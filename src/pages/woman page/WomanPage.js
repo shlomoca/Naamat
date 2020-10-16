@@ -5,7 +5,7 @@ import { NavBar, BottomBar, DisplayModal } from '../../Components';
 import { db, storage } from '../../config/Firebase'
 import { Dictionary, langs } from '../../Dictionary';
 import { allreadyExist, EditWomanModal, SuggestWomanModal } from '../../forms/Forms';
-import SimpleReactLightbox, { SRLWrapper, useLightbox } from "simple-react-lightbox";
+import SimpleReactLightbox, { SRLWrapper } from "simple-react-lightbox";
 import $ from 'jquery';
 import { addPreview } from '../../forms/ImageUpload.jsx';
 
@@ -28,7 +28,7 @@ const MainDetails = (props) => {
 export const WomenDeck = (props) => {
     const vals = Object.values(props.cards);
     const deck = [];
-    vals.map(woman => {
+    vals.forEach(woman => {
         if (woman[Dictionary.getLanguage()]) {
             var wName = woman[Dictionary.getLanguage()]["display"];
             var sum = woman[Dictionary.getLanguage()]["summary"];
@@ -124,8 +124,6 @@ function deleteBucket(id) {
 export const WomanPage = (props) => {
     var id = props.match.params.id,
         Admin = props.Admin;
-    const woman = [];
-    var obj;
 
     return (
         <div id="WPcover" className="cover">
@@ -220,13 +218,13 @@ export class ShoWoman extends Component {
 
 function formatDate(date) {
     let info = new Date(date);
-    let d = info.getDate() + ' - ' + (info.getMonth() + 1) + ' - ' + info.getFullYear();
+    let d = info.getDate() + '/' + (info.getMonth() + 1) + '/' + info.getFullYear();
     return d;
 }
 const FurtherReading = (props) => {
     var links = props.links,
         bibliography = props.bibliography;
-    var obj = [], linkObj = [];
+    var obj = [];
     if (bibliography) {
         Object.values(bibliography).forEach(value => {
             obj.push(<p><b>{value}</b></p>);
@@ -270,7 +268,7 @@ export function getWomen(womanName, admin) {
             if (find)
                 ReactDOM.unmountComponentAtNode(find);
 
-            if (women.length != 0) {
+            if (women.length !== 0) {
                 ReactDOM.render(<WomenDeck cards={women} />, document.getElementById('womenHolder'));
             }
             else if (!admin)
@@ -319,7 +317,7 @@ function getMaxIndex(str) {
         return newstr.concat(newchar);
     }
     if (str.match(/^[a-zA-Z]/i)) {
-        if (char == 'z' || char == 'Z')
+        if (char === 'z' || char === 'Z')
             newchar = "aa";
         return newstr.concat(newchar);
     }
@@ -345,7 +343,7 @@ export function loadWomanToModal(id) {
     var woman;
     db.collection('women').doc(id).get().then(doc => {
         woman = doc.data();
-        if (woman.length != 0) {
+        if (woman.length !== 0) {
             $("#name").val(woman.name).attr('readonly', true);
             $("#birth").val(woman.birth).attr('readonly', true);
             $("#death").val(woman.death);
@@ -367,7 +365,7 @@ export function loadWomanToModal(id) {
                         if (field === "reading") {
                             let i = 0;
                             Object.values(arr[field]).forEach(val => {
-                                if (i != 0) {
+                                if (i !== 0) {
                                     var fill = $("#fill2" + Dictionary.getLanguage());
                                     fill.append(`<a>‏</a><input id=${"reading" + Dictionary.getLanguage() + i} lang=${Dictionary.getLanguage()} type="text" autoComplete="off" rows="4" cols="50" name="reading" placeholder=${Dictionary.bibliography} /><a>‏</a>`)
                                     $("#" + field + lang + i).val(val);
@@ -382,7 +380,7 @@ export function loadWomanToModal(id) {
                             let i = 0;
                             var array = arr[field];
                             Object.keys(array).forEach(key => {
-                                if (i != 0) {
+                                if (i !== 0) {
                                     var fill = $("#fill1" + Dictionary.getLanguage());
                                     fill.append(`<a>‏</a><input id=${"description" + Dictionary.getLanguage() + i}  lang = ${Dictionary.getLanguage()} autoComplete="off" type="text" rows="4" className="regularInput" cols="50" name="description" placeholder=${Dictionary.description} />
                                     <a>‏</a>

@@ -351,3 +351,12 @@ align-self: center;
     position: sticky;
     top: 0;
 }
+.flex{
+    display: flex;
+    flex-direction: row;
+    justify-items: center;
+    
+}
+.agree{
+    margin: 0;
+}

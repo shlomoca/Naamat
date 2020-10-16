@@ -44,11 +44,16 @@ class LoginPage extends Component {
         });
 
         if (!$("#login_form").valid()) return;
+        // alert(this.state.email+" : "+ this.state.password)
+        auth.signInWithEmailAndPassword(this.state.email, this.state.password).then(function (result) {
+            sessionStorage.setItem("keepConnected", true);
+            window.location.reload();
+        }).catch(function (error) {
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            alert(errorCode + " : " + errorMessage);
+        });
 
-        auth.signInWithEmailAndPassword(this.state.email, this.state.password);
-        sessionStorage.setItem("userConnect", true);
-        sessionStorage.setItem("userEmail", this.state.email);
-        window.location.reload();
     }
 
     handleChange(e) {
@@ -58,7 +63,6 @@ class LoginPage extends Component {
     render() {
         return (
             <div id="LPcover" className="cover">
-
                 <div id="loginWrapper" className="wrapper">
                     <div id="langBtnWeapper">
 
@@ -67,8 +71,8 @@ class LoginPage extends Component {
                     <div className="loginContainer">
                         <a id="bigLogo"> <img src={logo} alt="logo" /></a>
 
-                        <div id="buttonWrapper123">
-                            <form  id="login_form" name="login_form_name" role="form">
+                        <div id="loginButtonWrapper">
+                            <form id="login_form" name="login_form_name" role="form">
                                 < input type="email"
                                     id="email"
                                     name="email"
@@ -109,25 +113,15 @@ export class LoginComponent extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            user: false,
             page: [],
             permission: false,
         }
 
     }
 
-    authListener() {
-        auth.onAuthStateChanged((user) => {
-            if (user) this.setState({ user });
-            else this.setState({ user: false });
-        })
-    }
 
-    signOutFun() {
-        auth.signOut();
-    }
     //reset page to main page if page is inactive for a half an hour
-   timeRefresh() {
+    timeRefresh() {
         var time = new Date().getTime();
         $(document.body).bind("mousemove keypress touchmove ", function () {
             time = new Date().getTime();
@@ -141,40 +135,36 @@ export class LoginComponent extends Component {
     }
 
     componentDidMount() {
-        var lang = Dictionary.getLanguage()=="EN" ? "ltr" : "rtl";
+        var lang = Dictionary.getLanguage() === "EN" ? "ltr" : "rtl";
         document.body.setAttribute('dir', lang);//set page lang by chosen language
-
-        window.addEventListener("beforeunload", this.signOutFun);
-        this.authListener();
-
-        if (this.state.user || sessionStorage.getItem("userConnect")) {
-            var userEmail = sessionStorage.getItem("userEmail");
-
-            db.collection('users').doc(userEmail).get().then(res => {
-                if (res.data()) {
-                    this.setState({ permission: res.data().admin });
-
-                    if (this.state.permission) {
-                        // admin rout
-                        this.setState({ page: this.renderAdminDiv() });
+        auth.onAuthStateChanged(user => {
+            if (!sessionStorage.getItem("keepConnected")){
+                user=null;
+                auth.signOut();
+            }
+            if (user) {
+                db.collection('users').doc(user.email).get().then(res => {
+                    if (res.data()) {
+                        this.setState({ permission: res.data().admin });
+                        if (this.state.permission) {
+                            // admin route
+                            this.setState({ page: this.renderAdminDiv() });
+                        }
+                        else {
+                            // visitor route
+                            this.setState({ page: this.renderVisitorDiv() });
+                        }
                     }
                     else {
-
-                        // visitor rout
-                        this.setState({ page: this.renderVisitorDiv() });
-                    }
-                }
-                else {
-                    alert(Dictionary.userDoesntExists)
-                    this.setState({ page: <LoginPage /> })
-                };
-            }).catch(error => console.log(error));
-        }
-        else {
-            // alert("in null else if");
-            this.setState({ page: <LoginPage /> });
-        }
-
+                        alert(Dictionary.userDoesntExists)
+                        this.setState({ page: <LoginPage /> })
+                    };
+                }).catch(error => console.log(error));
+            }
+            else {
+                this.setState({ page: <LoginPage /> });
+            }
+        })
     }
 
     renderAdminDiv() {

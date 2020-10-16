@@ -5,7 +5,7 @@ import React from 'react';
 import { db, auth } from '../config/Firebase'
 import { Dictionary, langs } from '../Dictionary';
 // import App from './PicUpload';
-import ImageUpload, { MultiImageUpload , ImagePreview } from './ImageUpload';
+import ImageUpload, { MultiImageUpload  } from './ImageUpload';
 import { AfterMessage, CollectionCheckBox } from '../Components';
 import { loadWomanToModal } from '../pages/woman page/WomanPage';
 
@@ -99,9 +99,9 @@ export const DidYouKnowModal = () => {
                             <div className="form-group">
 
                                 <div id="name-group1" className="form-group">
-                                    <textarea className="facts" autoComplete="off" type="text" lang="HE" type="text" rows="2" cols="35" id="DidYouKnowHE" name="didYouKnow" placeholder={Dictionary.addHebFact} defaultValue="" />
-                                    <textarea className="facts" autoComplete="off" type="text" lang="EN" type="text" rows="2" cols="35" id="DidYouKnowEN" name="didYouKnow" placeholder={Dictionary.addEngFact} defaultValue="" />
-                                    <textarea className="facts" autoComplete="off" type="text" lang="AR" type="text" rows="2" cols="35" id="DidYouKnowAR" name="didYouKnow" placeholder={Dictionary.addArFact} defaultValue="" />
+                                    <textarea className="facts" autoComplete="off" type="text" lang="HE" rows="2" cols="35" id="DidYouKnowHE" name="didYouKnow" placeholder={Dictionary.addHebFact} defaultValue="" />
+                                    <textarea className="facts" autoComplete="off" type="text" lang="EN" rows="2" cols="35" id="DidYouKnowEN" name="didYouKnow" placeholder={Dictionary.addEngFact} defaultValue="" />
+                                    <textarea className="facts" autoComplete="off" type="text" lang="AR" rows="2" cols="35" id="DidYouKnowAR" name="didYouKnow" placeholder={Dictionary.addArFact} defaultValue="" />
                                 </div>
 
                             </div>
@@ -188,7 +188,7 @@ export const EditWomanModal = () => {
                         </div>
                         <div className="modal-footer">
                             <div className="requiredFooter" > {Dictionary.mustfilled}  </div>
-                            <button type="button" className="close" className="btn btn-secondary" onClick={resetForm("woman_form", "fill1" + Dictionary.getLanguage(), "fill2" + Dictionary.getLanguage(),["presentImages"])} data-dismiss="modal">{Dictionary.close}</button>
+                            <button type="button" className="btn btn-secondary" onClick={resetForm("woman_form", "fill1" + Dictionary.getLanguage(), "fill2" + Dictionary.getLanguage(),["presentImages"])} data-dismiss="modal">{Dictionary.close}</button>
                             <button type="submit" htmlFor="woman_form" className="btn btn-success" id="submit_form" >{Dictionary.submit} </button>
                         </div>
                     </form>
@@ -201,7 +201,7 @@ export const EditWomanModal = () => {
 }
 
 export const SuggestWomanModal = () => {
-    var i = 0, j = 0;
+    var  j = 0;
     return (
 
         <div className="modal fade" id="suggestWomanModal" data-backdrop="static" data-keyboard="false" tabIndex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -249,7 +249,7 @@ export const SuggestWomanModal = () => {
                                 <textarea rows="4" cols="50" name="biography" id="biography"  ></textarea>
                             </div>
 
-                            <label htmlFor="history">{Dictionary.History}</label>
+                            <label htmlFor="history">{Dictionary.history}</label>
                             <div className="form-group">
                                 <textarea rows="4" cols="50" name="history" id="history"  ></textarea>
                             </div>
@@ -288,8 +288,10 @@ export const SuggestWomanModal = () => {
 
                                 }}>{Dictionary.addMore}</button>
                             </div>
+                            <div className="form-group flex">
                             <lable htmlFor="agree">{Dictionary.iAgree}</lable>
-                            <input id="agree" name="agree" type="checkbox"></input>
+                            <input className="agree" name="agree" type="checkbox"></input>
+                            </div>
                         </div>
                         <div className="modal-footer">
                             <div className="requiredFooter">{Dictionary.mustfilled}</div>
@@ -346,9 +348,10 @@ export const FeedbackModal = () => {
                                 <textarea rows="4" id="improvement" cols="35" name="improvement" ></textarea>
 
                             </div>
-
-                            <lable htmlFor="agree">{Dictionary.iAgree}</lable>
-                            <input id="agree" name="agree" type="checkbox"></input>
+                            <div className="form-group flex">
+                            <label htmlFor="agree">{Dictionary.iAgree}</label>
+                            <input className="agree" name="agree" type="checkbox"></input>
+                            </div>
 
 
                             <div className="modal-footer">
@@ -432,7 +435,7 @@ export const GenralForm = (props) => {
                 <textarea rows="4" cols="50" name="biography" lang={props.lang} id={"biography" + props.lang}  ></textarea>
                 <a>‏</a>
 
-                <lable for="history">{Dictionary.History}</lable>
+                <lable for="history">{Dictionary.history}</lable>
                 <textarea rows="4" cols="50" name="history" lang={props.lang} id={"history" + props.lang}  ></textarea>
                 <a>‏</a>
 
@@ -610,7 +613,7 @@ export function addWoman(e) {
 
     //go over all input elements and insert them in to the document
     $($('#woman_form').prop('elements')).each(function () {
-        if (this.value && this.type != "file") {
+        if (this.value && this.type !== "file") {
             switch (this.name) {
                 case "prevDesc":
                     //already coverd as part of the validation
@@ -819,7 +822,7 @@ function addCatagory(event) {
         var id = $("#category_nameHE").val();
 
         $($('#category_form').prop('elements')).each(function () {
-            if (this.value && (this.type) != ("file")) {
+            if (this.value && (this.type) !== ("file")) {
                 if (this.type === "hidden")
                     gen[this.id] = this.value;
                 else

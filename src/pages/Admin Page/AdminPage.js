@@ -7,7 +7,7 @@ import { Dictionary } from '../../Dictionary';
 import { EditWomanModal, CategoryModal, FeedbackModal, NewUserModal, DidYouKnowModal } from '../../forms/Forms';
 import { db } from '../../config/Firebase';
 import ReactDOM from 'react-dom';
-import { Link } from 'react-router-dom';
+
 
 class AdminPage extends Component {
     render() {
@@ -157,7 +157,7 @@ const DisplayData = (props) => {
             })
         if (unCheckedFields)
             unCheckedFields.forEach(field => {
-                if (singleRow[field] != undefined && singleRow[field] != "")
+                if (singleRow[field] !== undefined && singleRow[field] != "")
                     col.push(String(singleRow[field]));
                 else
                     col.push(String("-"));
@@ -203,12 +203,10 @@ export function askAndDelete(collect, id) {
 }
 //delelte id in collaction and render it out of the container
 export function removeItem(collect, id) {
-    console.log(collect, id);
     if (id) {
         db.collection(collect).doc(id).delete().then(() => {
             ReactDOM.render(<a></a>, document.getElementById("tr" + id));
-            console.log(collect, id);
-            alert(Dictionary[collect] + " " + Dictionary.deletedSuccessfully);//see how to make collect readable
+            alert(Dictionary[collect] + " " + Dictionary.deletedSuccessfully);
         }).catch(error => console.log(error));
     }
     else
@@ -277,6 +275,8 @@ export const BuildTableBody = (props) => {
     )
 }
 
+
+//make custum buttons by btnId prop
 export const ServiceButtons = (props) => {
     var btnId = props.btnId;
 
@@ -286,10 +286,10 @@ export const ServiceButtons = (props) => {
         if (btnId == "userMngBtn") {
             serviceButtons.push(<td><button className="btn" id="addUserBtn" data-toggle="modal" data-target="#newUserModal">{Dictionary.addUserBtn}</button></td>)
         }
-        if (btnId == "factMngBtn") {
+        else if (btnId == "factMngBtn") {
             serviceButtons.push(<td><button className="btn" id="addFactBtn" data-toggle="modal" data-target="#DidYouKnowModal">{Dictionary.AddNewFact}</button></td>)
         }
-        if (btnId == "categoriesBtn") {
+        else if (btnId == "categoriesBtn") {
             serviceButtons.push(<td><button className="btn" id="addCategoryBtn" data-toggle="modal" data-target="#categoryForm">{Dictionary.adminAddCategory}</button></td>)
         }
 
@@ -298,6 +298,8 @@ export const ServiceButtons = (props) => {
 
 }
 
+
+//add women to the add woman modal
 function editSuggestWomen(id) {
     var woman;
     db.collection('suggest_women').doc(id).get().then(doc => {
@@ -312,7 +314,7 @@ function editSuggestWomen(id) {
     window.$("#staticBackdrop").modal('show');
 }
 
-
+//make sure that a email was enterd
 function ValidateEmail(mail) {
     return (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail))
 }
