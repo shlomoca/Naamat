@@ -44,14 +44,14 @@ class LoginPage extends Component {
         });
 
         if (!$("#login_form").valid()) return;
-        // alert(this.state.email+" : "+ this.state.password)
-        auth.signInWithEmailAndPassword(this.state.email, this.state.password).then(function (result) {
+        auth.signInWithEmailAndPassword(this.state.email, this.state.password).then(()=> {
             sessionStorage.setItem("keepConnected", true);
             window.location.reload();
         }).catch(function (error) {
             var errorCode = error.code;
             var errorMessage = error.message;
             alert(errorCode + " : " + errorMessage);
+            $("#password").val("");
         });
 
     }
