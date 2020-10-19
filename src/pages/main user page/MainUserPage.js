@@ -1,9 +1,7 @@
 import './MainUserPage.css';
-import $ from 'jquery';
 import React, { Component } from 'react';
 import { NavBar, BottomBar } from '../../Components.js';
-
-import  { db } from '../../config/Firebase';
+import { db } from '../../config/Firebase';
 import { Dictionary } from '../../Dictionary';
 import { Link } from 'react-router-dom';
 
@@ -23,7 +21,7 @@ class MainUserPage extends Component {
         <div id="mainUPWrapper" className="wrapper">
           <NavBar AdminPage={false} Admin={this.props.Admin} mainUserPage={true} />
           <PictursCarousel />
-         
+
         </div>
         <BottomBar />
       </div>
@@ -47,7 +45,7 @@ export class PictursCarousel extends Component {
   }
 
   componentDidMount() {
-    this.getIndexes(3, 3);//put women ids and fact ids in the state
+    this.getIndexes(3,3);//put women ids and fact ids in the state
 
   }
 
@@ -70,7 +68,7 @@ export class PictursCarousel extends Component {
         let amount = (kind === "women") ? women : facts;
 
         let data = snaps[key]["IDs"];
-        if (amount > data.length)//make sure that there is enough ids
+        if (amount > data.length)//make sure that there are enough ids
           amount = data.length;
 
         arr = this.randomizeArr(data, amount);//returns a random arr in the amount size
@@ -105,8 +103,7 @@ export class PictursCarousel extends Component {
 
 
               if (this.state.dataslide === this.state.items.length)
-                console.log(this.state.dataslide)
-              this.mixSlides();
+                this.mixSlides();
 
             }
 
@@ -188,13 +185,13 @@ export class PictursCarousel extends Component {
           <div id="carouselInner" className="carousel-inner">
             {this.state.items}
           </div>
-          <a className="carousel-control-prev arrow" href="#carouselExampleIndicators" role="button" data-slide="next">
-            <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span className="sr-only">{Dictionary.next}</span>
-          </a>
           <a className="carousel-control-next arrow" href="#carouselExampleIndicators" role="button" data-slide="prev">
             <span className="carousel-control-next-icon" aria-hidden="true"></span>
             <span className="sr-only">{Dictionary.prev}</span>
+          </a>
+          <a className="carousel-control-prev arrow" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span className="sr-only">{Dictionary.next}</span>
           </a>
         </div>
       </div>
@@ -205,34 +202,44 @@ export class PictursCarousel extends Component {
 export const CarouselSlide = props => {
   let clas = props.active ? "carousel-item active" : "carousel-item";
   let img = props.src ? <img src={props.src} className="roundedImg" alt={props.display} height="150px" width="150px" /> : "";
-  let id =`/womanPage/${props.id}`;
-  if(props.id){//if it is a women slide
+  let dir = Dictionary.getLanguage()==="EN"?"rtl":"ltr"
+  let id = `/womanPage/${props.id}`;
+  
+  if (props.id) {//if it is a women slide
     return (
       <div className={clas} >
-        <Link to={id}>
-          <div className="d-block w-100 " height="500px" width="200px">
-            <div className="details">
-              <h1 className="displayName">{props.display}</h1>
+          <div className="boldH1">
+            <Link to={id}>
+              {props.display}
               {img}
-            </div>
-            <div id="highlightsContainer"><h3 className="highlights">{props.highlights}</h3></div>
+            </Link>
           </div>
-        </Link>
-      </div>
+          <div className="boldH3" >
+            <Link to={id} className="slideDesc">
+              {props.highlights}
+            </Link>
+            <a href={id} className="leftEnd" dir={dir}>
+              {Dictionary.furtherReading}
+            </a>
+          </div>
+        </div>
+     
     )
   }
-  else{//if it is a fact slide
-   
-  return (
-    <div className={clas} >
-        <div className="d-block w-100 " height="500px" width="200px">
-          <div className="details">
-            <h1 className="displayName">{props.display}</h1>
+  else {//if it is a fact slide
+
+    return (
+      <div className={clas} >
+     
+          <div className="boldH1">
+            <a>{props.display}</a>
           </div>
-          <div id="highlightsContainer"><h3 className="highlights">{props.highlights}</h3></div>
+          <div className="boldH3">
+            <a style={{"margin-top": "10vh"}}>{props.highlights}</a>
+            </div>
         </div>
-    </div>
-  )
+     
+    )
   }
 }
 
@@ -250,10 +257,5 @@ export const CarouselLi = props => {
 
 
 
-$(document).ready(() => {
-
-  // handlePictures("/שלמה כרמי2020-06-09");
-  //  getWoman("שלמה כרמי");
-});
 
 

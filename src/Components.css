@@ -96,12 +96,7 @@ background: rgb(191, 224, 232);
     object-fit: cover;
 }
 
-#carouselInner {
-    height: 100%;
-    margin-top: 0.5%;
-    margin-bottom: 1%;
 
-}
 
 .details {
     height: 100%;
@@ -112,40 +107,10 @@ background: rgb(191, 224, 232);
     margin-top: 1%;
 }
 
-.roundedImg {
-    object-fit: cover;
-    margin: auto;
-    display: flex;
-    border-radius: 50%;
-    border-style: solid;
-    border-color: rgb(206, 206, 206);
-    border-width: 3px;
-    box-shadow: 0 0 10px rgb(206, 206, 206);
-    /* display: inline; */
-    /* display: none; */
-    /* margin-top: 4%; */
-    /* margin-left: 12%; */
-}
 
-.displayName {
-    margin: auto;
-    color: rgb(199, 7, 224);
-    width: 30%;
-    /* position: absolute; */
-    /* margin-top: 3%; */
-    /* margin-right: 6%; */
-    /* -webkit-text-stroke: rgb(190, 74, 248); */
-    /* -webkit-text-stroke-width: 0.5px; */
-    /* text-shadow: 0 0 20px rgb(193, 166, 206); */
-}
-#highlightsContainer{
-height: 100%;
-position: static;
-    text-overflow: ellipsis;
-    margin-bottom: 10%;
-    overflow: hidden;
-    
-}
+
+
+
 .highlights {
     margin-top: 3%;
    margin-left: 12%;

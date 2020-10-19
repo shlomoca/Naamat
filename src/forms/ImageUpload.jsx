@@ -299,8 +299,10 @@ export class MultiImageUpload extends Component {
 export const ImagePreview = (props) => {
   var src = props.src, id = props.id, defHE = props.defHE, defEN = props.defEN, defAR = props.defAR;
   return (<div className="photoPrevContainer" id={"pic" + id}>
-    <button type="close" className="deleteImage" aria-label="delete" onClick={() => {deleteImage(src,id)}}>X</button>
+    {/* <div className="photoWithClose"> */}
     <img className="photoPrev" name={id} id={"linkPic" + id} alt="photo preview" src={src} />
+    <button type="close" className="deleteImage" aria-label="delete" onClick={() => {deleteImage(src,id)}}>X</button>
+    {/* </div> */}
     <div id="descriptionContainer">
       <input type="text" className="photoPrevDescHE" id={"prevDesc" + id + "HE"} name="prevDesc" autoComplete="off" lang="HE" placeholder={Dictionary.addHebDesc} defaultValue={defHE} />
       <input type="text" className="photoPrevDescEN" id={"prevDesc" + id + "EN"} name="prevDesc" autoComplete="off" lang="EN" placeholder={Dictionary.addEngDesc} defaultValue={defEN} />

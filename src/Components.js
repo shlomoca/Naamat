@@ -42,9 +42,11 @@ export const NavBar = (props) => {
           <span className="navbar-toggler-icon"></span>
         </button>
         <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
+
           <li className="nav-item">
             <a id="smallLogo" href={logoHref} dir="rtl"><img id="logo" src={logo} alt="logo"></img></a>
           </li>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
           <li id="langItam" className="nav-item" >
             <LangBtn />
           </li>
@@ -68,6 +70,7 @@ export const NavBar = (props) => {
           </li>
 
           {logout}
+        </div>
         </ul>
       </nav>
       <div id="about-drop" className="collapse">
