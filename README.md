@@ -1,68 +1,62 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Na'amat visiting center website.
 
-## Available Scripts
+This Na'amat website was built to present the women in the hisory of Israel.
 
-In the project directory, you can run:
 
-### `npm start`
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+The site for the users has three pages:
+  1. Main user page \
+     A page that has an automatic carusel that shows random women and random facts about the powerfull women of Israel.
+      
+  1. Woman page \
+      A page  with all information enterd about a specific woman.
+      
+  1. Catagory page \
+      A page that shows women by catagorys that are predefined.
+  
+  
+  
+  
+  The site for the adminstrators has three pages:
+  
+  1. Admin page\
+     A page that lets the admin:
+        * Add Women 
+        * Add/remove facts for carusel
+        * Add/remove categories
+        * Veiw feadback from users
+        * Edit and approve users women proposals
+        * Add/remove users and administrators
+        * Download the whole women text database to a Json file
+        * Download the facts to a Json file 
+                  
+      
+  1. Main user page\
+      A page shows the admin how the user sees that page.
+      
+  1. Catagory page\
+      A page that shows the admin women by catagorys. 
+ 
+  1. Woman page\
+      A page  with all information enterd about a specific woman. Admin can edit or delete a woman from here
+      
+ 
+  
+**Features:**
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+  * The site was built to be completly trilangual and supports Hebrew English and Arabic.
+  
+  * A women is serched in the database by the language that the user enters. 
+  Meeneing that if the site is in hebrew and the user starts searching in english it will find him the hebrew version of the moman.
+  
+  * Clicking on a women that appers in the random carusel will take you to the woman's page.
+  
+  
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
