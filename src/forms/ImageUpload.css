@@ -15,7 +15,6 @@
 }
 .SingleRenderBox{
     width: 50%;
-    /* margin: auto; */
     display: inline-flex;
 }
 .deleteImage{

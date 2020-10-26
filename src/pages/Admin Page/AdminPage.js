@@ -3,7 +3,7 @@ import $ from 'jquery';
 import React, { Component } from 'react';
 import { NavBar,  BottomBar } from '../../Components.js';
 import {  determineLang } from '../woman page/WomanPage';
-import { Dictionary } from '../../Dictionary';
+import { Dictionary ,langs} from '../../Dictionary';
 import { EditWomanModal, CategoryModal, FeedbackModal, NewUserModal, DidYouKnowModal } from '../../forms/Forms';
 import { db } from '../../config/Firebase';
 import ReactDOM from 'react-dom';
@@ -80,10 +80,16 @@ function downloadObject(obj, filename){
 //index a collaction and download a backup of the collaction
 function indexAndBackup(data,collect){
     let newDocumentName= collect + " Index";
-    let IDs=[];
+    let IDs= {};
     let backup={};
     data.forEach(singleRow => {
-        IDs.push(singleRow.id);
+        let languages = [];
+        let id = singleRow.id;
+        (langs).forEach(lang=>{
+            if(singleRow[lang])
+                languages.push(lang);
+        })
+        IDs[id]=languages;
         backup[singleRow.id] = singleRow;
     })
     //update the index collaction with the correct index

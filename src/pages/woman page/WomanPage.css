@@ -1,9 +1,10 @@
 #profilePic {
     border-radius: 50%;
-    height: 200px;
-    width: 200px;
+    height: 25vh;
+    width: 25vh;
     object-fit: cover;
     float: left;
+    padding:5px;
 }
 
 #dispName {
@@ -14,12 +15,11 @@
 
 #main_details {
     position: sticky;
-    position: -webkit-sticky;
-    position: sticky;
     top: 0;
-    background-color: white;
-    height: 200px;
+    margin-top:0.1%;
+    height: 25vh;
     align-items: baseline;
+    background: white;
 }
 
 #shoWoman {
@@ -35,6 +35,7 @@
 .editWomanBtn {
     display: flex;
     float: right;
+    padding:5px;
 }
 
 h1 {
@@ -120,19 +121,26 @@ h1 {
 }
 #photoContainer{
     overflow-x:auto;
-    height: 50vh;
+    height: 43vh;
     overflow-y: hidden;
+     border: 4px solid black;
 }
+
 
 #lightBox
 {
     display: inline-flex;
     align-items: stretch;
-    height: 43vh;
+    height:100%;
 }
 
 .lightBoxImage
 {
     height:100% ;
-    max-width: 250vh;
+    max-width: 70vh;
+}
+.lightBoxImageContainer
+{
+    height:100% ;
+    width:fit-content;
 }

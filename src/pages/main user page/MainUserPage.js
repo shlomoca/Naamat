@@ -45,7 +45,9 @@ export class PictursCarousel extends Component {
   }
 
   componentDidMount() {
-    this.getIndexes(3,3);//put women ids and fact ids in the state
+    const WOMEN_TO_PULL = 1;
+    const FACTS_TO_PULL = 0;
+    this.getIndexes(WOMEN_TO_PULL, FACTS_TO_PULL);//put women ids and fact ids in the state
 
   }
 
@@ -55,10 +57,17 @@ export class PictursCarousel extends Component {
     db.collection('indexes').get().then(snapshot => {//get indexing files
       let snaps = {};
       snapshot.forEach(snap => {//put actual ids in to snaps
-        if (snap.data())
-          snaps[snap.id] = snap.data();
+        if (snap.data() && snap.data()["IDs"]) {
+          let IDpool = snap.data()["IDs"];
+          let kind = snap.id;
+          snaps[kind] = {};
+          Object.keys(IDpool).forEach(key => {
+            if (IDpool[key].includes(Dictionary.getLanguage()))
+              snaps[kind][key] = IDpool[key];
+          })
+        }
       })
-
+      
       //we are using {all} so I can know what to what collaction the id belongs.
       let all = {};
       //extract the amount of ids that were asked for in the function parameters
@@ -67,7 +76,8 @@ export class PictursCarousel extends Component {
         let kind = (key === "women Index") ? "women" : "facts";
         let amount = (kind === "women") ? women : facts;
 
-        let data = snaps[key]["IDs"];
+        let data = Object.keys(snaps[key]);//make the ids of this kind an array
+
         if (amount > data.length)//make sure that there are enough ids
           amount = data.length;
 
@@ -185,14 +195,18 @@ export class PictursCarousel extends Component {
           <div id="carouselInner" className="carousel-inner">
             {this.state.items}
           </div>
+          <div>
           <a className="carousel-control-next arrow" href="#carouselExampleIndicators" role="button" data-slide="prev">
             <span className="carousel-control-next-icon" aria-hidden="true"></span>
             <span className="sr-only">{Dictionary.prev}</span>
           </a>
+          </div>
+          <div>
           <a className="carousel-control-prev arrow" href="#carouselExampleIndicators" role="button" data-slide="next">
             <span className="carousel-control-prev-icon" aria-hidden="true"></span>
             <span className="sr-only">{Dictionary.next}</span>
           </a>
+          </div>
         </div>
       </div>
     )
@@ -202,43 +216,54 @@ export class PictursCarousel extends Component {
 export const CarouselSlide = props => {
   let clas = props.active ? "carousel-item active" : "carousel-item";
   let img = props.src ? <img src={props.src} className="roundedImg" alt={props.display} height="150px" width="150px" /> : "";
-  let dir = Dictionary.getLanguage()==="EN"?"rtl":"ltr"
+  let dir = Dictionary.getLanguage() === "EN" ? "rtl" : "ltr"
   let id = `/womanPage/${props.id}`;
-  
+
   if (props.id) {//if it is a women slide
     return (
       <div className={clas} >
-          <div className="boldH1">
-            <Link to={id}>
+        <Link to={id}>
+          <div className="titleContainer">
+            <div className="boldH1">
               {props.display}
+            </div>
+            <div className="imageContainer">
               {img}
-            </Link>
+            </div>
           </div>
+        </Link>
+
+        <Link to={id} className="slideDesc">
           <div className="boldH3" >
-            <Link to={id} className="slideDesc">
-              {props.highlights}
-            </Link>
-            <a href={id} className="leftEnd" dir={dir}>
-              {Dictionary.furtherReading}
-            </a>
+            {props.highlights}
           </div>
+        </Link>
+        <div className="leftEnd">
+        <a href={id}  >
+          {/* dir={dir}> className="furtherReading"*/}
+          {Dictionary.furtherReading}
+        </a>
         </div>
-     
+      </div>
+
     )
   }
   else {//if it is a fact slide
 
     return (
       <div className={clas} >
-     
+        <div className="titleContainer">
           <div className="boldH1">
-            <a>{props.display}</a>
+            {props.display}
           </div>
-          <div className="boldH3">
-            <a style={{"margin-top": "10vh"}}>{props.highlights}</a>
-            </div>
         </div>
-     
+        <div className="boldH3">
+          <a className="factDesc">
+            {props.highlights}
+          </a>
+        </div>
+      </div>
+
     )
   }
 }

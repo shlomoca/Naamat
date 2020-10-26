@@ -168,8 +168,8 @@ export const DisplayModal = (props) => {
 
   return (
     <div>
-      <button className="clearBtn" data-toggle="modal" data-target="#displayModal"> <a href="#">{props.details}</a></button>
-      <div className="modal fade" id="displayModal" data-keyboard="false" tabIndex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <button className="clearBtn" data-toggle="modal" data-target={"#displayModal"+props.id}> <a href="#">{props.details}</a></button>
+      <div className="modal fade" id={"displayModal"+props.id} data-keyboard="false" tabIndex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div className="modal-dialog modal-xl">
           <div className="modal-content higest" >
             <div className="modal-header ">

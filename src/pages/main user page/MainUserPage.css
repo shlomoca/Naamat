@@ -20,8 +20,6 @@
 
 .checkbox
 {
-    /* margin: 0%;
-    width: 3%; */
     width:15px;
 }
 
@@ -29,26 +27,16 @@
 {
     margin: 0;
 }
-#photoContainer{
-    /* border-block: 5vh,groove,black; */
-    border-style: solid;
-    border-color: black;
-    border-width: 1vh;
-    
-}
+
 .roundedImg {
     object-fit: cover;
-    /* margin: auto; */
     display: flex;
     border-radius: 50%;
     border-style: solid;
     border-color: rgb(206, 206, 206);
     border-width: 3px;
     box-shadow: 0 0 10px rgb(206, 206, 206);
-    /* display: inline; */
-    /* display: none; */
-    /* margin-top: 4%; */
-    /* margin-left: 12%; */
+   
 }
 #carouselInner {
     height: 100%;
@@ -58,7 +46,7 @@
     
     
 }
-.boldH3 a{
+.boldH3{
     display: flex;
     margin:auto;
     font-size: 1.75rem;
@@ -67,38 +55,49 @@
     text-justify: inter-word;
     text-align: center;
     width:80%;
-    /* height: 20%; */
+    align-content: center;
     overflow: hidden;
-
-    /* border-style: solid;
-    border-color: black;
-    border-width: 1vh; */
 }
-.boldH1 a{
+.boldH1{
     margin-top: 2vh;
     margin-bottom: 2vh;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    align-items: center;
     font-size: 2.5rem ;
     font-weight:500;
-    /* font-family: '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji"'; */
-    /* font-weight: bold; */
     color: rgb(199, 7, 224);
     text-decoration: none;
 }
-.leftEnd{
-    align-self: flex-end;
-    color: blue;
+.leftEnd {
+    position: absolute;
+    bottom: 30px;
+    width: 94%;
     text-decoration: underline;
+    font-size: 30px;
+    text-align: end;
+    align-items: center;
     
   
 }
 
 .slideDesc {
     display: flex;
-    height: 45vh;
+    width: 100%;
+    max-height: 46vh;
     overflow: hidden;
+    
+}
+
+.factDesc{
+    width: 100%;
+    margin-top: 10vh;
+}
+.titleContainer{
+    display: flex;
+    justify-content: space-evenly;
+    margin-top:2vh;
+    
+}
+.carousel-item.active{
+    height: 100%;
+   
     
 }

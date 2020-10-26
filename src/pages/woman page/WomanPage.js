@@ -231,9 +231,12 @@ const FurtherReading = (props) => {
         })
     }
     if (links) {
+        let id=0;
         Object.keys(links).forEach(key => {
-            if (key && links[key])
-                obj.push(<p><b><DisplayModal link={links[key]} details={key} /></b></p>);
+            if (key && links[key]){
+                obj.push(<p><b><DisplayModal id={id} link={ links[key]} details={key} /></b></p>);
+                id++
+            }
         })
     }
 
@@ -448,16 +451,17 @@ export class ShowPhotos extends Component {
         })
 
         // Change the cursor and prevent user from selecting the text
-        ele.style.cursor = 'grabbing';
-        ele.style.userSelect = 'none';
+        if(ele){
+            ele.style.cursor = 'grabbing';
+            ele.style.userSelect = 'none';
+        }
 
         document.addEventListener('mousemove', this.mouseMoveHandler);
         document.addEventListener('mouseup', this.mouseUpHandler);
     }.bind(this);
     componentDidMount() {
         const ele = document.getElementById('photoContainer');
-        // console.log(ele)
-        if (this.props.photos)
+        if (this.props.photos&&ele)
             ele.addEventListener('mousedown', this.mouseDownHandler);
     }
 
@@ -469,8 +473,10 @@ export class ShowPhotos extends Component {
         const dy = e.clientY - this.state.pos.y;
 
         // Scroll the element
-        ele.scrollTop = this.state.pos.top - dy;
-        ele.scrollLeft = this.state.pos.left - dx;
+        if(ele){
+            ele.scrollTop = this.state.pos.top - dy;
+            ele.scrollLeft = this.state.pos.left - dx;
+        }
         //if the user wants to open the light box and is not trying to drag it
         // console.log("dx: " + dx+ " dy: "+ dy)
         // if(ele.scrollTop===0&&ele.scrollLeft===0){
@@ -486,8 +492,10 @@ export class ShowPhotos extends Component {
 
     mouseUpHandler = function (e) {
         const ele = document.getElementById('photoContainer');
-        ele.style.cursor = 'grab';
-        ele.style.removeProperty('user-select');
+        if(ele){
+            ele.style.cursor = 'grab';
+            ele.style.removeProperty('user-select');
+        }
         document.removeEventListener('mousemove', this.mouseMoveHandler);
     }.bind(this);
 
@@ -507,23 +515,26 @@ export class ShowPhotos extends Component {
             return (<div  ></div>);
         return (
 
-            <div id="photoContainer" >
-
-                <SimpleReactLightbox>
+            
+            <SimpleReactLightbox>
                     <SRLWrapper options={options}>
+                <div id="photoContainer" >
                         <div id="lightBox">
                             {Object.keys(this.props.photos).map(key => {
 
                                 return (
+                                    
+                                        <div className="lightBoxImageContainer">
                                     <img className="lightBoxImage" src={this.props.photos[key].pic} alt={this.props.photos[key][Dictionary.getLanguage()]}></img>
+                                        </div>
                                 )
 
                             })}
                         </div>
+            </div>
                     </SRLWrapper>
                 </SimpleReactLightbox>
 
-            </div>
         );
 
     }
