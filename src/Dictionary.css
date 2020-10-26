@@ -8,27 +8,31 @@
 }
 
 .dropdown--active .dropdown__content {
-    direction: rtl;
-    display: block;
-    float: left;
+    
+    display: flex;
+   flex-wrap: wrap;
     margin-top: 0;
     cursor: pointer;
     padding: 1vh;
+    justify-content: center;
     /* width: 100%; */
 }
 
 #globus {
     height: 40px;
     width: 40px;
-    margin: auto;
+    /* margin: auto; */
 
 }
 
 
 
 #languages {
+    width:100%;
     cursor: pointer;
-    margin-top: 0%;
+    justify-content: space-evenly;
+    /* margin-top: 0%; */
+
     
 }
 
@@ -64,6 +68,7 @@ ul {
 }
 #displayAndGlobe{
     display: flex;
-    align-content: center;
+    justify-content: space-evenly;
     flex-wrap: wrap;
+    
 }

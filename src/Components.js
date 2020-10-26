@@ -38,7 +38,7 @@ export const NavBar = (props) => {
      
       <FeedbackModal />
       <nav className="navbar navbar-expand-lg navbar-light bg-light" id="navList">
-        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
         <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
@@ -46,7 +46,7 @@ export const NavBar = (props) => {
           <li className="nav-item">
             <a id="smallLogo" href={logoHref} dir="rtl"><img id="logo" src={logo} alt="logo"></img></a>
           </li>
-        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+        <div class="collapse navbar-collapse" id="navbarToggler">
           <li id="langItam" className="nav-item" >
             <LangBtn />
           </li>
@@ -58,11 +58,10 @@ export const NavBar = (props) => {
           </li>
          
           <li className="nav-item">
-            <button type="button" className="btn btn-primary nav-link" data-toggle="collapse" data-target="#about-drop">{Dictionary.aboutTitle}</button>
+            <button type="button" className="btn btn-primary nav-link" data-toggle="collapse" data-target="#about-drop">{Dictionary.aboutTitle}</button>   
           </li>
           <li className="nav-item" id="stretcher">
             <Search  admin ={Admin}/>
-            <div id="womenHolder"></div>
           </li>
           <li className="nav-item">{back}</li>
           <li className="nav-item">
@@ -81,19 +80,6 @@ export const NavBar = (props) => {
 }
 
 
-export function adminPageClick() {
-  console.log("in onclick")
-  var userEmail = sessionStorage.getItem("userEmail");
-  console.log(userEmail);
-  var permission;
-
-  db.collection('users').doc(userEmail).get().then(res => {
-    console.log(res.data());
-    permission = res.data().admin;
-    console.log(permission);
-    if (permission) alert("manager")
-  }).catch(error => console.log(error));
-}
 
 class Search extends Component {
 
@@ -127,20 +113,18 @@ class Search extends Component {
 
 
   render() {
-    // var term = (this.state.term).toLowerCase();
     return (
       <form className="form-inline my-2 my-lg-0 input-group mb-3" id="search-form">
         <button id="search-btn" type="button">
           <div id="search-bar-outline">
-            <input className="form-control " autoComplete="off" onKeyUp={this.searchHandler} type="text" placeholder={Dictionary.search} id="example-search-input4" />
+            <input className="form-control" id="example-search-input4" autoComplete="off" onKeyUp={this.searchHandler} type="text" placeholder={Dictionary.search}  />
 
           </div>
           <i className="fa fa-search" id="search-icon"></i>
         </button>
-        <div id="temp">
 
-        </div>
-
+        <div id="womenHolder"></div>
+      
       </form>
     )
   }
@@ -259,7 +243,7 @@ const Buttons = (props) => {
       obj = <Link to="/HomePage"><button type="button" className="btn btn-primary nav-link" >{Dictionary.homePageBack}</button></Link>
     }
     else
-      obj = <Link to="/"><button type="button" id="managerBtn" className="btn btn-primary nav-link" >{Dictionary.managmentPlatform}</button></Link>
+      obj = <Link to="/"><button type="button" className="btn btn-primary nav-link" >{Dictionary.managmentPlatform}</button></Link>
   }
   else
     obj = <button type="button" className="btn btn-primary nav-link" data-toggle="modal" data-target="#feedbackForm">{Dictionary.feedback}</button>

@@ -18,7 +18,7 @@ export const Dictionary = new LocalizedStrings({
     login: `Log in`,
     userDoesntExists: `Permission denied`,
     logOutSuccessful: `User successfully logged out`,
-    
+
 
     //admin page
     adminAddWoman: 'Add Woman',
@@ -34,21 +34,21 @@ export const Dictionary = new LocalizedStrings({
     homePageBack: `Home Page`,
     signOut: `Sign out`,
     admin: `Admin`,
-    feedbackTitle:'Feedbacks',
-    didYouKnowTitle:'Facts',
-    usersTitle:'Users',
-    categoriesTitle:'Categories',
-    suggest_womenTitle:'Suggest Women',
-    manageOffers:'Manage Suggestions',
-    HE:`The form was uploaded to the Hebrew tab`,
-    AR:`The form was uploaded to the Arabic tab`,
-    EN:`The form was uploaded to the English tab`,
-    backedUpSuccessfully:"was backed up successfully",
-    women:"Women",
+    feedbackTitle: 'Feedbacks',
+    didYouKnowTitle: 'Facts',
+    usersTitle: 'Users',
+    categoriesTitle: 'Categories',
+    suggest_womenTitle: 'Suggest Women',
+    manageOffers: 'Manage Suggestions',
+    HE: `The form was uploaded to the Hebrew tab`,
+    AR: `The form was uploaded to the Arabic tab`,
+    EN: `The form was uploaded to the English tab`,
+    backedUpSuccessfully: "was backed up successfully",
+    women: "Women",
     backupWomen: "Create Backup for women",
     backupdidYouKnow: "Create Backup for did you know",
-    
-    
+
+
 
 
     //woman page
@@ -98,43 +98,43 @@ export const Dictionary = new LocalizedStrings({
     description: "Description",
     link: "Link",
     links: "Links",
-    categoryInputHE:"Enter a category name in Hebrew",
-    categoryInputEN:"Enter a category name in English",
-    categoryInputAR:"Enter a category name in Arabic",
-    moreText:"Accompanying text",
-    summary:"Here will be initial information that will appear in the search, up to 170 characters can be typed",
-    searchSummary:"Search summary",
-    fillLinkDescription:"Please enter a description and a link",
-    enterScore:"Please rate your visit",
-    addBibiloraphy:"Please enter a bibliography",
-    isAdmin:"Admin user",
-    choseCategory:"Please mark the relevent categories",
+    categoryInputHE: "Enter a category name in Hebrew",
+    categoryInputEN: "Enter a category name in English",
+    categoryInputAR: "Enter a category name in Arabic",
+    moreText: "Accompanying text",
+    summary: "Here will be initial information that will appear in the search, up to 170 characters can be typed",
+    searchSummary: "Search summary",
+    fillLinkDescription: "Please enter a description and a link",
+    enterScore: "Please rate your visit",
+    addBibiloraphy: "Please enter a bibliography",
+    isAdmin: "Admin user",
+    choseCategory: "Please mark the relevent categories",
     summeryHighlight: "This summary will appear in photo carousel and categories",
-    didYouKnow:'Did You Know?',
-    AddNewFact:'Add new Fact',
-    language:'language',
-    FactAddedSuccefully:'Fact added succefully',
-    langs:'Here will be shown all the facts in system language',
-    createdAt:"Date",
-    iAgree:"I allow Naamat to send me messages",
-    addEngFact:"Add a fact in English",
-    addHebFact:"Add a fact in Hebrew",
-    addArFact:"Add a fact in Arabic",
-    addEngDesc:"Add a description in English",
-    addHebDesc:"Add a description in Hebrew",
-    addArDesc:"Add a description in Arabic",
-    
-    
-    
-    
+    didYouKnow: 'Did You Know?',
+    AddNewFact: 'Add new Fact',
+    language: 'language',
+    FactAddedSuccefully: 'Fact added succefully',
+    langs: 'Here will be shown all the facts in system language',
+    createdAt: "Date",
+    iAgree: "I allow Naamat to send me messages",
+    addEngFact: "Add a fact in English",
+    addHebFact: "Add a fact in Hebrew",
+    addArFact: "Add a fact in Arabic",
+    addEngDesc: "Add a description in English",
+    addHebDesc: "Add a description in Hebrew",
+    addArDesc: "Add a description in Arabic",
 
-    
-    ImportantMSG:'Note that after pressing the "Next" button you will not be able to change the required fields',
-    acceptFiles:"accept only image files",
-    mustUpload:"please upload profile picture",
-    furtherReading:"further reading",
-    enterDescription:"Enter a description",
-    
+
+
+
+
+
+    ImportantMSG: 'Note that after pressing the "Next" button you will not be able to change the required fields',
+    acceptFiles: "accept only image files",
+    mustUpload: "please upload profile picture",
+    furtherReading: "further reading",
+    enterDescription: "Enter a description",
+
     //components
     builders: `This site was built by: Shlomo Carmi, Daniel Raz, Sahar Cohen, Adiel Tsayag, Matan Yamin`,
     managmentPlatform: 'Managment Platform',
@@ -156,8 +156,8 @@ export const Dictionary = new LocalizedStrings({
     login: `התחברי`,
     userDoesntExists: `גישה נדחתה`,
     logOutSuccessful: `משתמשת התנתקה בהצלחה`,
-    
-  
+
+
     //admin page
     adminAddWoman: 'הוסיפי אישה',
     adminEditWoman: 'ערכי אישה',
@@ -172,17 +172,17 @@ export const Dictionary = new LocalizedStrings({
     homePageBack: `עמוד הבית`,
     signOut: `התנתקי`,
     admin: `מנהל`,
-    feedbackTitle:'משובים',
-    didYouKnowTitle:'עובדות',
-    usersTitle:'משתמשים',
-    categoriesTitle:'קטגוריות',
-    suggest_womenTitle:'נשים מוצעות',
-    manageOffers:'ניהול הצעות להוספה',
-    backedUpSuccessfully:"גובה בהצלחה",
-    women:"נשים",
+    feedbackTitle: 'משובים',
+    didYouKnowTitle: 'עובדות',
+    usersTitle: 'משתמשים',
+    categoriesTitle: 'קטגוריות',
+    suggest_womenTitle: 'נשים מוצעות',
+    manageOffers: 'ניהול הצעות להוספה',
+    backedUpSuccessfully: "גובה בהצלחה",
+    women: "נשים",
     backupWomen: "צרי גיבוי לנשים",
     backupdidYouKnow: "צרי גיבוי להידעת",
-  
+
 
     //woman page
     edit: 'ערכי',
@@ -195,10 +195,10 @@ export const Dictionary = new LocalizedStrings({
     search: `חיפוש`,
     addWoman: `הוסיפי אישה`,
     addcategory: `הוסיפי קטגוריה`,
-    HE:`הטופס עלה ללשונית עברית`,
-    AR:`הטופס עלה ללשונית ערבית`,
-    EN:`הטופס עלה ללשונית אנגלית`,
-    
+    HE: `הטופס עלה ללשונית עברית`,
+    AR: `הטופס עלה ללשונית ערבית`,
+    EN: `הטופס עלה ללשונית אנגלית`,
+
     //forms
     name: `שם מלא`,
     displayname: "שם תצוגה",
@@ -230,39 +230,39 @@ export const Dictionary = new LocalizedStrings({
     description: "תיאור",
     link: "קישור",
     links: "קישורים",
-    categoryInputHE:"הכנס שם קטגוריה בעברית",
-    categoryInputEN:"הכנס שם קטגוריה באנגלית",
-    categoryInputAR:"הכנס שם קטגוריה בערבית",
-    moreText:"מלל נלווה",
-    summary:"כאן יהיה מידע ראשוני שיופיע בחיפוש , ניתן להקליד עד 170 תווים",
-    searchSummary:"תקציר לחיפוש",
-    fillLinkDescription:"בבקשה הכנסי תיאור וקישור",
-    enterScore:"אנא דרגי את ביקורך",
-    addBibiloraphy:"אנא הכניסי ביבילוגרפיה",
-    isAdmin:"משתמש מנהל",
-    choseCategory:"אנא סמני את הקטגוריות הרלוונטיות",
-    iAgree:"אני מאשרת קבלת הודעות מאת נעמת",
-    addEngFact:"הוסיפי עובדה באנגלית",
-    addHebFact:"הוסיפי עובדה בעברית",
-    addArFact:"הוסיפי עובדה בערבית",
-    addEngDesc:"הוסיפי תיאור באנגלית",
-    addHebDesc:"הוסיפי תיאור בעברית",
-    addArDesc:"הוסיפי תיאור בערבית",
-    
-    
+    categoryInputHE: "הכנס שם קטגוריה בעברית",
+    categoryInputEN: "הכנס שם קטגוריה באנגלית",
+    categoryInputAR: "הכנס שם קטגוריה בערבית",
+    moreText: "מלל נלווה",
+    summary: "כאן יהיה מידע ראשוני שיופיע בחיפוש , ניתן להקליד עד 170 תווים",
+    searchSummary: "תקציר לחיפוש",
+    fillLinkDescription: "בבקשה הכנסי תיאור וקישור",
+    enterScore: "אנא דרגי את ביקורך",
+    addBibiloraphy: "אנא הכניסי ביבילוגרפיה",
+    isAdmin: "משתמש מנהל",
+    choseCategory: "אנא סמני את הקטגוריות הרלוונטיות",
+    iAgree: "אני מאשרת קבלת הודעות מאת נעמת",
+    addEngFact: "הוסיפי עובדה באנגלית",
+    addHebFact: "הוסיפי עובדה בעברית",
+    addArFact: "הוסיפי עובדה בערבית",
+    addEngDesc: "הוסיפי תיאור באנגלית",
+    addHebDesc: "הוסיפי תיאור בעברית",
+    addArDesc: "הוסיפי תיאור בערבית",
 
-    acceptFiles:"מקבל קבצי תמונות בלבד",
+
+
+    acceptFiles: "מקבל קבצי תמונות בלבד",
     summeryHighlight: "תקציר זה יופיע בקרוסלת התמונות ובקטגוריות",
-    mustUpload:"אנא העלי תמונת פרופיל",
-    didYouKnow:'הידעת ?',
-    AddNewFact:'הוסיפי עובדה חדשה',
-    language:'שפה',
-    FactAddedSuccefully:'עובדה הועלתה בהצלחה',
-    langs:'כאן יופיעו כל העובדות בשפת המערכת',
-    createdAt:"תאריך",
-    furtherReading:"לקריאה נוספת",
-    enterDescription:"הזיני תיאור",
-    
+    mustUpload: "אנא העלי תמונת פרופיל",
+    didYouKnow: 'הידעת ?',
+    AddNewFact: 'הוסיפי עובדה חדשה',
+    language: 'שפה',
+    FactAddedSuccefully: 'עובדה הועלתה בהצלחה',
+    langs: 'כאן יופיעו כל העובדות בשפת המערכת',
+    createdAt: "תאריך",
+    furtherReading: "לקריאה נוספת",
+    enterDescription: "הזיני תיאור",
+
     //components
     builders: 'אתר זה נבנה על ידי: שלמה כרמי, דניאל רז, סהר כהן, עדיאל צייג, מתן ימין ©',
     CategoryName: 'שם קטגוריה',
@@ -279,8 +279,8 @@ export const Dictionary = new LocalizedStrings({
     score: 'דירוג',
     improvement: 'הצעות לשיפור',
     addMore: "הוסיפי עוד",
-    ImportantMSG:'שימי לב, לאחר לחיצה על כפתור "הבא" לא תוכלי לשנות את שדות החובה',
-    
+    ImportantMSG: 'שימי לב, לאחר לחיצה על כפתור "הבא" לא תוכלי לשנות את שדות החובה',
+
 
 
   },
@@ -308,14 +308,14 @@ export const Dictionary = new LocalizedStrings({
     homePageBack: `الصفحة الرئيسية`,
     signOut: `خروج`,
     admin: `مدير`,
-    feedbackTitle:'التقيمات',
-    didYouKnowTitle:'حقائق',
-    usersTitle:'المستخدمين',
-    categoriesTitle:'التصنيفات',
-    suggest_womenTitle:'توحي النساء',
-    manageOffers:'إدارة الاقتراحات',
-    backedUpSuccessfully:"تم نسخه احتياطيًا بنجاح",
-    women:"نساء",
+    feedbackTitle: 'التقيمات',
+    didYouKnowTitle: 'حقائق',
+    usersTitle: 'المستخدمين',
+    categoriesTitle: 'التصنيفات',
+    suggest_womenTitle: 'توحي النساء',
+    manageOffers: 'إدارة الاقتراحات',
+    backedUpSuccessfully: "تم نسخه احتياطيًا بنجاح",
+    women: "نساء",
     backupWomen: "ضيق النسخ الاحتياطي للمرأة",
     backupdidYouKnow: "بحاجة الى نسخة احتياطية لمعرفة",
 
@@ -331,9 +331,9 @@ export const Dictionary = new LocalizedStrings({
     search: `بحث`,
     addWoman: `أضف امرأة`,
     addcategory: `إضافة فئة`,
-    HE:`تم تحميل النموذج إلى علامة التبويب العبرية`,
-    AR:`ذهب النموذج إلى علامة التبويب العربية`,
-    EN:`جاء النموذج باللغة الإنجليزية`,
+    HE: `تم تحميل النموذج إلى علامة التبويب العبرية`,
+    AR: `ذهب النموذج إلى علامة التبويب العربية`,
+    EN: `جاء النموذج باللغة الإنجليزية`,
 
 
     //forms
@@ -369,37 +369,37 @@ export const Dictionary = new LocalizedStrings({
     description: "وصف",
     link: "حلقة الوصل",
     links: "الروابط",
-    categoryInputHE:"أدخل اسم فئة بالعبرية",
-    categoryInputEN:"أدخل اسم فئة باللغة الإنجليزية",
-    categoryInputAR:"أدخل اسم الفئة باللغة العربية",
-    moreText:"نص مصاحب",
-    summary:"هنا سوف تكون المعلومات الأولية التي ستظهر في البحث ، يمكن كتابة ما يصل إلى 170 حرفًا",
-    searchSummary:"ملخص البحث",
-    fillLinkDescription:"يرجى إدخال وصف ورابط",
-    enterScore:"يرجى تقييم زيارتك",
-    addBibiloraphy:"الرجاء إدخال قائمة مراجع",
-    isAdmin:"مستخدم المشرف",
-    choseCategory:"يرجى وضع علامة على الفئات ذات الصلة",
+    categoryInputHE: "أدخل اسم فئة بالعبرية",
+    categoryInputEN: "أدخل اسم فئة باللغة الإنجليزية",
+    categoryInputAR: "أدخل اسم الفئة باللغة العربية",
+    moreText: "نص مصاحب",
+    summary: "هنا سوف تكون المعلومات الأولية التي ستظهر في البحث ، يمكن كتابة ما يصل إلى 170 حرفًا",
+    searchSummary: "ملخص البحث",
+    fillLinkDescription: "يرجى إدخال وصف ورابط",
+    enterScore: "يرجى تقييم زيارتك",
+    addBibiloraphy: "الرجاء إدخال قائمة مراجع",
+    isAdmin: "مستخدم المشرف",
+    choseCategory: "يرجى وضع علامة على الفئات ذات الصلة",
     summeryHighlight: "سيظهر هذا الملخص في مكتبة الصور والفئات",
-    didYouKnow:'هل كنت تعلم؟',
-    AddNewFact:'أضف حقيقة جديدة',
-    language:'لغة',
-    FactAddedSuccefully:'تمت إضافة الحقيقة بنجاح',
-    langs:'هنا سيتم عرض جميع الحقائق',
-    createdAt:"تاريخ",
-    iAgree:"أؤكد استلام رسائل من نعمات",
-    addEngFact:"أضف حقيقة في اللغة الإنجليزية",
-    addHebFact:"أضف حقيقة بالعبرية",
-    addArFact:"أضف حقيقة باللغة العربية",
-    addEngDesc:"أضف وصفًا باللغة الإنجليزية",
-    addHebDesc:"أضف وصفًا باللغة العبرية",
-    addArDesc:"أضف وصفا باللغة العربية",
-    
-    ImportantMSG:'لاحظ أنه بعد الضغط على زر "التالي" لن تتمكن من تغيير الحقول المطلوبة',
-    acceptFiles:"يستقبل ملفات الصور فقط",
-    mustUpload:"الرجاء تحميل صورة الملف الشخصي",
-    furtherReading:"قراءة متعمقة",
-    enterDescription:"أدخل وصفًا",
+    didYouKnow: 'هل كنت تعلم؟',
+    AddNewFact: 'أضف حقيقة جديدة',
+    language: 'لغة',
+    FactAddedSuccefully: 'تمت إضافة الحقيقة بنجاح',
+    langs: 'هنا سيتم عرض جميع الحقائق',
+    createdAt: "تاريخ",
+    iAgree: "أؤكد استلام رسائل من نعمات",
+    addEngFact: "أضف حقيقة في اللغة الإنجليزية",
+    addHebFact: "أضف حقيقة بالعبرية",
+    addArFact: "أضف حقيقة باللغة العربية",
+    addEngDesc: "أضف وصفًا باللغة الإنجليزية",
+    addHebDesc: "أضف وصفًا باللغة العبرية",
+    addArDesc: "أضف وصفا باللغة العربية",
+
+    ImportantMSG: 'لاحظ أنه بعد الضغط على زر "التالي" لن تتمكن من تغيير الحقول المطلوبة',
+    acceptFiles: "يستقبل ملفات الصور فقط",
+    mustUpload: "الرجاء تحميل صورة الملف الشخصي",
+    furtherReading: "قراءة متعمقة",
+    enterDescription: "أدخل وصفًا",
 
     //components
     builders: `تم بناء هذا الموقع من قبل: شلومو كرمي ، دانيال راز ، سحر كوهين ، أديل تساياج ، ماتان يمين © `,
@@ -414,7 +414,7 @@ export const Dictionary = new LocalizedStrings({
     score: 'أحرز هدفا',
     improvement: 'تحسين',
     addMore: "أضف المزيد",
-    
+
 
 
 
@@ -456,13 +456,18 @@ export const LangBtn = () => {
   return (
     <div id="languages">
       <Dropdown >
-        
-        <DropdownTrigger><div id= "displayAndGlobe">
-                         <img src={globe} id="globus" alt="lang" />
-                         <a id= "currentLangDisplay">{Dictionary.getLanguage()}</a>
-                         </div>
+
+        <DropdownTrigger>
+          <div id="displayAndGlobe">
+            <div>
+              <img src={globe} id="globus" alt="lang" />
+            </div>
+            <div>
+              <a id="currentLangDisplay">{Dictionary.getLanguage()}</a>
+            </div>
+          </div>
         </DropdownTrigger>
-        
+
         <DropdownContent>
 
           <ul id="langlist">

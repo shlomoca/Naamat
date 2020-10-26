@@ -231,10 +231,10 @@ const FurtherReading = (props) => {
         })
     }
     if (links) {
-        let id=0;
+        let id = 0;
         Object.keys(links).forEach(key => {
-            if (key && links[key]){
-                obj.push(<p><b><DisplayModal id={id} link={ links[key]} details={key} /></b></p>);
+            if (key && links[key]) {
+                obj.push(<p><b><DisplayModal id={id} link={links[key]} details={key} /></b></p>);
                 id++
             }
         })
@@ -429,29 +429,33 @@ export class ShowPhotos extends Component {
         super(props);
         this.state = {
             photos: this.props.photos,
-            pos: { top: 0, left: 0, x: 0, y: 0 }
+            pos: { top: 0, left: 0, x: 0, y: 0 },
+           
         }
+    }
+
+    componentDidMount() {
+        const ele = document.getElementById('photoContainer');
+        if (this.props.photos && ele)
+            ele.addEventListener('mousedown', this.mouseDownHandler);
     }
 
     mouseDownHandler = function (e) {
         e.preventDefault();//remove photo defult drag
 
         const ele = document.getElementById('photoContainer');
-        // ele.scrollTop = 100;
-        // ele.scrollLeft = 150;
-        this.setState({
-            pos: {
-                // The current scroll 
-                left: ele.scrollLeft,
-                top: ele.scrollTop,
-                // Get the current mouse position
-                x: e.clientX,
-                y: e.clientY,
-            }
-        })
-
-        // Change the cursor and prevent user from selecting the text
-        if(ele){
+        if (ele) {
+            this.setState({
+                pos: {
+                    // The current scroll 
+                    left: ele.scrollLeft,
+                    top: ele.scrollTop,
+                    // Get the current mouse position
+                    x: e.clientX,
+                    y: e.clientY,
+                }
+            })
+            // Change the cursor and prevent user from selecting the text
             ele.style.cursor = 'grabbing';
             ele.style.userSelect = 'none';
         }
@@ -459,11 +463,6 @@ export class ShowPhotos extends Component {
         document.addEventListener('mousemove', this.mouseMoveHandler);
         document.addEventListener('mouseup', this.mouseUpHandler);
     }.bind(this);
-    componentDidMount() {
-        const ele = document.getElementById('photoContainer');
-        if (this.props.photos&&ele)
-            ele.addEventListener('mousedown', this.mouseDownHandler);
-    }
 
 
     mouseMoveHandler = function (e) {
@@ -473,16 +472,12 @@ export class ShowPhotos extends Component {
         const dy = e.clientY - this.state.pos.y;
 
         // Scroll the element
-        if(ele){
+        if (ele) {
             ele.scrollTop = this.state.pos.top - dy;
             ele.scrollLeft = this.state.pos.left - dx;
+           
         }
-        //if the user wants to open the light box and is not trying to drag it
-        // console.log("dx: " + dx+ " dy: "+ dy)
-        // if(ele.scrollTop===0&&ele.scrollLeft===0){
-        // const { closeLightbox } = useLightbox()
-        // ele.addEventListener('mouseup', () => closeLightbox());
-        // }
+        
 
 
     }.bind(this);
@@ -492,15 +487,12 @@ export class ShowPhotos extends Component {
 
     mouseUpHandler = function (e) {
         const ele = document.getElementById('photoContainer');
-        if(ele){
+        if (ele) {
             ele.style.cursor = 'grab';
             ele.style.removeProperty('user-select');
         }
         document.removeEventListener('mousemove', this.mouseMoveHandler);
     }.bind(this);
-
-
-
 
     render() {
         //remove the download and hide thumbnails buttons
@@ -512,41 +504,26 @@ export class ShowPhotos extends Component {
         }
 
         if (!this.props.photos)
-            return (<div  ></div>);
+            return (<div></div>);
         return (
-
-            
             <SimpleReactLightbox>
-                    <SRLWrapper options={options}>
-                <div id="photoContainer" >
+                <SRLWrapper options={options}>
+                    <div id="photoContainer" >
                         <div id="lightBox">
                             {Object.keys(this.props.photos).map(key => {
-
                                 return (
-                                    
-                                        <div className="lightBoxImageContainer">
-                                    <img className="lightBoxImage" src={this.props.photos[key].pic} alt={this.props.photos[key][Dictionary.getLanguage()]}></img>
-                                        </div>
+                                    <div className="lightBoxImageContainer">
+                                        <img className="lightBoxImage" src={this.props.photos[key].pic} alt={this.props.photos[key][Dictionary.getLanguage()]}></img>
+                                    </div>
                                 )
-
                             })}
                         </div>
-            </div>
-                    </SRLWrapper>
-                </SimpleReactLightbox>
+                    </div>
+                </SRLWrapper>
+            </SimpleReactLightbox>
 
         );
-
     }
 }
 
 
-
-
-
-
-
-
-$(document).ready(() => {
-
-});
