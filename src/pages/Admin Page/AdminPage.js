@@ -150,8 +150,6 @@ const DisplayData = (props) => {
         //go through the data and take only the requierd feilds
         if (fields)
             fields.forEach(field => {
-                console.log(singleRow[Dictionary.getLanguage()]);
-                console.log(singleRow[field]);
                 if (singleRow[field] || singleRow[field] === false) {
                     col.push(String(singleRow[field]));
                 }
@@ -163,7 +161,7 @@ const DisplayData = (props) => {
             })
         if (unCheckedFields)
             unCheckedFields.forEach(field => {
-                if (singleRow[field] !== undefined && singleRow[field] != "")
+                if (singleRow[field] !== undefined && singleRow[field] !== "")
                     col.push(String(singleRow[field]));
                 else
                     col.push(String("-"));
@@ -203,7 +201,7 @@ const DisplayData = (props) => {
 export function askAndDelete(collect, id) {
     return () => {
         var del = window.confirm(Dictionary.areYouSure);
-        if (del == true)
+        if (del === true)
             removeItem(collect, id);
     }
 }
@@ -268,7 +266,7 @@ export const BuildTableBody = (props) => {
         else
             tds.push(<td className="textAlign"> {col} </td>);
     });
-    if (collect == "suggest_women")
+    if (collect === "suggest_women")
         tds.push(<td className="editSuggest" > <button className="btn" onClick={() => editSuggestWomen(id)} >{Dictionary.edit}</button></td>)
     tds.push(
 
@@ -289,13 +287,13 @@ export const ServiceButtons = (props) => {
     const serviceButtons = [];
     if (btnId) {
         serviceButtons.push(<td><button onClick={() => { ShowHideFunc(["allAdmin", "adminTitle"], ["TableHolder"]); window.location.reload(); }} id="backBtn" className="btn" >{Dictionary.back}</button></td>)
-        if (btnId == "userMngBtn") {
+        if (btnId === "userMngBtn") {
             serviceButtons.push(<td><button className="btn" id="addUserBtn" data-toggle="modal" data-target="#newUserModal">{Dictionary.addUserBtn}</button></td>)
         }
-        else if (btnId == "factMngBtn") {
+        else if (btnId === "factMngBtn") {
             serviceButtons.push(<td><button className="btn" id="addFactBtn" data-toggle="modal" data-target="#DidYouKnowModal">{Dictionary.AddNewFact}</button></td>)
         }
-        else if (btnId == "categoriesBtn") {
+        else if (btnId === "categoriesBtn") {
             serviceButtons.push(<td><button className="btn" id="addCategoryBtn" data-toggle="modal" data-target="#categoryForm">{Dictionary.adminAddCategory}</button></td>)
         }
 

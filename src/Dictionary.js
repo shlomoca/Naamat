@@ -47,8 +47,8 @@ export const Dictionary = new LocalizedStrings({
     women: "Women",
     backupWomen: "Create Backup for women",
     backupdidYouKnow: "Create Backup for did you know",
-
-
+    noFactToAdd:"No fact to add",
+    
 
 
     //woman page
@@ -66,7 +66,7 @@ export const Dictionary = new LocalizedStrings({
 
     //forms
     name: `Full Name`,
-    displayname: "display name",
+    display: "display name",
     birth: `Date of birth`,
     submit: `Submit`,
     death: `Date of death`,
@@ -102,8 +102,8 @@ export const Dictionary = new LocalizedStrings({
     categoryInputEN: "Enter a category name in English",
     categoryInputAR: "Enter a category name in Arabic",
     moreText: "Accompanying text",
-    summary: "Here will be initial information that will appear in the search, up to 170 characters can be typed",
-    searchSummary: "Search summary",
+    searchSummary: "Here will be initial information that will appear in the search, up to 170 characters can be typed",
+    summary: "Search summary",
     fillLinkDescription: "Please enter a description and a link",
     enterScore: "Please rate your visit",
     addBibiloraphy: "Please enter a bibliography",
@@ -182,6 +182,7 @@ export const Dictionary = new LocalizedStrings({
     women: "נשים",
     backupWomen: "צרי גיבוי לנשים",
     backupdidYouKnow: "צרי גיבוי להידעת",
+    noFactToAdd:"אין עובדה להוסיף",
 
 
     //woman page
@@ -201,7 +202,7 @@ export const Dictionary = new LocalizedStrings({
 
     //forms
     name: `שם מלא`,
-    displayname: "שם תצוגה",
+    display: "שם תצוגה",
     birth: `תאריך לידה`,
     submit: `שלחי`,
     death: `תאריך פטירה`,
@@ -234,8 +235,8 @@ export const Dictionary = new LocalizedStrings({
     categoryInputEN: "הכנס שם קטגוריה באנגלית",
     categoryInputAR: "הכנס שם קטגוריה בערבית",
     moreText: "מלל נלווה",
-    summary: "כאן יהיה מידע ראשוני שיופיע בחיפוש , ניתן להקליד עד 170 תווים",
-    searchSummary: "תקציר לחיפוש",
+    searchSummary: "כאן יהיה מידע ראשוני שיופיע בחיפוש , ניתן להקליד עד 170 תווים",
+    summary: "תקציר לחיפוש",
     fillLinkDescription: "בבקשה הכנסי תיאור וקישור",
     enterScore: "אנא דרגי את ביקורך",
     addBibiloraphy: "אנא הכניסי ביבילוגרפיה",
@@ -318,6 +319,8 @@ export const Dictionary = new LocalizedStrings({
     women: "نساء",
     backupWomen: "ضيق النسخ الاحتياطي للمرأة",
     backupdidYouKnow: "بحاجة الى نسخة احتياطية لمعرفة",
+    noFactToAdd:"لا حقيقة تضيفها",
+
 
 
     //woman page
@@ -357,7 +360,7 @@ export const Dictionary = new LocalizedStrings({
     anotherpictures: 'صور أخرى',
     mustfilled: ' يتطلب حقلا *',
     delete: `حذف`,
-    displayname: "اسم العرض",
+    display: "اسم العرض",
     next: 'التالى',
     suggest: `لم تجد من تبحث عنه؟ واقترح امرأة`,
     popup: 'يرجى ملء جميع التفاصيل',
@@ -373,8 +376,8 @@ export const Dictionary = new LocalizedStrings({
     categoryInputEN: "أدخل اسم فئة باللغة الإنجليزية",
     categoryInputAR: "أدخل اسم الفئة باللغة العربية",
     moreText: "نص مصاحب",
-    summary: "هنا سوف تكون المعلومات الأولية التي ستظهر في البحث ، يمكن كتابة ما يصل إلى 170 حرفًا",
-    searchSummary: "ملخص البحث",
+    searchSummary: "هنا سوف تكون المعلومات الأولية التي ستظهر في البحث ، يمكن كتابة ما يصل إلى 170 حرفًا",
+    summary: "ملخص البحث",
     fillLinkDescription: "يرجى إدخال وصف ورابط",
     enterScore: "يرجى تقييم زيارتك",
     addBibiloraphy: "الرجاء إدخال قائمة مراجع",
@@ -440,7 +443,22 @@ function changeLanguage(lang) {
     window.location.reload();
   }
 }
+//get the current page direction needed
+export function getRTL(lang) {
+  console.log("lang "+ lang)
+  let targetLang = lang ? lang : Dictionary.getLanguage();
 
+  switch (targetLang) {
+    case "EN":
+      return "ltr";
+    case "AR":
+    case "HE":
+    default:
+      return "rtl";
+  }
+
+
+}
 //sets a globe image with three language buttons 
 export const LangBtn = () => {
   var currentLng = Dictionary.getLanguage();
@@ -448,9 +466,9 @@ export const LangBtn = () => {
     ENId = "",
     ARId = "";
 
-  if (currentLng === "EN") ENId = "choosen";
-  else if (currentLng === "AR") ARId = "choosen";
-  else HEId = "choosen";
+  if (currentLng === "EN") ENId = "chosen";
+  else if (currentLng === "AR") ARId = "chosen";
+  else HEId = "chosen";
 
 
   return (

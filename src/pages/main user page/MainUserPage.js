@@ -45,8 +45,8 @@ export class PictursCarousel extends Component {
   }
 
   componentDidMount() {
-    const WOMEN_TO_PULL = 1;
-    const FACTS_TO_PULL = 0;
+    const WOMEN_TO_PULL = 3;
+    const FACTS_TO_PULL = 3;
     this.getIndexes(WOMEN_TO_PULL, FACTS_TO_PULL);//put women ids and fact ids in the state
 
   }
@@ -216,7 +216,6 @@ export class PictursCarousel extends Component {
 export const CarouselSlide = props => {
   let clas = props.active ? "carousel-item active" : "carousel-item";
   let img = props.src ? <img src={props.src} className="roundedImg" alt={props.display} height="150px" width="150px" /> : "";
-  let dir = Dictionary.getLanguage() === "EN" ? "rtl" : "ltr"
   let id = `/womanPage/${props.id}`;
 
   if (props.id) {//if it is a women slide
@@ -239,10 +238,9 @@ export const CarouselSlide = props => {
           </div>
         </Link>
         <div className="leftEnd">
-        <a href={id}  >
-          {/* dir={dir}> className="furtherReading"*/}
+        <Link to={id}  >
           {Dictionary.furtherReading}
-        </a>
+        </Link>
         </div>
       </div>
 

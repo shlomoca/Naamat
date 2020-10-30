@@ -3,7 +3,7 @@ import $ from 'jquery';
 import 'jquery-validation';
 import React from 'react';
 import { db, auth } from '../config/Firebase'
-import { Dictionary, langs } from '../Dictionary';
+import { Dictionary, langs,getRTL } from '../Dictionary';
 // import App from './PicUpload';
 import ImageUpload, { MultiImageUpload  } from './ImageUpload';
 import { AfterMessage, CollectionCheckBox } from '../Components';
@@ -410,79 +410,56 @@ export const GenralForm = (props) => {
     var classAttr = "tab-pane fade form_content";
     if (props.active)
         classAttr = "tab-pane fade form_content show active";
-    var i = 0, j = 0;
+    var i = 0, j = 0,lang=props.lang;
     return (
 
-        <div id={props.lang} className={classAttr}>
+        <div id={lang} className={classAttr} dir={getRTL(props.lang)}>
 
             <div className="form-group">
-                <label for="display">{Dictionary.displayname}</label>
-                <input type="text" autoComplete="off" lang={props.lang} rows="1" className="regularInput" cols="35" id={"display" + props.lang} name="display" placeholder={Dictionary.displayname} />
-            </div>
-
-
-            <div className="form-group">
-                <lable for="highlights">{Dictionary.searchSummary}</lable>
-                <textarea type="text" rows="4" cols="50" maxlength="100" autoComplete="off" name="summary" lang={props.lang} id={"summary" + props.lang} placeholder={Dictionary.summary}  ></textarea>
-                <a>‏</a>
-
-
-                <lable for="highlights">{Dictionary.highlights}</lable>
-                <textarea rows="4" cols="50" maxLength="290" name="highlights" lang={props.lang} id={"highlights" + props.lang} placeholder={Dictionary.summeryHighlight}   ></textarea>
-                <a>‏</a>
-
-                <lable for="biography">{Dictionary.biography}</lable>
-                <textarea rows="4" cols="50" name="biography" lang={props.lang} id={"biography" + props.lang}  ></textarea>
-                <a>‏</a>
-
-                <lable for="history">{Dictionary.history}</lable>
-                <textarea rows="4" cols="50" name="history" lang={props.lang} id={"history" + props.lang}  ></textarea>
-                <a>‏</a>
-
-                <lable for="feminism">{Dictionary.feminism}</lable>
-                <textarea rows="4" cols="50" name="feminism" lang={props.lang} id={"feminism" + props.lang}  ></textarea>
-                <a>‏</a>
-
-                <lable for="facts">{Dictionary.facts}</lable>
-                <textarea rows="4" cols="50" name="facts" lang={props.lang} id={"facts" + props.lang}  ></textarea>
-                <a>‏</a>
-
-                <lable for="quotes">{Dictionary.quotes}</lable>
-                <textarea rows="4" cols="50" name="quotes" lang={props.lang} id={"quotes" + props.lang}  ></textarea>
+                <InputPiece attrName= "display" lang={lang}/>
+                <TextArea attrName = "summary" maxLength ={100} lang={lang} placeholder={Dictionary.searchSummary}/>
+                <TextArea attrName = "highlights" maxLength ={290} lang={lang} placeholder={Dictionary.summeryHighlight}/>
+                <TextArea attrName = "biography" lang={lang}/>
+                <TextArea attrName = "history" lang={lang}/>
+                <TextArea attrName = "feminism" lang={lang}/>
+                <TextArea attrName = "facts" lang={lang}/>
+                <TextArea attrName = "quotes" lang={lang}/>
+               
             </div>
             <div className="makbil">
                 <div className="form-group ">
-                    <label htmlFor={"link" + props.lang}>{Dictionary.links} </label>
-                    <input className="regularInput" id={"description" + props.lang + i} lang={props.lang} autoComplete="off" type="text" rows="4" cols="50" name="description" placeholder={Dictionary.description} />
+                    <label htmlFor={"link" + lang}>{Dictionary.links} </label>
+                    <input className="regularInput" id={"description" + lang + i} lang={lang} autoComplete="off" type="text" rows="4" cols="50" name="description" placeholder={Dictionary.description} />
                     <a>‏</a>
 
-                    <input className="regularInput" autoComplete="off" id={"link" + props.lang + i} lang={props.lang} type="text" name="link" placeholder={Dictionary.link} />
-                    <a id={"fill1" + props.lang} ></a>
+                    <input className="regularInput" autoComplete="off" id={"link" + lang + i} lang={lang} type="text" name="link" placeholder={Dictionary.link} />
+                    <a id={"fill1" + lang} ></a>
+                    <br/>
                     <button id="addBtn" onClick={(e) => {
                         e.preventDefault();
-                        var fill = $("#fill1" + props.lang);
-                        if ($("#description" + props.lang + i).val())
-                            if ($("#link" + props.lang + i).val()) {
+                        var fill = $("#fill1" + lang);
+                        if ($("#description" + lang + i).val())
+                            if ($("#link" + lang + i).val()) {
                                 i++;
-                                fill.append(`<a>‏</a><input id=${"description" + props.lang + i}  lang = ${props.lang} autoComplete="off" type="text" rows="4" className="regularInput" cols="50" name="description" placeholder=${Dictionary.description} />
+                                fill.append(`<a>‏</a><input id=${"description" + lang + i}  lang = ${lang} autoComplete="off" type="text" rows="4" className="regularInput" cols="50" name="description" placeholder=${Dictionary.description} />
                             <a>‏</a>
-                        <input id=${"link" + props.lang + i} lang = ${props.lang} type="text" autoComplete="off" rows="4" className="regularInput" cols="50" name="link" placeholder=${Dictionary.link} />`)
+                        <input id=${"link" + lang + i} lang = ${lang} type="text" autoComplete="off" rows="4" className="regularInput" cols="50" name="link" placeholder=${Dictionary.link} />`)
                             } else
                                 alert(Dictionary.fillLinkDescription);
                     }}>{Dictionary.addMore}</button>
                 </div>
 
                 <div className="form-group ">
-                    <label htmlFor={"reading" + props.lang}>{Dictionary.bibliography}
-                        <input id={"reading" + props.lang + j} lang={props.lang} type="text" autoComplete="off" rows="4" cols="50" name="reading" placeholder={Dictionary.bibliography} />
-                        <a id={"fill2" + props.lang}></a>
+                    <label htmlFor={"reading" + lang}>{Dictionary.bibliography}
+                        <input id={"reading" + lang + j} lang={lang} type="text" autoComplete="off" rows="4" cols="50" name="reading" placeholder={Dictionary.bibliography} />
+                        <a id={"fill2" + lang}></a>
                         <button onClick={(e) => {
                             e.preventDefault();
-                            var fill = $("#fill2" + props.lang);
+                            var fill = $("#fill2" + lang);
 
-                            if ($("#reading" + props.lang + j).val()) {
+                            if ($("#reading" + lang + j).val()) {
                                 j++;
-                                fill.append(`<a>‏</a><input id=${"reading" + props.lang + j} lang=${props.lang} type="text" autoComplete="off" rows="4" cols="50" name="reading" placeholder=${Dictionary.bibliography} /><a>‏</a>`)
+                                fill.append(`<a>‏</a><input id=${"reading" + lang + j} lang=${lang} type="text" autoComplete="off" rows="4" cols="50" name="reading" placeholder=${Dictionary.bibliography} /><a>‏</a>`)
                             }
                             else
                                 alert(Dictionary.addBibiloraphy);
@@ -547,13 +524,20 @@ function addNewUser(e) {
 
 function AddNewFact(e) {//add new fact in three languages
     e.preventDefault();
-    var obj = {};
-    if ($("#DidYouKnowHE").val())
-        obj["HE"] = $("#DidYouKnowHE").val();
-    if ($("#DidYouKnowEN").val())
-        obj["EN"] = $("#DidYouKnowEN").val();
-    if ($("#DidYouKnowAR").val())
-        obj["AR"] = $("#DidYouKnowAR").val();
+    var obj = {},added=false;
+    //get facts in all languages
+    langs.forEach(lang=>{
+
+        if ($("#DidYouKnow"+lang).val()){
+            obj[lang] = $("#DidYouKnow"+lang).val();
+            added=true;
+        }
+    });
+    if(!added){
+        alert(Dictionary.noFactToAdd)
+        return;
+    }
+
     obj["id"] = String(new Date());
     db.collection('didYouKnow').doc(obj["id"]).set(obj).then(() => {
         alert(Dictionary.FactAddedSuccefully)
@@ -622,7 +606,7 @@ export function addWoman(e) {
                     if (this.checked)
                         categories.push(this.id);
                     break;
-                case "description":
+                case "description"://if the element is a link description
                     let i = (this.id).replace(/[^0-9]/g, '');
                     if (i) {
                         if (this.lang === "AR")
@@ -906,7 +890,6 @@ function breakName(name) {
     for (let i = 1; i <= len; i++) {
         broken.push(name.substring(0, i))
     }
-    console.log(broken);
     return broken;
 }
 
@@ -947,3 +930,33 @@ function removeInner(ids){
             node.innerHTML="";
     })
 }
+
+//A textArea component for the main form information textareas 
+export const TextArea = props => {
+let attrName=props.attrName,
+lang=props.lang,
+maxLength=props.maxLength,
+placeholder=props.placeholder;
+;
+  return (
+      <div className="mainFormFeilds">
+                <lable for={attrName}><b>{Dictionary[attrName]}</b></lable>
+                <textarea className="textAreaBox" rows={4}  name={attrName} lang={lang} maxLength={maxLength}  id={attrName + lang} placeholder={placeholder}  ></textarea>
+      </div>
+  )
+}
+//A input component for the main form inputs 
+export const InputPiece = props => {
+    let attrName=props.attrName,
+    lang=props.lang,
+    placeholder=props.placeholder?props.placeholder:Dictionary[attrName];
+    
+      return (
+          <div className="mainFormFeilds">
+               <lable for={attrName}><b>{Dictionary[attrName]}</b></lable>
+                <input type="text" autoComplete="off" lang={lang}  className="regularInput" id={attrName + lang} name={attrName} placeholder={placeholder} />
+            
+          </div>
+      )
+    }
+   

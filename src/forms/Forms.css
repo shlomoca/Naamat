@@ -165,15 +165,12 @@ padding-bottom: 3%;
     
   }
 #profPicArea{
-    width: 50%;
+    width: 80%;
     display: flex;
     margin: auto;
+    justify-content: center;
 }
-.center{
-    margin: auto;
-    align-self: center;
-    
-}
+
 
 img {
     max-width: 100%;
@@ -359,4 +356,20 @@ align-self: center;
 }
 .agree{
     margin: 0;
+}
+.mainFormFeilds{
+    width: 80%;
+    margin: auto;
+    display: flex;
+    flex-direction:column;
+    justify-content: center;
+    margin-top:3vh;
+}
+.textAreaBox{
+    width: 100%;
+    margin-top:1vh;
+}
+.regularInput{
+    width: 50%;
+    margin-top:1vh;
 }

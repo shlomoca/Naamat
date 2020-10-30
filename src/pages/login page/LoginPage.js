@@ -5,7 +5,7 @@ import './LoginPage.css';
 import $ from 'jquery';
 import { auth, db } from '../../config/Firebase';
 import logo from '../../images/naamatlogo.png';
-import { Dictionary, LangBtn } from '../../Dictionary';
+import { Dictionary, LangBtn,getRTL } from '../../Dictionary';
 import MainUserPage from '../Main user page/MainUserPage';
 import { WomanPage } from '../woman page/WomanPage';
 import Category from '../category/Category';
@@ -135,8 +135,7 @@ export class LoginComponent extends Component {
     }
 
     componentDidMount() {
-        var lang = Dictionary.getLanguage() === "EN" ? "ltr" : "rtl";
-        document.body.setAttribute('dir', lang);//set page lang by chosen language
+        document.body.setAttribute('dir', getRTL());//set page lang by chosen language
         auth.onAuthStateChanged(user => {
             if (!sessionStorage.getItem("keepConnected")){
                 user=null;
@@ -183,6 +182,7 @@ export class LoginComponent extends Component {
         ReactDOM.render(
             <Router>
                 <Route exact path="/" component={MainUserPage} />
+                <Route path="/HomePage" component={MainUserPage} />
                 <Route path="/WomanPage/:id" component={props => <WomanPage {...props} />} />
                 <Route path="/Category" component={Category} />
             </Router>, document.getElementById('root')
