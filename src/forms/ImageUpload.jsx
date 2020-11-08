@@ -18,7 +18,8 @@ class ImageUpload extends Component {
       },
       progress: 0,
       url: "",
-      required: props.required
+      required: props.required,
+      id:this.props.id
     }
 
     this.handleUpload = this.handleUpload.bind(this);
@@ -68,7 +69,6 @@ class ImageUpload extends Component {
           storage.ref().child(path).getDownloadURL().then(url => {
             alert(Dictionary.uploadSuccess);
             this.setState({
-              progress: 0,
               url: url
             });
           }).catch(error => console.log(error));
@@ -151,7 +151,8 @@ class ImageUpload extends Component {
     const { crop, croppedImageUrl, src } = this.state;
     return (
       <div className="center" >
-        <p>{Dictionary.profilepic}</p>
+        <label className="regularLabel" htmlFor="profile">{Dictionary.profilepic}*</label>
+        <br/>
         <progress value={this.state.progress} max="100" />
         <div className="form-group" id="imgUp">
 
@@ -167,13 +168,15 @@ class ImageUpload extends Component {
             />
           )}
           {croppedImageUrl && (
-            <img id="croppedUrl" alt="Crop" style={{ maxWidth: '20%', maxHeight: '20%' }} src={croppedImageUrl} />
+            <img id="croppedUrl" alt="Crop" src={croppedImageUrl} />
           )}
 
         </div>
-        <input type="file" name="file" id="inputGroupFile04 media" aria-describedby="inputGroupFileAddon04" accept="image/*" onChange={this.onSelectFile} required={this.state.required} />
+        <FileInput id={this.state.id} bottonText={Dictionary.uploadProfileImage} onChangeFunction={this.onSelectFile} required={this.state.required} uploadBtnFunc={this.handleUpload} uploadBtnId="uploadBtn" />
+
+
         <input type="hidden" id="ProfilePic" name="ProfilePic" value={this.state.url} required />
-        <button type="button" id="uploadBtn" onClick={this.handleUpload}>{Dictionary.upload}</button>
+        {/* <button type="button" id=  onClick={this.handleUpload}>{Dictionary.upload}</button> */}
         <br />
       </div>
     )
@@ -281,12 +284,15 @@ export class MultiImageUpload extends Component {
 
     return (
       <div >
-        <p >{Dictionary.media + Dictionary.acceptFiles}</p>
+        <label className="regularLabel">{Dictionary.anotherpictures}</label>
+        <br/>
+        
+        <p >{ Dictionary.acceptFiles}</p>
         <progress value={this.state.progress} max="100" />
         <div className="form-group">
-          <input type="file" name="multi_media" id="multi_media" skip={true} aria-describedby="inputGroupFileAddon04" accept="image/*" multiple onChange={this.handleChange} required={this.state.required} />
+          <FileInput id="multi_media" multiple={"multiple"} bottonText={Dictionary.uploadMultiImage} onChangeFunction={this.handleChange} required={this.state.required} uploadBtnId="multiUploadBtn" uploadBtnFunc={this.handleUpload} />
         </div>
-        <button type="button" onClick={this.handleUpload}>{Dictionary.upload}</button>
+
         <div id="presentImages"></div>
         <br />
       </div>
@@ -297,30 +303,91 @@ export class MultiImageUpload extends Component {
 
 //Image element that with three discriptions
 export const ImagePreview = (props) => {
-  var src = props.src, id = props.id, defHE = props.defHE, defEN = props.defEN, defAR = props.defAR;
+  var src = props.src, 
+  id = props.id, 
+  defHE = props.defHE, 
+  defEN = props.defEN, 
+  defAR = props.defAR;
   return (<div className="photoPrevContainer" id={"pic" + id}>
-    {/* <div className="photoWithClose"> */}
-    <img className="photoPrev" name={id} id={"linkPic" + id} alt="photo preview" src={src} />
-    <button type="close" className="deleteImage" aria-label="delete" onClick={() => {deleteImage(src,id)}}>X</button>
-    {/* </div> */}
-    <div id="descriptionContainer">
-      <input type="text" className="photoPrevDescHE" id={"prevDesc" + id + "HE"} name="prevDesc" autoComplete="off" lang="HE" placeholder={Dictionary.addHebDesc} defaultValue={defHE} />
-      <input type="text" className="photoPrevDescEN" id={"prevDesc" + id + "EN"} name="prevDesc" autoComplete="off" lang="EN" placeholder={Dictionary.addEngDesc} defaultValue={defEN} />
-      <input type="text" className="photoPrevDescAR" id={"prevDesc" + id + "AR"} name="prevDesc" autoComplete="off" lang="AR" placeholder={Dictionary.addArDesc} defaultValue={defAR} />
+    <div className="photoWithClose">
+      <img className="photoPrev" name={id} id={"linkPic" + id} alt="preview" src={src} />
+      <button type="close" className="deleteImage" aria-label="delete" onClick={() => { deleteImage(src, id) }}>X</button>
+    </div>
+    <div className="descriptionContainer">
+      <input type="text" className="photoPrevDesc" id={"prevDesc" + id + "HE"} name="prevDesc" autoComplete="off" lang="HE" placeholder={Dictionary.addHebDesc} defaultValue={defHE} />
+      <input type="text" className="photoPrevDesc" id={"prevDesc" + id + "EN"} name="prevDesc" autoComplete="off" lang="EN" placeholder={Dictionary.addEngDesc} defaultValue={defEN} />
+      <input type="text" className="photoPrevDesc" id={"prevDesc" + id + "AR"} name="prevDesc" autoComplete="off" lang="AR" placeholder={Dictionary.addArDesc} defaultValue={defAR} />
     </div>
   </div>);
 }
+
+//ads a ImagePreview to the form 
 export function addPreview(url, id, defHE, defEN, defAR) {
   var node = document.createElement('div')
   node.setAttribute("id", "renderPreview" + id);
   node.setAttribute("class", "SingleRenderBox");
   document.getElementById("presentImages").appendChild(node);
   ReactDOM.render(<ImagePreview src={url} id={id} defHE={defHE} defEN={defEN} defAR={defAR} />, node);
-  
+
 }
-function deleteImage(url, id){
+
+//deletes en image preview from the form and the image from firebase storage
+function deleteImage(url, id) {
   if (window.confirm(Dictionary.areYouSure)) {
     (document.getElementById("renderPreview" + id)).remove();
     storage.refFromURL(url).delete().then(function () { }).catch(function (error) { console.log(error); alert("delete faild"); });
   }
 }
+
+//FileInput replaces the defult file input component to a nice file input component
+class FileInput extends Component {
+  constructor(props) {
+    super(props);
+    this.handleChange = this.handleChange.bind(this);
+    this.state = {
+      text: props.bottonText,
+      id: this.props.id
+    }
+  }
+  componentDidMount() {
+    //set button's text to change by number of files
+    document.getElementById(this.state.id).onchange = this.handleChange;
+    //reset button to defult
+    document.getElementById(this.props.uploadBtnId).addEventListener("click",()=>{ this.setState({ text: this.props.bottonText })});
+  }
+  handleChange = e => {
+    let num = e.target.files.length,
+      text;
+    if (num > 0) {
+      if (num === 1)
+        text = Dictionary.photoWating ;
+        
+      else
+        text = Dictionary.thereAre + num + Dictionary.photosWating;
+      this.setState({ text: text });
+    }
+    
+
+  }
+  render() {
+
+    const id = this.props.id,
+      required = this.props.required,
+      multiple = this.props.multiple,
+      btnId = this.props.uploadBtnId;
+
+    return (
+      <div className="uploadButtons">
+
+        <label class="custom-file-upload">
+          <i class="fa fa-cloud-upload" /> {this.state.text}
+          <input type="file" name={id} id={id} skip={true} accept="image/*" {...{ multiple }} onChange={this.props.onChangeFunction} oninput={this.handleChange} required={required} />
+        </label>
+        <button type="button" className="btn" id={btnId} onClick={this.props.uploadBtnFunc}>{Dictionary.upload}</button>
+      </div>
+
+    )
+
+  }
+}
+

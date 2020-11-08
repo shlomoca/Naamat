@@ -164,7 +164,7 @@ export class ShoWoman extends Component {
             managerBtns = "";
         if (this.state.Admin) {//add edit and delete button for admin users
             managerBtns = <div className="editWomanBtn" ><button className="btn" onClick={(e) => { allreadyExist(this.state.id, true); }}>{Dictionary.edit}</button>
-                <button className=" btn-danger deleteBtn" onClick={() => { if (window.confirm(Dictionary.areYouSure)) deleteWoman(this.state.id) }} >{Dictionary.delete}</button></div>;
+                <button id="womanDeleteBtn" className=" btn-danger deleteBtn" onClick={() => { if (window.confirm(Dictionary.areYouSure)) deleteWoman(this.state.id) }} >{Dictionary.delete}</button></div>;
         }
         //get the data of a specific woman from the woman collaction 
         db.collection('women').doc(this.state.id).get().then(snapshot => {
