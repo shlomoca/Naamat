@@ -66,6 +66,7 @@ export const Dictionary = new LocalizedStrings({
 
     //forms
     name: `Full Name`,
+    yourName:"Your name",
     display: "display name",
     birth: `Date of birth`,
     submit: `Submit`,
@@ -83,7 +84,7 @@ export const Dictionary = new LocalizedStrings({
     seggestions: `Seggestions for improvament`,
     close: `Close`,
     profilepic: 'Profile Picture',
-    anotherpictures: 'Another Pictures',
+    anotherpictures: 'More photos',
     mustfilled: ' required field *',
     delete: `Delete`,
     next: 'Next',
@@ -123,8 +124,15 @@ export const Dictionary = new LocalizedStrings({
     addEngDesc: "Add a description in English",
     addHebDesc: "Add a description in Hebrew",
     addArDesc: "Add a description in Arabic",
+    uploadProfileImage:"Please Choose a profile photo and then press upload",
+    uploadMultiImage:"Please Choose photos of this woman to add",
+    thereAre:"There are ",
+    photosWating:" photos waiting for upload",
+    photoWating:"There is one photo waiting for upload.",
+    
 
-
+    
+    
 
 
 
@@ -202,6 +210,7 @@ export const Dictionary = new LocalizedStrings({
 
     //forms
     name: `שם מלא`,
+    yourName:"שמך",
     display: "שם תצוגה",
     birth: `תאריך לידה`,
     submit: `שלחי`,
@@ -231,9 +240,9 @@ export const Dictionary = new LocalizedStrings({
     description: "תיאור",
     link: "קישור",
     links: "קישורים",
-    categoryInputHE: "הכנס שם קטגוריה בעברית",
-    categoryInputEN: "הכנס שם קטגוריה באנגלית",
-    categoryInputAR: "הכנס שם קטגוריה בערבית",
+    categoryInputHE: "הכנסי שם קטגוריה בעברית",
+    categoryInputEN: "הכנסי שם קטגוריה באנגלית",
+    categoryInputAR: "הכנסי שם קטגוריה בערבית",
     moreText: "מלל נלווה",
     searchSummary: "כאן יהיה מידע ראשוני שיופיע בחיפוש , ניתן להקליד עד 170 תווים",
     summary: "תקציר לחיפוש",
@@ -249,6 +258,15 @@ export const Dictionary = new LocalizedStrings({
     addEngDesc: "הוסיפי תיאור באנגלית",
     addHebDesc: "הוסיפי תיאור בעברית",
     addArDesc: "הוסיפי תיאור בערבית",
+    uploadProfileImage:"אנא בחרי תמונת פרופיל ואז לחצי על העלאה",
+    uploadMultiImage:"אנא בחרי תמונות של אישה זו להוסיף",
+    thereAre:"ישנם ",
+    photosWating:" תמונות שממתינות להעלאה.",
+    photoWating:"ישנה תמונה אחת שממתינה להעלאה",
+    
+
+
+    
 
 
 
@@ -341,6 +359,7 @@ export const Dictionary = new LocalizedStrings({
 
     //forms
     name: `اسم`,
+    yourName:"اسمك",
     birth: `تاريخ الولاده`,
     submit: `إرسال`,
     death: `تاريخ الوفاة`,
@@ -397,6 +416,13 @@ export const Dictionary = new LocalizedStrings({
     addEngDesc: "أضف وصفًا باللغة الإنجليزية",
     addHebDesc: "أضف وصفًا باللغة العبرية",
     addArDesc: "أضف وصفا باللغة العربية",
+    uploadProfileImage:"الرجاء اختيار صورة الملف الشخصي ثم الضغط على تحميل",
+    uploadMultiImage:"الرجاء اختيار صور لهذه المرأة لإضافتها",
+    thereAre:"يوجد ",
+    photosWating:" الصور في انتظار التحميل.",
+    photoWating:"هناك صورة واحدة في انتظار تحميلها.",
+
+
 
     ImportantMSG: 'لاحظ أنه بعد الضغط على زر "التالي" لن تتمكن من تغيير الحقول المطلوبة',
     acceptFiles: "يستقبل ملفات الصور فقط",
@@ -445,7 +471,6 @@ function changeLanguage(lang) {
 }
 //get the current page direction needed
 export function getRTL(lang) {
-  console.log("lang "+ lang)
   let targetLang = lang ? lang : Dictionary.getLanguage();
 
   switch (targetLang) {

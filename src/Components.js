@@ -30,7 +30,7 @@ export const NavBar = (props) => {
     logout = <li className="nav-item"><button id="signOutBtn" type="button" className="btn btn-primary nav-link" onClick={managerSignout} > {Dictionary.signOut}</button > </li>
   }
   if (categoryPage||(!Admin&&!mainUserPage)) {
-    back = <Link to='/'><button type="button" className="btn btn-primary nav-link" >{Dictionary.back}</button ></Link>
+    back = <Link to='/'><button type="button" className="btn btn-primary nav-link" >{Dictionary.homePageBack}</button ></Link>
     $("#catBtn").click(() => window.location.reload());
   }
   return (
@@ -63,8 +63,8 @@ export const NavBar = (props) => {
           <li className="nav-item" id="stretcher">
             <Search  admin ={Admin}/>
           </li>
-          <li className="nav-item">{back}</li>
-          <li className="nav-item">
+          <li className="nav-item flex-end">{back}</li>
+          <li className="nav-item flex-end">
             {<Buttons AdminPage={AdminPage} Admin={Admin} />}
           </li>
 
@@ -182,29 +182,29 @@ export const DisplayModal = (props) => {
 
 
 
-export const AfterMessage = (props) => {
+// export const AfterMessage = (props) => {
 
-  return (
-    <div>
-      {/* <button className="clearBtn" data-toggle="modal" data-target="#afterMessage"> <a href="#">something</a></button>  */}
-      <div className="modal fade" id="afterMessage" data-keyboard="false" tabIndex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div className="modal-dialog modal-xl">
-          <div className="modal-content">
-            <div className="modal-header ">
-              {/* <h5 className="modal-title" id="staticBackdropLabel"></h5>  */}
-            </div>
-            <div className="modal-body">
-              <h1>{props.info}</h1>
-            </div>
-            <div align="center">
-              <button type="button" className="close" className="btn btn-secondary" data-dismiss="modal">{Dictionary.close}</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  )
-}
+//   return (
+//     <div>
+//       {/* <button className="clearBtn" data-toggle="modal" data-target="#afterMessage"> <a href="#">something</a></button>  */}
+//       <div className="modal fade" id="afterMessage" data-keyboard="false" tabIndex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+//         <div className="modal-dialog modal-xl">
+//           <div className="modal-content">
+//             <div className="modal-header ">
+//               {/* <h5 className="modal-title" id="staticBackdropLabel"></h5>  */}
+//             </div>
+//             <div className="modal-body">
+//               <h1>{props.info}</h1>
+//             </div>
+//             <div align="center">
+//               <button type="button" className="close" className="btn btn-secondary close" data-dismiss="modal">{Dictionary.close}</button>
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+//     </div>
+//   )
+// }
 
 export function usersManager() {
   $("#allAdmin").hide();
@@ -264,6 +264,8 @@ export const CategoryCheckBox = (props) => {
             <label className="lableCheckBox" for={idCat}>{displayCat}</label>
             <input className="checkbox" type="checkbox" id={idCat} name={"cat"} value={displayCat} />
           </div>)
+          else
+          return <div></div>
       })}
     </div>)
 }

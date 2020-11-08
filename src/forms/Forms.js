@@ -3,10 +3,9 @@ import $ from 'jquery';
 import 'jquery-validation';
 import React from 'react';
 import { db, auth } from '../config/Firebase'
-import { Dictionary, langs,getRTL } from '../Dictionary';
-// import App from './PicUpload';
-import ImageUpload, { MultiImageUpload  } from './ImageUpload';
-import { AfterMessage, CollectionCheckBox } from '../Components';
+import { Dictionary, langs, getRTL } from '../Dictionary';
+import ImageUpload, { MultiImageUpload } from './ImageUpload';
+import {  CollectionCheckBox } from '../Components';
 import { loadWomanToModal } from '../pages/woman page/WomanPage';
 
 import { ShowHideFunc } from '../pages/Admin Page/AdminPage';
@@ -132,7 +131,7 @@ export const EditWomanModal = () => {
                 <div className="modal-content">
                     <form id="woman_form" name="woman_form" onSubmit={addWoman}  >
                         <div className="modal-header">
-                            <button type="button" id="xClose" className="close" data-dismiss="modal" aria-label="Close" onClick={resetForm("woman_form", "fill1" + Dictionary.getLanguage(), "fill2" + Dictionary.getLanguage(),["presentImages"])}>
+                            <button type="button" id="xClose" className="close" data-dismiss="modal" aria-label="Close" onClick={resetForm("woman_form", "fill1" + Dictionary.getLanguage(), "fill2" + Dictionary.getLanguage(), ["presentImages"])}>
                                 <span aria-hidden="true">&times;</span>
                             </button>
                             <h5 className="modal-title" id="staticBackdropLabel">{Dictionary.addWoman}</h5>
@@ -146,18 +145,18 @@ export const EditWomanModal = () => {
                                 </ul>
 
                                 <div className="addWomanContainer">
-                                    <div className="form-group">
+                                    <div className="form-group inputFeilds">
                                         <label className="regularLabel" htmlFor="name">{Dictionary.name}*</label>
-                                        <input className="regularInput" autoComplete="off" type="text" rows="1" cols="35" id="name" name="name" required />
+                                        <input className="regularInput" autoComplete="off" type="text" cols="35" id="name" name="name" required />
                                     </div>
 
-                                    <div className="form-group">
+                                    <div className="form-group inputFeilds">
                                         <label className="regularLabel" htmlFor="birth" >{Dictionary.birth}*</label>
-                                        <input className="regularInput" type="date" rows="1" cols="35" id="birth" name="birth" required />
+                                        <input className="regularInput" type="date" cols="35" id="birth" name="birth" required />
                                     </div>
-                                    <div className="form-group">
+                                    <div className="form-group inputFeilds">
                                         <label className="regularLabel" htmlFor="death">{Dictionary.death}</label>
-                                        <input className="regularInput" type="date" rows="1" cols="35" id="death" name="death" />
+                                        <input className="regularInput" type="date" cols="35" id="death" name="death" />
                                     </div>
                                     <p id="ImportantMSG">{Dictionary.ImportantMSG}</p>
 
@@ -171,8 +170,7 @@ export const EditWomanModal = () => {
                             </div>
                             <div id="step2">
                                 <div id="profPicArea">
-
-                                    <ImageUpload param1="name" param2="birth" pathEnd="/ProfilePic" param1Empty="name not enterd" param2Empty="date of birth not ented" />
+                                    <ImageUpload id="womanFormPic" param1="name" param2="birth" pathEnd="/ProfilePic" param1Empty="name not enterd" param2Empty="date of birth not ented" />
                                 </div>
                                 <div className="tab-content">
                                     <GenralForm lang={langs[0]} active={Dictionary.getLanguage() === langs[0]} />
@@ -182,13 +180,13 @@ export const EditWomanModal = () => {
                                 {/* <label htmlFor="acceptFiles">{Dictionary.acceptFiles} </label> */}
                                 <MultiImageUpload param1="name" param2="birth" param1Empty="name not enterd" param2Empty="date of birth not ented" />
 
-                                <label htmlFor="categorySelect">{Dictionary.choseCategory} </label>
+                                <label htmlFor="categorySelect"><b>{Dictionary.choseCategory}</b> </label>
                                 <CollectionCheckBox colc={"categories"} doc={"categories"} />
                             </div>
                         </div>
                         <div className="modal-footer">
                             <div className="requiredFooter" > {Dictionary.mustfilled}  </div>
-                            <button type="button" className="btn btn-secondary" onClick={resetForm("woman_form", "fill1" + Dictionary.getLanguage(), "fill2" + Dictionary.getLanguage(),["presentImages"])} data-dismiss="modal">{Dictionary.close}</button>
+                            <button type="button" className="btn btn-secondary" onClick={resetForm("woman_form", "fill1" + Dictionary.getLanguage(), "fill2" + Dictionary.getLanguage(), ["presentImages"])} data-dismiss="modal">{Dictionary.close}</button>
                             <button type="submit" htmlFor="woman_form" className="btn btn-success" id="submit_form" >{Dictionary.submit} </button>
                         </div>
                     </form>
@@ -201,7 +199,7 @@ export const EditWomanModal = () => {
 }
 
 export const SuggestWomanModal = () => {
-    var  j = 0;
+    var j = 0;
     return (
 
         <div className="modal fade" id="suggestWomanModal" data-backdrop="static" data-keyboard="false" tabIndex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -273,10 +271,10 @@ export const SuggestWomanModal = () => {
                             <label htmlFor="bibliography">{Dictionary.bibliography}</label>
                             <div className="form-group">
                                 <input type="text" autoComplete="off" rows="4" cols="50" name="reading" id={"reading" + j} />
-                            </div>
+                           
                             <div className="form-group">
                                 <a id="fill20"></a>
-                                <button id="addBtn" onClick={(e) => {
+                                <button className="btn addBtn" onClick={(e) => {
                                     e.preventDefault();
                                     var fill = $("#fill20");
 
@@ -288,14 +286,15 @@ export const SuggestWomanModal = () => {
 
                                 }}>{Dictionary.addMore}</button>
                             </div>
+                             </div>
                             <div className="form-group flex">
-                            <lable htmlFor="agree">{Dictionary.iAgree}</lable>
-                            <input className="agree" name="agree" type="checkbox"></input>
+                                <lable htmlFor="agree">{Dictionary.iAgree}</lable>
+                                <input className="agree" name="agree" type="checkbox"></input>
                             </div>
                         </div>
                         <div className="modal-footer">
                             <div className="requiredFooter">{Dictionary.mustfilled}</div>
-                            <button type="button" className="close" className="btn btn-secondary" onClick={resetForm("suggest_woman_form", "fill20")} data-dismiss="modal">{Dictionary.close}</button>
+                            <button type="button"  className="btn btn-secondary close" onClick={resetForm("suggest_woman_form", "fill20")} data-dismiss="modal">{Dictionary.close}</button>
                             <button type="submit" htmlFor="suggest_woman_form" className="btn btn-success" id="submit_form" >{Dictionary.submit}</button>
                         </div>
                     </form>
@@ -310,7 +309,6 @@ export const SuggestWomanModal = () => {
 export const FeedbackModal = () => {
     return (
         <div className="modal fade" id="feedbackForm" data-keyboard="false" tabIndex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            {/* <AfterMessage info='thank you' /> */}
             <div className="modal-dialog modal-lg">
                 <div className="modal-content">
                     <div className="modal-header">
@@ -349,8 +347,8 @@ export const FeedbackModal = () => {
 
                             </div>
                             <div className="form-group flex">
-                            <label htmlFor="agree">{Dictionary.iAgree}</label>
-                            <input className="agree" name="agree" type="checkbox"></input>
+                                <label htmlFor="agree">{Dictionary.iAgree}</label>
+                                <input className="agree" name="agree" type="checkbox"></input>
                             </div>
 
 
@@ -370,7 +368,6 @@ export const FeedbackModal = () => {
 export const CategoryModal = () => {
     return (
         <div className="modal fade" id="categoryForm" data-keyboard="false" tabIndex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <AfterMessage info='thank you' />
             <div className="modal-dialog ">
                 <div className="modal-content">
                     <div className="modal-header">
@@ -390,7 +387,7 @@ export const CategoryModal = () => {
                                 </div>
                             </div>
                             <div id="image-group" className="form-group">
-                                <ImageUpload required="required" param1="category_nameHE" param1Empty="category name not enterd" />
+                                <ImageUpload id="catagoryFormPic" required="required" param1="category_nameHE" param1Empty="category name not enterd" />
                             </div>
                             <div className="modal-footer">
                                 <div className="requiredFooter" > {Dictionary.mustfilled}  </div>
@@ -410,61 +407,62 @@ export const GenralForm = (props) => {
     var classAttr = "tab-pane fade form_content";
     if (props.active)
         classAttr = "tab-pane fade form_content show active";
-    var i = 0, j = 0,lang=props.lang;
+    var i = 0, j = 0, lang = props.lang;
     return (
 
         <div id={lang} className={classAttr} dir={getRTL(props.lang)}>
 
             <div className="form-group">
-                <InputPiece attrName= "display" lang={lang}/>
-                <TextArea attrName = "summary" maxLength ={100} lang={lang} placeholder={Dictionary.searchSummary}/>
-                <TextArea attrName = "highlights" maxLength ={290} lang={lang} placeholder={Dictionary.summeryHighlight}/>
-                <TextArea attrName = "biography" lang={lang}/>
-                <TextArea attrName = "history" lang={lang}/>
-                <TextArea attrName = "feminism" lang={lang}/>
-                <TextArea attrName = "facts" lang={lang}/>
-                <TextArea attrName = "quotes" lang={lang}/>
-               
+                <InputPiece attrName="display" lang={lang} />
+                <TextArea attrName="summary" maxLength={100} lang={lang} placeholder={Dictionary.searchSummary} />
+                <TextArea attrName="highlights" maxLength={290} lang={lang} placeholder={Dictionary.summeryHighlight} />
+                <TextArea attrName="biography" lang={lang} />
+                <TextArea attrName="history" lang={lang} />
+                <TextArea attrName="feminism" lang={lang} />
+                <TextArea attrName="facts" lang={lang} />
+                <TextArea attrName="quotes" lang={lang} />
+
             </div>
             <div className="makbil">
-                <div className="form-group ">
-                    <label htmlFor={"link" + lang}>{Dictionary.links} </label>
+                <div className="form-group width45percent">
+                    <label htmlFor={"link" + lang}><b>{Dictionary.links}</b> </label>
                     <input className="regularInput" id={"description" + lang + i} lang={lang} autoComplete="off" type="text" rows="4" cols="50" name="description" placeholder={Dictionary.description} />
-                    <a>‏</a>
+                    
 
                     <input className="regularInput" autoComplete="off" id={"link" + lang + i} lang={lang} type="text" name="link" placeholder={Dictionary.link} />
                     <a id={"fill1" + lang} ></a>
-                    <br/>
-                    <button id="addBtn" onClick={(e) => {
+                    <br />
+                    <button className="btn addBtn" onClick={(e) => {
                         e.preventDefault();
                         var fill = $("#fill1" + lang);
-                        if ($("#description" + lang + i).val())
-                            if ($("#link" + lang + i).val()) {
-                                i++;
-                                fill.append(`<a>‏</a><input id=${"description" + lang + i}  lang = ${lang} autoComplete="off" type="text" rows="4" className="regularInput" cols="50" name="description" placeholder=${Dictionary.description} />
-                            <a>‏</a>
-                        <input id=${"link" + lang + i} lang = ${lang} type="text" autoComplete="off" rows="4" className="regularInput" cols="50" name="link" placeholder=${Dictionary.link} />`)
-                            } else
-                                alert(Dictionary.fillLinkDescription);
+                        if ($("#description" + lang + i).val() && $("#link" + lang + i).val()) {
+                            i++;
+                            fill.append(`<br /><input id=${"description" + lang + i}  lang = ${lang} autoComplete="off" type="text" rows="4" class="regularInput" cols="50" name="description" placeholder=${Dictionary.description} />
+                            
+                            <a/><input id=${"link" + lang + i} lang = ${lang} type="text" autoComplete="off" rows="4" class="regularInput" cols="50" name="link" placeholder=${Dictionary.link} />`)
+                        } else
+                            alert(Dictionary.fillLinkDescription);
                     }}>{Dictionary.addMore}</button>
                 </div>
 
-                <div className="form-group ">
-                    <label htmlFor={"reading" + lang}>{Dictionary.bibliography}
-                        <input id={"reading" + lang + j} lang={lang} type="text" autoComplete="off" rows="4" cols="50" name="reading" placeholder={Dictionary.bibliography} />
-                        <a id={"fill2" + lang}></a>
-                        <button onClick={(e) => {
-                            e.preventDefault();
-                            var fill = $("#fill2" + lang);
-
-                            if ($("#reading" + lang + j).val()) {
-                                j++;
-                                fill.append(`<a>‏</a><input id=${"reading" + lang + j} lang=${lang} type="text" autoComplete="off" rows="4" cols="50" name="reading" placeholder=${Dictionary.bibliography} /><a>‏</a>`)
-                            }
-                            else
-                                alert(Dictionary.addBibiloraphy);
-                        }}>{Dictionary.addMore}</button>
+                <div className="form-group width45percent">
+                    <label htmlFor={"reading" + lang}>
+                        <b>{Dictionary.bibliography}</b>
                     </label>
+
+                    <input id={"reading" + lang + j} className="regularInput" lang={lang} type="text" autoComplete="off" rows="4" cols="50" name="reading" placeholder={Dictionary.bibliography} />
+                    <a id={"fill2" + lang}></a>
+                    <br />
+                    <button className="btn addBtn" onClick={(e) => {
+                        e.preventDefault();
+                        var fill = $("#fill2" + lang);
+                        if ($("#reading" + lang + j).val()) {
+                            j++;
+                            fill.append(`<br /><input id=${"reading" + lang + j} lang=${lang} type="text" class="regularInput" autoComplete="off" rows="4" cols="50" name="reading" placeholder=${Dictionary.bibliography} />`)
+                        }
+                        else
+                            alert(Dictionary.addBibiloraphy);
+                    }}>{Dictionary.addMore}</button>
                 </div>
             </div>
 
@@ -524,16 +522,16 @@ function addNewUser(e) {
 
 function AddNewFact(e) {//add new fact in three languages
     e.preventDefault();
-    var obj = {},added=false;
+    var obj = {}, added = false;
     //get facts in all languages
-    langs.forEach(lang=>{
+    langs.forEach(lang => {
 
-        if ($("#DidYouKnow"+lang).val()){
-            obj[lang] = $("#DidYouKnow"+lang).val();
-            added=true;
+        if ($("#DidYouKnow" + lang).val()) {
+            obj[lang] = $("#DidYouKnow" + lang).val();
+            added = true;
         }
     });
-    if(!added){
+    if (!added) {
         alert(Dictionary.noFactToAdd)
         return;
     }
@@ -802,7 +800,7 @@ function addCatagory(event) {
 
     if ($('#uploadBtn').data('clicked')) {
 
-        var gen = {}, up;
+        var gen = {};
         var id = $("#category_nameHE").val();
 
         $($('#category_form').prop('elements')).each(function () {
@@ -826,7 +824,7 @@ function addCatagory(event) {
 
 
 //reset the add woman form when close
-function resetForm(reset, empty1, empty2,removeinners) {
+function resetForm(reset, empty1, empty2, removeinners) {
     return () => {
 
         $("#" + reset).trigger("reset");
@@ -921,42 +919,41 @@ $("document").ready(function () {
 
 
 });
-function removeInner(ids){
-    if(!ids)
-    return
-    ids.forEach(id=>{
+function removeInner(ids) {
+    if (!ids)
+        return
+    ids.forEach(id => {
         var node = document.getElementById(id);
-        if(node)
-            node.innerHTML="";
+        if (node)
+            node.innerHTML = "";
     })
 }
 
 //A textArea component for the main form information textareas 
 export const TextArea = props => {
-let attrName=props.attrName,
-lang=props.lang,
-maxLength=props.maxLength,
-placeholder=props.placeholder;
-;
-  return (
-      <div className="mainFormFeilds">
-                <lable for={attrName}><b>{Dictionary[attrName]}</b></lable>
-                <textarea className="textAreaBox" rows={4}  name={attrName} lang={lang} maxLength={maxLength}  id={attrName + lang} placeholder={placeholder}  ></textarea>
-      </div>
-  )
+    let attrName = props.attrName,
+        lang = props.lang,
+        maxLength = props.maxLength,
+        placeholder = props.placeholder;
+    ;
+    return (
+        <div className="mainFormFeilds">
+            <lable for={attrName}><b>{Dictionary[attrName]}</b></lable>
+            <textarea className="textAreaBox" rows={4} name={attrName} lang={lang} maxLength={maxLength} id={attrName + lang} placeholder={placeholder}  ></textarea>
+        </div>
+    )
 }
 //A input component for the main form inputs 
 export const InputPiece = props => {
-    let attrName=props.attrName,
-    lang=props.lang,
-    placeholder=props.placeholder?props.placeholder:Dictionary[attrName];
-    
-      return (
-          <div className="mainFormFeilds">
-               <lable for={attrName}><b>{Dictionary[attrName]}</b></lable>
-                <input type="text" autoComplete="off" lang={lang}  className="regularInput" id={attrName + lang} name={attrName} placeholder={placeholder} />
-            
-          </div>
-      )
-    }
-   
+    let attrName = props.attrName,
+        lang = props.lang,
+        placeholder = props.placeholder ? props.placeholder : Dictionary[attrName];
+
+    return (
+        <div className="mainFormFeilds">
+            <lable for={attrName}><b>{Dictionary[attrName]}</b></lable>
+            <input type="text" autoComplete="off" lang={lang} className="regularInput" id={attrName + lang} name={attrName} placeholder={placeholder} />
+        </div>
+    )
+}
+

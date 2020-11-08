@@ -4,8 +4,6 @@
 
 .navbar-nav {
     width: 100%;
-
-  
 }
 
 #example-search-input4 {
@@ -27,7 +25,7 @@
 }
 #navbarToggler{
     display: flex;
-    justify-content: space-evenly;
+    /* justify-content: space-evenly; */
     align-items: flex-start;
 }
 #logo {
@@ -233,3 +231,7 @@ text-align: center;
 .higest{
     height: 100%;
 }
+/* .flex-end{
+    align-self:flex-end;
+    max-width: 100%;
+} */

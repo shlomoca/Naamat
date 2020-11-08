@@ -320,7 +320,7 @@ function editSuggestWomen(id) {
 
 //make sure that a email was enterd
 function ValidateEmail(mail) {
-    return (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail))
+    return (/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(mail))
 }
 $(document).ready(() => {
 

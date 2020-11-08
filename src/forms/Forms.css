@@ -62,7 +62,8 @@ padding-bottom: 3%;
     display: flex;
     align-items: baseline;
     justify-content: space-evenly;
-    width:100%;
+    width:80%;
+    margin: auto;
 }
 
 .category_name{/*space between inputs in Add category form.*/
@@ -178,7 +179,7 @@ img {
 
 /* style the Englsh Arabic עברית on the edit woman form */
 .highlight{     
-    background-color: rebeccapurple;
+    /* background-color: rebeccapurple; */
     font-weight:bold;
     font-size: 21px;
     color: red;
@@ -309,8 +310,11 @@ align-self: center;
 
 }
 
-#addBtn{
-align-self: center;
+
+.addBtn{
+    height: 35px;
+    width: 130px;
+    align-self: center;
 }
 
 .requiredFooter{
@@ -336,14 +340,7 @@ align-self: center;
     font-weight: bold;
     color: red;
 }
-#croppedUrl{
-    margin: auto;
-    margin-top: 3%;
-    margin-bottom: 3%;
-}
-#imgUp{
-    max-height: 250vh;
-}
+
 .sticky{
     position: sticky;
     top: 0;
@@ -365,11 +362,21 @@ align-self: center;
     justify-content: center;
     margin-top:3vh;
 }
+.inputFeilds{
+    width: 45%;
+    margin: auto;
+    margin-bottom:3vh;
+}
 .textAreaBox{
     width: 100%;
     margin-top:1vh;
 }
 .regularInput{
-    width: 50%;
+    width: 100%;
     margin-top:1vh;
+    height: 40px;
+    text-align: center;
+}
+.width45percent{
+    width: 45%;
 }
