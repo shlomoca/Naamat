@@ -179,33 +179,7 @@ export const DisplayModal = (props) => {
 }
 
 
-
-
-
-// export const AfterMessage = (props) => {
-
-//   return (
-//     <div>
-//       {/* <button className="clearBtn" data-toggle="modal" data-target="#afterMessage"> <a href="#">something</a></button>  */}
-//       <div className="modal fade" id="afterMessage" data-keyboard="false" tabIndex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-//         <div className="modal-dialog modal-xl">
-//           <div className="modal-content">
-//             <div className="modal-header ">
-//               {/* <h5 className="modal-title" id="staticBackdropLabel"></h5>  */}
-//             </div>
-//             <div className="modal-body">
-//               <h1>{props.info}</h1>
-//             </div>
-//             <div align="center">
-//               <button type="button" className="close" className="btn btn-secondary close" data-dismiss="modal">{Dictionary.close}</button>
-//             </div>
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-//   )
-// }
-
+//show all the users that exist
 export function usersManager() {
   $("#allAdmin").hide();
   $("#feedBackHolder").show()
@@ -234,7 +208,7 @@ export function usersManager() {
 
 }
 
-
+//presents buttons by props sent
 const Buttons = (props) => {
   var obj;
 
@@ -252,6 +226,7 @@ const Buttons = (props) => {
 
 }
 
+//gets catagorys in props and puts them in a row
 export const CategoryCheckBox = (props) => {
   var items = props.items;
   return (
@@ -270,7 +245,7 @@ export const CategoryCheckBox = (props) => {
     </div>)
 }
 
-
+//calls all catagorys and presents them in a CategoryCheckBox
 export class CollectionCheckBox extends Component {
   constructor(props) {
     super(props);
@@ -311,7 +286,7 @@ export class CollectionCheckBox extends Component {
 }
 
 
-
+//log out a manager
 function managerSignout() {
   auth.signOut();
   alert(Dictionary.logOutSuccessful)

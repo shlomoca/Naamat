@@ -107,7 +107,7 @@ class LoginPage extends Component {
 export default LoginPage;
 
 
-
+//renders user page once he is logged in
 export class LoginComponent extends Component {
 
     constructor(props) {

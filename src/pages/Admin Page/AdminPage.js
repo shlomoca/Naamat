@@ -23,7 +23,7 @@ class AdminPage extends Component {
                     <p id="adminTitle" className="titles">{Dictionary.welcomeManager}</p>
                     <div id="allAdmin">
                         <button className="btnhover" type="button" id="addWomanBtn" data-toggle="modal" data-target="#staticBackdrop"> {Dictionary.adminAddWoman} </button>
-                        <button className="btnhover" type="button" id="feedbackBtn" onClick={() => { getData("feedbackBtn", "feedback", ["name", "email", "score"], ["improvement", "createdAt"]) }}> {Dictionary.adminFeedback} </button>
+                        <button className="btnhover" type="button" id="feedbackBtn" onClick={() => { getData("feedbackBtn", "feedback", ["name", "email", "score"], ["seggestions", "createdAt"]) }}> {Dictionary.adminFeedback} </button>
                         <button className="btnhover" type="button" id="sugWomenMngBtn" onClick={() => { getData("sugWomenMngBtn", "suggest_women", ["yourName", "yourEmail", "display"]) }}> {Dictionary.manageOffers}</button>
                         <button className="btnhover" type="button" id="categoriesBtn" onClick={() => { getData("categoriesBtn", "categories", ["category"]) }}> {Dictionary.manageCategory} </button>
                         <button className="btnhover" type="button" id="userMngBtn" onClick={() => { getData("userMngBtn", "users", ["email", "admin"]) }}> {Dictionary.adminUserManagement} </button>

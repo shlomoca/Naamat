@@ -12,7 +12,7 @@ import { ShowHideFunc } from '../pages/Admin Page/AdminPage';
 import * as moment from 'moment';
 import 'moment/locale/he'
 
-
+//modal adding new users to the DB
 export const NewUserModal = () => {
     return (
         <div className="modal fade" id="newUserModal">
@@ -76,6 +76,7 @@ export const NewUserModal = () => {
     );
 };
 
+//modal for adding a fact to the DB
 export const DidYouKnowModal = () => {
     return (
         <div className="modal fade" id="DidYouKnowModal">
@@ -122,6 +123,7 @@ export const DidYouKnowModal = () => {
     );
 };
 
+//modal for adding a woman to the DB
 export const EditWomanModal = () => {
 
     return (
@@ -198,6 +200,7 @@ export const EditWomanModal = () => {
     );
 }
 
+//suggest woman modal is a modal that lets clients to offer a women for naamat
 export const SuggestWomanModal = () => {
     var j = 0;
     return (
@@ -214,9 +217,11 @@ export const SuggestWomanModal = () => {
                         </div>
 
                         <div className="modal-body">
-
+                            <div className="width45percent">
+                                
+                          
                             <div className="form-group">
-                                <label className="regularLabel" htmlFor="yourName">{Dictionary.name}*</label>
+                                <label className="regularLabel" htmlFor="yourName">{Dictionary.yourName}*</label>
                                 <input type="text" rows="1" autoComplete="off" className="regularInput" cols="35" id="yourName" name="yourName" required />
                             </div>
 
@@ -236,57 +241,35 @@ export const SuggestWomanModal = () => {
                                 <input type="date" className="regularInput" rows="1" cols="35" id="birthday" name="birth" required />
                             </div>
 
-
-                            <label htmlFor="highlights">{Dictionary.highlights}</label>
-                            <div className="form-group">
-                                <textarea rows="4" cols="50" name="highlights" id="highlights"  ></textarea>
                             </div>
 
-                            <label htmlFor="biography">{Dictionary.biography}</label>
-                            <div className="form-group">
-                                <textarea rows="4" cols="50" name="biography" id="biography"  ></textarea>
-                            </div>
-
-                            <label htmlFor="history">{Dictionary.history}</label>
-                            <div className="form-group">
-                                <textarea rows="4" cols="50" name="history" id="history"  ></textarea>
-                            </div>
-
-                            <label htmlFor="feminism">{Dictionary.feminism}</label>
-                            <div className="form-group">
-                                <textarea rows="4" cols="50" name="feminism" id="feminism" ></textarea>
-                            </div>
-
-                            <label htmlFor="facts">{Dictionary.facts}</label>
-                            <div className="form-group">
-                                <textarea rows="4" cols="50" name="facts" id="facts" ></textarea>
-                            </div>
-
-                            <label htmlFor="quotes">{Dictionary.quotes}</label>
-                            <div className="form-group">
-                                <textarea rows="4" cols="50" name="quotes" id="quotes"  ></textarea>
-                            </div>
-
-
-                            <label htmlFor="bibliography">{Dictionary.bibliography}</label>
-                            <div className="form-group">
-                                <input type="text" autoComplete="off" rows="4" cols="50" name="reading" id={"reading" + j} />
                            
                             <div className="form-group">
-                                <a id="fill20"></a>
-                                <button className="btn addBtn" onClick={(e) => {
-                                    e.preventDefault();
-                                    var fill = $("#fill20");
+                                <TextArea attrName="highlights"  idExt="suggest"  />
+                                <TextArea attrName="biography"  idExt="suggest"  />
+                                <TextArea attrName="history"  idExt="suggest"  />
+                                <TextArea attrName="feminism"  idExt="suggest"  />
+                                <TextArea attrName="facts"  idExt="suggest"  />
+                                <TextArea attrName="quotes"  idExt="suggest"  />
 
+                            </div>
+
+                            <div className="form-group bibliografyContainer">
+                            <label htmlFor="bibliography"><b>{Dictionary.bibliography}</b></label>
+                            <input type="text" className="SuggestInput" autoComplete="off" rows="4" cols="50" name="reading" className="readingSuggest" id={"reading" + j} />
+                            <a id="fill20"></a>
+                            <button className="btn addBtn suggestBtn" onClick={(e) => {
+                                e.preventDefault();
+                                var fill = $("#fill20");
                                     if ($("#reading" + j).val()) {
                                         j++;
-                                        fill.append(`<input id=${"reading" + j} autoComplete="off"  type="text" rows="4" cols="50" name="reading" />`)
+                                        fill.append(`<input id=${"reading" + j} class="SuggestInput" autoComplete="off"  type="text" rows="4" cols="50" name="reading" />`)
                                     } else
                                         alert(Dictionary.addBibiloraphy);
 
                                 }}>{Dictionary.addMore}</button>
+                            
                             </div>
-                             </div>
                             <div className="form-group flex">
                                 <lable htmlFor="agree">{Dictionary.iAgree}</lable>
                                 <input className="agree" name="agree" type="checkbox"></input>
@@ -306,6 +289,7 @@ export const SuggestWomanModal = () => {
     )
 }
 
+//FeedbackModal is a modal that aloows users to send a feedback
 export const FeedbackModal = () => {
     return (
         <div className="modal fade" id="feedbackForm" data-keyboard="false" tabIndex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -319,15 +303,15 @@ export const FeedbackModal = () => {
                     </div>
                     <div className="modal-body">
                         <form id="feedback_form" name="feedback_form" onSubmit={addFeedback}  >
-                            <div className="form-group">
-                                <label className="regularLabel" htmlFor="feed_name">{Dictionary.name}*</label>
-                            </div>
+                            <div className="form-group width80">
+                                <label className="regularLabel" htmlFor="feed_name">{Dictionary.yourName}*</label>
                             <input type="text" rows="1" className="regularInput" id="feed_name" cols="35" name="name" required />
-                            <div id="email-group" className="form-group">
-                                <label className="regularLabel" htmlFor="feed_email">{Dictionary.enterMail}*</label>
                             </div>
+                            <div  className="form-group width80">
+                                <label className="regularLabel" htmlFor="feed_email">{Dictionary.enterMail}*</label>
                             <input type="email" autoComplete="false" rows="1" className="regularInput" id="feed_email" cols="35" name="email" required />
-                            {/* </div> */}
+                            </div>
+                            
                             <div id="howWas" className="form-group"> {Dictionary.HowWasVisit} </div>
                             <div className="starLocation">
                                 <div className="form-group starContainer">
@@ -342,10 +326,12 @@ export const FeedbackModal = () => {
                                 </div>
                             </div>
                             <div id="name-group" className="form-group">
-                                <label htmlFor="improvement">{Dictionary.seggestions}</label>
-                                <textarea rows="4" id="improvement" cols="35" name="improvement" ></textarea>
+                                {/* <label htmlFor="seggestions">{Dictionary.seggestions}</label>
+                                <textarea rows="4" id="seggestions" cols="35" name="seggestions" ></textarea> */}
 
+                            <TextArea attrName="seggestions" placeholder="" lang="" />
                             </div>
+                            
                             <div className="form-group flex">
                                 <label htmlFor="agree">{Dictionary.iAgree}</label>
                                 <input className="agree" name="agree" type="checkbox"></input>
@@ -365,6 +351,7 @@ export const FeedbackModal = () => {
     );
 };
 
+//a modal that lets a manager to create a new catagory
 export const CategoryModal = () => {
     return (
         <div className="modal fade" id="categoryForm" data-keyboard="false" tabIndex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -403,6 +390,8 @@ export const CategoryModal = () => {
 
 }
 
+
+//a form with all required feilds for a women form. this form can be calld by language
 export const GenralForm = (props) => {
     var classAttr = "tab-pane fade form_content";
     if (props.active)
@@ -477,7 +466,7 @@ function lockInputs() {//lock inputs for edit. using in EditWomanModal when we a
     $("#birth").attr('readonly', true);
 }
 
-
+//validate an add user form and add the user
 function addNewUser(e) {
     e.preventDefault();
     $("#newUserForm").validate({
@@ -932,14 +921,15 @@ function removeInner(ids) {
 //A textArea component for the main form information textareas 
 export const TextArea = props => {
     let attrName = props.attrName,
-        lang = props.lang,
+        lang = props.lang?props.lang:"",
         maxLength = props.maxLength,
-        placeholder = props.placeholder;
+        placeholder = props.placeholder,
+        idExt = props.idExt?props.idExt:"";
     ;
     return (
         <div className="mainFormFeilds">
             <lable for={attrName}><b>{Dictionary[attrName]}</b></lable>
-            <textarea className="textAreaBox" rows={4} name={attrName} lang={lang} maxLength={maxLength} id={attrName + lang} placeholder={placeholder}  ></textarea>
+            <textarea className="textAreaBox" rows={4} name={attrName} lang={lang} maxLength={maxLength} id={attrName + lang + idExt} placeholder={placeholder}  ></textarea>
         </div>
     )
 }

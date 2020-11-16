@@ -5,6 +5,7 @@ import { db } from '../../config/Firebase';
 import { Dictionary } from '../../Dictionary';
 import { Link } from 'react-router-dom';
 
+//landing page for the regular user
 class MainUserPage extends Component {
 
   constructor(props) {
@@ -32,7 +33,7 @@ class MainUserPage extends Component {
 export default MainUserPage
 
 
-
+//a picture carusal that takes a constent number of women and a constent number of facts and presents them to the user 
 export class PictursCarousel extends Component {
   constructor(props) {
     super(props);
@@ -213,6 +214,8 @@ export class PictursCarousel extends Component {
   }
 
 }
+
+//one slide content for the picture carusel
 export const CarouselSlide = props => {
   let clas = props.active ? "carousel-item active" : "carousel-item";
   let img = props.src ? <img src={props.src} className="roundedImg" alt={props.display} height="150px" width="150px" /> : "";
@@ -266,6 +269,7 @@ export const CarouselSlide = props => {
   }
 }
 
+//carusel indicator showing witch slide is shoing at this moment
 export const CarouselLi = props => {
   var clas = "";
   if (props.active)

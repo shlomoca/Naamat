@@ -236,7 +236,14 @@ img {
 }
 
 
-
+.starContainer{
+    height: 50px;
+}
+.width80{
+    width: 80%;
+    margin: auto;
+    
+}
 #myAdd1{
     position: absolute;
     margin-top: 0%;
@@ -348,11 +355,13 @@ align-self: center;
 .flex{
     display: flex;
     flex-direction: row;
-    justify-items: center;
+    justify-content: space-evenly;
     
 }
 .agree{
-    margin: 0;
+    width: 50px;
+    margin: unset;
+
 }
 .mainFormFeilds{
     width: 80%;
@@ -379,4 +388,23 @@ align-self: center;
 }
 .width45percent{
     width: 45%;
+    margin: auto;
+}
+.bibliografyContainer{
+    width: 50%;
+    margin: auto;
+    display: flex;
+    flex-direction: column !important;
+    
+}
+#fill20{
+    width: 100%;
+}
+
+.SuggestInput{
+    margin-top: 3px;
+}
+.suggestBtn{
+    margin-top: 3px;
+
 }

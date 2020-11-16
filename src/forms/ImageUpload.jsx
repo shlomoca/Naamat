@@ -6,6 +6,8 @@ import ReactCrop from 'react-image-crop';
 import 'react-image-crop/dist/ReactCrop.css';
 import ReactDOM from 'react-dom';
 import './ImageUpload.css';
+
+//a input component that allows to choose an image and crop before uploading it
 class ImageUpload extends Component {
   constructor(props) {
     super(props);
@@ -184,7 +186,7 @@ class ImageUpload extends Component {
 }
 export default ImageUpload;
 
-
+//a input component for a editWomaModal that allows to upload multiple images and write a few words about the image uploaded
 export class MultiImageUpload extends Component {
   constructor(props) {
     super(props);

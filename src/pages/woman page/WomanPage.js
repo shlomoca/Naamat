@@ -216,11 +216,14 @@ export class ShoWoman extends Component {
     }
 }
 
+//format a date to string in the format dd/mm/yy
 function formatDate(date) {
     let info = new Date(date);
     let d = info.getDate() + '/' + (info.getMonth() + 1) + '/' + info.getFullYear();
     return d;
 }
+
+//component to present information about the furthur reading atrribute for a women 
 const FurtherReading = (props) => {
     var links = props.links,
         bibliography = props.bibliography;
@@ -285,7 +288,7 @@ export function getWomen(womanName, admin) {
 }
 
 
-
+//a component for calling the suggest women modal
 export class Suggest extends Component {
 
 
@@ -303,30 +306,32 @@ export class Suggest extends Component {
 }
 
 
-//get the next lexicographic index
-function getMaxIndex(str) {
-    var char = str.slice(-1);
-    var newchar = String.fromCharCode(char.charCodeAt(0) + 1);
-    var newstr = str.substring(0, str.length - 1);
-    if (str.match(/[\u0600-\u06FF]/i)) {
-        if (!(newchar.match(/[\u0600-\u06FF]/i)))
-            newchar = "اا";
-        return newstr.concat(newchar);
+//get the next lexicographic index 
+// function getMaxIndex(str) {
+//     var char = str.slice(-1);
+//     var newchar = String.fromCharCode(char.charCodeAt(0) + 1);
+//     var newstr = str.substring(0, str.length - 1);
+//     if (str.match(/[\u0600-\u06FF]/i)) {
+//         if (!(newchar.match(/[\u0600-\u06FF]/i)))
+//             newchar = "اا";
+//         return newstr.concat(newchar);
 
-    }
-    if (str.match(/[\u0590-\u05FF]/i)) {
-        if (!(newchar.match(/[\u0590-\u05FF]/i)))
-            newchar = "אא";
-        return newstr.concat(newchar);
-    }
-    if (str.match(/^[a-zA-Z]/i)) {
-        if (char === 'z' || char === 'Z')
-            newchar = "aa";
-        return newstr.concat(newchar);
-    }
-    return str;
+//     }
+//     if (str.match(/[\u0590-\u05FF]/i)) {
+//         if (!(newchar.match(/[\u0590-\u05FF]/i)))
+//             newchar = "אא";
+//         return newstr.concat(newchar);
+//     }
+//     if (str.match(/^[a-zA-Z]/i)) {
+//         if (char === 'z' || char === 'Z')
+//             newchar = "aa";
+//         return newstr.concat(newchar);
+//     }
+//     return str;
 
-}
+// }
+
+
 //deteminLang determins what is the lang first letter in str
 export function determineLang(str) {
     if (str[0].match(/[\u0600-\u06FF]/i)) {
@@ -422,7 +427,7 @@ export function loadWomanToModal(id) {
 
 }
 
-
+//a container that can slide photos by grabbing them. cliking on a photo will open a modal
 export class ShowPhotos extends Component {
 
     constructor(props) {
