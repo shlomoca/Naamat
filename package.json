@@ -10,7 +10,7 @@
     "@testing-library/user-event": "^7.2.1",
     "base-64": "^0.1.0",
     "elegant-spinner": "^2.0.0",
-    "firebase": "^7.15.1",
+    "firebase": "^10.9.0",
     "fs-extra": "^9.0.1",
     "image-preview-react": "^1.0.1",
     "jquery": "^3.5.1",
